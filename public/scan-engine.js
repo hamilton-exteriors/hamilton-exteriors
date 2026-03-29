@@ -54,14 +54,13 @@
 
   function updatePrice(){if(!state.roofData)return;var sq=state.roofData.sqft,sc=$('.material-card[data-tier="'+state.selectedTier+'"]');var pps=parseFloat(sc.querySelector('[data-price-per-sqft]').dataset.pricePerSqft);var tm=sq*pps,mt=Math.round(tm*.4),lb=Math.round(tm*.35),tf=Math.round(tm*.15),pm=Math.round(tm*.1);var at=0,as=$('#addons-summary');as.innerHTML='';$$('#addons input:checked').forEach(function(c){var p=parseInt(c.dataset.addonPrice);at+=p;var r=document.createElement('div');r.className='flex justify-between';r.style.fontSize='15px';r.innerHTML='<span style="color:var(--color-input)">'+c.parentElement.querySelector('.addon-label').textContent+'</span><span class="font-semibold text-charcoal">$'+p.toLocaleString()+'</span>';as.appendChild(r);});var tot=mt+lb+tf+pm+at,cs=Math.round(tot*.35);var f=function(v){return'$'+v.toLocaleString();};[['price-materials',mt],['price-labor',lb],['price-tearoff',tf],['price-permits',pm],['total-price',tot]].forEach(function(x){var el=document.getElementById(x[0]);if(!el)return;anim(x[0],parseInt(el.textContent.replace(/[$,]/g,''))||0,x[1],400,f);});var te=$('#total-price');te.classList.add('price-updating');setTimeout(function(){te.classList.remove('price-updating');},300);$('#monthly-price').textContent='$'+Math.round(tot/60).toLocaleString()+'/mo';$('#commission-savings').textContent='$'+cs.toLocaleString();$$('.material-card').forEach(function(c){var p=parseFloat(c.querySelector('[data-price-per-sqft]').dataset.pricePerSqft);c.querySelector('.tier-price').textContent=Math.round(sq*p).toLocaleString();});var mt2=$('#mobile-total-price');if(mt2)mt2.textContent='$'+tot.toLocaleString();}
 
-  // Auto-start from ?address= param
+  // Auto-start from ?address= param — skip step 1 entirely
   var ua=new URLSearchParams(window.location.search).get('address');
   if(ua&&ua.trim().length>=5){
     ai.value=ua;state.address=ua;loadMaps();
-    // Wait for DOM to be fully ready, then start scan
-    setTimeout(function(){
-      sip=false; // ensure clean state
-      scanDemo(DL,DG);
-    },500);
+    // Hide step 1 immediately so user never sees the redundant input
+    s1.classList.add('hidden');
+    sip=false;
+    scanDemo(DL,DG);
   }
 })();
