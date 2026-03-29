@@ -10,7 +10,7 @@
   // ── State ───────────────────────────────────────────────────────────
   var state = {
     step: 1, address: '', roofData: null, scanResult: null,
-    selectedTier: 'oc-supreme', lat: null, lng: null, mapsReady: false
+    selectedTier: 'gaf-hdz', lat: null, lng: null, mapsReady: false
   };
 
   var $ = function (s) { return document.querySelector(s); };
@@ -320,13 +320,31 @@
 
   $$('#addons input').forEach(function (c) { c.addEventListener('change', function () { updatePrice(); }); });
 
+  // Category filter
+  $$('#category-filter .cat-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      $$('#category-filter .cat-btn').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var cat = btn.dataset.cat;
+      $$('.material-card').forEach(function (card) {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.classList.remove('cat-hidden');
+        } else {
+          card.classList.add('cat-hidden');
+        }
+      });
+    });
+  });
+
   // ── Pricing engine ──────────────────────────────────────────────────
   function updatePrice() {
     if (!state.roofData) return;
     var sq = state.roofData.sqft;
     var sc = $('.material-card[data-tier="' + state.selectedTier + '"]');
-    var pps = parseFloat(sc.querySelector('[data-price-per-sqft]').dataset.pricePerSqft);
-    var tm = sq * pps;
+    var pricePerSq = parseFloat(sc.querySelector('[data-price-per-sqft]').dataset.pricePerSqft);
+    // pricePerSq is $/square (100 sqft), e.g. 9.50 = $950/sq
+    var numSquares = sq / 100;
+    var tm = numSquares * pricePerSq * 100; // total in dollars
     var mt = Math.round(tm * 0.40), lb = Math.round(tm * 0.35);
     var tf = Math.round(tm * 0.15), pm = Math.round(tm * 0.10);
 
@@ -367,7 +385,7 @@
 
     $$('.material-card').forEach(function (c) {
       var p = parseFloat(c.querySelector('[data-price-per-sqft]').dataset.pricePerSqft);
-      c.querySelector('.tier-price').textContent = Math.round(sq * p).toLocaleString();
+      c.querySelector('.tier-price').textContent = Math.round(numSquares * p * 100).toLocaleString();
     });
 
     var mt2 = $('#mobile-total-price');
