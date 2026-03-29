@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AnnouncementBar from '../components/AnnouncementBar.astro';
+import Navbar from '../components/Navbar.astro';
+import ReviewLogos from '../components/ReviewLogos.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Hamilton Exteriors"
+  description="Thank you for contacting Hamilton Exteriors. We'll be in touch shortly."
+>
+  <AnnouncementBar />
+  <Navbar />
+
+  <!-- Thank You Hero -->
+  <section class="w-full bg-cream py-32">
+    <div class="mx-auto max-w-[600px] px-5 text-center">
+      <div class="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
+        <svg class="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <h1 class="font-['Playfair_Display'] text-[36px] font-bold leading-tight text-[rgb(28,28,28)] md:text-[48px]">
+        Thank You!
+      </h1>
+      <p class="mt-4 font-dm-sans text-lg text-gray-600">
+        We'll contact you within <strong>3-5 minutes</strong>.
+      </p>
+      <p class="mt-2 font-dm-sans text-base text-gray-500">
+        One of our project specialists will reach out to discuss your needs and schedule a free consultation at your convenience.
+      </p>
+    </div>
+  </section>
+
+  <!-- What to Expect -->
+  <section class="w-full bg-white py-20">
+    <div class="mx-auto max-w-[900px] px-5">
+      <h2 class="mb-10 text-center font-['Playfair_Display'] text-[28px] font-semibold text-[rgb(28,28,28)] md:text-[36px]">
+        What Happens Next
+      </h2>
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
+        <div class="text-center">
+          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+            <span class="font-dm-sans text-xl font-bold text-primary">1</span>
+          </div>
+          <h3 class="mb-2 font-dm-sans text-lg font-semibold text-[rgb(28,28,28)]">Quick Call</h3>
+          <p class="font-dm-sans text-sm text-gray-600">We'll call you within minutes to understand your project and answer any questions.</p>
+        </div>
+        <div class="text-center">
+          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+            <span class="font-dm-sans text-xl font-bold text-primary">2</span>
+          </div>
+          <h3 class="mb-2 font-dm-sans text-lg font-semibold text-[rgb(28,28,28)]">Free Inspection</h3>
+          <p class="font-dm-sans text-sm text-gray-600">We'll schedule an in-home or virtual consultation to assess your project needs.</p>
+        </div>
+        <div class="text-center">
+          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+            <span class="font-dm-sans text-xl font-bold text-primary">3</span>
+          </div>
+          <h3 class="mb-2 font-dm-sans text-lg font-semibold text-[rgb(28,28,28)]">Detailed Estimate</h3>
+          <p class="font-dm-sans text-sm text-gray-600">Receive a transparent, no-obligation estimate with all options clearly explained.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ReviewLogos />
+
+  <!-- Quick Links -->
+  <section class="w-full bg-cream py-16">
+    <div class="mx-auto max-w-[600px] px-5 text-center">
+      <p class="mb-6 font-dm-sans text-base text-gray-600">
+        While you wait, explore our services:
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/roofing" class="rounded-full border border-primary px-6 py-2 font-dm-sans text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white">Roofing</a>
+        <a href="/siding" class="rounded-full border border-primary px-6 py-2 font-dm-sans text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white">Siding</a>
+        <a href="/windows" class="rounded-full border border-primary px-6 py-2 font-dm-sans text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white">Windows</a>
+        <a href="/additions" class="rounded-full border border-primary px-6 py-2 font-dm-sans text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white">Additions</a>
+        <a href="/adu" class="rounded-full border border-primary px-6 py-2 font-dm-sans text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white">ADUs</a>
+      </div>
+      <a
+        href="/"
+        class="mt-8 inline-block rounded-full bg-primary px-8 py-3 font-dm-sans text-sm font-semibold text-white transition-colors hover:bg-primary/90"
+      >
+        Back to Home
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

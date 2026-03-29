@@ -1,0 +1,54 @@
+
+> hamilton-exteriors@0.0.1 build
+> astro build
+
+[2m19:04:37[22m [34m[types][39m Generated [2m28ms[22m
+[2m19:04:37[22m [34m[build][39m output: [34m"static"[39m
+[2m19:04:37[22m [34m[build][39m mode: [34m"static"[39m
+[2m19:04:37[22m [34m[build][39m directory: [34mC:\Users\admin\hamilton-exteriors\dist\[39m
+[2m19:04:37[22m [34m[build][39m Collecting build info...
+[2m19:04:37[22m [34m[build][39m [32m✓ Completed in 41ms.[39m
+[2m19:04:37[22m [34m[build][39m Building static entrypoints...
+[33m[1m19:04:38[22m [WARN] [vite][39m [33m"matchHostname", "matchPathname", "matchPort" and "matchProtocol" are imported from external module "@astrojs/internal-helpers/remote" but never used in "node_modules/astro/dist/assets/utils/index.js".[39m
+[2m19:04:38[22m [34m[vite][39m [32m✓ built in 1.36s[39m
+[2m19:04:39[22m [34m[vite][39m [32m✓ built in 17ms[39m
+[2m19:04:39[22m [34m[build][39m Rearranging server assets...
+
+[42m[30m generating static routes [39m[49m
+[2m19:04:39[22m   [34m├─[39m [2m/additions/index.html[22m [2m(+24ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/additions-2/index.html[22m [2m(+7ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/additions-3/index.html[22m [2m(+5ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/adu/index.html[22m [2m(+7ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/buy/index.html[22m [2m(+6ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/privacy-policy/index.html[22m [2m(+6ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/quote-calculator/index.html[22m [2m(+5ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/roofing/index.html[22m [2m(+6ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/alameda-county-ca/berkeley-ca/index.html[22m [2m(+7ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/alameda-county-ca/fremont-ca/index.html[22m [2m(+5ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/alameda-county-ca/hayward-ca/index.html[22m [2m(+6ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/alameda-county-ca/oakland-ca/index.html[22m [2m(+7ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/alameda-county-ca/san-leandro-ca/index.html[22m [2m(+5ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/alameda-county-ca/index.html[22m [2m(+5ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/contra-costa-county-ca/antioch-ca/index.html[22m [2m(+4ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/contra-costa-county-ca/concord-ca/index.html[22m [2m(+3ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/contra-costa-county-ca/richmond-ca/index.html[22m [2m(+5ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/contra-costa-county-ca/san-ramon-ca/index.html[22m [2m(+4ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/contra-costa-county-ca/walnut-creek-ca/index.html[22m [2m(+4ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/contra-costa-county-ca/index.html[22m [2m(+5ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/marin-county-ca/larkspur-ca/index.html[22m [2m(+4ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/marin-county-ca/mill-valley-ca/index.html[22m [2m(+5ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/marin-county-ca/novato-ca/index.html[22m [2m(+4ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/marin-county-ca/san-rafael-ca/index.html[22m [2m(+8ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/marin-county-ca/index.html[22m [2m(+5ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/napa-county-ca/index.html[22m [2m(+3ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/santa-clara-county-ca/index.html[22m [2m(+4ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/service-areas/index.html[22m [2m(+4ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/siding/index.html[22m [2m(+14ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/success/index.html[22m [2m(+5ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/windows/index.html[22m [2m(+5ms)[22m 
+[2m19:04:39[22m   [34m├─[39m [2m/index.html[22m [2m(+4ms)[22m 
+[2m19:04:39[22m [32m✓ Completed in 208ms.
+[39m
+[2m19:04:39[22m [34m[build][39m [32m✓ Completed in 1.64s.[39m
+[2m19:04:39[22m [34m[build][39m 32 page(s) built in [1m1.70s[22m
+[2m19:04:39[22m [34m[build][39m [1mComplete![22m

@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AnnouncementBar from '../components/AnnouncementBar.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import LogoSlider from '../components/LogoSlider.astro';
+import Reviews from '../components/Reviews.astro';
+import ReviewLogos from '../components/ReviewLogos.astro';
+import Difference from '../components/Difference.astro';
+import Projects from '../components/Projects.astro';
+import CTA from '../components/CTA.astro';
+import Financing from '../components/Financing.astro';
+import FAQ from '../components/FAQ.astro';
+import ContactUs from '../components/ContactUs.astro';
+import Footer from '../components/Footer.astro';
+
+const services = [
+  {
+    title: 'Design & Architecture',
+    description: 'Work with our team to design a home that reflects your vision, lifestyle, and budget',
+  },
+  {
+    title: 'Foundation & Framing',
+    description: 'Solid structural work built to code with premium materials that stand the test of time',
+  },
+  {
+    title: 'Interior Finishing',
+    description: 'From flooring to cabinetry, we handle every detail of your interior build-out',
+  },
+  {
+    title: 'Permits & Project Management',
+    description: 'We manage the full permitting process and keep your project on schedule and on budget',
+  },
+];
+---
+
+<Layout
+  title="Home Additions Across the San Francisco Bay Area | Design & Construction Experts | Hamilton Exteriors"
+  description="Hamilton Exteriors builds custom homes in Castro Valley, CA."
+>
+  <AnnouncementBar />
+  <Navbar />
+  <Hero
+    formTitle="Get a FREE Consultaion"
+    headline="Custom Home Building in Castro Valley"
+    badges={[
+      'Licensed Bonded & Insured',
+      'Start with $0 Down',
+      '50 year Warranty',
+      'Increase Property Value',
+    ]}
+    ctaText="Get A FREE Estimate Now!"
+    ctaHref="/quote-calculator"
+  />
+  <LogoSlider />
+  <Reviews />
+
+  <!-- ─── Custom Homes Section ──────────────────────────────────────── -->
+  <section class="w-full bg-cream py-20">
+    <div class="mx-auto max-w-[1294px] px-5">
+      <div class="mb-12 text-center">
+        <h2>Custom Home Services</h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {services.map((service) => (
+          <div class="rounded-2xl border border-border/40 bg-white p-8 transition-shadow hover:shadow-lg">
+            <h3 class="mb-3 font-fraunces text-[24px] font-600 text-charcoal">{service.title}</h3>
+            <p class="font-dm-sans text-[17px] leading-relaxed text-input">{service.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+  <ReviewLogos />
+  <Difference />
+  <Projects />
+  <Financing scheduleHref="/quote-calculator" />
+  <FAQ />
+  <ContactUs />
+  <Footer />
+</Layout>

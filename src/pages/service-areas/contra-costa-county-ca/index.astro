@@ -1,0 +1,425 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import AnnouncementBar from '../../../components/AnnouncementBar.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Hero from '../../../components/Hero.astro';
+import LogoSlider from '../../../components/LogoSlider.astro';
+import FAQ from '../../../components/FAQ.astro';
+import ContactUs from '../../../components/ContactUs.astro';
+import Footer from '../../../components/Footer.astro';
+
+const county = 'Contra Costa County';
+const cities = [
+  {
+    name: 'Antioch',
+    slug: '/service-areas/contra-costa-county-ca/antioch-ca',
+    image: 'https://framerusercontent.com/images/Vbps9gI6beyd09demqF734Saa0.jpg',
+  },
+  {
+    name: 'Walnut Creek',
+    slug: '/service-areas/contra-costa-county-ca/walnut-creek-ca',
+    image: 'https://framerusercontent.com/images/2SwyshE7W0TzELdE7rlksL968j8.jpg',
+  },
+  {
+    name: 'Concord',
+    slug: '/service-areas/contra-costa-county-ca/concord-ca',
+    image: 'https://framerusercontent.com/images/2SwyshE7W0TzELdE7rlksL968j8.jpg',
+  },
+  {
+    name: 'San Ramon',
+    slug: '/service-areas/contra-costa-county-ca/san-ramon-ca',
+    image: 'https://framerusercontent.com/images/jSCOGCLy9GyO8BBF2jjKOEfgBw.jpg',
+  },
+  {
+    name: 'Richmond',
+    slug: '/service-areas/contra-costa-county-ca/richmond-ca',
+    image: 'https://framerusercontent.com/images/PJ4h7mu8fI4K84zC6qwrwYqmR8.jpg',
+  },
+];
+
+const faqs = [
+  {
+    question: `What services do experienced ADU contractors provide in ${county}, CA?`,
+    answer: `Experienced ADU contractors in ${county}, CA handle every phase of the project including site assessment, architectural design, permit acquisition, utility coordination, foundation work, framing, electrical, plumbing, HVAC installation, and final inspections. We manage the entire build so you have a single point of contact from concept to move-in.`,
+  },
+  {
+    question: `How long does an ADU project take in ${county}, CA?`,
+    answer: `Most ADU projects in ${county}, CA take between 6 and 12 months from initial design through completion. Timelines vary based on unit size, site conditions, permit processing, and customization level. Our experienced team keeps your project on schedule with clear milestones and proactive communication throughout the build.`,
+  },
+  {
+    question: `Are ADUs customizable for rental or multigenerational use in ${county}, CA?`,
+    answer: `Absolutely. ADUs in ${county}, CA can be fully customized for rental income, multigenerational living, home offices, or guest quarters. We design flexible floor plans with separate entrances, full kitchens, accessible bathrooms, and privacy features tailored to your specific needs and local zoning requirements.`,
+  },
+];
+---
+
+<Layout
+  title={`Experienced ADU Contractors in ${county}, CA | Hamilton Exteriors`}
+  description={`Hamilton Exteriors provides experienced ADU contractors throughout ${county}, CA. We manage design, permits, and construction with precision. Get a free estimate today.`}
+>
+  <AnnouncementBar />
+  <Navbar />
+  <Hero
+    formTitle={`Get a FREE Estimate in ${county}`}
+    headline={`Experienced ADU Contractors in ${county}, CA`}
+  />
+  <LogoSlider />
+
+  <!-- LOCATIONS Section -->
+  <section class="locations-section">
+    <div class="locations-container">
+      <p class="locations-label">LOCATIONS</p>
+      <div class="locations-grid">
+        {cities.map((city) => (
+          <a href={city.slug} class="city-card">
+            <div class="city-card-image-wrap">
+              <img
+                src={`${city.image}?width=540&height=312`}
+                alt={`${city.name}, CA`}
+                class="city-card-image"
+                loading="lazy"
+                width="540"
+                height="312"
+              />
+            </div>
+            <div class="city-card-content">
+              <h3 class="city-card-name">{city.name}, CA</h3>
+              <span class="city-card-link">Explore Service Area &rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY Section -->
+  <section class="why-section">
+    <div class="why-container">
+      <h2 class="why-heading">Why Experienced ADU Contractors Matter in {county}, CA?</h2>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <h3 class="why-card-title">Space. Value. Versatility.</h3>
+          <p class="why-card-text">
+            Experienced ADU contractors in {county}, CA help homeowners create livable square footage on existing lots. A well-planned ADU supports aging parents, adult children, or tenants while preserving yard space and maintaining neighborhood character—turning unused areas into productive, income-generating assets.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <h3 class="why-card-title">Compliance & Safety</h3>
+          <p class="why-card-text">
+            Working with experienced ADU contractors in {county}, CA reduces risks tied to drainage, egress, fire separation, and structural loads. Professional execution means electrical, plumbing, and ventilation systems are installed to code, improving durability, indoor air quality, and long-term safety for occupants.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <h3 class="why-card-title">Energy Performance</h3>
+          <p class="why-card-text">
+            Purpose-built ADUs outperform quick conversions. With experienced ADU contractors in {county}, CA, assemblies are insulated correctly, thermal bridges are minimized, and HVAC is right-sized—resulting in quieter, more comfortable spaces with lower utility costs and a smaller environmental footprint.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="faq-container">
+      <div class="faq-header">
+        <h2 class="faq-heading">Frequently Asked Questions</h2>
+        <p class="faq-subtext">
+          Didn't find the answer to your question?{' '}
+          <a href="tel:6509773351" class="faq-phone-link">Call Now (650) 977-3351</a>
+        </p>
+      </div>
+
+      <div class="faq-accordion">
+        {faqs.map((faq) => (
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span class="faq-question-text">{faq.question}</span>
+              <span class="faq-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false">
+                  <g><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z" /></g>
+                </svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactUs />
+  <Footer />
+</Layout>
+
+<style>
+  /* ========== LOCATIONS ========== */
+  .locations-section {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 60px 0;
+  }
+  .locations-container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  .locations-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(13, 43, 29);
+    margin: 0 0 32px 0;
+  }
+  .locations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 1023px) {
+    .locations-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 639px) {
+    .locations-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .city-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgb(230, 230, 230);
+    text-decoration: none;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .city-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+  .city-card-image-wrap {
+    width: 100%;
+    aspect-ratio: 540 / 312;
+    overflow: hidden;
+  }
+  .city-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .city-card:hover .city-card-image {
+    transform: scale(1.03);
+  }
+  .city-card-content {
+    padding: 16px 20px 20px;
+  }
+  .city-card-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: rgb(13, 43, 29);
+    margin: 0 0 8px 0;
+  }
+  .city-card-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(37, 99, 70);
+    text-decoration: none;
+  }
+  .city-card:hover .city-card-link {
+    text-decoration: underline;
+  }
+
+  /* ========== WHY SECTION ========== */
+  .why-section {
+    width: 100%;
+    background-color: rgb(248, 248, 248);
+    padding: 60px 0;
+  }
+  .why-container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  .why-heading {
+    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 0px;
+    color: rgb(13, 43, 29);
+    text-transform: uppercase;
+    margin: 0 0 40px 0;
+  }
+  @media (max-width: 767px) {
+    .why-heading {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 1023px) {
+    .why-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+  .why-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .why-card-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: rgb(13, 43, 29);
+    margin: 0;
+  }
+  .why-card-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 26px;
+    color: rgb(75, 75, 75);
+    margin: 0;
+  }
+
+  /* ========== FAQ SECTION ========== */
+  .faq-section {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 60px 0;
+  }
+  .faq-container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  .faq-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  @media (min-width: 768px) {
+    .faq-header {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  .faq-heading {
+    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 0px;
+    color: rgb(13, 43, 29);
+    text-transform: uppercase;
+    margin: 0;
+  }
+  @media (max-width: 767px) {
+    .faq-heading {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+  .faq-subtext {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 150%;
+    color: rgb(13, 43, 29);
+    margin: 0;
+    white-space: normal;
+  }
+  @media (min-width: 768px) {
+    .faq-subtext {
+      text-align: right;
+      white-space: nowrap;
+    }
+  }
+  .faq-phone-link {
+    font-weight: 400;
+    color: rgb(13, 43, 29);
+    text-decoration: none;
+  }
+  .faq-accordion {
+    width: 100%;
+  }
+  .faq-item {
+    border-bottom: 1px solid rgb(196, 191, 182);
+    background-color: rgb(255, 255, 255);
+  }
+  .faq-question {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding: 20px 0;
+  }
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+  .faq-question-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0px;
+    color: rgb(3, 7, 18);
+    padding-right: 16px;
+  }
+  .faq-icon {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+  .faq-icon svg {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    fill: rgb(3, 7, 18);
+    color: rgb(3, 7, 18);
+  }
+  .faq-answer {
+    padding-bottom: 20px;
+    padding-right: 48px;
+  }
+  .faq-answer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    color: rgb(3, 7, 18);
+    opacity: 0.7;
+    margin: 0;
+  }
+  details[open] .faq-icon svg g path {
+    d: path("M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z");
+  }
+</style>

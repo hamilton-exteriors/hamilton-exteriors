@@ -1,0 +1,12 @@
+{
+  "errors": [],
+  "warnings": [],
+  "principles_met": true,
+  "stats": {
+    "total_sections": 13,
+    "total_tokens": 38476,
+    "avg_tokens": 2959,
+    "max_tokens": 6893,
+    "min_tokens": 635
+  }
+}

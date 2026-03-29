@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AnnouncementBar from '../components/AnnouncementBar.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import LogoSlider from '../components/LogoSlider.astro';
+import Reviews from '../components/Reviews.astro';
+import ReviewLogos from '../components/ReviewLogos.astro';
+import Difference from '../components/Difference.astro';
+import Projects from '../components/Projects.astro';
+import CTA from '../components/CTA.astro';
+import Financing from '../components/Financing.astro';
+import FAQ from '../components/FAQ.astro';
+import ContactUs from '../components/ContactUs.astro';
+import Footer from '../components/Footer.astro';
+
+const aduTypes = [
+  {
+    title: 'Attached ADUS',
+    description: 'Attached Accessory Dwelling Units (ADUs) are integrated additions to your existing home that expand your living space while enhancing functionality and value. Whether used as a private suite for family, a rental unit for extra income, or a dedicated workspace, attached ADUs seamlessly blend with your home\'s design while providing flexibility and long-term property benefits.',
+  },
+  {
+    title: 'Detached ADUS',
+    description: 'Detached Accessory Dwelling Units (ADUs) are standalone backyard homes that offer maximum privacy, flexibility, and value. Perfect for guest suites, rental units, or home offices, these independent structures create additional living space while maintaining separation from the main house. A detached ADU enhances your property\'s functionality, provides potential rental income, and adds lasting value to your home.',
+  },
+  {
+    title: 'Conversions',
+    description: 'Conversion Accessory Dwelling Units (ADUs) transform existing spaces\u2014such as garages, basements, or attics\u2014into fully functional living areas. This type of ADU is a cost-effective way to maximize your home\'s potential without expanding its footprint. Whether you\'re creating a rental unit, a private suite for family, or a modern home office, conversion ADUs add versatility, comfort, and long-term value to your property.',
+  },
+  {
+    title: 'Plans & Permits',
+    description: 'We simplify the planning and permitting process so you can focus on your project, not the paperwork. Our experienced team handles every detail\u2014from design plans and site assessments to submitting permit applications and coordinating with local building departments. We ensure your project meets all code requirements and moves smoothly from concept to construction, saving you time, stress, and costly delays.',
+  },
+];
+---
+
+<Layout
+  title="ADU Builder in the San Francisco Bay Area | Design & Construction Experts | Hamilton Exteriors"
+  description="Hamilton Exteriors builds beautiful ADUs across the Bay Area. Attached, detached, conversions, and full permitting."
+>
+  <AnnouncementBar />
+  <Navbar />
+  <Hero
+    formTitle="Get a FREE Consultation"
+    headline="WE Build Beautiful ADUs and Homes Across the Bay Area"
+    badges={[
+      'Licensed Bonded & Insured',
+      'Start with $0 Down',
+      '50 year Warranty',
+      '3-5 day install',
+    ]}
+  />
+
+  <!-- Full-width image banner -->
+  <section class="relative w-full" style="height: 400px;">
+    <img
+      src="https://framerusercontent.com/images/0Ku3yvDvmLHVzklcO4me7098.jpeg"
+      alt="ADU construction in the Bay Area"
+      width="1280"
+      height="853"
+      style="width: 100%; height: 100%; object-fit: cover; display: block;"
+      loading="lazy"
+    />
+  </section>
+
+  <LogoSlider />
+
+  <!-- ─── ADU Types Section ─────────────────────────────────────────── -->
+  <section class="w-full bg-cream py-20">
+    <div class="mx-auto max-w-[1294px] px-5">
+      <div class="mb-12 text-center">
+        <h2>Construction Services Offered</h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {aduTypes.map((type) => (
+          <div class="rounded-2xl border border-border/40 bg-white p-8 transition-shadow hover:shadow-lg">
+            <h3 class="mb-3 font-fraunces text-[24px] font-600 text-charcoal">{type.title}</h3>
+            <p class="font-dm-sans text-[17px] leading-relaxed text-input">{type.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Reviews />
+  <ReviewLogos />
+  <Difference />
+  <Projects />
+  <CTA />
+  <Financing />
+  <FAQ />
+  <ContactUs />
+  <Footer />
+</Layout>

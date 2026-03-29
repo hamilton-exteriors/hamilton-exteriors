@@ -1,0 +1,31 @@
+{
+  "id": "section-3",
+  "name": "section_3",
+  "type": "section",
+  "selector": "div.framer-11355ao",
+  "rect": {
+    "x": 0,
+    "y": 842.59375,
+    "width": 1920,
+    "height": 400,
+    "top": 842.59375,
+    "bottom": 1242.59375,
+    "left": 0,
+    "right": 1920
+  },
+  "styles": {
+    "background_color": "rgba(0, 0, 0, 0)",
+    "background_image": null,
+    "color": "rgb(0, 0, 0)",
+    "padding": null
+  },
+  "html": "<div class=\"framer-11355ao hidden-fe7vc0\"><div style=\"position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0\" data-framer-background-image-wrapper=\"true\"><img decoding=\"auto\" loading=\"lazy\" width=\"1280\" height=\"853\" sizes=\"100vw\" srcset=\"https://framerusercontent.com/images/0Ku3yvDvmLHVzklcO4me7098.jpeg?scale-down-to=512&amp;width=1280&amp;height=853 512w,https://framerusercontent.com/images/0Ku3yvDvmLHVzklcO4me7098.jpeg?scale-down-to=1024&amp;width=1280&amp;height=853 1024w,https://framerusercontent.com/images/0Ku3yvDvmLHVzklcO4me7098.jpeg?width=1280&amp;height=853 1280w\" src=\"https://framerusercontent.com/images/0Ku3yvDvmLHVzklcO4me7098.jpeg?width=1280&amp;height=853\" alt=\"\" style=\"display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover\"></div></div></div>",
+  "estimated_tokens": 217,
+  "images": [
+    {
+      "src": "https://framerusercontent.com/images/0Ku3yvDvmLHVzklcO4me7098.jpeg?width=1280&amp;height=853",
+      "alt": ""
+    }
+  ],
+  "links": []
+}

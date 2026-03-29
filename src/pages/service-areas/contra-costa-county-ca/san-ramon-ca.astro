@@ -1,0 +1,95 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import AnnouncementBar from '../../../components/AnnouncementBar.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Hero from '../../../components/Hero.astro';
+import LogoSlider from '../../../components/LogoSlider.astro';
+import FAQ from '../../../components/FAQ.astro';
+import ContactUs from '../../../components/ContactUs.astro';
+import Footer from '../../../components/Footer.astro';
+
+const city = 'San Ramon';
+const county = 'Contra Costa County';
+const adjective = 'Skilled';
+---
+
+<Layout
+  title={`${adjective} ADU Contractors in ${city}, CA | Hamilton Exteriors`}
+  description={`Hamilton Exteriors provides ${adjective.toLowerCase()} ADU contractors in ${city}, CA. Expert design, permits, and construction. Call for a free consultation!`}
+>
+  <AnnouncementBar />
+  <Navbar />
+  <Hero
+    formTitle={`Get a FREE Estimate in ${city}`}
+    headline={`${adjective} ADU Contractors in ${city}, CA`}
+  />
+  <LogoSlider />
+
+  <!-- Why Choose Section -->
+  <section class="w-full bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why Choose Hamilton Exteriors as Your {adjective} ADU Contractors in {city}, CA?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Creative. Reliable. Precise.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Hamilton Exteriors provides skilled ADU contractors in San Ramon, CA who deliver precision craftsmanship that matches the high standards of this premier Tri-Valley community. San Ramon's well-maintained neighborhoods like Dougherty Valley, Gale Ranch, and Windemere are home to discerning homeowners who expect quality construction, and our skilled team delivers exactly that.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Skilled construction means more than just competent building. It means precise measurements, clean joinery, thoughtful electrical and plumbing layouts, and interior finishes that look and feel like they belong in San Ramon's upscale residential market. We take the technical aspects of ADU building seriously because the details are what separate an average unit from an exceptional one.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        We handle San Ramon's permitting requirements, HOA coordination where applicable, and all construction phases with the precision and professionalism that homeowners in this community expect.
+      </p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Precision Craftsmanship</strong> — Our crews deliver tight, clean construction with attention to every joint, seam, and finish detail that defines quality ADU building in San Ramon.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">HOA Coordination</strong> — Many San Ramon neighborhoods have HOA requirements. We work with your association's architectural review process to ensure your ADU is approved without delays.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Premium Finishes</strong> — We source quality fixtures, countertops, flooring, and cabinetry that match the finish level San Ramon homeowners expect in their properties.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Efficient Build Process</strong> — Our skilled team works efficiently without rushing, maintaining quality while keeping your project moving toward completion on the agreed timeline.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why ADU Contractors Section -->
+  <section class="w-full bg-cream py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why {adjective} ADU Contractors in {city}, CA Are Essential?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Function. Safety. Value.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        San Ramon consistently ranks among the safest and most desirable cities in California, with top-rated schools and a strong local economy anchored by companies like Chevron and AT&T. Home values here are among the highest in Contra Costa County, and an ADU built by skilled contractors adds proportional value — a poorly built unit in this market stands out for all the wrong reasons.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Skilled contractors are essential in San Ramon because the expectations are higher. Homebuyers and appraisers in this market scrutinize construction quality closely, and an ADU needs to reflect the same standard as the primary residence. This means proper structural engineering, quality HVAC systems, modern electrical work, and finishes that hold up to daily use while looking sharp.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+        Investing in skilled ADU contractors protects the significant equity you've built in your San Ramon home. The result is a unit that functions beautifully, meets every safety standard, and enhances your property's overall value in one of the Bay Area's most competitive real estate markets.
+      </p>
+    </div>
+  </section>
+
+  <FAQ />
+  <ContactUs />
+  <Footer />
+</Layout>

@@ -1,0 +1,85 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AnnouncementBar from '../../components/AnnouncementBar.astro';
+import Navbar from '../../components/Navbar.astro';
+import Hero from '../../components/Hero.astro';
+import LogoSlider from '../../components/LogoSlider.astro';
+import ContactUs from '../../components/ContactUs.astro';
+import Reviews from '../../components/Reviews.astro';
+import Footer from '../../components/Footer.astro';
+
+const counties = [
+  { name: 'Alameda County, CA', slug: '/service-areas/alameda-county-ca', image: 'https://framerusercontent.com/images/J5mTngUM3mMlrZUEnLFAmFcRQ.jpg' },
+  { name: 'Contra Costa County, CA', slug: '/service-areas/contra-costa-county-ca', image: 'https://framerusercontent.com/images/5NsQUgPl8msPJIZNvnMhib6TjmM.jpg' },
+  { name: 'Napa County, CA', slug: '/service-areas/napa-county-ca', image: 'https://framerusercontent.com/images/nSs4mx74RgoLTPHGOBM8aSKkY8.jpg' },
+  { name: 'Santa Clara County, CA', slug: '/service-areas/santa-clara-county-ca', image: 'https://framerusercontent.com/images/fRaKvorDUCsfmTW8KDw5hYTEecU.jpg' },
+  { name: 'Marin County, CA', slug: '/service-areas/marin-county-ca', image: 'https://framerusercontent.com/images/oJjQHEsfcnE2em928Vbj25rWNA.jpg' },
+];
+---
+
+<Layout
+  title="Service Areas for ADU Contractor in Castro valley, CA | Hamilton Exteriors"
+  description="Hamilton Exteriors serves the entire Bay Area. Find your local service area for expert roofing, siding, and window services."
+>
+  <AnnouncementBar />
+  <Navbar />
+  <Hero
+    formTitle="Get a FREE QUOTE"
+    headline="Service Areas for ADU Contractor in Castro Valley, CA"
+  />
+  <LogoSlider />
+
+  <!-- County Grid -->
+  <section id="service" class="w-full" style="padding: 79px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;"
+      >
+        Service Areas We Cover
+      </h2>
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        {counties.map((county) => (
+          <a href={county.slug} class="county-card group">
+            <div class="w-full overflow-hidden" style="border-radius: 10px;">
+              <img
+                src={county.image}
+                alt={county.name}
+                width="540"
+                height="312"
+                style="width: 100%; height: auto; aspect-ratio: 540 / 312; object-fit: cover; display: block; border-radius: 10px;"
+                loading="lazy"
+              />
+            </div>
+            <div style="padding-top: 16px;">
+              <h3
+                style="font-family: 'Inter Display', 'Inter', sans-serif; font-size: 18px; font-weight: 700; line-height: 24px; margin-bottom: 6px; color: rgb(13, 43, 29);"
+              >
+                {county.name}
+              </h3>
+              <span class="inline-flex items-center text-sm font-semibold text-primary group-hover:underline">
+                Explore Service Area &rarr;
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactUs />
+  <Reviews />
+  <Footer />
+</Layout>
+
+<style>
+  .county-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+  .county-card:hover img {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+  }
+</style>

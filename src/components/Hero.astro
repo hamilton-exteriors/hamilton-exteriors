@@ -1,0 +1,270 @@
+---
+interface Props {
+  formTitle?: string;
+  formAction?: string;
+  formSubtitle?: string;
+  headline?: string;
+  badges?: string[];
+  ctaText?: string;
+  ctaHref?: string;
+  heroImage?: string;
+}
+
+const {
+  formTitle = 'Get a FREE QUOTE',
+  formAction = '/success',
+  formSubtitle = "We'll contact you in 3-5 minutes to schedule a FREE roof inspection.",
+  headline = 'Bay Areas Favorite Construction  Company',
+  badges = [
+    'Licensed Bonded & Insured',
+    'Start with $0 Down',
+    '50 year Warranty',
+    '3-5 day install',
+  ],
+  ctaText = 'Call Us - We Answer Fast',
+  ctaHref = 'tel:6509773351',
+  heroImage = 'https://framerusercontent.com/images/i7BMps6r4h2wo0XMZKI0lLqZg4.png',
+} = Astro.props;
+---
+
+<section id="quote" class="relative w-full overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <img
+      src={heroImage}
+      alt=""
+      class="h-full w-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+
+  <div
+    class="relative mx-auto flex flex-col gap-10 px-5 lg:flex-row lg:items-start lg:gap-12"
+    style="max-width: 1294px; padding-top: 35px; padding-bottom: 35px;"
+  >
+
+    <!-- Left Column -->
+    <div class="flex flex-col items-start gap-6 lg:w-[55%] lg:py-6">
+
+      <!-- Rating badge -->
+      <div class="inline-flex items-center gap-2">
+        <div class="flex gap-0.5">
+          {Array.from({ length: 5 }).map(() => (
+            <div class="relative h-[21px] w-[20px] shrink-0">
+              <img
+                src="https://framerusercontent.com/images/aEZHOZOdy8DsqZBfG9SQ8AncfD4.svg"
+                alt=""
+                class="h-full w-full object-contain"
+                width="20"
+                height="21"
+              />
+            </div>
+          ))}
+        </div>
+        <span
+          class="text-white"
+          style="font-family: 'DM Sans', 'DM Sans Placeholder', sans-serif; font-size: 21px; font-weight: 500; letter-spacing: -0.02em;"
+        >
+          rated 5/5 based on 50 reviews.
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1
+        class="text-white"
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-size: 56px; line-height: 74px; letter-spacing: normal; font-weight: 400;"
+      >
+        {headline}
+      </h1>
+
+      <!-- Trust badges -->
+      <div class="flex flex-col gap-3">
+        {badges.map((badge) => (
+          <div class="flex items-center gap-3">
+            <div class="relative h-[20px] w-[20px] shrink-0">
+              <svg viewBox="0 0 20 20" class="h-full w-full" style="fill: rgba(0,0,0,1); color: rgba(0,0,0,1);">
+                <path d="M16.667 5L7.5 14.167L3.333 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
+            <span class="text-white" style="font-size: 18px; line-height: 24px;">{badge}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA button -->
+      <a
+        href={ctaHref}
+        class="inline-block transition-opacity hover:opacity-90"
+        style="font-family: 'Inter', 'Inter Placeholder', sans-serif; font-size: 14px; font-weight: 600; line-height: 24px; background-color: rgb(255, 222, 33); color: rgb(37, 99, 70); border-radius: 8px; padding: 10px 24px;"
+      >
+        {ctaText}
+      </a>
+    </div>
+
+    <!-- Right Column — Lead Form -->
+    <div class="w-full lg:w-[45%]">
+      <!-- Outer gradient wrapper -->
+      <div
+        class="w-full"
+        style="background: linear-gradient(rgb(255, 255, 255) 0%, rgb(153, 153, 153) 107%); border-radius: 30px;"
+      >
+        <!-- Inner white content -->
+        <div
+          style="background-color: rgb(255, 255, 255); border-radius: 30px; padding: 30px 28px 28px;"
+        >
+          <!-- Form title -->
+          <h2
+            class="mb-1 text-center"
+            style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-size: 28px; line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29);"
+          >
+            {formTitle}
+          </h2>
+
+          <!-- Subtitle -->
+          <p
+            class="mb-5 text-center"
+            style="font-family: 'Poppins', 'Poppins Placeholder', sans-serif; line-height: 26px; color: rgb(134, 134, 134);"
+          >
+            {formSubtitle}
+          </p>
+
+          <!-- Form -->
+          <form action={formAction} method="POST">
+            <div class="flex flex-col gap-3">
+              <!-- Name -->
+              <input
+                type="text"
+                name="fullName"
+                placeholder="Name"
+                required
+                class="hero-input w-full"
+              />
+
+              <!-- Phone + Email side by side -->
+              <div class="flex gap-3">
+                <div class="relative w-1/2">
+                  <div class="flex overflow-hidden" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;">
+                    <div class="flex items-center shrink-0" style="padding: 12px 0 12px 12px; width: 52px;">
+                      <span
+                        style="font-family: 'Poppins', 'Poppins Placeholder', sans-serif; font-size: 16px; line-height: 26px; color: rgb(32, 26, 22);"
+                      >+1</span>
+                    </div>
+                    <div style="width: 1px; margin-top: 8px; margin-bottom: 8px; background-color: rgba(0, 0, 0, 0.2);"></div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number"
+                      required
+                      class="flex-1 border-none bg-transparent outline-none"
+                      style="font-family: 'Poppins', 'Poppins Placeholder', sans-serif; font-size: 16px; font-weight: 400; line-height: 26px; color: rgb(32, 26, 22); padding: 12px;"
+                    />
+                  </div>
+                </div>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  required
+                  class="hero-input w-1/2"
+                />
+              </div>
+
+              <!-- Project Address -->
+              <input
+                type="text"
+                name="address"
+                placeholder="Project Address"
+                required
+                class="hero-input w-full"
+              />
+
+              <!-- Textarea -->
+              <textarea
+                name="message"
+                rows="4"
+                placeholder="Tell us about your project – any issues or services you're interested in? We're here to help!"
+                class="hero-input w-full resize-none"
+              ></textarea>
+
+              <!-- Consent checkbox -->
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  required
+                  class="mt-0.5 h-4 w-4 shrink-0"
+                  style="border-radius: 4px; border: 1px solid rgba(136, 136, 136, 0.2); background: rgba(187, 187, 187, 0.2);"
+                />
+                <span
+                  class="italic"
+                  style="font-family: 'Inter', 'Inter Placeholder', sans-serif; font-size: 10px; font-weight: 500; line-height: 17px; color: rgb(136, 136, 136);"
+                >
+                  <strong>I agree to receive promotional messages sent via an autodialer, and this agreement isn't a condition of any purchase. I agree to receive promotional messages sent via an autodialer, and this agreement isn't a condition of any purchase.</strong>
+                  <br /><br />
+                  <strong>I also agree to the <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Terms of Service</a> and <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Privacy Policy</a> 4 Msgs/Month. Msg &amp; Data rates may apply. Text HELP for help or STOP to stop.</strong>
+                </span>
+              </label>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                class="mt-1 w-full"
+                style="border-radius: 10px;"
+              >
+                <div
+                  class="w-full py-4"
+                  style="background-color: rgb(36, 99, 69); border-radius: 40px;"
+                >
+                  <p
+                    class="text-center text-white uppercase"
+                    style="font-family: 'Poppins', 'Poppins Placeholder', sans-serif; font-size: 17px; font-weight: 700; line-height: 17px;"
+                  >
+                    Request a Quote
+                  </p>
+                </div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-input {
+    font-family: 'Poppins', 'Poppins Placeholder', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0em;
+    color: rgb(32, 26, 22);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 12px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .hero-input::placeholder {
+    color: rgb(134, 134, 134);
+  }
+  .hero-input:focus {
+    border-color: rgb(37, 99, 70);
+  }
+
+  /* Responsive headline scaling */
+  @media (max-width: 1023px) {
+    h1 {
+      font-size: 42px !important;
+      line-height: 56px !important;
+    }
+  }
+  @media (max-width: 767px) {
+    h1 {
+      font-size: 36px !important;
+      line-height: 48px !important;
+    }
+  }
+</style>

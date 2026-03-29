@@ -1,0 +1,95 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import AnnouncementBar from '../../../components/AnnouncementBar.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Hero from '../../../components/Hero.astro';
+import LogoSlider from '../../../components/LogoSlider.astro';
+import FAQ from '../../../components/FAQ.astro';
+import ContactUs from '../../../components/ContactUs.astro';
+import Footer from '../../../components/Footer.astro';
+
+const city = 'Fremont';
+const county = 'Alameda County';
+const adjective = 'Dedicated';
+---
+
+<Layout
+  title={`${adjective} ADU Contractors in ${city}, CA | Hamilton Exteriors`}
+  description={`Hamilton Exteriors provides ${adjective.toLowerCase()} ADU contractors in ${city}, CA. Expert design, permits, and construction. Call for a free consultation!`}
+>
+  <AnnouncementBar />
+  <Navbar />
+  <Hero
+    formTitle={`Get a FREE Estimate in ${city}`}
+    headline={`${adjective} ADU Contractors in ${city}, CA`}
+  />
+  <LogoSlider />
+
+  <!-- Why Choose Section -->
+  <section class="w-full bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why Choose Hamilton Exteriors as Your {adjective} ADU Contractors in {city}, CA?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Reliable. Skilled. Proven.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Hamilton Exteriors provides dedicated ADU contractors in Fremont, CA who bring focused attention to every project in this thriving South Bay city. Fremont's generous lot sizes in neighborhoods like Mission San Jose, Niles, and Warm Springs make it one of the best cities in Alameda County for ADU construction, and our team knows exactly how to maximize that potential.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        We manage every detail of your ADU build from site evaluation and design through permitting and final walkthrough. Our dedication means we stay involved at every phase, coordinating with the City of Fremont's planning department and ensuring your project meets all current building codes and ADU regulations without costly delays.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Whether you're building an ADU for aging parents, a young adult returning home, or rental income near the BART corridor, our team delivers quality construction on schedule and within budget.
+      </p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Site-Specific Planning</strong> — We assess your Fremont property's topography, setbacks, and utility access to design an ADU that fits perfectly and meets all city requirements.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Permit Coordination</strong> — Our team handles all Fremont permits, plan checks, and inspections so you don't have to navigate the city's review process alone.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Quality Materials</strong> — We use durable, high-grade materials suited to Fremont's warm inland climate, ensuring your ADU stands up to years of use with minimal maintenance.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Budget Transparency</strong> — You receive a detailed, itemized estimate before work begins, with no hidden fees or surprise change orders throughout the project.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why ADU Contractors Section -->
+  <section class="w-full bg-cream py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why {adjective} ADU Contractors in {city}, CA Are Essential?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Space. Value. Flexibility.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Fremont is the fourth-largest city in the Bay Area, and its growing population has driven housing demand to record levels. ADUs give Fremont homeowners a smart way to add square footage without the cost and hassle of moving. With strong rental demand driven by proximity to Tesla's factory, tech employers along the 880 corridor, and excellent schools, a well-built ADU can generate meaningful monthly income.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Dedicated ADU contractors matter in Fremont because the city's permitting process requires detailed plans that comply with specific lot coverage ratios, parking requirements, and utility connection standards. A contractor who knows Fremont's rules can avoid the rejected plans and re-submissions that cost homeowners weeks of delays and thousands in additional fees.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+        With a dedicated team managing your project from concept to completion, you get a finished ADU that adds real value to your property and gives your family the flexible living space you need in one of the East Bay's most desirable communities.
+      </p>
+    </div>
+  </section>
+
+  <FAQ />
+  <ContactUs />
+  <Footer />
+</Layout>

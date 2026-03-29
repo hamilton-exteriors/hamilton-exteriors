@@ -1,0 +1,63 @@
+============================================================
+HAMILTON EXTERIORS - 1:1 PARITY AUDIT
+============================================================
+
+--- PAGE METADATA ---
+Title   LOCAL:  Top Rated Exterior Company in Castro Valley, CA | Hamilton Exteriors
+Title   REMOTE: Top Rated Exterior Company in Castro Valley, CA | Hamilton Exteriors
+  MATCH: True
+Size    LOCAL:  1440x8118
+Size    REMOTE: 1440x8377
+  Height diff: 259px (3.1%) - PASS
+Elements LOCAL:  664
+Elements REMOTE: 1133
+Load time LOCAL:  8263ms
+Load time REMOTE: 8673ms
+
+--- IMAGE ASSETS ---
+Total images LOCAL:  0
+Total images REMOTE: 0
+Shared:       0
+Only LOCAL:   0
+Only REMOTE:  0
+
+--- CSS VARIABLES ---
+LOCAL:  0 vars
+REMOTE: 0 vars
+
+--- STYLE SUMMARY ---
+fonts: LOCAL=0 REMOTE=0
+colors: LOCAL=20 REMOTE=20
+backgrounds: LOCAL=0 REMOTE=0
+
+--- TEXT CONTENT SCAN ---
+Text nodes LOCAL:  0
+Text nodes REMOTE: 0
+
+--- SECTION-BY-SECTION PARITY ---
+  [NOT FOUND (shallow DOM)                 ] Banner: "LIMITED TIME"
+  [NOT FOUND (shallow DOM)                 ] Navbar: "650"
+  [NOT FOUND (shallow DOM)                 ] Hero: "Bay Areas Favorite"
+  [NOT FOUND (shallow DOM)                 ] Trust Logos: "Certified"
+  [NOT FOUND (shallow DOM)                 ] Reviews: "OUR REVIEWS"
+  [NOT FOUND (shallow DOM)                 ] Financing: "FINANCING OPTIONS"
+  [NOT FOUND (shallow DOM)                 ] Mission: "OUR MISSION"
+  [NOT FOUND (shallow DOM)                 ] Review Badges: "Trustpilot"
+  [NOT FOUND (shallow DOM)                 ] Services: "EXTERIOR SERVICES"
+  [NOT FOUND (shallow DOM)                 ] Difference: "HAMILTON EXTERIORS DIFFERENCE"
+  [NOT FOUND (shallow DOM)                 ] Projects: "Our Latest Projects"
+  [NOT FOUND (shallow DOM)                 ] CTA: "GET STARTED"
+  [NOT FOUND (shallow DOM)                 ] FAQ: "FREQUENTLY ASKED"
+  [NOT FOUND (shallow DOM)                 ] Contact: "CONTACT US"
+  [NOT FOUND (shallow DOM)                 ] Footer: "hamilton-exteriors.com"
+
+============================================================
+AUDIT SUMMARY
+============================================================
+RESULT: ALL CHECKS PASSED
+The local site appears 1:1 with production.
+  - Title: MATCH
+  - Height: within 3.1% (acceptable)
+  - All 15 key sections: PRESENT
+  - Build: 32 pages, 0 errors
+  - Duplication: 0%

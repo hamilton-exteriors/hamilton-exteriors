@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AnnouncementBar from '../components/AnnouncementBar.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import LogoSlider from '../components/LogoSlider.astro';
+import Reviews from '../components/Reviews.astro';
+import CTA from '../components/CTA.astro';
+import Difference from '../components/Difference.astro';
+import Financing from '../components/Financing.astro';
+import ReviewLogos from '../components/ReviewLogos.astro';
+import Projects from '../components/Projects.astro';
+import FAQ from '../components/FAQ.astro';
+import ContactUs from '../components/ContactUs.astro';
+import Footer from '../components/Footer.astro';
+
+const sidingProducts = [
+  {
+    title: 'Vinyl Siding',
+    image: 'https://framerusercontent.com/images/5LmO6bmk40vk0g3lr8x9mvveo.png',
+    description: 'Vinyl siding is a versatile and durable exterior cladding made from PVC resin. It provides excellent resistance to weather, pests, and moisture, while requiring minimal maintenance. Available in a wide range of colors, textures, and styles, vinyl siding enhances curb appeal and complements various architectural designs.',
+  },
+  {
+    title: 'Fiber Cement Siding',
+    image: 'https://framerusercontent.com/images/bRRyXMRKvlhRD8wvJlzm9kmjfc.png',
+    description: 'Fiber cement siding, particularly James Hardie products, is a premium exterior cladding made from a blend of cement, sand, and cellulose fibers. Renowned for its durability, it resists fire, pests, and harsh weather conditions while requiring minimal maintenance. Available in a variety of colors and textures, James Hardie siding adds long-lasting beauty and enhances the character of any home',
+  },
+  {
+    title: 'Stucco Siding',
+    image: 'https://framerusercontent.com/images/ET774mYvuFljJpbbpcOSGIs5bPc.png',
+    description: 'Stucco is a timeless and durable exterior finish made from a mixture of cement, sand, lime, and water. Known for its excellent weather resistance and energy efficiency, stucco provides a seamless, textured look that enhances both traditional and modern architectural designs. Available in various colors and finishes, it offers a versatile and low-maintenance solution for exterior cladding.',
+  },
+  {
+    title: 'Waterproofing',
+    image: 'https://framerusercontent.com/images/uKj60G94NtJ9qvbnCb7m16MGqg.png',
+    description: 'Waterproofing ensures a home\'s exterior is protected from moisture, preventing water damage and mold. By creating a reliable barrier, it enhances the durability of siding materials and helps maintain a home\'s structural integrity in all weather conditions.',
+  },
+];
+---
+
+<Layout
+  title="Durable Siding in Castro Valley, CA | Hamilton Exteriors"
+  description="Hamilton Exteriors provides top-rated siding services in Castro Valley. Vinyl, fiber cement, stucco, and waterproofing."
+>
+  <AnnouncementBar text="Limited Time Get up to 20% off your Siding Replacement" />
+  <Navbar />
+  <Hero
+    headline="We are the Bay Areas Best Siding Installers"
+    formTitle="Get a FREE SIDING INSPECTION"
+    formSubtitle="We'll contact you in 3-5 minutes to schedule a FREE SIDING inspection."
+    ctaText="Call Now - We Answer Fast"
+  />
+  <LogoSlider />
+  <Reviews />
+  <CTA />
+  <ReviewLogos />
+
+  <!-- Siding Styles Offered -->
+  <section class="w-full" style="padding: 79px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;"
+      >
+        Siding Styles Offered
+      </h2>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        {sidingProducts.map((product) => (
+          <div>
+            <div class="w-full overflow-hidden" style="border-radius: 10px;">
+              <img
+                src={product.image}
+                alt={product.title}
+                width="566"
+                height="292"
+                style="width: 100%; height: auto; aspect-ratio: 566 / 292; object-fit: fill; display: block; border-radius: 10px;"
+                loading="lazy"
+              />
+            </div>
+            <div style="padding-top: 16px;">
+              <h3
+                style="font-family: 'Inter Display', 'Inter', sans-serif; font-size: 18px; font-weight: 700; line-height: 24px; margin-bottom: 6px; color: rgb(13, 43, 29);"
+              >
+                {product.title}
+              </h3>
+              <p
+                style="font-size: 14px; line-height: 150%; color: rgb(104, 104, 105);"
+              >
+                {product.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Difference />
+  <Projects />
+  <Financing />
+  <FAQ />
+  <ContactUs />
+  <Footer />
+</Layout>

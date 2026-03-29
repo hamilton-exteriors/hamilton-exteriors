@@ -1,0 +1,920 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import AnnouncementBar from '../../../components/AnnouncementBar.astro';
+import Navbar from '../../../components/Navbar.astro';
+import LogoSlider from '../../../components/LogoSlider.astro';
+import Footer from '../../../components/Footer.astro';
+
+const city = 'Oakland';
+const county = 'Alameda County';
+
+const faqs = [
+  {
+    question: 'How long does it take to build an ADU in Oakland?',
+    answer: 'A typical Oakland ADU project takes 6-10 months from design to completion. This includes 2-4 weeks for design, 60 days for permits (our guarantee), and 4-6 months for construction. Our streamlined process and local expertise help minimize delays.',
+  },
+  {
+    question: 'How much does an ADU cost in Oakland?',
+    answer: 'ADU costs in Oakland range from $60,000 for a Junior ADU to $350,000+ for a large detached unit. The final cost depends on size, design complexity, site conditions, and finishes. We offer $0 down financing and free consultations to help you understand all costs upfront.',
+  },
+  {
+    question: 'Do I need a permit to build an ADU in Oakland?',
+    answer: 'Yes, all ADUs in Oakland require building permits. The good news is Oakland has streamlined its ADU permitting process significantly. We handle the entire permit process for you and guarantee permit approval within 60 days.',
+  },
+  {
+    question: 'What is the maximum size for an ADU in Oakland?',
+    answer: 'In Oakland, detached ADUs can be up to 1,200 square feet. Attached ADUs can be up to 50% of the existing home\'s living area or 1,200 sq ft, whichever is less. Junior ADUs (JADUs) are limited to 500 square feet and must be within the existing home footprint.',
+  },
+  {
+    question: 'Can I rent out my Oakland ADU?',
+    answer: 'Absolutely. Oakland encourages ADU rentals as part of its housing strategy. There are no owner-occupancy requirements for properties with ADUs in Oakland. Many homeowners earn $2,000-$3,500+ per month renting their ADU, making it an excellent investment.',
+  },
+  {
+    question: 'Does Oakland charge impact fees for ADUs?',
+    answer: 'Oakland has waived most impact fees for ADUs under 750 square feet. For larger units, fees are significantly reduced compared to standard construction. This is one of the reasons Oakland is one of the most ADU-friendly cities in California.',
+  },
+];
+
+const projects = [
+  {
+    title: 'Detached ADU - Modern Studio',
+    location: 'Rockridge, Oakland',
+    sqft: '650 sq ft',
+    image: 'https://framerusercontent.com/images/hakr7OWoKe15ZF1PJ4Ckr7hRI.png',
+  },
+  {
+    title: 'Two-Story ADU Build',
+    location: 'Temescal, Oakland',
+    sqft: '1,100 sq ft',
+    image: 'https://framerusercontent.com/images/abwzIHTvES7vwiSos5d3WPfIaA.png',
+  },
+  {
+    title: 'Garage Conversion ADU',
+    location: 'Montclair, Oakland',
+    sqft: '480 sq ft',
+    image: 'https://framerusercontent.com/images/pzaFvzI3i6hTZpGQ93e3UdUGriU.png',
+  },
+  {
+    title: 'Attached ADU Suite',
+    location: 'Oakland Hills',
+    sqft: '750 sq ft',
+    image: 'https://framerusercontent.com/images/aGE7RTabo86d7bQllJ13VZdMVw4.png',
+  },
+  {
+    title: 'Junior ADU Conversion',
+    location: 'West Oakland',
+    sqft: '450 sq ft',
+    image: 'https://framerusercontent.com/images/i7BMps6r4h2wo0XMZKI0lLqZg4.png',
+  },
+  {
+    title: 'Detached ADU - Family Unit',
+    location: 'Jack London District',
+    sqft: '1,200 sq ft',
+    image: 'https://framerusercontent.com/images/hakr7OWoKe15ZF1PJ4Ckr7hRI.png',
+  },
+];
+---
+
+<Layout
+  title={`Affordable ADU Contractors in ${city}, CA | Hamilton Exteriors`}
+  description={`Hamilton Exteriors is Oakland's trusted ADU builder. From design and permits to construction — we handle every detail. $0 down financing available. Call for a free consultation!`}
+>
+  <AnnouncementBar />
+  <Navbar />
+
+  <!-- Breadcrumb -->
+  <nav class="w-full" style="background-color: #f9f8f6; border-bottom: 1px solid #e8e5df;">
+    <div class="mx-auto flex items-center gap-2 px-5" style="max-width: 1294px; padding-top: 14px; padding-bottom: 14px;">
+      <a href="/" style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105); text-decoration: none;">Home</a>
+      <span style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">/</span>
+      <a href="/service-areas" style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105); text-decoration: none;">Service Areas</a>
+      <span style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">/</span>
+      <a href="/service-areas/alameda-county-ca" style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105); text-decoration: none;">{county}</a>
+      <span style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">/</span>
+      <span style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(13, 43, 29); font-weight: 500;">{city}, CA</span>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="quote" class="relative w-full overflow-hidden">
+    <!-- Background image -->
+    <div class="absolute inset-0">
+      <img
+        src="https://framerusercontent.com/images/i7BMps6r4h2wo0XMZKI0lLqZg4.png"
+        alt=""
+        class="h-full w-full object-cover"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(13, 43, 29, 0.92) 0%, rgba(13, 43, 29, 0.78) 100%);"></div>
+    </div>
+
+    <div
+      class="relative mx-auto flex flex-col gap-10 px-5 lg:flex-row lg:items-start lg:gap-12"
+      style="max-width: 1294px; padding-top: 50px; padding-bottom: 50px;"
+    >
+      <!-- Left Column -->
+      <div class="flex flex-col items-start gap-6 lg:w-[55%] lg:py-6">
+        <!-- Rating badge -->
+        <div class="inline-flex items-center gap-2 rounded-full" style="background: rgba(255,255,255,0.12); padding: 8px 18px;">
+          <div class="flex gap-0.5">
+            {Array.from({ length: 5 }).map(() => (
+              <div class="relative h-[18px] w-[18px] shrink-0">
+                <svg viewBox="0 0 24 24" fill="#FFDE21" class="h-full w-full">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+            ))}
+          </div>
+          <span
+            class="text-white"
+            style="font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;"
+          >
+            50+ Five-Star Reviews
+          </span>
+        </div>
+
+        <!-- Headline -->
+        <h1
+          class="text-white"
+          style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-size: 56px; line-height: 68px; letter-spacing: normal; font-weight: 400;"
+        >
+          Build Your Dream ADU in Oakland
+        </h1>
+
+        <!-- Subtitle -->
+        <p
+          class="text-white"
+          style="font-family: 'DM Sans', sans-serif; font-size: 19px; line-height: 30px; opacity: 0.9; max-width: 520px;"
+        >
+          From permit to keys in hand — we handle every detail of your Oakland ADU project so you can focus on what matters.
+        </p>
+
+        <!-- Trust badges / bullets -->
+        <div class="flex flex-col gap-3">
+          {[
+            '15+ years of Oakland ADU expertise',
+            '$0 down financing available',
+            'Design, permits & build — all in-house',
+            '60-day Oakland permit guarantee',
+          ].map((badge) => (
+            <div class="flex items-center gap-3">
+              <div class="flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full" style="background: rgba(255, 222, 33, 0.2);">
+                <svg viewBox="0 0 20 20" class="h-[14px] w-[14px]">
+                  <path d="M16.667 5L7.5 14.167L3.333 10" stroke="#FFDE21" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+              </div>
+              <span class="text-white" style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 24px; font-weight: 500;">{badge}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTA button -->
+        <a
+          href="tel:6509773351"
+          class="inline-block transition-opacity hover:opacity-90"
+          style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; line-height: 24px; background-color: rgb(255, 222, 33); color: rgb(13, 43, 29); border-radius: 8px; padding: 12px 28px;"
+        >
+          Call Us - (650) 977-3351
+        </a>
+      </div>
+
+      <!-- Right Column — Lead Form -->
+      <div class="w-full lg:w-[45%]">
+        <div
+          class="w-full"
+          style="background: linear-gradient(rgb(255, 255, 255) 0%, rgb(153, 153, 153) 107%); border-radius: 30px;"
+        >
+          <div style="background-color: rgb(255, 255, 255); border-radius: 30px; padding: 30px 28px 28px;">
+            <h2
+              class="mb-1 text-center"
+              style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-size: 26px; line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29);"
+            >
+              Get Your FREE ADU Consultation
+            </h2>
+            <p
+              class="mb-5 text-center"
+              style="font-family: 'Poppins', sans-serif; line-height: 26px; color: rgb(134, 134, 134); font-size: 14px;"
+            >
+              We'll contact you within 24 hours to discuss your ADU project.
+            </p>
+
+            <form action="/success" method="POST">
+              <div class="flex flex-col gap-3">
+                <input type="text" name="fullName" placeholder="Name" required class="hero-input w-full" />
+                <div class="flex gap-3">
+                  <div class="relative w-1/2">
+                    <div class="flex overflow-hidden" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;">
+                      <div class="flex items-center shrink-0" style="padding: 12px 0 12px 12px; width: 52px;">
+                        <span style="font-family: 'Poppins', sans-serif; font-size: 16px; line-height: 26px; color: rgb(32, 26, 22);">+1</span>
+                      </div>
+                      <div style="width: 1px; margin-top: 8px; margin-bottom: 8px; background-color: rgba(0, 0, 0, 0.2);"></div>
+                      <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Phone Number"
+                        required
+                        class="flex-1 border-none bg-transparent outline-none"
+                        style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 400; line-height: 26px; color: rgb(32, 26, 22); padding: 12px;"
+                      />
+                    </div>
+                  </div>
+                  <input type="email" name="email" placeholder="Email" required class="hero-input w-1/2" />
+                </div>
+                <input type="text" name="address" placeholder="Project Address" required class="hero-input w-full" />
+                <textarea
+                  name="message"
+                  rows="3"
+                  placeholder="Tell us about your ADU project — type, size, timeline?"
+                  class="hero-input w-full resize-none"
+                ></textarea>
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="consent"
+                    required
+                    class="mt-0.5 h-4 w-4 shrink-0"
+                    style="border-radius: 4px; border: 1px solid rgba(136, 136, 136, 0.2); background: rgba(187, 187, 187, 0.2);"
+                  />
+                  <span
+                    class="italic"
+                    style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; line-height: 17px; color: rgb(136, 136, 136);"
+                  >
+                    <strong>I agree to receive promotional messages sent via an autodialer, and this agreement isn't a condition of any purchase.</strong>
+                    <br /><br />
+                    <strong>I also agree to the <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Terms of Service</a> and <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Privacy Policy</a>. 4 Msgs/Month. Msg &amp; Data rates may apply. Text HELP for help or STOP to stop.</strong>
+                  </span>
+                </label>
+                <button type="submit" class="mt-1 w-full" style="border-radius: 10px;">
+                  <div class="w-full py-4" style="background-color: rgb(36, 99, 69); border-radius: 40px;">
+                    <p class="text-center text-white uppercase" style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 700; line-height: 17px;">
+                      Get My Free Consultation
+                    </p>
+                  </div>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logo Slider + License -->
+  <LogoSlider />
+  <div class="w-full text-center" style="background-color: #fff; margin-top: -40px; padding-bottom: 40px;">
+    <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">
+      CA Contractor License #1082377
+    </p>
+  </div>
+
+  <!-- Reviews Section -->
+  <section class="w-full" style="background-color: #f9f8f6; padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <!-- Section Label -->
+      <div class="mb-4 flex items-center gap-2">
+        <div class="flex gap-0.5">
+          {Array.from({ length: 5 }).map(() => (
+            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="#FFDE21">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          ))}
+        </div>
+        <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(104, 104, 105); text-transform: uppercase; letter-spacing: 0.05em;">
+          On Google Reviews
+        </span>
+      </div>
+
+      <h2
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;"
+      >
+        What Oakland Homeowners Say
+      </h2>
+
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <!-- Featured review -->
+        <div class="lg:col-span-2 rounded-2xl p-8" style="background-color: rgb(13, 43, 29);">
+          <div class="flex gap-0.5 mb-4">
+            {Array.from({ length: 5 }).map(() => (
+              <svg class="h-[20px] w-[20px]" viewBox="0 0 24 24" fill="#FFDE21">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            ))}
+          </div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 18px; line-height: 30px; color: rgba(255,255,255,0.92); margin-bottom: 24px;">
+            "Hamilton Exteriors built our detached ADU in Rockridge and we couldn't be happier. From the initial design consultation to the final walkthrough, their team was professional, communicative, and detail-oriented. They handled all the permits with the city and finished on schedule. Our ADU is now rented out and generating over $3,000/month in income. Best investment we've ever made."
+          </p>
+          <div>
+            <p style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: white; margin-bottom: 2px;">Michael T.</p>
+            <p style="font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.6);">Rockridge, Oakland</p>
+          </div>
+        </div>
+
+        <!-- Side reviews -->
+        <div class="flex flex-col gap-6">
+          <div class="rounded-2xl p-6" style="background-color: white; border: 1px solid #e8e5df;">
+            <div class="flex gap-0.5 mb-3">
+              {Array.from({ length: 5 }).map(() => (
+                <svg class="h-[16px] w-[16px]" viewBox="0 0 24 24" fill="#FFDE21">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              ))}
+            </div>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+              "They converted our garage into a beautiful ADU for my mother-in-law. The whole process was seamless and the quality of work exceeded our expectations."
+            </p>
+            <div>
+              <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29);">Sarah L.</p>
+              <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">Temescal, Oakland</p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl p-6" style="background-color: white; border: 1px solid #e8e5df;">
+            <div class="flex gap-0.5 mb-3">
+              {Array.from({ length: 5 }).map(() => (
+                <svg class="h-[16px] w-[16px]" viewBox="0 0 24 24" fill="#FFDE21">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              ))}
+            </div>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+              "Our two-story ADU in Montclair turned out amazing. Hamilton handled everything from permits to final inspection. Truly a turnkey experience."
+            </p>
+            <div>
+              <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29);">David & Maria R.</p>
+              <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">Montclair, Oakland</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services / Pricing Cards -->
+  <section class="w-full" style="background-color: #fff; padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: rgb(36, 99, 69); margin-bottom: 12px;">
+        Our Services
+      </p>
+      <h2
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 48px;"
+      >
+        ADU Services Built for Oakland Homeowners
+      </h2>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Detached ADU -->
+        <div class="pricing-card relative flex flex-col rounded-2xl p-6" style="background-color: rgb(13, 43, 29); border: 2px solid rgb(13, 43, 29);">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1" style="background-color: rgb(255, 222, 33);">
+            <span style="font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; color: rgb(13, 43, 29); letter-spacing: 0.05em;">Most Popular</span>
+          </div>
+          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 4px; margin-top: 8px;">Detached ADU</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 16px;">Standalone backyard unit</p>
+          <p style="font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 800; color: rgb(255, 222, 33); margin-bottom: 4px;">$180K - $350K</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 20px;">400 - 1,200 sq ft</p>
+          <ul class="flex flex-col gap-2 mt-auto">
+            {['Maximum privacy & flexibility', 'Full kitchen & bathroom', 'Highest rental income potential', 'Custom design options'].map(item => (
+              <li class="flex items-start gap-2">
+                <svg class="h-[16px] w-[16px] shrink-0 mt-1" viewBox="0 0 20 20"><path d="M16.667 5L7.5 14.167L3.333 10" stroke="#FFDE21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.85); line-height: 20px;">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(255, 222, 33); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29);">
+            Get a Quote
+          </a>
+        </div>
+
+        <!-- Attached ADU -->
+        <div class="pricing-card flex flex-col rounded-2xl p-6" style="background-color: white; border: 1px solid #e8e5df;">
+          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">Attached ADU</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105); margin-bottom: 16px;">Connected to your home</p>
+          <p style="font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">$150K - $280K</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); margin-bottom: 20px;">400 - 1,200 sq ft</p>
+          <ul class="flex flex-col gap-2 mt-auto">
+            {['Shared wall with main home', 'Lower construction costs', 'Separate entrance', 'Ideal for family members'].map(item => (
+              <li class="flex items-start gap-2">
+                <svg class="h-[16px] w-[16px] shrink-0 mt-1" viewBox="0 0 20 20"><path d="M16.667 5L7.5 14.167L3.333 10" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); line-height: 20px;">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(36, 99, 69); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: white;">
+            Get a Quote
+          </a>
+        </div>
+
+        <!-- Junior ADU -->
+        <div class="pricing-card relative flex flex-col rounded-2xl p-6" style="background-color: white; border: 1px solid #e8e5df;">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1" style="background-color: rgb(36, 99, 69);">
+            <span style="font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; color: white; letter-spacing: 0.05em;">Best Value</span>
+          </div>
+          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px; margin-top: 8px;">Junior ADU</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105); margin-bottom: 16px;">Within existing home</p>
+          <p style="font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">$60K - $120K</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); margin-bottom: 20px;">Up to 500 sq ft</p>
+          <ul class="flex flex-col gap-2 mt-auto">
+            {['Most affordable option', 'Fastest build time', 'Minimal site work needed', 'Great starter rental'].map(item => (
+              <li class="flex items-start gap-2">
+                <svg class="h-[16px] w-[16px] shrink-0 mt-1" viewBox="0 0 20 20"><path d="M16.667 5L7.5 14.167L3.333 10" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); line-height: 20px;">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(36, 99, 69); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: white;">
+            Get a Quote
+          </a>
+        </div>
+
+        <!-- Garage Conversion -->
+        <div class="pricing-card flex flex-col rounded-2xl p-6" style="background-color: white; border: 1px solid #e8e5df;">
+          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">Garage Conversion</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105); margin-bottom: 16px;">Transform your garage</p>
+          <p style="font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">$80K - $150K</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); margin-bottom: 20px;">200 - 600 sq ft</p>
+          <ul class="flex flex-col gap-2 mt-auto">
+            {['Use existing structure', 'No new foundation needed', 'Quick turnaround', 'Cost-effective conversion'].map(item => (
+              <li class="flex items-start gap-2">
+                <svg class="h-[16px] w-[16px] shrink-0 mt-1" viewBox="0 0 20 20"><path d="M16.667 5L7.5 14.167L3.333 10" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); line-height: 20px;">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(36, 99, 69); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: white;">
+            Get a Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Build an ADU in Oakland -->
+  <section class="w-full" style="background-color: #f9f8f6; padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2
+        class="text-center"
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;"
+      >
+        Why Build an ADU in Oakland?
+      </h2>
+      <p class="text-center mx-auto" style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 28px; color: rgb(104, 104, 105); max-width: 640px; margin-bottom: 48px;">
+        Oakland is one of the best cities in California for ADU investment. Here's why homeowners are adding ADUs to their properties.
+      </p>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div class="rounded-2xl p-8 text-center" style="background-color: white; border: 1px solid #e8e5df;">
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
+            <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <p style="font-family: 'Inter', sans-serif; font-size: 36px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">$2,500+/mo</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 8px;">Rental Income</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgb(104, 104, 105);">
+            Oakland's strong rental market means your ADU can generate significant monthly income from day one.
+          </p>
+        </div>
+
+        <div class="rounded-2xl p-8 text-center" style="background-color: white; border: 1px solid #e8e5df;">
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
+            <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+          <p style="font-family: 'Inter', sans-serif; font-size: 36px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">20-30%</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 8px;">Home Value Increase</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgb(104, 104, 105);">
+            A well-built ADU can increase your Oakland property value by hundreds of thousands of dollars.
+          </p>
+        </div>
+
+        <div class="rounded-2xl p-8 text-center" style="background-color: white; border: 1px solid #e8e5df;">
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
+            <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <p style="font-family: 'Inter', sans-serif; font-size: 36px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">Permit-Friendly</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 8px;">Streamlined Process</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgb(104, 104, 105);">
+            Oakland has simplified ADU regulations with reduced fees and faster permit approvals to encourage development.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Oakland's Trusted ADU Experts -->
+  <section class="w-full" style="background-color: rgb(13, 43, 29); padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+        <div>
+          <h2
+            style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: white; text-transform: uppercase; margin-bottom: 20px;"
+          >
+            Oakland's Trusted ADU Experts
+          </h2>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8); margin-bottom: 24px;">
+            With over 15 years of experience building ADUs in Oakland, we've earned the trust of homeowners across every neighborhood. Our in-house team handles every phase of your project — from initial design and city permits to construction and final inspection.
+          </p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8); margin-bottom: 32px;">
+            We don't subcontract critical work. Our licensed crew knows Oakland's building codes inside and out, ensuring your ADU is built right the first time.
+          </p>
+          <a
+            href="#contact"
+            class="inline-block transition-opacity hover:opacity-90"
+            style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; line-height: 24px; background-color: rgb(255, 222, 33); color: rgb(13, 43, 29); border-radius: 8px; padding: 12px 28px;"
+          >
+            Start Your ADU Project
+          </a>
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="rounded-xl p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
+            <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(255, 222, 33);">150+</p>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7);">ADUs Completed</p>
+          </div>
+          <div class="rounded-xl p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
+            <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(255, 222, 33);">15+</p>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7);">Years Experience</p>
+          </div>
+          <div class="rounded-xl p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
+            <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(255, 222, 33);">98%</p>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7);">Client Satisfaction</p>
+          </div>
+          <div class="rounded-xl p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
+            <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(255, 222, 33);">$0</p>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7);">Down to Start</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent ADU Projects -->
+  <section class="w-full" style="background-color: #fff; padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;"
+      >
+        Recent ADU Projects
+      </h2>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project) => (
+          <div class="group overflow-hidden rounded-2xl" style="border: 1px solid #e8e5df;">
+            <div class="relative w-full overflow-hidden" style="aspect-ratio: 4/3;">
+              <img
+                src={project.image}
+                alt={project.title}
+                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div class="absolute bottom-3 left-3 rounded-full px-3 py-1" style="background-color: rgba(13, 43, 29, 0.85);">
+                <span style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: white;">{project.sqft}</span>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">{project.title}</h3>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">{project.location}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Oakland ADU Regulations -->
+  <section class="w-full" style="background-color: #f9f8f6; padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2
+        class="text-center"
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;"
+      >
+        Oakland ADU Regulations
+      </h2>
+      <p class="text-center mx-auto" style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 28px; color: rgb(104, 104, 105); max-width: 640px; margin-bottom: 48px;">
+        Oakland is one of California's most ADU-friendly cities. Here are the key regulations that make it easier than ever to build.
+      </p>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-2xl p-6 text-center" style="background-color: white; border: 1px solid #e8e5df;">
+          <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(36, 99, 69); margin-bottom: 8px;">60</p>
+          <p style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 4px;">Day Permit Timeline</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); line-height: 20px;">Oakland's streamlined process gets your permits approved fast</p>
+        </div>
+        <div class="rounded-2xl p-6 text-center" style="background-color: white; border: 1px solid #e8e5df;">
+          <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(36, 99, 69); margin-bottom: 8px;">1,200</p>
+          <p style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 4px;">Max Sq Ft Allowed</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); line-height: 20px;">Build a spacious ADU up to 1,200 square feet on your property</p>
+        </div>
+        <div class="rounded-2xl p-6 text-center" style="background-color: white; border: 1px solid #e8e5df;">
+          <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(36, 99, 69); margin-bottom: 8px;">$0</p>
+          <p style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 4px;">Impact Fees*</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); line-height: 20px;">Waived impact fees for ADUs under 750 sq ft in Oakland</p>
+        </div>
+        <div class="rounded-2xl p-6 text-center" style="background-color: white; border: 1px solid #e8e5df;">
+          <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(36, 99, 69); margin-bottom: 8px;">City</p>
+          <p style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 4px;">Financing Programs</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); line-height: 20px;">Oakland offers city-backed ADU financing and incentive programs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Oakland Neighborhoods -->
+  <section class="w-full" style="background-color: #fff; padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;"
+      >
+        Oakland Neighborhoods We Serve
+      </h2>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 28px; color: rgb(104, 104, 105); margin-bottom: 40px; max-width: 640px;">
+        We build ADUs across every Oakland neighborhood, with deep knowledge of each area's unique building requirements and architectural styles.
+      </p>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div class="rounded-2xl p-8" style="background-color: #f9f8f6; border: 1px solid #e8e5df;">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Rockridge & Temescal</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 24px; color: rgb(104, 104, 105);">
+            Classic Craftsman homes with spacious backyards ideal for detached ADUs. These walkable neighborhoods command top rental rates, making ADU investment highly profitable.
+          </p>
+        </div>
+
+        <div class="rounded-2xl p-8" style="background-color: #f9f8f6; border: 1px solid #e8e5df;">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Oakland Hills & Montclair</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 24px; color: rgb(104, 104, 105);">
+            Hillside properties with stunning views. We specialize in ADU designs that work with sloped terrain and complement the natural surroundings while maximizing living space.
+          </p>
+        </div>
+
+        <div class="rounded-2xl p-8" style="background-color: #f9f8f6; border: 1px solid #e8e5df;">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12" y2="18"></line>
+              <line x1="8" y1="6" x2="16" y2="6"></line>
+              <line x1="8" y1="10" x2="16" y2="10"></line>
+              <line x1="8" y1="14" x2="16" y2="14"></line>
+            </svg>
+          </div>
+          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">West Oakland & Jack London</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 24px; color: rgb(104, 104, 105);">
+            Rapidly developing areas where ADUs offer exceptional investment returns. Urban lots benefit from garage conversions and attached ADUs that maximize compact spaces.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="w-full" style="background-color: #f9f8f6; padding: 0;">
+    <div class="mx-auto" style="max-width: 1170px; padding: 80px 15px;">
+      <div class="flex flex-col items-start justify-between md:flex-row md:items-center" style="gap: 16px; margin-bottom: 40px;">
+        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; font-weight: 400; line-height: 50px; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin: 0;">
+          Common Questions About Oakland ADUs
+        </h2>
+        <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 400; line-height: 150%; color: rgb(13, 43, 29); text-align: right; margin: 0;" class="whitespace-normal md:whitespace-nowrap">
+          Have more questions?{' '}
+          <a href="tel:6509773351" style="font-weight: 600; color: rgb(13, 43, 29); text-decoration: none;">
+            Call (650) 977-3351
+          </a>
+        </p>
+      </div>
+
+      <div class="mx-auto" style="max-width: 100%;">
+        {faqs.map((faq) => (
+          <details
+            class="group"
+            style="border-bottom: 1px solid rgb(196, 191, 182); background-color: transparent;"
+          >
+            <summary class="flex cursor-pointer items-center justify-between list-none [&::-webkit-details-marker]:hidden" style="padding: 20px 0;">
+              <span style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); padding-right: 16px;">
+                {faq.question}
+              </span>
+              <span class="relative flex shrink-0 items-center justify-center" style="width: 24px; height: 24px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" style="width: 100%; height: 100%; display: inline-block; fill: rgb(3, 7, 18); color: rgb(3, 7, 18);">
+                  <g><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z" /></g>
+                </svg>
+              </span>
+            </summary>
+            <div style="padding-bottom: 20px; padding-right: 48px;">
+              <p style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); opacity: 0.7; margin: 0;">
+                {faq.answer}
+              </p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / CTA Section -->
+  <section id="contact" class="w-full" style="background-color: rgb(255, 255, 255); padding: 80px 0;">
+    <div class="mx-auto flex flex-col lg:flex-row" style="max-width: 1170px; padding: 0 15px; gap: 42px;">
+
+      <!-- Left Column — Contact Info -->
+      <div class="flex w-full flex-col lg:w-1/2">
+        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; font-weight: 400; line-height: 50px; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin: 0 0 16px;">
+          Get Your Free Oakland ADU Consultation
+        </h2>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 28px; color: rgb(104, 104, 105); margin-bottom: 32px;">
+          Ready to build your dream ADU? Schedule a free consultation with our Oakland ADU experts. We'll visit your property, discuss your goals, and provide a detailed estimate at no cost.
+        </p>
+
+        <!-- Contact details -->
+        <div class="flex flex-col" style="gap: 16px; margin-bottom: 32px;">
+          <div class="flex items-center" style="gap: 10px;">
+            <div class="shrink-0" style="width: 17px; height: 17px;">
+              <img src="https://framerusercontent.com/images/IF7QSlxdsWmoqq6XBvulskAJC8.svg" alt="" width="17" height="17" style="display: block; width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+            <a href="tel:6509773351" style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; line-height: 24px; color: rgb(13, 43, 29); text-decoration: none;">
+              (650) 977-3351
+            </a>
+          </div>
+          <div class="flex items-center" style="gap: 10px;">
+            <div class="shrink-0" style="width: 16px; height: 13px;">
+              <img src="https://framerusercontent.com/images/CWZsoLyNgTqTNBM5AN6l0UNY0.svg" alt="" width="16" height="13" style="display: block; width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+            <a href="mailto:support@hamilton-exteriors.com" style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; line-height: 24px; color: rgb(13, 43, 29); text-decoration: none;">
+              support@hamilton-exteriors.com
+            </a>
+          </div>
+          <div class="flex items-start" style="gap: 10px;">
+            <div class="shrink-0" style="width: 12px; height: 18px; margin-top: 3px;">
+              <img src="https://framerusercontent.com/images/W5qVk0njI0IjFev8RnNtI6pU9Es.svg" alt="" width="12" height="18" style="display: block; width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+            <span style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; line-height: 24px; color: rgb(13, 43, 29);">
+              21634 Redwood Rd Unit F, Castro Valley, CA 94546
+            </span>
+          </div>
+        </div>
+
+        <!-- Map image -->
+        <div class="relative w-full">
+          <img
+            src="https://framerusercontent.com/images/ZeFlXLjlSSdREKpbGkMEFPugizs.svg"
+            alt="Service area map"
+            width="566"
+            height="501"
+            class="w-full"
+            style="object-fit: cover; object-position: center top; border-radius: 16px;"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Right Column — Form -->
+      <div class="flex w-full flex-col lg:w-1/2" style="padding: 0;">
+        <div class="rounded-2xl" style="background-color: #f9f8f6; padding: 40px 32px;">
+          <h3 style="font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">
+            Schedule Your Free Consultation
+          </h3>
+          <p style="font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(136, 136, 136); margin-bottom: 24px;">
+            Quick Response, Expert Assessment
+          </p>
+
+          <form action="/success" method="POST" class="flex flex-col" style="gap: 12px;">
+            <input type="text" name="fullName" placeholder="Full Name" required class="contact-input" />
+            <input type="text" name="address" placeholder="Project Address in Oakland" required class="contact-input" />
+            <input type="email" name="email" placeholder="Email Address" required class="contact-input" />
+            <input type="tel" name="phone" placeholder="Phone Number" required class="contact-input" />
+
+            <fieldset style="border: none; padding: 0; margin: 8px 0 0 0;">
+              <legend style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgb(136, 136, 136); margin-bottom: 8px;">
+                What type of ADU are you interested in?
+              </legend>
+              <div class="flex flex-wrap" style="gap: 16px;">
+                {['Detached ADU', 'Attached ADU', 'Junior ADU', 'Garage Conversion', 'Not Sure'].map((type, i) => (
+                  <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
+                    <input
+                      type="radio"
+                      name="aduType"
+                      value={type}
+                      checked={i === 0}
+                      style="width: 16px; height: 16px; accent-color: rgb(37, 99, 70);"
+                    />
+                    {type}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset style="border: none; padding: 0; margin: 8px 0 0 0;">
+              <legend style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgb(136, 136, 136); margin-bottom: 8px;">
+                Preferred consultation type
+              </legend>
+              <div class="flex" style="gap: 24px;">
+                <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
+                  <input type="radio" name="consultationType" value="In-Home" checked style="width: 16px; height: 16px; accent-color: rgb(37, 99, 70);" />
+                  In-Home Visit
+                </label>
+                <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
+                  <input type="radio" name="consultationType" value="Virtual" style="width: 16px; height: 16px; accent-color: rgb(37, 99, 70);" />
+                  Virtual
+                </label>
+              </div>
+            </fieldset>
+
+            <button
+              type="submit"
+              style="width: 100%; border-radius: 8px; background-color: rgb(37, 99, 70); border: none; padding: 14px 24px; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; line-height: 150%; color: white; cursor: pointer; margin-top: 8px;"
+            >
+              Get My Free ADU Consultation
+            </button>
+          </form>
+
+          <p style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; line-height: 150%; color: rgb(136, 136, 136); margin-top: 16px;">
+            By submitting this form, you agree to be contacted about your ADU project. We respect your privacy and will never share your information. View our <a href="/privacy-policy" style="color: rgb(136, 136, 136); text-decoration: underline;">Privacy Policy</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .hero-input {
+    font-family: 'Poppins', 'Poppins Placeholder', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: rgb(32, 26, 22);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 12px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .hero-input::placeholder {
+    color: rgb(134, 134, 134);
+  }
+  .hero-input:focus {
+    border-color: rgb(37, 99, 70);
+  }
+
+  .contact-input {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgb(196, 191, 182);
+    padding: 10px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: rgb(104, 104, 105);
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    transition: border-color 0.2s;
+  }
+  .contact-input::placeholder {
+    color: rgb(136, 136, 136);
+  }
+  .contact-input:focus {
+    border-color: rgb(37, 99, 70);
+  }
+
+  /* FAQ accordion toggle */
+  details[open] summary svg g path {
+    d: path("M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z");
+  }
+
+  /* Responsive headline scaling */
+  @media (max-width: 1023px) {
+    h1 {
+      font-size: 42px !important;
+      line-height: 52px !important;
+    }
+  }
+  @media (max-width: 767px) {
+    h1 {
+      font-size: 32px !important;
+      line-height: 42px !important;
+    }
+    h2 {
+      font-size: 30px !important;
+      line-height: 40px !important;
+    }
+  }
+</style>

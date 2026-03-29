@@ -1,0 +1,16 @@
+---
+interface Props {
+  text?: string;
+}
+
+const { text = 'Limited Time Get up to $2000 off your Project*' } = Astro.props;
+---
+
+<div class="w-full" style="background-color: rgb(13, 43, 29);">
+  <p
+    class="text-center font-oswald text-sm font-bold uppercase tracking-wide text-white"
+    style="padding: 9px 15px; font-size: 14px; line-height: 24px; letter-spacing: 0.05em;"
+  >
+    {text}
+  </p>
+</div>

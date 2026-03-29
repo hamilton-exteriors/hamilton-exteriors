@@ -1,0 +1,130 @@
+---
+const reviews = [
+  {
+    photo: "https://framerusercontent.com/images/fUj7bkVAqgU9OgqH2kRZ4IVwvzs.png?width=36&height=36",
+    name: "Eric W",
+    time: "2 months ago",
+    text: "Hamilton Exteriors did an amazing job on my roof. The team was professional, and the quality of work was top-notch. Highly recommend!",
+  },
+  {
+    photo: "https://framerusercontent.com/images/C3JyPZlAjYVuZXqpKwvWBEYScU.png?width=36&height=36",
+    name: "Eric W",
+    time: "2 months ago",
+    text: "The team at Hamilton Exteriors was respectful, on time, and did excellent work. They made sure to communicate with us throughout the entire process, ensuring we were informed every step of the way. Our new siding looks beautiful, and the quality of the materials they used is top-notch. The crew worked efficiently and left our property clean and tidy. We couldn\u2019t be happier with the final result and would highly recommend Hamilton Exteriors for any home improvement needs!",
+  },
+  {
+    photo: "https://framerusercontent.com/images/ONjiFoZgRnv2EWSyujld4HuPEOM.png?width=36&height=36",
+    name: "Robert Holt",
+    time: "4 months ago",
+    text: "We\u2019d been putting off replacing the windows in our home for years, but we finally decided it was time. From the very first consultation with Hamilton Exteriors, we knew we\u2019d made the right choice. The team was not only knowledgeable but genuinely listened to our concerns about energy efficiency and design. When the windows were installed, we were amazed at how much brighter and more comfortable our home felt. It\u2019s been a few months now, and we\u2019ve already noticed a drop in our energy bills. It\u2019s like we\u2019re living in a new house, and we couldn\u2019t be happier with the transformation!",
+  },
+  {
+    photo: "https://framerusercontent.com/images/7Zz5FF6atfepg1dMXHe08WXkuk.png?width=36&height=36",
+    name: "Laura Gaubin",
+    time: "4 months ago",
+    text: "Hamilton Exteriors repaired extensive dry rot damage on our home\u2019s exterior. Their attention to detail and commitment to quality were evident throughout the project. The crew was polite, professional, and ensured the site was clean before leaving each day. Our home looks better than ever, and we have peace of mind knowing the repairs were done correctly. We highly recommend their services.",
+  },
+];
+---
+
+<section id="review" class="py-[79px] px-0">
+  <div class="mx-auto max-w-[1294px] px-[15px]">
+    <!-- Section Title -->
+    <div class="mb-0">
+      <h2
+        class="text-center font-oswald font-normal text-[44px] leading-[110%] tracking-[-0.02em]"
+        style="color: rgb(13, 43, 29);"
+      >
+        Our Reviews For Exterior remodeling
+      </h2>
+      <p
+        class="mt-4 text-center font-dm-sans text-[20px] tracking-[-0.02em]"
+        style="color: rgb(25, 25, 25);"
+      >
+        We put our promises before we take our profits.
+      </p>
+    </div>
+
+    <!-- Review Cards Grid -->
+    <div class="mt-10 grid grid-cols-1 gap-[15px] sm:grid-cols-2 lg:grid-cols-4">
+      {reviews.map((review) => (
+        <div
+          class="flex flex-col rounded-[12px] bg-white p-[20px]"
+          style="border: 1px solid rgb(226, 226, 226);"
+        >
+          <!-- User + Google Logo Row -->
+          <div class="mb-[12px] flex items-center justify-between">
+            <div class="flex items-center gap-[10px]">
+              <img
+                src={review.photo}
+                alt={review.name}
+                class="h-[36px] w-[36px] rounded-full object-cover"
+                loading="lazy"
+              />
+              <div>
+                <p
+                  class="font-dm-sans text-[14px] font-medium leading-[130%] tracking-[-0.02em]"
+                  style="color: rgb(25, 25, 25);"
+                >
+                  {review.name}
+                </p>
+                <p
+                  class="font-dm-sans text-[12px] font-normal leading-[130%] tracking-[-0.02em]"
+                  style="color: rgb(97, 94, 94);"
+                >
+                  {review.time}
+                </p>
+              </div>
+            </div>
+            <!-- Google Logo -->
+            <img
+              src="https://framerusercontent.com/images/RlHDwWwtj2YtlOxJrNnbaYmqE.png?width=2048&height=2048"
+              alt="Google"
+              class="h-[26px] w-[26px] flex-shrink-0 object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Star Rating -->
+          <div class="mb-[10px] flex gap-[2px]">
+            {Array.from({ length: 5 }).map(() => (
+              <img
+                src="https://framerusercontent.com/images/aEZHOZOdy8DsqZBfG9SQ8AncfD4.svg?width=20&height=21"
+                alt="Star"
+                class="h-[20px] w-[20px] object-contain"
+                loading="lazy"
+              />
+            ))}
+          </div>
+
+          <!-- Review Text -->
+          <p
+            class="mb-[10px] line-clamp-4 font-dm-sans text-[14px] font-normal leading-[1.5] tracking-[-0.02em]"
+            style="color: rgb(25, 25, 25);"
+          >
+            {review.text}
+          </p>
+
+          <!-- Read more -->
+          <p
+            class="mt-auto font-outfit text-[14px] font-normal tracking-[-0.02em]"
+            style="color: rgb(97, 94, 94);"
+          >
+            Read more
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA Button -->
+    <div class="mt-[40px] flex justify-center">
+      <a
+        href="tel:6509773351"
+        class="inline-flex items-center justify-center rounded-full px-[32px] py-[16px] font-outfit text-[20px] font-semibold tracking-[-0.02em] text-white transition-opacity hover:opacity-90"
+        style="background-color: rgb(13, 43, 29); border: 1px solid rgba(13, 43, 29, 0.2);"
+      >
+        Call Now - We Answer Fast
+      </a>
+    </div>
+  </div>
+</section>

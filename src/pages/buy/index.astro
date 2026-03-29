@@ -1,0 +1,332 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout
+  title="Buy Your Roof Online | Hamilton Exteriors"
+  description="Skip the salesman. Enter your address, see your roof, get an instant price. Buy your new roof online from Hamilton Exteriors."
+>
+  <Navbar />
+
+  <!-- ── HERO — address input drives to /buy/scan ──────────────────── -->
+  <section class="w-full bg-charcoal relative overflow-hidden" style="padding: 120px 20px 80px;">
+    <div class="absolute inset-0 opacity-[0.04]" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><path d=%22M30 0L60 30L30 60L0 30Z%22 fill=%22none%22 stroke=%22white%22 stroke-width=%220.5%22/></svg>'); background-size: 60px 60px;"></div>
+    <div class="mx-auto text-center relative z-10" style="max-width: 720px;">
+      <p class="text-label-uppercase mb-4" style="color: var(--color-terracotta-light);">No salespeople. No commission. No games.</p>
+      <h1 class="text-display-hero text-white mb-4" style="font-size: clamp(36px, 6vw, 68px);">
+        Buy Your Roof Online
+      </h1>
+      <p class="text-body text-white/60 mb-8" style="max-width: 480px; margin-left: auto; margin-right: auto;">
+        Enter your address. We'll scan your roof and give you an instant price — no salesperson required.
+      </p>
+      <form id="hero-form" class="relative mx-auto" style="max-width: 520px;" action="/buy/scan">
+        <input
+          id="hero-address-input"
+          name="address"
+          type="text"
+          placeholder="Enter your home address..."
+          autocomplete="off"
+          required
+          class="w-full rounded-xl text-body"
+          style="padding: 18px 120px 18px 20px; border: 2px solid rgba(255,255,255,0.15); font-size: 17px; outline: none; background: rgba(255,255,255,0.08); color: white; transition: border-color 0.2s;"
+        />
+        <button
+          type="submit"
+          class="absolute top-1/2 right-2 -translate-y-1/2 bg-primary text-white text-button rounded-lg transition-opacity hover:opacity-90"
+          style="padding: 10px 20px; font-size: 14px;"
+        >
+          Scan Roof
+        </button>
+      </form>
+      <p class="text-white/30 mt-4" style="font-size: 13px;">
+        Bay Area only &middot; Alameda, Contra Costa, Marin, Napa & Santa Clara counties
+      </p>
+    </div>
+  </section>
+
+  <!-- ── WHY WE'RE DIFFERENT — comparison + stats ───────────────────── -->
+  <section class="w-full bg-white" style="padding: 80px 20px 0;">
+    <div class="mx-auto" style="max-width: 1060px;">
+      <h2 class="text-display-section text-charcoal text-center mb-4" style="font-size: clamp(28px, 4vw, 48px);">
+        Where does your money <em>actually</em> go?
+      </h2>
+      <p class="text-body text-center mb-12 mx-auto" style="max-width: 600px; color: var(--color-input);">
+        Most roofing companies are sales organizations with a construction crew attached. Here's the difference.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Traditional -->
+        <div class="rounded-2xl" style="background: var(--color-cream); padding: 32px; border: 2px solid var(--color-border);">
+          <p class="text-label-uppercase mb-4" style="color: var(--color-input);">Typical Roofing Company</p>
+          <div class="flex flex-col gap-4">
+            <div class="flex items-start gap-3">
+              <span style="color: #c44; font-size: 20px; line-height: 1.4;">&#10007;</span>
+              <div>
+                <p class="font-semibold text-charcoal" style="font-size: 15px;">30-40% sales commission</p>
+                <p style="font-size: 13px; color: var(--color-input);">The guy knocking on your door gets paid before anyone touches your roof.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span style="color: #c44; font-size: 20px; line-height: 1.4;">&#10007;</span>
+              <div>
+                <p class="font-semibold text-charcoal" style="font-size: 15px;">High-pressure sales tactics</p>
+                <p style="font-size: 13px; color: var(--color-input);">"This price is only good today." Sound familiar?</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span style="color: #c44; font-size: 20px; line-height: 1.4;">&#10007;</span>
+              <div>
+                <p class="font-semibold text-charcoal" style="font-size: 15px;">Opaque pricing</p>
+                <p style="font-size: 13px; color: var(--color-input);">No breakdown, no comparison. Just a number on a clipboard.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span style="color: #c44; font-size: 20px; line-height: 1.4;">&#10007;</span>
+              <div>
+                <p class="font-semibold text-charcoal" style="font-size: 15px;">Undertrained install crews</p>
+                <p style="font-size: 13px; color: var(--color-input);">Budget goes to sales, not skilled labor.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 rounded-lg overflow-hidden" style="height: 32px; background: #e8e4de;">
+            <div class="h-full flex">
+              <div class="h-full flex items-center justify-center" style="width: 35%; background: #c44; color: white; font-size: 11px; font-weight: 700;">COMMISSION 35%</div>
+              <div class="h-full flex items-center justify-center" style="width: 20%; background: #e8a87c; font-size: 11px; font-weight: 600;">Overhead</div>
+              <div class="h-full flex items-center justify-center" style="width: 25%; background: var(--color-border); font-size: 11px; font-weight: 600;">Materials</div>
+              <div class="h-full flex items-center justify-center" style="width: 20%; background: #b8b3a8; font-size: 11px; font-weight: 600;">Labor</div>
+            </div>
+          </div>
+        </div>
+        <!-- Hamilton -->
+        <div class="rounded-2xl" style="background: var(--color-cream); padding: 32px; border: 2px solid var(--color-primary);">
+          <p class="text-label-uppercase text-primary mb-4">Hamilton Exteriors</p>
+          <div class="flex flex-col gap-4">
+            <div class="flex items-start gap-3">
+              <span style="color: var(--color-primary); font-size: 20px; line-height: 1.4;">&#10003;</span>
+              <div>
+                <p class="font-semibold text-charcoal" style="font-size: 15px;">0% sales commission</p>
+                <p style="font-size: 13px; color: var(--color-input);">Buy online. No salesperson, no markup, no games.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span style="color: var(--color-primary); font-size: 20px; line-height: 1.4;">&#10003;</span>
+              <div>
+                <p class="font-semibold text-charcoal" style="font-size: 15px;">Transparent, instant pricing</p>
+                <p style="font-size: 13px; color: var(--color-input);">See every line item. Materials, labor, permits — no hidden fees.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span style="color: var(--color-primary); font-size: 20px; line-height: 1.4;">&#10003;</span>
+              <div>
+                <p class="font-semibold text-charcoal" style="font-size: 15px;">100% focused on installation quality</p>
+                <p style="font-size: 13px; color: var(--color-input);">All staff, all budget, all energy goes into your roof — not closing deals.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span style="color: var(--color-primary); font-size: 20px; line-height: 1.4;">&#10003;</span>
+              <div>
+                <p class="font-semibold text-charcoal" style="font-size: 15px;">Experienced, certified crews</p>
+                <p style="font-size: 13px; color: var(--color-input);">GAF Master Elite certified. We invest in craft, not commissions.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 rounded-lg overflow-hidden" style="height: 32px; background: #e8e4de;">
+            <div class="h-full flex">
+              <div class="h-full flex items-center justify-center" style="width: 40%; background: var(--color-primary); color: white; font-size: 11px; font-weight: 700;">MATERIALS 40%</div>
+              <div class="h-full flex items-center justify-center" style="width: 35%; background: rgb(72,140,100); color: white; font-size: 11px; font-weight: 600;">Labor 35%</div>
+              <div class="h-full flex items-center justify-center" style="width: 25%; background: rgb(120,170,135); color: white; font-size: 11px; font-weight: 600;">Permits 25%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center" style="padding: 48px 0 60px;">
+        <div>
+          <p class="font-instrument text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">0%</p>
+          <p style="font-size: 13px; color: var(--color-input); margin-top: 4px;">Sales Commission</p>
+        </div>
+        <div>
+          <p class="font-instrument text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">$4,200</p>
+          <p style="font-size: 13px; color: var(--color-input); margin-top: 4px;">Avg. Customer Savings</p>
+        </div>
+        <div>
+          <p class="font-instrument text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">500+</p>
+          <p style="font-size: 13px; color: var(--color-input); margin-top: 4px;">Roofs Completed</p>
+        </div>
+        <div>
+          <p class="font-instrument text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">4.9</p>
+          <p style="font-size: 13px; color: var(--color-input); margin-top: 4px;">Google Rating</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOCIAL PROOF ──────────────────────────────────────────────── -->
+  <section class="w-full" style="background-color: var(--color-cream); padding: 80px 20px;">
+    <div class="mx-auto" style="max-width: 1060px;">
+      <p class="text-label-uppercase text-primary text-center mb-6">What homeowners say</p>
+      <div class="mb-8 rounded-2xl bg-white mx-auto" style="max-width: 760px; padding: 40px; border: 1px solid var(--color-border);">
+        <blockquote class="font-instrument text-charcoal text-center" style="font-size: clamp(20px, 3vw, 28px); line-height: 1.4; font-style: italic;">
+          "I got three quotes from traditional roofers — all $15k+. Hamilton's online price was $11,200 for better materials. The savings from cutting out the salesman are real."
+        </blockquote>
+        <div class="flex items-center justify-center gap-3 mt-6">
+          <div class="rounded-full bg-primary flex items-center justify-center text-white font-semibold" style="width: 40px; height: 40px; font-size: 15px;">DK</div>
+          <div>
+            <p class="font-semibold text-charcoal" style="font-size: 14px;">David & Lin K.</p>
+            <p style="font-size: 13px; color: var(--color-input);">San Leandro, CA &middot; Saved $3,800</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style="max-width: 760px; margin: 0 auto;">
+        <div class="rounded-xl bg-white" style="padding: 24px; border: 1px solid var(--color-border);">
+          <div class="flex gap-1 mb-2">
+            <span style="color: var(--color-terracotta); font-size: 14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-charcoal mb-3" style="font-size: 14px; line-height: 1.7;">
+            "Typed my address, got an instant price. No waiting for some guy to come measure. So easy."
+          </p>
+          <p class="font-semibold text-charcoal" style="font-size: 13px;">Maria S. <span style="font-weight: 400; color: var(--color-input);">&middot; Oakland</span></p>
+        </div>
+        <div class="rounded-xl bg-white" style="padding: 24px; border: 1px solid var(--color-border);">
+          <div class="flex gap-1 mb-2">
+            <span style="color: var(--color-terracotta); font-size: 14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-charcoal mb-3" style="font-size: 14px; line-height: 1.7;">
+            "The transparency blew me away. Every line item right there. The crew showed up on time and did an incredible job."
+          </p>
+          <p class="font-semibold text-charcoal" style="font-size: 13px;">James T. <span style="font-weight: 400; color: var(--color-input);">&middot; Pleasanton</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────────────────── -->
+  <section class="w-full bg-white" style="padding: 80px 20px;">
+    <div class="mx-auto" style="max-width: 720px;">
+      <h2 class="text-display-section text-charcoal text-center mb-12" style="font-size: clamp(28px, 4vw, 48px);">
+        Common questions
+      </h2>
+      <div class="flex flex-col gap-3">
+        <details class="faq-item rounded-xl" style="background: var(--color-cream); border: 1px solid var(--color-border);">
+          <summary class="faq-summary">How do you know what my roof needs without visiting?</summary>
+          <div class="faq-answer">
+            <p>We use high-resolution satellite imagery and aerial measurement technology — the same tools insurance adjusters use. Before any work begins, our project manager does a free on-site verification to confirm measurements and check for any hidden issues.</p>
+          </div>
+        </details>
+        <details class="faq-item rounded-xl" style="background: var(--color-cream); border: 1px solid var(--color-border);">
+          <summary class="faq-summary">How can you be so much cheaper without cutting corners?</summary>
+          <div class="faq-answer">
+            <p>Traditional roofing companies pay their salespeople 30-40% commission on every job. That's $3,000-$8,000 per roof that goes to the person who knocked on your door — not to materials or labor. We eliminated the sales force entirely. Same materials, same (or better) installation crews, dramatically lower price.</p>
+          </div>
+        </details>
+        <details class="faq-item rounded-xl" style="background: var(--color-cream); border: 1px solid var(--color-border);">
+          <summary class="faq-summary">What about the warranty?</summary>
+          <div class="faq-answer">
+            <p>Every roof comes with a manufacturer's warranty (25 years to lifetime, depending on the material you choose) plus our own 10-year workmanship guarantee. We're a GAF Master Elite contractor — only 2% of roofers in the country qualify.</p>
+          </div>
+        </details>
+        <details class="faq-item rounded-xl" style="background: var(--color-cream); border: 1px solid var(--color-border);">
+          <summary class="faq-summary">How does financing work?</summary>
+          <div class="faq-answer">
+            <p>We offer 0% APR financing for up to 60 months with approved credit. Apply during checkout — approval takes about 2 minutes. No prepayment penalties.</p>
+          </div>
+        </details>
+        <details class="faq-item rounded-xl" style="background: var(--color-cream); border: 1px solid var(--color-border);">
+          <summary class="faq-summary">What if the on-site inspection finds something different?</summary>
+          <div class="faq-answer">
+            <p>We'll update your quote with an itemized explanation of what changed and why. You approve any changes before we proceed. No surprises.</p>
+          </div>
+        </details>
+        <details class="faq-item rounded-xl" style="background: var(--color-cream); border: 1px solid var(--color-border);">
+          <summary class="faq-summary">How long does a typical roof take?</summary>
+          <div class="faq-answer">
+            <p>Most residential roofs are completed in 1-3 days depending on size and complexity. We handle permits, material delivery, and cleanup — you don't have to do anything.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ─────────────────────────────────────────────────── -->
+  <section class="w-full bg-charcoal" style="padding: 80px 20px;">
+    <div class="mx-auto text-center" style="max-width: 640px;">
+      <h2 class="text-display-section text-white mb-4" style="font-size: clamp(28px, 4vw, 44px);">
+        Ready to skip the salesman?
+      </h2>
+      <p class="text-body text-white/60 mb-8">
+        Enter your address, see your price, and buy your roof in minutes.
+      </p>
+      <form class="relative mx-auto" style="max-width: 480px;" action="/buy/scan">
+        <input
+          name="address"
+          type="text"
+          placeholder="Enter your home address..."
+          required
+          class="w-full rounded-xl text-body"
+          style="padding: 18px 120px 18px 20px; border: 2px solid rgba(255,255,255,0.15); font-size: 17px; outline: none; background: rgba(255,255,255,0.08); color: white;"
+        />
+        <button
+          type="submit"
+          class="absolute top-1/2 right-2 -translate-y-1/2 bg-primary text-white text-button rounded-lg transition-opacity hover:opacity-90"
+          style="padding: 10px 20px; font-size: 14px;"
+        >
+          Scan Roof
+        </button>
+      </form>
+      <p class="text-white/40 mt-6" style="font-size: 13px;">
+        Or call us at <a href="tel:6509773351" class="text-white/60 underline">(650) 977-3351</a>
+      </p>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  #hero-address-input:focus {
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.12);
+  }
+  #hero-address-input::placeholder {
+    color: rgba(255,255,255,0.4);
+  }
+  .faq-summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 48px 18px 20px;
+    font-family: var(--font-fraunces);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--color-charcoal);
+    position: relative;
+    user-select: none;
+  }
+  .faq-summary::-webkit-details-marker { display: none; }
+  .faq-summary::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-dm-sans);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--color-input);
+  }
+  .faq-item[open] .faq-summary::after { content: '\2212'; }
+  .faq-answer {
+    padding: 0 20px 20px;
+    font-family: var(--font-dm-sans);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-input);
+  }
+  footer a[aria-label] {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

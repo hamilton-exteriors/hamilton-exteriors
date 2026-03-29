@@ -1,0 +1,84 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import AnnouncementBar from '../../../components/AnnouncementBar.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Hero from '../../../components/Hero.astro';
+import LogoSlider from '../../../components/LogoSlider.astro';
+import FAQ from '../../../components/FAQ.astro';
+import ContactUs from '../../../components/ContactUs.astro';
+import Footer from '../../../components/Footer.astro';
+
+const county = 'Santa Clara County';
+const adjective = 'Trusted';
+---
+
+<Layout
+  title={`${adjective} ADU Contractors in ${county}, CA | Hamilton Exteriors`}
+  description={`Hamilton Exteriors provides trusted ADU contractors throughout ${county}, CA. Expert design, permits, and construction for accessory dwelling units.`}
+>
+  <AnnouncementBar />
+  <Navbar />
+  <Hero
+    formTitle={`Get a FREE Estimate in ${county}`}
+    headline={`${adjective} ADU Contractors in ${county}, CA`}
+  />
+  <LogoSlider />
+
+  <!-- Why Choose Section -->
+  <section class="w-full bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why Choose Hamilton Exteriors as Your {adjective} ADU Contractors in {county}, CA?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Reliable. Efficient. Professional.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Hamilton Exteriors provides trusted ADU contractors in Santa Clara County, CA who deliver reliable, high-quality accessory dwelling units for homeowners across Silicon Valley. From San Jose to Cupertino, Mountain View to Sunnyvale, our team understands the specific building codes and permitting processes across every jurisdiction in the county.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Our trusted contractors handle every phase of your ADU project — from architectural design and engineering to city permitting and final construction. We build detached units, attached additions, garage conversions, and junior ADUs that maximize your property's potential in one of California's most competitive housing markets.
+      </p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div style="padding: 20px; border: 1px solid rgb(230,230,230); border-radius: 8px;">
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">End-to-End Project Management</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">Our trusted ADU contractors in Santa Clara County manage design, permits, and construction with a single point of contact throughout your project.</p>
+        </div>
+        <div style="padding: 20px; border: 1px solid rgb(230,230,230); border-radius: 8px;">
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Silicon Valley Code Knowledge</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">We navigate the varying ADU regulations across Santa Clara County's many cities, ensuring smooth permitting and code compliance.</p>
+        </div>
+        <div style="padding: 20px; border: 1px solid rgb(230,230,230); border-radius: 8px;">
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">High-Value Construction</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">Premium materials and skilled craftsmanship that match the high standards expected in Santa Clara County's real estate market.</p>
+        </div>
+        <div style="padding: 20px; border: 1px solid rgb(230,230,230); border-radius: 8px;">
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Flexible Financing Options</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">$0 down financing and competitive rates make it easy to start building your Santa Clara County ADU today.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Build Section -->
+  <section class="w-full bg-cream py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why Build with {adjective} ADU Contractors in {county}, CA?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Growth. Value. Versatility.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Santa Clara County's housing shortage and high property values make ADUs one of the smartest investments a homeowner can make. A well-designed accessory dwelling unit can generate $2,500–$4,500 per month in rental income while adding 25–40% to your property's overall value.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+        With California's streamlined ADU laws and Santa Clara County's supportive permitting process, building an ADU has never been more accessible. Whether you need a rental unit, a home office, or space for extended family, our trusted contractors deliver ADUs that meet your specific needs and exceed your expectations.
+      </p>
+    </div>
+  </section>
+
+  <FAQ />
+  <ContactUs />
+  <Footer />
+</Layout>

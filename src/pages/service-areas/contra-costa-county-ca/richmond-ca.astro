@@ -1,0 +1,95 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import AnnouncementBar from '../../../components/AnnouncementBar.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Hero from '../../../components/Hero.astro';
+import LogoSlider from '../../../components/LogoSlider.astro';
+import FAQ from '../../../components/FAQ.astro';
+import ContactUs from '../../../components/ContactUs.astro';
+import Footer from '../../../components/Footer.astro';
+
+const city = 'Richmond';
+const county = 'Contra Costa County';
+const adjective = 'Experienced';
+---
+
+<Layout
+  title={`${adjective} ADU Contractors in ${city}, CA | Hamilton Exteriors`}
+  description={`Hamilton Exteriors provides ${adjective.toLowerCase()} ADU contractors in ${city}, CA. Expert design, permits, and construction. Call for a free consultation!`}
+>
+  <AnnouncementBar />
+  <Navbar />
+  <Hero
+    formTitle={`Get a FREE Estimate in ${city}`}
+    headline={`${adjective} ADU Contractors in ${city}, CA`}
+  />
+  <LogoSlider />
+
+  <!-- Why Choose Section -->
+  <section class="w-full bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why Choose Hamilton Exteriors as Your {adjective} ADU Contractors in {city}, CA?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Proven. Skilled. Reliable.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Hamilton Exteriors provides experienced ADU contractors in Richmond, CA who understand the unique character and potential of this waterfront city. Richmond's diverse neighborhoods — from the Point Richmond hills to the El Cerrito border, from Hilltop to Marina Bay — each present distinct opportunities for ADU construction, and our years of experience mean we know how to navigate them all.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Experience matters when building ADUs because every property is different. Older Richmond homes may need updated utility connections, hillside lots require careful foundation work, and properties in certain zones have specific design requirements. Our team has encountered and solved these challenges many times over, giving you the benefit of lessons learned across dozens of completed projects.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        We guide you through Richmond's permit process, design a unit that complements your existing home, and build with the attention to detail that only comes from years of hands-on ADU construction experience.
+      </p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Proven Track Record</strong> — We bring years of completed ADU projects to your Richmond build, applying lessons learned to avoid common pitfalls and deliver a smooth construction process.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Neighborhood Knowledge</strong> — We understand Richmond's varied zoning districts and building requirements, designing ADUs that comply with local regulations specific to your area.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Problem-Solving Expertise</strong> — Older properties and unique lot conditions don't intimidate us. We find practical solutions to site challenges that less experienced contractors would struggle with.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Quality Finishes</strong> — Our experience shows in the details. We deliver polished interiors with quality fixtures, flooring, and cabinetry that make your ADU move-in ready.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why ADU Contractors Section -->
+  <section class="w-full bg-cream py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why {adjective} ADU Contractors in {city}, CA Are Essential?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Knowledge. Value. Confidence.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Richmond is experiencing a renaissance, with new investment in its waterfront, arts district, and residential communities driving property values upward. For homeowners, ADUs represent one of the best ways to capitalize on this growth — adding rentable square footage in a city where housing demand consistently outpaces supply, especially near BART stations and the Richmond Ferry terminal.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Experienced contractors are essential in Richmond because many properties were built decades ago and present construction challenges that newer subdivisions don't. Outdated electrical panels, aging sewer laterals, and non-standard lot configurations require a contractor who has seen these issues before and knows the most cost-effective way to address them during an ADU build.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+        When you work with experienced ADU contractors, you benefit from their accumulated knowledge — better material choices, faster problem resolution, and a finished product that reflects the quality and care that comes from doing this work year after year in the communities they serve.
+      </p>
+    </div>
+  </section>
+
+  <FAQ />
+  <ContactUs />
+  <Footer />
+</Layout>

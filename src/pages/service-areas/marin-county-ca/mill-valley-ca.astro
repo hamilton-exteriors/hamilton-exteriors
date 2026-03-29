@@ -1,0 +1,95 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import AnnouncementBar from '../../../components/AnnouncementBar.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Hero from '../../../components/Hero.astro';
+import LogoSlider from '../../../components/LogoSlider.astro';
+import FAQ from '../../../components/FAQ.astro';
+import ContactUs from '../../../components/ContactUs.astro';
+import Footer from '../../../components/Footer.astro';
+
+const city = 'Mill Valley';
+const county = 'Marin County';
+const adjective = 'Innovative';
+---
+
+<Layout
+  title={`${adjective} ADU Contractors in ${city}, CA | Hamilton Exteriors`}
+  description={`Hamilton Exteriors provides ${adjective.toLowerCase()} ADU contractors in ${city}, CA. Expert design, permits, and construction. Call for a free consultation!`}
+>
+  <AnnouncementBar />
+  <Navbar />
+  <Hero
+    formTitle={`Get a FREE Estimate in ${city}`}
+    headline={`${adjective} ADU Contractors in ${city}, CA`}
+  />
+  <LogoSlider />
+
+  <!-- Why Choose Section -->
+  <section class="w-full bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why Choose Hamilton Exteriors as Your {adjective} ADU Contractors in {city}, CA?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Creative. Modern. Practical.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Hamilton Exteriors provides innovative ADU contractors in Mill Valley, CA who bring creative design thinking to one of Marin County's most architecturally distinctive communities. Mill Valley's eclectic mix of redwood cabins, mid-century modern homes, and contemporary hillside residences calls for ADU designs that are just as thoughtful, and our innovative approach delivers exactly that.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Innovation in Mill Valley ADU construction means finding creative solutions for the unique challenges this town presents — steep hillside lots, mature redwood trees that must be preserved, narrow access roads, and design review standards that demand architectural quality. Our team embraces these constraints and turns them into opportunities for distinctive, well-integrated ADU designs.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        From compact studios tucked beneath the canopy to full one-bedroom units with modern amenities, we build ADUs that feel intentional and inspired — matching the creative spirit that defines Mill Valley living.
+      </p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Creative Design Solutions</strong> — We turn Mill Valley's challenging lot conditions into design opportunities, creating ADUs that work with the landscape rather than against it.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Environmental Sensitivity</strong> — We protect Mill Valley's natural beauty during construction, preserving mature trees and minimizing site disturbance throughout the build process.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Modern Systems</strong> — We incorporate smart home technology, energy-efficient HVAC, and sustainable materials that align with Mill Valley's progressive environmental values.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Design Review Expertise</strong> — We prepare plans that satisfy Mill Valley's architectural review process, presenting your ADU project in a way that addresses the city's design standards upfront.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why ADU Contractors Section -->
+  <section class="w-full bg-cream py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why {adjective} ADU Contractors in {city}, CA Are Essential?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Creativity. Progress. Value.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Mill Valley is one of the most beautiful and expensive communities in the Bay Area, where homes at the base of Mount Tamalpais command premium prices and the local culture values design, sustainability, and connection to nature. An ADU in Mill Valley is a high-value asset — rental demand is strong from professionals who want to live in this community without paying full home prices, and the additional space adds meaningful value to your property.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Innovative contractors are essential in Mill Valley because cookie-cutter ADU designs simply don't work here. The town's varied topography, stringent design review process, and environmentally sensitive areas require contractors who can think creatively and adapt their approach to each unique property. Standard prefab solutions or generic plans will either fail design review or produce a unit that clashes with the surrounding environment.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+        With innovative ADU contractors, your Mill Valley project becomes a space that reflects the creativity and quality this community is known for — a functional, beautiful addition that you and your neighbors can appreciate.
+      </p>
+    </div>
+  </section>
+
+  <FAQ />
+  <ContactUs />
+  <Footer />
+</Layout>

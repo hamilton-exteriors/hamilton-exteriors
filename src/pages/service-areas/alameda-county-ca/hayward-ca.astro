@@ -1,0 +1,95 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import AnnouncementBar from '../../../components/AnnouncementBar.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Hero from '../../../components/Hero.astro';
+import LogoSlider from '../../../components/LogoSlider.astro';
+import FAQ from '../../../components/FAQ.astro';
+import ContactUs from '../../../components/ContactUs.astro';
+import Footer from '../../../components/Footer.astro';
+
+const city = 'Hayward';
+const county = 'Alameda County';
+const adjective = 'Expert';
+---
+
+<Layout
+  title={`${adjective} ADU Contractors in ${city}, CA | Hamilton Exteriors`}
+  description={`Hamilton Exteriors provides ${adjective.toLowerCase()} ADU contractors in ${city}, CA. Expert design, permits, and construction. Call for a free consultation!`}
+>
+  <AnnouncementBar />
+  <Navbar />
+  <Hero
+    formTitle={`Get a FREE Estimate in ${city}`}
+    headline={`${adjective} ADU Contractors in ${city}, CA`}
+  />
+  <LogoSlider />
+
+  <!-- Why Choose Section -->
+  <section class="w-full bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why Choose Hamilton Exteriors as Your {adjective} ADU Contractors in {city}, CA?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Skilled. Dependable. Proven.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Hamilton Exteriors provides expert ADU contractors in Hayward, CA with deep knowledge of this centrally located East Bay city. Hayward's mix of single-family homes in neighborhoods like Hayward Hills, Tennyson, and Southgate offers excellent opportunities for ADU construction, and our team brings the expertise needed to turn your backyard or garage into valuable living space.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Our expert approach covers the full scope of ADU development. We start with a thorough property assessment, create detailed architectural plans that comply with Hayward's municipal code, manage all permit applications, and execute construction with skilled tradespeople who take pride in their craft. Every decision is backed by years of ADU building experience in the East Bay.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        From foundation to finish, we apply expert-level attention to structural integrity, plumbing, electrical, and interior finishes that make your ADU feel like a true home rather than an afterthought.
+      </p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Comprehensive Property Assessment</strong> — We evaluate your Hayward lot's soil conditions, slope, utilities, and access to determine the best ADU placement and design approach.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Code-Compliant Design</strong> — Our plans are drafted to meet Hayward's current ADU ordinances, reducing revision cycles and getting your project approved faster.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Skilled Crew Management</strong> — We coordinate licensed electricians, plumbers, and framers who work together efficiently, keeping your project on schedule without cutting corners.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Post-Build Support</strong> — After your ADU is complete, we provide a final walkthrough and address any punch-list items promptly so you can start using your new space with confidence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why ADU Contractors Section -->
+  <section class="w-full bg-cream py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why {adjective} ADU Contractors in {city}, CA Are Essential?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Space. Growth. Reliability.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Hayward sits at the geographic heart of the East Bay with easy access to both San Francisco and Silicon Valley, making it an increasingly popular city for families and professionals. As housing costs continue to climb across the region, ADUs provide Hayward homeowners with a practical solution for multigenerational living, home office space, or supplemental rental income.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Expert contractors are essential in Hayward because the city's varied terrain — from flatland lots near downtown to hillside properties along the eastern hills — presents different construction challenges that require specialized knowledge. Foundation requirements, drainage planning, and utility hookups vary significantly depending on where your property sits, and mistakes in these areas lead to expensive fixes down the road.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+        Working with expert ADU contractors ensures your project is built right the first time, with proper engineering, quality materials, and construction techniques that protect your investment and deliver a space your family can rely on for decades.
+      </p>
+    </div>
+  </section>
+
+  <FAQ />
+  <ContactUs />
+  <Footer />
+</Layout>

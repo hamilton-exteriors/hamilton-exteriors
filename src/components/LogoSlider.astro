@@ -1,0 +1,52 @@
+---
+const logos = [
+  { src: "https://framerusercontent.com/images/oUEB4qiULhRGWWcV5MkDVLBI8U.png?width=340&height=364", alt: "Certification Logo", w: 340, h: 364 },
+  { src: "https://framerusercontent.com/images/Tds7Oyo26ZbYQvPipHx3ILYVxZ4.png?width=740&height=279", alt: "Partner Logo", w: 740, h: 279 },
+  { src: "https://framerusercontent.com/images/hdIy35ILXstUShYm2GeiGhACAE.png?width=380&height=312", alt: "GAF Logo", w: 380, h: 312 },
+  { src: "https://framerusercontent.com/images/8Z0rXtBWig6tP2vOJbXDFuCBaUw.svg?width=147&height=43", alt: "Certification Logo", w: 147, h: 43 },
+  { src: "https://framerusercontent.com/images/cQGfBKfouuXN0KYNNiDeZgVSus.png?width=6600&height=4200", alt: "Partner Logo", w: 6600, h: 4200 },
+];
+---
+
+<section class="overflow-x-hidden" style="background-color: rgb(255, 255, 255); padding: 79px 20px;">
+  <div class="mx-auto" style="max-width: 1200px;">
+    <p
+      class="text-center"
+      style="font-family: 'DM Sans', 'DM Sans Placeholder', sans-serif; line-height: 24px; color: rgb(13, 43, 29);"
+    >
+      Certified, highly trained installers delivering top-quality service.
+    </p>
+
+    <!-- Desktop: centered row -->
+    <div class="mt-10 hidden flex-wrap items-center justify-center gap-12 md:flex">
+      {logos.map((logo) => (
+        <div class="flex h-[80px] w-[150px] shrink-0 items-center justify-center">
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            width={logo.w}
+            height={logo.h}
+            class="max-h-[72px] max-w-[140px] object-contain"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Mobile: horizontal scroll -->
+    <div class="mt-10 flex gap-8 overflow-x-auto pb-2 md:hidden" style="-webkit-overflow-scrolling: touch;">
+      {logos.map((logo) => (
+        <div class="flex h-[72px] w-[120px] shrink-0 items-center justify-center">
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            width={logo.w}
+            height={logo.h}
+            class="max-h-[64px] max-w-[110px] object-contain"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

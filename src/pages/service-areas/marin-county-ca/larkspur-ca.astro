@@ -1,0 +1,95 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import AnnouncementBar from '../../../components/AnnouncementBar.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Hero from '../../../components/Hero.astro';
+import LogoSlider from '../../../components/LogoSlider.astro';
+import FAQ from '../../../components/FAQ.astro';
+import ContactUs from '../../../components/ContactUs.astro';
+import Footer from '../../../components/Footer.astro';
+
+const city = 'Larkspur';
+const county = 'Marin County';
+const adjective = 'Premier';
+---
+
+<Layout
+  title={`${adjective} ADU Contractors in ${city}, CA | Hamilton Exteriors`}
+  description={`Hamilton Exteriors provides ${adjective.toLowerCase()} ADU contractors in ${city}, CA. Expert design, permits, and construction. Call for a free consultation!`}
+>
+  <AnnouncementBar />
+  <Navbar />
+  <Hero
+    formTitle={`Get a FREE Estimate in ${city}`}
+    headline={`${adjective} ADU Contractors in ${city}, CA`}
+  />
+  <LogoSlider />
+
+  <!-- Why Choose Section -->
+  <section class="w-full bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why Choose Hamilton Exteriors as Your {adjective} ADU Contractors in {city}, CA?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Elite. Reliable. Proven.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Hamilton Exteriors provides premier ADU contractors in Larkspur, CA who deliver construction quality that matches this charming Marin County town's exceptional character. Larkspur's intimate neighborhoods, nestled between Mount Tamalpais and the bay, feature distinctive homes on varied terrain, and our premier team has the skill and experience to build ADUs that complement this special setting.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        As premier contractors, we bring a higher standard to every aspect of your ADU project. Our designs respect Larkspur's architectural heritage while incorporating modern amenities. We navigate the Town of Larkspur's planning and building departments with familiarity, and our construction crews deliver the caliber of work that homeowners in this community rightfully expect.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Whether your property sits along Magnolia Avenue, in the hillside areas above downtown, or near the Larkspur Ferry terminal, we design and build ADUs that feel like a natural part of your property rather than an addition.
+      </p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Architectural Sensitivity</strong> — We design ADUs that respect Larkspur's unique architectural character, blending seamlessly with your existing home and the surrounding neighborhood.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Hillside Expertise</strong> — Many Larkspur properties involve slopes and challenging terrain. Our team handles grading, retaining walls, and foundation work with proven hillside construction methods.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Premium Materials</strong> — We select materials that stand up to Marin's coastal climate while delivering the refined look and feel that Larkspur homeowners expect.
+          </p>
+        </div>
+        <div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+            <strong style="color: rgb(13, 43, 29);">Seamless Permitting</strong> — We manage all Town of Larkspur permits and design review requirements, handling the administrative work so you can focus on the exciting parts of your project.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why ADU Contractors Section -->
+  <section class="w-full bg-cream py-16 md:py-20">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Why {adjective} ADU Contractors in {city}, CA Are Essential?
+      </h2>
+      <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        Quality. Trust. Value.
+      </h3>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Larkspur is one of Marin County's most desirable small towns, with a walkable downtown, ferry access to San Francisco, and a tight-knit community feel that draws families and professionals alike. Home values here are among the highest in the Bay Area, and any construction on your property needs to enhance rather than diminish that value. A premier ADU contractor ensures your new unit meets the quality threshold this market demands.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+        Premier contractors are essential in Larkspur because the town's smaller size means the building department knows good work from bad, neighbors notice construction quality, and substandard ADUs stand out conspicuously. Additionally, many Larkspur lots have unique topographical challenges — creek setbacks, hillside grading, and mature tree preservation — that require experienced, skilled builders to handle correctly.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+        By choosing premier ADU contractors, you protect your Larkspur home's value and ensure your new unit is a source of pride — a well-crafted space that serves your family's needs while respecting the character of this remarkable Marin community.
+      </p>
+    </div>
+  </section>
+
+  <FAQ />
+  <ContactUs />
+  <Footer />
+</Layout>

@@ -1,0 +1,14 @@
+{
+  "errors": [],
+  "warnings": [
+    "Overlap: section 2 and 3 (50400px\u00b2)"
+  ],
+  "principles_met": true,
+  "stats": {
+    "total_sections": 3,
+    "total_tokens": 1433,
+    "avg_tokens": 477,
+    "max_tokens": 1021,
+    "min_tokens": 188
+  }
+}

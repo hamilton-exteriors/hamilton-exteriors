@@ -1,0 +1,92 @@
+---
+const faqs = [
+  {
+    question: 'How do you ensure transparency and  avoid sleazy sales tactics?',
+    answer:
+      'We believe in honest, upfront pricing with no hidden fees. Our team provides detailed written estimates before any work begins, and we never use high-pressure sales techniques.',
+  },
+  {
+    question: 'How do I request a price match?',
+    answer:
+      'Simply show us a written estimate from a licensed competitor for the same scope of work, and we\'ll match or beat their price.',
+  },
+  {
+    question: 'What safeguards are in place to prevent  overpayment?',
+    answer:
+      'We provide itemized quotes, explain every cost, and never charge for work that wasn\'t agreed upon in advance.',
+  },
+  {
+    question: 'How do you handle situations where a  competitor offers a lower rate?',
+    answer:
+      'We welcome the opportunity to review competing offers. If a licensed competitor provides the same scope of work at a lower price, we\'ll match it.',
+  },
+  {
+    question: 'How does billing work with you?',
+    answer:
+      'We offer flexible payment options including $0 down financing. You only pay for completed, inspected work.',
+  },
+];
+---
+
+<section class="w-full" style="background-color: rgb(255, 255, 255);">
+  <div class="mx-auto" style="max-width: 1170px; padding: 60px 15px;">
+
+    <!-- Heading row: title left, CTA right -->
+    <div class="flex flex-col items-start justify-between md:flex-row md:items-center" style="gap: 16px; margin-bottom: 40px;">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; font-weight: 400; line-height: 50px; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin: 0;">
+        Frequently Asked Questions
+      </h2>
+      <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 400; line-height: 150%; color: rgb(13, 43, 29); text-align: right; margin: 0;" class="whitespace-normal md:whitespace-nowrap">
+        Didn't find the answer to your question?{' '}
+        <a
+          href="tel:6509773351"
+          style="font-weight: 400; color: rgb(13, 43, 29); text-decoration: none;"
+        >
+          Call Now  (650) 977-3351
+        </a>
+      </p>
+    </div>
+
+    <!-- Accordion -->
+    <div class="mx-auto" style="max-width: 100%;">
+      {
+        faqs.map((faq, index) => (
+          <details
+            class="group"
+            data-border="true"
+            style={`border-bottom: 1px solid rgb(196, 191, 182); background-color: rgb(255, 255, 255);`}
+          >
+            <summary class="flex cursor-pointer items-center justify-between list-none [&::-webkit-details-marker]:hidden" style="padding: 20px 0;">
+              <span style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; letter-spacing: 0px; color: rgb(3, 7, 18); padding-right: 16px;">
+                {faq.question}
+              </span>
+              <span class="relative flex shrink-0 items-center justify-center" style="width: 24px; height: 24px;">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 256 256"
+                  focusable="false"
+                  style="width: 100%; height: 100%; display: inline-block; fill: rgb(3, 7, 18); color: rgb(3, 7, 18);"
+                >
+                  <g>
+                    <path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z" />
+                  </g>
+                </svg>
+              </span>
+            </summary>
+            <div style="padding-bottom: 20px; padding-right: 48px;">
+              <p style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); opacity: 0.7; margin: 0;">
+                {faq.answer}
+              </p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  details[open] summary svg g path {
+    d: path("M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z");
+  }
+</style>

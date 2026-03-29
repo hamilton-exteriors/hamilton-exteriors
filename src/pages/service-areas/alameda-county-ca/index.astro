@@ -1,0 +1,62 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import AnnouncementBar from '../../../components/AnnouncementBar.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Hero from '../../../components/Hero.astro';
+import LogoSlider from '../../../components/LogoSlider.astro';
+import Reviews from '../../../components/Reviews.astro';
+import ReviewLogos from '../../../components/ReviewLogos.astro';
+import Services from '../../../components/Services.astro';
+import CTA from '../../../components/CTA.astro';
+import FAQ from '../../../components/FAQ.astro';
+import ContactUs from '../../../components/ContactUs.astro';
+import Footer from '../../../components/Footer.astro';
+
+const county = 'Alameda County';
+const cities = [
+  { name: 'Oakland', slug: '/service-areas/alameda-county-ca/oakland-ca' },
+  { name: 'Fremont', slug: '/service-areas/alameda-county-ca/fremont-ca' },
+  { name: 'Hayward', slug: '/service-areas/alameda-county-ca/hayward-ca' },
+  { name: 'Berkeley', slug: '/service-areas/alameda-county-ca/berkeley-ca' },
+  { name: 'San Leandro', slug: '/service-areas/alameda-county-ca/san-leandro-ca' },
+];
+---
+
+<Layout
+  title={`Trusted ADU Contractors in ${county}, CA | Hamilton Exteriors`}
+  description={`Hamilton Exteriors provides expert roofing, siding, and window services throughout ${county}, CA. Get a free inspection today.`}
+>
+  <AnnouncementBar />
+  <Navbar />
+  <Hero
+    formTitle={`Get a FREE Estimate in ${county}`}
+    headline={`ADU Contractor in ${county}, CA`}
+  />
+  <LogoSlider />
+
+  <!-- City Cards -->
+  <section class="w-full bg-white py-20">
+    <div class="mx-auto max-w-[1294px] px-5">
+      <h2 class="mb-10 text-center font-['Playfair_Display'] text-[32px] font-semibold text-[rgb(28,28,28)] md:text-[44px]">
+        Cities We Serve in {county}
+      </h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {cities.map((city) => (
+          <a href={city.slug} class="group rounded-2xl border border-gray-200 p-6 transition-shadow hover:shadow-lg">
+            <div class="mb-4 h-40 w-full rounded-xl bg-gray-200"></div>
+            <h3 class="font-['Playfair_Display'] text-xl font-semibold text-[rgb(28,28,28)]">{city.name}, CA</h3>
+            <span class="mt-2 inline-block font-dm-sans text-sm font-semibold text-primary group-hover:underline">View Services &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Services />
+  <Reviews />
+  <ReviewLogos />
+  <CTA />
+  <FAQ />
+  <ContactUs />
+  <Footer />
+</Layout>

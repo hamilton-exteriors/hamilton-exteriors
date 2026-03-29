@@ -1,0 +1,92 @@
+---
+const services = [
+  {
+    title: 'Roofing',
+    description:
+      'Composite shingles are durable roofing materials made from a mixture of fiberglass, asphalt, and mineral granules. They offer excellent weather resistance and come in a variety of styles and colors to suit different architectural designs.',
+    image: 'https://framerusercontent.com/images/hakr7OWoKe15ZF1PJ4Ckr7hRI.png',
+    href: './roofing',
+  },
+  {
+    title: 'Siding',
+    description:
+      'Metal roofs offer outstanding longevity and energy efficiency, lasting up to 50 years or more. They come in various styles and colors, providing excellent protection against extreme weather while reflecting solar radiant heat to reduce cooling costs.',
+    image: 'https://framerusercontent.com/images/abwzIHTvES7vwiSos5d3WPfIaA.png',
+    href: './siding',
+  },
+  {
+    title: 'Windows',
+    description:
+      'Tile roofing offers exceptional durability and aesthetic appeal, with options ranging from traditional clay to modern concrete designs. These versatile materials provide excellent insulation and fire resistance, making them a popular choice for homeowners seeking long-lasting, attractive roofing solutions.',
+    image: 'https://framerusercontent.com/images/pzaFvzI3i6hTZpGQ93e3UdUGriU.png',
+    href: './windows',
+  },
+  {
+    title: 'Waterproofing',
+    description:
+      'The GAF Energy roof integrates solar technology directly into roofing materials, combining energy production with traditional roof protection. This innovative system offers a sleek, low-profile alternative to conventional solar panels while providing clean energy and potential savings on electricity bills.',
+    image: 'https://framerusercontent.com/images/aGE7RTabo86d7bQllJ13VZdMVw4.png',
+    href: './waterproofing',
+  },
+];
+---
+
+<section id="service" class="w-full" style="padding: 79px 0;">
+  <div class="mx-auto max-w-[1200px] px-5">
+    <!-- Section heading -->
+    <h2
+      style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;"
+    >
+      Exterior Services Offered in castro valley, ca
+    </h2>
+
+    <!-- Service cards grid — 2x2 -->
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      {
+        services.map((service) => (
+          <a href={service.href} class="service-card">
+            {/* Service image */}
+            <div class="w-full overflow-hidden" style="border-radius: 10px;">
+              <img
+                src={service.image}
+                alt={service.title}
+                width="566"
+                height="292"
+                style="width: 100%; height: auto; aspect-ratio: 566 / 292; object-fit: cover; display: block; border-radius: 10px;"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Card content */}
+            <div style="padding-top: 16px;">
+              <h3
+                style="font-family: 'Inter Display', 'Inter', sans-serif; font-size: 18px; font-weight: 700; line-height: 24px; margin-bottom: 6px; color: rgb(13, 43, 29);"
+              >
+                {service.title}
+              </h3>
+              <p
+                style="font-size: 14px; line-height: 150%; color: rgb(104, 104, 105);"
+              >
+                {service.description}
+              </p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .service-card:hover img {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+  }
+</style>
