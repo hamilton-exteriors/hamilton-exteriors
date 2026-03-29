@@ -337,7 +337,7 @@
     if (state.scanResult && state.scanResult.bid) {
       // Scale real bid by tier ratio
       var baseTotal = state.scanResult.bid.total;
-      var tierMultiplier = pps / 3.50; // ratio vs Good tier
+      var tierMultiplier = pricePerSq / 9.50; // ratio vs HDZ base tier
       mt = Math.round(baseTotal * 0.40 * tierMultiplier);
       lb = Math.round(baseTotal * 0.35 * tierMultiplier);
       tf = Math.round(baseTotal * 0.15 * tierMultiplier);
