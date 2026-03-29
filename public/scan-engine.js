@@ -10,7 +10,7 @@
   // ── State ───────────────────────────────────────────────────────────
   var state = {
     step: 1, address: '', roofData: null, scanResult: null,
-    selectedTier: 'good', lat: null, lng: null, mapsReady: false
+    selectedTier: 'oc-supreme', lat: null, lng: null, mapsReady: false
   };
 
   var $ = function (s) { return document.querySelector(s); };

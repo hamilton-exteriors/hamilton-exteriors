@@ -62,11 +62,215 @@ import Navbar from '../../components/Navbar.astro';
 <div class="lg:flex-1"><div class="bg-white rounded-2xl shadow-sm" style="padding:28px 24px;">
 <h2 class="font-fraunces text-charcoal mb-1" style="font-size:22px;font-weight:600;">Choose Your Shingle</h2>
 <p class="text-body mb-6" style="color:var(--color-input);font-size:15px;">Select a material tier. All include full tear-off, install & cleanup.</p>
-<div class="flex flex-col gap-4" id="material-options" role="radiogroup" aria-label="Shingle material tier">
-<label class="material-card selected" data-tier="good"><input type="radio" name="material" value="good" checked class="hidden"/><div class="card-inner"><div class="flex items-start justify-between gap-4"><div><span class="text-label-uppercase text-primary" style="font-size:11px;">Good</span><p class="font-fraunces text-charcoal" style="font-size:18px;font-weight:600;margin-top:2px;">3-Tab Shingles</p><p style="font-size:14px;color:var(--color-input);margin-top:4px;">Owens Corning Supreme &middot; 25-year warranty</p></div><div class="text-right flex-shrink-0"><p class="font-fraunces text-charcoal" style="font-size:22px;font-weight:700;" data-price-per-sqft="3.50">$<span class="tier-price">0</span></p><p style="font-size:12px;color:var(--color-input);">installed</p></div></div><div class="color-swatches mt-3 flex gap-2"><button class="swatch active" type="button" style="background:#2d2d2d;" aria-label="Onyx Black"></button><button class="swatch" type="button" style="background:#5a5a5a;" aria-label="Estate Gray"></button><button class="swatch" type="button" style="background:#6b4c3b;" aria-label="Brownwood"></button><button class="swatch" type="button" style="background:#8b7d6b;" aria-label="Desert Tan"></button></div></div><div class="check-indicator"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div></label>
-<label class="material-card" data-tier="better"><input type="radio" name="material" value="better" class="hidden"/><div class="card-inner"><div class="flex items-start justify-between gap-4"><div><span class="text-label-uppercase text-primary" style="font-size:11px;">Better</span><p class="font-fraunces text-charcoal" style="font-size:18px;font-weight:600;margin-top:2px;">Architectural Shingles</p><p style="font-size:14px;color:var(--color-input);margin-top:4px;">GAF Timberline HDZ &middot; 30-year warranty</p></div><div class="text-right flex-shrink-0"><p class="font-fraunces text-charcoal" style="font-size:22px;font-weight:700;" data-price-per-sqft="4.75">$<span class="tier-price">0</span></p><p style="font-size:12px;color:var(--color-input);">installed</p></div></div><div class="color-swatches mt-3 flex gap-2"><button class="swatch active" type="button" style="background:#1e1e1e;" aria-label="Charcoal"></button><button class="swatch" type="button" style="background:#4a6355;" aria-label="Hunter Green"></button><button class="swatch" type="button" style="background:#8b4513;" aria-label="Hickory"></button><button class="swatch" type="button" style="background:#696969;" aria-label="Pewter Gray"></button><button class="swatch" type="button" style="background:#5c3a21;" aria-label="Barkwood"></button></div></div><div class="check-indicator"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div></label>
-<label class="material-card" data-tier="best"><input type="radio" name="material" value="best" class="hidden"/><div class="card-inner"><div class="flex items-start justify-between gap-4"><div><div class="flex items-center gap-2"><span class="text-label-uppercase text-primary" style="font-size:11px;">Best</span><span class="inline-block bg-terracotta text-white rounded-full" style="font-size:10px;font-weight:700;padding:2px 8px;">POPULAR</span></div><p class="font-fraunces text-charcoal" style="font-size:18px;font-weight:600;margin-top:2px;">Designer Shingles</p><p style="font-size:14px;color:var(--color-input);margin-top:4px;">CertainTeed Grand Manor &middot; 50-year warranty</p></div><div class="text-right flex-shrink-0"><p class="font-fraunces text-charcoal" style="font-size:22px;font-weight:700;" data-price-per-sqft="6.25">$<span class="tier-price">0</span></p><p style="font-size:12px;color:var(--color-input);">installed</p></div></div><div class="color-swatches mt-3 flex gap-2"><button class="swatch active" type="button" style="background:#3d3d3d;" aria-label="Gatehouse Slate"></button><button class="swatch" type="button" style="background:#6b4226;" aria-label="Tudor Brown"></button><button class="swatch" type="button" style="background:#8b0000;" aria-label="Colonial Red"></button><button class="swatch" type="button" style="background:#556b2f;" aria-label="Weathered Evergreen"></button></div></div><div class="check-indicator"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div></label>
-<label class="material-card" data-tier="premium"><input type="radio" name="material" value="premium" class="hidden"/><div class="card-inner"><div class="flex items-start justify-between gap-4"><div><span class="text-label-uppercase text-primary" style="font-size:11px;">Premium</span><p class="font-fraunces text-charcoal" style="font-size:18px;font-weight:600;margin-top:2px;">Synthetic Slate</p><p style="font-size:14px;color:var(--color-input);margin-top:4px;">DaVinci Roofscapes Bellaforté &middot; Lifetime warranty</p></div><div class="text-right flex-shrink-0"><p class="font-fraunces text-charcoal" style="font-size:22px;font-weight:700;" data-price-per-sqft="9.00">$<span class="tier-price">0</span></p><p style="font-size:12px;color:var(--color-input);">installed</p></div></div><div class="color-swatches mt-3 flex gap-2"><button class="swatch active" type="button" style="background:#363636;" aria-label="Slate Black"></button><button class="swatch" type="button" style="background:#708090;" aria-label="Slate Gray"></button><button class="swatch" type="button" style="background:#654321;" aria-label="Castle Brown"></button></div></div><div class="check-indicator"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div></label>
+<div class="flex flex-col gap-4" id="material-options" role="radiogroup" aria-label="Shingle product">
+
+<!-- Owens Corning Supreme — 3-Tab -->
+<label class="material-card selected" data-tier="oc-supreme">
+  <input type="radio" name="material" value="oc-supreme" checked class="hidden"/>
+  <div class="card-inner">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <span class="text-label-uppercase" style="font-size:11px;color:#d4451a;">Owens Corning</span>
+        <p class="font-fraunces text-charcoal" style="font-size:18px;font-weight:600;margin-top:2px;">Supreme<sup>&reg;</sup> 3-Tab</p>
+        <p style="font-size:13px;color:var(--color-input);margin-top:4px;">25-year limited warranty &middot; Class A fire rating</p>
+      </div>
+      <div class="text-right flex-shrink-0">
+        <p class="font-fraunces text-charcoal" style="font-size:22px;font-weight:700;" data-price-per-sqft="3.20">$<span class="tier-price">0</span></p>
+        <p style="font-size:12px;color:var(--color-input);">installed</p>
+      </div>
+    </div>
+    <div class="color-swatches mt-3 flex gap-2">
+      <button class="swatch active" type="button" style="background:#1a1a1a;" aria-label="Onyx Black"></button>
+      <button class="swatch" type="button" style="background:#5c5c5c;" aria-label="Estate Gray"></button>
+      <button class="swatch" type="button" style="background:#8b7355;" aria-label="Desert Tan"></button>
+      <button class="swatch" type="button" style="background:#654321;" aria-label="Brownwood"></button>
+    </div>
+  </div>
+  <div class="check-indicator"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+</label>
+
+<!-- GAF Timberline HDZ — Architectural -->
+<label class="material-card" data-tier="gaf-hdz">
+  <input type="radio" name="material" value="gaf-hdz" class="hidden"/>
+  <div class="card-inner">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-label-uppercase" style="font-size:11px;color:#003da5;">GAF</span>
+          <span class="inline-block bg-terracotta text-white rounded-full" style="font-size:10px;font-weight:700;padding:2px 8px;">POPULAR</span>
+        </div>
+        <p class="font-fraunces text-charcoal" style="font-size:18px;font-weight:600;margin-top:2px;">Timberline HDZ<sup>&reg;</sup></p>
+        <p style="font-size:13px;color:var(--color-input);margin-top:4px;">Lifetime limited warranty &middot; StainGuard Plus&trade; &middot; LayerLock&trade;</p>
+      </div>
+      <div class="text-right flex-shrink-0">
+        <p class="font-fraunces text-charcoal" style="font-size:22px;font-weight:700;" data-price-per-sqft="4.50">$<span class="tier-price">0</span></p>
+        <p style="font-size:12px;color:var(--color-input);">installed</p>
+      </div>
+    </div>
+    <div class="color-swatches mt-3 flex gap-2">
+      <button class="swatch active" type="button" style="background:#2b2b2b;" aria-label="Charcoal"></button>
+      <button class="swatch" type="button" style="background:#6b6b6b;" aria-label="Pewter Gray"></button>
+      <button class="swatch" type="button" style="background:#5c3a21;" aria-label="Barkwood"></button>
+      <button class="swatch" type="button" style="background:#8b4513;" aria-label="Hickory"></button>
+      <button class="swatch" type="button" style="background:#3a4a3a;" aria-label="Hunter Green"></button>
+      <button class="swatch" type="button" style="background:#4a3028;" aria-label="Williamsburg Slate"></button>
+    </div>
+  </div>
+  <div class="check-indicator"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+</label>
+
+<!-- Owens Corning Duration — Architectural -->
+<label class="material-card" data-tier="oc-duration">
+  <input type="radio" name="material" value="oc-duration" class="hidden"/>
+  <div class="card-inner">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <span class="text-label-uppercase" style="font-size:11px;color:#d4451a;">Owens Corning</span>
+        <p class="font-fraunces text-charcoal" style="font-size:18px;font-weight:600;margin-top:2px;">Duration<sup>&reg;</sup></p>
+        <p style="font-size:13px;color:var(--color-input);margin-top:4px;">Lifetime limited warranty &middot; SureNail&reg; Technology &middot; 130 MPH wind</p>
+      </div>
+      <div class="text-right flex-shrink-0">
+        <p class="font-fraunces text-charcoal" style="font-size:22px;font-weight:700;" data-price-per-sqft="4.85">$<span class="tier-price">0</span></p>
+        <p style="font-size:12px;color:var(--color-input);">installed</p>
+      </div>
+    </div>
+    <div class="color-swatches mt-3 flex gap-2">
+      <button class="swatch active" type="button" style="background:#1e1e1e;" aria-label="Onyx Black"></button>
+      <button class="swatch" type="button" style="background:#6d6d6d;" aria-label="Estate Gray"></button>
+      <button class="swatch" type="button" style="background:#5c3a21;" aria-label="Brownwood"></button>
+      <button class="swatch" type="button" style="background:#c4a882;" aria-label="Sand Dune"></button>
+      <button class="swatch" type="button" style="background:#4a3535;" aria-label="Sedona Canyon"></button>
+    </div>
+  </div>
+  <div class="check-indicator"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+</label>
+
+<!-- CertainTeed Landmark — Architectural -->
+<label class="material-card" data-tier="ct-landmark">
+  <input type="radio" name="material" value="ct-landmark" class="hidden"/>
+  <div class="card-inner">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <span class="text-label-uppercase" style="font-size:11px;color:#00543c;">CertainTeed</span>
+        <p class="font-fraunces text-charcoal" style="font-size:18px;font-weight:600;margin-top:2px;">Landmark<sup>&reg;</sup></p>
+        <p style="font-size:13px;color:var(--color-input);margin-top:4px;">Lifetime limited warranty &middot; Max Def colors &middot; 110 MPH wind</p>
+      </div>
+      <div class="text-right flex-shrink-0">
+        <p class="font-fraunces text-charcoal" style="font-size:22px;font-weight:700;" data-price-per-sqft="4.65">$<span class="tier-price">0</span></p>
+        <p style="font-size:12px;color:var(--color-input);">installed</p>
+      </div>
+    </div>
+    <div class="color-swatches mt-3 flex gap-2">
+      <button class="swatch active" type="button" style="background:#3d3d3d;" aria-label="Moire Black"></button>
+      <button class="swatch" type="button" style="background:#7a7a7a;" aria-label="Georgetown Gray"></button>
+      <button class="swatch" type="button" style="background:#5e3a2a;" aria-label="Burnt Sienna"></button>
+      <button class="swatch" type="button" style="background:#8b6d4a;" aria-label="Heather Blend"></button>
+      <button class="swatch" type="button" style="background:#556b2f;" aria-label="Weathered Evergreen"></button>
+    </div>
+  </div>
+  <div class="check-indicator"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+</label>
+
+<!-- Atlas StormMaster Shake — Impact Resistant -->
+<label class="material-card" data-tier="atlas-shake">
+  <input type="radio" name="material" value="atlas-shake" class="hidden"/>
+  <div class="card-inner">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <span class="text-label-uppercase" style="font-size:11px;color:#8b4513;">Atlas</span>
+        <p class="font-fraunces text-charcoal" style="font-size:18px;font-weight:600;margin-top:2px;">StormMaster<sup>&reg;</sup> Shake</p>
+        <p style="font-size:13px;color:var(--color-input);margin-top:4px;">Class 4 impact rated &middot; Scotchgard&trade; protector &middot; 130 MPH wind</p>
+      </div>
+      <div class="text-right flex-shrink-0">
+        <p class="font-fraunces text-charcoal" style="font-size:22px;font-weight:700;" data-price-per-sqft="5.50">$<span class="tier-price">0</span></p>
+        <p style="font-size:12px;color:var(--color-input);">installed</p>
+      </div>
+    </div>
+    <div class="color-swatches mt-3 flex gap-2">
+      <button class="swatch active" type="button" style="background:#2a2a2a;" aria-label="Weathered Timber"></button>
+      <button class="swatch" type="button" style="background:#5a5a5a;" aria-label="Granite Gray"></button>
+      <button class="swatch" type="button" style="background:#7a5a3a;" aria-label="Harvest Gold"></button>
+      <button class="swatch" type="button" style="background:#4a2a2a;" aria-label="Hearthstone Brown"></button>
+    </div>
+  </div>
+  <div class="check-indicator"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+</label>
+
+<!-- GAF Timberline UHDZ — Premium Architectural -->
+<label class="material-card" data-tier="gaf-uhdz">
+  <input type="radio" name="material" value="gaf-uhdz" class="hidden"/>
+  <div class="card-inner">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <span class="text-label-uppercase" style="font-size:11px;color:#003da5;">GAF</span>
+        <p class="font-fraunces text-charcoal" style="font-size:18px;font-weight:600;margin-top:2px;">Timberline UHDZ<sup>&trade;</sup></p>
+        <p style="font-size:13px;color:var(--color-input);margin-top:4px;">Ultra-dimensional &middot; Lifetime warranty &middot; StainGuard Plus&trade;</p>
+      </div>
+      <div class="text-right flex-shrink-0">
+        <p class="font-fraunces text-charcoal" style="font-size:22px;font-weight:700;" data-price-per-sqft="5.75">$<span class="tier-price">0</span></p>
+        <p style="font-size:12px;color:var(--color-input);">installed</p>
+      </div>
+    </div>
+    <div class="color-swatches mt-3 flex gap-2">
+      <button class="swatch active" type="button" style="background:#2b2b2b;" aria-label="Charcoal"></button>
+      <button class="swatch" type="button" style="background:#6b4226;" aria-label="Barkwood"></button>
+      <button class="swatch" type="button" style="background:#7a7a7a;" aria-label="Pewter Gray"></button>
+      <button class="swatch" type="button" style="background:#3a4a3a;" aria-label="Hunter Green"></button>
+    </div>
+  </div>
+  <div class="check-indicator"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+</label>
+
+<!-- Owens Corning Duration FLEX — Premium -->
+<label class="material-card" data-tier="oc-flex">
+  <input type="radio" name="material" value="oc-flex" class="hidden"/>
+  <div class="card-inner">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <span class="text-label-uppercase" style="font-size:11px;color:#d4451a;">Owens Corning</span>
+        <p class="font-fraunces text-charcoal" style="font-size:18px;font-weight:600;margin-top:2px;">Duration FLEX<sup>&reg;</sup></p>
+        <p style="font-size:13px;color:var(--color-input);margin-top:4px;">SBS polymer modified &middot; Class 4 impact &middot; Lifetime warranty</p>
+      </div>
+      <div class="text-right flex-shrink-0">
+        <p class="font-fraunces text-charcoal" style="font-size:22px;font-weight:700;" data-price-per-sqft="6.25">$<span class="tier-price">0</span></p>
+        <p style="font-size:12px;color:var(--color-input);">installed</p>
+      </div>
+    </div>
+    <div class="color-swatches mt-3 flex gap-2">
+      <button class="swatch active" type="button" style="background:#1a1a1a;" aria-label="Onyx Black"></button>
+      <button class="swatch" type="button" style="background:#6d6d6d;" aria-label="Estate Gray"></button>
+      <button class="swatch" type="button" style="background:#5c3a21;" aria-label="Brownwood"></button>
+      <button class="swatch" type="button" style="background:#8b6d4a;" aria-label="Teak"></button>
+    </div>
+  </div>
+  <div class="check-indicator"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+</label>
+
+<!-- CertainTeed Grand Manor — Designer -->
+<label class="material-card" data-tier="ct-grandmanor">
+  <input type="radio" name="material" value="ct-grandmanor" class="hidden"/>
+  <div class="card-inner">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <span class="text-label-uppercase" style="font-size:11px;color:#00543c;">CertainTeed</span>
+        <p class="font-fraunces text-charcoal" style="font-size:18px;font-weight:600;margin-top:2px;">Grand Manor<sup>&reg;</sup></p>
+        <p style="font-size:13px;color:var(--color-input);margin-top:4px;">Luxury designer shingle &middot; 50-year warranty &middot; Hand-cut wood shake look</p>
+      </div>
+      <div class="text-right flex-shrink-0">
+        <p class="font-fraunces text-charcoal" style="font-size:22px;font-weight:700;" data-price-per-sqft="8.50">$<span class="tier-price">0</span></p>
+        <p style="font-size:12px;color:var(--color-input);">installed</p>
+      </div>
+    </div>
+    <div class="color-swatches mt-3 flex gap-2">
+      <button class="swatch active" type="button" style="background:#3d3d3d;" aria-label="Gatehouse Slate"></button>
+      <button class="swatch" type="button" style="background:#6b4226;" aria-label="Tudor Brown"></button>
+      <button class="swatch" type="button" style="background:#556b2f;" aria-label="Weathered Evergreen"></button>
+      <button class="swatch" type="button" style="background:#8b0000;" aria-label="Colonial Red"></button>
+    </div>
+  </div>
+  <div class="check-indicator"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+</label>
+
 </div>
 <h3 class="font-fraunces text-charcoal mt-8 mb-4" style="font-size:18px;font-weight:600;">Add-ons</h3>
 <div class="flex flex-col gap-3" id="addons">
