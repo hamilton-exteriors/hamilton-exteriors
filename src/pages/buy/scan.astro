@@ -4,6 +4,17 @@ import Navbar from '../../components/Navbar.astro';
 ---
 <Layout title="Your Roof Scan | Hamilton Exteriors" description="See your roof measurements and get an instant price.">
 <Navbar />
+<script is:inline>
+  // Hide step 1 immediately if address is in URL — prevents flash of address input
+  if (new URLSearchParams(window.location.search).get('address')) {
+    document.addEventListener('DOMContentLoaded', function() {
+      var s1 = document.getElementById('step-1');
+      if (s1) s1.style.display = 'none';
+    });
+    // Also set inline style via document.write for pre-paint hiding
+    document.write('<style>#step-1{display:none !important}</style>');
+  }
+</script>
 <section id="scanner" class="w-full" style="background-color:var(--color-cream);padding:40px 20px 80px;min-height:calc(100vh - 80px);">
 <div class="mx-auto" style="max-width:1100px;">
 <nav id="step-indicator" class="flex items-center justify-center gap-3 mb-10" aria-label="Purchase progress">
