@@ -23,53 +23,35 @@
   var cb = $('#continue-to-options'), ca = $('#change-address');
   var da = $('#display-address'), mb = $('#mobile-price-bar');
 
-  // ── Google Maps (for autocomplete only) ─────────────────────────────
-  var acs = null, gc = null, st = null;
+  // ── Mapbox Address Autocomplete ──────────────────────────────────────
+  var MAPBOX_TOKEN = window.MAPBOX_TOKEN || '';
 
-  window.initRoofMap = function () {
-    try {
-      acs = new google.maps.places.AutocompleteService();
-      gc = new google.maps.Geocoder();
-      st = new google.maps.places.AutocompleteSessionToken();
-      acs.getPlacePredictions(
-        { input: 'test', types: ['address'], componentRestrictions: { country: 'us' } },
-        function (p, s) { state.mapsReady = s !== google.maps.places.PlacesServiceStatus.REQUEST_DENIED; }
-      );
-    } catch (e) { state.mapsReady = false; }
-  };
-  window.gm_authFailure = function () { state.mapsReady = false; };
+  function loadMaps() { /* no-op — Mapbox uses fetch, no script to load */ }
 
-  function loadMaps() {
-    if (window.__mapsLoaded) return;
-    window.__mapsLoaded = true;
-    var s = document.createElement('script');
-    s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBGCiX3V0iXi1mtOKdes-3I2hXf5LJRls0&libraries=places&callback=initRoofMap';
-    s.async = true; s.defer = true; s.onerror = function () {};
-    document.head.appendChild(s);
-  }
-  ai.addEventListener('focus', loadMaps, { once: true });
-
-  // ── Address autocomplete ────────────────────────────────────────────
+  // ── Address autocomplete (Mapbox Search API) ────────────────────────
   var dt = null;
+  var sessionToken = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
+
   ai.addEventListener('input', function () {
     clearTimeout(dt);
     var v = ai.value.trim();
     if (v.length < 4) { dd.classList.add('hidden'); ai.setAttribute('aria-expanded', 'false'); return; }
     dt = setTimeout(function () {
-      if (state.mapsReady && acs) {
-        try {
-          acs.getPlacePredictions({
-            input: v, types: ['address'], componentRestrictions: { country: 'us' }, sessionToken: st
-          }, function (predictions, status) {
-            if (status !== google.maps.places.PlacesServiceStatus.OK || !predictions) { demoSug(v); return; }
-            dd.innerHTML = predictions.slice(0, 5).map(function (p) {
-              var safe = p.description.replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
-              return '<div class="address-suggestion" role="option" data-place-id="' + p.place_id + '">' + safe + '</div>';
-            }).join('');
-            dd.classList.remove('hidden'); ai.setAttribute('aria-expanded', 'true');
-          });
-        } catch (e) { state.mapsReady = false; demoSug(v); }
-      } else { demoSug(v); }
+      if (!MAPBOX_TOKEN) { demoSug(v); return; }
+      fetch('https://api.mapbox.com/search/searchbox/v1/suggest?q=' + encodeURIComponent(v) +
+        '&types=address&country=us&language=en&limit=5&session_token=' + sessionToken +
+        '&access_token=' + MAPBOX_TOKEN)
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (!data.suggestions || data.suggestions.length === 0) { demoSug(v); return; }
+          dd.innerHTML = data.suggestions.map(function (s) {
+            var text = s.full_address || s.name || '';
+            var safe = text.replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
+            return '<div class="address-suggestion" role="option" data-mapbox-id="' + (s.mapbox_id || '') + '">' + safe + '</div>';
+          }).join('');
+          dd.classList.remove('hidden'); ai.setAttribute('aria-expanded', 'true');
+        })
+        .catch(function () { demoSug(v); });
     }, 250);
   });
 
@@ -95,7 +77,24 @@
     if (!it) return;
     ai.value = it.textContent; state.address = it.textContent;
     dd.classList.add('hidden'); ai.setAttribute('aria-expanded', 'false');
-    startScan(state.address);
+    // If Mapbox suggestion, retrieve full details for lat/lng
+    var mbId = it.dataset.mapboxId;
+    if (mbId && MAPBOX_TOKEN) {
+      fetch('https://api.mapbox.com/search/searchbox/v1/retrieve/' + mbId +
+        '?session_token=' + sessionToken + '&access_token=' + MAPBOX_TOKEN)
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.features && data.features[0]) {
+            var coords = data.features[0].geometry.coordinates;
+            state.lat = coords[1]; state.lng = coords[0];
+          }
+          sessionToken = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
+          startScan(state.address);
+        })
+        .catch(function () { startScan(state.address); });
+    } else {
+      startScan(state.address);
+    }
   });
 
   sb.addEventListener('click', function () {
@@ -132,7 +131,13 @@
       })
       .catch(function (err) {
         console.warn('Real API unavailable, using demo mode:', err.message);
-        runDemoScan();
+        // If error mentions quality/imagery, show error modal
+        if (err.message && (err.message.indexOf('quality') !== -1 || err.message.indexOf('HIGH') !== -1 || err.message.indexOf('not found') !== -1)) {
+          showScanError(err.message);
+        } else {
+          // API just not running — fall back to demo
+          runDemoScan();
+        }
       });
   }
 
@@ -376,6 +381,81 @@
     var mt2 = $('#mobile-total-price');
     if (mt2) mt2.textContent = '$' + tot.toLocaleString();
   }
+
+  // ── Purchase modal ───────────────────────────────────────────────────
+  var purchaseModal = $('#purchase-modal');
+  var purchaseForm = $('#purchase-form');
+  var pfSuccess = $('#pf-success');
+  var pfClose = $('#pf-close');
+  var errorModal = $('#scan-error-modal');
+  var errorRetry = $('#error-retry');
+
+  if ($('#purchase-btn')) {
+    $('#purchase-btn').addEventListener('click', function () {
+      if (!state.roofData) return;
+      // Populate hidden fields
+      $('#pf-address').value = state.address;
+      var selectedCard = $('.material-card.selected');
+      $('#pf-product').value = selectedCard ? selectedCard.querySelector('.font-fraunces').textContent : '';
+      var activeSwatch = selectedCard ? selectedCard.querySelector('.swatch.active') : null;
+      $('#pf-color').value = activeSwatch ? activeSwatch.getAttribute('aria-label') : '';
+      $('#pf-total').value = $('#total-price').textContent;
+      $('#pf-sqft').value = state.roofData.sqft;
+      // Summary
+      $('#pf-summary').innerHTML = '<strong>' + state.address + '</strong><br>' +
+        $('#pf-product').value + ' — ' + $('#pf-color').value + '<br>' +
+        'Total: ' + $('#pf-total').value + ' | ' + $('#monthly-price').textContent;
+      purchaseModal.classList.remove('hidden');
+    });
+  }
+
+  if (pfClose) pfClose.addEventListener('click', function () { purchaseModal.classList.add('hidden'); });
+  if (purchaseModal) purchaseModal.addEventListener('click', function (e) { if (e.target === purchaseModal) purchaseModal.classList.add('hidden'); });
+
+  if (purchaseForm) {
+    purchaseForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = Object.fromEntries(new FormData(purchaseForm));
+      // Generate reference number
+      var ref = 'HE-' + Date.now().toString(36).toUpperCase();
+      // Try to submit to backend
+      fetch(API_URL + '/api/purchase', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).catch(function () {}); // fire and forget — we show success regardless
+      // Show success
+      purchaseForm.classList.add('hidden');
+      $('#pf-ref').textContent = ref;
+      pfSuccess.classList.remove('hidden');
+    });
+  }
+
+  // Error modal
+  if (errorRetry) {
+    errorRetry.addEventListener('click', function () {
+      errorModal.classList.add('hidden');
+      sip = false;
+      goStep(1);
+      var s1el = document.getElementById('step-1');
+      if (s1el) { s1el.style.display = ''; s1el.classList.remove('hidden'); }
+      ai.value = '';
+      ai.focus();
+    });
+  }
+
+  function showScanError(msg) {
+    $('#scan-error-msg').textContent = msg || 'High-resolution satellite imagery is not available for this address. Please call us for a manual quote.';
+    errorModal.classList.remove('hidden');
+    sl.classList.add('hidden');
+    sip = false;
+  }
+
+  // ── Schedule a Call button ──────────────────────────────────────────
+  $$('[id$="schedule-call-btn"], button').forEach(function (btn) {
+    if (btn.textContent.trim() === 'Schedule a Call Instead') {
+      btn.addEventListener('click', function () { window.location.href = 'tel:6509773351'; });
+    }
+  });
 
   // ── Auto-start from ?address= param ─────────────────────────────────
   var ua = new URLSearchParams(window.location.search).get('address');

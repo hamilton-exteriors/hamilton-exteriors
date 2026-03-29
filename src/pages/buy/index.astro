@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 ---
 
 <Layout
@@ -39,6 +40,7 @@ import Footer from '../../components/Footer.astro';
         >
           Scan Roof
         </button>
+        <div id="hero-dropdown" class="hidden absolute left-0 right-0 top-full mt-1 bg-white rounded-xl shadow-lg border z-10 overflow-hidden" style="border-color: var(--color-border);"></div>
       </form>
       <p class="text-white/30 mt-4" style="font-size: 13px;">
         Bay Area only &middot; Alameda, Contra Costa, Marin, Napa & Santa Clara counties
@@ -257,15 +259,17 @@ import Footer from '../../components/Footer.astro';
       <p class="text-body text-white/60 mb-8">
         Enter your address, see your price, and buy your roof in minutes.
       </p>
-      <form class="relative mx-auto" style="max-width: 480px;" action="/buy/scan">
+      <form class="relative mx-auto cta-address-form" style="max-width: 480px;" action="/buy/scan">
         <input
           name="address"
           type="text"
           placeholder="Enter your home address..."
           required
-          class="w-full rounded-xl text-body"
+          autocomplete="off"
+          class="w-full rounded-xl text-body cta-address-input"
           style="padding: 18px 120px 18px 20px; border: 2px solid rgba(255,255,255,0.15); font-size: 17px; outline: none; background: rgba(255,255,255,0.08); color: white;"
         />
+        <div class="cta-dropdown hidden absolute left-0 right-0 top-full mt-1 bg-white rounded-xl shadow-lg border z-10 overflow-hidden" style="border-color: var(--color-border);"></div>
         <button
           type="submit"
           class="absolute top-1/2 right-2 -translate-y-1/2 bg-primary text-white text-button rounded-lg transition-opacity hover:opacity-90"
@@ -329,4 +333,61 @@ import Footer from '../../components/Footer.astro';
     align-items: center;
     justify-content: center;
   }
+  .address-suggestion{padding:12px 16px;cursor:pointer;font-family:var(--font-dm-sans);font-size:15px;color:var(--color-charcoal);border-bottom:1px solid rgba(196,191,182,.3);}
+  .address-suggestion:last-child{border-bottom:none;}
+  .address-suggestion:hover{background:var(--color-cream);}
 </style>
+
+<script define:vars={{ mapboxToken }}>
+  window.__MAPBOX_TOKEN = mapboxToken;
+</script>
+<script is:inline>
+(function() {
+  var TOKEN = window.__MAPBOX_TOKEN || '';
+  var session = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
+
+  function setupAutofill(input, dropdown) {
+    if (!input || !dropdown) return;
+    var timer = null;
+    input.addEventListener('input', function() {
+      clearTimeout(timer);
+      var v = input.value.trim();
+      if (v.length < 4) { dropdown.classList.add('hidden'); return; }
+      timer = setTimeout(function() {
+        fetch('https://api.mapbox.com/search/searchbox/v1/suggest?q=' + encodeURIComponent(v) +
+          '&types=address&country=us&language=en&limit=5&session_token=' + session +
+          '&access_token=' + TOKEN)
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            if (!data.suggestions || !data.suggestions.length) { dropdown.classList.add('hidden'); return; }
+            dropdown.innerHTML = data.suggestions.map(function(s) {
+              var text = s.full_address || s.name || '';
+              return '<div class="address-suggestion">' + text.replace(/[<>"]/g, '') + '</div>';
+            }).join('');
+            dropdown.classList.remove('hidden');
+          })
+          .catch(function() { dropdown.classList.add('hidden'); });
+      }, 250);
+    });
+
+    dropdown.addEventListener('click', function(e) {
+      var item = e.target.closest('.address-suggestion');
+      if (!item) return;
+      input.value = item.textContent;
+      dropdown.classList.add('hidden');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.address-suggestion') && e.target !== input) dropdown.classList.add('hidden');
+    });
+  }
+
+  // Hero form
+  setupAutofill(document.getElementById('hero-address-input'), document.getElementById('hero-dropdown'));
+
+  // CTA forms
+  document.querySelectorAll('.cta-address-form').forEach(function(form) {
+    setupAutofill(form.querySelector('.cta-address-input'), form.querySelector('.cta-dropdown'));
+  });
+})();
+</script>
