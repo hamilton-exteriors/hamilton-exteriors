@@ -1,4 +1,5 @@
 (function(){
+  if(window.__scanEngineLoaded)return;window.__scanEngineLoaded=true;
   var DL=37.6941,DG=-122.0908;
   var state={step:1,address:'',roofData:null,selectedTier:'good',lat:null,lng:null,mapsReady:false};
   var $=function(s){return document.querySelector(s)},$$=function(s){return document.querySelectorAll(s)};
@@ -11,7 +12,7 @@
   window.initRoofMap=function(){try{acs=new google.maps.places.AutocompleteService();gc=new google.maps.Geocoder();st=new google.maps.places.AutocompleteSessionToken();acs.getPlacePredictions({input:'test',types:['address'],componentRestrictions:{country:'us'}},function(p,s){state.mapsReady=s!==google.maps.places.PlacesServiceStatus.REQUEST_DENIED;});}catch(e){state.mapsReady=false;}};
   window.gm_authFailure=function(){state.mapsReady=false;};
 
-  var ml=false;function loadMaps(){if(ml)return;ml=true;var s=document.createElement('script');s.src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBGCiX3V0iXi1mtOKdes-3I2hXf5LJRls0&libraries=places&callback=initRoofMap';s.async=true;s.defer=true;s.onerror=function(){};document.head.appendChild(s);}
+  function loadMaps(){if(window.__mapsLoaded)return;window.__mapsLoaded=true;var s=document.createElement('script');s.src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBGCiX3V0iXi1mtOKdes-3I2hXf5LJRls0&libraries=places&callback=initRoofMap';s.async=true;s.defer=true;s.onerror=function(){};document.head.appendChild(s);}
   ai.addEventListener('focus',loadMaps,{once:true});
 
   var dt=null;
@@ -55,5 +56,12 @@
 
   // Auto-start from ?address= param
   var ua=new URLSearchParams(window.location.search).get('address');
-  if(ua&&ua.trim().length>=5){ai.value=ua;state.address=ua;loadMaps();setTimeout(function(){scanDemo(DL,DG);},300);}
+  if(ua&&ua.trim().length>=5){
+    ai.value=ua;state.address=ua;loadMaps();
+    // Wait for DOM to be fully ready, then start scan
+    setTimeout(function(){
+      sip=false; // ensure clean state
+      scanDemo(DL,DG);
+    },500);
+  }
 })();
