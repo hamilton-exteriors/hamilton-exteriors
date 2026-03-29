@@ -382,6 +382,44 @@
     if (mt2) mt2.textContent = '$' + tot.toLocaleString();
   }
 
+  // ── Tier group collapse/expand ───────────────────────────────────────
+  $$('.tier-toggle').forEach(function (btn) {
+    var groupName = btn.dataset.tierGroup;
+    var group = document.querySelector('.tier-group[data-tier-group="' + groupName + '"]');
+    if (!group) return;
+    // Start collapsed
+    group.classList.add('collapsed');
+    btn.classList.add('collapsed');
+    btn.addEventListener('click', function () {
+      group.classList.toggle('collapsed');
+      btn.classList.toggle('collapsed');
+    });
+  });
+
+  // ── Swatch preview on hover/click ──────────────────────────────────
+  var preview = $('#swatch-preview');
+  var previewImg = $('#swatch-preview-img');
+  var previewName = $('#swatch-preview-name');
+
+  if (preview) {
+    $$('.swatch').forEach(function (sw) {
+      sw.addEventListener('mouseenter', function (e) {
+        var bg = sw.style.backgroundImage;
+        if (!bg || bg === 'none') return;
+        var url = bg.replace(/url\(["']?/, '').replace(/["']?\)/, '');
+        previewImg.src = url;
+        previewName.textContent = sw.getAttribute('aria-label') || '';
+        preview.classList.remove('hidden');
+        var rect = sw.getBoundingClientRect();
+        preview.style.left = Math.max(10, rect.left - 50) + 'px';
+        preview.style.top = (rect.top - 150) + 'px';
+      });
+      sw.addEventListener('mouseleave', function () {
+        preview.classList.add('hidden');
+      });
+    });
+  }
+
   // ── Purchase modal ───────────────────────────────────────────────────
   var purchaseModal = $('#purchase-modal');
   var purchaseForm = $('#purchase-form');
