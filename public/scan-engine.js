@@ -320,21 +320,6 @@
 
   $$('#addons input').forEach(function (c) { c.addEventListener('change', function () { updatePrice(); }); });
 
-  // Category filter
-  $$('#category-filter .cat-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      $$('#category-filter .cat-btn').forEach(function (b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      var cat = btn.dataset.cat;
-      $$('.material-card').forEach(function (card) {
-        if (cat === 'all' || card.dataset.cat === cat) {
-          card.classList.remove('cat-hidden');
-        } else {
-          card.classList.add('cat-hidden');
-        }
-      });
-    });
-  });
 
   // ── Pricing engine ──────────────────────────────────────────────────
   function updatePrice() {
