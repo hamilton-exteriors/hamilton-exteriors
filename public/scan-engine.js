@@ -179,13 +179,21 @@
   // ── Real API call ───────────────────────────────────────────────────
   function tryRealApi(address) {
     ss.textContent = 'Connecting to scan service...';
+    var controller = new AbortController();
+    var timeout = setTimeout(function () { controller.abort(); }, 30000);
     return fetch(API_URL + '/api/roof-scan', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ address: address })
+      body: JSON.stringify({ address: address }),
+      signal: controller.signal
     }).then(function (res) {
+      clearTimeout(timeout);
       if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || 'Scan failed'); });
       return res.json();
+    }).catch(function (err) {
+      clearTimeout(timeout);
+      if (err.name === 'AbortError') throw new Error('Scan timed out — please try again');
+      throw err;
     });
   }
 
@@ -526,7 +534,7 @@
   // ── Schedule a Call button ──────────────────────────────────────────
   $$('[id$="schedule-call-btn"], button').forEach(function (btn) {
     if (btn.textContent.trim() === 'Schedule a Call Instead') {
-      btn.addEventListener('click', function () { window.location.href = 'tel:6509773351'; });
+      btn.addEventListener('click', function () { window.location.href = window.PHONE_HREF || 'tel:6509773351'; });
     }
   });
 
@@ -534,8 +542,7 @@
   var ua = new URLSearchParams(window.location.search).get('address');
   if (ua && ua.trim().length >= 5) {
     ai.value = ua; state.address = ua; loadMaps();
-    s1.classList.add('hidden');
-    sip = false;
-    startScan(ua);
+    if (!isInServiceArea(ua)) { showServiceAreaError(); }
+    else { s1.classList.add('hidden'); sip = false; startScan(ua); }
   }
 })();
