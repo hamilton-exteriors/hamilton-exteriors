@@ -345,6 +345,8 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 (function() {
   var TOKEN = window.__MAPBOX_TOKEN || '';
   var session = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
+  // Bay Area bounding box for Mapbox proximity/filtering
+  var BA_BBOX = '-123.1,36.9,-121.2,38.9';
 
   function setupAutofill(input, dropdown) {
     if (!input || !dropdown) return;
@@ -355,8 +357,8 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
       if (v.length < 4) { dropdown.classList.add('hidden'); return; }
       timer = setTimeout(function() {
         fetch('https://api.mapbox.com/search/searchbox/v1/suggest?q=' + encodeURIComponent(v) +
-          '&types=address&country=us&language=en&limit=5&session_token=' + session +
-          '&access_token=' + TOKEN)
+          '&types=address&country=us&language=en&limit=5&bbox=' + BA_BBOX +
+          '&session_token=' + session + '&access_token=' + TOKEN)
           .then(function(r) { return r.json(); })
           .then(function(data) {
             if (!data.suggestions || !data.suggestions.length) { dropdown.classList.add('hidden'); return; }

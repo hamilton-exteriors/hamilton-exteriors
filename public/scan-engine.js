@@ -23,6 +23,35 @@
   var cb = $('#continue-to-options'), ca = $('#change-address');
   var da = $('#display-address'), mb = $('#mobile-price-bar');
 
+  // ── Service Area Validation ─────────────────────────────────────────
+  var SERVICE_CITIES = [
+    'oakland','berkeley','alameda','fremont','hayward','san leandro','castro valley',
+    'dublin','pleasanton','livermore','union city','newark','emeryville',
+    'walnut creek','concord','richmond','antioch','pittsburg','brentwood','san ramon',
+    'danville','martinez','pleasant hill','lafayette','orinda','moraga','el cerrito',
+    'san francisco','daly city','south san francisco',
+    'san mateo','redwood city','menlo park','burlingame','san carlos','foster city',
+    'belmont','half moon bay','pacifica','millbrae','san bruno','east palo alto',
+    'san jose','santa clara','sunnyvale','mountain view','palo alto','milpitas',
+    'cupertino','campbell','saratoga','los gatos','gilroy','morgan hill','los altos'
+  ];
+
+  function isInServiceArea(addr) {
+    if (!addr) return false;
+    var lower = addr.toLowerCase();
+    for (var i = 0; i < SERVICE_CITIES.length; i++) {
+      if (lower.indexOf(SERVICE_CITIES[i]) !== -1) return true;
+    }
+    return false;
+  }
+
+  function showServiceAreaError() {
+    ss.textContent = 'We currently serve the San Francisco Bay Area. Please enter a Bay Area address.';
+    ss.style.color = '#dc2626';
+    ss.classList.remove('hidden');
+    setTimeout(function() { ss.style.color = ''; }, 5000);
+  }
+
   // ── Mapbox Address Autocomplete ──────────────────────────────────────
   var MAPBOX_TOKEN = window.MAPBOX_TOKEN || '';
 
@@ -39,8 +68,8 @@
     dt = setTimeout(function () {
       if (!MAPBOX_TOKEN) { demoSug(v); return; }
       fetch('https://api.mapbox.com/search/searchbox/v1/suggest?q=' + encodeURIComponent(v) +
-        '&types=address&country=us&language=en&limit=5&session_token=' + sessionToken +
-        '&access_token=' + MAPBOX_TOKEN)
+        '&types=address&country=us&language=en&limit=5&bbox=-123.1,36.9,-121.2,38.9' +
+        '&session_token=' + sessionToken + '&access_token=' + MAPBOX_TOKEN)
         .then(function (r) { return r.json(); })
         .then(function (data) {
           if (!data.suggestions || data.suggestions.length === 0) { demoSug(v); return; }
@@ -89,10 +118,15 @@
             state.lat = coords[1]; state.lng = coords[0];
           }
           sessionToken = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
+          if (!isInServiceArea(state.address)) { showServiceAreaError(); return; }
           startScan(state.address);
         })
-        .catch(function () { startScan(state.address); });
+        .catch(function () {
+          if (!isInServiceArea(state.address)) { showServiceAreaError(); return; }
+          startScan(state.address);
+        });
     } else {
+      if (!isInServiceArea(state.address)) { showServiceAreaError(); return; }
       startScan(state.address);
     }
   });
@@ -100,6 +134,7 @@
   sb.addEventListener('click', function () {
     if (ai.value.trim().length < 5) return;
     state.address = ai.value.trim();
+    if (!isInServiceArea(state.address)) { showServiceAreaError(); return; }
     startScan(state.address);
   });
 
