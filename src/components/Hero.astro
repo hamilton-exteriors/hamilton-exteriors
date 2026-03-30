@@ -247,12 +247,6 @@ const {
 </section>
 
 <style>
-  @property --fit-length {
-    syntax: "<length>";
-    initial-value: 0px;
-    inherits: true;
-  }
-
   .text-fit {
     display: flex;
     container-type: inline-size;
@@ -288,7 +282,7 @@ const {
     );
     inline-size: var(--fit-space);
     display: block;
-    font-size: calc(var(--fit-size) * 0.85);
+    font-size: var(--fit-size);
     white-space: nowrap;
   }
 

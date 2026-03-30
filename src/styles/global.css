@@ -25,6 +25,13 @@
 /* ── Tailwind v4 ─────────────────────────────────────────────────────── */
 @import "tailwindcss";
 
+/* ── Fit-to-width text (kizu.dev technique) ──────────────────────────── */
+@property --fit-length {
+  syntax: "<length>";
+  initial-value: 0px;
+  inherits: true;
+}
+
 /* ── Theme Tokens ────────────────────────────────────────────────────── */
 @theme {
   /* Colors */
