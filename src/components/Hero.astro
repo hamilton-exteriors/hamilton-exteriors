@@ -33,16 +33,26 @@ const {
 ---
 
 <section id="quote" class="relative w-full overflow-hidden" style="padding-top: 24px; padding-bottom: 32px;">
-  <!-- Background image -->
+  <!-- Background image — zoomed out on mobile -->
   <div class="absolute inset-0">
     <Image
       src={heroImage}
       alt=""
       width={1920}
       height={1080}
-      class="h-full w-full object-cover"
+      class="hero-bg-img h-full w-full object-cover"
       loading="eager"
     />
+  </div>
+  <!-- Film grain overlay -->
+  <div class="pointer-events-none absolute inset-0" style="opacity: 0.15; mix-blend-mode: overlay; z-index: 1;" aria-hidden="true">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+      <filter id="hero-grain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#hero-grain)" />
+    </svg>
   </div>
 
   <div
@@ -333,6 +343,16 @@ const {
 </script>
 
 <style>
+  .hero-bg-img {
+    object-position: center 20%;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-bg-img {
+      object-position: center center;
+    }
+  }
+
   .form-step {
     transition: opacity 0.2s ease-out;
   }
