@@ -160,11 +160,17 @@ const starColor = 'rgb(0, 94, 136)';
 
 <style>
   .review-logos-row {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    justify-content: space-evenly;
-    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+    margin-top: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .review-logos-row {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
   }
 
   .review-card {
@@ -172,15 +178,13 @@ const starColor = 'rgb(0, 94, 136)';
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    flex: 1 1 0%;
-    max-width: 220px;
   }
 
   .review-card__logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 55px;
+    height: 40px;
   }
 
   .review-card__logo img {
@@ -194,8 +198,8 @@ const starColor = 'rgb(0, 94, 136)';
   }
 
   .review-card__score {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 21.99px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
     font-weight: 800;
     line-height: 43.97px;
     text-align: center;
@@ -210,9 +214,9 @@ const starColor = 'rgb(0, 94, 136)';
 
   .review-card__trustpilot-name {
     font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
-    font-size: 29.32px;
+    font-size: 20px;
     font-weight: 600;
-    line-height: 36.64px;
+    line-height: 1.2;
     text-align: center;
     color: rgb(0, 0, 0);
   }
@@ -249,9 +253,9 @@ const starColor = 'rgb(0, 94, 136)';
 
   .review-card__rating {
     font-family: 'DM Sans', sans-serif;
-    font-size: 18.32px;
+    font-size: 13px;
     font-weight: 500;
-    line-height: 27.48px;
+    line-height: 1.4;
     color: rgb(134, 134, 134);
     text-align: center;
   }

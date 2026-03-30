@@ -15,37 +15,21 @@ const logos = [
   <div class="mx-auto" style="max-width: 1200px;">
     <p
       class="text-center"
-      style="font-family: 'DM Sans', 'DM Sans Placeholder', sans-serif; line-height: 24px; color: rgb(13, 43, 29);"
+      style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.5; color: rgb(13, 43, 29);"
     >
       Certified, highly trained installers delivering top-quality service.
     </p>
 
-    <!-- Desktop: centered row -->
-    <div class="mt-10 hidden flex-wrap items-center justify-center gap-12 md:flex">
+    <!-- Logos -->
+    <div class="mt-5 flex flex-wrap items-center justify-center gap-6 lg:mt-8 lg:gap-12">
       {logos.map((logo) => (
-        <div class="flex h-[80px] w-[150px] shrink-0 items-center justify-center">
+        <div class="flex h-[48px] w-[90px] shrink-0 items-center justify-center lg:h-[72px] lg:w-[140px]">
           <Image
             src={logo.src}
             alt={logo.alt}
             width={logo.w}
             height={logo.h}
-            class="max-h-[72px] max-w-[140px] object-contain"
-            loading="lazy"
-          />
-        </div>
-      ))}
-    </div>
-
-    <!-- Mobile: horizontal scroll -->
-    <div class="mt-10 flex gap-8 overflow-x-auto pb-2 md:hidden" style="-webkit-overflow-scrolling: touch;">
-      {logos.map((logo) => (
-        <div class="flex h-[72px] w-[120px] shrink-0 items-center justify-center">
-          <Image
-            src={logo.src}
-            alt={logo.alt}
-            width={logo.w}
-            height={logo.h}
-            class="max-h-[64px] max-w-[110px] object-contain"
+            class="max-h-full max-w-full object-contain"
             loading="lazy"
           />
         </div>
