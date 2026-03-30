@@ -4,12 +4,18 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: string;
+  jsonLd?: Record<string, unknown>;
   includeMapbox?: boolean;
 }
 
 const {
   title = 'Top Rated Exterior Company in Castro Valley, CA | Hamilton Exteriors',
   description = 'Hamilton Exteriors is top rated Exterior Company in Castro Valley, CA. Our skilled team delivers high-value construction solutions. Call Now!',
+  image,
+  type = 'website',
+  jsonLd,
   includeMapbox = false,
 } = Astro.props;
 ---
@@ -34,14 +40,19 @@ const {
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:image" content="/images/og-image.jpg" />
+    <meta property="og:image" content={image || '/images/og-image.jpg'} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image || '/images/og-image.jpg'} />
+
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
