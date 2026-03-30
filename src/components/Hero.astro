@@ -44,8 +44,12 @@ const {
       loading="eager"
     />
   </div>
+  <!-- Dark gradient scrim for text readability -->
+  <div class="pointer-events-none absolute inset-0" style="z-index: 1;" aria-hidden="true">
+    <div class="hero-scrim absolute inset-0"></div>
+  </div>
   <!-- Film grain overlay -->
-  <div class="pointer-events-none absolute inset-0" style="opacity: 0.15; mix-blend-mode: overlay; z-index: 1;" aria-hidden="true">
+  <div class="pointer-events-none absolute inset-0" style="opacity: 0.15; mix-blend-mode: overlay; z-index: 2;" aria-hidden="true">
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="display: block;">
       <filter id="hero-grain">
         <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
@@ -327,6 +331,38 @@ const {
 </script>
 
 <style>
+  /* Approach 2: Combine subtle gradient + text shadow for readability */
+  .hero-scrim {
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0.25) 50%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+  }
+
+  @media (max-width: 1023px) {
+    .hero-scrim {
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.25) 50%,
+        rgba(0, 0, 0, 0.05) 100%
+      );
+    }
+  }
+
+  .text-fit > :not([aria-hidden]) > * {
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Text shadow for all hero copy over the background image */
+  #quote .text-white,
+  #quote .text-white\/80,
+  #quote .text-white\/90 {
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
   .hero-bg-img {
     object-position: center 20%;
   }
