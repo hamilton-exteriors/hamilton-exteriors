@@ -59,7 +59,7 @@ import { Image } from 'astro:assets';
     <div class="mb-5 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
       <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: clamp(24px, 4vw, 30px); font-weight: 400; color: rgb(17,17,17); margin: 0; text-transform: uppercase;">Our Latest Projects</h2>
       <div class="flex items-center gap-1.5">
-        <span style="font-size: 11px; color: rgb(120,120,120); font-weight: 400;">Powered By</span>
+        <span style="font-size: 0.8125rem; color: rgb(120,120,120); font-weight: 400;">Powered By</span>
         <Image
           src="https://companycam.imgix.net/icons-logos/CompanyCam-Logos/All_Black_CompanyCam_Logo.png?auto=format%2Ccompress&w=350"
           alt="CompanyCam"
@@ -99,20 +99,20 @@ import { Image } from 'astro:assets';
           <!-- Card Content -->
           <div style="padding: 12px 14px;">
             <!-- Title -->
-            <p style="font-size: 14px; font-weight: 700; color: rgb(17,17,17); margin: 0 0 10px; line-height: 1.35;">
+            <p style="font-size: 0.875rem; font-weight: 700; color: rgb(17,17,17); margin: 0 0 10px; line-height: 1.35;">
               {project.title}
             </p>
 
             <!-- Project Type -->
             <div style="margin-bottom: 8px;">
               <p style="font-size: 10px; font-weight: 600; color: rgb(120,120,120); text-transform: uppercase; letter-spacing: 0.8px; margin: 0 0 2px;">PROJECT TYPE</p>
-              <p style="font-size: 13px; color: rgb(40,40,40); margin: 0;">{project.projectType}</p>
+              <p style="font-size: 0.8125rem; color: rgb(40,40,40); margin: 0;">{project.projectType}</p>
             </div>
 
             <!-- Products Used -->
             <div style="margin-bottom: 10px;">
               <p style="font-size: 10px; font-weight: 600; color: rgb(120,120,120); text-transform: uppercase; letter-spacing: 0.8px; margin: 0 0 2px;">PRODUCTS USED</p>
-              <p style="font-size: 13px; color: rgb(40,40,40); margin: 0;">{project.productsUsed}</p>
+              <p style="font-size: 0.8125rem; color: rgb(40,40,40); margin: 0;">{project.productsUsed}</p>
             </div>
 
             <!-- Thumbnails strip -->
@@ -131,7 +131,7 @@ import { Image } from 'astro:assets';
               ))}
               {project.extraCount > 0 && (
                 <div style="width: 40px; height: 40px; border-radius: 3px; background: rgb(240,240,240); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                  <span style="font-size: 11px; font-weight: 600; color: rgb(80,80,80);">+{project.extraCount}</span>
+                  <span style="font-size: 0.8125rem; font-weight: 600; color: rgb(80,80,80);">+{project.extraCount}</span>
                 </div>
               )}
             </div>
@@ -149,7 +149,7 @@ import { Image } from 'astro:assets';
       <button data-action="prev" style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <span id="cc-page-label" style="font-size: 13px; color: rgb(60,60,60); padding: 0 8px;">1 of 1</span>
+      <span id="cc-page-label" style="font-size: 0.8125rem; color: rgb(60,60,60); padding: 0 8px;">1 of 1</span>
       <button data-action="next" style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
