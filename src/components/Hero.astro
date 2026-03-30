@@ -116,32 +116,23 @@ const {
 
     <!-- Right Column — Lead Form -->
     <div class="w-full lg:w-[45%]">
-      <!-- Outer gradient wrapper -->
-      <div
-        class="w-full"
-        style="background: linear-gradient(rgb(255, 255, 255) 0%, rgb(153, 153, 153) 107%); border-radius: 12px;"
-        class="lg:!rounded-[30px]"
-      >
-        <!-- Inner white content -->
-        <div
-          class="lg:!rounded-[30px] lg:!p-[30px_28px_28px]"
-          style="background-color: rgb(255, 255, 255); border-radius: 16px; padding: 20px 16px 16px;"
-        >
-          <!-- Form title -->
+      <!-- Form card -->
+      <div class="overflow-hidden rounded-2xl lg:rounded-3xl" style="box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
+        <!-- Bold green header -->
+        <div class="px-5 py-3 text-center" style="background-color: rgb(37, 99, 70);">
           <h2
-            class="mb-1 text-center"
-            style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-size: 1.5rem; line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29);"
+            style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 1.375rem; line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; letter-spacing: 0.03em;"
           >
             {formTitle}
           </h2>
-
-          <!-- Subtitle -->
           <p
-            class="mb-5 text-center"
-            style="font-family: 'DM Sans', sans-serif; line-height: 1.6; color: rgb(134, 134, 134);"
+            style="font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin-top: 2px;"
           >
             {formSubtitle}
           </p>
+        </div>
+        <!-- White body -->
+        <div class="bg-white px-4 pb-4 pt-4 lg:px-6 lg:pb-6 lg:pt-5">
 
           <!-- 3-Step Form -->
           <form action={formAction} method="POST" id="hero-form">
@@ -188,16 +179,23 @@ const {
                 </div>
                 <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">2/3</span>
               </div>
-              <p class="mb-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; color: rgb(13, 43, 29);">What do you need help with?</p>
+              <p class="mb-1 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; color: rgb(13, 43, 29);">What do you need help with?</p>
+              <p class="mb-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">Select one to continue</p>
               <input type="hidden" name="service" id="service-input" />
               <div class="grid grid-cols-2 gap-2">
-                {['Roofing', 'Siding', 'Windows', 'Other'].map((service) => (
+                {[
+                  { name: 'Roofing', icon: '🏠' },
+                  { name: 'Siding', icon: '🏗️' },
+                  { name: 'Windows', icon: '🪟' },
+                  { name: 'Other', icon: '🔧' },
+                ].map((service) => (
                   <button
                     type="button"
                     class="service-btn"
-                    data-service={service}
+                    data-service={service.name}
                   >
-                    {service}
+                    <span style="font-size: 1.5rem; display: block; margin-bottom: 4px;">{service.icon}</span>
+                    {service.name}
                   </button>
                 ))}
               </div>
@@ -245,6 +243,10 @@ const {
               </button>
             </div>
           </form>
+          <!-- Trust micro-copy -->
+          <p class="mt-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 0.6875rem; color: rgb(150,150,150);">
+            🔒 Your info is safe &bull; 100% Free &bull; No obligation
+          </p>
         </div>
       </div>
     </div>
