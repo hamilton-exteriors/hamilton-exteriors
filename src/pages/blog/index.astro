@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import AnnouncementBar from '../../components/AnnouncementBar.astro';
 import Navbar from '../../components/Navbar.astro';
+import ContactUs from '../../components/ContactUs.astro';
 import Footer from '../../components/Footer.astro';
 import { getPosts, getTags, isGhostConfigured, formatDate } from '../../lib/ghost';
 
@@ -26,34 +27,53 @@ if (isGhostConfigured()) {
   error = 'Ghost CMS is not configured. Set PUBLIC_GHOST_URL and PUBLIC_GHOST_CONTENT_API_KEY in your .env file.';
 }
 
+const featuredPost = !tag && page === 1 && posts.length > 0 ? posts[0] : null;
+const gridPosts = featuredPost ? posts.slice(1) : posts;
+const activeTag = tags.find((t: any) => t.slug === tag);
+const pageTitle = activeTag ? `${activeTag.name} | Blog | Hamilton Exteriors` : 'Blog | Hamilton Exteriors';
+const pageDesc = activeTag
+  ? `Articles about ${activeTag.name.toLowerCase()} from Hamilton Exteriors — Bay Area's trusted contractor.`
+  : 'Expert insights on ADU construction, roofing, siding, and home improvement in the Bay Area.';
+
+// CollectionPage JSON-LD
+const blogJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: pageTitle,
+  description: pageDesc,
+  url: Astro.url.href,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Hamilton Exteriors',
+  },
+};
 ---
 
-<Layout
-  title="Blog | Hamilton Exteriors"
-  description="Expert insights on ADU construction, roofing, siding, and home improvement in the Bay Area. Tips, guides, and project updates from Hamilton Exteriors."
->
+<Layout title={pageTitle} description={pageDesc} jsonLd={blogJsonLd}>
   <AnnouncementBar />
   <Navbar />
 
   <section class="w-full" style="background-color: #0d2b1d; padding: 80px 0 60px;">
     <div class="mx-auto max-w-[1200px] px-5">
       <h1 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(36px, 5vw, 56px); line-height: 1.1; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
-        Blog
+        {activeTag ? activeTag.name : 'Blog'}
       </h1>
       <p style="font-family: 'DM Sans', sans-serif; font-size: 18px; line-height: 30px; color: rgba(255,255,255,0.7); max-width: 600px;">
-        Expert insights on ADU construction, roofing, and home improvement across the Bay Area.
+        {activeTag
+          ? `${pagination.total} article${pagination.total !== 1 ? 's' : ''} about ${activeTag.name.toLowerCase()}`
+          : 'Expert insights on ADU construction, roofing, and home improvement across the Bay Area.'}
       </p>
     </div>
   </section>
 
   {/* Tag Filter */}
   {tags.length > 0 && (
-    <section class="w-full bg-white border-b border-gray-200">
-      <div class="mx-auto max-w-[1200px] px-5 py-4 flex flex-wrap gap-2">
+    <section class="w-full bg-white border-b border-gray-200 sticky top-0 z-40">
+      <div class="mx-auto max-w-[1200px] px-5 py-3 flex gap-2 overflow-x-auto" style="scrollbar-width: none; -ms-overflow-style: none;">
         <a
           href="/blog"
           class:list={[
-            'px-4 py-2 rounded-full text-sm font-medium transition-colors',
+            'px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap shrink-0',
             !tag ? 'bg-[#0d2b1d] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
           ]}
           style="font-family: 'DM Sans', sans-serif;"
@@ -64,7 +84,7 @@ if (isGhostConfigured()) {
           <a
             href={`/blog?tag=${t.slug}`}
             class:list={[
-              'px-4 py-2 rounded-full text-sm font-medium transition-colors',
+              'px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap shrink-0',
               tag === t.slug ? 'bg-[#0d2b1d] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
             ]}
             style="font-family: 'DM Sans', sans-serif;"
@@ -76,7 +96,7 @@ if (isGhostConfigured()) {
     </section>
   )}
 
-  <section class="w-full bg-white" style="padding: 60px 0 80px;">
+  <section class="w-full bg-white" style="padding: 48px 0 80px;">
     <div class="mx-auto max-w-[1200px] px-5">
       {error ? (
         <div class="rounded-xl border-2 border-dashed border-gray-300 p-12 text-center">
@@ -84,14 +104,72 @@ if (isGhostConfigured()) {
         </div>
       ) : posts.length === 0 ? (
         <div class="rounded-xl border-2 border-dashed border-gray-300 p-12 text-center">
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 18px; color: rgb(13, 43, 29); font-weight: 600; margin-bottom: 8px;">No posts yet</p>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: rgb(104, 104, 105);">Check back soon for expert insights on ADU construction and home improvement.</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 18px; color: rgb(13, 43, 29); font-weight: 600; margin-bottom: 8px;">
+            {tag ? `No posts tagged "${activeTag?.name || tag}"` : 'No posts yet'}
+          </p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: rgb(104, 104, 105); margin-bottom: 20px;">
+            {tag ? 'Try a different category or browse all posts.' : 'Check back soon for expert insights on ADU construction and home improvement.'}
+          </p>
+          {tag && (
+            <a href="/blog" style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: #256346; text-decoration: underline;">
+              View all posts
+            </a>
+          )}
         </div>
       ) : (
         <>
+          {/* Featured Post (first post, full width, only on page 1 without tag filter) */}
+          {featuredPost && (
+            <a href={`/blog/${featuredPost.slug}`} class="group mb-12 grid grid-cols-1 md:grid-cols-2 gap-0 overflow-hidden rounded-xl border border-gray-200 transition-shadow hover:shadow-xl">
+              <div class="aspect-[16/10] md:aspect-auto overflow-hidden bg-gray-100">
+                {featuredPost.feature_image ? (
+                  <img
+                    src={featuredPost.feature_image}
+                    alt={featuredPost.title}
+                    class="h-full w-full object-cover transition-transform group-hover:scale-105"
+                  />
+                ) : (
+                  <div class="h-full w-full bg-gradient-to-br from-[#0d2b1d] to-[#256346] flex items-center justify-center min-h-[200px]">
+                    <span style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 32px; color: rgba(255,255,255,0.2); text-transform: uppercase;">Hamilton</span>
+                  </div>
+                )}
+              </div>
+              <div class="flex flex-col justify-center p-8 md:p-10">
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #256346; margin-bottom: 12px;">
+                  Latest Article
+                </span>
+                {(featuredPost.primary_tag ?? featuredPost.tags?.[0]) && (
+                  <span style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 8px;">
+                    {(featuredPost.primary_tag ?? featuredPost.tags[0]).name}
+                  </span>
+                )}
+                <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(22px, 3vw, 32px); font-weight: 400; line-height: 1.25; color: #0d2b1d; text-transform: uppercase; margin-bottom: 12px;" class="group-hover:text-[#256346] transition-colors">
+                  {featuredPost.title}
+                </h2>
+                {featuredPost.excerpt && (
+                  <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 26px; color: rgb(104, 104, 105); margin-bottom: 16px;" class="line-clamp-3">
+                    {featuredPost.excerpt}
+                  </p>
+                )}
+                <div class="flex items-center gap-3" style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(150, 150, 150);">
+                  <time>{formatDate(featuredPost.published_at)}</time>
+                  {featuredPost.reading_time > 0 && (
+                    <>
+                      <span>&middot;</span>
+                      <span>{featuredPost.reading_time} min read</span>
+                    </>
+                  )}
+                </div>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: #256346; margin-top: 20px; display: inline-flex; align-items: center; gap: 6px;" class="group-hover:gap-3 transition-all">
+                  Read Article <span>&rarr;</span>
+                </span>
+              </div>
+            </a>
+          )}
+
           {/* Post Grid */}
           <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post: any) => (
+            {gridPosts.map((post: any) => (
               <a href={`/blog/${post.slug}`} class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 transition-shadow hover:shadow-lg">
                 {post.feature_image ? (
                   <div class="aspect-[16/10] w-full overflow-hidden bg-gray-100">
@@ -135,16 +213,46 @@ if (isGhostConfigured()) {
             ))}
           </div>
 
+          {/* Newsletter CTA — between content and pagination */}
+          {page === 1 && (
+            <div class="mt-16 rounded-xl overflow-hidden" style="background: linear-gradient(135deg, #0d2b1d 0%, #256346 100%);">
+              <div class="px-8 py-12 md:px-12 md:py-14 text-center">
+                <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(24px, 3vw, 36px); font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 8px;">
+                  Get a Free Roof Inspection
+                </h3>
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                  Bay Area homeowners — find out the true condition of your roof with a no-obligation inspection from our certified team.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                  <a
+                    href="/buy"
+                    class="inline-block rounded-full px-8 py-3.5 font-bold uppercase text-sm tracking-wide"
+                    style="background-color: #FFDE21; color: #0d2b1d; font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif;"
+                  >
+                    Scan Your Roof Online
+                  </a>
+                  <a
+                    href="tel:6509773351"
+                    class="inline-block rounded-full px-8 py-3.5 font-bold uppercase text-sm tracking-wide border-2 border-white/30 text-white hover:bg-white/10 transition-colors"
+                    style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif;"
+                  >
+                    Call (650) 977-3351
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Pagination */}
           {pagination.pages > 1 && (
             <div class="mt-12 flex items-center justify-center gap-3">
               {pagination.page > 1 && (
                 <a
                   href={`/blog?page=${pagination.page - 1}${tag ? `&tag=${tag}` : ''}`}
-                  class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  class="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 inline-flex items-center gap-2"
                   style="font-family: 'DM Sans', sans-serif;"
                 >
-                  Previous
+                  &larr; Previous
                 </a>
               )}
               <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">
@@ -153,10 +261,10 @@ if (isGhostConfigured()) {
               {pagination.page < pagination.pages && (
                 <a
                   href={`/blog?page=${pagination.page + 1}${tag ? `&tag=${tag}` : ''}`}
-                  class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  class="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 inline-flex items-center gap-2"
                   style="font-family: 'DM Sans', sans-serif;"
                 >
-                  Next
+                  Next &rarr;
                 </a>
               )}
             </div>
@@ -166,5 +274,11 @@ if (isGhostConfigured()) {
     </div>
   </section>
 
+  <ContactUs />
   <Footer />
 </Layout>
+
+<style>
+  /* Hide scrollbar on tag filter strip */
+  section::-webkit-scrollbar { display: none; }
+</style>
