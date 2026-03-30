@@ -331,36 +331,19 @@ const {
 </script>
 
 <style>
-  /* Approach 2: Combine subtle gradient + text shadow for readability */
+  /* Just text shadows — no gradient overlay */
   .hero-scrim {
-    background: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.45) 0%,
-      rgba(0, 0, 0, 0.25) 50%,
-      rgba(0, 0, 0, 0.05) 100%
-    );
-  }
-
-  @media (max-width: 1023px) {
-    .hero-scrim {
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.4) 0%,
-        rgba(0, 0, 0, 0.25) 50%,
-        rgba(0, 0, 0, 0.05) 100%
-      );
-    }
+    display: none;
   }
 
   .text-fit > :not([aria-hidden]) > * {
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.25), 0 0 2px rgba(0, 0, 0, 0.15);
   }
 
-  /* Text shadow for all hero copy over the background image */
   #quote .text-white,
   #quote .text-white\/80,
   #quote .text-white\/90 {
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   }
 
   .hero-bg-img {
