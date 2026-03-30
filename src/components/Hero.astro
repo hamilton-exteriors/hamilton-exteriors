@@ -50,7 +50,7 @@ const {
   >
 
     <!-- Left Column -->
-    <div class="flex flex-col items-start lg:w-[45%] lg:py-6">
+    <div class="hero-left-col flex flex-col items-start lg:w-[45%] lg:py-6">
 
       <!-- Rating badge -->
       <div class="mb-4 inline-flex items-center gap-2 lg:mb-0">
@@ -241,16 +241,21 @@ const {
 </section>
 
 <style>
-  .hero-headline {
+  .hero-left-col {
     container-type: inline-size;
+  }
+
+  .hero-headline {
     font-size: 16cqi;
     line-height: 0.95;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
   }
 
   @media (min-width: 1024px) {
-    .hero-headline {
+    .hero-left-col {
       container-type: normal;
+    }
+    .hero-headline {
       font-size: clamp(48px, 4vw, 56px);
       line-height: 1.1;
       letter-spacing: normal;
