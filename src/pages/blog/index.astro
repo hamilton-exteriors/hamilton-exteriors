@@ -108,14 +108,9 @@ if (isGhostConfigured()) {
                   </div>
                 )}
                 <div class="flex flex-1 flex-col p-5">
-                  {post.primary_tag && (
+                  {(post.primary_tag ?? post.tags?.[0]) && (
                     <span style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 8px;">
-                      {post.primary_tag.name}
-                    </span>
-                  )}
-                  {!post.primary_tag && post.tags?.length > 0 && (
-                    <span style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 8px;">
-                      {post.tags[0].name}
+                      {(post.primary_tag ?? post.tags[0]).name}
                     </span>
                   )}
                   <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; line-height: 1.4; color: rgb(13, 43, 29); margin-bottom: 8px;" class="group-hover:text-[#256346] transition-colors">
