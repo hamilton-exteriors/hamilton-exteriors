@@ -4,7 +4,7 @@
  */
 
 // Hero & backgrounds
-export { default as heroBg } from '../assets/images/hero-bg.png';
+export { default as heroBg } from '../assets/images/hero-bg.jpg';
 export { default as heroWindows } from '../assets/images/hero-windows.png';
 export { default as aduHero } from '../assets/images/adu-hero.jpeg';
 export { default as ctaAssistant } from '../assets/images/cta-assistant.jpg';
