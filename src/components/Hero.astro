@@ -331,9 +331,9 @@ const {
 </script>
 
 <style>
-  /* Just text shadows — no gradient overlay */
+  /* Calibrated scrim: 25% uniform to boost contrast without killing image */
   .hero-scrim {
-    display: none;
+    background: rgba(0, 0, 0, 0.25);
   }
 
   .text-fit > :not([aria-hidden]) > * {
