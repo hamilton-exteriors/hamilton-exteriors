@@ -31,14 +31,14 @@ const { scheduleHref } = Astro.props;
           class="font-oswald font-normal uppercase"
           style="font-size: clamp(28px, 5vw, 40px); line-height: 1.2; letter-spacing: 0;"
         >
-          <span style="color: rgb(13, 43, 29);">Financing Options </span><span style="color: rgb(36, 99, 69);">Available For Everyone</span>
+          <span style="color: var(--color-heading);">Financing Options </span><span style="color: var(--color-primary-dark);">Available For Everyone</span>
         </p>
       </div>
 
       <!-- Body Text -->
       <p
         class="font-dm-sans text-[0.875rem] leading-[1.5]"
-        style="color: rgb(13, 43, 29);"
+        style="color: var(--color-heading);"
       >
         Flexible financing for every homeowner — high credit or low. We partner with multiple lenders to get you competitive rates. Don't let cost delay your project.
       </p>
@@ -60,13 +60,13 @@ const { scheduleHref } = Astro.props;
           </div>
           <div
             class="absolute bottom-[2px] right-[2px] h-[12px] w-[12px] rounded-full"
-            style="background-color: rgb(36, 99, 69); border: 2px solid white;"
+            style="background-color: var(--color-primary-dark); border: 2px solid white;"
           ></div>
         </div>
         <!-- Text -->
         <p
           class="font-dm-sans text-[1rem] leading-[1.5]"
-          style="color: rgb(13, 43, 29);"
+          style="color: var(--color-heading);"
         >
           Let's discuss your financial options. <span class="font-bold" style="font-weight: 700;">Quick Response</span>
         </p>
@@ -78,7 +78,7 @@ const { scheduleHref } = Astro.props;
         <a
           href="tel:6509773351"
           class="flex w-full items-center justify-center gap-2 rounded-[4px] px-[20px] py-[12px] font-dm-sans text-[0.875rem] font-semibold leading-[1.5] transition-opacity hover:opacity-80"
-          style="color: rgb(13, 43, 29); border: 1px solid rgba(13, 43, 29, 0.15); background-color: rgb(227, 239, 211);"
+          style="color: var(--color-heading); border: 1px solid rgba(13, 43, 29, 0.15); background-color: var(--color-green-light);"
         >
           <Image
             src={iconCheckmarkCircle}
@@ -95,7 +95,7 @@ const { scheduleHref } = Astro.props;
           <a
             href={scheduleHref}
             class="flex w-full items-center justify-center rounded-[4px] px-[20px] py-[12px] font-dm-sans text-[0.875rem] font-semibold leading-[1.5] text-center transition-opacity hover:opacity-90"
-            style="background-color: rgb(37, 99, 70); color: rgb(246, 253, 252); text-decoration: none;"
+            style="background-color: var(--color-primary); color: rgb(246, 253, 252); text-decoration: none;"
           >
             Schedule a FREE Inspection
           </a>
@@ -103,7 +103,7 @@ const { scheduleHref } = Astro.props;
           <a
             href="#quote"
             class="flex w-full items-center justify-center rounded-[4px] px-[20px] py-[12px] font-dm-sans text-[0.875rem] font-semibold leading-[1.5] text-center transition-opacity hover:opacity-90"
-            style="background-color: rgb(37, 99, 70); color: rgb(246, 253, 252); text-decoration: none;"
+            style="background-color: var(--color-primary); color: rgb(246, 253, 252); text-decoration: none;"
           >
             Schedule a FREE Inspection
           </a>

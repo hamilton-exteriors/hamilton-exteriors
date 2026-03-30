@@ -41,17 +41,22 @@
 
 /* ── Theme Tokens ────────────────────────────────────────────────────── */
 @theme {
-  /* Colors */
-  --color-primary: rgb(37, 99, 70);
-  --color-primary-dark: rgb(36, 99, 69);
+  /* Colors — Hamilton Design System */
+  --color-primary: rgb(37, 99, 70);          /* #256346 — buttons, CTAs, accents */
+  --color-primary-dark: rgb(36, 99, 69);     /* #245945 — footer, dark sections */
+  --color-yellow: rgb(255, 222, 33);         /* #FFDE21 — CTA highlights, focus */
   --color-white: rgb(255, 255, 255);
-  --color-border: rgb(196, 191, 182);
-  --color-input: rgb(104, 104, 105);
-  --color-charcoal: rgb(26, 26, 26);
-  --color-terracotta: rgb(196, 112, 75);
-  --color-terracotta-light: rgb(212, 133, 106);
-  --color-cream: rgb(244, 241, 235);
-  --color-footer: rgb(36, 99, 69);
+  --color-cream: rgb(244, 241, 235);         /* #F4F1EB — page background */
+  --color-charcoal: rgb(26, 26, 26);         /* #1A1A1A — primary text */
+  --color-heading: rgb(13, 43, 29);          /* dark green — section headings */
+  --color-body: rgb(25, 25, 25);             /* near-black — body text */
+  --color-muted: rgb(104, 104, 105);         /* gray — placeholder, secondary */
+  --color-light: rgb(136, 136, 136);         /* light gray — captions, fine print */
+  --color-border: rgb(196, 191, 182);        /* form borders */
+  --color-green-light: rgb(227, 239, 211);   /* light green tint */
+  --color-green-bg: rgb(240, 247, 240);      /* very light green — service buttons */
+  --color-error: rgb(220, 38, 38);           /* red — validation errors */
+  --color-footer: rgb(36, 99, 69);           /* same as primary-dark */
 
   /* Font Families */
   --font-fraunces: "Fraunces", serif;

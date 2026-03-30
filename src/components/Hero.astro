@@ -121,7 +121,7 @@ const {
       <!-- Form card -->
       <div class="overflow-hidden rounded-2xl lg:rounded-3xl" style="box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
         <!-- Bold green header -->
-        <div class="px-5 py-3 text-center" style="background-color: rgb(37, 99, 70);">
+        <div class="px-5 py-3 text-center" style="background-color: var(--color-primary);">
           <h2
             style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 1.375rem; line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; letter-spacing: 0.03em;"
           >
@@ -143,7 +143,7 @@ const {
               <div class="mb-3 flex items-center gap-2">
                 <div class="flex-1">
                   <div class="h-1.5 w-full rounded-full" style="background: rgb(230,230,230);">
-                    <div class="h-full rounded-full" style="width: 33%; background: rgb(37, 99, 70);"></div>
+                    <div class="h-full rounded-full" style="width: 33%; background: var(--color-primary);"></div>
                   </div>
                 </div>
                 <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">1/3</span>
@@ -162,7 +162,7 @@ const {
                 type="button"
                 id="next-btn-1"
                 class="mt-4 w-full rounded-full py-3.5 text-center font-bold uppercase text-white"
-                style="background-color: rgb(255, 222, 33); color: rgb(37, 99, 70); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 0.875rem; letter-spacing: 0.05em;"
+                style="background-color: var(--color-yellow); color: var(--color-primary); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 0.875rem; letter-spacing: 0.05em;"
               >
                 Next: Choose Your Service
               </button>
@@ -171,17 +171,17 @@ const {
             <!-- Step 2: Service Selection -->
             <div id="step-2" class="form-step" style="display: none;">
               <div class="mb-3 flex items-center gap-2">
-                <button type="button" id="back-btn-1" class="shrink-0" style="color: rgb(37, 99, 70);">
+                <button type="button" id="back-btn-1" class="shrink-0" style="color: var(--color-primary);">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 </button>
                 <div class="flex-1">
                   <div class="h-1.5 w-full rounded-full" style="background: rgb(230,230,230);">
-                    <div class="h-full rounded-full" style="width: 66%; background: rgb(37, 99, 70);"></div>
+                    <div class="h-full rounded-full" style="width: 66%; background: var(--color-primary);"></div>
                   </div>
                 </div>
                 <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">2/3</span>
               </div>
-              <p class="mb-1 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; color: rgb(13, 43, 29);">What do you need help with?</p>
+              <p class="mb-1 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--color-heading);">What do you need help with?</p>
               <p class="mb-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">Select one to continue</p>
               <input type="hidden" name="service" id="service-input" />
               <div class="grid grid-cols-2 gap-2">
@@ -200,12 +200,12 @@ const {
             <!-- Step 3: Details + Submit -->
             <div id="step-3" class="form-step" style="display: none;">
               <div class="mb-3 flex items-center gap-2">
-                <button type="button" id="back-btn-2" class="shrink-0" style="color: rgb(37, 99, 70);">
+                <button type="button" id="back-btn-2" class="shrink-0" style="color: var(--color-primary);">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 </button>
                 <div class="flex-1">
                   <div class="h-1.5 w-full rounded-full" style="background: rgb(230,230,230);">
-                    <div class="h-full rounded-full" style="width: 100%; background: rgb(37, 99, 70);"></div>
+                    <div class="h-full rounded-full" style="width: 100%; background: var(--color-primary);"></div>
                   </div>
                 </div>
                 <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">3/3</span>
@@ -224,16 +224,16 @@ const {
                   name="consent"
                   required
                   class="mt-0.5 h-4 w-4 shrink-0"
-                  style="border-radius: 4px; accent-color: rgb(37, 99, 70);"
+                  style="border-radius: 4px; accent-color: var(--color-primary);"
                 />
-                <span style="font-family: 'DM Sans', sans-serif; font-size: 10px; line-height: 1.5; color: rgb(136, 136, 136);">
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 10px; line-height: 1.5; color: var(--color-light);">
                   I agree to the <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Terms</a> & <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Privacy Policy</a>. Msg & data rates may apply.
                 </span>
               </label>
               <button
                 type="submit"
                 class="mt-4 w-full rounded-full py-3.5 text-center font-bold uppercase text-white"
-                style="background-color: rgb(255, 222, 33); color: rgb(37, 99, 70); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 0.875rem; letter-spacing: 0.05em;"
+                style="background-color: var(--color-yellow); color: var(--color-primary); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 0.875rem; letter-spacing: 0.05em;"
               >
                 Get My Free Quote
               </button>
@@ -282,14 +282,14 @@ const {
     let valid = true;
     fields.forEach(f => {
       if (!f?.value?.trim()) {
-        f.style.borderColor = 'rgb(220, 38, 38)';
+        f.style.borderColor = 'var(--color-error)';
         valid = false;
       }
     });
     // Basic email check
     const email = heroForm.querySelector('input[name="email"]') as HTMLInputElement;
     if (email?.value && !email.value.includes('@')) {
-      email.style.borderColor = 'rgb(220, 38, 38)';
+      email.style.borderColor = 'var(--color-error)';
       valid = false;
     }
     if (valid) showStep(step2);
@@ -318,9 +318,9 @@ const {
       formCard.innerHTML = `
         <div style="text-align: center; padding: 40px 20px;">
           <div style="font-size: 48px; margin-bottom: 12px;">✓</div>
-          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 1.5rem; color: rgb(37, 99, 70); text-transform: uppercase; margin-bottom: 8px;">We Got Your Request!</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 1.5rem; color: var(--color-primary); text-transform: uppercase; margin-bottom: 8px;">We Got Your Request!</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 0.875rem; color: rgb(100,100,100); line-height: 1.5;">We'll call you within <strong>5 minutes</strong> to schedule your free inspection.</p>
-          <a href="tel:6509773351" style="display: inline-block; margin-top: 16px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 700; color: rgb(37, 99, 70); text-decoration: underline;">Or call us now: (650) 977-3351</a>
+          <a href="tel:6509773351" style="display: inline-block; margin-top: 16px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 700; color: var(--color-primary); text-decoration: underline;">Or call us now: (650) 977-3351</a>
         </div>
       `;
     }
@@ -346,8 +346,8 @@ const {
     font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
     font-size: 1rem;
     font-weight: 700;
-    color: rgb(37, 99, 70);
-    background: rgb(240, 247, 240);
+    color: var(--color-primary);
+    background: var(--color-green-bg);
     border: 2px solid rgb(37, 99, 70, 0.2);
     border-radius: 10px;
     padding: 18px 8px;
@@ -358,17 +358,17 @@ const {
     letter-spacing: 0.03em;
   }
   .service-btn:hover {
-    border-color: rgb(37, 99, 70);
-    background: rgb(227, 239, 211);
+    border-color: var(--color-primary);
+    background: var(--color-green-light);
     transform: scale(1.02);
   }
   .service-btn:focus-visible {
-    outline: 2px solid rgb(255, 222, 33);
+    outline: 2px solid var(--color-yellow);
     outline-offset: 2px;
   }
   .service-btn--active {
-    border-color: rgb(37, 99, 70);
-    background: rgb(37, 99, 70);
+    border-color: var(--color-primary);
+    background: var(--color-primary);
     color: white;
   }
   .text-fit {
@@ -446,10 +446,10 @@ const {
     transition: border-color 0.2s;
   }
   .hero-input::placeholder {
-    color: rgb(134, 134, 134);
+    color: var(--color-light);
   }
   .hero-input:focus {
-    border-color: rgb(37, 99, 70);
+    border-color: var(--color-primary);
   }
 
   /* Responsive headline scaling */
