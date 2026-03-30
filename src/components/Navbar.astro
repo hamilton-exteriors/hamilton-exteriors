@@ -5,8 +5,8 @@ import { logoNav } from '../lib/images';
 
 <nav class="navbar w-full bg-white sticky top-0 z-50">
   <div
-    class="navbar-inner mx-auto flex items-center"
-    style="max-width: 1329px; padding: 14px 15px 15px; gap: 20px;"
+    class="navbar-inner mx-auto flex items-center justify-between"
+    style="max-width: 1329px; padding: 10px 15px; gap: 12px;"
   >
     <!-- Logo -->
     <a href="/" class="shrink-0">
@@ -17,7 +17,7 @@ import { logoNav } from '../lib/images';
         height={194}
         loading="eager"
         class="object-contain h-auto"
-        style="width: clamp(120px, 20vw, 168px);"
+        style="width: clamp(100px, 18vw, 168px);"
       />
     </a>
 
@@ -52,8 +52,8 @@ import { logoNav } from '../lib/images';
     </a>
 
     <!-- Mobile -->
-    <div class="flex lg:hidden items-center gap-3">
-      <a href="tel:6509773351" class="whitespace-nowrap" style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; color: rgb(13, 43, 29);">(650) 977 - 3351</a>
+    <div class="flex lg:hidden items-center">
+      <a href="tel:6509773351" class="whitespace-nowrap" style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; color: rgb(13, 43, 29);">(650) 977-3351</a>
     </div>
     <button id="menu-toggle" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] z-50" aria-label="Toggle navigation menu" aria-expanded="false">
       <span class="hamburger-line block w-6 h-[2px] rounded transition-all duration-300" style="background-color: rgb(13, 43, 29);"></span>

@@ -46,7 +46,7 @@ const {
 
   <div
     class="relative mx-auto flex flex-col gap-8 px-5 lg:flex-row lg:items-start lg:gap-12"
-    style="max-width: 1294px; padding-top: 40px; padding-bottom: 48px;"
+    style="max-width: 1294px; padding-top: 32px; padding-bottom: 40px;"
   >
 
     <!-- Left Column -->
@@ -149,9 +149,9 @@ const {
                 class="hero-input w-full"
               />
 
-              <!-- Phone + Email side by side -->
-              <div class="flex gap-3">
-                <div class="relative w-1/2">
+              <!-- Phone + Email -->
+              <div class="flex flex-col gap-3 sm:flex-row">
+                <div class="relative w-full sm:w-1/2">
                   <div class="flex overflow-hidden" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;">
                     <div class="flex items-center shrink-0" style="padding: 12px 0 12px 12px; width: 52px;">
                       <span
@@ -174,7 +174,7 @@ const {
                   name="email"
                   placeholder="Email"
                   required
-                  class="hero-input w-1/2"
+                  class="hero-input w-full sm:w-1/2"
                 />
               </div>
 
