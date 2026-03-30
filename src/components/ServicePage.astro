@@ -80,8 +80,8 @@ const { data } = Astro.props;
 
   if (section.type === 'yellowBar') {
     return (
-      <div class="w-full text-center" style="background-color: rgb(255, 222, 33); padding: 14px 0;">
-        <a href={section.href} style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29); text-decoration: none;">{section.text} &rarr;</a>
+      <div class="w-full text-center" style="background-color: var(--color-yellow); padding: 14px 0;">
+        <a href={section.href} style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-heading); text-decoration: none;">{section.text} &rarr;</a>
       </div>
     );
   }
@@ -111,8 +111,8 @@ const { data } = Astro.props;
         <div class={`mx-auto max-w-[1200px] px-5 grid grid-cols-1 ${gridBreakpoint === 'lg' ? `lg:grid-cols-${stats.items.length}` : `md:grid-cols-${stats.items.length} md:gap-8`} gap-${gridBreakpoint === 'lg' ? '8' : '4'}`}>
           {stats.items.map((stat) => (
             <div class="text-center">
-              <div style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 48px; font-weight: 400; color: rgb(36, 99, 69); margin-bottom: 8px;">{stat.value}</div>
-              <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">{stat.label}</p>
+              <div style="font-family: var(--font-oswald); font-size: 48px; font-weight: 400; color: var(--color-primary-dark); margin-bottom: 8px;">{stat.value}</div>
+              <p style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-muted);">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -131,7 +131,7 @@ const { data } = Astro.props;
           <div class="mx-auto" style="max-width: 1182px; padding: 0 15px;">
             <h2
               class="mb-6 text-center"
-              style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; letter-spacing: 0px; color: rgb(13, 43, 29); font-weight: 400; text-transform: uppercase;"
+              style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; letter-spacing: 0px; color: var(--color-heading); font-weight: 400; text-transform: uppercase;"
             >
               {styles.heading}
             </h2>
@@ -151,11 +151,11 @@ const { data } = Astro.props;
                   </div>
                   <div style="padding: 20px 24px 24px;">
                     <h3
-                      style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 800; line-height: 24px; color: rgb(13, 43, 29); margin-bottom: 6px;"
+                      style="font-family: var(--font-oswald); font-size: 18px; font-weight: 800; line-height: 24px; color: var(--color-heading); margin-bottom: 6px;"
                     >
                       {item.title}
                     </h3>
-                    <p style="font-size: 14px; line-height: 150%; color: rgb(104, 104, 105);">
+                    <p style="font-size: 14px; line-height: 150%; color: var(--color-muted);">
                       {item.description}
                     </p>
                   </div>
@@ -173,7 +173,7 @@ const { data } = Astro.props;
         <section class="w-full" style="padding: 79px 0;">
           <div class="mx-auto max-w-[1200px] px-5">
             <h2
-              style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;"
+              style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 40px;"
             >
               {styles.heading}
             </h2>
@@ -192,11 +192,11 @@ const { data } = Astro.props;
                   </div>
                   <div style="padding-top: 16px;">
                     <h3
-                      style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; line-height: 24px; margin-bottom: 6px; color: rgb(13, 43, 29);"
+                      style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; line-height: 24px; margin-bottom: 6px; color: var(--color-heading);"
                     >
                       {item.title}
                     </h3>
-                    <p style="font-size: 14px; line-height: 150%; color: rgb(104, 104, 105);">
+                    <p style="font-size: 14px; line-height: 150%; color: var(--color-muted);">
                       {item.description}
                     </p>
                   </div>
@@ -215,7 +215,7 @@ const { data } = Astro.props;
           <div class="mx-auto max-w-[1294px] px-5 py-20">
             <h2
               class="mb-4 text-center"
-              style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-size: 40px; line-height: 50px; letter-spacing: 0px; font-weight: 400; color: rgb(13, 43, 29);"
+              style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; letter-spacing: 0px; font-weight: 400; color: var(--color-heading);"
             >
               {styles.heading}
             </h2>
@@ -235,11 +235,11 @@ const { data } = Astro.props;
                   <div class="p-6">
                     <h3
                       class="mb-2"
-                      style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 800; line-height: 24px;"
+                      style="font-family: var(--font-oswald); font-size: 18px; font-weight: 800; line-height: 24px;"
                     >
                       {item.title}
                     </h3>
-                    <p style="font-size: 14px; line-height: 150%; color: rgb(104, 104, 105);">
+                    <p style="font-size: 14px; line-height: 150%; color: var(--color-muted);">
                       {item.description}
                     </p>
                   </div>

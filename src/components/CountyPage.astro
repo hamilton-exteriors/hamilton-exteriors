@@ -64,7 +64,7 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
   <!-- Alameda/Marin style: inline-styled city cards -->
   <section class="w-full bg-white" style="padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
-      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;">
+      <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: var(--color-heading); text-transform: uppercase; margin-bottom: 40px;">
         Service Locations in {data.county}
       </h2>
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -81,10 +81,10 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
               />
             </div>
             <div style="padding: 16px 20px 20px;">
-              <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 600; line-height: 1.4; color: rgb(13, 43, 29); margin: 0 0 8px;">
+              <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 600; line-height: 1.4; color: var(--color-heading); margin: 0 0 8px;">
                 {city.name}, CA
               </h3>
-              <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: rgb(37, 99, 70);" class="group-hover:underline">
+              <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 500; color: var(--color-primary);" class="group-hover:underline">
                 Explore Service Area &rarr;
               </span>
             </div>
@@ -104,11 +104,11 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
   <section class="w-full" style="background-color: #f9f8f6; padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start">
       <div>
-        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 36px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 36px); line-height: 1.2; font-weight: 400; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;">
           {data.whyChoose.heading}
         </h2>
         {data.whyChoose.paragraphs.map((p, i) => (
-          <p style={`font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);${i < data.whyChoose!.paragraphs.length - 1 ? ' margin-bottom: 16px;' : ''}`}>
+          <p style={`font-family: var(--font-dm-sans); font-size: 17px; line-height: 30px; color: var(--color-muted);${i < data.whyChoose!.paragraphs.length - 1 ? ' margin-bottom: 16px;' : ''}`}>
             {p}
           </p>
         ))}
@@ -126,17 +126,17 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
 <!-- ═══════════════════════════════════════════════════════ -->
 
 {data.benefits && (
-  <section class="w-full" style="background-color: #0d2b1d; padding: 80px 0;">
+  <section class="w-full" style="background-color: var(--color-heading); padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start">
       <div class="hidden md:block rounded-2xl overflow-hidden">
         <Image src={ctaAssistant} alt="Hamilton Exteriors construction crew" width={1200} height={900} class="w-full h-auto object-cover" style="aspect-ratio: 632/626;" loading="lazy" />
       </div>
       <div>
-        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 36px); line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
+        <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 36px); line-height: 1.2; font-weight: 400; color: var(--color-white); text-transform: uppercase; margin-bottom: 16px;">
           {data.benefits.heading}
         </h2>
         {data.benefits.paragraphs.map((p, i) => (
-          <p style={`font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8);${i < data.benefits!.paragraphs.length - 1 ? ' margin-bottom: 16px;' : ''}`}>
+          <p style={`font-family: var(--font-dm-sans); font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8);${i < data.benefits!.paragraphs.length - 1 ? ' margin-bottom: 16px;' : ''}`}>
             {p}
           </p>
         ))}
@@ -153,17 +153,17 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
 {data.aduTypes && (
   <section class="w-full" style="background-color: #f9f8f6; padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
-      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 36px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+      <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 36px); line-height: 1.2; font-weight: 400; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;">
         {data.aduTypes.heading}
       </h2>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 32px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 30px; color: var(--color-muted); margin-bottom: 32px;">
         {data.aduTypes.subtitle}
       </p>
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
         {data.aduTypes.items.map((item) => (
           <div style="padding: 24px; border: 1px solid rgb(230,230,230); border-radius: 12px; background: white;">
-            <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">{item.title}</h3>
-            <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">{item.description}</p>
+            <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-heading); margin-bottom: 8px;">{item.title}</h3>
+            <p style="font-family: var(--font-dm-sans); font-size: 15px; line-height: 26px; color: var(--color-muted);">{item.description}</p>
           </div>
         ))}
       </div>
@@ -177,12 +177,12 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
 <!-- ═══════════════════════════════════════════════════════ -->
 
 {data.stats && (
-  <section class="w-full" style="background-color: white; padding: 48px 0;">
+  <section class="w-full" style="background-color: var(--color-white); padding: 48px 0;">
     <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-2 md:grid-cols-4 gap-8">
       {data.stats.map((stat) => (
         <div class="text-center">
-          <div style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 48px; font-weight: 400; color: rgb(36, 99, 69);">{stat.value}</div>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">{stat.label}</p>
+          <div style="font-family: var(--font-oswald); font-size: 48px; font-weight: 400; color: var(--color-primary-dark);">{stat.value}</div>
+          <p style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-muted);">{stat.label}</p>
         </div>
       ))}
     </div>
@@ -195,16 +195,16 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
 <!-- ═══════════════════════════════════════════════════════ -->
 
 {data.mobileProcess && (
-  <section class="w-full md:hidden" style="background-color: white; padding: 48px 0;">
+  <section class="w-full md:hidden" style="background-color: var(--color-white); padding: 48px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
-      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 28px; line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+      <h2 style="font-family: var(--font-oswald); font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;">
         {data.mobileProcess.heading}
       </h2>
       <div class="grid grid-cols-1 gap-4">
         {data.mobileProcess.steps.map((step) => (
           <div style="padding: 20px; border: 1px solid rgb(230,230,230); border-radius: 12px;">
-            <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">{step.title}</h3>
-            <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 24px; color: rgb(104, 104, 105);">{step.description}</p>
+            <h3 style="font-family: var(--font-oswald); font-size: 16px; font-weight: 700; color: var(--color-heading); margin-bottom: 4px;">{step.title}</h3>
+            <p style="font-family: var(--font-dm-sans); font-size: 15px; line-height: 24px; color: var(--color-muted);">{step.description}</p>
           </div>
         ))}
       </div>
@@ -218,13 +218,13 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
 <!-- ═══════════════════════════════════════════════════════ -->
 
 {data.mobileWhyBuild && (
-  <section class="w-full md:hidden" style="background-color: #0d2b1d; padding: 48px 0;">
+  <section class="w-full md:hidden" style="background-color: var(--color-heading); padding: 48px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
-      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 28px; line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
+      <h2 style="font-family: var(--font-oswald); font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--color-white); text-transform: uppercase; margin-bottom: 16px;">
         {data.mobileWhyBuild.heading}
       </h2>
       {data.mobileWhyBuild.paragraphs.map((p, i) => (
-        <p style={`font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8);${i < data.mobileWhyBuild!.paragraphs.length - 1 ? ' margin-bottom: 16px;' : ''}`}>
+        <p style={`font-family: var(--font-dm-sans); font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8);${i < data.mobileWhyBuild!.paragraphs.length - 1 ? ' margin-bottom: 16px;' : ''}`}>
           {p}
         </p>
       ))}
@@ -264,19 +264,19 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
 <!-- ═══════════════════════════════════════════════════════ -->
 
 {data.aduServicesDesktop && (
-  <section class="hidden md:block w-full py-16 lg:py-20" style="background-color: #0d2b1d;">
+  <section class="hidden md:block w-full py-16 lg:py-20" style="background-color: var(--color-heading);">
     <div class="mx-auto max-w-[1200px] px-5">
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 12px;">{data.aduServicesDesktop.label}</p>
+      <p style="font-family: var(--font-dm-sans); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 12px;">{data.aduServicesDesktop.label}</p>
       <h2
-        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 48px;"
+        style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; color: var(--color-white); text-transform: uppercase; margin-bottom: 48px;"
       >
         {data.aduServicesDesktop.heading}
       </h2>
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
         {data.aduServicesDesktop.items.map((item) => (
           <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-            <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 12px;">{item.title}</h3>
-            <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgba(255, 255, 255, 0.7);">
+            <h3 style="font-family: var(--font-oswald); font-size: 20px; font-weight: 700; color: var(--color-white); margin-bottom: 12px;">{item.title}</h3>
+            <p style="font-family: var(--font-dm-sans); font-size: 15px; line-height: 26px; color: rgba(255, 255, 255, 0.7);">
               {item.description}
             </p>
           </div>
@@ -292,13 +292,13 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
 <!-- ═══════════════════════════════════════════════════════ -->
 
 {data.aduServicesMobile && (
-  <section class="w-full md:hidden" style="background-color: #0d2b1d; padding: 40px 0;">
+  <section class="w-full md:hidden" style="background-color: var(--color-heading); padding: 40px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
-      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 28px; line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
+      <h2 style="font-family: var(--font-oswald); font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--color-white); text-transform: uppercase; margin-bottom: 16px;">
         {data.aduServicesMobile.heading}
       </h2>
       {data.aduServicesMobile.paragraphs.map((p, i) => (
-        <p style={`font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgba(255,255,255,0.7);${i < data.aduServicesMobile!.paragraphs.length - 1 ? ' margin-bottom: 12px;' : ''}`}>
+        <p style={`font-family: var(--font-dm-sans); font-size: 15px; line-height: 26px; color: rgba(255,255,255,0.7);${i < data.aduServicesMobile!.paragraphs.length - 1 ? ' margin-bottom: 12px;' : ''}`}>
           {p}
         </p>
       ))}
@@ -355,22 +355,22 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
         <Image src={roofingAsphalt} alt="Hamilton Exteriors ADU project" width={1200} height={900} class="w-full h-auto object-cover" style="aspect-ratio: 632/478;" loading="lazy" />
       </div>
       <div>
-        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;">
           {data.whyChooseExpanded.heading}
         </h2>
-        <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        <h3 style="font-family: var(--font-dm-sans); font-size: 22px; font-weight: 500; color: var(--color-heading); margin-bottom: 20px;">
           {data.whyChooseExpanded.subtitle}
         </h3>
         {data.whyChooseExpanded.paragraphs.map((p) => (
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+          <p style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 30px; color: var(--color-muted); margin-bottom: 16px;">
             {p}
           </p>
         ))}
         <div class="mt-8 grid gap-6 md:grid-cols-2">
           {data.whyChooseExpanded.featureCards.map((card) => (
             <div style="padding: 20px; border: 1px solid rgb(230,230,230); border-radius: 8px;">
-              <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">{card.title}</p>
-              <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">{card.description}</p>
+              <p style="font-family: var(--font-dm-sans); font-size: 17px; font-weight: 700; color: var(--color-heading); margin-bottom: 8px;">{card.title}</p>
+              <p style="font-family: var(--font-dm-sans); font-size: 15px; line-height: 26px; color: var(--color-muted);">{card.description}</p>
             </div>
           ))}
         </div>
@@ -388,14 +388,14 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
   <section class="w-full bg-cream py-16 md:py-32 lg:py-20">
     <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
       <div>
-        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;">
           {data.whyBuild.heading}
         </h2>
-        <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+        <h3 style="font-family: var(--font-dm-sans); font-size: 22px; font-weight: 500; color: var(--color-heading); margin-bottom: 20px;">
           {data.whyBuild.subtitle}
         </h3>
         {data.whyBuild.paragraphs.map((p, i) => (
-          <p style={`font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);${i < data.whyBuild!.paragraphs.length - 1 ? ' margin-bottom: 16px;' : ''}`}>
+          <p style={`font-family: var(--font-dm-sans); font-size: 17px; line-height: 30px; color: var(--color-muted);${i < data.whyBuild!.paragraphs.length - 1 ? ' margin-bottom: 16px;' : ''}`}>
             {p}
           </p>
         ))}
@@ -420,7 +420,7 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
   /* ========== CONTRA COSTA LOCATIONS ========== */
   .cc-locations-section {
     width: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-white);
     padding: 80px 0;
   }
   .cc-locations-container {
@@ -429,12 +429,12 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
     padding: 0 15px;
   }
   .cc-locations-label {
-    font-family: 'Satoshi', sans-serif;
+    font-family: var(--font-satoshi);
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgb(13, 43, 29);
+    color: var(--color-heading);
     margin: 0 0 32px 0;
   }
   .cc-locations-grid {
@@ -483,18 +483,18 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
     padding: 16px 20px 20px;
   }
   .cc-city-card-name {
-    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-family: var(--font-oswald);
     font-size: 18px;
     font-weight: 600;
     line-height: 1.4;
-    color: rgb(13, 43, 29);
+    color: var(--color-heading);
     margin: 0 0 8px 0;
   }
   .cc-city-card-link {
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans);
     font-size: 14px;
     font-weight: 500;
-    color: rgb(37, 99, 70);
+    color: var(--color-primary);
     text-decoration: none;
   }
   .cc-city-card:hover .cc-city-card-link {
@@ -513,12 +513,12 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
     padding: 0 15px;
   }
   .cc-why-heading {
-    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-family: var(--font-oswald);
     font-size: 40px;
     font-weight: 400;
     line-height: 50px;
     letter-spacing: 0px;
-    color: rgb(13, 43, 29);
+    color: var(--color-heading);
     text-transform: uppercase;
     margin: 0 0 40px 0;
   }
@@ -545,15 +545,15 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
     gap: 12px;
   }
   .cc-why-card-title {
-    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-family: var(--font-oswald);
     font-size: 18px;
     font-weight: 600;
     line-height: 1.4;
-    color: rgb(13, 43, 29);
+    color: var(--color-heading);
     margin: 0;
   }
   .cc-why-card-text {
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans);
     font-size: 15px;
     font-weight: 400;
     line-height: 26px;
@@ -564,7 +564,7 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
   /* ========== CONTRA COSTA FAQ SECTION ========== */
   .cc-faq-section {
     width: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-white);
     padding: 80px 0;
   }
   .cc-faq-container {
@@ -587,12 +587,12 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
     }
   }
   .cc-faq-heading {
-    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-family: var(--font-oswald);
     font-size: 40px;
     font-weight: 400;
     line-height: 50px;
     letter-spacing: 0px;
-    color: rgb(13, 43, 29);
+    color: var(--color-heading);
     text-transform: uppercase;
     margin: 0;
   }
@@ -603,11 +603,11 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
     }
   }
   .cc-faq-subtext {
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans);
     font-size: 14px;
     font-weight: 400;
     line-height: 150%;
-    color: rgb(13, 43, 29);
+    color: var(--color-heading);
     margin: 0;
     white-space: normal;
   }
@@ -619,7 +619,7 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
   }
   .cc-faq-phone-link {
     font-weight: 400;
-    color: rgb(13, 43, 29);
+    color: var(--color-heading);
     text-decoration: none;
   }
   .cc-faq-accordion {
@@ -627,7 +627,7 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
   }
   .cc-faq-item {
     border-bottom: 1px solid rgb(196, 191, 182);
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-white);
   }
   .cc-faq-question {
     display: flex;
@@ -641,7 +641,7 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
     display: none;
   }
   .cc-faq-question-text {
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans);
     font-size: 15px;
     font-weight: 400;
     line-height: 24px;
@@ -670,7 +670,7 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
     padding-right: 48px;
   }
   .cc-faq-answer p {
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans);
     font-size: 15px;
     font-weight: 400;
     line-height: 24px;
