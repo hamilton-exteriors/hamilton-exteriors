@@ -186,6 +186,7 @@ import { Image } from 'astro:assets';
         (btn as HTMLButtonElement).disabled = disabled;
         btn.style.opacity = disabled ? '0.4' : '1';
         btn.style.cursor = disabled ? 'not-allowed' : 'pointer';
+        btn.style.display = disabled ? 'none' : 'flex';
       });
     }
 

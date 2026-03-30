@@ -43,34 +43,10 @@ const { scheduleHref } = Astro.props;
         Flexible financing for every homeowner — high credit or low. We partner with multiple lenders to get you competitive rates. Don't let cost delay your project.
       </p>
 
-      <!-- Assistant Row -->
-      <div class="mt-6 flex items-center gap-3">
-        <!-- Avatar with green dot -->
-        <div class="relative flex-shrink-0">
-          <div class="h-[63px] w-[63px] overflow-hidden rounded-full bg-[rgb(13,43,29)]">
-            <Image
-              src={financingWorker}
-              alt="Assistant"
-              width={63}
-              height={63}
-              class="h-full w-full object-cover"
-              style="transform: translate(-50%, -50%); position: relative; left: 50%; top: 50%;"
-              loading="lazy"
-            />
-          </div>
-          <div
-            class="absolute bottom-[2px] right-[2px] h-[12px] w-[12px] rounded-full"
-            style="background-color: var(--color-primary-dark); border: 2px solid white;"
-          ></div>
-        </div>
-        <!-- Text -->
-        <p
-          class="font-dm-sans text-[1rem] leading-[1.5]"
-          style="color: var(--color-heading);"
-        >
-          Let's discuss your financial options. <span class="font-bold" style="font-weight: 700;">Quick Response</span>
-        </p>
-      </div>
+      <!-- Trust line -->
+      <p class="mt-6" style="font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 600; color: var(--color-heading);">
+        We respond within 5 minutes. No obligation.
+      </p>
 
       <!-- Buttons -->
       <div class="mt-6 flex flex-col gap-2.5">
