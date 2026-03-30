@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { logoFooter, badgeGoogle, badgeYelp } from '../lib/images';
+import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 ---
 
 <footer class="w-full bg-footer">
@@ -20,8 +21,8 @@ import { logoFooter, badgeGoogle, badgeYelp } from '../lib/images';
         <p class="text-center text-sm leading-relaxed text-white/70 lg:text-left">
           Serving the Bay Area with roofing, siding, and window installations since 2020. Licensed, bonded, and insured.
         </p>
-        <a href="tel:6509773351" class="font-oswald text-xl font-bold tracking-wide text-white underline underline-offset-4">
-          (650) 977-3351
+        <a href={PHONE_HREF} class="font-oswald text-xl font-bold tracking-wide text-white underline underline-offset-4">
+          {PHONE_DISPLAY}
         </a>
       </div>
 
@@ -31,12 +32,12 @@ import { logoFooter, badgeGoogle, badgeYelp } from '../lib/images';
           Quick Links
         </h3>
         <nav class="flex flex-col items-center gap-1.5 lg:items-start lg:gap-2">
-          <a href="/terms" class="footer-link">Terms</a>
-          <a href="/privacy-policy" class="footer-link">Privacy Policy</a>
-          <a href="/privacy-notice-ca" class="footer-link">Privacy Notice for CA Residents</a>
-          <a href="/eeo-policy" class="footer-link">EEO Policy</a>
-          <a href="/opt-out" class="footer-link">Opt Out</a>
-          <a href="/blog" class="footer-link">Blog</a>
+          <a href="/terms" class="footer-link min-h-[44px] flex items-center">Terms</a>
+          <a href="/privacy-policy" class="footer-link min-h-[44px] flex items-center">Privacy Policy</a>
+          <a href="/privacy-notice-ca" class="footer-link min-h-[44px] flex items-center">Privacy Notice for CA Residents</a>
+          <a href="/eeo-policy" class="footer-link min-h-[44px] flex items-center">EEO Policy</a>
+          <a href="/opt-out" class="footer-link min-h-[44px] flex items-center">Opt Out</a>
+          <a href="/blog" class="footer-link min-h-[44px] flex items-center">Blog</a>
         </nav>
       </div>
 
@@ -49,7 +50,7 @@ import { logoFooter, badgeGoogle, badgeYelp } from '../lib/images';
           Stay updated with offers and new services.
         </p>
 
-        <form class="flex w-full flex-col gap-3 lg:max-w-[320px]">
+        <form class="flex w-full flex-col gap-3 lg:max-w-[320px]" action="/api/newsletter" method="POST">
           <label for="footerName" class="sr-only">Name</label>
           <input
             type="text"
@@ -87,10 +88,10 @@ import { logoFooter, badgeGoogle, badgeYelp } from '../lib/images';
               loading="lazy"
             />
           </a>
-          <a href="https://facebook.com/review" target="_blank" rel="noopener noreferrer" aria-label="Review us on Facebook">
+          <a href="https://yelp.com/review" target="_blank" rel="noopener noreferrer" aria-label="Review us on Yelp">
             <Image
               src={badgeYelp}
-              alt="Review us on Facebook"
+              alt="Review us on Yelp"
               width={239}
               height={80}
               class="h-10 w-auto"
@@ -107,6 +108,7 @@ import { logoFooter, badgeGoogle, badgeYelp } from '../lib/images';
     <div class="flex flex-col items-center gap-4 border-t border-white/20 py-6 md:flex-row md:justify-between">
       <!-- Social Icons -->
       <div class="flex items-center gap-1">
+        <!-- TODO: Replace with actual company social URLs -->
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.556 30" width="15" height="20" overflow="visible"><path d="M 10.098 30 L 10.098 16.317 L 14.682 16.317 L 15.37 10.982 L 10.098 10.982 L 10.098 7.577 C 10.098 6.033 10.524 4.981 12.737 4.981 L 15.556 4.98 L 15.556 0.209 C 15.068 0.145 13.395 0 11.448 0 C 7.382 0 4.598 2.485 4.598 7.049 L 4.598 10.982 L 0 10.982 L 0 16.317 L 4.598 16.317 L 4.598 30 Z" fill="rgb(255, 255, 255)"></path></svg>
         </a>
@@ -126,7 +128,7 @@ import { logoFooter, badgeGoogle, badgeYelp } from '../lib/images';
 
       <!-- Copyright -->
       <p class="text-center text-xs text-white/60 md:text-right">
-        &copy;2025 Hamilton Exteriors, Inc. All rights reserved.
+        &copy;{new Date().getFullYear()} Hamilton Exteriors, Inc. All rights reserved.
       </p>
     </div>
   </div>
@@ -148,14 +150,15 @@ import { logoFooter, badgeGoogle, badgeYelp } from '../lib/images';
     transition: color 0.2s ease-out;
   }
   .footer-link:hover {
-    color: rgb(255, 255, 255);
+    color: var(--color-white);
   }
   .footer-input {
     width: 100%;
     border-radius: 0.5rem;
     border: 1px solid rgba(196, 191, 182, 0.8);
-    background-color: rgb(255, 255, 255);
-    padding: 0.625rem 1rem;
+    background-color: var(--color-white);
+    padding: 0.75rem 1rem;
+    min-height: 44px;
     font-family: 'DM Sans', sans-serif;
     font-size: 0.875rem;
     color: var(--color-charcoal);
@@ -190,6 +193,7 @@ import { logoFooter, badgeGoogle, badgeYelp } from '../lib/images';
     background-color: var(--color-yellow);
     border: none;
     padding: 0.75rem 1rem;
+    min-height: 44px;
     font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
     font-size: 0.875rem;
     font-weight: 700;

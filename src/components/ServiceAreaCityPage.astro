@@ -1,0 +1,893 @@
+---
+import { Image } from 'astro:assets';
+import { heroBg, serviceRoofing, serviceSiding, serviceWindows, serviceAdu, iconContactPhone, iconContactEmail, iconContactClock, iconContactMap } from '../lib/images';
+import AnnouncementBar from './AnnouncementBar.astro';
+import Navbar from './Navbar.astro';
+import LogoSlider from './LogoSlider.astro';
+import Footer from './Footer.astro';
+import type { ServiceAreaCity } from '../lib/service-area-types';
+
+interface Props {
+  data: ServiceAreaCity;
+}
+
+const { data } = Astro.props;
+const { city, county, countySlug, hero, reviews, pricingCards, whyBuildStats, trustedExperts, process: processSection, projects, projectsTitle, regulations, neighborhoods, mobileProcessResources, faqs, faqTitle, contact, resources, pricingLabel, pricingTitle } = data;
+
+/** Map imageKey strings to actual imported images */
+const imageMap: Record<string, ImageMetadata> = {
+  serviceRoofing,
+  serviceSiding,
+  serviceWindows,
+  serviceAdu,
+  heroBg,
+};
+---
+
+<AnnouncementBar />
+<Navbar />
+
+<!-- Breadcrumb -->
+<nav class="w-full" style="background-color: #f9f8f6; border-bottom: 1px solid #e8e5df;">
+  <div class="mx-auto flex items-center gap-2 px-5" style="max-width: 1294px; padding-top: 14px; padding-bottom: 14px;">
+    <a href="/" style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); text-decoration: none;">Home</a>
+    <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">/</span>
+    <a href="/service-areas" style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); text-decoration: none;">Service Areas</a>
+    <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">/</span>
+    <a href={`/service-areas/${countySlug}`} style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); text-decoration: none;">{county}</a>
+    <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">/</span>
+    <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(13, 43, 29); font-weight: 500;">{city}, CA</span>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="quote" class="relative w-full overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <Image
+      src={heroBg}
+      alt=""
+      width={1920}
+      height={1080}
+      class="h-full w-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(13, 43, 29, 0.92) 0%, rgba(13, 43, 29, 0.78) 100%);"></div>
+  </div>
+
+  <div
+    class="relative mx-auto flex flex-col gap-10 px-5 lg:flex-row lg:items-start lg:gap-12"
+    style="max-width: 1294px; padding-top: 50px; padding-bottom: 50px;"
+  >
+    <!-- Left Column -->
+    <div class="flex flex-col items-start gap-6 lg:w-[55%] lg:py-6">
+      <!-- Rating badge -->
+      <div class="inline-flex items-center gap-2 rounded-full" style="background: rgba(255,255,255,0.12); padding: 8px 18px;">
+        <div class="flex gap-0.5">
+          {Array.from({ length: 5 }).map(() => (
+            <div class="relative h-[18px] w-[18px] shrink-0">
+              <svg viewBox="0 0 24 24" fill="#FFDE21" class="h-full w-full">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+          ))}
+        </div>
+        <span
+          class="text-white"
+          style="font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;"
+        >
+          50+ Five-Star Reviews
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1
+        class="text-white"
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-size: 56px; line-height: 68px; letter-spacing: normal; font-weight: 400;"
+      >
+        {hero.headline}
+      </h1>
+
+      <!-- Subtitle -->
+      <p
+        class="text-white"
+        style="font-family: 'DM Sans', sans-serif; font-size: 19px; line-height: 30px; opacity: 0.9; max-width: 520px;"
+      >
+        {hero.subtitle}
+      </p>
+
+      <!-- Trust badges / bullets -->
+      <div class="flex flex-col gap-3">
+        {hero.badges.map((badge) => (
+          <div class="flex items-center gap-3">
+            <div class="flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full" style="background: rgba(255, 222, 33, 0.2);">
+              <svg viewBox="0 0 20 20" class="h-[14px] w-[14px]">
+                <path d="M16.667 5L7.5 14.167L3.333 10" stroke="#FFDE21" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
+            <span class="text-white" style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 24px; font-weight: 500;">{badge}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA button -->
+      <a
+        href="tel:6509773351"
+        class="inline-block transition-opacity hover:opacity-90"
+        style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; line-height: 24px; background-color: rgb(255, 222, 33); color: rgb(13, 43, 29); border-radius: 8px; padding: 12px 28px;"
+      >
+        Call Us - (650) 977-3351
+      </a>
+    </div>
+
+    <!-- Right Column — Lead Form -->
+    <div class="w-full lg:w-[45%]">
+      <div
+        class="w-full"
+        style="background: linear-gradient(rgb(255, 255, 255) 0%, rgb(153, 153, 153) 107%); border-radius: 30px;"
+      >
+        <div style="background-color: rgb(255, 255, 255); border-radius: 30px; padding: 30px 28px 28px;">
+          <h2
+            class="mb-1 text-center"
+            style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-size: 26px; line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29);"
+          >
+            {hero.formTitle}
+          </h2>
+          <p
+            class="mb-5 text-center"
+            style="font-family: 'DM Sans', sans-serif; line-height: 26px; color: rgb(134, 134, 134); font-size: 14px;"
+          >
+            {hero.formSubtitle}
+          </p>
+
+          <form action="/success" method="POST">
+            <div class="flex flex-col gap-3">
+              <input type="text" name="fullName" placeholder="Name" required class="hero-input w-full" />
+              <div class="flex gap-3">
+                <div class="relative w-1/2">
+                  <div class="flex overflow-hidden" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;">
+                    <div class="flex items-center shrink-0" style="padding: 12px 0 12px 12px; width: 52px;">
+                      <span style="font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 26px; color: rgb(32, 26, 22);">+1</span>
+                    </div>
+                    <div style="width: 1px; margin-top: 8px; margin-bottom: 8px; background-color: rgba(0, 0, 0, 0.2);"></div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number"
+                      required
+                      class="flex-1 border-none bg-transparent outline-none"
+                      style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 400; line-height: 26px; color: rgb(32, 26, 22); padding: 12px;"
+                    />
+                  </div>
+                </div>
+                <input type="email" name="email" placeholder="Email" required class="hero-input w-1/2" />
+              </div>
+              <input type="text" name="address" placeholder="Project Address" required class="hero-input w-full" />
+              <textarea
+                name="message"
+                rows="3"
+                placeholder={hero.formTextareaPlaceholder || `Tell us about your ADU project — type, size, timeline?`}
+                class="hero-input w-full resize-none"
+              ></textarea>
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  required
+                  class="mt-0.5 h-4 w-4 shrink-0"
+                  style="border-radius: 4px; border: 1px solid rgba(136, 136, 136, 0.2); background: rgba(187, 187, 187, 0.2);"
+                />
+                <span
+                  class="italic"
+                  style="font-family: 'Satoshi', sans-serif; font-size: 10px; font-weight: 500; line-height: 17px; color: rgb(136, 136, 136);"
+                >
+                  <strong>I agree to receive promotional messages sent via an autodialer, and this agreement isn't a condition of any purchase.</strong>
+                  <br /><br />
+                  <strong>I also agree to the <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Terms of Service</a> and <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Privacy Policy</a>. 4 Msgs/Month. Msg &amp; Data rates may apply. Text HELP for help or STOP to stop.</strong>
+                </span>
+              </label>
+              <button type="submit" class="mt-1 w-full" style="border-radius: 10px;">
+                <div class="w-full py-4" style="background-color: rgb(36, 99, 69); border-radius: 40px;">
+                  <p class="text-center text-white uppercase" style="font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700; line-height: 17px;">
+                    {hero.formButtonText || 'Get My Free Consultation'}
+                  </p>
+                </div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Logo Slider + License -->
+<LogoSlider />
+<div class="w-full text-center" style="background-color: #fff; margin-top: -40px; padding-bottom: 40px;">
+  <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">
+    CA Contractor License #1082377
+  </p>
+</div>
+
+<!-- Reviews Section -->
+{reviews && (
+  <section class="w-full" style="background-color: #f9f8f6; padding: 105px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <!-- Section Label -->
+      <div class="mb-4 flex items-center gap-2">
+        <div class="flex gap-0.5">
+          {Array.from({ length: 5 }).map(() => (
+            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="#FFDE21">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          ))}
+        </div>
+        <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(104, 104, 105); text-transform: uppercase; letter-spacing: 0.05em;">
+          On Google Reviews
+        </span>
+      </div>
+
+      <h2
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;"
+      >
+        {reviews.sectionTitle}
+      </h2>
+
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <!-- Featured review -->
+        <div class="lg:col-span-2 rounded-2xl p-8" style="background-color: rgb(13, 43, 29);">
+          <div class="flex gap-0.5 mb-4">
+            {Array.from({ length: 5 }).map(() => (
+              <svg class="h-[20px] w-[20px]" viewBox="0 0 24 24" fill="#FFDE21">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            ))}
+          </div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 18px; line-height: 30px; color: rgba(255,255,255,0.92); margin-bottom: 24px;">
+            "{reviews.featured.text}"
+          </p>
+          <div>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: white; margin-bottom: 2px;">{reviews.featured.name}</p>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.6);">{reviews.featured.location}</p>
+          </div>
+        </div>
+
+        <!-- Side reviews -->
+        <div class="flex flex-col gap-6">
+          {reviews.side.map((review) => (
+            <div class="rounded-2xl p-6" style="background-color: white; border: 1px solid #e8e5df;">
+              <div class="flex gap-0.5 mb-3">
+                {Array.from({ length: 5 }).map(() => (
+                  <svg class="h-[16px] w-[16px]" viewBox="0 0 24 24" fill="#FFDE21">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                ))}
+              </div>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+                "{review.text}"
+              </p>
+              <div>
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29);">{review.name}</p>
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">{review.location}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- Services / Pricing Cards -->
+{pricingCards && pricingCards.length > 0 && (
+  <section class="w-full" style="background-color: #fff; padding: 105px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: rgb(36, 99, 69); margin-bottom: 12px;">
+        {pricingLabel || 'Our Services'}
+      </p>
+      <h2
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 48px;"
+      >
+        {pricingTitle || `ADU Services Built for ${city} Homeowners`}
+      </h2>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {pricingCards.map((card) => (
+          card.highlighted ? (
+            <div class="pricing-card relative flex flex-col rounded-2xl p-6" style="background-color: rgb(13, 43, 29); border: 2px solid rgb(13, 43, 29);">
+              {card.badge && (
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1" style={`background-color: ${card.badgeColor === 'yellow' ? 'rgb(255, 222, 33)' : 'rgb(36, 99, 69)'};`}>
+                  <span style={`font-family: 'Satoshi', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; color: ${card.badgeColor === 'yellow' ? 'rgb(13, 43, 29)' : 'white'}; letter-spacing: 0.05em;`}>{card.badge}</span>
+                </div>
+              )}
+              <h3 style={`font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 4px;${card.badge ? ' margin-top: 8px;' : ''}`}>{card.title}</h3>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 16px;">{card.subtitle}</p>
+              <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 28px; font-weight: 800; color: rgb(255, 222, 33); margin-bottom: 4px;">{card.price}</p>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 20px;">{card.sqft}</p>
+              <ul class="flex flex-col gap-2 mt-auto">
+                {card.features.map(item => (
+                  <li class="flex items-start gap-2">
+                    <svg class="h-[16px] w-[16px] shrink-0 mt-1" viewBox="0 0 20 20"><path d="M16.667 5L7.5 14.167L3.333 10" stroke="#FFDE21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                    <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.85); line-height: 20px;">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(255, 222, 33); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29);">
+                Get a Quote
+              </a>
+            </div>
+          ) : (
+            <div class={`pricing-card flex flex-col rounded-2xl p-6 ${card.badge ? 'relative' : ''}`} style="background-color: white; border: 1px solid #e8e5df;">
+              {card.badge && (
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1" style={`background-color: ${card.badgeColor === 'yellow' ? 'rgb(255, 222, 33)' : 'rgb(36, 99, 69)'};`}>
+                  <span style={`font-family: 'Satoshi', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; color: ${card.badgeColor === 'yellow' ? 'rgb(13, 43, 29)' : 'white'}; letter-spacing: 0.05em;`}>{card.badge}</span>
+                </div>
+              )}
+              <h3 style={`font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;${card.badge ? ' margin-top: 8px;' : ''}`}>{card.title}</h3>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105); margin-bottom: 16px;">{card.subtitle}</p>
+              <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 28px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">{card.price}</p>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); margin-bottom: 20px;">{card.sqft}</p>
+              <ul class="flex flex-col gap-2 mt-auto">
+                {card.features.map(item => (
+                  <li class="flex items-start gap-2">
+                    <svg class="h-[16px] w-[16px] shrink-0 mt-1" viewBox="0 0 20 20"><path d="M16.667 5L7.5 14.167L3.333 10" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                    <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); line-height: 20px;">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(36, 99, 69); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: white;">
+                Get a Quote
+              </a>
+            </div>
+          )
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- Why Build an ADU Stats -->
+{whyBuildStats && (
+  <section class="w-full" style="background-color: #f9f8f6; padding: 105px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2
+        class="text-center"
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;"
+      >
+        {whyBuildStats.title}
+      </h2>
+      <p class="text-center mx-auto" style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 28px; color: rgb(104, 104, 105); max-width: 640px; margin-bottom: 48px;">
+        {whyBuildStats.subtitle}
+      </p>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {whyBuildStats.stats.map((stat) => (
+          <div class="rounded-2xl p-8 text-center" style="background-color: white; border: 1px solid #e8e5df;">
+            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
+              {stat.icon === 'dollar' && (
+                <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              )}
+              {stat.icon === 'trend' && (
+                <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                  <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+              )}
+              {stat.icon === 'document' && (
+                <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              )}
+            </div>
+            <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 36px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">{stat.value}</p>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 8px;">{stat.label}</p>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgb(104, 104, 105);">
+              {stat.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- Trusted ADU Experts -->
+{trustedExperts && (
+  <section class="w-full" style="background-color: rgb(13, 43, 29); padding: 105px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+        <div>
+          <h2
+            style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: white; text-transform: uppercase; margin-bottom: 20px;"
+          >
+            {trustedExperts.title}
+          </h2>
+          {trustedExperts.paragraphs.map((p, i) => (
+            <p style={`font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8); margin-bottom: ${i === trustedExperts.paragraphs.length - 1 ? '32' : '24'}px;`}>
+              {p}
+            </p>
+          ))}
+          <a
+            href={trustedExperts.ctaHref}
+            class="inline-block transition-opacity hover:opacity-90"
+            style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; line-height: 24px; background-color: rgb(255, 222, 33); color: rgb(13, 43, 29); border-radius: 8px; padding: 12px 28px;"
+          >
+            {trustedExperts.ctaText}
+          </a>
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+          {trustedExperts.stats.map((stat) => (
+            <div class="rounded-xl p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
+              <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 42px; font-weight: 800; color: rgb(255, 222, 33);">{stat.value}</p>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7);">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- Our Process (desktop) -->
+{processSection && (
+  <section class="hidden lg:block w-full" style="background-color: #fff; padding: 105px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 12px;">HOW IT WORKS</p>
+      <h2
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 48px;"
+      >
+        {processSection.title}
+      </h2>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+        {processSection.steps.map((step, i) => (
+          <div>
+            <div style="width: 48px; height: 48px; border-radius: 50%; background-color: rgb(36, 99, 69); color: white; display: flex; align-items: center; justify-content: center; font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 16px;">{i + 1}</div>
+            <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">{step.title}</h3>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- Recent ADU Projects -->
+{projects && projects.length > 0 && (
+  <section class="w-full" style="background-color: #fff; padding: 105px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;"
+      >
+        {projectsTitle || `Recent ADU Projects in ${city}`}
+      </h2>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project) => {
+          const img = imageMap[project.imageKey] || serviceRoofing;
+          return (
+            <div class="group overflow-hidden rounded-2xl" style="border: 1px solid #e8e5df;">
+              <div class="relative w-full overflow-hidden" style="aspect-ratio: 4/3;">
+                <Image
+                  src={img}
+                  alt={project.title}
+                  width={600}
+                  height={450}
+                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute bottom-3 left-3 rounded-full px-3 py-1" style="background-color: rgba(13, 43, 29, 0.85);">
+                  <span style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; color: white;">{project.sqft}</span>
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">{project.title}</h3>
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">{project.location}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- Regulations Section -->
+{regulations && (
+  <section class="w-full" style="background-color: #f9f8f6; padding: 105px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2
+        class="text-center"
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;"
+      >
+        {regulations.title}
+      </h2>
+      <p class="text-center mx-auto" style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 28px; color: rgb(104, 104, 105); max-width: 640px; margin-bottom: 48px;">
+        {regulations.subtitle}
+      </p>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {regulations.items.map((item) => (
+          <div class="rounded-2xl p-6 text-center" style="background-color: white; border: 1px solid #e8e5df;">
+            <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 42px; font-weight: 800; color: rgb(36, 99, 69); margin-bottom: 8px;">{item.value}</p>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 4px;">{item.label}</p>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); line-height: 20px;">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- Neighborhoods Section -->
+{neighborhoods && (
+  <section class="w-full" style="background-color: #fff; padding: 105px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;"
+      >
+        {neighborhoods.title}
+      </h2>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 28px; color: rgb(104, 104, 105); margin-bottom: 40px; max-width: 640px;">
+        {neighborhoods.subtitle}
+      </p>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {neighborhoods.items.map((hood) => (
+          <div class="rounded-2xl p-8" style="background-color: #f9f8f6; border: 1px solid #e8e5df;">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
+              {hood.icon === 'home' && (
+                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+              )}
+              {hood.icon === 'people' && (
+                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              )}
+              {hood.icon === 'building' && (
+                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                  <line x1="12" y1="18" x2="12" y2="18"></line>
+                  <line x1="8" y1="6" x2="16" y2="6"></line>
+                  <line x1="8" y1="10" x2="16" y2="10"></line>
+                  <line x1="8" y1="14" x2="16" y2="14"></line>
+                </svg>
+              )}
+            </div>
+            <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">{hood.title}</h3>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 24px; color: rgb(104, 104, 105);">
+              {hood.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- Mobile: Our Process + Resources -->
+{mobileProcessResources && (
+  <section class="w-full md:hidden" style="background-color: #0d2b1d; padding: 48px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 28px; line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
+        {mobileProcessResources.processTitle}
+      </h2>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgba(255,255,255,0.7); margin-bottom: 24px;">
+        {mobileProcessResources.processSummary}
+      </p>
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 28px; line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px; margin-top: 32px;">
+        {mobileProcessResources.resourcesTitle}
+      </h2>
+      <div class="grid grid-cols-1 gap-4">
+        {mobileProcessResources.nearbyLinks.map((link) => (
+          <a href={link.href} class="rounded-xl p-5 block" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 4px;">{link.title}</h3>
+            <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
+          </a>
+        ))}
+      </div>
+      <div class="mt-6 grid grid-cols-1 gap-4">
+        {mobileProcessResources.infoCards.map((card) => (
+          <div class="rounded-xl p-5" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 8px;">{card.title}</h3>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.6);">
+              {card.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- FAQ Section -->
+{faqs && faqs.length > 0 && (
+  <section class="w-full" style="background-color: #f9f8f6; padding: 0;">
+    <div class="mx-auto" style="max-width: 1170px; padding: 80px 15px;">
+      <div class="flex flex-col items-start justify-between md:flex-row md:items-center" style="gap: 16px; margin-bottom: 40px;">
+        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; font-weight: 400; line-height: 50px; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin: 0;">
+          {faqTitle || `Common Questions About ${city} ADUs`}
+        </h2>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; line-height: 150%; color: rgb(13, 43, 29); text-align: right; margin: 0;" class="whitespace-normal md:whitespace-nowrap">
+          Have more questions?{' '}
+          <a href="tel:6509773351" style="font-weight: 600; color: rgb(13, 43, 29); text-decoration: none;">
+            Call (650) 977-3351
+          </a>
+        </p>
+      </div>
+
+      <div class="mx-auto" style="max-width: 100%;">
+        {faqs.map((faq) => (
+          <details
+            class="group"
+            style="border-bottom: 1px solid rgb(196, 191, 182); background-color: transparent;"
+          >
+            <summary class="flex cursor-pointer items-center justify-between list-none [&::-webkit-details-marker]:hidden" style="padding: 20px 0;">
+              <span style="font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); padding-right: 16px;">
+                {faq.question}
+              </span>
+              <span class="relative flex shrink-0 items-center justify-center" style="width: 24px; height: 24px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" style="width: 100%; height: 100%; display: inline-block; fill: rgb(3, 7, 18); color: rgb(3, 7, 18);">
+                  <g><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z" /></g>
+                </svg>
+              </span>
+            </summary>
+            <div style="padding-bottom: 20px; padding-right: 48px;">
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); opacity: 0.7; margin: 0;">
+                {faq.answer}
+              </p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- Contact / CTA Section -->
+{contact && (
+  <section id="contact" class="w-full" style="background-color: rgb(255, 255, 255); padding: 105px 0;">
+    <div class="mx-auto flex flex-col lg:flex-row" style="max-width: 1170px; padding: 0 15px; gap: 42px;">
+
+      <!-- Left Column — Contact Info -->
+      <div class="flex w-full flex-col lg:w-1/2">
+        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; font-weight: 400; line-height: 50px; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin: 0 0 16px;">
+          {contact.title}
+        </h2>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 28px; color: rgb(104, 104, 105); margin-bottom: 32px;">
+          {contact.subtitle}
+        </p>
+
+        <!-- Contact details -->
+        <div class="flex flex-col" style="gap: 16px; margin-bottom: 32px;">
+          <div class="flex items-center" style="gap: 10px;">
+            <div class="shrink-0" style="width: 17px; height: 17px;">
+              <Image src={iconContactPhone} alt="" width={17} height={17} style="display: block; width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+            <a href="tel:6509773351" style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; line-height: 24px; color: rgb(13, 43, 29); text-decoration: none;">
+              (650) 977-3351
+            </a>
+          </div>
+          <div class="flex items-center" style="gap: 10px;">
+            <div class="shrink-0" style="width: 16px; height: 13px;">
+              <Image src={iconContactEmail} alt="" width={16} height={13} style="display: block; width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+            <a href="mailto:support@hamilton-exteriors.com" style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; line-height: 24px; color: rgb(13, 43, 29); text-decoration: none;">
+              support@hamilton-exteriors.com
+            </a>
+          </div>
+          <div class="flex items-start" style="gap: 10px;">
+            <div class="shrink-0" style="width: 12px; height: 18px; margin-top: 3px;">
+              <Image src={iconContactClock} alt="" width={12} height={18} style="display: block; width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+            <span style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; line-height: 24px; color: rgb(13, 43, 29);">
+              21634 Redwood Rd Unit F, Castro Valley, CA 94546
+            </span>
+          </div>
+        </div>
+
+        <!-- Map image -->
+        <div class="relative w-full">
+          <Image
+            src={iconContactMap}
+            alt="Service area map"
+            width={566}
+            height={501}
+            class="w-full"
+            style="object-fit: cover; object-position: center top; border-radius: 16px;"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Right Column — Form -->
+      <div class="flex w-full flex-col lg:w-1/2" style="padding: 0;">
+        <div class="rounded-2xl" style="background-color: #f9f8f6; padding: 40px 32px;">
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 22px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">
+            {contact.formTitle}
+          </h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(136, 136, 136); margin-bottom: 24px;">
+            {contact.formSubtitle}
+          </p>
+
+          <form action="/success" method="POST" class="flex flex-col" style="gap: 12px;">
+            <input type="text" name="fullName" placeholder="Full Name" required class="contact-input" />
+            <input type="text" name="address" placeholder={contact.formAddressPlaceholder || `Project Address in ${city}`} required class="contact-input" />
+            <input type="email" name="email" placeholder="Email Address" required class="contact-input" />
+            <input type="tel" name="phone" placeholder="Phone Number" required class="contact-input" />
+
+            {contact.aduTypeOptions && contact.aduTypeOptions.length > 0 && (
+              <fieldset style="border: none; padding: 0; margin: 8px 0 0 0;">
+                <legend style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: rgb(136, 136, 136); margin-bottom: 8px;">
+                  What type of ADU are you interested in?
+                </legend>
+                <div class="flex flex-wrap" style="gap: 16px;">
+                  {contact.aduTypeOptions.map((type, i) => (
+                    <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
+                      <input
+                        type="radio"
+                        name="aduType"
+                        value={type}
+                        checked={i === 0}
+                        style="width: 16px; height: 16px; accent-color: rgb(37, 99, 70);"
+                      />
+                      {type}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            )}
+
+            {contact.showConsultationType && (
+              <fieldset style="border: none; padding: 0; margin: 8px 0 0 0;">
+                <legend style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: rgb(136, 136, 136); margin-bottom: 8px;">
+                  Preferred consultation type
+                </legend>
+                <div class="flex" style="gap: 24px;">
+                  <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
+                    <input type="radio" name="consultationType" value="In-Home" checked style="width: 16px; height: 16px; accent-color: rgb(37, 99, 70);" />
+                    In-Home Visit
+                  </label>
+                  <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
+                    <input type="radio" name="consultationType" value="Virtual" style="width: 16px; height: 16px; accent-color: rgb(37, 99, 70);" />
+                    Virtual
+                  </label>
+                </div>
+              </fieldset>
+            )}
+
+            <button
+              type="submit"
+              style="width: 100%; border-radius: 8px; background-color: rgb(37, 99, 70); border: none; padding: 14px 24px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; line-height: 150%; color: white; cursor: pointer; margin-top: 8px;"
+            >
+              {contact.formButtonText}
+            </button>
+          </form>
+
+          <p style="font-family: 'Satoshi', sans-serif; font-size: 10px; font-weight: 500; line-height: 150%; color: rgb(136, 136, 136); margin-top: 16px;">
+            By submitting this form, you agree to be contacted about your ADU project. We respect your privacy and will never share your information. View our <a href="/privacy-policy" style="color: rgb(136, 136, 136); text-decoration: underline;">Privacy Policy</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- More Resources (desktop) -->
+{resources && (
+  <section class="hidden lg:block w-full" style="background-color: #0d2b1d; padding: 105px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 12px;">RELATED RESOURCES</p>
+      <h2
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: white; text-transform: uppercase; margin-bottom: 16px;"
+      >
+        {resources.title}
+      </h2>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 28px; color: rgba(255, 255, 255, 0.7); margin-bottom: 48px; max-width: 640px;">
+        {resources.subtitle}
+      </p>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3 mb-12">
+        {resources.nearbyLinks.map((link) => (
+          <a href={link.href} class="rounded-2xl p-6 block" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 8px;">NEARBY CITY</p>
+            <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px;">{link.title}</h3>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.6); margin-bottom: 12px;">{link.description}</p>
+            <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
+          </a>
+        ))}
+      </div>
+
+      {resources.infoCards && resources.infoCards.length > 0 && (
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {resources.infoCards.map((card) => (
+            <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+              <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 12px;">{card.title}</h3>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 24px; color: rgba(255, 255, 255, 0.6);">
+                {card.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+)}
+
+<Footer />
+
+<style>
+  .hero-input {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: rgb(32, 26, 22);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 12px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .hero-input::placeholder {
+    color: rgb(134, 134, 134);
+  }
+  .hero-input:focus {
+    border-color: rgb(37, 99, 70);
+  }
+
+  .contact-input {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgb(196, 191, 182);
+    padding: 10px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: rgb(104, 104, 105);
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    transition: border-color 0.2s;
+  }
+  .contact-input::placeholder {
+    color: rgb(136, 136, 136);
+  }
+  .contact-input:focus {
+    border-color: rgb(37, 99, 70);
+  }
+
+  /* FAQ accordion toggle */
+  details[open] summary svg g path {
+    d: path("M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z");
+  }
+
+  /* Responsive headline scaling */
+  @media (max-width: 1023px) {
+    h1 {
+      font-size: 42px !important;
+      line-height: 52px !important;
+    }
+  }
+  @media (max-width: 767px) {
+    h1 {
+      font-size: 32px !important;
+      line-height: 42px !important;
+    }
+    h2 {
+      font-size: 30px !important;
+      line-height: 40px !important;
+    }
+  }
+</style>

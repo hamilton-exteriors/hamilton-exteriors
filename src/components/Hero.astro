@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import { actions } from 'astro:actions';
 import { heroBg, iconStar } from '../lib/images';
 
 interface Props {
@@ -12,13 +13,15 @@ interface Props {
   ctaText?: string;
   ctaHref?: string;
   heroImage?: ImageMetadata;
+  serviceType?: string;
+  serviceOptions?: string[];
 }
 
 const {
   formTitle = 'Get a FREE QUOTE',
   formAction = '/success',
   formSubtitle = "We'll contact you in 3-5 minutes to schedule a FREE roof inspection.",
-  headline = 'Bay Areas  Favorite  Construction  Company',
+  headline = "Bay Area's  Favorite  Construction  Company",
   headlineLines = headline.trim().split(/\s{2,}|\n/),
   badges = [
     'Licensed Bonded & Insured',
@@ -29,7 +32,13 @@ const {
   ctaText = 'Call Us - We Answer Fast',
   ctaHref = 'tel:6509773351',
   heroImage = heroBg,
+  serviceType,
+  serviceOptions,
 } = Astro.props;
+
+const hasPresetService = !!serviceType;
+const step2Options = serviceOptions || ['Roofing', 'Siding', 'Windows', 'Other'];
+const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 ---
 
 <section id="quote" class="relative w-full overflow-hidden" style="padding-top: 24px; padding-bottom: 32px;">
@@ -60,12 +69,12 @@ const {
   </div>
 
   <div
-    class="relative mx-auto flex flex-col gap-6 px-4 lg:flex-row lg:items-start lg:gap-12 lg:px-5"
+    class="relative mx-auto flex flex-col gap-6 px-4 lg:flex-row lg:items-start lg:gap-8 lg:px-5"
     style="max-width: 1294px; z-index: 3;"
   >
 
     <!-- Left Column -->
-    <div class="flex flex-col items-start lg:w-[45%] lg:py-6">
+    <div class="flex flex-col items-start lg:w-[55%] lg:py-6">
 
       <!-- Rating badge -->
       <div class="mb-4 inline-flex items-center gap-2 lg:mb-0">
@@ -85,23 +94,18 @@ const {
         </div>
         <span
           class="text-white/80"
-          style="font-family: 'DM Sans', sans-serif; font-size: clamp(0.875rem, 4vw, 1rem); font-weight: 400; letter-spacing: 0.01em;"
+          style="font-family: 'DM Sans', sans-serif; font-size: clamp(1rem, 4vw, 1.0625rem); font-weight: 500; letter-spacing: 0.01em;"
         >
           rated 5/5 based on 50 reviews.
         </span>
       </div>
 
-      <!-- Headline — fluid fit-to-width per line -->
+      <!-- Headline -->
       <h1
         class="hero-h1 w-full text-white"
-        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-weight: 400; text-transform: uppercase; display: flex; flex-direction: column; gap: 0; line-height: 0.75;"
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-weight: 400; text-transform: uppercase; line-height: 1.05; letter-spacing: 0.01em;"
       >
-        {headlineLines.map((line: string) => (
-          <span class="text-fit">
-            <span><span>{line}</span></span>
-            <span aria-hidden="true">{line}</span>
-          </span>
-        ))}
+        {headline}
       </h1>
 
       <!-- Trust badges -->
@@ -113,7 +117,7 @@ const {
                 <path d="M16.667 5L7.5 14.167L3.333 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
               </svg>
             </div>
-            <span class="text-white" style="font-family: 'DM Sans', sans-serif; font-size: clamp(1rem, 4.5vw, 1.125rem); line-height: 1.4;">{badge}</span>
+            <span class="text-white hero-badge-text" style="font-family: 'DM Sans', sans-serif; font-size: clamp(1.125rem, 4.5vw, 1.25rem); line-height: 1.4; font-weight: 500;">{badge}</span>
           </div>
         ))}
       </div>
@@ -121,7 +125,7 @@ const {
     </div>
 
     <!-- Right Column — Lead Form -->
-    <div class="w-full lg:w-[45%]">
+    <div class="w-full lg:w-[40%]">
       <!-- Form card -->
       <div class="overflow-hidden rounded-2xl lg:rounded-3xl" style="box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
         <div class="bg-white px-4 pb-4 pt-5 lg:px-6 lg:pb-6 lg:pt-6">
@@ -140,26 +144,28 @@ const {
           </p>
 
           <!-- 3-Step Form -->
-          <form action={formAction} method="POST" id="hero-form">
+          <form method="POST" action={formAction} id="hero-form" data-preset-service={serviceType || ''} data-has-options={serviceOptions ? 'true' : 'false'}>
             <!-- Step 1: Contact Info -->
             <div id="step-1" class="form-step">
               <div class="mb-3 flex items-center gap-2">
                 <div class="flex-1">
-                  <div class="h-1.5 w-full rounded-full" style="background: rgb(230,230,230);">
-                    <div class="h-full rounded-full" style="width: 33%; background: var(--color-primary);"></div>
+                  <div class="h-1.5 w-full rounded-full" style="background: var(--color-border);">
+                    <div class="h-full rounded-full" style={`width: ${hasPresetService && !serviceOptions ? '50' : '33'}%; background: var(--color-primary);`}></div>
                   </div>
                 </div>
-                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">1/3</span>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: var(--color-muted);">{hasPresetService && !serviceOptions ? '1/2' : '1/3'}</span>
               </div>
               <div class="flex flex-col gap-3">
                 <label for="hero-name" class="sr-only">Full Name</label>
-                <input type="text" id="hero-name" name="fullName" placeholder="Full Name" required class="hero-input w-full" />
+                <input type="text" id="hero-name" name="fullName" placeholder="Full Name" required autocomplete="name" maxlength="100" class="hero-input w-full" />
                 <label for="hero-phone" class="sr-only">Phone Number</label>
-                <input type="tel" id="hero-phone" name="phone" placeholder="Phone Number" required class="hero-input w-full" />
+                <input type="tel" id="hero-phone" name="phone" placeholder="Phone Number" required autocomplete="tel" inputmode="tel" maxlength="15" class="hero-input w-full" />
                 <label for="hero-email" class="sr-only">Email</label>
-                <input type="email" id="hero-email" name="email" placeholder="Email" required class="hero-input w-full" />
+                <input type="email" id="hero-email" name="email" placeholder="Email" required autocomplete="email" inputmode="email" maxlength="254" class="hero-input w-full" />
                 <label for="hero-address" class="sr-only">Project Address</label>
-                <input type="text" id="hero-address" name="address" placeholder="Project Address" required class="hero-input w-full" />
+                <mapbox-address-autofill access-token={mapboxToken} country="us" theme={JSON.stringify({ variables: { fontFamily: "'DM Sans', sans-serif", colorText: "#1A1A1A", colorPrimary: "#256346", borderRadius: "10px", unit: "14px" }})}>
+                  <input type="text" id="hero-address" name="address" placeholder="Project Address" required autocomplete="address-line1" maxlength="200" class="hero-input w-full" />
+                </mapbox-address-autofill>
               </div>
               <button
                 type="button"
@@ -167,34 +173,37 @@ const {
                 class="mt-4 w-full rounded-full py-3.5 text-center font-bold uppercase text-white"
                 style="background-color: var(--color-yellow); color: var(--color-primary); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 0.875rem; letter-spacing: 0.05em;"
               >
-                Next: Choose Your Service
+                {hasPresetService && serviceOptions ? `Next: Choose Your ${serviceType}` : hasPresetService ? 'Next: Tell Us About Your Project' : 'Next: Choose Your Service'}
               </button>
             </div>
 
             <!-- Step 2: Service Selection -->
             <div id="step-2" class="form-step" style="display: none;">
               <div class="mb-3 flex items-center gap-2">
-                <button type="button" id="back-btn-1" class="shrink-0" style="color: var(--color-primary);">
+                <button type="button" id="back-btn-1" class="shrink-0" aria-label="Go back" style="color: var(--color-primary);">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 </button>
                 <div class="flex-1">
-                  <div class="h-1.5 w-full rounded-full" style="background: rgb(230,230,230);">
+                  <div class="h-1.5 w-full rounded-full" style="background: var(--color-border);">
                     <div class="h-full rounded-full" style="width: 66%; background: var(--color-primary);"></div>
                   </div>
                 </div>
-                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">2/3</span>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: var(--color-muted);">2/3</span>
               </div>
-              <p class="mb-1 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--color-heading);">What do you need help with?</p>
-              <p class="mb-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">Select one to continue</p>
-              <input type="hidden" name="service" id="service-input" />
+              <p class="mb-1 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--color-heading);">
+                {hasPresetService ? `What type of ${serviceType?.toLowerCase()}?` : 'What do you need help with?'}
+              </p>
+              <p class="mb-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: var(--color-muted);">Select one to continue</p>
+              <input type="hidden" name="service" id="service-input" value={serviceType || ''} />
+              <input type="hidden" name="serviceDetail" id="service-detail-input" />
               <div class="grid grid-cols-2 gap-2">
-                {['Roofing', 'Siding', 'Windows', 'Other'].map((service) => (
+                {step2Options.map((option) => (
                   <button
                     type="button"
                     class="service-btn"
-                    data-service={service}
+                    data-service={option}
                   >
-                    {service}
+                    {option}
                   </button>
                 ))}
               </div>
@@ -203,15 +212,15 @@ const {
             <!-- Step 3: Details + Submit -->
             <div id="step-3" class="form-step" style="display: none;">
               <div class="mb-3 flex items-center gap-2">
-                <button type="button" id="back-btn-2" class="shrink-0" style="color: var(--color-primary);">
+                <button type="button" id="back-btn-2" class="shrink-0" aria-label="Go back" style="color: var(--color-primary);">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 </button>
                 <div class="flex-1">
-                  <div class="h-1.5 w-full rounded-full" style="background: rgb(230,230,230);">
+                  <div class="h-1.5 w-full rounded-full" style="background: var(--color-border);">
                     <div class="h-full rounded-full" style="width: 100%; background: var(--color-primary);"></div>
                   </div>
                 </div>
-                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">3/3</span>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: var(--color-muted);">3/3</span>
               </div>
               <label for="hero-message" class="sr-only">Project details</label>
               <textarea
@@ -221,18 +230,19 @@ const {
                 placeholder="Tell us about your project (optional)"
                 class="hero-input w-full resize-none"
               ></textarea>
-              <label class="mt-3 flex items-start gap-2 cursor-pointer">
+              <div class="mt-3 flex items-start gap-2">
                 <input
                   type="checkbox"
+                  id="consent-checkbox"
                   name="consent"
                   required
                   class="mt-0.5 h-4 w-4 shrink-0"
                   style="border-radius: 4px; accent-color: var(--color-primary);"
                 />
-                <span style="font-family: 'DM Sans', sans-serif; font-size: 10px; line-height: 1.5; color: var(--color-light);">
+                <label for="consent-checkbox" style="font-family: 'DM Sans', sans-serif; font-size: 10px; line-height: 1.5; color: var(--color-light); cursor: pointer;">
                   I agree to the <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Terms</a> & <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Privacy Policy</a>. Msg & data rates may apply.
-                </span>
-              </label>
+                </label>
+              </div>
               <button
                 type="submit"
                 class="mt-4 w-full rounded-full py-3.5 text-center font-bold uppercase text-white"
@@ -243,7 +253,7 @@ const {
             </div>
           </form>
           <!-- Trust micro-copy -->
-          <p class="mt-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 0.6875rem; color: rgb(150,150,150);">
+          <p class="mt-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 0.6875rem; color: var(--color-muted);">
             Your info is safe &bull; 100% Free &bull; No obligation
           </p>
         </div>
@@ -253,12 +263,20 @@ const {
 </section>
 
 <script>
+  import { actions } from 'astro:actions';
+
   const serviceBtns = document.querySelectorAll('.service-btn');
   const step1 = document.getElementById('step-1');
   const step2 = document.getElementById('step-2');
   const step3 = document.getElementById('step-3');
   const serviceInput = document.getElementById('service-input') as HTMLInputElement;
+  const serviceDetailInput = document.getElementById('service-detail-input') as HTMLInputElement;
   const heroForm = document.getElementById('hero-form') as HTMLFormElement;
+
+  const presetService = heroForm?.dataset.presetService || '';
+  const hasOptions = heroForm?.dataset.hasOptions === 'true';
+  // Skip Step 2 entirely when service is preset and no sub-options
+  const skipStep2 = !!presetService && !hasOptions;
 
   function showStep(step: HTMLElement | null) {
     [step1, step2, step3].forEach(s => {
@@ -277,7 +295,7 @@ const {
     });
   });
 
-  // Step 1 → Step 2: validate
+  // Step 1 → Step 2 (or Step 3 if skipping): validate
   document.getElementById('next-btn-1')?.addEventListener('click', () => {
     const fields = ['fullName', 'phone', 'email', 'address'].map(n =>
       heroForm.querySelector(`input[name="${n}"]`) as HTMLInputElement
@@ -295,14 +313,19 @@ const {
       email.style.borderColor = 'var(--color-error)';
       valid = false;
     }
-    if (valid) showStep(step2);
+    if (valid) showStep(skipStep2 ? step3 : step2);
   });
 
   // Step 2: service selection auto-advances
   serviceBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const service = (btn as HTMLElement).dataset.service || '';
-      if (serviceInput) serviceInput.value = service;
+      // If preset service exists, this is a sub-option (e.g., "Asphalt Shingles")
+      if (presetService) {
+        if (serviceDetailInput) serviceDetailInput.value = service;
+      } else {
+        if (serviceInput) serviceInput.value = service;
+      }
       serviceBtns.forEach(b => b.classList.remove('service-btn--active'));
       btn.classList.add('service-btn--active');
       setTimeout(() => showStep(step3), 250);
@@ -311,39 +334,89 @@ const {
 
   // Back buttons
   document.getElementById('back-btn-1')?.addEventListener('click', () => showStep(step1));
-  document.getElementById('back-btn-2')?.addEventListener('click', () => showStep(step2));
+  document.getElementById('back-btn-2')?.addEventListener('click', () => showStep(skipStep2 ? step1 : step2));
 
-  // Form submit — show success state
-  heroForm?.addEventListener('submit', (e) => {
+  // Form submit — use Astro Action
+  heroForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const formCard = heroForm.closest('.lg\\:!rounded-\\[30px\\]') || heroForm.parentElement;
-    if (formCard) {
-      formCard.innerHTML = `
-        <div style="text-align: center; padding: 40px 20px;">
-          <div style="font-size: 48px; margin-bottom: 12px;">✓</div>
-          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 1.5rem; color: var(--color-primary); text-transform: uppercase; margin-bottom: 8px;">We Got Your Request!</h3>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 0.875rem; color: rgb(100,100,100); line-height: 1.5;">We'll call you within <strong>5 minutes</strong> to schedule your free inspection.</p>
-          <a href="tel:6509773351" style="display: inline-block; margin-top: 16px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 700; color: var(--color-primary); text-decoration: underline;">Or call us now: (650) 977-3351</a>
-        </div>
-      `;
+    const submitBtn = heroForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const originalText = submitBtn?.textContent || '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+    }
+
+    try {
+      const formData = new FormData(heroForm);
+      const { data, error } = await actions.submitLead(formData);
+
+      if (error) {
+        // Show field-level errors
+        if ('fields' in error) {
+          const fields = error.fields as Record<string, string[]>;
+          for (const [fieldName, messages] of Object.entries(fields)) {
+            const input = heroForm.querySelector(`[name="${fieldName}"]`) as HTMLElement;
+            if (input) {
+              input.style.borderColor = 'var(--color-error)';
+              // Find or create error message
+              let errEl = input.parentElement?.querySelector('.field-error') as HTMLElement;
+              if (!errEl) {
+                errEl = document.createElement('p');
+                errEl.className = 'field-error';
+                errEl.style.cssText = "font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: var(--color-error); margin: 4px 0 0;";
+                input.insertAdjacentElement('afterend', errEl);
+              }
+              errEl.textContent = messages[0];
+            }
+          }
+          // Go back to the step with the error
+          if (fields.fullName || fields.phone || fields.email || fields.address) {
+            showStep(step1);
+          } else if (fields.consent) {
+            showStep(step3);
+          }
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+        return;
+      }
+
+      // Success — show confirmation
+      const formCard = heroForm.parentElement;
+      if (formCard) {
+        formCard.innerHTML = `
+          <div style="text-align: center; padding: 40px 20px;">
+            <div style="width: 48px; height: 48px; margin: 0 auto 12px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 1.5rem; color: var(--color-primary); text-transform: uppercase; margin-bottom: 8px;">We Got Your Request!</h3>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 0.875rem; color: var(--color-muted); line-height: 1.5;">We'll call you within <strong>5 minutes</strong> to schedule your free inspection.</p>
+            <a href="tel:6509773351" style="display: inline-block; margin-top: 16px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 700; color: var(--color-primary); text-decoration: underline;">Or call us now: (650) 977-3351</a>
+          </div>
+        `;
+      }
+    } catch (err) {
+      // Network error fallback
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+      alert('Something went wrong. Please call us at (650) 977-3351.');
     }
   });
 </script>
 
 <style>
-  /* Tablet: slightly looser line-height */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .hero-h1 {
-      line-height: 0.85 !important;
-    }
-  }
 
-  /* Desktop: natural flowing text */
+  /* Hero headline: mobile/tablet full-width, desktop narrower column */
+  .hero-h1 {
+    font-size: clamp(48px, 12vw, 72px);
+  }
   @media (min-width: 1024px) {
     .hero-h1 {
-      display: block !important;
-      line-height: 1.1 !important;
-      flex-direction: unset !important;
+      font-size: clamp(44px, 3.8vw, 56px);
     }
   }
 
@@ -396,6 +469,9 @@ const {
     background: var(--color-green-light);
     transform: scale(1.02);
   }
+  .service-btn:active {
+    transform: scale(0.97);
+  }
   .service-btn:focus-visible {
     outline: 2px solid var(--color-yellow);
     outline-offset: 2px;
@@ -404,83 +480,7 @@ const {
     border-color: var(--color-primary);
     background: var(--color-primary);
     color: white;
-  }
-  /* Mobile: fit-to-width per line with vw fallback */
-  .text-fit {
-    display: flex;
-    container-type: inline-size;
-    --fit-length: initial;
-    --fit-sentinel: var(--fit-length, 9999px);
-    --fit-max: 1.5em;
-    margin-bottom: -0.2em;
-  }
-
-  .text-fit > [aria-hidden] {
-    visibility: hidden;
-    position: absolute;
-    pointer-events: none;
-  }
-
-  .text-fit > :not([aria-hidden]) {
-    flex-grow: 1;
-    container-type: inline-size;
-    --fit-length: 100cqi;
-    --fit-space: var(--fit-length);
-  }
-
-  .text-fit > :not([aria-hidden]) > * {
-    --fit-sentinel: inherit;
-    --fit-length: 100cqi;
-    --fit-ratio: tan(atan2(
-      var(--fit-space),
-      var(--fit-space) - var(--fit-length)
-    ));
-    --fit-size: clamp(
-      1em,
-      1em * var(--fit-ratio),
-      var(--fit-max, infinity * 1px) - var(--fit-sentinel)
-    );
-    inline-size: var(--fit-space);
-    display: block;
-    /* Use vw as reliable fallback, cqi as enhancement */
-    font-size: 13vw;
-    font-size: calc(var(--fit-size) * 0.88);
-    white-space: nowrap;
-    letter-spacing: 0.01em;
-  }
-
-  /* Tablet: slightly smaller fit-to-width, no negative margin overlap */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .text-fit {
-      margin-bottom: -0.15em;
-    }
-    .text-fit > :not([aria-hidden]) > * {
-      font-size: 8vw;
-      font-size: calc(var(--fit-size) * 0.88);
-    }
-  }
-
-  /* Desktop: natural text flow, no fit-to-width */
-  @media (min-width: 1024px) {
-    .text-fit {
-      display: contents;
-      container-type: normal;
-      margin-bottom: 0;
-    }
-    .text-fit > [aria-hidden] {
-      display: none;
-    }
-    .text-fit > :not([aria-hidden]) {
-      container-type: normal;
-      display: contents;
-    }
-    .text-fit > :not([aria-hidden]) > * {
-      font-size: clamp(48px, 4vw, 56px);
-      inline-size: auto;
-      white-space: normal;
-      display: inline;
-      text-shadow: none;
-    }
+    transform: scale(0.97);
   }
 
   .hero-input {
@@ -489,8 +489,8 @@ const {
     font-weight: 400;
     line-height: 1.6;
     letter-spacing: 0em;
-    color: rgb(32, 26, 22);
-    background-color: rgb(255, 255, 255);
+    color: var(--color-charcoal);
+    background-color: var(--color-white);
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 12px;
@@ -502,19 +502,44 @@ const {
   }
   .hero-input:focus {
     border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 70, 0.1);
   }
 
-  /* Responsive headline scaling */
-  @media (max-width: 1023px) {
-    h1 {
-      font-size: 42px !important;
-      line-height: 1.2 !important;
-    }
+  /* Mapbox Address Autofill — match form design */
+  mapbox-address-autofill {
+    display: block;
+    width: 100%;
   }
-  @media (max-width: 767px) {
-    h1 {
-      font-size: 36px !important;
-      line-height: 1.2 !important;
-    }
+  mapbox-address-autofill .mapboxgl-ctrl-geocoder,
+  mapbox-address-autofill .Results {
+    font-family: 'DM Sans', sans-serif !important;
   }
+  mapbox-address-autofill .suggestions {
+    font-family: 'DM Sans', sans-serif !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    overflow: hidden !important;
+    margin-top: 4px !important;
+  }
+  mapbox-address-autofill .suggestion {
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.875rem !important;
+    padding: 10px 12px !important;
+    color: var(--color-charcoal) !important;
+    cursor: pointer !important;
+  }
+  mapbox-address-autofill .suggestion:hover,
+  mapbox-address-autofill .suggestion--active {
+    background-color: var(--color-green-bg) !important;
+  }
+  mapbox-address-autofill .suggestion-name {
+    font-weight: 600 !important;
+    color: var(--color-heading) !important;
+  }
+  mapbox-address-autofill .suggestion-address {
+    font-size: 0.8125rem !important;
+    color: var(--color-muted) !important;
+  }
+
 </style>

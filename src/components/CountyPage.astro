@@ -1,0 +1,684 @@
+---
+import { Image } from 'astro:assets';
+import type { CountyPageData } from '../lib/county-page-types';
+import AnnouncementBar from './AnnouncementBar.astro';
+import Navbar from './Navbar.astro';
+import Hero from './Hero.astro';
+import LogoSlider from './LogoSlider.astro';
+import ReviewLogos from './ReviewLogos.astro';
+import FAQ from './FAQ.astro';
+import ContactUs from './ContactUs.astro';
+import Footer from './Footer.astro';
+import { roofingAsphalt, ctaAssistant } from '../lib/images';
+
+interface Props {
+  data: CountyPageData;
+}
+
+const { data } = Astro.props;
+const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
+---
+
+<AnnouncementBar />
+<Navbar />
+<Hero
+  formTitle={data.heroFormTitle}
+  headline={data.heroHeadline}
+/>
+<LogoSlider />
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CITIES GRID — Style A (heading) or Style B (label)     -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.cities && data.citySectionStyle === 'label' && (
+  <!-- Contra Costa style: CSS class-based city cards -->
+  <section class="cc-locations-section">
+    <div class="cc-locations-container">
+      <p class="cc-locations-label">LOCATIONS</p>
+      <div class="cc-locations-grid">
+        {data.cities.map((city) => (
+          <a href={city.slug} class="cc-city-card">
+            <div class="cc-city-card-image-wrap">
+              <Image
+                src={city.image}
+                alt={`${city.name}, CA`}
+                width={540}
+                height={312}
+                class="cc-city-card-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="cc-city-card-content">
+              <h3 class="cc-city-card-name">{city.name}, CA</h3>
+              <span class="cc-city-card-link">Explore Service Area &rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+{data.cities && data.citySectionStyle === 'heading' && (
+  <!-- Alameda/Marin style: inline-styled city cards -->
+  <section class="w-full bg-white" style="padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;">
+        Service Locations in {data.county}
+      </h2>
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {data.cities.map((city) => (
+          <a href={city.slug} class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 transition-shadow hover:shadow-lg">
+            <div class="w-full overflow-hidden" style="aspect-ratio: 540/312;">
+              <Image
+                src={city.image}
+                alt={`${city.name}, CA`}
+                width={540}
+                height={312}
+                class="h-full w-full object-cover transition-transform group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div style="padding: 16px 20px 20px;">
+              <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 600; line-height: 1.4; color: rgb(13, 43, 29); margin: 0 0 8px;">
+                {city.name}, CA
+              </h3>
+              <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: rgb(37, 99, 70);" class="group-hover:underline">
+                Explore Service Area &rarr;
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STYLE A: Why Choose (2-col text + image)               -->
+<!-- Used by: Alameda, Marin                                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.whyChoose && (
+  <section class="w-full" style="background-color: #f9f8f6; padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div>
+        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 36px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+          {data.whyChoose.heading}
+        </h2>
+        {data.whyChoose.paragraphs.map((p, i) => (
+          <p style={`font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);${i < data.whyChoose!.paragraphs.length - 1 ? ' margin-bottom: 16px;' : ''}`}>
+            {p}
+          </p>
+        ))}
+      </div>
+      <div class="hidden md:block rounded-2xl overflow-hidden">
+        <Image src={roofingAsphalt} alt="Hamilton Exteriors ADU project" width={1200} height={900} class="w-full h-auto object-cover" style="aspect-ratio: 632/478;" loading="lazy" />
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STYLE A: Benefits (dark bg, 2-col text + image)        -->
+<!-- Used by: Alameda, Marin                                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.benefits && (
+  <section class="w-full" style="background-color: #0d2b1d; padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div class="hidden md:block rounded-2xl overflow-hidden">
+        <Image src={ctaAssistant} alt="Hamilton Exteriors construction crew" width={1200} height={900} class="w-full h-auto object-cover" style="aspect-ratio: 632/626;" loading="lazy" />
+      </div>
+      <div>
+        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 36px); line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
+          {data.benefits.heading}
+        </h2>
+        {data.benefits.paragraphs.map((p, i) => (
+          <p style={`font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8);${i < data.benefits!.paragraphs.length - 1 ? ' margin-bottom: 16px;' : ''}`}>
+            {p}
+          </p>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STYLE A: ADU Types (light bg, 3 cards)                 -->
+<!-- Used by: Alameda, Marin                                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.aduTypes && (
+  <section class="w-full" style="background-color: #f9f8f6; padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 36px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        {data.aduTypes.heading}
+      </h2>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 32px;">
+        {data.aduTypes.subtitle}
+      </p>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {data.aduTypes.items.map((item) => (
+          <div style="padding: 24px; border: 1px solid rgb(230,230,230); border-radius: 12px; background: white;">
+            <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">{item.title}</h3>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STYLE A: Stats row                                     -->
+<!-- Used by: Alameda, Marin                                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.stats && (
+  <section class="w-full" style="background-color: white; padding: 48px 0;">
+    <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-2 md:grid-cols-4 gap-8">
+      {data.stats.map((stat) => (
+        <div class="text-center">
+          <div style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 48px; font-weight: 400; color: rgb(36, 99, 69);">{stat.value}</div>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+)}
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STYLE A: Mobile-only process steps                     -->
+<!-- Used by: Alameda                                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.mobileProcess && (
+  <section class="w-full md:hidden" style="background-color: white; padding: 48px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 28px; line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        {data.mobileProcess.heading}
+      </h2>
+      <div class="grid grid-cols-1 gap-4">
+        {data.mobileProcess.steps.map((step) => (
+          <div style="padding: 20px; border: 1px solid rgb(230,230,230); border-radius: 12px;">
+            <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">{step.title}</h3>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 24px; color: rgb(104, 104, 105);">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STYLE A: Mobile-only "Why Build" dark section          -->
+<!-- Used by: Alameda                                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.mobileWhyBuild && (
+  <section class="w-full md:hidden" style="background-color: #0d2b1d; padding: 48px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 28px; line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
+        {data.mobileWhyBuild.heading}
+      </h2>
+      {data.mobileWhyBuild.paragraphs.map((p, i) => (
+        <p style={`font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8);${i < data.mobileWhyBuild!.paragraphs.length - 1 ? ' margin-bottom: 16px;' : ''}`}>
+          {p}
+        </p>
+      ))}
+    </div>
+  </section>
+)}
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STYLE B: Why Section (intro paragraphs + card grid)    -->
+<!-- Used by: Contra Costa                                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.whySection && (
+  <section class="cc-why-section">
+    <div class="cc-why-container">
+      <h2 class="cc-why-heading">{data.whySection.heading}</h2>
+      {data.whySection.introParagraphs.map((p, i) => (
+        <p class="cc-why-card-text" style={`margin-bottom: ${i < data.whySection!.introParagraphs.length - 1 ? '20px' : '40px'}; max-width: 800px;`}>
+          {p}
+        </p>
+      ))}
+      <div class="cc-why-grid">
+        {data.whySection.cards.map((card) => (
+          <div class="cc-why-card">
+            <h3 class="cc-why-card-title">{card.title}</h3>
+            <p class="cc-why-card-text">{card.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STYLE B: ADU Services Desktop (dark bg, 3 cards)       -->
+<!-- Used by: Contra Costa                                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.aduServicesDesktop && (
+  <section class="hidden md:block w-full py-16 lg:py-20" style="background-color: #0d2b1d;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 12px;">{data.aduServicesDesktop.label}</p>
+      <h2
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 48px;"
+      >
+        {data.aduServicesDesktop.heading}
+      </h2>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {data.aduServicesDesktop.items.map((item) => (
+          <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 12px;">{item.title}</h3>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgba(255, 255, 255, 0.7);">
+              {item.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STYLE B: Mobile ADU Info (dark bg, simple text)        -->
+<!-- Used by: Contra Costa                                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.aduServicesMobile && (
+  <section class="w-full md:hidden" style="background-color: #0d2b1d; padding: 40px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 28px; line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
+        {data.aduServicesMobile.heading}
+      </h2>
+      {data.aduServicesMobile.paragraphs.map((p, i) => (
+        <p style={`font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgba(255,255,255,0.7);${i < data.aduServicesMobile!.paragraphs.length - 1 ? ' margin-bottom: 12px;' : ''}`}>
+          {p}
+        </p>
+      ))}
+    </div>
+  </section>
+)}
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STYLE B: Custom FAQ (inline accordion)                 -->
+<!-- Used by: Contra Costa                                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.customFaqs && (
+  <section class="cc-faq-section">
+    <div class="cc-faq-container">
+      <div class="cc-faq-header">
+        <h2 class="cc-faq-heading">Frequently Asked Questions</h2>
+        <p class="cc-faq-subtext">
+          Didn't find the answer to your question?{' '}
+          <a href="tel:6509773351" class="cc-faq-phone-link">Call Now (650) 977-3351</a>
+        </p>
+      </div>
+
+      <div class="cc-faq-accordion">
+        {data.customFaqs.map((faq) => (
+          <details class="cc-faq-item">
+            <summary class="cc-faq-question">
+              <span class="cc-faq-question-text">{faq.question}</span>
+              <span class="cc-faq-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false">
+                  <g><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z" /></g>
+                </svg>
+              </span>
+            </summary>
+            <div class="cc-faq-answer">
+              <p>{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STYLE C: Why Choose Expanded (with subtitle + cards)   -->
+<!-- Used by: Napa, Santa Clara                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.whyChooseExpanded && (
+  <section class="w-full bg-white py-16 md:py-32 lg:py-20">
+    <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div class="hidden lg:block rounded-2xl overflow-hidden">
+        <Image src={roofingAsphalt} alt="Hamilton Exteriors ADU project" width={1200} height={900} class="w-full h-auto object-cover" style="aspect-ratio: 632/478;" loading="lazy" />
+      </div>
+      <div>
+        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+          {data.whyChooseExpanded.heading}
+        </h2>
+        <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+          {data.whyChooseExpanded.subtitle}
+        </h3>
+        {data.whyChooseExpanded.paragraphs.map((p) => (
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+            {p}
+          </p>
+        ))}
+        <div class="mt-8 grid gap-6 md:grid-cols-2">
+          {data.whyChooseExpanded.featureCards.map((card) => (
+            <div style="padding: 20px; border: 1px solid rgb(230,230,230); border-radius: 8px;">
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">{card.title}</p>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">{card.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STYLE C: Why Build (with subtitle, 2-col + image)      -->
+<!-- Used by: Napa, Santa Clara                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.whyBuild && (
+  <section class="w-full bg-cream py-16 md:py-32 lg:py-20">
+    <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div>
+        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+          {data.whyBuild.heading}
+        </h2>
+        <h3 style="font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 500; color: rgb(13, 43, 29); margin-bottom: 20px;">
+          {data.whyBuild.subtitle}
+        </h3>
+        {data.whyBuild.paragraphs.map((p, i) => (
+          <p style={`font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);${i < data.whyBuild!.paragraphs.length - 1 ? ' margin-bottom: 16px;' : ''}`}>
+            {p}
+          </p>
+        ))}
+      </div>
+      <div class="hidden lg:block rounded-2xl overflow-hidden">
+        <Image src={ctaAssistant} alt="Hamilton Exteriors construction crew" width={1200} height={900} class="w-full h-auto object-cover" style="aspect-ratio: 632/626;" loading="lazy" />
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SHARED: ReviewLogos, FAQ, ContactUs, Footer            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+{data.showReviewLogos && <ReviewLogos />}
+{showFaqComponent && <FAQ />}
+<ContactUs />
+<Footer />
+
+<style>
+  /* ========== CONTRA COSTA LOCATIONS ========== */
+  .cc-locations-section {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 80px 0;
+  }
+  .cc-locations-container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  .cc-locations-label {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(13, 43, 29);
+    margin: 0 0 32px 0;
+  }
+  .cc-locations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 1023px) {
+    .cc-locations-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 639px) {
+    .cc-locations-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .cc-city-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgb(230, 230, 230);
+    text-decoration: none;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .cc-city-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+  .cc-city-card-image-wrap {
+    width: 100%;
+    aspect-ratio: 540 / 312;
+    overflow: hidden;
+  }
+  .cc-city-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .cc-city-card:hover .cc-city-card-image {
+    transform: scale(1.03);
+  }
+  .cc-city-card-content {
+    padding: 16px 20px 20px;
+  }
+  .cc-city-card-name {
+    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: rgb(13, 43, 29);
+    margin: 0 0 8px 0;
+  }
+  .cc-city-card-link {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(37, 99, 70);
+    text-decoration: none;
+  }
+  .cc-city-card:hover .cc-city-card-link {
+    text-decoration: underline;
+  }
+
+  /* ========== CONTRA COSTA WHY SECTION ========== */
+  .cc-why-section {
+    width: 100%;
+    background-color: rgb(248, 248, 248);
+    padding: 80px 0;
+  }
+  .cc-why-container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  .cc-why-heading {
+    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 0px;
+    color: rgb(13, 43, 29);
+    text-transform: uppercase;
+    margin: 0 0 40px 0;
+  }
+  @media (max-width: 767px) {
+    .cc-why-heading {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+  .cc-why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 1023px) {
+    .cc-why-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+  .cc-why-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .cc-why-card-title {
+    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: rgb(13, 43, 29);
+    margin: 0;
+  }
+  .cc-why-card-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 26px;
+    color: rgb(75, 75, 75);
+    margin: 0;
+  }
+
+  /* ========== CONTRA COSTA FAQ SECTION ========== */
+  .cc-faq-section {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 80px 0;
+  }
+  .cc-faq-container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  .cc-faq-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  @media (min-width: 768px) {
+    .cc-faq-header {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  .cc-faq-heading {
+    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 0px;
+    color: rgb(13, 43, 29);
+    text-transform: uppercase;
+    margin: 0;
+  }
+  @media (max-width: 767px) {
+    .cc-faq-heading {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+  .cc-faq-subtext {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 150%;
+    color: rgb(13, 43, 29);
+    margin: 0;
+    white-space: normal;
+  }
+  @media (min-width: 768px) {
+    .cc-faq-subtext {
+      text-align: right;
+      white-space: nowrap;
+    }
+  }
+  .cc-faq-phone-link {
+    font-weight: 400;
+    color: rgb(13, 43, 29);
+    text-decoration: none;
+  }
+  .cc-faq-accordion {
+    width: 100%;
+  }
+  .cc-faq-item {
+    border-bottom: 1px solid rgb(196, 191, 182);
+    background-color: rgb(255, 255, 255);
+  }
+  .cc-faq-question {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding: 20px 0;
+  }
+  .cc-faq-question::-webkit-details-marker {
+    display: none;
+  }
+  .cc-faq-question-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0px;
+    color: rgb(3, 7, 18);
+    padding-right: 16px;
+  }
+  .cc-faq-icon {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+  .cc-faq-icon svg {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    fill: rgb(3, 7, 18);
+    color: rgb(3, 7, 18);
+  }
+  .cc-faq-answer {
+    padding-bottom: 20px;
+    padding-right: 48px;
+  }
+  .cc-faq-answer p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    color: rgb(3, 7, 18);
+    opacity: 0.7;
+    margin: 0;
+  }
+  details[open] .cc-faq-icon svg g path {
+    d: path("M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z");
+  }
+</style>

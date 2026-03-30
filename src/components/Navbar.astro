@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { logoNav } from '../lib/images';
+import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 ---
 
 <nav class="navbar w-full bg-white sticky top-0 z-50" style="border-bottom: 1px solid rgba(0,0,0,0.06);">
@@ -21,7 +22,7 @@ import { logoNav } from '../lib/images';
     </a>
 
     <!-- Nav links (flex-1, centered within available space) -->
-    <div class="hidden lg:flex items-center justify-center" style="flex: 1 0 0px; padding-left: 78px;">
+    <div class="hidden xl:flex items-center justify-center" style="flex: 1 0 0px; padding-left: 78px;">
       <ul style="display: flex; align-items: center; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500; color: var(--color-heading); list-style: none; margin: 0; padding: 0; gap: 28px;">
         <li><a href="/#about" style="text-decoration: none; color: inherit; white-space: nowrap;">About Us</a></li>
         <li><a href="/#financing" style="text-decoration: none; color: inherit; white-space: nowrap;">Financing</a></li>
@@ -34,27 +35,27 @@ import { logoNav } from '../lib/images';
 
     <!-- Phone -->
     <a
-      href="tel:6509773351"
-      class="hidden lg:flex shrink-0 hover:opacity-70 transition-opacity whitespace-nowrap"
+      href={PHONE_HREF}
+      class="hidden xl:flex shrink-0 hover:opacity-70 transition-opacity whitespace-nowrap"
       style="font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; color: var(--color-heading);"
     >
-      (650) 977-3351
+      {PHONE_DISPLAY}
     </a>
 
     <!-- CTA -->
     <a
       href="/#quote"
-      class="hidden lg:flex shrink-0 text-center text-white transition-opacity hover:opacity-90 whitespace-nowrap"
+      class="hidden xl:flex shrink-0 text-center text-white transition-opacity hover:opacity-90 whitespace-nowrap"
       style="font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.02em; line-height: 1.5; background-color: var(--color-primary); border-radius: 8px; padding: 12px 28px;"
     >
       Schedule a FREE Inspection
     </a>
 
     <!-- Mobile -->
-    <div class="flex lg:hidden items-center">
-      <a href="tel:6509773351" class="whitespace-nowrap" style="font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; font-weight: 700; color: var(--color-heading);">(650) 977-3351</a>
+    <div class="flex xl:hidden items-center">
+      <a href={PHONE_HREF} class="whitespace-nowrap min-h-[44px] flex items-center" style="font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; font-weight: 700; color: var(--color-heading);">{PHONE_DISPLAY}</a>
     </div>
-    <button id="menu-toggle" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] z-50 -mr-1" aria-label="Toggle navigation menu" aria-expanded="false">
+    <button id="menu-toggle" class="xl:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] z-50 -mr-1" aria-label="Toggle navigation menu" aria-expanded="false">
       <span class="hamburger-line block w-6 h-[2px] rounded transition-all duration-300" style="background-color: var(--color-heading);"></span>
       <span class="hamburger-line block w-6 h-[2px] rounded transition-all duration-300" style="background-color: var(--color-heading);"></span>
       <span class="hamburger-line block w-6 h-[2px] rounded transition-all duration-300" style="background-color: var(--color-heading);"></span>
@@ -62,7 +63,7 @@ import { logoNav } from '../lib/images';
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="mobile-menu lg:hidden hidden absolute top-full left-0 w-full bg-white shadow-lg z-40">
+  <div id="mobile-menu" class="mobile-menu xl:hidden hidden absolute top-full left-0 w-full bg-white shadow-lg z-40">
     <div class="flex flex-col items-center gap-4 px-5 py-6" style="font-family: 'DM Sans', sans-serif;">
       <a href="/#about" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">About Us</a>
       <a href="/#financing" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Financing</a>
@@ -71,7 +72,7 @@ import { logoNav } from '../lib/images';
       <a href="/service-areas" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Service Areas</a>
       <a href="/#review" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Reviews</a>
       <hr class="w-full border-gray-200" />
-      <a href="tel:6509773351" class="text-[1rem] font-bold" style="color: var(--color-heading);">(650) 977-3351</a>
+      <a href={PHONE_HREF} class="text-[1rem] font-bold" style="color: var(--color-heading);">{PHONE_DISPLAY}</a>
       <a href="/#quote" class="w-full max-w-xs text-center text-white" style="font-size: 0.8125rem; font-weight: 600; background-color: var(--color-primary); border-radius: 8px; padding: 10px 24px;">Schedule a FREE Inspection</a>
     </div>
   </div>

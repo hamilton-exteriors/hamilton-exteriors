@@ -4,11 +4,13 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  includeMapbox?: boolean;
 }
 
 const {
   title = 'Top Rated Exterior Company in Castro Valley, CA | Hamilton Exteriors',
   description = 'Hamilton Exteriors is top rated Exterior Company in Castro Valley, CA. Our skilled team delivers high-value construction solutions. Call Now!',
+  includeMapbox = false,
 } = Astro.props;
 ---
 
@@ -17,13 +19,24 @@ const {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Preconnect to font origins (before CSS @import) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={Astro.url.href} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content="/images/og-image.jpg" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -88,8 +101,13 @@ const {
       gtag('js', new Date());
       gtag('config', 'G-QN4P5K8YWD');
     </script>
+    {/* Mapbox Address Autofill — only loaded on pages with address form */}
+    {includeMapbox && (
+      <script id="search-js" defer src="https://api.mapbox.com/search-js/v1.5.0/web.js"></script>
+    )}
   </head>
   <body class="overflow-x-hidden">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[99999] focus:bg-[#256346] focus:text-white focus:px-4 focus:py-2 focus:rounded">Skip to main content</a>
     <!-- Google Tag Manager (noscript) -->
     <noscript>
       <iframe
@@ -100,6 +118,39 @@ const {
       ></iframe>
     </noscript>
 
-    <slot />
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <script>
+      // Navbar scroll shadow
+      const navbar = document.querySelector('.navbar');
+      if (navbar) {
+        const onScroll = () => {
+          navbar.classList.toggle('scrolled', window.scrollY > 10);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+
+      // Scroll #quote links to center the form on screen
+      document.querySelectorAll('a[href="#quote"], a[href="/#quote"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const form = document.getElementById('hero-form');
+          if (form) {
+            e.preventDefault();
+            const rect = form.getBoundingClientRect();
+            const formCenter = rect.top + window.scrollY + (rect.height / 2);
+            const screenCenter = window.innerHeight / 2;
+            window.scrollTo({ top: formCenter - screenCenter, behavior: 'smooth' });
+            // Focus first input after scroll
+            setTimeout(() => {
+              const firstInput = form.querySelector('input:not([type="hidden"])') as HTMLInputElement;
+              firstInput?.focus();
+            }, 600);
+          }
+        });
+      });
+    </script>
   </body>
 </html>

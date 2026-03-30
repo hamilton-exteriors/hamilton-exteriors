@@ -1,0 +1,103 @@
+import type { ImageMetadata } from 'astro';
+
+/** A stat block (e.g. "50 Year Warranty") shown in a horizontal strip */
+export interface StatItem {
+  value: string;
+  label: string;
+}
+
+/** A product/style card WITH an image */
+export interface StyleCardWithImage {
+  title: string;
+  description: string;
+  image: ImageMetadata;
+}
+
+/** A product/style card WITHOUT an image (text-only, like ADU) */
+export interface StyleCardTextOnly {
+  title: string;
+  description: string;
+}
+
+export type StyleCard = StyleCardWithImage | StyleCardTextOnly;
+
+export function hasImage(card: StyleCard): card is StyleCardWithImage {
+  return 'image' in card;
+}
+
+/** Configuration for the styles/products grid section */
+export interface StylesSection {
+  heading: string;
+  items: StyleCard[];
+  /** Grid columns on desktop: 2 or 3. Default 2. */
+  columns?: 2 | 3;
+  /** Background class for the section. Default none (white). */
+  bgClass?: string;
+  /** Card variant controls rendering */
+  cardVariant: 'roofing' | 'siding' | 'windows' | 'adu';
+}
+
+/** Stats strip section (siding, ADU) */
+export interface StatsSection {
+  items: StatItem[];
+  /** If true, only show on lg+ screens */
+  desktopOnly?: boolean;
+}
+
+/** Full-width image banner (ADU) */
+export interface ImageBanner {
+  image: ImageMetadata;
+  alt: string;
+  height?: number;
+}
+
+/** Hero component props — mirrors the Hero.astro Props interface */
+export interface HeroProps {
+  headline: string;
+  formTitle?: string;
+  formSubtitle?: string;
+  ctaText?: string;
+  heroImage?: ImageMetadata;
+  badges?: string[];
+  serviceType?: string;
+  serviceOptions?: string[];
+}
+
+/**
+ * Complete data for a service page.
+ *
+ * The `sections` array defines the exact ordering of content blocks
+ * between Navbar and Footer. This gives each page full control over
+ * which blocks appear and in what order, while the template handles
+ * the rendering.
+ */
+export type SectionBlock =
+  | { type: 'logoSlider' }
+  | { type: 'reviews' }
+  | { type: 'cta' }
+  | { type: 'reviewLogos' }
+  | { type: 'styles'; data: StylesSection }
+  | { type: 'stats'; data: StatsSection }
+  | { type: 'imageBanner'; data: ImageBanner }
+  | { type: 'difference' }
+  | { type: 'projects' }
+  | { type: 'yellowBar'; text: string; href: string }
+  | { type: 'financing' }
+  | { type: 'faq' }
+  | { type: 'contactUs' }
+  | { type: 'footer' };
+
+export interface ServicePageData {
+  /** Page <title> */
+  title: string;
+  /** Meta description */
+  description: string;
+  /** Announcement bar text. Omit for default. */
+  announcementText?: string;
+  /** Hero props */
+  hero: HeroProps;
+  /** Ordered list of content sections */
+  sections: SectionBlock[];
+  /** Extra <style> block content (raw CSS string) */
+  extraStyles?: string;
+}

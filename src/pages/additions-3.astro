@@ -37,6 +37,7 @@ const services = [
 <Layout
   title="Home Additions Across the San Francisco Bay Area | Design & Construction Experts | Hamilton Exteriors"
   description="Hamilton Exteriors builds custom homes in Castro Valley, CA."
+  includeMapbox
 >
   <AnnouncementBar />
   <Navbar />
@@ -76,7 +77,7 @@ const services = [
   <CTA />
   <ReviewLogos />
   <Difference />
-  <Projects />
+  <Projects showFilters={false} />
   <Financing scheduleHref="/quote-calculator" />
   <FAQ />
   <ContactUs />

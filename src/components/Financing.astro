@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { financingHouse, financingWorker, iconCheckmarkCircle } from '../lib/images';
+import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 
 interface Props {
   scheduleHref?: string;
@@ -9,7 +10,7 @@ interface Props {
 const { scheduleHref } = Astro.props;
 ---
 
-<section id="financing" class="w-full py-12 lg:py-[79px] px-0">
+<section id="financing" class="w-full py-10 lg:py-16 px-0">
   <div class="mx-auto flex max-w-[1294px] flex-col overflow-hidden md:flex-row">
     <!-- Left Column: Photo -->
     <div class="relative h-[280px] w-full md:h-auto md:min-h-[600px] md:w-1/2">
@@ -44,7 +45,7 @@ const { scheduleHref } = Astro.props;
       </p>
 
       <!-- Trust line -->
-      <p class="mt-6" style="font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 600; color: var(--color-heading);">
+      <p class="mt-6" style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 600; color: var(--color-heading);">
         We respond within 5 minutes. No obligation.
       </p>
 
@@ -52,7 +53,7 @@ const { scheduleHref } = Astro.props;
       <div class="mt-6 flex flex-col gap-2.5">
         <!-- Call Now Button -->
         <a
-          href="tel:6509773351"
+          href={PHONE_HREF}
           class="flex w-full items-center justify-center gap-2 rounded-[4px] px-[20px] py-[12px] font-dm-sans text-[0.875rem] font-semibold leading-[1.5] transition-opacity hover:opacity-80"
           style="color: var(--color-heading); border: 1px solid rgba(13, 43, 29, 0.15); background-color: var(--color-green-light);"
         >
@@ -63,7 +64,7 @@ const { scheduleHref } = Astro.props;
             height={15}
             class="h-[15px] w-[15px]"
           />
-          Call Now (650) 977-3351
+          Call Now {PHONE_DISPLAY}
         </a>
 
         <!-- Schedule Button -->
@@ -71,7 +72,7 @@ const { scheduleHref } = Astro.props;
           <a
             href={scheduleHref}
             class="flex w-full items-center justify-center rounded-[4px] px-[20px] py-[12px] font-dm-sans text-[0.875rem] font-semibold leading-[1.5] text-center transition-opacity hover:opacity-90"
-            style="background-color: var(--color-primary); color: rgb(246, 253, 252); text-decoration: none;"
+            style="background-color: var(--color-primary); color: var(--color-white); text-decoration: none;"
           >
             Schedule a FREE Inspection
           </a>
@@ -79,7 +80,7 @@ const { scheduleHref } = Astro.props;
           <a
             href="#quote"
             class="flex w-full items-center justify-center rounded-[4px] px-[20px] py-[12px] font-dm-sans text-[0.875rem] font-semibold leading-[1.5] text-center transition-opacity hover:opacity-90"
-            style="background-color: var(--color-primary); color: rgb(246, 253, 252); text-decoration: none;"
+            style="background-color: var(--color-primary); color: var(--color-white); text-decoration: none;"
           >
             Schedule a FREE Inspection
           </a>

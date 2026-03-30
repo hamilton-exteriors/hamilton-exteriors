@@ -1,5 +1,5 @@
 /* ── Font Imports ─────────────────────────────────────────────────────── */
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Instrument+Serif&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;600&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@800&family=Oswald:wght@700&family=Poppins:wght@400;700&family=Outfit:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
 @import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap");
 
 /* ── THE BOLD FONT — exact same font from Framer site ────────────────── */
@@ -32,12 +32,36 @@
   border-radius: 2px;
 }
 
-/* ── Fit-to-width text (kizu.dev technique) ──────────────────────────── */
-@property --fit-length {
-  syntax: "<length>";
-  initial-value: 0px;
-  inherits: true;
+/* ── Reduced Motion ─────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
+
+/* ── Delight — Subtle interaction polish ─────────────────────────────── */
+
+/* CTA buttons: satisfying press */
+a[href="#quote"],
+a[href="/#quote"],
+button[type="submit"] {
+  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, opacity 0.12s;
+}
+a[href="#quote"]:active,
+a[href="/#quote"]:active,
+button[type="submit"]:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Navbar: shadow on scroll (toggled via JS) */
+.navbar.scrolled {
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+}
+
+
 
 /* ── Theme Tokens ────────────────────────────────────────────────────── */
 @theme {
@@ -58,19 +82,10 @@
   --color-error: rgb(220, 38, 38);           /* red — validation errors */
   --color-footer: rgb(36, 99, 69);           /* same as primary-dark */
 
-  /* Font Families */
-  --font-fraunces: "Fraunces", serif;
-  --font-instrument: "Instrument Serif", serif;
+  /* Font Families — 3 fonts only: THE BOLD FONT, DM Sans, Satoshi */
   --font-dm-sans: "DM Sans", sans-serif;
-  --font-playfair: "Playfair Display", serif;
-  --font-montserrat: "Montserrat", sans-serif;
-  --font-inter: "Inter", sans-serif;
-  --font-inter-display: "Inter Display", "Inter", sans-serif;
-  --font-plus-jakarta: "Plus Jakarta Sans", sans-serif;
   --font-oswald: "THE BOLD FONT (FREE VERSION)", "THE BOLD FONT PRO", "Oswald", sans-serif;
-  --font-poppins: "Poppins", sans-serif;
   --font-satoshi: "Satoshi", sans-serif;
-  --font-outfit: "Outfit", sans-serif;
 }
 
 /* ── Base Layer ───────────────────────────────────────────────────────── */
@@ -91,7 +106,7 @@
   }
 
   h1, h2, h3, h4, h5 {
-    font-family: var(--font-fraunces);
+    font-family: var(--font-oswald);
     color: var(--color-charcoal);
   }
 
@@ -133,24 +148,6 @@
 
 /* ── Text Style Utilities ─────────────────────────────────────────────── */
 @layer utilities {
-  /* Display */
-  .text-display-hero {
-    font-family: var(--font-instrument);
-    font-weight: 400;
-    font-size: 72px;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-  }
-
-  .text-display-section {
-    font-family: var(--font-instrument);
-    font-weight: 400;
-    font-size: 48px;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  /* Body */
   .text-body {
     font-family: var(--font-dm-sans);
     font-weight: 400;
@@ -165,7 +162,6 @@
     line-height: 1.7;
   }
 
-  /* Labels & Badges */
   .text-label-uppercase {
     font-family: var(--font-satoshi);
     font-weight: 700;
@@ -184,74 +180,10 @@
     text-transform: uppercase;
   }
 
-  /* Cards & Forms */
-  .text-card-title {
-    font-family: var(--font-playfair);
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 1.3;
-    letter-spacing: -0.02em;
-  }
-
-  .text-form-title {
-    font-family: var(--font-playfair);
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-  }
-
-  .text-form-title-oswald {
-    font-family: var(--font-oswald);
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 1.2;
-  }
-
-  .text-form-info {
-    font-family: var(--font-poppins);
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 1.7;
-  }
-
-  /* Buttons */
   .text-button {
     font-family: var(--font-dm-sans);
     font-weight: 600;
     font-size: 16px;
     line-height: 1.4;
-  }
-
-  /* Stats */
-  .text-stat-number {
-    font-family: var(--font-fraunces);
-    font-weight: 700;
-    font-size: 56px;
-    line-height: 1;
-  }
-
-  .text-stat-number-xl {
-    font-family: var(--font-instrument);
-    font-weight: 400;
-    font-size: 64px;
-    line-height: 1;
-  }
-
-  /* Footer */
-  .text-footer {
-    font-family: var(--font-montserrat);
-    font-weight: 400;
-  }
-
-  .text-footer-bold {
-    font-family: var(--font-montserrat);
-    font-weight: 600;
-  }
-
-  /* Number badges */
-  .text-number-badge {
-    font-family: var(--font-inter);
-    font-weight: 700;
   }
 }

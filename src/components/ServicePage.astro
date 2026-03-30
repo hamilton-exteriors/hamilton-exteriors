@@ -1,0 +1,278 @@
+---
+import { Image } from 'astro:assets';
+import AnnouncementBar from './AnnouncementBar.astro';
+import Navbar from './Navbar.astro';
+import Hero from './Hero.astro';
+import LogoSlider from './LogoSlider.astro';
+import Reviews from './Reviews.astro';
+import CTA from './CTA.astro';
+import Difference from './Difference.astro';
+import Financing from './Financing.astro';
+import ReviewLogos from './ReviewLogos.astro';
+import Projects from './Projects.astro';
+import FAQ from './FAQ.astro';
+import ContactUs from './ContactUs.astro';
+import Footer from './Footer.astro';
+import { hasImage } from '../lib/service-page-types';
+import type { ServicePageData, SectionBlock, StylesSection } from '../lib/service-page-types';
+
+interface Props {
+  data: ServicePageData;
+}
+
+const { data } = Astro.props;
+---
+
+{data.announcementText ? <AnnouncementBar text={data.announcementText} /> : <AnnouncementBar />}
+<Navbar />
+<Hero
+  headline={data.hero.headline}
+  formTitle={data.hero.formTitle}
+  formSubtitle={data.hero.formSubtitle}
+  ctaText={data.hero.ctaText}
+  heroImage={data.hero.heroImage}
+  badges={data.hero.badges}
+  serviceType={data.hero.serviceType}
+  serviceOptions={data.hero.serviceOptions}
+/>
+
+{data.sections.map((section) => {
+  if (section.type === 'logoSlider') {
+    return <LogoSlider />;
+  }
+
+  if (section.type === 'reviews') {
+    return <Reviews />;
+  }
+
+  if (section.type === 'cta') {
+    return <CTA />;
+  }
+
+  if (section.type === 'reviewLogos') {
+    return <ReviewLogos />;
+  }
+
+  if (section.type === 'difference') {
+    return <Difference />;
+  }
+
+  if (section.type === 'projects') {
+    return <Projects showFilters={false} />;
+  }
+
+  if (section.type === 'financing') {
+    return <Financing />;
+  }
+
+  if (section.type === 'faq') {
+    return <FAQ />;
+  }
+
+  if (section.type === 'contactUs') {
+    return <ContactUs />;
+  }
+
+  if (section.type === 'footer') {
+    return <Footer />;
+  }
+
+  if (section.type === 'yellowBar') {
+    return (
+      <div class="w-full text-center" style="background-color: rgb(255, 222, 33); padding: 14px 0;">
+        <a href={section.href} style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29); text-decoration: none;">{section.text} &rarr;</a>
+      </div>
+    );
+  }
+
+  if (section.type === 'imageBanner') {
+    const { data: banner } = section;
+    return (
+      <section class="relative w-full" style={`height: ${banner.height || 400}px;`}>
+        <Image
+          src={banner.image}
+          alt={banner.alt}
+          width={1280}
+          height={853}
+          style="width: 100%; height: 100%; object-fit: cover; display: block;"
+          loading="lazy"
+        />
+      </section>
+    );
+  }
+
+  if (section.type === 'stats') {
+    const { data: stats } = section;
+    const padding = stats.desktopOnly ? '60px 0' : '48px 0';
+    const gridBreakpoint = stats.desktopOnly ? 'lg' : 'md';
+    return (
+      <section class={`w-full ${stats.desktopOnly ? 'hidden lg:block' : ''}`} style={`background-color: #f9f8f6; padding: ${padding};`}>
+        <div class={`mx-auto max-w-[1200px] px-5 grid grid-cols-1 ${gridBreakpoint === 'lg' ? `lg:grid-cols-${stats.items.length}` : `md:grid-cols-${stats.items.length} md:gap-8`} gap-${gridBreakpoint === 'lg' ? '8' : '4'}`}>
+          {stats.items.map((stat) => (
+            <div class="text-center">
+              <div style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 48px; font-weight: 400; color: rgb(36, 99, 69); margin-bottom: 8px;">{stat.value}</div>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (section.type === 'styles') {
+    const styles = section.data;
+    const variant = styles.cardVariant;
+
+    /* ─── Roofing variant ─── */
+    if (variant === 'roofing') {
+      return (
+        <section class="w-full" style="padding: 79px 0;">
+          <div class="mx-auto" style="max-width: 1182px; padding: 0 15px;">
+            <h2
+              class="mb-6 text-center"
+              style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; letter-spacing: 0px; color: rgb(13, 43, 29); font-weight: 400; text-transform: uppercase;"
+            >
+              {styles.heading}
+            </h2>
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2" style="margin-top: 20px;">
+              {styles.items.map((item) => hasImage(item) && (
+                <div class="overflow-hidden rounded-2xl bg-white shadow-sm">
+                  <div class="overflow-hidden" style="height: 220px;">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={566}
+                      height={220}
+                      class="h-full w-full"
+                      style="object-fit: cover;"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div style="padding: 20px 24px 24px;">
+                    <h3
+                      style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 800; line-height: 24px; color: rgb(13, 43, 29); margin-bottom: 6px;"
+                    >
+                      {item.title}
+                    </h3>
+                    <p style="font-size: 14px; line-height: 150%; color: rgb(104, 104, 105);">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ─── Siding variant ─── */
+    if (variant === 'siding') {
+      return (
+        <section class="w-full" style="padding: 79px 0;">
+          <div class="mx-auto max-w-[1200px] px-5">
+            <h2
+              style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;"
+            >
+              {styles.heading}
+            </h2>
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              {styles.items.map((item) => hasImage(item) && (
+                <div>
+                  <div class="w-full overflow-hidden" style="border-radius: 10px;">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={566}
+                      height={292}
+                      style="width: 100%; height: auto; aspect-ratio: 566 / 292; object-fit: cover; display: block; border-radius: 10px;"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div style="padding-top: 16px;">
+                    <h3
+                      style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; line-height: 24px; margin-bottom: 6px; color: rgb(13, 43, 29);"
+                    >
+                      {item.title}
+                    </h3>
+                    <p style="font-size: 14px; line-height: 150%; color: rgb(104, 104, 105);">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ─── Windows variant ─── */
+    if (variant === 'windows') {
+      return (
+        <section class="w-full bg-cream">
+          <div class="mx-auto max-w-[1294px] px-5 py-20">
+            <h2
+              class="mb-4 text-center"
+              style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-size: 40px; line-height: 50px; letter-spacing: 0px; font-weight: 400; color: rgb(13, 43, 29);"
+            >
+              {styles.heading}
+            </h2>
+            <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {styles.items.map((item, i) => hasImage(item) && (
+                <div class:list={["overflow-hidden rounded-2xl bg-white shadow-sm", i >= 3 && "hidden sm:block"]}>
+                  <div class="h-[240px] sm:h-[362px] w-full overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={566}
+                      height={362}
+                      class="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="p-6">
+                    <h3
+                      class="mb-2"
+                      style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 800; line-height: 24px;"
+                    >
+                      {item.title}
+                    </h3>
+                    <p style="font-size: 14px; line-height: 150%; color: rgb(104, 104, 105);">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ─── ADU variant (text-only cards) ─── */
+    if (variant === 'adu') {
+      return (
+        <section class="w-full bg-cream py-20">
+          <div class="mx-auto max-w-[1294px] px-5">
+            <div class="mb-12 text-center">
+              <h2>{styles.heading}</h2>
+            </div>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              {styles.items.map((item) => (
+                <div class="rounded-2xl border border-border/40 bg-white p-8 transition-shadow hover:shadow-lg">
+                  <h3 class="mb-3 font-fraunces text-[24px] font-600 text-charcoal">{item.title}</h3>
+                  <p class="font-dm-sans text-[17px] leading-relaxed text-input">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+  }
+
+  return null;
+})}
+
+{data.extraStyles && <style set:html={data.extraStyles} />}
