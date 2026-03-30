@@ -71,19 +71,8 @@ import { Image } from 'astro:assets';
       </div>
     </div>
 
-    <!-- Filter Pills -->
-    <div style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
-      {['Project Type', 'Products Used', 'City & State'].map(label => (
-        <button
-          style="padding: 6px 14px; border-radius: 20px; border: 1px solid rgb(200,200,200); background: rgb(255,255,255); font-size: 13px; font-weight: 500; color: rgb(40,40,40); cursor: pointer; white-space: nowrap; line-height: 1.4;"
-        >
-          {label}
-        </button>
-      ))}
-    </div>
-
     <!-- Cards Grid -->
-    <div class="cc-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+    <div class="cc-grid" style="display: grid; gap: 16px;">
       {projects.map((project, idx) => (
         <div class={idx > 0 ? 'cc-card-extra' : ''} style="border: 1px solid rgb(230,230,230); border-radius: 6px; overflow: hidden; background: rgb(255,255,255); cursor: pointer;">
 
