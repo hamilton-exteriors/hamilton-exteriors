@@ -143,11 +143,41 @@ const {
             {formSubtitle}
           </p>
 
-          <!-- Multi-step Form -->
+          <!-- 3-Step Form -->
           <form action={formAction} method="POST" id="hero-form">
-            <!-- Step 1: Service Selection -->
+            <!-- Step 1: Contact Info -->
             <div id="step-1" class="form-step">
+              <div class="flex flex-col gap-3">
+                <input type="text" name="fullName" placeholder="Full Name" required class="hero-input w-full" />
+                <input type="tel" name="phone" placeholder="Phone Number" required class="hero-input w-full" />
+                <input type="email" name="email" placeholder="Email" required class="hero-input w-full" />
+                <input type="text" name="address" placeholder="Project Address" required class="hero-input w-full" />
+              </div>
+              <button
+                type="button"
+                id="next-btn-1"
+                class="mt-4 w-full rounded-full py-3.5 text-center font-bold uppercase text-white"
+                style="background-color: rgb(36, 99, 69); font-family: 'DM Sans', sans-serif; font-size: 0.875rem; letter-spacing: 0.03em;"
+              >
+                Continue
+              </button>
+            </div>
+
+            <!-- Step 2: Service Selection -->
+            <div id="step-2" class="form-step" style="display: none;">
+              <div class="mb-3 flex items-center gap-2">
+                <button type="button" id="back-btn-1" class="shrink-0" style="color: rgb(37, 99, 70);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="flex-1">
+                  <div class="h-1.5 w-full rounded-full" style="background: rgb(230,230,230);">
+                    <div class="h-full rounded-full" style="width: 66%; background: rgb(37, 99, 70);"></div>
+                  </div>
+                </div>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">2/3</span>
+              </div>
               <p class="mb-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; color: rgb(100,100,100);">What do you need help with?</p>
+              <input type="hidden" name="service" id="service-input" />
               <div class="grid grid-cols-2 gap-2">
                 {['Roofing', 'Siding', 'Windows', 'Other'].map((service) => (
                   <button
@@ -161,35 +191,6 @@ const {
               </div>
             </div>
 
-            <!-- Step 2: Contact Info -->
-            <div id="step-2" class="form-step" style="display: none;">
-              <div class="mb-3 flex items-center gap-2">
-                <button type="button" id="back-btn" class="shrink-0" style="color: rgb(37, 99, 70);">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                </button>
-                <div class="flex-1">
-                  <div class="h-1.5 w-full rounded-full" style="background: rgb(230,230,230);">
-                    <div class="h-full rounded-full" style="width: 50%; background: rgb(37, 99, 70);"></div>
-                  </div>
-                </div>
-                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">Step 2/3</span>
-              </div>
-              <input type="hidden" name="service" id="service-input" />
-              <div class="flex flex-col gap-3">
-                <input type="text" name="fullName" placeholder="Full Name" required class="hero-input w-full" />
-                <input type="tel" name="phone" placeholder="Phone Number" required class="hero-input w-full" />
-                <input type="text" name="address" placeholder="Project Address" required class="hero-input w-full" />
-              </div>
-              <button
-                type="button"
-                id="next-btn"
-                class="mt-4 w-full rounded-full py-3.5 text-center font-bold uppercase text-white"
-                style="background-color: rgb(36, 99, 69); font-family: 'DM Sans', sans-serif; font-size: 0.875rem; letter-spacing: 0.03em;"
-              >
-                Continue
-              </button>
-            </div>
-
             <!-- Step 3: Details + Submit -->
             <div id="step-3" class="form-step" style="display: none;">
               <div class="mb-3 flex items-center gap-2">
@@ -201,17 +202,14 @@ const {
                     <div class="h-full rounded-full" style="width: 100%; background: rgb(37, 99, 70);"></div>
                   </div>
                 </div>
-                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">Step 3/3</span>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">3/3</span>
               </div>
-              <div class="flex flex-col gap-3">
-                <input type="email" name="email" placeholder="Email" required class="hero-input w-full" />
-                <textarea
-                  name="message"
-                  rows="3"
-                  placeholder="Tell us about your project (optional)"
-                  class="hero-input w-full resize-none"
-                ></textarea>
-              </div>
+              <textarea
+                name="message"
+                rows="3"
+                placeholder="Tell us about your project (optional)"
+                class="hero-input w-full resize-none"
+              ></textarea>
               <label class="mt-3 flex items-start gap-2 cursor-pointer">
                 <input
                   type="checkbox"
@@ -245,38 +243,38 @@ const {
   const step2 = document.getElementById('step-2');
   const step3 = document.getElementById('step-3');
   const serviceInput = document.getElementById('service-input') as HTMLInputElement;
-  const backBtn = document.getElementById('back-btn');
-  const backBtn2 = document.getElementById('back-btn-2');
-  const nextBtn = document.getElementById('next-btn');
 
   function showStep(step: HTMLElement | null) {
     [step1, step2, step3].forEach(s => { if (s) s.style.display = 'none'; });
     if (step) step.style.display = 'block';
   }
 
+  // Step 1 → Step 2: validate contact fields
+  document.getElementById('next-btn-1')?.addEventListener('click', () => {
+    const form = document.getElementById('hero-form') as HTMLFormElement;
+    const fields = ['fullName', 'phone', 'email', 'address'].map(n => form.querySelector(`input[name="${n}"]`) as HTMLInputElement);
+    const allFilled = fields.every(f => f?.value?.trim());
+    if (allFilled) {
+      showStep(step2);
+    } else {
+      fields.forEach(f => { if (f && !f.value?.trim()) f.style.borderColor = 'rgb(220, 38, 38)'; });
+    }
+  });
+
+  // Step 2: service selection auto-advances to Step 3
   serviceBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const service = (btn as HTMLElement).dataset.service || '';
       if (serviceInput) serviceInput.value = service;
       serviceBtns.forEach(b => b.classList.remove('service-btn--active'));
       btn.classList.add('service-btn--active');
-      showStep(step2);
+      setTimeout(() => showStep(step3), 200);
     });
   });
 
-  backBtn?.addEventListener('click', () => showStep(step1));
-  backBtn2?.addEventListener('click', () => showStep(step2));
-  nextBtn?.addEventListener('click', () => {
-    const form = document.getElementById('hero-form') as HTMLFormElement;
-    const name = form.querySelector('input[name="fullName"]') as HTMLInputElement;
-    const phone = form.querySelector('input[name="phone"]') as HTMLInputElement;
-    const address = form.querySelector('input[name="address"]') as HTMLInputElement;
-    if (name?.value && phone?.value && address?.value) {
-      showStep(step3);
-    } else {
-      [name, phone, address].forEach(f => { if (f && !f.value) f.style.borderColor = 'rgb(220, 38, 38)'; });
-    }
-  });
+  // Back buttons
+  document.getElementById('back-btn-1')?.addEventListener('click', () => showStep(step1));
+  document.getElementById('back-btn-2')?.addEventListener('click', () => showStep(step2));
 </script>
 
 <style>
