@@ -120,21 +120,20 @@ const {
     <div class="w-full lg:w-[45%]">
       <!-- Form card -->
       <div class="overflow-hidden rounded-2xl lg:rounded-3xl" style="box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
-        <!-- Bold green header -->
-        <div class="px-5 py-3 text-center" style="background-color: var(--color-primary);">
+        <div class="bg-white px-4 pb-4 pt-5 lg:px-6 lg:pb-6 lg:pt-6">
+          <!-- Form title -->
           <h2
-            style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 1.375rem; line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; letter-spacing: 0.03em;"
+            class="mb-1 text-center"
+            style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 1.5rem; line-height: 1.2; font-weight: 400; color: var(--color-heading); text-transform: uppercase;"
           >
             {formTitle}
           </h2>
           <p
-            style="font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin-top: 2px;"
+            class="mb-5 text-center"
+            style="font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; line-height: 1.5; color: var(--color-light);"
           >
             {formSubtitle}
           </p>
-        </div>
-        <!-- White body -->
-        <div class="bg-white px-4 pb-4 pt-4 lg:px-6 lg:pb-6 lg:pt-5">
 
           <!-- 3-Step Form -->
           <form action={formAction} method="POST" id="hero-form">
