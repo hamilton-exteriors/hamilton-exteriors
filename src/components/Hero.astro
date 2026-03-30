@@ -143,100 +143,93 @@ const {
             {formSubtitle}
           </p>
 
-          <!-- Form -->
-          <form action={formAction} method="POST">
-            <div class="flex flex-col gap-3">
-              <!-- Name -->
-              <input
-                type="text"
-                name="fullName"
-                placeholder="Name"
-                required
-                class="hero-input w-full"
-              />
+          <!-- Multi-step Form -->
+          <form action={formAction} method="POST" id="hero-form">
+            <!-- Step 1: Service Selection -->
+            <div id="step-1" class="form-step">
+              <p class="mb-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; color: rgb(100,100,100);">What do you need help with?</p>
+              <div class="grid grid-cols-2 gap-2">
+                {['Roofing', 'Siding', 'Windows', 'Other'].map((service) => (
+                  <button
+                    type="button"
+                    class="service-btn"
+                    data-service={service}
+                  >
+                    {service}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-              <!-- Phone + Email -->
-              <div class="flex flex-col gap-3 sm:flex-row">
-                <div class="relative w-full sm:w-1/2">
-                  <div class="flex overflow-hidden" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;">
-                    <div class="flex items-center shrink-0" style="padding: 12px 0 12px 12px; width: 52px;">
-                      <span
-                        style="font-family: 'DM Sans', sans-serif; font-size: 1rem; line-height: 1.6; color: rgb(32, 26, 22);"
-                      >+1</span>
-                    </div>
-                    <div style="width: 1px; margin-top: 8px; margin-bottom: 8px; background-color: rgba(0, 0, 0, 0.2);"></div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Phone Number"
-                      required
-                      class="flex-1 border-none bg-transparent outline-none"
-                      style="font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 400; line-height: 1.6; color: rgb(32, 26, 22); padding: 12px;"
-                    />
+            <!-- Step 2: Contact Info -->
+            <div id="step-2" class="form-step" style="display: none;">
+              <div class="mb-3 flex items-center gap-2">
+                <button type="button" id="back-btn" class="shrink-0" style="color: rgb(37, 99, 70);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="flex-1">
+                  <div class="h-1.5 w-full rounded-full" style="background: rgb(230,230,230);">
+                    <div class="h-full rounded-full" style="width: 50%; background: rgb(37, 99, 70);"></div>
                   </div>
                 </div>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  required
-                  class="hero-input w-full sm:w-1/2"
-                />
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">Step 2/3</span>
               </div>
+              <input type="hidden" name="service" id="service-input" />
+              <div class="flex flex-col gap-3">
+                <input type="text" name="fullName" placeholder="Full Name" required class="hero-input w-full" />
+                <input type="tel" name="phone" placeholder="Phone Number" required class="hero-input w-full" />
+                <input type="text" name="address" placeholder="Project Address" required class="hero-input w-full" />
+              </div>
+              <button
+                type="button"
+                id="next-btn"
+                class="mt-4 w-full rounded-full py-3.5 text-center font-bold uppercase text-white"
+                style="background-color: rgb(36, 99, 69); font-family: 'DM Sans', sans-serif; font-size: 0.875rem; letter-spacing: 0.03em;"
+              >
+                Continue
+              </button>
+            </div>
 
-              <!-- Project Address -->
-              <input
-                type="text"
-                name="address"
-                placeholder="Project Address"
-                required
-                class="hero-input w-full"
-              />
-
-              <!-- Textarea -->
-              <textarea
-                name="message"
-                rows="4"
-                placeholder="Tell us about your project – any issues or services you're interested in? We're here to help!"
-                class="hero-input w-full resize-none"
-              ></textarea>
-
-              <!-- Consent checkbox -->
-              <label class="flex items-start gap-2 cursor-pointer">
+            <!-- Step 3: Details + Submit -->
+            <div id="step-3" class="form-step" style="display: none;">
+              <div class="mb-3 flex items-center gap-2">
+                <button type="button" id="back-btn-2" class="shrink-0" style="color: rgb(37, 99, 70);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="flex-1">
+                  <div class="h-1.5 w-full rounded-full" style="background: rgb(230,230,230);">
+                    <div class="h-full rounded-full" style="width: 100%; background: rgb(37, 99, 70);"></div>
+                  </div>
+                </div>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">Step 3/3</span>
+              </div>
+              <div class="flex flex-col gap-3">
+                <input type="email" name="email" placeholder="Email" required class="hero-input w-full" />
+                <textarea
+                  name="message"
+                  rows="3"
+                  placeholder="Tell us about your project (optional)"
+                  class="hero-input w-full resize-none"
+                ></textarea>
+              </div>
+              <label class="mt-3 flex items-start gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   name="consent"
                   required
                   class="mt-0.5 h-4 w-4 shrink-0"
-                  style="border-radius: 4px; border: 1px solid rgba(136, 136, 136, 0.2); background: rgba(187, 187, 187, 0.2);"
+                  style="border-radius: 4px; accent-color: rgb(37, 99, 70);"
                 />
-                <span
-                  class="italic"
-                  style="font-family: 'Satoshi', sans-serif; font-size: 10px; font-weight: 500; line-height: 1.4; color: rgb(136, 136, 136);"
-                >
-                  <strong>I agree to receive promotional messages sent via an autodialer, and this agreement isn't a condition of any purchase. I agree to receive promotional messages sent via an autodialer, and this agreement isn't a condition of any purchase.</strong>
-                  <br /><br />
-                  <strong>I also agree to the <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Terms of Service</a> and <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Privacy Policy</a> 4 Msgs/Month. Msg &amp; Data rates may apply. Text HELP for help or STOP to stop.</strong>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 10px; line-height: 1.5; color: rgb(136, 136, 136);">
+                  I agree to the <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Terms</a> & <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Privacy Policy</a>. Msg & data rates may apply.
                 </span>
               </label>
-
-              <!-- Submit -->
               <button
                 type="submit"
-                class="mt-1 w-full"
-                style="border-radius: 10px;"
+                class="mt-4 w-full rounded-full py-3.5 text-center font-bold uppercase text-white"
+                style="background-color: rgb(255, 222, 33); color: rgb(37, 99, 70); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 0.875rem; letter-spacing: 0.05em;"
               >
-                <div
-                  class="w-full py-4"
-                  style="background-color: rgb(36, 99, 69); border-radius: 40px;"
-                >
-                  <p
-                    class="text-center text-white uppercase"
-                    style="font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; line-height: 1.4;"
-                  >
-                    Request a Quote
-                  </p>
-                </div>
+                Get My Free Quote
               </button>
             </div>
           </form>
@@ -246,7 +239,68 @@ const {
   </div>
 </section>
 
+<script>
+  const serviceBtns = document.querySelectorAll('.service-btn');
+  const step1 = document.getElementById('step-1');
+  const step2 = document.getElementById('step-2');
+  const step3 = document.getElementById('step-3');
+  const serviceInput = document.getElementById('service-input') as HTMLInputElement;
+  const backBtn = document.getElementById('back-btn');
+  const backBtn2 = document.getElementById('back-btn-2');
+  const nextBtn = document.getElementById('next-btn');
+
+  function showStep(step: HTMLElement | null) {
+    [step1, step2, step3].forEach(s => { if (s) s.style.display = 'none'; });
+    if (step) step.style.display = 'block';
+  }
+
+  serviceBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const service = (btn as HTMLElement).dataset.service || '';
+      if (serviceInput) serviceInput.value = service;
+      serviceBtns.forEach(b => b.classList.remove('service-btn--active'));
+      btn.classList.add('service-btn--active');
+      showStep(step2);
+    });
+  });
+
+  backBtn?.addEventListener('click', () => showStep(step1));
+  backBtn2?.addEventListener('click', () => showStep(step2));
+  nextBtn?.addEventListener('click', () => {
+    const form = document.getElementById('hero-form') as HTMLFormElement;
+    const name = form.querySelector('input[name="fullName"]') as HTMLInputElement;
+    const phone = form.querySelector('input[name="phone"]') as HTMLInputElement;
+    const address = form.querySelector('input[name="address"]') as HTMLInputElement;
+    if (name?.value && phone?.value && address?.value) {
+      showStep(step3);
+    } else {
+      [name, phone, address].forEach(f => { if (f && !f.value) f.style.borderColor = 'rgb(220, 38, 38)'; });
+    }
+  });
+</script>
+
 <style>
+  .service-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgb(37, 99, 70);
+    background: rgb(240, 247, 240);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 14px 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  .service-btn:hover {
+    border-color: rgb(37, 99, 70);
+    background: rgb(227, 239, 211);
+  }
+  .service-btn--active {
+    border-color: rgb(37, 99, 70);
+    background: rgb(227, 239, 211);
+  }
   .text-fit {
     display: flex;
     container-type: inline-size;
