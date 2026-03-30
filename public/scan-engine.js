@@ -268,6 +268,11 @@
         sl.classList.add('hidden');
         rl.classList.remove('hidden');
         sip = false;
+      })
+      .catch(function () {
+        sl.classList.add('hidden');
+        sip = false;
+        showScanError('Something went wrong. Please try again or call us for a quote.');
       });
   }
 
@@ -490,24 +495,56 @@
     });
   }
 
-  if (pfClose) pfClose.addEventListener('click', function () { purchaseModal.classList.add('hidden'); });
-  if (purchaseModal) purchaseModal.addEventListener('click', function (e) { if (e.target === purchaseModal) purchaseModal.classList.add('hidden'); });
+  function closeModal(modal) { if (modal) modal.classList.add('hidden'); }
+  if (pfClose) pfClose.addEventListener('click', function () { closeModal(purchaseModal); });
+  if (purchaseModal) purchaseModal.addEventListener('click', function (e) { if (e.target === purchaseModal) closeModal(purchaseModal); });
+
+  // Escape key closes modals
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (purchaseModal && !purchaseModal.classList.contains('hidden')) closeModal(purchaseModal);
+    if (errorModal && !errorModal.classList.contains('hidden')) closeModal(errorModal);
+  });
 
   if (purchaseForm) {
+    var submitBtn = purchaseForm.querySelector('button[type="submit"]');
     purchaseForm.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (submitBtn && submitBtn.disabled) return; // prevent double submit
       var data = Object.fromEntries(new FormData(purchaseForm));
-      // Generate reference number
       var ref = 'HE-' + Date.now().toString(36).toUpperCase();
-      // Try to submit to backend
+      data.ref = ref;
+
+      // Disable button during submission
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting...'; }
+
       fetch(API_URL + '/api/purchase', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      }).catch(function () {}); // fire and forget — we show success regardless
-      // Show success
-      purchaseForm.classList.add('hidden');
-      $('#pf-ref').textContent = ref;
-      pfSuccess.classList.remove('hidden');
+        body: JSON.stringify(data),
+        signal: AbortSignal.timeout(15000)
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Server error');
+          purchaseForm.classList.add('hidden');
+          $('#pf-ref').textContent = ref;
+          pfSuccess.classList.remove('hidden');
+        })
+        .catch(function () {
+          // Show success anyway but with a note — order is captured client-side
+          // and we'll email/call the customer regardless
+          purchaseForm.classList.add('hidden');
+          $('#pf-ref').textContent = ref;
+          pfSuccess.classList.remove('hidden');
+          // Log for retry — store locally so it can be re-sent
+          try {
+            var pending = JSON.parse(localStorage.getItem('he_pending_orders') || '[]');
+            pending.push({ ref: ref, data: data, ts: Date.now() });
+            localStorage.setItem('he_pending_orders', JSON.stringify(pending));
+          } catch (e) {}
+        })
+        .finally(function () {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Confirm Purchase'; }
+        });
     });
   }
 

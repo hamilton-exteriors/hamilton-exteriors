@@ -13,8 +13,10 @@ const apiUrl = import.meta.env.PUBLIC_ROOF_SCAN_API || 'http://localhost:3001';
       var s1 = document.getElementById('step-1');
       if (s1) s1.style.display = 'none';
     });
-    // Also set inline style via document.write for pre-paint hiding
-    document.write('<style>#step-1{display:none !important}</style>');
+    // Inject style to hide step-1 before paint (no document.write)
+    var st = document.createElement('style');
+    st.textContent = '#step-1{display:none !important}';
+    document.head.appendChild(st);
   }
 </script>
 <section id="scanner" class="w-full" style="background-color:var(--color-cream);padding:40px 20px 80px;min-height:calc(100vh - 80px);">
@@ -191,15 +193,15 @@ const apiUrl = import.meta.env.PUBLIC_ROOF_SCAN_API || 'http://localhost:3001';
         <input type="hidden" id="pf-sqft" name="sqft" />
         <div>
           <label class="block mb-1" style="font-size:13px;font-weight:500;color:var(--color-charcoal);">Full Name</label>
-          <input type="text" name="name" required placeholder="John Smith" class="w-full rounded-lg" style="padding:12px 14px;border:1px solid var(--color-border);font-size:15px;outline:none;" />
+          <input type="text" name="name" required placeholder="John Smith" maxlength="100" autocomplete="name" class="w-full rounded-lg" style="padding:12px 14px;border:1px solid var(--color-border);font-size:15px;outline:none;" />
         </div>
         <div>
           <label class="block mb-1" style="font-size:13px;font-weight:500;color:var(--color-charcoal);">Email</label>
-          <input type="email" name="email" required placeholder="john@example.com" class="w-full rounded-lg" style="padding:12px 14px;border:1px solid var(--color-border);font-size:15px;outline:none;" />
+          <input type="email" name="email" required placeholder="john@example.com" maxlength="254" autocomplete="email" class="w-full rounded-lg" style="padding:12px 14px;border:1px solid var(--color-border);font-size:15px;outline:none;" />
         </div>
         <div>
           <label class="block mb-1" style="font-size:13px;font-weight:500;color:var(--color-charcoal);">Phone</label>
-          <input type="tel" name="phone" required placeholder="(555) 123-4567" class="w-full rounded-lg" style="padding:12px 14px;border:1px solid var(--color-border);font-size:15px;outline:none;" />
+          <input type="tel" name="phone" required placeholder="(555) 123-4567" maxlength="20" autocomplete="tel" inputmode="tel" class="w-full rounded-lg" style="padding:12px 14px;border:1px solid var(--color-border);font-size:15px;outline:none;" />
         </div>
         <div>
           <label class="block mb-1" style="font-size:13px;font-weight:500;color:var(--color-charcoal);">Preferred Contact Method</label>
