@@ -60,14 +60,7 @@ import { Image } from 'astro:assets';
       <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: clamp(24px, 4vw, 30px); font-weight: 400; color: rgb(17,17,17); margin: 0; text-transform: uppercase;">Our Latest Projects</h2>
       <div class="flex items-center gap-1.5">
         <span style="font-size: 0.8125rem; color: rgb(120,120,120); font-weight: 400;">Powered By</span>
-        <Image
-          src="https://companycam.imgix.net/icons-logos/CompanyCam-Logos/All_Black_CompanyCam_Logo.png?auto=format%2Ccompress&w=350"
-          alt="CompanyCam"
-          width={350}
-          height={50}
-          style="height: 14px; width: auto;"
-          loading="lazy"
-        />
+        <span style="font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; font-weight: 700; color: rgb(17,17,17);">BackOffice</span>
       </div>
     </div>
 
@@ -77,7 +70,7 @@ import { Image } from 'astro:assets';
         <div class={idx > 0 ? 'cc-card-extra' : ''} style="border: 1px solid rgb(230,230,230); border-radius: 6px; overflow: hidden; background: rgb(255,255,255); cursor: pointer;">
 
           <!-- Featured Photo with badges -->
-          <div style="position: relative; width: 100%; padding-top: 62%; overflow: hidden; background: rgb(220,220,220);">
+          <a href={project.featuredPhoto} target="_blank" rel="noopener" style="display: block; position: relative; width: 100%; padding-top: 62%; overflow: hidden; background: rgb(220,220,220);">
             <Image
               src={project.featuredPhoto}
               alt={project.title}
@@ -94,7 +87,7 @@ import { Image } from 'astro:assets';
             <div style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.65); color: white; font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 3px; letter-spacing: 0.5px; text-transform: uppercase;">
               {project.city.toUpperCase()}
             </div>
-          </div>
+          </a>
 
           <!-- Card Content -->
           <div style="padding: 12px 14px;">

@@ -87,6 +87,7 @@
     line-height: 1.7;
     color: var(--color-charcoal);
     background-color: var(--color-cream);
+    text-wrap: pretty;
   }
 
   h1, h2, h3, h4, h5 {
