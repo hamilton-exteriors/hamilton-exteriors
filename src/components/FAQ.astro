@@ -1,31 +1,32 @@
 ---
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
+import IconPlus from './icons/IconPlus.astro';
 
 const faqs = [
   {
-    question: 'How do you ensure transparency and  avoid sleazy sales tactics?',
+    question: 'How does pricing work — any hidden fees?',
     answer:
-      'We believe in honest, upfront pricing with no hidden fees. Our team provides detailed written estimates before any work begins, and we never use high-pressure sales techniques.',
+      'Every estimate is written and itemized before we start. The price we quote is the price you pay — no surprises, no add-ons.',
   },
   {
-    question: 'How do I request a price match?',
+    question: 'Will you beat a competitor\'s quote?',
     answer:
-      'Simply show us a written estimate from a licensed competitor for the same scope of work, and we\'ll match or beat their price.',
+      'Yes. Show us a written estimate from a licensed contractor for the same scope of work and we\'ll match or beat it.',
   },
   {
-    question: 'What safeguards are in place to prevent  overpayment?',
+    question: 'How does billing and financing work?',
     answer:
-      'We provide itemized quotes, explain every cost, and never charge for work that wasn\'t agreed upon in advance.',
+      '$0 down financing available with approved credit. You only pay for completed, inspected work. We\'ll walk you through all your payment options during the estimate.',
   },
   {
-    question: 'How do you handle situations where a  competitor offers a lower rate?',
+    question: 'How long does a typical project take?',
     answer:
-      'We welcome the opportunity to review competing offers. If a licensed competitor provides the same scope of work at a lower price, we\'ll match it.',
+      'Most roofs are done in 3-5 days. Siding projects run 1-2 weeks depending on scope. We\'ll give you a specific timeline during your free inspection.',
   },
   {
-    question: 'How does billing work with you?',
+    question: 'What warranties do you offer?',
     answer:
-      'We offer flexible payment options including $0 down financing. You only pay for completed, inspected work.',
+      'Up to a 50-year shingle warranty and 35-year labor warranty on roofing. Every project comes with a written warranty — we stand behind our work.',
   },
 ];
 ---
@@ -62,18 +63,8 @@ const faqs = [
               <span style="font-family: var(--font-dm-sans); font-size: 1rem; font-weight: 400; line-height: 1.5; letter-spacing: 0px; color: var(--color-charcoal); padding-right: 16px;">
                 {faq.question}
               </span>
-              <span class="relative flex shrink-0 items-center justify-center" style="width: 24px; height: 24px;">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 256 256"
-                  focusable="false"
-                  aria-hidden="true"
-                  style="width: 100%; height: 100%; display: inline-block; fill: rgb(3, 7, 18); color: var(--color-charcoal);"
-                >
-                  <g>
-                    <path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z" />
-                  </g>
-                </svg>
+              <span class="relative flex shrink-0 items-center justify-center" style="width: 24px; height: 24px; color: var(--color-charcoal);">
+                <IconPlus />
               </span>
             </summary>
             <div style="padding-bottom: 20px; padding-right: 48px;">

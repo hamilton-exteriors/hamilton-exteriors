@@ -10,6 +10,7 @@ import FAQ from './FAQ.astro';
 import ContactUs from './ContactUs.astro';
 import Footer from './Footer.astro';
 import { roofingAsphalt, ctaAssistant } from '../lib/images';
+import IconPlus from './icons/IconPlus.astro';
 
 interface Props {
   data: CountyPageData;
@@ -328,9 +329,7 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
             <summary class="cc-faq-question">
               <span class="cc-faq-question-text">{faq.question}</span>
               <span class="cc-faq-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false">
-                  <g><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z" /></g>
-                </svg>
+                <IconPlus />
               </span>
             </summary>
             <div class="cc-faq-answer">

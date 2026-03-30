@@ -1,0 +1,10 @@
+---
+interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 20, class: className = '' } = Astro.props;
+---
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.556 30" width={size} height={Math.round(size * 30 / 15.556)} overflow="visible" class={className}>
+  <path d="M 10.098 30 L 10.098 16.317 L 14.682 16.317 L 15.37 10.982 L 10.098 10.982 L 10.098 7.577 C 10.098 6.033 10.524 4.981 12.737 4.981 L 15.556 4.98 L 15.556 0.209 C 15.068 0.145 13.395 0 11.448 0 C 7.382 0 4.598 2.485 4.598 7.049 L 4.598 10.982 L 0 10.982 L 0 16.317 L 4.598 16.317 L 4.598 30 Z" fill="currentColor"/>
+</svg>

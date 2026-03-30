@@ -4,6 +4,14 @@ interface Props {
 }
 const { showFilters = true } = Astro.props;
 
+import IconChevronLeft from './icons/IconChevronLeft.astro';
+import IconChevronRight from './icons/IconChevronRight.astro';
+import IconChevronDoubleLeft from './icons/IconChevronDoubleLeft.astro';
+import IconChevronDoubleRight from './icons/IconChevronDoubleRight.astro';
+import IconClose from './icons/IconClose.astro';
+import IconImage from './icons/IconImage.astro';
+import IconSearchPlus from './icons/IconSearchPlus.astro';
+
 const projects = [
   {
     title: "Siding Installation using James Hardie",
@@ -143,13 +151,13 @@ import { Image } from 'astro:assets';
             </div>
             <!-- Photo count badge (bottom-right, always visible) -->
             <div style="position: absolute; bottom: 8px; right: 8px; background: var(--color-primary); color: var(--color-white); font-family: var(--font-satoshi); font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 3px; letter-spacing: 0.3px; display: flex; align-items: center; gap: 4px;">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              <IconImage size={12} class="text-white" />
               {project.mediaCount}
             </div>
             <!-- View Photos overlay -->
             <div class="cc-photo-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.25s ease;">
               <span style="color: var(--color-white); font-family: var(--font-satoshi); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 6px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                <IconSearchPlus size={18} class="text-white" />
                 View {project.mediaCount} Photos
               </span>
             </div>
@@ -203,17 +211,17 @@ import { Image } from 'astro:assets';
     <!-- Pagination -->
     <div id="cc-pagination" style="display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 20px;">
       <button data-action="first" aria-label="First page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: var(--color-white); border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11 18L5 12l6-6M19 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <IconChevronDoubleLeft size={14} />
       </button>
       <button data-action="prev" aria-label="Previous page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: var(--color-white); border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <IconChevronLeft size={14} />
       </button>
       <span id="cc-page-label" style="font-size: 0.8125rem; color: rgb(60,60,60); padding: 0 8px;">1 of 1</span>
       <button data-action="next" aria-label="Next page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: var(--color-white); border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <IconChevronRight size={14} />
       </button>
       <button data-action="last" aria-label="Last page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: var(--color-white); border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 18l6-6-6-6M13 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <IconChevronDoubleRight size={14} />
       </button>
     </div>
 
@@ -224,7 +232,7 @@ import { Image } from 'astro:assets';
 <div id="cc-lightbox" style="display: none; position: fixed; inset: 0; z-index: 99999; background: #000; isolation: isolate; font-family: var(--font-dm-sans);" role="dialog" aria-modal="true" aria-label="Project photo gallery">
   <!-- Close button -->
   <button id="cc-lb-close" style="position: absolute; top: 16px; right: 16px; z-index: 10; width: 44px; height: 44px; border: none; background: rgba(255,255,255,0.15); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s;" aria-label="Close gallery">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    <IconClose size={20} class="text-white" />
   </button>
 
   <!-- Project info bar -->
@@ -242,10 +250,10 @@ import { Image } from 'astro:assets';
 
   <!-- Prev / Next arrows -->
   <button id="cc-lb-prev" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); z-index: 10; width: 48px; height: 48px; border: none; background: rgba(0,0,0,0.5); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; backdrop-filter: blur(4px);" aria-label="Previous photo">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+    <IconChevronLeft size={22} class="text-white" />
   </button>
   <button id="cc-lb-next" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); z-index: 10; width: 48px; height: 48px; border: none; background: rgba(0,0,0,0.5); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; backdrop-filter: blur(4px);" aria-label="Next photo">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+    <IconChevronRight size={22} class="text-white" />
   </button>
 
   <!-- Thumbnail strip + counter -->
