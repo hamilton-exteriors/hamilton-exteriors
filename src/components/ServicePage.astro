@@ -30,6 +30,7 @@ const { data } = Astro.props;
   formTitle={data.hero.formTitle}
   formSubtitle={data.hero.formSubtitle}
   ctaText={data.hero.ctaText}
+  ctaHref={data.hero.ctaHref}
   heroImage={data.hero.heroImage}
   badges={data.hero.badges}
   serviceType={data.hero.serviceType}
@@ -259,12 +260,24 @@ const { data } = Astro.props;
               <h2>{styles.heading}</h2>
             </div>
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              {styles.items.map((item) => (
-                <div class="rounded-2xl border border-border/40 bg-white p-8 transition-shadow hover:shadow-lg">
-                  <h3 class="mb-3 font-fraunces text-[24px] font-600 text-charcoal">{item.title}</h3>
-                  <p class="font-dm-sans text-[17px] leading-relaxed text-input">{item.description}</p>
-                </div>
-              ))}
+              {styles.items.map((item) => {
+                const cardContent = (
+                  <div class="rounded-2xl border border-border/40 bg-white p-8 transition-shadow hover:shadow-lg">
+                    <h3 class="mb-3 font-fraunces text-[24px] font-600 text-charcoal">{item.title}</h3>
+                    <p class="font-dm-sans text-[17px] leading-relaxed text-input">{item.description}</p>
+                    {!hasImage(item) && item.href && (
+                      <span class="mt-5 inline-flex items-center font-satoshi text-[15px] font-bold text-primary">
+                        Learn More <span class="ml-1">&rarr;</span>
+                      </span>
+                    )}
+                  </div>
+                );
+                return !hasImage(item) && item.href ? (
+                  <a href={item.href} class="group block">{cardContent}</a>
+                ) : (
+                  <div class="group block">{cardContent}</div>
+                );
+              })}
             </div>
           </div>
         </section>

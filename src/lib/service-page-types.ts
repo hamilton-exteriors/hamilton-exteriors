@@ -17,6 +17,8 @@ export interface StyleCardWithImage {
 export interface StyleCardTextOnly {
   title: string;
   description: string;
+  /** Optional link for the card */
+  href?: string;
 }
 
 export type StyleCard = StyleCardWithImage | StyleCardTextOnly;
@@ -57,6 +59,7 @@ export interface HeroProps {
   formTitle?: string;
   formSubtitle?: string;
   ctaText?: string;
+  ctaHref?: string;
   heroImage?: ImageMetadata;
   badges?: string[];
   serviceType?: string;

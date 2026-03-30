@@ -94,7 +94,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
         </div>
         <span
           class="text-white/80"
-          style="font-family: 'DM Sans', sans-serif; font-size: clamp(1rem, 4vw, 1.0625rem); font-weight: 500; letter-spacing: 0.01em;"
+          style="font-family: var(--font-dm-sans); font-size: clamp(1rem, 4vw, 1.0625rem); font-weight: 500; letter-spacing: 0.01em;"
         >
           rated 5/5 based on 50 reviews.
         </span>
@@ -103,7 +103,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
       <!-- Headline -->
       <h1
         class="hero-h1 w-full text-white"
-        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-weight: 400; text-transform: uppercase; line-height: 1.05; letter-spacing: 0.01em;"
+        style="font-family: var(--font-oswald); font-weight: 400; text-transform: uppercase; line-height: 1.05; letter-spacing: 0.01em;"
       >
         {headline}
       </h1>
@@ -117,7 +117,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
                 <path d="M16.667 5L7.5 14.167L3.333 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
               </svg>
             </div>
-            <span class="text-white hero-badge-text" style="font-family: 'DM Sans', sans-serif; font-size: clamp(1.125rem, 4.5vw, 1.25rem); line-height: 1.4; font-weight: 500;">{badge}</span>
+            <span class="text-white hero-badge-text" style="font-family: var(--font-dm-sans); font-size: clamp(1.125rem, 4.5vw, 1.25rem); line-height: 1.4; font-weight: 500;">{badge}</span>
           </div>
         ))}
       </div>
@@ -132,13 +132,13 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
           <!-- Form title -->
           <h2
             class="mb-1 text-center"
-            style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 1.5rem; line-height: 1.2; font-weight: 400; color: var(--color-heading); text-transform: uppercase;"
+            style="font-family: var(--font-oswald); font-size: 1.5rem; line-height: 1.2; font-weight: 400; color: var(--color-heading); text-transform: uppercase;"
           >
             {formTitle}
           </h2>
           <p
             class="mb-5 text-center"
-            style="font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; line-height: 1.5; color: var(--color-light);"
+            style="font-family: var(--font-dm-sans); font-size: 0.8125rem; line-height: 1.5; color: var(--color-light);"
           >
             {formSubtitle}
           </p>
@@ -153,7 +153,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
                     <div class="h-full rounded-full" style={`width: ${hasPresetService && !serviceOptions ? '50' : '33'}%; background: var(--color-primary);`}></div>
                   </div>
                 </div>
-                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: var(--color-muted);">{hasPresetService && !serviceOptions ? '1/2' : '1/3'}</span>
+                <span style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted);">{hasPresetService && !serviceOptions ? '1/2' : '1/3'}</span>
               </div>
               <div class="flex flex-col gap-3">
                 <label for="hero-name" class="sr-only">Full Name</label>
@@ -171,7 +171,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
                 type="button"
                 id="next-btn-1"
                 class="mt-4 w-full rounded-full py-3.5 text-center font-bold uppercase text-white"
-                style="background-color: var(--color-yellow); color: var(--color-primary); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 0.875rem; letter-spacing: 0.05em;"
+                style="background-color: var(--color-yellow); color: var(--color-primary); font-family: var(--font-oswald); font-size: 0.875rem; letter-spacing: 0.05em;"
               >
                 {hasPresetService && serviceOptions ? `Next: Choose Your ${serviceType}` : hasPresetService ? 'Next: Tell Us About Your Project' : 'Next: Choose Your Service'}
               </button>
@@ -188,12 +188,12 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
                     <div class="h-full rounded-full" style="width: 66%; background: var(--color-primary);"></div>
                   </div>
                 </div>
-                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: var(--color-muted);">2/3</span>
+                <span style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted);">2/3</span>
               </div>
-              <p class="mb-1 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--color-heading);">
+              <p class="mb-1 text-center" style="font-family: var(--font-dm-sans); font-size: 1rem; font-weight: 600; color: var(--color-heading);">
                 {hasPresetService ? `What type of ${serviceType?.toLowerCase()}?` : 'What do you need help with?'}
               </p>
-              <p class="mb-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: var(--color-muted);">Select one to continue</p>
+              <p class="mb-3 text-center" style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted);">Select one to continue</p>
               <input type="hidden" name="service" id="service-input" value={serviceType || ''} />
               <input type="hidden" name="serviceDetail" id="service-detail-input" />
               <div class="grid grid-cols-2 gap-2">
@@ -220,7 +220,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
                     <div class="h-full rounded-full" style="width: 100%; background: var(--color-primary);"></div>
                   </div>
                 </div>
-                <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: var(--color-muted);">3/3</span>
+                <span style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted);">3/3</span>
               </div>
               <label for="hero-message" class="sr-only">Project details</label>
               <textarea
@@ -239,21 +239,21 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
                   class="mt-0.5 h-4 w-4 shrink-0"
                   style="border-radius: 4px; accent-color: var(--color-primary);"
                 />
-                <label for="consent-checkbox" style="font-family: 'DM Sans', sans-serif; font-size: 10px; line-height: 1.5; color: var(--color-light); cursor: pointer;">
+                <label for="consent-checkbox" style="font-family: var(--font-dm-sans); font-size: 10px; line-height: 1.5; color: var(--color-light); cursor: pointer;">
                   I agree to the <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Terms</a> & <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Privacy Policy</a>. Msg & data rates may apply.
                 </label>
               </div>
               <button
                 type="submit"
                 class="mt-4 w-full rounded-full py-3.5 text-center font-bold uppercase text-white"
-                style="background-color: var(--color-yellow); color: var(--color-primary); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 0.875rem; letter-spacing: 0.05em;"
+                style="background-color: var(--color-yellow); color: var(--color-primary); font-family: var(--font-oswald); font-size: 0.875rem; letter-spacing: 0.05em;"
               >
                 Get My Free Quote
               </button>
             </div>
           </form>
           <!-- Trust micro-copy -->
-          <p class="mt-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 0.6875rem; color: var(--color-muted);">
+          <p class="mt-3 text-center" style="font-family: var(--font-dm-sans); font-size: 0.6875rem; color: var(--color-muted);">
             Your info is safe &bull; 100% Free &bull; No obligation
           </p>
         </div>
@@ -363,7 +363,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
               if (!errEl) {
                 errEl = document.createElement('p');
                 errEl.className = 'field-error';
-                errEl.style.cssText = "font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: var(--color-error); margin: 4px 0 0;";
+                errEl.style.cssText = "font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-error); margin: 4px 0 0;";
                 input.insertAdjacentElement('afterend', errEl);
               }
               errEl.textContent = messages[0];
@@ -391,9 +391,9 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
             <div style="width: 48px; height: 48px; margin: 0 auto 12px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 1.5rem; color: var(--color-primary); text-transform: uppercase; margin-bottom: 8px;">We Got Your Request!</h3>
-            <p style="font-family: 'DM Sans', sans-serif; font-size: 0.875rem; color: var(--color-muted); line-height: 1.5;">We'll call you within <strong>5 minutes</strong> to schedule your free inspection.</p>
-            <a href="tel:6509773351" style="display: inline-block; margin-top: 16px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 700; color: var(--color-primary); text-decoration: underline;">Or call us now: (650) 977-3351</a>
+            <h3 style="font-family: var(--font-oswald); font-size: 1.5rem; color: var(--color-primary); text-transform: uppercase; margin-bottom: 8px;">We Got Your Request!</h3>
+            <p style="font-family: var(--font-dm-sans); font-size: 0.875rem; color: var(--color-muted); line-height: 1.5;">We'll call you within <strong>5 minutes</strong> to schedule your free inspection.</p>
+            <a href="tel:6509773351" style="display: inline-block; margin-top: 16px; font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 700; color: var(--color-primary); text-decoration: underline;">Or call us now: (650) 977-3351</a>
           </div>
         `;
       }
@@ -450,7 +450,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
   }
 
   .service-btn {
-    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-family: var(--font-oswald);
     font-size: 1rem;
     font-weight: 700;
     color: var(--color-primary);
@@ -484,7 +484,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
   }
 
   .hero-input {
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans);
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.6;
@@ -512,10 +512,10 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
   }
   mapbox-address-autofill .mapboxgl-ctrl-geocoder,
   mapbox-address-autofill .Results {
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: var(--font-dm-sans) !important;
   }
   mapbox-address-autofill .suggestions {
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: var(--font-dm-sans) !important;
     border-radius: 10px !important;
     border: 1px solid rgba(0, 0, 0, 0.12) !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
@@ -523,7 +523,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
     margin-top: 4px !important;
   }
   mapbox-address-autofill .suggestion {
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: var(--font-dm-sans) !important;
     font-size: 0.875rem !important;
     padding: 10px 12px !important;
     color: var(--color-charcoal) !important;
