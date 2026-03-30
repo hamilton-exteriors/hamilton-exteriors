@@ -331,6 +331,14 @@ const {
 </script>
 
 <style>
+  /* Tablet: slightly looser line-height */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .hero-h1 {
+      line-height: 0.85 !important;
+    }
+  }
+
+  /* Desktop: natural flowing text */
   @media (min-width: 1024px) {
     .hero-h1 {
       display: block !important;
@@ -397,13 +405,14 @@ const {
     background: var(--color-primary);
     color: white;
   }
+  /* Mobile: fit-to-width per line with vw fallback */
   .text-fit {
     display: flex;
     container-type: inline-size;
     --fit-length: initial;
     --fit-sentinel: var(--fit-length, 9999px);
     --fit-max: 1.5em;
-    margin-bottom: -0.28em;
+    margin-bottom: -0.2em;
   }
 
   .text-fit > [aria-hidden] {
@@ -433,11 +442,25 @@ const {
     );
     inline-size: var(--fit-space);
     display: block;
+    /* Use vw as reliable fallback, cqi as enhancement */
+    font-size: 13vw;
     font-size: calc(var(--fit-size) * 0.88);
     white-space: nowrap;
     letter-spacing: 0.01em;
   }
 
+  /* Tablet: slightly smaller fit-to-width, no negative margin overlap */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .text-fit {
+      margin-bottom: -0.15em;
+    }
+    .text-fit > :not([aria-hidden]) > * {
+      font-size: 8vw;
+      font-size: calc(var(--fit-size) * 0.88);
+    }
+  }
+
+  /* Desktop: natural text flow, no fit-to-width */
   @media (min-width: 1024px) {
     .text-fit {
       display: contents;
