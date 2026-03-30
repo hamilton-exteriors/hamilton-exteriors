@@ -61,7 +61,13 @@ export async function getPost(slug: string): Promise<GhostPost | null> {
   return data.posts?.[0] ?? null;
 }
 
-export async function getTags(): Promise<{ name: string; slug: string; count: number }[]> {
+export interface GhostTag {
+  name: string;
+  slug: string;
+  count: number;
+}
+
+export async function getTags(): Promise<GhostTag[]> {
   const data = await ghostFetch('tags', {
     include: 'count.posts',
     limit: 'all',

@@ -12,7 +12,12 @@ if (!slug || !isGhostConfigured()) {
   return Astro.redirect('/blog');
 }
 
-const post = await getPost(slug);
+let post;
+try {
+  post = await getPost(slug);
+} catch {
+  return Astro.redirect('/blog');
+}
 
 if (!post) {
   return Astro.redirect('/blog');
@@ -62,7 +67,7 @@ try {
   <Navbar />
 
   <!-- Reading progress bar -->
-  <div id="reading-progress" style="position: fixed; top: 0; left: 0; height: 3px; background: #256346; width: 0%; z-index: 100000; transition: width 0.1s linear;"></div>
+  <div id="reading-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Reading progress" style="position: fixed; top: 0; left: 0; height: 3px; background: #256346; width: 0%; z-index: 100000; transition: width 0.1s linear;"></div>
 
   <article>
     {/* Hero */}
@@ -84,7 +89,7 @@ try {
           {post.title}
         </h1>
         <div class="flex items-center justify-between flex-wrap gap-4">
-          <div class="flex items-center gap-4" style="font-family: 'DM Sans', sans-serif; font-size: 15px; color: rgba(255,255,255,0.6);">
+          <div class="flex items-center gap-4" style="font-family: 'DM Sans', sans-serif; font-size: 15px; color: rgba(255,255,255,0.75);">
             <time datetime={post.published_at}>{formatDate(post.published_at)}</time>
             {post.reading_time > 0 && (
               <>
@@ -99,7 +104,7 @@ try {
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(canonicalUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
-              style="width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: background 0.2s;"
+              style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: background 0.2s;"
               class="hover:!bg-white/25"
               aria-label="Share on X"
             >
@@ -109,7 +114,7 @@ try {
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
-              style="width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: background 0.2s;"
+              style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: background 0.2s;"
               class="hover:!bg-white/25"
               aria-label="Share on Facebook"
             >
@@ -119,7 +124,7 @@ try {
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
-              style="width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: background 0.2s;"
+              style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: background 0.2s;"
               class="hover:!bg-white/25"
               aria-label="Share on LinkedIn"
             >
@@ -127,7 +132,7 @@ try {
             </a>
             <button
               id="copy-link-btn"
-              style="width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: background 0.2s; border: none; cursor: pointer;"
+              style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: background 0.2s; border: none; cursor: pointer;"
               class="hover:!bg-white/25"
               aria-label="Copy link"
             >
@@ -252,6 +257,7 @@ try {
       const scrolled = window.scrollY - articleTop;
       const progress = Math.max(0, Math.min(100, (scrolled / (articleHeight - window.innerHeight)) * 100));
       bar.style.width = progress + '%';
+      bar.setAttribute('aria-valuenow', String(Math.round(progress)));
     }, { passive: true });
   }
 
@@ -259,7 +265,7 @@ try {
   const copyBtn = document.getElementById('copy-link-btn');
   if (copyBtn) {
     copyBtn.addEventListener('click', function() {
-      navigator.clipboard.writeText(window.location.href).then(function() {
+      navigator.clipboard.writeText(window.location.href).catch(function() {}).then(function() {
         copyBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>';
         setTimeout(function() {
           copyBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
@@ -343,6 +349,8 @@ try {
     width: 100%;
     border-collapse: collapse;
     margin: 32px 0;
+    display: block;
+    overflow-x: auto;
   }
   .ghost-content th, .ghost-content td {
     border: 1px solid rgb(230, 230, 230);
