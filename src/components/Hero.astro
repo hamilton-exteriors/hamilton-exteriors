@@ -148,18 +148,22 @@ const {
             <!-- Step 1: Contact Info -->
             <div id="step-1" class="form-step">
               <div class="flex flex-col gap-3">
-                <input type="text" name="fullName" placeholder="Full Name" required class="hero-input w-full" />
-                <input type="tel" name="phone" placeholder="Phone Number" required class="hero-input w-full" />
-                <input type="email" name="email" placeholder="Email" required class="hero-input w-full" />
-                <input type="text" name="address" placeholder="Project Address" required class="hero-input w-full" />
+                <label for="hero-name" class="sr-only">Full Name</label>
+                <input type="text" id="hero-name" name="fullName" placeholder="Full Name" required class="hero-input w-full" />
+                <label for="hero-phone" class="sr-only">Phone Number</label>
+                <input type="tel" id="hero-phone" name="phone" placeholder="Phone Number" required class="hero-input w-full" />
+                <label for="hero-email" class="sr-only">Email</label>
+                <input type="email" id="hero-email" name="email" placeholder="Email" required class="hero-input w-full" />
+                <label for="hero-address" class="sr-only">Project Address</label>
+                <input type="text" id="hero-address" name="address" placeholder="Project Address" required class="hero-input w-full" />
               </div>
               <button
                 type="button"
                 id="next-btn-1"
                 class="mt-4 w-full rounded-full py-3.5 text-center font-bold uppercase text-white"
-                style="background-color: rgb(36, 99, 69); font-family: 'DM Sans', sans-serif; font-size: 0.875rem; letter-spacing: 0.03em;"
+                style="background-color: rgb(255, 222, 33); color: rgb(37, 99, 70); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 0.875rem; letter-spacing: 0.05em;"
               >
-                Continue
+                Next: Choose Your Service
               </button>
             </div>
 
@@ -176,7 +180,7 @@ const {
                 </div>
                 <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">2/3</span>
               </div>
-              <p class="mb-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; color: rgb(100,100,100);">What do you need help with?</p>
+              <p class="mb-3 text-center" style="font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; color: rgb(13, 43, 29);">What do you need help with?</p>
               <input type="hidden" name="service" id="service-input" />
               <div class="grid grid-cols-2 gap-2">
                 {['Roofing', 'Siding', 'Windows', 'Other'].map((service) => (
@@ -204,7 +208,9 @@ const {
                 </div>
                 <span style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: rgb(150,150,150);">3/3</span>
               </div>
+              <label for="hero-message" class="sr-only">Project details</label>
               <textarea
+                id="hero-message"
                 name="message"
                 rows="3"
                 placeholder="Tell us about your project (optional)"
@@ -279,25 +285,33 @@ const {
 
 <style>
   .service-btn {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 600;
+    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
     color: rgb(37, 99, 70);
     background: rgb(240, 247, 240);
-    border: 2px solid transparent;
+    border: 2px solid rgb(37, 99, 70, 0.2);
     border-radius: 10px;
-    padding: 14px 8px;
+    padding: 18px 8px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.15s ease-out;
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
   }
   .service-btn:hover {
     border-color: rgb(37, 99, 70);
     background: rgb(227, 239, 211);
+    transform: scale(1.02);
+  }
+  .service-btn:focus-visible {
+    outline: 2px solid rgb(255, 222, 33);
+    outline-offset: 2px;
   }
   .service-btn--active {
     border-color: rgb(37, 99, 70);
-    background: rgb(227, 239, 211);
+    background: rgb(37, 99, 70);
+    color: white;
   }
   .text-fit {
     display: flex;
