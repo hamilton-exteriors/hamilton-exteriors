@@ -45,7 +45,7 @@ const {
   </div>
 
   <div
-    class="relative mx-auto flex flex-col gap-8 px-5 lg:flex-row lg:items-start lg:gap-12"
+    class="relative mx-auto flex flex-col gap-6 px-4 lg:flex-row lg:items-start lg:gap-12 lg:px-5"
     style="max-width: 1294px;"
   >
 
@@ -78,14 +78,14 @@ const {
 
       <!-- Headline -->
       <h1
-        class="mt-3 text-white lg:mt-5"
-        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-size: clamp(46px, 9vw, 56px); line-height: 1.05; letter-spacing: 0.02em; font-weight: 400;"
+        class="mt-2 text-white lg:mt-4"
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-size: clamp(50px, 10vw, 56px); line-height: 1.0; letter-spacing: 0.03em; font-weight: 400;"
       >
         {headline}
       </h1>
 
       <!-- Trust badges -->
-      <div class="mt-5 flex flex-col gap-2 lg:mt-6 lg:gap-3">
+      <div class="mt-3 flex flex-col gap-1.5 lg:mt-5 lg:gap-3">
         {badges.map((badge) => (
           <div class="flex items-center gap-2.5">
             <div class="relative h-[18px] w-[18px] shrink-0 lg:h-[20px] lg:w-[20px]">
@@ -101,7 +101,7 @@ const {
       <!-- CTA button -->
       <a
         href={ctaHref}
-        class="mt-5 inline-block w-full text-center transition-all hover:scale-[1.02] sm:w-auto lg:mt-6"
+        class="mt-4 inline-block w-full text-center transition-all hover:scale-[1.02] sm:w-auto lg:mt-6"
         style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.05em; line-height: 1.5; background-color: rgb(255, 222, 33); color: rgb(37, 99, 70); border-radius: 8px; padding: 14px 32px;"
       >
         {ctaText}
@@ -113,13 +113,13 @@ const {
       <!-- Outer gradient wrapper -->
       <div
         class="w-full"
-        style="background: linear-gradient(rgb(255, 255, 255) 0%, rgb(153, 153, 153) 107%); border-radius: 16px;"
+        style="background: linear-gradient(rgb(255, 255, 255) 0%, rgb(153, 153, 153) 107%); border-radius: 12px;"
         class="lg:!rounded-[30px]"
       >
         <!-- Inner white content -->
         <div
           class="lg:!rounded-[30px] lg:!p-[30px_28px_28px]"
-          style="background-color: rgb(255, 255, 255); border-radius: 16px; padding: 24px 20px 20px;"
+          style="background-color: rgb(255, 255, 255); border-radius: 16px; padding: 20px 16px 16px;"
         >
           <!-- Form title -->
           <h2
