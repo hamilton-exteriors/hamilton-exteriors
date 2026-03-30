@@ -18,7 +18,8 @@ const {
   formTitle = 'Get a FREE QUOTE',
   formAction = '/success',
   formSubtitle = "We'll contact you in 3-5 minutes to schedule a FREE roof inspection.",
-  headline = 'Bay Areas Favorite Construction  Company',
+  headline = 'Bay Areas  Favorite  Construction  Company',
+  headlineLines = headline.trim().split(/\s{2,}|\n/),
   badges = [
     'Licensed Bonded & Insured',
     'Start with $0 Down',
@@ -76,12 +77,17 @@ const {
         </span>
       </div>
 
-      <!-- Headline -->
+      <!-- Headline — fluid fit-to-width per line -->
       <h1
-        class="hero-headline text-white"
-        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-weight: 400; text-transform: uppercase;"
+        class="w-full text-white"
+        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT (FREE VERSION) Placeholder', sans-serif; font-weight: 400; text-transform: uppercase; line-height: 0.9;"
       >
-        {headline}
+        {headlineLines.map((line: string) => (
+          <span class="text-fit">
+            <span><span>{line}</span></span>
+            <span aria-hidden="true">{line}</span>
+          </span>
+        ))}
       </h1>
 
       <!-- Trust badges -->
@@ -241,17 +247,67 @@ const {
 </section>
 
 <style>
-  .hero-headline {
-    font-size: clamp(3rem, 15vw, 56px) !important;
-    line-height: 0.95;
-    letter-spacing: 0.01em;
+  @property --fit-length {
+    syntax: "<length>";
+    initial-value: 0px;
+    inherits: true;
+  }
+
+  .text-fit {
+    display: flex;
+    container-type: inline-size;
+    --fit-length: initial;
+    --fit-sentinel: var(--fit-length, 9999px);
+    --fit-max: 2.5em;
+  }
+
+  .text-fit > [aria-hidden] {
+    visibility: hidden;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .text-fit > :not([aria-hidden]) {
+    flex-grow: 1;
+    container-type: inline-size;
+    --fit-length: 100cqi;
+    --fit-space: var(--fit-length);
+  }
+
+  .text-fit > :not([aria-hidden]) > * {
+    --fit-sentinel: inherit;
+    --fit-length: 100cqi;
+    --fit-ratio: tan(atan2(
+      var(--fit-space),
+      var(--fit-space) - var(--fit-length)
+    ));
+    --fit-size: clamp(
+      1em,
+      1em * var(--fit-ratio),
+      var(--fit-max, infinity * 1px) - var(--fit-sentinel)
+    );
+    inline-size: var(--fit-space);
+    display: block;
+    font-size: calc(var(--fit-size) * 0.95);
+    white-space: nowrap;
   }
 
   @media (min-width: 1024px) {
-    .hero-headline {
-      font-size: clamp(48px, 4vw, 56px) !important;
-      line-height: 1.1;
-      letter-spacing: normal;
+    .text-fit {
+      display: inline;
+      container-type: normal;
+    }
+    .text-fit > [aria-hidden] {
+      display: none;
+    }
+    .text-fit > :not([aria-hidden]) {
+      container-type: normal;
+    }
+    .text-fit > :not([aria-hidden]) > * {
+      font-size: clamp(48px, 4vw, 56px);
+      inline-size: auto;
+      white-space: normal;
+      display: inline;
     }
   }
 
