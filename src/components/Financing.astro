@@ -100,15 +100,13 @@ const { scheduleHref } = Astro.props;
             Schedule a FREE Inspection
           </a>
         ) : (
-          <div
-            class="flex w-full cursor-pointer items-center justify-center rounded-[4px] px-[20px] py-[12px] font-dm-sans text-[0.875rem] font-semibold leading-[1.5] text-center transition-opacity hover:opacity-90"
-            style="background-color: rgb(37, 99, 70); color: rgb(246, 253, 252);"
-            tabindex="0"
-            role="button"
-            onclick="document.getElementById('quote')?.scrollIntoView({behavior:'smooth'})"
+          <a
+            href="#quote"
+            class="flex w-full items-center justify-center rounded-[4px] px-[20px] py-[12px] font-dm-sans text-[0.875rem] font-semibold leading-[1.5] text-center transition-opacity hover:opacity-90"
+            style="background-color: rgb(37, 99, 70); color: rgb(246, 253, 252); text-decoration: none;"
           >
             Schedule a FREE Inspection
-          </div>
+          </a>
         )}
       </div>
     </div>

@@ -25,6 +25,13 @@
 /* ── Tailwind v4 ─────────────────────────────────────────────────────── */
 @import "tailwindcss";
 
+/* ── Global Focus-Visible ────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgb(255, 222, 33);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 /* ── Fit-to-width text (kizu.dev technique) ──────────────────────────── */
 @property --fit-length {
   syntax: "<length>";
