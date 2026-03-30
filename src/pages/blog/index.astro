@@ -1,0 +1,182 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AnnouncementBar from '../../components/AnnouncementBar.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getPosts, getTags, isGhostConfigured } from '../../lib/ghost';
+
+const tag = Astro.url.searchParams.get('tag') || undefined;
+const page = Number(Astro.url.searchParams.get('page') || '1');
+
+let posts: any[] = [];
+let pagination: any = { page: 1, pages: 1, total: 0 };
+let tags: any[] = [];
+let error: string | null = null;
+
+if (isGhostConfigured()) {
+  try {
+    const result = await getPosts({ page, tag, limit: 12 });
+    posts = result.posts;
+    pagination = result.pagination;
+    tags = await getTags();
+  } catch (e: any) {
+    error = e.message;
+  }
+} else {
+  error = 'Ghost CMS is not configured. Set PUBLIC_GHOST_URL and PUBLIC_GHOST_CONTENT_API_KEY in your .env file.';
+}
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<Layout
+  title="Blog | Hamilton Exteriors"
+  description="Expert insights on ADU construction, roofing, siding, and home improvement in the Bay Area. Tips, guides, and project updates from Hamilton Exteriors."
+>
+  <AnnouncementBar />
+  <Navbar />
+
+  <section class="w-full" style="background-color: #0d2b1d; padding: 80px 0 60px;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h1 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(36px, 5vw, 56px); line-height: 1.1; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
+        Blog
+      </h1>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 18px; line-height: 30px; color: rgba(255,255,255,0.7); max-width: 600px;">
+        Expert insights on ADU construction, roofing, and home improvement across the Bay Area.
+      </p>
+    </div>
+  </section>
+
+  {/* Tag Filter */}
+  {tags.length > 0 && (
+    <section class="w-full bg-white border-b border-gray-200">
+      <div class="mx-auto max-w-[1200px] px-5 py-4 flex flex-wrap gap-2">
+        <a
+          href="/blog"
+          class:list={[
+            'px-4 py-2 rounded-full text-sm font-medium transition-colors',
+            !tag ? 'bg-[#0d2b1d] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+          ]}
+          style="font-family: 'DM Sans', sans-serif;"
+        >
+          All Posts
+        </a>
+        {tags.map((t: any) => (
+          <a
+            href={`/blog?tag=${t.slug}`}
+            class:list={[
+              'px-4 py-2 rounded-full text-sm font-medium transition-colors',
+              tag === t.slug ? 'bg-[#0d2b1d] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+            ]}
+            style="font-family: 'DM Sans', sans-serif;"
+          >
+            {t.name} ({t.count})
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="w-full bg-white" style="padding: 60px 0 80px;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      {error ? (
+        <div class="rounded-xl border-2 border-dashed border-gray-300 p-12 text-center">
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: rgb(104, 104, 105);">{error}</p>
+        </div>
+      ) : posts.length === 0 ? (
+        <div class="rounded-xl border-2 border-dashed border-gray-300 p-12 text-center">
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 18px; color: rgb(13, 43, 29); font-weight: 600; margin-bottom: 8px;">No posts yet</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: rgb(104, 104, 105);">Check back soon for expert insights on ADU construction and home improvement.</p>
+        </div>
+      ) : (
+        <>
+          {/* Post Grid */}
+          <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {posts.map((post: any) => (
+              <a href={`/blog/${post.slug}`} class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 transition-shadow hover:shadow-lg">
+                {post.feature_image ? (
+                  <div class="aspect-[16/10] w-full overflow-hidden bg-gray-100">
+                    <img
+                      src={post.feature_image}
+                      alt={post.title}
+                      class="h-full w-full object-cover transition-transform group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                ) : (
+                  <div class="aspect-[16/10] w-full bg-gradient-to-br from-[#0d2b1d] to-[#256346] flex items-center justify-center">
+                    <span style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 24px; color: rgba(255,255,255,0.3); text-transform: uppercase;">Hamilton</span>
+                  </div>
+                )}
+                <div class="flex flex-1 flex-col p-5">
+                  {post.primary_tag && (
+                    <span style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 8px;">
+                      {post.primary_tag.name}
+                    </span>
+                  )}
+                  {!post.primary_tag && post.tags?.length > 0 && (
+                    <span style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 8px;">
+                      {post.tags[0].name}
+                    </span>
+                  )}
+                  <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; line-height: 1.4; color: rgb(13, 43, 29); margin-bottom: 8px;" class="group-hover:text-[#256346] transition-colors">
+                    {post.title}
+                  </h2>
+                  {post.excerpt && (
+                    <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 24px; color: rgb(104, 104, 105); margin-bottom: 12px;" class="line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                  )}
+                  <div class="mt-auto flex items-center gap-3" style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(150, 150, 150);">
+                    <time>{formatDate(post.published_at)}</time>
+                    {post.reading_time > 0 && (
+                      <>
+                        <span>&middot;</span>
+                        <span>{post.reading_time} min read</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {/* Pagination */}
+          {pagination.pages > 1 && (
+            <div class="mt-12 flex items-center justify-center gap-3">
+              {pagination.page > 1 && (
+                <a
+                  href={`/blog?page=${pagination.page - 1}${tag ? `&tag=${tag}` : ''}`}
+                  class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  style="font-family: 'DM Sans', sans-serif;"
+                >
+                  Previous
+                </a>
+              )}
+              <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">
+                Page {pagination.page} of {pagination.pages}
+              </span>
+              {pagination.page < pagination.pages && (
+                <a
+                  href={`/blog?page=${pagination.page + 1}${tag ? `&tag=${tag}` : ''}`}
+                  class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  style="font-family: 'DM Sans', sans-serif;"
+                >
+                  Next
+                </a>
+              )}
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

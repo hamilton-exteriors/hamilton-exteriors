@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import { roofingAsphalt, ctaAssistant } from '../../../lib/images';
 import Layout from '../../../layouts/Layout.astro';
 import AnnouncementBar from '../../../components/AnnouncementBar.astro';
 import Navbar from '../../../components/Navbar.astro';
@@ -26,8 +28,12 @@ const adjective = 'Premier';
   <LogoSlider />
 
   <!-- Why Choose Section -->
-  <section class="w-full bg-white py-16 md:py-32">
-    <div class="mx-auto max-w-[1200px] px-5">
+  <section class="w-full bg-white py-12 md:py-32 lg:py-16">
+    <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div class="hidden lg:block rounded-2xl overflow-hidden">
+        <Image src={roofingAsphalt} alt="Hamilton Exteriors ADU project" width={1200} height={900} class="w-full h-auto object-cover" style="aspect-ratio: 632/478;" loading="lazy" />
+      </div>
+      <div>
       <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
         Why Choose Hamilton Exteriors as Your {adjective} ADU Contractors in {city}, CA?
       </h2>
@@ -46,31 +52,29 @@ const adjective = 'Premier';
       <div class="mt-8 grid gap-6 md:grid-cols-2">
         <div>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
-            <strong style="color: rgb(13, 43, 29);">Architectural Sensitivity</strong> — We design ADUs that respect Larkspur's unique architectural character, blending seamlessly with your existing home and the surrounding neighborhood.
-          </p>
+            <strong style="color: rgb(13, 43, 29);">Custom Design</strong> — We create ADU plans tailored to your neighborhood's architectural character, ensuring your new unit complements your existing home and property layout.</p>
         </div>
         <div>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
-            <strong style="color: rgb(13, 43, 29);">Hillside Expertise</strong> — Many Larkspur properties involve slopes and challenging terrain. Our team handles grading, retaining walls, and foundation work with proven hillside construction methods.
-          </p>
+            <strong style="color: rgb(13, 43, 29);">Permit Management</strong> — We handle all city permits and approvals, streamlining a process that can otherwise take months of back-and-forth with the building department.</p>
         </div>
         <div>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
-            <strong style="color: rgb(13, 43, 29);">Premium Materials</strong> — We select materials that stand up to Marin's coastal climate while delivering the refined look and feel that Larkspur homeowners expect.
-          </p>
+            <strong style="color: rgb(13, 43, 29);">Quality Build</strong> — Premium materials and skilled construction that meet the highest standards, ensuring your ADU is built to last and delivers lasting comfort.</p>
         </div>
         <div>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
-            <strong style="color: rgb(13, 43, 29);">Seamless Permitting</strong> — We manage all Town of Larkspur permits and design review requirements, handling the administrative work so you can focus on the exciting parts of your project.
-          </p>
+            <strong style="color: rgb(13, 43, 29);">Reliable Timelines</strong> — On-schedule delivery with clear milestone updates throughout your project, because we understand your time is as valuable as your investment.</p>
         </div>
+      </div>
       </div>
     </div>
   </section>
 
   <!-- Why ADU Contractors Section -->
-  <section class="w-full bg-cream py-16 md:py-32">
-    <div class="mx-auto max-w-[1200px] px-5">
+  <section class="w-full bg-cream py-12 md:py-32 lg:py-16">
+    <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div>
       <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
         Why {adjective} ADU Contractors in {city}, CA Are Essential?
       </h2>
@@ -86,41 +90,13 @@ const adjective = 'Premier';
       <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
         By choosing premier ADU contractors, you protect your Larkspur home's value and ensure your new unit is a source of pride — a well-crafted space that serves your family's needs while respecting the character of this remarkable Marin community.
       </p>
-    </div>
-  </section>
-
-
-  <!-- ADU Services Section -->
-  <section class="hidden lg:block w-full" style="background-color: #0d2b1d; padding: 80px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 12px;">WHAT WE BUILD</p>
-      <h2
-        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 48px;"
-      >
-        ADU Types We Specialize In
-      </h2>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-        <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 12px;">Detached ADUs</h3>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgba(255, 255, 255, 0.7);">
-            Standalone backyard units up to 1,200 sq ft with full kitchens, bathrooms, and separate entrances. Ideal for rental income or multigenerational living with complete privacy.
-          </p>
-        </div>
-        <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 12px;">Garage Conversions</h3>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgba(255, 255, 255, 0.7);">
-            Transform your existing garage into a comfortable living space. The most cost-effective ADU option, with lower construction costs and faster completion timelines.
-          </p>
-        </div>
-        <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 12px;">Junior ADUs</h3>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgba(255, 255, 255, 0.7);">
-            Up to 500 sq ft units built within your existing home footprint. Perfect for a home office, guest suite, or compact rental — with minimal site disruption.
-          </p>
-        </div>
+      </div>
+      <div class="hidden lg:block rounded-2xl overflow-hidden">
+        <Image src={ctaAssistant} alt="Hamilton Exteriors construction crew" width={1200} height={900} class="w-full h-auto object-cover" style="aspect-ratio: 632/626;" loading="lazy" />
       </div>
     </div>
   </section>
+
 
   <FAQ />
   <ContactUs />

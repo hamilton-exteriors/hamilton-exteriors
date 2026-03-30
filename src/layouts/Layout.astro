@@ -31,8 +31,45 @@ const {
     <meta name="twitter:description" content={description} />
 
     <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- LocalBusiness Schema -->
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "name": "Hamilton Exteriors",
+      "url": "https://hamilton-exteriors.com",
+      "telephone": "+1-650-977-3351",
+      "email": "support@hamilton-exteriors.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "21634 Redwood Rd Unit F",
+        "addressLocality": "Castro Valley",
+        "addressRegion": "CA",
+        "postalCode": "94546",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.6941,
+        "longitude": -122.0828
+      },
+      "areaServed": [
+        "Castro Valley, CA", "Hayward, CA", "Fremont, CA", "Berkeley, CA",
+        "San Ramon, CA", "Walnut Creek, CA", "Concord, CA", "Richmond, CA",
+        "San Rafael, CA", "Novato, CA", "Mill Valley, CA"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "50"
+      },
+      "priceRange": "$$",
+      "image": "https://hamilton-exteriors.com/favicon.png",
+      "description": "Bay Area exterior remodeling — roofing, siding, windows, and waterproofing. Licensed, bonded, insured. 50-year warranty. 3-5 day installs."
+    }
+    </script>
 
     <!-- Google Tag Manager -->
     <script is:inline>

@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import AnnouncementBar from '../components/AnnouncementBar.astro';
 import Navbar from '../components/Navbar.astro';
@@ -13,36 +14,37 @@ import Projects from '../components/Projects.astro';
 import FAQ from '../components/FAQ.astro';
 import ContactUs from '../components/ContactUs.astro';
 import Footer from '../components/Footer.astro';
+import { heroWindows, windowDoubleHung, windowCasement, windowSliding, windowBay, windowPicture, windowGarden } from '../lib/images';
 
 const windowStyles = [
   {
     title: 'Single Hung',
-    image: 'https://framerusercontent.com/images/VoSewOJ2ORjyHUIKZcBRLvuFCM.png',
+    image: windowDoubleHung,
     description: "A single-hung window features a fixed upper sash and a movable lower sash that slides vertically. It's space-efficient, easy to use, and offers great ventilation with a classic, versatile design.",
   },
   {
     title: 'Single Slider',
-    image: 'https://framerusercontent.com/images/3leU7YMSEzrfQiIBkOrMlFCXP64.png',
+    image: windowCasement,
     description: "A single slider window has one fixed pane and one sliding pane for easy horizontal operation. It's space-efficient, versatile, and offers excellent ventilation with a modern look.",
   },
   {
     title: 'Sliding Glass Doors',
-    image: 'https://framerusercontent.com/images/rAsHNzgaOtTA7HKri7e783mZOos.png',
+    image: windowSliding,
     description: 'A sliding glass door features large glass panels that glide smoothly on tracks, offering easy access, natural light, and a sleek, space-saving design.',
   },
   {
     title: 'Picture Windows',
-    image: 'https://framerusercontent.com/images/ke4v9TaYHp5jf6dxbVEeYgDjmRk.png',
+    image: windowBay,
     description: 'A picture window is a large, fixed-pane window that provides expansive views and abundant natural light. Its clean, modern design enhances any space while improving energy efficiency.',
   },
   {
     title: 'Double Hung',
-    image: 'https://framerusercontent.com/images/oQ3oLzwkPnHtKGnHARgApBLNBQ.png',
+    image: windowPicture,
     description: 'A double-hung window has two movable sashes that slide vertically, offering versatile ventilation and easy cleaning. Its classic design fits a variety of architectural styles.',
   },
   {
     title: 'Casement Windows',
-    image: 'https://framerusercontent.com/images/xiMzhGRJDYCVCnTzRLjAbVxfQU.png',
+    image: windowGarden,
     description: 'A casement window features a single sash that opens outward on side hinges, operated by a crank mechanism. It provides excellent ventilation, unobstructed views, and a tight seal for superior energy efficiency. Perfect for modern and traditional styles alike.',
   },
 ];
@@ -59,7 +61,7 @@ const windowStyles = [
     formTitle="Get A FREE Window Quote"
     formSubtitle="We'll contact you in 3-5 minutes to schedule a FREE Window inspection."
     ctaText="Call Now (650) 977-3351"
-    heroImage="https://framerusercontent.com/images/ECpggx6VG82hHRcyizhR4cOgJHY.png"
+    heroImage={heroWindows}
   />
   <LogoSlider />
   <Reviews />
@@ -76,12 +78,14 @@ const windowStyles = [
         Window Styles Offered
       </h2>
       <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {windowStyles.map((style) => (
-          <div class="overflow-hidden rounded-2xl bg-white shadow-sm">
-            <div class="h-[362px] w-full overflow-hidden">
-              <img
+        {windowStyles.map((style, i) => (
+          <div class:list={["overflow-hidden rounded-2xl bg-white shadow-sm", i >= 3 && "hidden sm:block"]}>
+            <div class="h-[240px] sm:h-[362px] w-full overflow-hidden">
+              <Image
                 src={style.image}
                 alt={style.title}
+                width={566}
+                height={362}
                 class="h-full w-full object-fill"
                 loading="lazy"
               />
@@ -89,7 +93,7 @@ const windowStyles = [
             <div class="p-6">
               <h3
                 class="mb-2"
-                style="font-family: 'Inter Display', 'Inter Display Placeholder', sans-serif; font-size: 18px; font-weight: 800; line-height: 24px;"
+                style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 800; line-height: 24px;"
               >
                 {style.title}
               </h3>
@@ -105,6 +109,9 @@ const windowStyles = [
 
   <Difference />
   <Projects />
+  <div class="hidden lg:block w-full text-center" style="background-color: rgb(255, 222, 33); padding: 14px 0;">
+    <a href="#contact" style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29); text-decoration: none;">Schedule a FREE Inspection &rarr;</a>
+  </div>
   <Financing />
   <FAQ />
   <ContactUs />

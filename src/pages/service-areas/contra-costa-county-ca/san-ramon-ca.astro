@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import { roofingAsphalt, ctaAssistant } from '../../../lib/images';
 import Layout from '../../../layouts/Layout.astro';
 import AnnouncementBar from '../../../components/AnnouncementBar.astro';
 import Navbar from '../../../components/Navbar.astro';
@@ -26,8 +28,12 @@ const adjective = 'Skilled';
   <LogoSlider />
 
   <!-- Why Choose Section -->
-  <section class="w-full bg-white py-16 md:py-32">
-    <div class="mx-auto max-w-[1200px] px-5">
+  <section class="w-full bg-white py-12 md:py-32 lg:py-16">
+    <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div class="hidden lg:block rounded-2xl overflow-hidden">
+        <Image src={roofingAsphalt} alt="Hamilton Exteriors ADU project" width={1200} height={900} class="w-full h-auto object-cover" style="aspect-ratio: 632/478;" loading="lazy" />
+      </div>
+      <div>
       <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
         Why Choose Hamilton Exteriors as Your {adjective} ADU Contractors in {city}, CA?
       </h2>
@@ -46,31 +52,29 @@ const adjective = 'Skilled';
       <div class="mt-8 grid gap-6 md:grid-cols-2">
         <div>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
-            <strong style="color: rgb(13, 43, 29);">Precision Craftsmanship</strong> — Our crews deliver tight, clean construction with attention to every joint, seam, and finish detail that defines quality ADU building in San Ramon.
-          </p>
+            <strong style="color: rgb(13, 43, 29);">Custom Design</strong> — We create ADU plans tailored to your neighborhood's architectural character, ensuring your new unit complements your existing home and property layout.</p>
         </div>
         <div>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
-            <strong style="color: rgb(13, 43, 29);">HOA Coordination</strong> — Many San Ramon neighborhoods have HOA requirements. We work with your association's architectural review process to ensure your ADU is approved without delays.
-          </p>
+            <strong style="color: rgb(13, 43, 29);">Permit Handling</strong> — We manage the entire city permitting process from application to approval, eliminating the delays and confusion that come from navigating it yourself.</p>
         </div>
         <div>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
-            <strong style="color: rgb(13, 43, 29);">Premium Finishes</strong> — We source quality fixtures, countertops, flooring, and cabinetry that match the finish level San Ramon homeowners expect in their properties.
-          </p>
+            <strong style="color: rgb(13, 43, 29);">Premium Build</strong> — High-end materials and expert craftsmanship that match the quality expectations of your neighborhood, delivering a finished product you'll be proud of.</p>
         </div>
         <div>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
-            <strong style="color: rgb(13, 43, 29);">Efficient Build Process</strong> — Our skilled team works efficiently without rushing, maintaining quality while keeping your project moving toward completion on the agreed timeline.
-          </p>
+            <strong style="color: rgb(13, 43, 29);">Timeline Control</strong> — On-schedule delivery with detailed milestone tracking and proactive communication, so your project stays on track from start to finish.</p>
         </div>
+      </div>
       </div>
     </div>
   </section>
 
   <!-- Why ADU Contractors Section -->
-  <section class="w-full bg-cream py-16 md:py-32">
-    <div class="mx-auto max-w-[1200px] px-5">
+  <section class="w-full bg-cream py-12 md:py-32 lg:py-16">
+    <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div>
       <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
         Why {adjective} ADU Contractors in {city}, CA Are Essential?
       </h2>
@@ -86,41 +90,13 @@ const adjective = 'Skilled';
       <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
         Investing in skilled ADU contractors protects the significant equity you've built in your San Ramon home. The result is a unit that functions beautifully, meets every safety standard, and enhances your property's overall value in one of the Bay Area's most competitive real estate markets.
       </p>
-    </div>
-  </section>
-
-
-  <!-- ADU Services Section -->
-  <section class="hidden lg:block w-full" style="background-color: #0d2b1d; padding: 80px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 12px;">WHAT WE BUILD</p>
-      <h2
-        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 48px;"
-      >
-        ADU Types We Specialize In
-      </h2>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-        <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 12px;">Detached ADUs</h3>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgba(255, 255, 255, 0.7);">
-            Standalone backyard units up to 1,200 sq ft with full kitchens, bathrooms, and separate entrances. Ideal for rental income or multigenerational living with complete privacy.
-          </p>
-        </div>
-        <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 12px;">Garage Conversions</h3>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgba(255, 255, 255, 0.7);">
-            Transform your existing garage into a comfortable living space. The most cost-effective ADU option, with lower construction costs and faster completion timelines.
-          </p>
-        </div>
-        <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 12px;">Junior ADUs</h3>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgba(255, 255, 255, 0.7);">
-            Up to 500 sq ft units built within your existing home footprint. Perfect for a home office, guest suite, or compact rental — with minimal site disruption.
-          </p>
-        </div>
+      </div>
+      <div class="hidden lg:block rounded-2xl overflow-hidden">
+        <Image src={ctaAssistant} alt="Hamilton Exteriors construction crew" width={1200} height={900} class="w-full h-auto object-cover" style="aspect-ratio: 632/626;" loading="lazy" />
       </div>
     </div>
   </section>
+
 
   <FAQ />
   <ContactUs />

@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import { financingHouse, financingWorker, iconCheckmarkCircle } from '../lib/images';
+
 interface Props {
   scheduleHref?: string;
 }
@@ -6,24 +9,27 @@ interface Props {
 const { scheduleHref } = Astro.props;
 ---
 
-<section id="financing" class="w-full py-[79px] px-0">
+<section id="financing" class="w-full py-12 lg:py-[79px] px-0">
   <div class="mx-auto flex max-w-[1294px] flex-col overflow-hidden md:flex-row">
     <!-- Left Column: Photo -->
     <div class="relative h-[400px] w-full md:h-auto md:min-h-[600px] md:w-1/2">
-      <img
-        src="https://framerusercontent.com/images/S6tO19GbS7dkdIfmXiUGwxpkE.jpeg?width=1366&height=2048"
+      <Image
+        src={financingHouse}
         alt="Hamilton Exteriors financing"
+        width={1366}
+        height={2048}
         class="absolute inset-0 h-full w-full object-cover"
         loading="lazy"
       />
     </div>
 
     <!-- Right Column: Content -->
-    <div class="flex w-full flex-col justify-center px-[40px] py-[60px] md:w-1/2 md:px-[50px] md:py-[80px]">
+    <div class="flex w-full flex-col justify-center px-5 py-10 md:w-1/2 md:px-[50px] md:py-[80px]">
       <!-- Title -->
       <div class="mb-[20px]">
         <p
-          class="font-oswald text-[40px] font-normal leading-[50px] tracking-[0px] uppercase"
+          class="font-oswald font-normal uppercase"
+          style="font-size: clamp(28px, 5vw, 40px); line-height: 1.2; letter-spacing: 0;"
         >
           <span style="color: rgb(13, 43, 29);">Financing Options </span><span style="color: rgb(36, 99, 69);">Available For Everyone</span>
         </p>
@@ -34,7 +40,7 @@ const { scheduleHref } = Astro.props;
         class="font-dm-sans text-[14px] leading-[150%]"
         style="color: rgb(13, 43, 29);"
       >
-        At Hamilton Exteriors, we offer flexible financing solutions for every homeowner. Whether you have high or low credit, we have options to fit your needs. Our partnerships with various lenders enable us to provide competitive rates and terms for all credit profiles. Don't let financial concerns delay your project - let us help you find the perfect financing solution.
+        Flexible financing for every homeowner — high credit or low. We partner with multiple lenders to get you competitive rates. Don't let cost delay your project.
       </p>
 
       <!-- Assistant Row -->
@@ -42,9 +48,11 @@ const { scheduleHref } = Astro.props;
         <!-- Avatar with green dot -->
         <div class="relative flex-shrink-0">
           <div class="h-[63px] w-[63px] overflow-hidden rounded-full bg-[rgb(13,43,29)]">
-            <img
-              src="https://framerusercontent.com/images/Grvfbw6fO4D34N95dv168E9UZA.jpeg?width=2500&height=1667"
+            <Image
+              src={financingWorker}
               alt="Assistant"
+              width={63}
+              height={63}
               class="h-full w-full object-cover"
               style="transform: translate(-50%, -50%); position: relative; left: 50%; top: 50%;"
               loading="lazy"
@@ -57,7 +65,7 @@ const { scheduleHref } = Astro.props;
         </div>
         <!-- Text -->
         <p
-          class="font-inter text-[18px] leading-[140%]"
+          class="font-dm-sans text-[18px] leading-[140%]"
           style="color: rgb(13, 43, 29);"
         >
           Let's discuss your financial options. <span class="font-bold" style="font-weight: 700;">Quick Response</span>
@@ -69,12 +77,14 @@ const { scheduleHref } = Astro.props;
         <!-- Call Now Button -->
         <a
           href="tel:6509773351"
-          class="flex w-full items-center justify-center gap-[8px] rounded-[4px] px-[20px] py-[12px] font-inter text-[14px] font-semibold leading-[150%] transition-opacity hover:opacity-80"
+          class="flex w-full items-center justify-center gap-[8px] rounded-[4px] px-[20px] py-[12px] font-dm-sans text-[14px] font-semibold leading-[150%] transition-opacity hover:opacity-80"
           style="color: rgb(13, 43, 29); border: 1px solid rgba(13, 43, 29, 0.15); background-color: rgb(227, 239, 211);"
         >
-          <img
-            src="https://framerusercontent.com/images/G35R4Q6naUwVgHmtHSeUzv8s.svg?width=15&height=15"
+          <Image
+            src={iconCheckmarkCircle}
             alt=""
+            width={15}
+            height={15}
             class="h-[15px] w-[15px]"
           />
           Call Now (650) 977-3351
@@ -84,15 +94,15 @@ const { scheduleHref } = Astro.props;
         {scheduleHref ? (
           <a
             href={scheduleHref}
-            class="flex w-full items-center justify-center rounded-[4px] px-[20px] py-[12px] font-inter text-[14px] font-semibold leading-[150%] text-center transition-opacity hover:opacity-90"
-            style="background-color: rgb(13, 43, 29); color: rgb(246, 253, 252); text-decoration: none;"
+            class="flex w-full items-center justify-center rounded-[4px] px-[20px] py-[12px] font-dm-sans text-[14px] font-semibold leading-[150%] text-center transition-opacity hover:opacity-90"
+            style="background-color: rgb(37, 99, 70); color: rgb(246, 253, 252); text-decoration: none;"
           >
             Schedule a FREE Inspection
           </a>
         ) : (
           <div
-            class="flex w-full cursor-pointer items-center justify-center rounded-[4px] px-[20px] py-[12px] font-inter text-[14px] font-semibold leading-[150%] text-center transition-opacity hover:opacity-90"
-            style="background-color: rgb(13, 43, 29); color: rgb(246, 253, 252);"
+            class="flex w-full cursor-pointer items-center justify-center rounded-[4px] px-[20px] py-[12px] font-dm-sans text-[14px] font-semibold leading-[150%] text-center transition-opacity hover:opacity-90"
+            style="background-color: rgb(37, 99, 70); color: rgb(246, 253, 252);"
             tabindex="0"
             role="button"
             onclick="document.getElementById('quote')?.scrollIntoView({behavior:'smooth'})"

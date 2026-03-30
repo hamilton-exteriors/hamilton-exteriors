@@ -49,19 +49,22 @@ const projects = [
     extraCount: 2,
   },
 ];
+import { Image } from 'astro:assets';
 ---
 
 <section class="w-full" style="background-color: rgb(255,255,255); padding: 32px 0 48px;">
-  <div class="cc-showcase-wrapper" style="max-width: 1170px; margin: 0 auto; padding: 0 15px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <div class="cc-showcase-wrapper" style="max-width: 1170px; margin: 0 auto; padding: 0 15px; font-family: 'DM Sans', sans-serif;">
 
     <!-- Header -->
     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
-      <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 22px; font-weight: 700; color: rgb(17,17,17); margin: 0; letter-spacing: -0.3px;">Our Latest Projects</h2>
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: clamp(24px, 4vw, 30px); font-weight: 400; color: rgb(17,17,17); margin: 0; text-transform: uppercase;">Our Latest Projects</h2>
       <div style="display: flex; align-items: center; gap: 6px;">
         <span style="font-size: 11px; color: rgb(120,120,120); font-weight: 400;">Powered By</span>
-        <img
+        <Image
           src="https://companycam.imgix.net/icons-logos/CompanyCam-Logos/All_Black_CompanyCam_Logo.png?auto=format%2Ccompress&w=350"
           alt="CompanyCam"
+          width={350}
+          height={50}
           style="height: 16px; width: auto;"
           loading="lazy"
         />
@@ -86,9 +89,11 @@ const projects = [
 
           <!-- Featured Photo with badges -->
           <div style="position: relative; width: 100%; padding-top: 62%; overflow: hidden; background: rgb(220,220,220);">
-            <img
+            <Image
               src={project.featuredPhoto}
               alt={project.title}
+              width={900}
+              height={558}
               style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
               loading="lazy"
             />
@@ -125,9 +130,11 @@ const projects = [
             <div style="display: flex; gap: 4px; align-items: center;">
               {project.thumbnails.map(thumb => (
                 <div style="width: 40px; height: 40px; border-radius: 3px; overflow: hidden; flex-shrink: 0; background: rgb(220,220,220);">
-                  <img
+                  <Image
                     src={thumb}
                     alt=""
+                    width={250}
+                    height={250}
                     style="width: 100%; height: 100%; object-fit: cover;"
                     loading="lazy"
                   />
@@ -146,22 +153,18 @@ const projects = [
     </div>
 
     <!-- Pagination -->
-    <div style="display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 20px;">
-      <!-- First page -->
-      <button style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: not-allowed; opacity: 0.4; color: rgb(60,60,60);" disabled>
+    <div id="cc-pagination" style="display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 20px;">
+      <button data-action="first" style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11 18L5 12l6-6M19 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <!-- Prev -->
-      <button style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: not-allowed; opacity: 0.4; color: rgb(60,60,60);" disabled>
+      <button data-action="prev" style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <span style="font-size: 13px; color: rgb(60,60,60); padding: 0 8px;">1 of 2</span>
-      <!-- Next -->
-      <button style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
+      <span id="cc-page-label" style="font-size: 13px; color: rgb(60,60,60); padding: 0 8px;">1 of 1</span>
+      <button data-action="next" style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <!-- Last page -->
-      <button style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
+      <button data-action="last" style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 18l6-6-6-6M13 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
@@ -169,13 +172,53 @@ const projects = [
   </div>
 </section>
 
+<script>
+  const grid = document.querySelector('.cc-grid');
+  const cards = grid ? Array.from(grid.children) : [];
+  const label = document.getElementById('cc-page-label');
+  const pagination = document.getElementById('cc-pagination');
+
+  if (cards.length > 0 && pagination) {
+    const perPage = window.innerWidth <= 768 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
+    const totalPages = Math.ceil(cards.length / perPage);
+    let currentPage = 1;
+
+    function render() {
+      cards.forEach((card, i) => {
+        const pageOfCard = Math.floor(i / perPage) + 1;
+        (card as HTMLElement).style.display = pageOfCard === currentPage ? '' : 'none';
+      });
+      if (label) label.textContent = `${currentPage} of ${totalPages}`;
+
+      pagination.querySelectorAll('button').forEach(btn => {
+        const action = btn.getAttribute('data-action');
+        const disabled = (action === 'first' || action === 'prev') ? currentPage <= 1 :
+                         (action === 'next' || action === 'last') ? currentPage >= totalPages : false;
+        (btn as HTMLButtonElement).disabled = disabled;
+        btn.style.opacity = disabled ? '0.4' : '1';
+        btn.style.cursor = disabled ? 'not-allowed' : 'pointer';
+      });
+    }
+
+    pagination.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('button');
+      if (!btn || (btn as HTMLButtonElement).disabled) return;
+      const action = btn.getAttribute('data-action');
+      if (action === 'first') currentPage = 1;
+      else if (action === 'prev') currentPage = Math.max(1, currentPage - 1);
+      else if (action === 'next') currentPage = Math.min(totalPages, currentPage + 1);
+      else if (action === 'last') currentPage = totalPages;
+      render();
+    });
+
+    render();
+  }
+</script>
+
 <style>
   @media (max-width: 768px) {
     .cc-grid {
       grid-template-columns: 1fr !important;
-    }
-    .cc-card-extra {
-      display: none !important;
     }
   }
   @media (min-width: 769px) and (max-width: 1024px) {

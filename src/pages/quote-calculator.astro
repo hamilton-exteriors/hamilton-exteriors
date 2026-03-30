@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import { logoNav, heroBg, ctaAssistant, financingHouse } from '../lib/images';
 ---
 
 <Layout
@@ -12,9 +14,11 @@ import Layout from '../layouts/Layout.astro';
   <div class="mx-auto max-w-5xl px-4 py-3">
     <div class="flex flex-col items-center gap-3">
       <a href="/">
-        <img
-          src="https://framerusercontent.com/images/3o6dMG6rHB3zLq01KSQtoInJw.png?width=469&height=194"
+        <Image
+          src={logoNav}
           alt="Hamilton Exteriors"
+          width={469}
+          height={194}
           class="h-10 w-auto sm:h-12"
           loading="eager"
         />
@@ -45,11 +49,11 @@ import Layout from '../layouts/Layout.astro';
     <div class="mb-8 space-y-3 text-center">
       <h1
         class="text-3xl font-bold leading-tight sm:text-4xl"
-        style="color: rgb(33, 36, 44); font-family: 'Inter', sans-serif;"
+        style="color: rgb(33, 36, 44); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;"
       >
         COMPLETE AND GET YOUR FREE ESTIMATE
       </h1>
-      <p class="text-base text-gray-500" style="font-family: 'Inter', sans-serif;">
+      <p class="text-base text-gray-500" style="font-family: 'DM Sans', sans-serif;">
         Firstly, what type of addition would you like to add?
       </p>
     </div>
@@ -64,9 +68,11 @@ import Layout from '../layouts/Layout.astro';
         style="min-height: 100px;"
       >
         <div class="h-full w-24 flex-shrink-0 sm:w-32">
-          <img
-            src="https://framerusercontent.com/images/i7BMps6r4h2wo0XMZKI0lLqZg4.png"
+          <Image
+            src={heroBg}
             alt="Detached ADU"
+            width={400}
+            height={300}
             class="h-full w-full object-cover"
             style="min-height: 100px;"
             loading="lazy"
@@ -74,8 +80,8 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <div class="flex flex-1 items-center justify-between p-4">
           <div class="flex-1 pr-3">
-            <h3 class="text-base font-semibold sm:text-lg" style="color: rgb(33, 36, 44); font-family: 'Inter', sans-serif;">Detached ADU</h3>
-            <p class="mt-1 text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">Complete structure from main home</p>
+            <h3 class="text-base font-semibold sm:text-lg" style="color: rgb(33, 36, 44); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;">Detached ADU</h3>
+            <p class="mt-1 text-sm text-gray-500" style="font-family: 'DM Sans', sans-serif;">Complete structure from main home</p>
           </div>
           <div class="h-5 w-5 flex-shrink-0 rounded-full border-2 border-gray-300 transition-colors group-hover:border-green-600"></div>
         </div>
@@ -88,9 +94,11 @@ import Layout from '../layouts/Layout.astro';
         style="min-height: 100px;"
       >
         <div class="h-full w-24 flex-shrink-0 sm:w-32">
-          <img
-            src="https://framerusercontent.com/images/3ZyVizW596wbZAXsRlXf7xGUGk.jpg"
+          <Image
+            src={ctaAssistant}
             alt="Attached ADU"
+            width={400}
+            height={300}
             class="h-full w-full object-cover"
             style="min-height: 100px;"
             loading="lazy"
@@ -98,8 +106,8 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <div class="flex flex-1 items-center justify-between p-4">
           <div class="flex-1 pr-3">
-            <h3 class="text-base font-semibold sm:text-lg" style="color: rgb(33, 36, 44); font-family: 'Inter', sans-serif;">Attached ADU</h3>
-            <p class="mt-1 text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">Connected to existing home</p>
+            <h3 class="text-base font-semibold sm:text-lg" style="color: rgb(33, 36, 44); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;">Attached ADU</h3>
+            <p class="mt-1 text-sm text-gray-500" style="font-family: 'DM Sans', sans-serif;">Connected to existing home</p>
           </div>
           <div class="h-5 w-5 flex-shrink-0 rounded-full border-2 border-gray-300 transition-colors group-hover:border-green-600"></div>
         </div>
@@ -112,9 +120,11 @@ import Layout from '../layouts/Layout.astro';
         style="min-height: 100px;"
       >
         <div class="h-full w-24 flex-shrink-0 sm:w-32">
-          <img
-            src="https://framerusercontent.com/images/S6tO19GbS7dkdIfmXiUGwxpkE.jpeg?width=1366&height=2048"
+          <Image
+            src={financingHouse}
             alt="Second Story Addition"
+            width={400}
+            height={300}
             class="h-full w-full object-cover"
             style="min-height: 100px;"
             loading="lazy"
@@ -122,8 +132,8 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <div class="flex flex-1 items-center justify-between p-4">
           <div class="flex-1 pr-3">
-            <h3 class="text-base font-semibold sm:text-lg" style="color: rgb(33, 36, 44); font-family: 'Inter', sans-serif;">Second Story Addition</h3>
-            <p class="mt-1 text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">Add a second floor to existing structure</p>
+            <h3 class="text-base font-semibold sm:text-lg" style="color: rgb(33, 36, 44); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;">Second Story Addition</h3>
+            <p class="mt-1 text-sm text-gray-500" style="font-family: 'DM Sans', sans-serif;">Add a second floor to existing structure</p>
           </div>
           <div class="h-5 w-5 flex-shrink-0 rounded-full border-2 border-gray-300 transition-colors group-hover:border-green-600"></div>
         </div>
@@ -136,9 +146,11 @@ import Layout from '../layouts/Layout.astro';
         style="min-height: 100px;"
       >
         <div class="h-full w-24 flex-shrink-0 sm:w-32">
-          <img
-            src="https://framerusercontent.com/images/i7BMps6r4h2wo0XMZKI0lLqZg4.png"
+          <Image
+            src={heroBg}
             alt="Garage Conversion"
+            width={400}
+            height={300}
             class="h-full w-full object-cover"
             style="min-height: 100px;"
             loading="lazy"
@@ -146,8 +158,8 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <div class="flex flex-1 items-center justify-between p-4">
           <div class="flex-1 pr-3">
-            <h3 class="text-base font-semibold sm:text-lg" style="color: rgb(33, 36, 44); font-family: 'Inter', sans-serif;">Garage Conversion</h3>
-            <p class="mt-1 text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">Transform existing garage space</p>
+            <h3 class="text-base font-semibold sm:text-lg" style="color: rgb(33, 36, 44); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;">Garage Conversion</h3>
+            <p class="mt-1 text-sm text-gray-500" style="font-family: 'DM Sans', sans-serif;">Transform existing garage space</p>
           </div>
           <div class="h-5 w-5 flex-shrink-0 rounded-full border-2 border-gray-300 transition-colors group-hover:border-green-600"></div>
         </div>
@@ -161,8 +173,8 @@ import Layout from '../layouts/Layout.astro';
       >
         <div class="flex flex-1 items-center justify-between p-5">
           <div class="flex-1 pr-3">
-            <h3 class="text-base font-semibold sm:text-lg" style="color: rgb(33, 36, 44); font-family: 'Inter', sans-serif;">Don't Know Yet</h3>
-            <p class="mt-1 text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">Need help deciding the best option for you</p>
+            <h3 class="text-base font-semibold sm:text-lg" style="color: rgb(33, 36, 44); font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;">Don't Know Yet</h3>
+            <p class="mt-1 text-sm text-gray-500" style="font-family: 'DM Sans', sans-serif;">Need help deciding the best option for you</p>
           </div>
           <div class="h-5 w-5 flex-shrink-0 rounded-full border-2 border-gray-300 transition-colors group-hover:border-green-600"></div>
         </div>
@@ -175,7 +187,7 @@ import Layout from '../layouts/Layout.astro';
       <a
         href="tel:6509773351"
         class="text-sm underline transition-colors hover:opacity-70"
-        style="color: rgb(37, 99, 70); font-family: 'Inter', sans-serif;"
+        style="color: rgb(37, 99, 70); font-family: 'DM Sans', sans-serif;"
       >
         Need help deciding the best option for you?
       </a>

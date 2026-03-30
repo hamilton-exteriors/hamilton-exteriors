@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import { reviewLogoGoogle, reviewLogoYelp } from '../lib/images';
 /**
  * ReviewLogos – 4 platform rating cards in a horizontal row.
  * Matches the Framer site: BBB shield, Trustpilot, Google, Yelp.
@@ -6,7 +8,7 @@
 const platforms = [
   {
     name: 'BBB',
-    logo: 'https://framerusercontent.com/images/8iBZpmFAKh6xTLHK82VLUVFTwY.png',
+    logo: reviewLogoGoogle,
     logoWidth: 44,
     logoHeight: 44,
     score: '4.8',
@@ -33,11 +35,12 @@ const platforms = [
   },
   {
     name: 'Yelp',
-    logo: 'https://framerusercontent.com/images/O9rWjkJec1QEE7udsbPmc7MZg3w.png',
+    logo: reviewLogoYelp,
     logoWidth: 130,
     logoHeight: 55,
     score: '',
     showStars: false,
+    showYelpStars: true,
     ratingLabel: 'Rated 4.5/5.0',
   },
 ];
@@ -45,14 +48,14 @@ const platforms = [
 const starColor = 'rgb(0, 94, 136)';
 ---
 
-<section class="w-full" style="padding: 79px 0 0;">
+<section class="w-full pt-12 lg:pt-[79px]">
   <div class="mx-auto max-w-[1200px] px-5">
     <!-- Heading -->
     <p
-      class="text-center font-inter"
+      class="text-center font-dm-sans"
       style="font-size: 16px; font-weight: 400; line-height: 24px; color: rgb(13, 43, 29);"
     >
-      Rated 4.8 Stars by Sacramento Homeowners &ndash; See Why Customers Love Us!
+      Rated 4.8 Stars by Bay Area Homeowners &ndash; See Why Customers Love Us!
     </p>
 
     <!-- Platform logos row -->
@@ -62,7 +65,7 @@ const starColor = 'rgb(0, 94, 136)';
           <!-- Logo / Icon -->
           <div class="review-card__logo">
             {platform.name === 'BBB' && (
-              <img
+              <Image
                 src={platform.logo}
                 alt="BBB"
                 width={platform.logoWidth}
@@ -87,7 +90,7 @@ const starColor = 'rgb(0, 94, 136)';
               </svg>
             )}
             {platform.name === 'Yelp' && (
-              <img
+              <Image
                 src={platform.logo}
                 alt="Yelp"
                 width={platform.logoWidth}
@@ -126,6 +129,19 @@ const starColor = 'rgb(0, 94, 136)';
             <div class="review-card__trustpilot-stars">
               {[1,2,3,4,5].map(() => (
                 <div class="trustpilot-star-box">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <!-- Yelp red star bar -->
+          {platform.showYelpStars && (
+            <div class="review-card__yelp-stars">
+              {[1,2,3,4,5].map(() => (
+                <div class="yelp-star-box">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
@@ -193,7 +209,7 @@ const starColor = 'rgb(0, 94, 136)';
   }
 
   .review-card__trustpilot-name {
-    font-family: 'Inter', sans-serif;
+    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
     font-size: 29.32px;
     font-weight: 600;
     line-height: 36.64px;
@@ -216,8 +232,23 @@ const starColor = 'rgb(0, 94, 136)';
     background-color: #00B67A;
   }
 
+  .review-card__yelp-stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .yelp-star-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 27px;
+    background-color: #D32323;
+  }
+
   .review-card__rating {
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 18.32px;
     font-weight: 500;
     line-height: 27.48px;

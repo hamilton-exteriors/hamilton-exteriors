@@ -1,9 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../../../layouts/Layout.astro';
 import AnnouncementBar from '../../../components/AnnouncementBar.astro';
 import Navbar from '../../../components/Navbar.astro';
 import LogoSlider from '../../../components/LogoSlider.astro';
 import Footer from '../../../components/Footer.astro';
+import { serviceRoofing, serviceSiding, serviceWindows, serviceAdu, heroBg, iconContactPhone, iconContactEmail, iconContactClock, iconContactMap } from '../../../lib/images';
 
 const city = 'Oakland';
 const county = 'Alameda County';
@@ -40,37 +42,37 @@ const projects = [
     title: 'Detached ADU - Modern Studio',
     location: 'Rockridge, Oakland',
     sqft: '650 sq ft',
-    image: 'https://framerusercontent.com/images/hakr7OWoKe15ZF1PJ4Ckr7hRI.png',
+    image: serviceRoofing,
   },
   {
     title: 'Two-Story ADU Build',
     location: 'Temescal, Oakland',
     sqft: '1,100 sq ft',
-    image: 'https://framerusercontent.com/images/abwzIHTvES7vwiSos5d3WPfIaA.png',
+    image: serviceSiding,
   },
   {
     title: 'Garage Conversion ADU',
     location: 'Montclair, Oakland',
     sqft: '480 sq ft',
-    image: 'https://framerusercontent.com/images/pzaFvzI3i6hTZpGQ93e3UdUGriU.png',
+    image: serviceWindows,
   },
   {
     title: 'Attached ADU Suite',
     location: 'Oakland Hills',
     sqft: '750 sq ft',
-    image: 'https://framerusercontent.com/images/aGE7RTabo86d7bQllJ13VZdMVw4.png',
+    image: serviceAdu,
   },
   {
     title: 'Junior ADU Conversion',
     location: 'West Oakland',
     sqft: '450 sq ft',
-    image: 'https://framerusercontent.com/images/i7BMps6r4h2wo0XMZKI0lLqZg4.png',
+    image: heroBg,
   },
   {
     title: 'Detached ADU - Family Unit',
     location: 'Jack London District',
     sqft: '1,200 sq ft',
-    image: 'https://framerusercontent.com/images/hakr7OWoKe15ZF1PJ4Ckr7hRI.png',
+    image: serviceRoofing,
   },
 ];
 ---
@@ -85,13 +87,13 @@ const projects = [
   <!-- Breadcrumb -->
   <nav class="w-full" style="background-color: #f9f8f6; border-bottom: 1px solid #e8e5df;">
     <div class="mx-auto flex items-center gap-2 px-5" style="max-width: 1294px; padding-top: 14px; padding-bottom: 14px;">
-      <a href="/" style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105); text-decoration: none;">Home</a>
-      <span style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">/</span>
-      <a href="/service-areas" style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105); text-decoration: none;">Service Areas</a>
-      <span style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">/</span>
-      <a href="/service-areas/alameda-county-ca" style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105); text-decoration: none;">{county}</a>
-      <span style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">/</span>
-      <span style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(13, 43, 29); font-weight: 500;">{city}, CA</span>
+      <a href="/" style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); text-decoration: none;">Home</a>
+      <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">/</span>
+      <a href="/service-areas" style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); text-decoration: none;">Service Areas</a>
+      <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">/</span>
+      <a href="/service-areas/alameda-county-ca" style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); text-decoration: none;">{county}</a>
+      <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">/</span>
+      <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(13, 43, 29); font-weight: 500;">{city}, CA</span>
     </div>
   </nav>
 
@@ -99,12 +101,13 @@ const projects = [
   <section id="quote" class="relative w-full overflow-hidden">
     <!-- Background image -->
     <div class="absolute inset-0">
-      <img
-        src="https://framerusercontent.com/images/i7BMps6r4h2wo0XMZKI0lLqZg4.png"
+      <Image
+        src={heroBg}
         alt=""
+        width={1920}
+        height={1080}
         class="h-full w-full object-cover"
         loading="eager"
-        fetchpriority="high"
       />
       <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(13, 43, 29, 0.92) 0%, rgba(13, 43, 29, 0.78) 100%);"></div>
     </div>
@@ -173,7 +176,7 @@ const projects = [
         <a
           href="tel:6509773351"
           class="inline-block transition-opacity hover:opacity-90"
-          style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; line-height: 24px; background-color: rgb(255, 222, 33); color: rgb(13, 43, 29); border-radius: 8px; padding: 12px 28px;"
+          style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; line-height: 24px; background-color: rgb(255, 222, 33); color: rgb(13, 43, 29); border-radius: 8px; padding: 12px 28px;"
         >
           Call Us - (650) 977-3351
         </a>
@@ -194,7 +197,7 @@ const projects = [
             </h2>
             <p
               class="mb-5 text-center"
-              style="font-family: 'Poppins', sans-serif; line-height: 26px; color: rgb(134, 134, 134); font-size: 14px;"
+              style="font-family: 'DM Sans', sans-serif; line-height: 26px; color: rgb(134, 134, 134); font-size: 14px;"
             >
               We'll contact you within 24 hours to discuss your ADU project.
             </p>
@@ -206,7 +209,7 @@ const projects = [
                   <div class="relative w-1/2">
                     <div class="flex overflow-hidden" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;">
                       <div class="flex items-center shrink-0" style="padding: 12px 0 12px 12px; width: 52px;">
-                        <span style="font-family: 'Poppins', sans-serif; font-size: 16px; line-height: 26px; color: rgb(32, 26, 22);">+1</span>
+                        <span style="font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 26px; color: rgb(32, 26, 22);">+1</span>
                       </div>
                       <div style="width: 1px; margin-top: 8px; margin-bottom: 8px; background-color: rgba(0, 0, 0, 0.2);"></div>
                       <input
@@ -215,7 +218,7 @@ const projects = [
                         placeholder="Phone Number"
                         required
                         class="flex-1 border-none bg-transparent outline-none"
-                        style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 400; line-height: 26px; color: rgb(32, 26, 22); padding: 12px;"
+                        style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 400; line-height: 26px; color: rgb(32, 26, 22); padding: 12px;"
                       />
                     </div>
                   </div>
@@ -238,7 +241,7 @@ const projects = [
                   />
                   <span
                     class="italic"
-                    style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; line-height: 17px; color: rgb(136, 136, 136);"
+                    style="font-family: 'Satoshi', sans-serif; font-size: 10px; font-weight: 500; line-height: 17px; color: rgb(136, 136, 136);"
                   >
                     <strong>I agree to receive promotional messages sent via an autodialer, and this agreement isn't a condition of any purchase.</strong>
                     <br /><br />
@@ -247,7 +250,7 @@ const projects = [
                 </label>
                 <button type="submit" class="mt-1 w-full" style="border-radius: 10px;">
                   <div class="w-full py-4" style="background-color: rgb(36, 99, 69); border-radius: 40px;">
-                    <p class="text-center text-white uppercase" style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 700; line-height: 17px;">
+                    <p class="text-center text-white uppercase" style="font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700; line-height: 17px;">
                       Get My Free Consultation
                     </p>
                   </div>
@@ -305,8 +308,8 @@ const projects = [
             "Hamilton Exteriors built our detached ADU in Rockridge and we couldn't be happier. From the initial design consultation to the final walkthrough, their team was professional, communicative, and detail-oriented. They handled all the permits with the city and finished on schedule. Our ADU is now rented out and generating over $3,000/month in income. Best investment we've ever made."
           </p>
           <div>
-            <p style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: white; margin-bottom: 2px;">Michael T.</p>
-            <p style="font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.6);">Rockridge, Oakland</p>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: white; margin-bottom: 2px;">Michael T.</p>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.6);">Rockridge, Oakland</p>
           </div>
         </div>
 
@@ -324,8 +327,8 @@ const projects = [
               "They converted our garage into a beautiful ADU for my mother-in-law. The whole process was seamless and the quality of work exceeded our expectations."
             </p>
             <div>
-              <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29);">Sarah L.</p>
-              <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">Temescal, Oakland</p>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29);">Sarah L.</p>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">Temescal, Oakland</p>
             </div>
           </div>
 
@@ -341,8 +344,8 @@ const projects = [
               "Our two-story ADU in Montclair turned out amazing. Hamilton handled everything from permits to final inspection. Truly a turnkey experience."
             </p>
             <div>
-              <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29);">David & Maria R.</p>
-              <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">Montclair, Oakland</p>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29);">David & Maria R.</p>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105);">Montclair, Oakland</p>
             </div>
           </div>
         </div>
@@ -366,11 +369,11 @@ const projects = [
         <!-- Detached ADU -->
         <div class="pricing-card relative flex flex-col rounded-2xl p-6" style="background-color: rgb(13, 43, 29); border: 2px solid rgb(13, 43, 29);">
           <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1" style="background-color: rgb(255, 222, 33);">
-            <span style="font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; color: rgb(13, 43, 29); letter-spacing: 0.05em;">Most Popular</span>
+            <span style="font-family: 'Satoshi', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; color: rgb(13, 43, 29); letter-spacing: 0.05em;">Most Popular</span>
           </div>
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 4px; margin-top: 8px;">Detached ADU</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 4px; margin-top: 8px;">Detached ADU</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 16px;">Standalone backyard unit</p>
-          <p style="font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 800; color: rgb(255, 222, 33); margin-bottom: 4px;">$180K - $350K</p>
+          <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 28px; font-weight: 800; color: rgb(255, 222, 33); margin-bottom: 4px;">$180K - $350K</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 20px;">400 - 1,200 sq ft</p>
           <ul class="flex flex-col gap-2 mt-auto">
             {['Maximum privacy & flexibility', 'Full kitchen & bathroom', 'Highest rental income potential', 'Custom design options'].map(item => (
@@ -380,16 +383,16 @@ const projects = [
               </li>
             ))}
           </ul>
-          <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(255, 222, 33); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29);">
+          <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(255, 222, 33); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29);">
             Get a Quote
           </a>
         </div>
 
         <!-- Attached ADU -->
         <div class="pricing-card flex flex-col rounded-2xl p-6" style="background-color: white; border: 1px solid #e8e5df;">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">Attached ADU</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">Attached ADU</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105); margin-bottom: 16px;">Connected to your home</p>
-          <p style="font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">$150K - $280K</p>
+          <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 28px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">$150K - $280K</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); margin-bottom: 20px;">400 - 1,200 sq ft</p>
           <ul class="flex flex-col gap-2 mt-auto">
             {['Shared wall with main home', 'Lower construction costs', 'Separate entrance', 'Ideal for family members'].map(item => (
@@ -399,7 +402,7 @@ const projects = [
               </li>
             ))}
           </ul>
-          <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(36, 99, 69); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: white;">
+          <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(36, 99, 69); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: white;">
             Get a Quote
           </a>
         </div>
@@ -407,11 +410,11 @@ const projects = [
         <!-- Junior ADU -->
         <div class="pricing-card relative flex flex-col rounded-2xl p-6" style="background-color: white; border: 1px solid #e8e5df;">
           <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1" style="background-color: rgb(36, 99, 69);">
-            <span style="font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; color: white; letter-spacing: 0.05em;">Best Value</span>
+            <span style="font-family: 'Satoshi', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; color: white; letter-spacing: 0.05em;">Best Value</span>
           </div>
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px; margin-top: 8px;">Junior ADU</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px; margin-top: 8px;">Junior ADU</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105); margin-bottom: 16px;">Within existing home</p>
-          <p style="font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">$60K - $120K</p>
+          <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 28px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">$60K - $120K</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); margin-bottom: 20px;">Up to 500 sq ft</p>
           <ul class="flex flex-col gap-2 mt-auto">
             {['Most affordable option', 'Fastest build time', 'Minimal site work needed', 'Great starter rental'].map(item => (
@@ -421,16 +424,16 @@ const projects = [
               </li>
             ))}
           </ul>
-          <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(36, 99, 69); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: white;">
+          <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(36, 99, 69); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: white;">
             Get a Quote
           </a>
         </div>
 
         <!-- Garage Conversion -->
         <div class="pricing-card flex flex-col rounded-2xl p-6" style="background-color: white; border: 1px solid #e8e5df;">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">Garage Conversion</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">Garage Conversion</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105); margin-bottom: 16px;">Transform your garage</p>
-          <p style="font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">$80K - $150K</p>
+          <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 28px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">$80K - $150K</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); margin-bottom: 20px;">200 - 600 sq ft</p>
           <ul class="flex flex-col gap-2 mt-auto">
             {['Use existing structure', 'No new foundation needed', 'Quick turnaround', 'Cost-effective conversion'].map(item => (
@@ -440,7 +443,7 @@ const projects = [
               </li>
             ))}
           </ul>
-          <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(36, 99, 69); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: white;">
+          <a href="#contact" class="mt-6 block w-full rounded-lg py-3 text-center transition-opacity hover:opacity-90" style="background-color: rgb(36, 99, 69); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: white;">
             Get a Quote
           </a>
         </div>
@@ -469,7 +472,7 @@ const projects = [
               <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
             </svg>
           </div>
-          <p style="font-family: 'Inter', sans-serif; font-size: 36px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">$2,500+/mo</p>
+          <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 36px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">$2,500+/mo</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 8px;">Rental Income</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgb(104, 104, 105);">
             Oakland's strong rental market means your ADU can generate significant monthly income from day one.
@@ -483,7 +486,7 @@ const projects = [
               <polyline points="17 6 23 6 23 12"></polyline>
             </svg>
           </div>
-          <p style="font-family: 'Inter', sans-serif; font-size: 36px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">20-30%</p>
+          <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 36px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">20-30%</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 8px;">Home Value Increase</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgb(104, 104, 105);">
             A well-built ADU can increase your Oakland property value by hundreds of thousands of dollars.
@@ -500,7 +503,7 @@ const projects = [
               <polyline points="10 9 9 9 8 9"></polyline>
             </svg>
           </div>
-          <p style="font-family: 'Inter', sans-serif; font-size: 36px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">Permit-Friendly</p>
+          <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 36px; font-weight: 800; color: rgb(13, 43, 29); margin-bottom: 4px;">Permit-Friendly</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 8px;">Streamlined Process</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgb(104, 104, 105);">
             Oakland has simplified ADU regulations with reduced fees and faster permit approvals to encourage development.
@@ -529,26 +532,26 @@ const projects = [
           <a
             href="#contact"
             class="inline-block transition-opacity hover:opacity-90"
-            style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; line-height: 24px; background-color: rgb(255, 222, 33); color: rgb(13, 43, 29); border-radius: 8px; padding: 12px 28px;"
+            style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; line-height: 24px; background-color: rgb(255, 222, 33); color: rgb(13, 43, 29); border-radius: 8px; padding: 12px 28px;"
           >
             Start Your ADU Project
           </a>
         </div>
         <div class="grid grid-cols-2 gap-6">
           <div class="rounded-xl p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
-            <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(255, 222, 33);">150+</p>
+            <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 42px; font-weight: 800; color: rgb(255, 222, 33);">150+</p>
             <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7);">ADUs Completed</p>
           </div>
           <div class="rounded-xl p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
-            <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(255, 222, 33);">15+</p>
+            <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 42px; font-weight: 800; color: rgb(255, 222, 33);">15+</p>
             <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7);">Years Experience</p>
           </div>
           <div class="rounded-xl p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
-            <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(255, 222, 33);">98%</p>
+            <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 42px; font-weight: 800; color: rgb(255, 222, 33);">98%</p>
             <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7);">Client Satisfaction</p>
           </div>
           <div class="rounded-xl p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
-            <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(255, 222, 33);">$0</p>
+            <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 42px; font-weight: 800; color: rgb(255, 222, 33);">$0</p>
             <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7);">Down to Start</p>
           </div>
         </div>
@@ -567,23 +570,23 @@ const projects = [
       </h2>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
         <div>
-          <div style="width: 48px; height: 48px; border-radius: 50%; background-color: rgb(36, 99, 69); color: white; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 16px;">1</div>
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Free Consultation</h3>
+          <div style="width: 48px; height: 48px; border-radius: 50%; background-color: rgb(36, 99, 69); color: white; display: flex; align-items: center; justify-content: center; font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 16px;">1</div>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Free Consultation</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">We assess your property, discuss your goals, and provide a detailed estimate with transparent pricing — no hidden fees or surprises.</p>
         </div>
         <div>
-          <div style="width: 48px; height: 48px; border-radius: 50%; background-color: rgb(36, 99, 69); color: white; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 16px;">2</div>
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Design & Permits</h3>
+          <div style="width: 48px; height: 48px; border-radius: 50%; background-color: rgb(36, 99, 69); color: white; display: flex; align-items: center; justify-content: center; font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 16px;">2</div>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Design & Permits</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">Our architects create custom plans tailored to your lot and needs. We handle all Oakland permitting — guaranteed approval within 60 days.</p>
         </div>
         <div>
-          <div style="width: 48px; height: 48px; border-radius: 50%; background-color: rgb(36, 99, 69); color: white; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 16px;">3</div>
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Construction</h3>
+          <div style="width: 48px; height: 48px; border-radius: 50%; background-color: rgb(36, 99, 69); color: white; display: flex; align-items: center; justify-content: center; font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 16px;">3</div>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Construction</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">Our in-house crew builds your ADU with premium materials and expert craftsmanship. Regular updates keep you informed at every milestone.</p>
         </div>
         <div>
-          <div style="width: 48px; height: 48px; border-radius: 50%; background-color: rgb(36, 99, 69); color: white; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 16px;">4</div>
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Final Walkthrough</h3>
+          <div style="width: 48px; height: 48px; border-radius: 50%; background-color: rgb(36, 99, 69); color: white; display: flex; align-items: center; justify-content: center; font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 16px;">4</div>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Final Walkthrough</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">We complete all inspections, hand you the keys, and ensure every detail meets your expectations. Your new ADU is ready to enjoy.</p>
         </div>
       </div>
@@ -603,18 +606,20 @@ const projects = [
         {projects.map((project) => (
           <div class="group overflow-hidden rounded-2xl" style="border: 1px solid #e8e5df;">
             <div class="relative w-full overflow-hidden" style="aspect-ratio: 4/3;">
-              <img
+              <Image
                 src={project.image}
                 alt={project.title}
+                width={600}
+                height={450}
                 class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
               />
               <div class="absolute bottom-3 left-3 rounded-full px-3 py-1" style="background-color: rgba(13, 43, 29, 0.85);">
-                <span style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: white;">{project.sqft}</span>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; color: white;">{project.sqft}</span>
               </div>
             </div>
             <div class="p-5">
-              <h3 style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">{project.title}</h3>
+              <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">{project.title}</h3>
               <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">{project.location}</p>
             </div>
           </div>
@@ -638,23 +643,23 @@ const projects = [
 
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <div class="rounded-2xl p-6 text-center" style="background-color: white; border: 1px solid #e8e5df;">
-          <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(36, 99, 69); margin-bottom: 8px;">60</p>
-          <p style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 4px;">Day Permit Timeline</p>
+          <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 42px; font-weight: 800; color: rgb(36, 99, 69); margin-bottom: 8px;">60</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 4px;">Day Permit Timeline</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); line-height: 20px;">Oakland's streamlined process gets your permits approved fast</p>
         </div>
         <div class="rounded-2xl p-6 text-center" style="background-color: white; border: 1px solid #e8e5df;">
-          <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(36, 99, 69); margin-bottom: 8px;">1,200</p>
-          <p style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 4px;">Max Sq Ft Allowed</p>
+          <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 42px; font-weight: 800; color: rgb(36, 99, 69); margin-bottom: 8px;">1,200</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 4px;">Max Sq Ft Allowed</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); line-height: 20px;">Build a spacious ADU up to 1,200 square feet on your property</p>
         </div>
         <div class="rounded-2xl p-6 text-center" style="background-color: white; border: 1px solid #e8e5df;">
-          <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(36, 99, 69); margin-bottom: 8px;">$0</p>
-          <p style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 4px;">Impact Fees*</p>
+          <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 42px; font-weight: 800; color: rgb(36, 99, 69); margin-bottom: 8px;">$0</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 4px;">Impact Fees*</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); line-height: 20px;">Waived impact fees for ADUs under 750 sq ft in Oakland</p>
         </div>
         <div class="rounded-2xl p-6 text-center" style="background-color: white; border: 1px solid #e8e5df;">
-          <p style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 800; color: rgb(36, 99, 69); margin-bottom: 8px;">City</p>
-          <p style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 4px;">Financing Programs</p>
+          <p style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 42px; font-weight: 800; color: rgb(36, 99, 69); margin-bottom: 8px;">City</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; color: rgb(13, 43, 29); margin-bottom: 4px;">Financing Programs</p>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(104, 104, 105); line-height: 20px;">Oakland offers city-backed ADU financing and incentive programs</p>
         </div>
       </div>
@@ -681,7 +686,7 @@ const projects = [
               <polyline points="9 22 9 12 15 12 15 22"></polyline>
             </svg>
           </div>
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Rockridge & Temescal</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Rockridge & Temescal</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 24px; color: rgb(104, 104, 105);">
             Classic Craftsman homes with spacious backyards ideal for detached ADUs. These walkable neighborhoods command top rental rates, making ADU investment highly profitable.
           </p>
@@ -696,7 +701,7 @@ const projects = [
               <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
           </div>
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Oakland Hills & Montclair</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Oakland Hills & Montclair</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 24px; color: rgb(104, 104, 105);">
             Hillside properties with stunning views. We specialize in ADU designs that work with sloped terrain and complement the natural surroundings while maximizing living space.
           </p>
@@ -712,7 +717,7 @@ const projects = [
               <line x1="8" y1="14" x2="16" y2="14"></line>
             </svg>
           </div>
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">West Oakland & Jack London</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">West Oakland & Jack London</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 24px; color: rgb(104, 104, 105);">
             Rapidly developing areas where ADUs offer exceptional investment returns. Urban lots benefit from garage conversions and attached ADUs that maximize compact spaces.
           </p>
@@ -735,27 +740,27 @@ const projects = [
       </h2>
       <div class="grid grid-cols-1 gap-4">
         <a href="/service-areas/alameda-county-ca/berkeley-ca" class="rounded-xl p-5 block" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 4px;">ADU Contractors in Berkeley, CA</h3>
-          <span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 4px;">ADU Contractors in Berkeley, CA</h3>
+          <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
         </a>
         <a href="/service-areas/alameda-county-ca/san-leandro-ca" class="rounded-xl p-5 block" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 4px;">ADU Contractors in San Leandro, CA</h3>
-          <span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 4px;">ADU Contractors in San Leandro, CA</h3>
+          <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
         </a>
         <a href="/service-areas/alameda-county-ca/fremont-ca" class="rounded-xl p-5 block" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 4px;">ADU Contractors in Fremont, CA</h3>
-          <span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 4px;">ADU Contractors in Fremont, CA</h3>
+          <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
         </a>
       </div>
       <div class="mt-6 grid grid-cols-1 gap-4">
         <div class="rounded-xl p-5" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 8px;">Oakland's ADU Size Limits</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 8px;">Oakland's ADU Size Limits</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.6);">
             Detached ADUs up to 1,200 sq ft. Attached ADUs up to 1,000 sq ft. Junior ADUs max 500 sq ft within your existing home.
           </p>
         </div>
         <div class="rounded-xl p-5" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 8px;">Setbacks & Parking</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 8px;">Setbacks & Parking</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.6);">
             4-foot setback from side and rear lines. 16-foot height limit. No extra parking near BART or bus stops.
           </p>
@@ -771,7 +776,7 @@ const projects = [
         <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; font-weight: 400; line-height: 50px; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin: 0;">
           Common Questions About Oakland ADUs
         </h2>
-        <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 400; line-height: 150%; color: rgb(13, 43, 29); text-align: right; margin: 0;" class="whitespace-normal md:whitespace-nowrap">
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; line-height: 150%; color: rgb(13, 43, 29); text-align: right; margin: 0;" class="whitespace-normal md:whitespace-nowrap">
           Have more questions?{' '}
           <a href="tel:6509773351" style="font-weight: 600; color: rgb(13, 43, 29); text-decoration: none;">
             Call (650) 977-3351
@@ -786,7 +791,7 @@ const projects = [
             style="border-bottom: 1px solid rgb(196, 191, 182); background-color: transparent;"
           >
             <summary class="flex cursor-pointer items-center justify-between list-none [&::-webkit-details-marker]:hidden" style="padding: 20px 0;">
-              <span style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); padding-right: 16px;">
+              <span style="font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); padding-right: 16px;">
                 {faq.question}
               </span>
               <span class="relative flex shrink-0 items-center justify-center" style="width: 24px; height: 24px;">
@@ -796,7 +801,7 @@ const projects = [
               </span>
             </summary>
             <div style="padding-bottom: 20px; padding-right: 48px;">
-              <p style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); opacity: 0.7; margin: 0;">
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); opacity: 0.7; margin: 0;">
                 {faq.answer}
               </p>
             </div>
@@ -823,25 +828,25 @@ const projects = [
         <div class="flex flex-col" style="gap: 16px; margin-bottom: 32px;">
           <div class="flex items-center" style="gap: 10px;">
             <div class="shrink-0" style="width: 17px; height: 17px;">
-              <img src="https://framerusercontent.com/images/IF7QSlxdsWmoqq6XBvulskAJC8.svg" alt="" width="17" height="17" style="display: block; width: 100%; height: 100%; object-fit: contain;" />
+              <Image src={iconContactPhone} alt="" width={17} height={17} style="display: block; width: 100%; height: 100%; object-fit: contain;" />
             </div>
-            <a href="tel:6509773351" style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; line-height: 24px; color: rgb(13, 43, 29); text-decoration: none;">
+            <a href="tel:6509773351" style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; line-height: 24px; color: rgb(13, 43, 29); text-decoration: none;">
               (650) 977-3351
             </a>
           </div>
           <div class="flex items-center" style="gap: 10px;">
             <div class="shrink-0" style="width: 16px; height: 13px;">
-              <img src="https://framerusercontent.com/images/CWZsoLyNgTqTNBM5AN6l0UNY0.svg" alt="" width="16" height="13" style="display: block; width: 100%; height: 100%; object-fit: contain;" />
+              <Image src={iconContactEmail} alt="" width={16} height={13} style="display: block; width: 100%; height: 100%; object-fit: contain;" />
             </div>
-            <a href="mailto:support@hamilton-exteriors.com" style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; line-height: 24px; color: rgb(13, 43, 29); text-decoration: none;">
+            <a href="mailto:support@hamilton-exteriors.com" style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; line-height: 24px; color: rgb(13, 43, 29); text-decoration: none;">
               support@hamilton-exteriors.com
             </a>
           </div>
           <div class="flex items-start" style="gap: 10px;">
             <div class="shrink-0" style="width: 12px; height: 18px; margin-top: 3px;">
-              <img src="https://framerusercontent.com/images/W5qVk0njI0IjFev8RnNtI6pU9Es.svg" alt="" width="12" height="18" style="display: block; width: 100%; height: 100%; object-fit: contain;" />
+              <Image src={iconContactClock} alt="" width={12} height={18} style="display: block; width: 100%; height: 100%; object-fit: contain;" />
             </div>
-            <span style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; line-height: 24px; color: rgb(13, 43, 29);">
+            <span style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; line-height: 24px; color: rgb(13, 43, 29);">
               21634 Redwood Rd Unit F, Castro Valley, CA 94546
             </span>
           </div>
@@ -849,11 +854,11 @@ const projects = [
 
         <!-- Map image -->
         <div class="relative w-full">
-          <img
-            src="https://framerusercontent.com/images/ZeFlXLjlSSdREKpbGkMEFPugizs.svg"
+          <Image
+            src={iconContactMap}
             alt="Service area map"
-            width="566"
-            height="501"
+            width={566}
+            height={501}
             class="w-full"
             style="object-fit: cover; object-position: center top; border-radius: 16px;"
             loading="lazy"
@@ -864,10 +869,10 @@ const projects = [
       <!-- Right Column — Form -->
       <div class="flex w-full flex-col lg:w-1/2" style="padding: 0;">
         <div class="rounded-2xl" style="background-color: #f9f8f6; padding: 40px 32px;">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 22px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">
             Schedule Your Free Consultation
           </h3>
-          <p style="font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(136, 136, 136); margin-bottom: 24px;">
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(136, 136, 136); margin-bottom: 24px;">
             Quick Response, Expert Assessment
           </p>
 
@@ -878,12 +883,12 @@ const projects = [
             <input type="tel" name="phone" placeholder="Phone Number" required class="contact-input" />
 
             <fieldset style="border: none; padding: 0; margin: 8px 0 0 0;">
-              <legend style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgb(136, 136, 136); margin-bottom: 8px;">
+              <legend style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: rgb(136, 136, 136); margin-bottom: 8px;">
                 What type of ADU are you interested in?
               </legend>
               <div class="flex flex-wrap" style="gap: 16px;">
                 {['Detached ADU', 'Attached ADU', 'Junior ADU', 'Garage Conversion', 'Not Sure'].map((type, i) => (
-                  <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
+                  <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
                     <input
                       type="radio"
                       name="aduType"
@@ -898,15 +903,15 @@ const projects = [
             </fieldset>
 
             <fieldset style="border: none; padding: 0; margin: 8px 0 0 0;">
-              <legend style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgb(136, 136, 136); margin-bottom: 8px;">
+              <legend style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: rgb(136, 136, 136); margin-bottom: 8px;">
                 Preferred consultation type
               </legend>
               <div class="flex" style="gap: 24px;">
-                <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
+                <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
                   <input type="radio" name="consultationType" value="In-Home" checked style="width: 16px; height: 16px; accent-color: rgb(37, 99, 70);" />
                   In-Home Visit
                 </label>
-                <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
+                <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
                   <input type="radio" name="consultationType" value="Virtual" style="width: 16px; height: 16px; accent-color: rgb(37, 99, 70);" />
                   Virtual
                 </label>
@@ -915,13 +920,13 @@ const projects = [
 
             <button
               type="submit"
-              style="width: 100%; border-radius: 8px; background-color: rgb(37, 99, 70); border: none; padding: 14px 24px; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; line-height: 150%; color: white; cursor: pointer; margin-top: 8px;"
+              style="width: 100%; border-radius: 8px; background-color: rgb(37, 99, 70); border: none; padding: 14px 24px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; line-height: 150%; color: white; cursor: pointer; margin-top: 8px;"
             >
               Get My Free ADU Consultation
             </button>
           </form>
 
-          <p style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; line-height: 150%; color: rgb(136, 136, 136); margin-top: 16px;">
+          <p style="font-family: 'Satoshi', sans-serif; font-size: 10px; font-weight: 500; line-height: 150%; color: rgb(136, 136, 136); margin-top: 16px;">
             By submitting this form, you agree to be contacted about your ADU project. We respect your privacy and will never share your information. View our <a href="/privacy-policy" style="color: rgb(136, 136, 136); text-decoration: underline;">Privacy Policy</a>.
           </p>
         </div>
@@ -945,33 +950,33 @@ const projects = [
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3 mb-12">
         <a href="/service-areas/alameda-county-ca/berkeley-ca" class="rounded-2xl p-6 block" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
           <p style="font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 8px;">NEARBY CITY</p>
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px;">ADU Contractors in Berkeley, CA</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px;">ADU Contractors in Berkeley, CA</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.6); margin-bottom: 12px;">Explore our ADU construction services in Berkeley, just minutes from Oakland.</p>
-          <span style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
+          <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
         </a>
         <a href="/service-areas/alameda-county-ca/san-leandro-ca" class="rounded-2xl p-6 block" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
           <p style="font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 8px;">NEARBY CITY</p>
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px;">ADU Contractors in San Leandro, CA</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px;">ADU Contractors in San Leandro, CA</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.6); margin-bottom: 12px;">Quality ADU solutions for San Leandro homeowners in Alameda County.</p>
-          <span style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
+          <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
         </a>
         <a href="/service-areas/alameda-county-ca/fremont-ca" class="rounded-2xl p-6 block" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
           <p style="font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 8px;">NEARBY CITY</p>
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px;">ADU Contractors in Fremont, CA</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px;">ADU Contractors in Fremont, CA</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.6); margin-bottom: 12px;">Professional ADU design and construction services in Fremont.</p>
-          <span style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
+          <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(36, 99, 69);">Learn More &rarr;</span>
         </a>
       </div>
 
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 12px;">Oakland's ADU Size Limits</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 12px;">Oakland's ADU Size Limits</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 24px; color: rgba(255, 255, 255, 0.6);">
             Detached ADUs can be up to 1,200 sq ft or 50% of your primary dwelling. Attached ADUs allow up to 1,000 sq ft. Junior ADUs (JADUs) max out at 500 sq ft within your existing home.
           </p>
         </div>
         <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 12px;">Setbacks & Parking Rules</h3>
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 12px;">Setbacks & Parking Rules</h3>
           <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 24px; color: rgba(255, 255, 255, 0.6);">
             Oakland requires just a 4-foot setback from side and rear property lines. Detached ADUs are limited to 16 feet in height. No extra parking required if you're within half a mile of BART or bus stops.
           </p>
@@ -985,7 +990,7 @@ const projects = [
 
 <style>
   .hero-input {
-    font-family: 'Poppins', 'Poppins Placeholder', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 26px;
@@ -1009,7 +1014,7 @@ const projects = [
     border-radius: 10px;
     border: 1px solid rgb(196, 191, 182);
     padding: 10px 16px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 14px;
     color: rgb(104, 104, 105);
     outline: none;

@@ -1,115 +1,207 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../../../layouts/Layout.astro';
 import AnnouncementBar from '../../../components/AnnouncementBar.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Hero from '../../../components/Hero.astro';
 import LogoSlider from '../../../components/LogoSlider.astro';
-import Reviews from '../../../components/Reviews.astro';
 import ReviewLogos from '../../../components/ReviewLogos.astro';
-import Services from '../../../components/Services.astro';
-import CTA from '../../../components/CTA.astro';
 import FAQ from '../../../components/FAQ.astro';
 import ContactUs from '../../../components/ContactUs.astro';
 import Footer from '../../../components/Footer.astro';
+import { areaOakland, areaFremont, areaHayward, areaBerkeley, areaSanLeandro, roofingAsphalt, ctaAssistant } from '../../../lib/images';
 
 const county = 'Alameda County';
 const cities = [
-  { name: 'Oakland', slug: '/service-areas/alameda-county-ca/oakland-ca' },
-  { name: 'Fremont', slug: '/service-areas/alameda-county-ca/fremont-ca' },
-  { name: 'Hayward', slug: '/service-areas/alameda-county-ca/hayward-ca' },
-  { name: 'Berkeley', slug: '/service-areas/alameda-county-ca/berkeley-ca' },
-  { name: 'San Leandro', slug: '/service-areas/alameda-county-ca/san-leandro-ca' },
+  { name: 'Oakland', slug: '/service-areas/alameda-county-ca/oakland-ca', image: areaOakland },
+  { name: 'Fremont', slug: '/service-areas/alameda-county-ca/fremont-ca', image: areaFremont },
+  { name: 'Hayward', slug: '/service-areas/alameda-county-ca/hayward-ca', image: areaHayward },
+  { name: 'Berkeley', slug: '/service-areas/alameda-county-ca/berkeley-ca', image: areaBerkeley },
+  { name: 'San Leandro', slug: '/service-areas/alameda-county-ca/san-leandro-ca', image: areaSanLeandro },
 ];
 ---
 
 <Layout
   title={`Trusted ADU Contractors in ${county}, CA | Hamilton Exteriors`}
-  description={`Hamilton Exteriors provides expert roofing, siding, and window services throughout ${county}, CA. Get a free inspection today.`}
+  description={`Hamilton Exteriors provides expert ADU construction throughout ${county}, CA. Serving Oakland, Berkeley, Fremont, Hayward, and San Leandro.`}
 >
   <AnnouncementBar />
   <Navbar />
   <Hero
     formTitle={`Get a FREE Estimate in ${county}`}
-    headline={`ADU Contractor in ${county}, CA`}
+    headline={`Trusted ADU Contractors in ${county}, CA`}
   />
   <LogoSlider />
 
-  <!-- City Cards -->
-  <section class="w-full bg-white py-20">
-    <div class="mx-auto max-w-[1294px] px-5">
-      <h2 class="mb-10 text-center font-['Playfair_Display'] text-[32px] font-semibold text-[rgb(28,28,28)] md:text-[44px]">
-        Cities We Serve in {county}
+  <!-- Service Locations -->
+  <section class="w-full bg-white" style="padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;">
+        Service Locations in {county}
       </h2>
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {cities.map((city) => (
-          <a href={city.slug} class="group rounded-2xl border border-gray-200 p-6 transition-shadow hover:shadow-lg">
-            <div class="mb-4 h-40 w-full rounded-xl bg-gray-200"></div>
-            <h3 class="font-['Playfair_Display'] text-xl font-semibold text-[rgb(28,28,28)]">{city.name}, CA</h3>
-            <span class="mt-2 inline-block font-dm-sans text-sm font-semibold text-primary group-hover:underline">View Services &rarr;</span>
+          <a href={city.slug} class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 transition-shadow hover:shadow-lg">
+            <div class="w-full overflow-hidden" style="aspect-ratio: 540/312;">
+              <Image
+                src={city.image}
+                alt={`${city.name}, CA`}
+                width={540}
+                height={312}
+                class="h-full w-full object-cover transition-transform group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div style="padding: 16px 20px 20px;">
+              <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 600; line-height: 1.4; color: rgb(13, 43, 29); margin: 0 0 8px;">
+                {city.name}, CA
+              </h3>
+              <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: rgb(37, 99, 70);" class="group-hover:underline">
+                Explore Service Area &rarr;
+              </span>
+            </div>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <Services />
-  <Reviews />
-  <ReviewLogos />
-
-  <!-- Why Homeowners Choose - mobile/tablet content to match production -->
-  <section class="w-full md:hidden" style="background-color: #f9f8f6; padding: 60px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
-      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
-        Why Homeowners Choose Hamilton Exteriors
-      </h2>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
-        Alameda County homeowners trust Hamilton Exteriors because we combine local expertise with proven construction methods. Our team understands the unique building codes across Oakland, Berkeley, Fremont, Hayward, and San Leandro — ensuring your ADU project moves smoothly from permits through final inspection.
-      </p>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
-        We handle every phase of your ADU project in-house, from architectural design and engineering to foundation, framing, electrical, plumbing, and finish work. No subcontractors means better quality control, clearer communication, and a single point of accountability throughout your build.
-      </p>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
-        Our commitment to transparency means you'll always know where your project stands. We provide detailed written estimates, realistic timelines, and regular progress updates so there are never any surprises.
-      </p>
+  <!-- Why Homeowners Choose -->
+  <section class="w-full" style="background-color: #f9f8f6; padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div>
+        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 36px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+          Why Homeowners Choose Hamilton Exteriors
+        </h2>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+          Alameda County homeowners trust Hamilton Exteriors because we combine local expertise with proven construction methods. Our team understands the unique building codes across Oakland, Berkeley, Fremont, Hayward, and San Leandro — ensuring your ADU project moves smoothly from permits through final inspection.
+        </p>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
+          We handle every phase of your ADU project in-house, from architectural design and engineering to foundation, framing, electrical, plumbing, and finish work. No subcontractors means better quality control, clearer communication, and a single point of accountability throughout your build.
+        </p>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
+          Our commitment to transparency means you'll always know where your project stands. We provide detailed written estimates, realistic timelines, and regular progress updates so there are never any surprises.
+        </p>
+      </div>
+      <div class="hidden md:block rounded-2xl overflow-hidden">
+        <Image src={roofingAsphalt} alt="Hamilton Exteriors ADU project" width={1200} height={900} class="w-full h-auto object-cover" style="aspect-ratio: 632/478;" loading="lazy" />
+      </div>
     </div>
   </section>
 
-  <section class="w-full md:hidden" style="background-color: #0d2b1d; padding: 60px 0;">
+  <!-- Benefits of Building an ADU -->
+  <section class="w-full" style="background-color: #0d2b1d; padding: 80px 0;">
+    <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div class="hidden md:block rounded-2xl overflow-hidden">
+        <Image src={ctaAssistant} alt="Hamilton Exteriors construction crew" width={1200} height={900} class="w-full h-auto object-cover" style="aspect-ratio: 632/626;" loading="lazy" />
+      </div>
+      <div>
+        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 36px); line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
+          Benefits of Building an ADU in {county}
+        </h2>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8); margin-bottom: 16px;">
+          Alameda County is one of the Bay Area's most ADU-friendly jurisdictions. With streamlined permitting processes and strong rental demand, building an ADU is one of the smartest investments you can make as a homeowner.
+        </p>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8); margin-bottom: 16px;">
+          A well-built ADU can generate $2,000–$3,500 per month in rental income, or provide private living space for aging parents, adult children, or a home office. With property values continuing to rise across Alameda County, an ADU can add 20–35% to your home's overall value.
+        </p>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8);">
+          California's ADU laws have removed many traditional barriers — reduced setbacks, eliminated parking mandates near transit, and simplified permitting. Hamilton Exteriors navigates these regulations daily, ensuring your project takes full advantage of every available benefit.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADU Types -->
+  <section class="w-full" style="background-color: #f9f8f6; padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
-      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
-        Benefits of Building an ADU in Alameda County
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 36px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        ADU Types We Build in {county}
       </h2>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8); margin-bottom: 16px;">
-        Alameda County is one of the Bay Area's most ADU-friendly jurisdictions. With streamlined permitting processes and strong rental demand, building an ADU is one of the smartest investments you can make as a homeowner.
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 32px;">
+        From detached backyard units to garage conversions and junior ADUs, we handle every type of accessory dwelling unit across Alameda County.
       </p>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8); margin-bottom: 16px;">
-        A well-built ADU can generate $2,000–$3,500 per month in rental income, or provide private living space for aging parents, adult children, or a home office. With property values continuing to rise across Alameda County, an ADU can add 20–35% to your home's overall value.
-      </p>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8); margin-bottom: 16px;">
-        California's ADU laws have removed many traditional barriers to construction, including reduced setback requirements, eliminated parking mandates near transit, and simplified permitting timelines. Hamilton Exteriors navigates these regulations daily, ensuring your project takes full advantage of every available benefit.
-      </p>
-      <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div class="rounded-xl p-6" style="background-color: rgba(255,255,255,0.08);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px;">Rental Income</h3>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 24px; color: rgba(255,255,255,0.7);">Generate $2,000–$3,500/month in passive income from your ADU investment.</p>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div style="padding: 24px; border: 1px solid rgb(230,230,230); border-radius: 12px; background: white;">
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Detached ADUs</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">Standalone backyard units up to 1,200 sq ft with full kitchens, bathrooms, and separate entrances. Ideal for rental income or multigenerational living.</p>
         </div>
-        <div class="rounded-xl p-6" style="background-color: rgba(255,255,255,0.08);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px;">Property Value</h3>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 24px; color: rgba(255,255,255,0.7);">Add 20–35% to your home's appraised value with a professionally built ADU.</p>
+        <div style="padding: 24px; border: 1px solid rgb(230,230,230); border-radius: 12px; background: white;">
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Garage Conversions</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">Transform your existing garage into a comfortable living space. The most cost-effective ADU option with lower construction costs and faster completion.</p>
         </div>
-        <div class="rounded-xl p-6" style="background-color: rgba(255,255,255,0.08);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px;">Multigenerational Living</h3>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 24px; color: rgba(255,255,255,0.7);">House aging parents or adult children with privacy and independence on your property.</p>
-        </div>
-        <div class="rounded-xl p-6" style="background-color: rgba(255,255,255,0.08);">
-          <h3 style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px;">$0 Down Financing</h3>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 24px; color: rgba(255,255,255,0.7);">Start your ADU project with flexible financing and no upfront investment required.</p>
+        <div style="padding: 24px; border: 1px solid rgb(230,230,230); border-radius: 12px; background: white;">
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 8px;">Junior ADUs</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 26px; color: rgb(104, 104, 105);">Up to 500 sq ft units built within your existing home footprint. Perfect for a home office, guest suite, or compact rental with minimal site disruption.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <CTA />
+  <!-- Stats -->
+  <section class="w-full" style="background-color: white; padding: 48px 0;">
+    <div class="mx-auto max-w-[1200px] px-5 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="text-center">
+        <div style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 48px; font-weight: 400; color: rgb(36, 99, 69);">50+</div>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">Years Combined Experience</p>
+      </div>
+      <div class="text-center">
+        <div style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 48px; font-weight: 400; color: rgb(36, 99, 69);">$0</div>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">Down Payment Required</p>
+      </div>
+      <div class="text-center">
+        <div style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 48px; font-weight: 400; color: rgb(36, 99, 69);">60</div>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">Day Permit Guarantee</p>
+      </div>
+      <div class="text-center">
+        <div style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 48px; font-weight: 400; color: rgb(36, 99, 69);">4.8</div>
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">Star Rating</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile extra sections to match production height -->
+  <section class="w-full md:hidden" style="background-color: white; padding: 48px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 28px; line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
+        Our ADU Construction Process
+      </h2>
+      <div class="grid grid-cols-1 gap-4">
+        <div style="padding: 20px; border: 1px solid rgb(230,230,230); border-radius: 12px;">
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">1. Free Consultation</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 24px; color: rgb(104, 104, 105);">We assess your property, discuss goals, and provide a detailed estimate with transparent pricing.</p>
+        </div>
+        <div style="padding: 20px; border: 1px solid rgb(230,230,230); border-radius: 12px;">
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">2. Design & Permits</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 24px; color: rgb(104, 104, 105);">Custom plans tailored to your lot. We handle all city permitting — guaranteed approval within 60 days.</p>
+        </div>
+        <div style="padding: 20px; border: 1px solid rgb(230,230,230); border-radius: 12px;">
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">3. Construction</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 24px; color: rgb(104, 104, 105);">In-house crew builds with premium materials. Regular updates keep you informed at every milestone.</p>
+        </div>
+        <div style="padding: 20px; border: 1px solid rgb(230,230,230); border-radius: 12px;">
+          <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: rgb(13, 43, 29); margin-bottom: 4px;">4. Final Walkthrough</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 24px; color: rgb(104, 104, 105);">Complete inspections, hand you the keys, and ensure every detail meets your expectations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full md:hidden" style="background-color: #0d2b1d; padding: 48px 0;">
+    <div class="mx-auto max-w-[1200px] px-5">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 28px; line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
+        Why Build an ADU in Alameda County?
+      </h2>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8); margin-bottom: 16px;">
+        Alameda County is one of the Bay Area's most ADU-friendly jurisdictions. A well-built ADU can generate $2,000–$3,500 per month in rental income while adding 20–35% to your home's overall value.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8);">
+        California's streamlined ADU laws have removed traditional barriers — reduced setbacks, eliminated parking mandates near transit, and simplified permitting. Hamilton Exteriors navigates these daily.
+      </p>
+    </div>
+  </section>
+
+  <ReviewLogos />
   <FAQ />
   <ContactUs />
   <Footer />

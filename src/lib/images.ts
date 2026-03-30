@@ -1,0 +1,81 @@
+/**
+ * Central image exports — all Framer CDN images downloaded locally.
+ * Import from here instead of using remote URLs.
+ */
+
+// Hero & backgrounds
+export { default as heroBg } from '../assets/images/hero-bg.png';
+export { default as heroWindows } from '../assets/images/hero-windows.png';
+export { default as aduHero } from '../assets/images/adu-hero.jpeg';
+export { default as ctaAssistant } from '../assets/images/cta-assistant.jpg';
+
+// Financing
+export { default as financingHouse } from '../assets/images/financing-house.jpeg';
+export { default as financingWorker } from '../assets/images/financing-worker.jpeg';
+
+// Logos
+export { default as logoNav } from '../assets/images/logo-nav.png';
+export { default as logoFooter } from '../assets/images/logo-footer.png';
+export { default as logoCert1 } from '../assets/images/logo-cert-1.png';
+export { default as logoPartner1 } from '../assets/images/logo-partner-1.png';
+export { default as logoGaf } from '../assets/images/logo-gaf.png';
+export { default as logoCert2 } from '../assets/images/logo-cert-2.svg';
+export { default as logoPartner2 } from '../assets/images/logo-partner-2.png';
+
+// Review badges
+export { default as badgeGoogle } from '../assets/images/badge-google.webp';
+export { default as badgeYelp } from '../assets/images/badge-yelp.webp';
+export { default as reviewLogoGoogle } from '../assets/images/review-logo-google.png';
+export { default as reviewLogoYelp } from '../assets/images/review-logo-yelp.png';
+
+// Reviews
+export { default as reviewer1 } from '../assets/images/reviewer-1.png';
+export { default as reviewer2 } from '../assets/images/reviewer-2.png';
+export { default as reviewer3 } from '../assets/images/reviewer-3.png';
+export { default as reviewer4 } from '../assets/images/reviewer-4.png';
+export { default as reviewHouse } from '../assets/images/review-house.png';
+
+// Icons (SVG)
+export { default as iconCheckmarkCircle } from '../assets/images/icon-checkmark-circle.svg';
+export { default as iconStar } from '../assets/images/icon-star.svg';
+export { default as iconContactMap } from '../assets/images/icon-contact-map.svg';
+export { default as iconContactPhone } from '../assets/images/icon-contact-phone.svg';
+export { default as iconContactEmail } from '../assets/images/icon-contact-email.svg';
+export { default as iconContactClock } from '../assets/images/icon-contact-clock.svg';
+
+// Services
+export { default as serviceRoofing } from '../assets/images/service-roofing.png';
+export { default as serviceSiding } from '../assets/images/service-siding.png';
+export { default as serviceAdu } from '../assets/images/service-adu.png';
+export { default as serviceWindows } from '../assets/images/service-windows.png';
+
+// Windows page
+export { default as windowDoubleHung } from '../assets/images/window-double-hung.png';
+export { default as windowCasement } from '../assets/images/window-casement.png';
+export { default as windowSliding } from '../assets/images/window-sliding.png';
+export { default as windowBay } from '../assets/images/window-bay.png';
+export { default as windowPicture } from '../assets/images/window-picture.png';
+export { default as windowGarden } from '../assets/images/window-garden.png';
+
+// Roofing page
+export { default as roofingAsphalt } from '../assets/images/roofing-asphalt.png';
+export { default as roofingMetal } from '../assets/images/roofing-metal.png';
+export { default as roofingTile } from '../assets/images/roofing-tile.png';
+export { default as roofingFlat } from '../assets/images/roofing-flat.png';
+
+// Siding page
+export { default as sidingVinyl } from '../assets/images/siding-vinyl.png';
+export { default as sidingFiberCement } from '../assets/images/siding-fiber-cement.png';
+export { default as sidingWood } from '../assets/images/siding-wood.png';
+export { default as sidingStucco } from '../assets/images/siding-stucco.png';
+
+// Service area photos
+export { default as areaOakland } from '../assets/images/area-oakland.jpg';
+export { default as areaFremont } from '../assets/images/area-fremont.jpg';
+export { default as areaHayward } from '../assets/images/area-hayward.jpg';
+export { default as areaBerkeley } from '../assets/images/area-berkeley.jpg';
+export { default as areaSanLeandro } from '../assets/images/area-san-leandro.jpg';
+export { default as areaAntioch } from '../assets/images/area-antioch.jpg';
+export { default as areaConcord } from '../assets/images/area-concord.jpg';
+export { default as areaWalnutCreek } from '../assets/images/area-walnut-creek.jpg';
+export { default as areaSanRamon } from '../assets/images/area-san-ramon.jpg';

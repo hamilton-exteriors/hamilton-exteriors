@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import { iconContactMap, iconContactPhone, iconContactEmail, iconContactClock } from '../lib/images';
+
 interface Props {
   formAction?: string;
 }
@@ -13,11 +16,11 @@ const { formAction = '/success' } = Astro.props;
     <div class="flex w-full flex-col lg:w-1/2">
       <!-- Map/Illustration -->
       <div class="relative w-full" style="aspect-ratio: auto;">
-        <img
-          src="https://framerusercontent.com/images/ZeFlXLjlSSdREKpbGkMEFPugizs.svg"
+        <Image
+          src={iconContactMap}
           alt="Service area map"
-          width="566"
-          height="501"
+          width={566}
+          height={501}
           class="w-full"
           style="object-fit: cover; object-position: center top;"
           loading="lazy"
@@ -29,17 +32,17 @@ const { formAction = '/success' } = Astro.props;
         <!-- Phone -->
         <div class="flex items-center" style="gap: 10px;">
           <div class="shrink-0" style="width: 17px; height: 17px; position: relative;">
-            <img
-              src="https://framerusercontent.com/images/IF7QSlxdsWmoqq6XBvulskAJC8.svg"
+            <Image
+              src={iconContactPhone}
               alt=""
-              width="17"
-              height="17"
+              width={17}
+              height={17}
               style="display: block; width: 100%; height: 100%; object-fit: contain;"
             />
           </div>
           <a
             href="tel:6509773351"
-            style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; color: rgb(13, 43, 29); text-decoration: none;"
+            style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; color: rgb(13, 43, 29); text-decoration: none;"
           >
             (650) 977-3351
           </a>
@@ -48,17 +51,17 @@ const { formAction = '/success' } = Astro.props;
         <!-- Email -->
         <div class="flex items-center" style="gap: 10px;">
           <div class="shrink-0" style="width: 16px; height: 13px; position: relative;">
-            <img
-              src="https://framerusercontent.com/images/CWZsoLyNgTqTNBM5AN6l0UNY0.svg"
+            <Image
+              src={iconContactEmail}
               alt=""
-              width="16"
-              height="13"
+              width={16}
+              height={13}
               style="display: block; width: 100%; height: 100%; object-fit: contain;"
             />
           </div>
           <a
             href="mailto:support@hamilton-exteriors.com"
-            style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; color: rgb(13, 43, 29); text-decoration: none;"
+            style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; color: rgb(13, 43, 29); text-decoration: none;"
           >
             support@hamilton-exteriors.com
           </a>
@@ -67,15 +70,15 @@ const { formAction = '/success' } = Astro.props;
         <!-- Address -->
         <div class="flex items-start" style="gap: 10px;">
           <div class="shrink-0" style="width: 12px; height: 18px; position: relative; margin-top: 3px;">
-            <img
-              src="https://framerusercontent.com/images/W5qVk0njI0IjFev8RnNtI6pU9Es.svg"
+            <Image
+              src={iconContactClock}
               alt=""
-              width="12"
-              height="18"
+              width={12}
+              height={18}
               style="display: block; width: 100%; height: 100%; object-fit: contain;"
             />
           </div>
-          <span style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; color: rgb(13, 43, 29);">
+          <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; color: rgb(13, 43, 29);">
             21634 Redwood Rd Unit F Castro Valley CA 94546
           </span>
         </div>
@@ -86,10 +89,10 @@ const { formAction = '/success' } = Astro.props;
     <div class="flex w-full flex-col lg:w-1/2" style="padding: 40px 0;">
       <!-- Title wrap -->
       <div>
-        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; font-weight: 400; line-height: 50px; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin: 0;">
+        <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: clamp(28px, 5vw, 40px); font-weight: 400; line-height: 1.25; color: rgb(13, 43, 29); text-transform: uppercase; margin: 0;">
           Contact Us
         </h2>
-        <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 400; line-height: 150%; color: rgb(136, 136, 136); margin-top: 8px;">
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; line-height: 150%; color: rgb(136, 136, 136); margin-top: 8px;">
           Quick Response, Expert Assessment
         </p>
       </div>
@@ -99,9 +102,9 @@ const { formAction = '/success' } = Astro.props;
         <input
           type="text"
           name="fullName"
-          placeholder="Jane Smith"
+          placeholder="Full Name"
           required
-          style="width: 100%; border-radius: 10px; border: 1px solid rgb(196, 191, 182); padding: 10px 16px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(104, 104, 105); outline: none; background-color: rgb(255, 255, 255);"
+          style="width: 100%; border-radius: 10px; border: 1px solid rgb(196, 191, 182); padding: 10px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105); outline: none; background-color: rgb(255, 255, 255);"
         />
 
         <!-- Address -->
@@ -110,16 +113,16 @@ const { formAction = '/success' } = Astro.props;
           name="address"
           placeholder="Address"
           required
-          style="width: 100%; border-radius: 10px; border: 1px solid rgb(196, 191, 182); padding: 10px 16px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(104, 104, 105); outline: none; background-color: rgb(255, 255, 255);"
+          style="width: 100%; border-radius: 10px; border: 1px solid rgb(196, 191, 182); padding: 10px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105); outline: none; background-color: rgb(255, 255, 255);"
         />
 
         <!-- Email -->
         <input
           type="email"
           name="email"
-          placeholder="jane@framer.com"
+          placeholder="Email"
           required
-          style="width: 100%; border-radius: 10px; border: 1px solid rgb(196, 191, 182); padding: 10px 16px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(104, 104, 105); outline: none; background-color: rgb(255, 255, 255);"
+          style="width: 100%; border-radius: 10px; border: 1px solid rgb(196, 191, 182); padding: 10px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105); outline: none; background-color: rgb(255, 255, 255);"
         />
 
         <!-- Phone -->
@@ -128,16 +131,16 @@ const { formAction = '/success' } = Astro.props;
           name="phone"
           placeholder="Phone Number"
           required
-          style="width: 100%; border-radius: 10px; border: 1px solid rgb(196, 191, 182); padding: 10px 16px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(104, 104, 105); outline: none; background-color: rgb(255, 255, 255);"
+          style="width: 100%; border-radius: 10px; border: 1px solid rgb(196, 191, 182); padding: 10px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105); outline: none; background-color: rgb(255, 255, 255);"
         />
 
         <!-- Consultation type -->
         <fieldset style="border: none; padding: 0; margin: 8px 0 0 0;">
-          <legend style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: rgb(136, 136, 136); margin-bottom: 8px;">
+          <legend style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: rgb(136, 136, 136); margin-bottom: 8px;">
             Which type of consultation would you prefer?
           </legend>
           <div class="flex" style="gap: 24px;">
-            <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
+            <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
               <input
                 type="radio"
                 name="consultationType"
@@ -147,7 +150,7 @@ const { formAction = '/success' } = Astro.props;
               />
               In-Home
             </label>
-            <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
+            <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(13, 43, 29);">
               <input
                 type="radio"
                 name="consultationType"
@@ -162,17 +165,17 @@ const { formAction = '/success' } = Astro.props;
         <!-- Submit -->
         <button
           type="submit"
-          style="width: 100%; border-radius: 4px; background-color: rgb(37, 99, 70); border: none; padding: 12px 24px; font-family: 'Inter', sans-serif; font-size: 13.88px; font-weight: 600; line-height: 150%; color: rgb(246, 253, 252); cursor: pointer; margin-top: 4px;"
+          style="width: 100%; border-radius: 4px; background-color: rgb(37, 99, 70); border: none; padding: 12px 24px; font-family: 'DM Sans', sans-serif; font-size: 13.88px; font-weight: 600; line-height: 150%; color: rgb(246, 253, 252); cursor: pointer; margin-top: 4px;"
         >
           Schedule a FREE Inspection
         </button>
       </form>
 
       <!-- Disclaimer -->
-      <p style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; line-height: 150%; color: rgb(136, 136, 136); margin-top: 16px;">
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; line-height: 150%; color: rgb(136, 136, 136); margin-top: 16px;">
         I'd like to learn more about Hamilton Exteriors. Please contact me at the phone number I listed above to schedule a convenient day and time for an in-home price quote. I am submitting this form so you can contact me and keep me informed about your products, services, and sales. I understand that I do not need to submit this form to schedule an in-home price quote.
       </p>
-      <p style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; line-height: 150%; color: rgb(136, 136, 136); margin-top: 8px;">
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; line-height: 150%; color: rgb(136, 136, 136); margin-top: 8px;">
         Instead, I may call your service center at the number on this page. I understand that all calls are recorded. Hamilton Exteriors collects certain categories of personal information and uses this information for various purposes, including order fulfillment and providing product information and services to you. For more information, visit our privacy policy.
       </p>
     </div>

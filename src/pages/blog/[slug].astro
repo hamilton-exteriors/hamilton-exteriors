@@ -1,0 +1,202 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AnnouncementBar from '../../components/AnnouncementBar.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactUs from '../../components/ContactUs.astro';
+import Footer from '../../components/Footer.astro';
+import { getPost, isGhostConfigured } from '../../lib/ghost';
+
+const { slug } = Astro.params;
+
+if (!slug || !isGhostConfigured()) {
+  return Astro.redirect('/blog');
+}
+
+const post = await getPost(slug);
+
+if (!post) {
+  return Astro.redirect('/blog');
+}
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+const title = post.meta_title || post.title;
+const description = post.meta_description || post.excerpt || '';
+---
+
+<Layout title={`${title} | Hamilton Exteriors`} description={description}>
+  <AnnouncementBar />
+  <Navbar />
+
+  <article>
+    {/* Hero */}
+    <section class="w-full" style="background-color: #0d2b1d; padding: 80px 0 60px;">
+      <div class="mx-auto max-w-[800px] px-5">
+        <a href="/blog" style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(36, 99, 69); text-decoration: none;" class="inline-flex items-center gap-2 mb-6 hover:text-white transition-colors">
+          &larr; Back to Blog
+        </a>
+        {post.tags?.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-4">
+            {post.tags.map((tag: any) => (
+              <a href={`/blog?tag=${tag.slug}`} style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgb(36, 99, 69); background: rgba(36, 99, 69, 0.15); padding: 4px 12px; border-radius: 4px; text-decoration: none;">
+                {tag.name}
+              </a>
+            ))}
+          </div>
+        )}
+        <h1 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.15; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
+          {post.title}
+        </h1>
+        <div class="flex items-center gap-4" style="font-family: 'DM Sans', sans-serif; font-size: 15px; color: rgba(255,255,255,0.6);">
+          <time>{formatDate(post.published_at)}</time>
+          {post.reading_time > 0 && (
+            <>
+              <span>&middot;</span>
+              <span>{post.reading_time} min read</span>
+            </>
+          )}
+        </div>
+      </div>
+    </section>
+
+    {/* Feature Image */}
+    {post.feature_image && (
+      <div class="w-full bg-gray-100">
+        <div class="mx-auto max-w-[1000px]">
+          <img
+            src={post.feature_image}
+            alt={post.title}
+            class="w-full h-auto"
+            style="max-height: 500px; object-fit: cover;"
+          />
+        </div>
+      </div>
+    )}
+
+    {/* Content */}
+    <section class="w-full bg-white" style="padding: 60px 0 80px;">
+      <div class="mx-auto max-w-[800px] px-5">
+        <div class="ghost-content" set:html={post.html} />
+      </div>
+    </section>
+  </article>
+
+  <ContactUs />
+  <Footer />
+</Layout>
+
+<style is:global>
+  .ghost-content {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    color: rgb(51, 51, 51);
+  }
+  .ghost-content h2 {
+    font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif;
+    font-size: 28px;
+    line-height: 1.3;
+    font-weight: 400;
+    color: rgb(13, 43, 29);
+    text-transform: uppercase;
+    margin: 48px 0 16px;
+  }
+  .ghost-content h3 {
+    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: rgb(13, 43, 29);
+    margin: 40px 0 12px;
+  }
+  .ghost-content h4 {
+    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(13, 43, 29);
+    margin: 32px 0 8px;
+  }
+  .ghost-content p {
+    margin: 0 0 24px;
+  }
+  .ghost-content a {
+    color: rgb(36, 99, 69);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .ghost-content a:hover {
+    color: rgb(13, 43, 29);
+  }
+  .ghost-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 32px 0;
+  }
+  .ghost-content blockquote {
+    border-left: 4px solid rgb(36, 99, 69);
+    padding-left: 20px;
+    margin: 32px 0;
+    font-style: italic;
+    color: rgb(75, 75, 75);
+  }
+  .ghost-content ul, .ghost-content ol {
+    margin: 0 0 24px;
+    padding-left: 24px;
+  }
+  .ghost-content li {
+    margin-bottom: 8px;
+  }
+  .ghost-content figure {
+    margin: 32px 0;
+  }
+  .ghost-content figcaption {
+    font-size: 14px;
+    color: rgb(150, 150, 150);
+    text-align: center;
+    margin-top: 8px;
+  }
+  .ghost-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+  }
+  .ghost-content th, .ghost-content td {
+    border: 1px solid rgb(230, 230, 230);
+    padding: 12px 16px;
+    text-align: left;
+  }
+  .ghost-content th {
+    background: rgb(248, 248, 248);
+    font-weight: 600;
+    color: rgb(13, 43, 29);
+  }
+  .ghost-content hr {
+    border: none;
+    border-top: 1px solid rgb(230, 230, 230);
+    margin: 48px 0;
+  }
+  .ghost-content pre {
+    background: rgb(248, 248, 248);
+    border-radius: 8px;
+    padding: 20px;
+    overflow-x: auto;
+    margin: 32px 0;
+    font-size: 14px;
+  }
+  .ghost-content code {
+    background: rgb(248, 248, 248);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  .ghost-content pre code {
+    background: none;
+    padding: 0;
+  }
+</style>

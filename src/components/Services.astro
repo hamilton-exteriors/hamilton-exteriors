@@ -1,43 +1,46 @@
 ---
+import { Image } from 'astro:assets';
+import { serviceRoofing, serviceSiding, serviceAdu, serviceWindows } from '../lib/images';
+
 const services = [
   {
     title: 'Roofing',
     description:
-      'Composite shingles are durable roofing materials made from a mixture of fiberglass, asphalt, and mineral granules. They offer excellent weather resistance and come in a variety of styles and colors to suit different architectural designs.',
-    image: 'https://framerusercontent.com/images/hakr7OWoKe15ZF1PJ4Ckr7hRI.png',
+      'Full roof replacements and repairs with GAF-certified shingles and a 50-year warranty. We handle everything from tear-off to final inspection — most jobs done in 3-5 days.',
+    image: serviceRoofing,
     href: './roofing',
   },
   {
     title: 'Siding',
     description:
-      'Metal roofs offer outstanding longevity and energy efficiency, lasting up to 50 years or more. They come in various styles and colors, providing excellent protection against extreme weather while reflecting solar radiant heat to reduce cooling costs.',
-    image: 'https://framerusercontent.com/images/abwzIHTvES7vwiSos5d3WPfIaA.png',
+      'James Hardie fiber cement siding that protects your home and looks great for decades. We handle dry rot repair, full replacements, and fresh paint — transforming your curb appeal.',
+    image: serviceSiding,
     href: './siding',
   },
   {
     title: 'Windows',
     description:
-      'Tile roofing offers exceptional durability and aesthetic appeal, with options ranging from traditional clay to modern concrete designs. These versatile materials provide excellent insulation and fire resistance, making them a popular choice for homeowners seeking long-lasting, attractive roofing solutions.',
-    image: 'https://framerusercontent.com/images/pzaFvzI3i6hTZpGQ93e3UdUGriU.png',
+      'Energy-efficient Anlin windows that cut your heating and cooling bills. Double-pane, low-E glass installed by factory-trained crews. Most homes done in one day.',
+    image: serviceAdu,
     href: './windows',
   },
   {
     title: 'Waterproofing',
     description:
-      'The GAF Energy roof integrates solar technology directly into roofing materials, combining energy production with traditional roof protection. This innovative system offers a sleek, low-profile alternative to conventional solar panels while providing clean energy and potential savings on electricity bills.',
-    image: 'https://framerusercontent.com/images/aGE7RTabo86d7bQllJ13VZdMVw4.png',
+      'Protect your foundation and basement from water damage. We install drainage systems, apply waterproof coatings, and fix grading issues before they become costly problems.',
+    image: serviceWindows,
     href: './waterproofing',
   },
 ];
 ---
 
-<section id="service" class="w-full" style="padding: 79px 0;">
+<section id="service" class="w-full py-12 lg:py-[79px]">
   <div class="mx-auto max-w-[1200px] px-5">
     <!-- Section heading -->
     <h2
-      style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;"
+      style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: clamp(28px, 5vw, 40px); line-height: 1.25; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 24px;"
     >
-      Exterior Services Offered in castro valley, ca
+      Exterior Services Offered in Castro Valley, CA
     </h2>
 
     <!-- Service cards grid — 2x2 -->
@@ -47,11 +50,11 @@ const services = [
           <a href={service.href} class="service-card">
             {/* Service image */}
             <div class="w-full overflow-hidden" style="border-radius: 10px;">
-              <img
+              <Image
                 src={service.image}
                 alt={service.title}
-                width="566"
-                height="292"
+                width={566}
+                height={292}
                 style="width: 100%; height: auto; aspect-ratio: 566 / 292; object-fit: cover; display: block; border-radius: 10px;"
                 loading="lazy"
               />
@@ -60,7 +63,7 @@ const services = [
             {/* Card content */}
             <div style="padding-top: 16px;">
               <h3
-                style="font-family: 'Inter Display', 'Inter', sans-serif; font-size: 18px; font-weight: 700; line-height: 24px; margin-bottom: 6px; color: rgb(13, 43, 29);"
+                style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; line-height: 1.3; margin-bottom: 6px; color: rgb(13, 43, 29); text-transform: uppercase;"
               >
                 {service.title}
               </h3>

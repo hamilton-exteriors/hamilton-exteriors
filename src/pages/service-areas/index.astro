@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import AnnouncementBar from '../../components/AnnouncementBar.astro';
 import Navbar from '../../components/Navbar.astro';
@@ -7,19 +8,20 @@ import LogoSlider from '../../components/LogoSlider.astro';
 import ContactUs from '../../components/ContactUs.astro';
 import Reviews from '../../components/Reviews.astro';
 import Footer from '../../components/Footer.astro';
+import { areaOakland, areaFremont, areaHayward, areaBerkeley, areaSanLeandro } from '../../lib/images';
 
 const counties = [
-  { name: 'Alameda County, CA', slug: '/service-areas/alameda-county-ca', image: 'https://framerusercontent.com/images/J5mTngUM3mMlrZUEnLFAmFcRQ.jpg' },
-  { name: 'Contra Costa County, CA', slug: '/service-areas/contra-costa-county-ca', image: 'https://framerusercontent.com/images/5NsQUgPl8msPJIZNvnMhib6TjmM.jpg' },
-  { name: 'Napa County, CA', slug: '/service-areas/napa-county-ca', image: 'https://framerusercontent.com/images/nSs4mx74RgoLTPHGOBM8aSKkY8.jpg' },
-  { name: 'Santa Clara County, CA', slug: '/service-areas/santa-clara-county-ca', image: 'https://framerusercontent.com/images/fRaKvorDUCsfmTW8KDw5hYTEecU.jpg' },
-  { name: 'Marin County, CA', slug: '/service-areas/marin-county-ca', image: 'https://framerusercontent.com/images/oJjQHEsfcnE2em928Vbj25rWNA.jpg' },
+  { name: 'Alameda County, CA', slug: '/service-areas/alameda-county-ca', image: areaOakland },
+  { name: 'Contra Costa County, CA', slug: '/service-areas/contra-costa-county-ca', image: areaFremont },
+  { name: 'Napa County, CA', slug: '/service-areas/napa-county-ca', image: areaHayward },
+  { name: 'Santa Clara County, CA', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
+  { name: 'Marin County, CA', slug: '/service-areas/marin-county-ca', image: areaSanLeandro },
 ];
 ---
 
 <Layout
   title="Service Areas for ADU Contractor in Castro valley, CA | Hamilton Exteriors"
-  description="Hamilton Exteriors serves the entire Bay Area. Find your local service area for expert roofing, siding, and window services."
+  description="Hamilton Exteriors serves the entire Bay Area. Find your local service area for expert ADU construction, roofing, siding, and window services."
 >
   <AnnouncementBar />
   <Navbar />
@@ -29,34 +31,32 @@ const counties = [
   />
   <LogoSlider />
 
-  <!-- County Grid -->
-  <section id="service" class="w-full" style="padding: 40px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
-      <h2
-        style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 40px;"
-      >
-        Service Areas We Cover
-      </h2>
-      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+  <!-- Locations Grid — matches production -->
+  <section id="service" class="w-full" style="padding: 79px 0;">
+    <div class="mx-auto max-w-[1170px] px-4">
+      <p style="font-family: 'Satoshi', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(13, 43, 29); margin: 0 0 32px 0;">
+        LOCATIONS
+      </p>
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {counties.map((county) => (
           <a href={county.slug} class="county-card group">
-            <div class="w-full overflow-hidden" style="border-radius: 10px;">
-              <img
+            <div class="w-full overflow-hidden" style="border-radius: 12px;">
+              <Image
                 src={county.image}
                 alt={county.name}
-                width="540"
-                height="312"
-                style="width: 100%; height: auto; aspect-ratio: 540 / 312; object-fit: cover; display: block; border-radius: 10px;"
+                width={540}
+                height={312}
+                style="width: 100%; height: auto; aspect-ratio: 540 / 312; object-fit: cover; display: block;"
                 loading="lazy"
               />
             </div>
-            <div style="padding-top: 16px;">
+            <div style="padding: 16px 0 0;">
               <h3
-                style="font-family: 'Inter Display', 'Inter', sans-serif; font-size: 18px; font-weight: 700; line-height: 24px; margin-bottom: 6px; color: rgb(13, 43, 29);"
+                style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 600; line-height: 1.4; color: rgb(13, 43, 29); margin: 0 0 8px;"
               >
                 {county.name}
               </h3>
-              <span class="inline-flex items-center text-sm font-semibold text-primary group-hover:underline">
+              <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: rgb(37, 99, 70);" class="group-hover:underline">
                 Explore Service Area &rarr;
               </span>
             </div>
@@ -66,43 +66,8 @@ const counties = [
     </div>
   </section>
 
-  <!-- Why Choose Section (tablet only) -->
-  <section class="hidden w-full md:block lg:hidden" style="background-color: #f9f8f6; padding: 60px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
-      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: rgb(13, 43, 29); text-transform: uppercase; margin-bottom: 16px;">
-        Why Bay Area Homeowners Choose Hamilton Exteriors
-      </h2>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
-        Hamilton Exteriors is the Bay Area's trusted ADU contractor, serving homeowners across Alameda, Contra Costa, Marin, Napa, and Santa Clara counties. Our in-house team handles every phase of your ADU project — from design and permits to construction and final inspection.
-      </p>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105); margin-bottom: 16px;">
-        With deep local knowledge of each county's unique building codes and permitting processes, we streamline your project timeline and avoid costly delays. Whether you're building a detached backyard unit, converting a garage, or adding a junior ADU, we deliver quality results on time and on budget.
-      </p>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgb(104, 104, 105);">
-        Every ADU we build comes with transparent pricing, a detailed construction schedule, and our workmanship warranty. We offer $0 down financing to help you get started without a large upfront investment.
-      </p>
-    </div>
-  </section>
-
-  <!-- ADU Types (tablet only) -->
-  <section class="hidden w-full md:block lg:hidden" style="background-color: #0d2b1d; padding: 48px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
-      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
-        ADU Types We Build
-      </h2>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8); margin-bottom: 16px;">
-        We specialize in three types of accessory dwelling units: detached backyard ADUs up to 1,200 sq ft, garage conversions that transform existing space into comfortable living areas, and junior ADUs up to 500 sq ft within your existing home footprint.
-      </p>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8);">
-        Each unit includes a full kitchen, bathroom, and quality finishes designed to maximize comfort and rental value. Our team handles everything from architectural design through final inspection, with $0 down financing available to get your project started.
-      </p>
-    </div>
-  </section>
-
   <ContactUs />
-  <div class="lg:hidden">
-    <Reviews />
-  </div>
+  <Reviews />
   <Footer />
 </Layout>
 
@@ -114,7 +79,7 @@ const counties = [
     color: inherit;
   }
   .county-card:hover img {
-    transform: scale(1.02);
+    transform: scale(1.03);
     transition: transform 0.3s ease;
   }
 </style>

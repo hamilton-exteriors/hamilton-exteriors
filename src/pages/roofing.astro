@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import AnnouncementBar from '../components/AnnouncementBar.astro';
 import Navbar from '../components/Navbar.astro';
@@ -13,27 +14,28 @@ import Projects from '../components/Projects.astro';
 import FAQ from '../components/FAQ.astro';
 import ContactUs from '../components/ContactUs.astro';
 import Footer from '../components/Footer.astro';
+import { roofingAsphalt, roofingMetal, roofingTile, roofingFlat } from '../lib/images';
 
 const roofingStyles = [
   {
     title: 'Asphalt Shingles',
     description: 'Composite shingles are durable roofing materials made from a mixture of fiberglass, asphalt, and mineral granules. They offer excellent weather resistance and come in a variety of styles and colors to suit different architectural designs.',
-    image: 'https://framerusercontent.com/images/78SpfVUD0CEzzt0mXOY0mac1iQI.png',
+    image: roofingAsphalt,
   },
   {
     title: 'Metal Roofs',
     description: 'Metal roofs offer outstanding longevity and energy efficiency, lasting up to 50 years or more. They come in various styles and colors, providing excellent protection against extreme weather while reflecting solar radiant heat to reduce cooling costs.',
-    image: 'https://framerusercontent.com/images/QMTQaWPeeRKxJY08j2jMHjX9KHU.png',
+    image: roofingMetal,
   },
   {
     title: 'Tile Shingles',
     description: 'Tile roofing offers exceptional durability and aesthetic appeal, with options ranging from traditional clay to modern concrete designs. These versatile materials provide excellent insulation and fire resistance, making them a popular choice for homeowners seeking long-lasting, attractive roofing solutions.',
-    image: 'https://framerusercontent.com/images/3weyvQn8HW3YUb9g4G7XaXxOhcg.png',
+    image: roofingTile,
   },
   {
     title: 'Energy Roofs',
     description: 'The GAF Energy roof integrates solar technology directly into roofing materials, combining energy production with traditional roof protection. This innovative system offers a sleek, low-profile alternative to conventional solar panels while providing clean energy and potential savings on electricity bills.',
-    image: 'https://framerusercontent.com/images/F4Yw7I2g5SM6tYvTiEAbllrwE0.png',
+    image: roofingFlat,
   },
 ];
 ---
@@ -68,9 +70,11 @@ const roofingStyles = [
         {roofingStyles.map((style) => (
           <div class="overflow-hidden rounded-2xl bg-white shadow-sm">
             <div class="overflow-hidden" style="height: 220px;">
-              <img
+              <Image
                 src={style.image}
                 alt={style.title}
+                width={566}
+                height={220}
                 class="h-full w-full"
                 style="object-fit: fill;"
                 loading="lazy"
@@ -78,7 +82,7 @@ const roofingStyles = [
             </div>
             <div style="padding: 20px 24px 24px;">
               <h3
-                style="font-family: 'Inter Display', 'Inter', sans-serif; font-size: 18px; font-weight: 800; line-height: 24px; color: rgb(13, 43, 29); margin-bottom: 6px;"
+                style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 800; line-height: 24px; color: rgb(13, 43, 29); margin-bottom: 6px;"
               >
                 {style.title}
               </h3>
@@ -94,6 +98,9 @@ const roofingStyles = [
 
   <Difference />
   <Projects />
+  <div class="hidden lg:block w-full text-center" style="background-color: rgb(255, 222, 33); padding: 14px 0;">
+    <a href="#contact" style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: rgb(13, 43, 29); text-decoration: none;">Schedule a FREE Inspection &rarr;</a>
+  </div>
   <Financing />
   <FAQ />
   <ContactUs />

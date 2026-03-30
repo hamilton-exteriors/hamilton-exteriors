@@ -1,14 +1,17 @@
 ---
+import { Image } from 'astro:assets';
+import { logoCert1, logoPartner1, logoGaf, logoCert2, logoPartner2 } from '../lib/images';
+
 const logos = [
-  { src: "https://framerusercontent.com/images/oUEB4qiULhRGWWcV5MkDVLBI8U.png?width=340&height=364", alt: "Certification Logo", w: 340, h: 364 },
-  { src: "https://framerusercontent.com/images/Tds7Oyo26ZbYQvPipHx3ILYVxZ4.png?width=740&height=279", alt: "Partner Logo", w: 740, h: 279 },
-  { src: "https://framerusercontent.com/images/hdIy35ILXstUShYm2GeiGhACAE.png?width=380&height=312", alt: "GAF Logo", w: 380, h: 312 },
-  { src: "https://framerusercontent.com/images/8Z0rXtBWig6tP2vOJbXDFuCBaUw.svg?width=147&height=43", alt: "Certification Logo", w: 147, h: 43 },
-  { src: "https://framerusercontent.com/images/cQGfBKfouuXN0KYNNiDeZgVSus.png?width=6600&height=4200", alt: "Partner Logo", w: 6600, h: 4200 },
+  { src: logoCert1, alt: "Certification Logo", w: 340, h: 364 },
+  { src: logoPartner1, alt: "Partner Logo", w: 740, h: 279 },
+  { src: logoGaf, alt: "GAF Logo", w: 380, h: 312 },
+  { src: logoCert2, alt: "Certification Logo", w: 147, h: 43 },
+  { src: logoPartner2, alt: "Partner Logo", w: 6600, h: 4200 },
 ];
 ---
 
-<section class="overflow-x-hidden" style="background-color: rgb(255, 255, 255); padding: 79px 20px;">
+<section class="overflow-x-hidden px-5 py-10 lg:py-16" style="background-color: rgb(255, 255, 255);">
   <div class="mx-auto" style="max-width: 1200px;">
     <p
       class="text-center"
@@ -21,7 +24,7 @@ const logos = [
     <div class="mt-10 hidden flex-wrap items-center justify-center gap-12 md:flex">
       {logos.map((logo) => (
         <div class="flex h-[80px] w-[150px] shrink-0 items-center justify-center">
-          <img
+          <Image
             src={logo.src}
             alt={logo.alt}
             width={logo.w}
@@ -37,7 +40,7 @@ const logos = [
     <div class="mt-10 flex gap-8 overflow-x-auto pb-2 md:hidden" style="-webkit-overflow-scrolling: touch;">
       {logos.map((logo) => (
         <div class="flex h-[72px] w-[120px] shrink-0 items-center justify-center">
-          <img
+          <Image
             src={logo.src}
             alt={logo.alt}
             width={logo.w}
