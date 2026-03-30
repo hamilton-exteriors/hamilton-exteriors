@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 ---
 
 <Layout title="Page Not Found | Hamilton Exteriors" description="The page you're looking for doesn't exist.">
@@ -31,7 +32,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
       </div>
       <p class="mt-12 text-sm" style="font-family: 'DM Sans', sans-serif; color: rgb(150,150,150);">
-        Need help? Call us at <a href="tel:6509773351" class="underline" style="color: var(--color-primary);">(650) 977-3351</a>
+        Need help? Call us at <a href={PHONE_HREF} class="underline" style="color: var(--color-primary);">{PHONE_DISPLAY}</a>
       </p>
     </div>
   </main>
