@@ -1,10 +1,16 @@
 ---
+interface Props {
+  showFilters?: boolean;
+}
+const { showFilters = true } = Astro.props;
+
 const projects = [
   {
     title: "Siding Installation using James Hardie",
     city: "Roseville",
     date: "DEC 31, 2024",
     projectType: "Siding Installation",
+    category: "siding",
     productsUsed: "James Hardie, Sherman Williams Super Paint",
     mediaCount: 13,
     featuredPhoto: "https://img.companycam.com/hw0uAmIDn-FtUnB5JjBN_Q7Pip5_fQA35QAR9aas39E/rs:fit:4032:4032/q:65/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xYjE4/NzQwNi1hMmVkLTQ2/MzUtOTdlOS03MTk1/ZTA2NDkyODMuanBl/Zw.jpg?d=900x900",
@@ -17,10 +23,11 @@ const projects = [
     extraCount: 9,
   },
   {
-    title: "Window Installation using Anlin Windo...",
+    title: "Window Installation using Anlin Windows",
     city: "San Jose",
     date: "DEC 31, 2024",
     projectType: "Window Installation",
+    category: "windows",
     productsUsed: "Anlin Windows",
     mediaCount: 14,
     featuredPhoto: "https://img.companycam.com/jG4REzylFCzZDrE_j8B7VraBIEDAGWITOiio0LiI5Wg/rs:fit:4032:4032/q:65/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8zYmYz/YTRkOC0wOTczLTQ0/OWMtYjJmYi05NGU0/NDE2OTlmNDcuanBn.jpg?d=900x900",
@@ -33,11 +40,12 @@ const projects = [
     extraCount: 10,
   },
   {
-    title: "Residential Roofing Installation using G...",
+    title: "Residential Roofing Installation using GAF HDZ Shingles",
     city: "Sacramento",
     date: "DEC 31, 2024",
     projectType: "Residential Roofing Installation",
-    productsUsed: "Gaf Hdz Shingles",
+    category: "roofing",
+    productsUsed: "GAF HDZ Shingles",
     mediaCount: 6,
     featuredPhoto: "https://img.companycam.com/e9TkNdXVqqOhUUcQCM0gf4wCTWz_0CfFPMIWAb-lczk/rs:fit:4032:4032/q:65/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS83NDg4/NThiYy0yNzcxLTRk/ODItYTUwMS00NmYz/Njk3ODY1MTQuanBn.jpg?d=900x900",
     thumbnails: [
@@ -49,69 +57,127 @@ const projects = [
     extraCount: 2,
   },
 ];
+
+const categories = [
+  { id: "all", label: "All Projects" },
+  { id: "roofing", label: "Roofing" },
+  { id: "siding", label: "Siding" },
+  { id: "windows", label: "Windows" },
+];
+
 import { Image } from 'astro:assets';
 ---
 
-<section class="w-full py-8 lg:py-12" style="background-color: rgb(255,255,255);">
+<section class="w-full py-10 lg:py-16" style="background-color: #F4F1EB;">
   <div class="cc-showcase-wrapper mx-auto max-w-[1170px] px-5" style="font-family: 'DM Sans', sans-serif;">
 
     <!-- Header -->
-    <div class="mb-5 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: clamp(24px, 4vw, 30px); font-weight: 400; color: rgb(17,17,17); margin: 0; text-transform: uppercase;">Our Latest Projects</h2>
-      <div class="flex items-center gap-1.5">
-        <span style="font-size: 0.8125rem; color: rgb(120,120,120); font-weight: 400;">Powered By</span>
-        <span style="font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; font-weight: 700; color: rgb(17,17,17);">BackOffice</span>
+    <div class="mb-6 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: clamp(28px, 5vw, 36px); font-weight: 400; color: #1A1A1A; margin: 0; text-transform: uppercase; line-height: 1.1;">Our Latest Projects</h2>
+      <div class="flex items-center gap-1.5" style="opacity: 0.45;">
+        <span style="font-size: 11px; color: #1A1A1A; font-weight: 400; letter-spacing: 0.3px;">Powered by</span>
+        <span style="font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; color: #1A1A1A;">BackOffice</span>
       </div>
     </div>
 
+    <!-- Category Filter Tabs -->
+    {showFilters && (
+      <div class="cc-filter-tabs mb-6 flex gap-2.5 overflow-x-auto" style="scrollbar-width: none; -ms-overflow-style: none;">
+        {categories.map((cat) => (
+          <button
+            data-filter={cat.id}
+            class="cc-filter-btn"
+            style={`
+              font-family: 'Satoshi', 'DM Sans', sans-serif;
+              font-size: 13px;
+              font-weight: 700;
+              text-transform: uppercase;
+              letter-spacing: 0.8px;
+              padding: 9px 20px;
+              border-radius: 4px;
+              border: 1.5px solid rgba(37,99,70,0.2);
+              background: white;
+              color: #1A1A1A;
+              cursor: pointer;
+              white-space: nowrap;
+              transition: all 0.2s ease;
+            `}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+    )}
+
     <!-- Cards Grid -->
-    <div class="cc-grid gap-4" style="display: grid;">
+    <div class="cc-grid gap-4" style="display: grid; grid-template-columns: repeat(3, 1fr);">
       {projects.map((project, idx) => (
-        <div class={idx > 0 ? 'cc-card-extra' : ''} style="border: 1px solid rgb(230,230,230); border-radius: 6px; overflow: hidden; background: rgb(255,255,255); cursor: pointer;">
+        <div
+          class={`cc-project-card ${idx > 0 ? 'cc-card-extra' : ''}`}
+          role="button"
+          tabindex="0"
+          data-category={project.category}
+          data-images={JSON.stringify([project.featuredPhoto, ...project.thumbnails.map(t => t.replace('d=250x250', 'd=900x900'))])}
+          data-title={project.title}
+          data-city={project.city}
+          data-date={project.date}
+          data-type={project.projectType}
+          data-products={project.productsUsed}
+          style="border: 1px solid rgba(37,99,70,0.12); border-radius: 6px; overflow: hidden; background: white; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;"
+        >
 
           <!-- Featured Photo with badges -->
-          <a href={project.featuredPhoto} target="_blank" rel="noopener" style="display: block; position: relative; width: 100%; padding-top: 62%; overflow: hidden; background: rgb(220,220,220);">
+          <div style="display: block; position: relative; width: 100%; padding-top: 62%; overflow: hidden; background: rgb(220,220,220);">
             <Image
+              class="cc-card-photo"
               src={project.featuredPhoto}
               alt={project.title}
               width={900}
               height={558}
-              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;"
               loading="lazy"
             />
-            <!-- Date badge (bottom-left) -->
-            <div style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.65); color: white; font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 3px; letter-spacing: 0.5px; text-transform: uppercase;">
-              {project.date}
+            <!-- Location + date badge (bottom-left) -->
+            <div style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.65); color: white; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 3px; letter-spacing: 0.5px; text-transform: uppercase;">
+              {project.city.toUpperCase()} &middot; {project.date}
             </div>
-            <!-- City badge (bottom-right) -->
-            <div style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.65); color: white; font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 3px; letter-spacing: 0.5px; text-transform: uppercase;">
-              {project.city.toUpperCase()}
+            <!-- Photo count badge (bottom-right, always visible) -->
+            <div style="position: absolute; bottom: 8px; right: 8px; background: #256346; color: white; font-family: 'Satoshi', 'DM Sans', sans-serif; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 3px; letter-spacing: 0.3px; display: flex; align-items: center; gap: 4px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              {project.mediaCount}
             </div>
-          </a>
+            <!-- View Photos overlay -->
+            <div class="cc-photo-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.25s ease;">
+              <span style="color: white; font-family: 'Satoshi', 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 6px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                View {project.mediaCount} Photos
+              </span>
+            </div>
+          </div>
 
           <!-- Card Content -->
-          <div style="padding: 12px 14px;">
+          <div style="padding: 14px 16px;">
             <!-- Title -->
-            <p style="font-size: 0.875rem; font-weight: 700; color: rgb(17,17,17); margin: 0 0 10px; line-height: 1.35;">
+            <p style="font-size: 1rem; font-weight: 700; color: #1A1A1A; margin: 0 0 12px; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
               {project.title}
             </p>
 
             <!-- Project Type -->
             <div style="margin-bottom: 8px;">
-              <p style="font-size: 10px; font-weight: 600; color: rgb(120,120,120); text-transform: uppercase; letter-spacing: 0.8px; margin: 0 0 2px;">PROJECT TYPE</p>
-              <p style="font-size: 0.8125rem; color: rgb(40,40,40); margin: 0;">{project.projectType}</p>
+              <p style="font-family: 'Satoshi', 'DM Sans', sans-serif; font-size: 10px; font-weight: 700; color: #256346; text-transform: uppercase; letter-spacing: 0.8px; margin: 0 0 2px;">PROJECT TYPE</p>
+              <p style="font-size: 0.875rem; color: #1A1A1A; margin: 0;">{project.projectType}</p>
             </div>
 
             <!-- Products Used -->
-            <div style="margin-bottom: 10px;">
-              <p style="font-size: 10px; font-weight: 600; color: rgb(120,120,120); text-transform: uppercase; letter-spacing: 0.8px; margin: 0 0 2px;">PRODUCTS USED</p>
-              <p style="font-size: 0.8125rem; color: rgb(40,40,40); margin: 0;">{project.productsUsed}</p>
+            <div style="margin-bottom: 12px;">
+              <p style="font-family: 'Satoshi', 'DM Sans', sans-serif; font-size: 10px; font-weight: 700; color: #256346; text-transform: uppercase; letter-spacing: 0.8px; margin: 0 0 2px;">PRODUCTS USED</p>
+              <p style="font-size: 0.875rem; color: #1A1A1A; margin: 0;">{project.productsUsed}</p>
             </div>
 
             <!-- Thumbnails strip -->
-            <div style="display: flex; gap: 4px; align-items: center;">
+            <div style="display: flex; gap: 5px; align-items: center;">
               {project.thumbnails.map(thumb => (
-                <div style="width: 40px; height: 40px; border-radius: 3px; overflow: hidden; flex-shrink: 0; background: rgb(220,220,220);">
+                <div style="width: 48px; height: 48px; border-radius: 4px; overflow: hidden; flex-shrink: 0; background: #F4F1EB;">
                   <Image
                     src={thumb}
                     alt=""
@@ -123,8 +189,8 @@ import { Image } from 'astro:assets';
                 </div>
               ))}
               {project.extraCount > 0 && (
-                <div style="width: 40px; height: 40px; border-radius: 3px; background: rgb(240,240,240); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                  <span style="font-size: 0.8125rem; font-weight: 600; color: rgb(80,80,80);">+{project.extraCount}</span>
+                <div style="width: 48px; height: 48px; border-radius: 4px; background: #256346; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <span style="font-size: 0.875rem; font-weight: 700; color: white;">+{project.extraCount}</span>
                 </div>
               )}
             </div>
@@ -136,17 +202,17 @@ import { Image } from 'astro:assets';
 
     <!-- Pagination -->
     <div id="cc-pagination" style="display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 20px;">
-      <button data-action="first" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
+      <button data-action="first" aria-label="First page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11 18L5 12l6-6M19 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <button data-action="prev" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
+      <button data-action="prev" aria-label="Previous page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <span id="cc-page-label" style="font-size: 0.8125rem; color: rgb(60,60,60); padding: 0 8px;">1 of 1</span>
-      <button data-action="next" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
+      <button data-action="next" aria-label="Next page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <button data-action="last" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
+      <button data-action="last" aria-label="Last page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: white; border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 18l6-6-6-6M13 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
@@ -154,48 +220,281 @@ import { Image } from 'astro:assets';
   </div>
 </section>
 
+<!-- Lightbox Modal -->
+<div id="cc-lightbox" style="display: none; position: fixed; inset: 0; z-index: 99999; background: #000; isolation: isolate; font-family: 'DM Sans', sans-serif;" role="dialog" aria-modal="true" aria-label="Project photo gallery">
+  <!-- Close button -->
+  <button id="cc-lb-close" style="position: absolute; top: 16px; right: 16px; z-index: 10; width: 44px; height: 44px; border: none; background: rgba(255,255,255,0.15); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s;" aria-label="Close gallery">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+
+  <!-- Project info bar -->
+  <div id="cc-lb-info" style="position: absolute; top: 16px; left: 16px; z-index: 10; color: white; max-width: calc(100% - 80px);">
+    <p id="cc-lb-title" style="font-size: 1rem; font-weight: 700; margin: 0 0 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"></p>
+    <p id="cc-lb-meta" style="font-size: 0.75rem; color: rgba(255,255,255,0.6); margin: 0;">
+      <span id="cc-lb-type"></span> &middot; <span id="cc-lb-city"></span> &middot; <span id="cc-lb-products"></span>
+    </p>
+  </div>
+
+  <!-- Main image area -->
+  <div id="cc-lb-stage" style="position: absolute; inset: 70px 60px 80px; display: flex; align-items: center; justify-content: center; touch-action: pan-y;">
+    <img id="cc-lb-img" src="" alt="" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 4px; user-select: none; -webkit-user-drag: none;" />
+  </div>
+
+  <!-- Prev / Next arrows -->
+  <button id="cc-lb-prev" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); z-index: 10; width: 48px; height: 48px; border: none; background: rgba(0,0,0,0.5); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; backdrop-filter: blur(4px);" aria-label="Previous photo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button id="cc-lb-next" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); z-index: 10; width: 48px; height: 48px; border: none; background: rgba(0,0,0,0.5); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; backdrop-filter: blur(4px);" aria-label="Next photo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+
+  <!-- Thumbnail strip + counter -->
+  <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 16px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+    <div id="cc-lb-thumbs" style="display: flex; gap: 6px; overflow-x: auto; max-width: 100%; scrollbar-width: none; -ms-overflow-style: none; padding: 0 4px;"></div>
+    <span id="cc-lb-counter" style="font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600; letter-spacing: 0.5px;"></span>
+  </div>
+</div>
+
 <script>
+  // === SHARED STATE ===
+  let currentPage = 1;
+  let activeFilter = 'all';
+
+  // === DOM ELEMENTS ===
+  const filterBtns = document.querySelectorAll('.cc-filter-btn');
+  const allCards = Array.from(document.querySelectorAll('.cc-project-card'));
   const grid = document.querySelector('.cc-grid');
-  const cards = grid ? Array.from(grid.children) : [];
   const label = document.getElementById('cc-page-label');
   const pagination = document.getElementById('cc-pagination');
 
-  if (cards.length > 0 && pagination) {
-    const perPage = window.innerWidth <= 768 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
-    const totalPages = Math.ceil(cards.length / perPage);
-    let currentPage = 1;
+  // === PAGINATION FUNCTIONS (declared before applyFilter which calls renderPagination) ===
+  function getVisibleCards() {
+    return allCards.filter(card => (card as HTMLElement).style.display !== 'none');
+  }
 
-    function render() {
-      cards.forEach((card, i) => {
-        const pageOfCard = Math.floor(i / perPage) + 1;
-        (card as HTMLElement).style.display = pageOfCard === currentPage ? '' : 'none';
-      });
-      if (label) label.textContent = `${currentPage} of ${totalPages}`;
+  function getPerPage() {
+    return window.innerWidth <= 768 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
+  }
 
-      pagination.querySelectorAll('button').forEach(btn => {
-        const action = btn.getAttribute('data-action');
-        const disabled = (action === 'first' || action === 'prev') ? currentPage <= 1 :
-                         (action === 'next' || action === 'last') ? currentPage >= totalPages : false;
-        (btn as HTMLButtonElement).disabled = disabled;
-        btn.style.opacity = disabled ? '0.4' : '1';
-        btn.style.cursor = disabled ? 'not-allowed' : 'pointer';
-        btn.style.display = disabled ? 'none' : 'flex';
-      });
-    }
+  function renderPagination() {
+    const visible = getVisibleCards();
+    const perPage = getPerPage();
+    const totalPages = Math.max(1, Math.ceil(visible.length / perPage));
+    if (currentPage > totalPages) currentPage = totalPages;
 
-    pagination.addEventListener('click', (e) => {
-      const btn = (e.target as HTMLElement).closest('button');
-      if (!btn || (btn as HTMLButtonElement).disabled) return;
-      const action = btn.getAttribute('data-action');
-      if (action === 'first') currentPage = 1;
-      else if (action === 'prev') currentPage = Math.max(1, currentPage - 1);
-      else if (action === 'next') currentPage = Math.min(totalPages, currentPage + 1);
-      else if (action === 'last') currentPage = totalPages;
-      render();
+    visible.forEach((card, i) => {
+      const pageOfCard = Math.floor(i / perPage) + 1;
+      (card as HTMLElement).style.display = pageOfCard === currentPage ? '' : 'none';
     });
 
-    render();
+    // Also hide filtered-out cards
+    allCards.forEach(card => {
+      const cardCat = card.getAttribute('data-category');
+      if (activeFilter !== 'all' && cardCat !== activeFilter) {
+        (card as HTMLElement).style.display = 'none';
+      }
+    });
+
+    // Re-show only current page of visible
+    const filteredCards = allCards.filter(card => {
+      const cardCat = card.getAttribute('data-category');
+      return activeFilter === 'all' || cardCat === activeFilter;
+    });
+    filteredCards.forEach((card, i) => {
+      const pageOfCard = Math.floor(i / perPage) + 1;
+      (card as HTMLElement).style.display = pageOfCard === currentPage ? '' : 'none';
+    });
+
+    if (label) label.textContent = `${currentPage} of ${totalPages}`;
+
+    if (pagination) {
+      pagination.querySelectorAll('button').forEach(btn => {
+        (btn as HTMLButtonElement).disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+        btn.style.display = 'flex';
+      });
+    }
   }
+
+  // === CATEGORY FILTERS ===
+  function applyFilter(category: string) {
+    activeFilter = category;
+    filterBtns.forEach(btn => {
+      const isActive = btn.getAttribute('data-filter') === category;
+      (btn as HTMLElement).style.background = isActive ? '#256346' : 'white';
+      (btn as HTMLElement).style.color = isActive ? 'white' : 'rgb(80,80,80)';
+      (btn as HTMLElement).style.borderColor = isActive ? '#256346' : 'rgb(210,210,210)';
+    });
+
+    allCards.forEach(card => {
+      const cardCat = card.getAttribute('data-category');
+      const show = category === 'all' || cardCat === category;
+      (card as HTMLElement).style.display = show ? '' : 'none';
+    });
+
+    currentPage = 1;
+    renderPagination();
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyFilter(btn.getAttribute('data-filter') || 'all');
+    });
+  });
+
+  // Initialize
+  applyFilter('all');
+
+  if (pagination) {
+    pagination.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('button');
+      if (!btn) return;
+      const action = btn.getAttribute('data-action');
+      const filteredCards = allCards.filter(card => {
+        const cardCat = card.getAttribute('data-category');
+        return activeFilter === 'all' || cardCat === activeFilter;
+      });
+      const perPage = getPerPage();
+      const totalPages = Math.max(1, Math.ceil(filteredCards.length / perPage));
+
+      if (action === 'first') currentPage = 1;
+      else if (action === 'prev') currentPage = currentPage <= 1 ? totalPages : currentPage - 1;
+      else if (action === 'next') currentPage = currentPage >= totalPages ? 1 : currentPage + 1;
+      else if (action === 'last') currentPage = totalPages;
+      renderPagination();
+    });
+  }
+
+  // Re-render on resize
+  let resizeTimer: ReturnType<typeof setTimeout>;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => renderPagination(), 150);
+  });
+
+  // === LIGHTBOX ===
+  const lightbox = document.getElementById('cc-lightbox')!;
+  const lbImg = document.getElementById('cc-lb-img') as HTMLImageElement;
+  const lbTitle = document.getElementById('cc-lb-title')!;
+  const lbType = document.getElementById('cc-lb-type')!;
+  const lbCity = document.getElementById('cc-lb-city')!;
+  const lbProducts = document.getElementById('cc-lb-products')!;
+  const lbCounter = document.getElementById('cc-lb-counter')!;
+  const lbThumbs = document.getElementById('cc-lb-thumbs')!;
+  const lbClose = document.getElementById('cc-lb-close')!;
+  const lbPrev = document.getElementById('cc-lb-prev')!;
+  const lbNext = document.getElementById('cc-lb-next')!;
+
+  let lbImages: string[] = [];
+  let lbIndex = 0;
+
+  function openLightbox(card: HTMLElement) {
+    lbImages = JSON.parse(card.getAttribute('data-images') || '[]');
+    if (!lbImages.length) return;
+
+    lbTitle.textContent = card.getAttribute('data-title') || '';
+    lbType.textContent = card.getAttribute('data-type') || '';
+    lbCity.textContent = card.getAttribute('data-city') || '';
+    lbProducts.textContent = card.getAttribute('data-products') || '';
+
+    lbIndex = 0;
+    thumbsBuilt = false;
+    renderLightbox();
+    lightbox.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  let thumbsBuilt = false;
+
+  function buildThumbs() {
+    lbThumbs.innerHTML = '';
+    lbImages.forEach((src, i) => {
+      const thumb = document.createElement('div');
+      thumb.style.cssText = 'width: 48px; height: 48px; border-radius: 4px; overflow: hidden; flex-shrink: 0; cursor: pointer; border: 2px solid transparent; transition: border-color 0.15s;';
+      thumb.innerHTML = `<img src="${src.replace('d=900x900', 'd=250x250')}" alt="" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />`;
+      thumb.addEventListener('click', () => { lbIndex = i; updateLightbox(); });
+      lbThumbs.appendChild(thumb);
+    });
+    thumbsBuilt = true;
+  }
+
+  function updateLightbox() {
+    lbImg.src = lbImages[lbIndex];
+    lbImg.alt = `Photo ${lbIndex + 1} of ${lbImages.length}`;
+    lbCounter.textContent = `${lbIndex + 1} / ${lbImages.length}`;
+
+    // Update thumb highlights only
+    Array.from(lbThumbs.children).forEach((thumb, i) => {
+      (thumb as HTMLElement).style.borderColor = i === lbIndex ? '#FFDE21' : 'transparent';
+    });
+
+    const activeTh = lbThumbs.children[lbIndex] as HTMLElement;
+    if (activeTh) activeTh.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  function renderLightbox() {
+    if (!thumbsBuilt) buildThumbs();
+    updateLightbox();
+  }
+
+  function lbGo(dir: number) {
+    lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+    updateLightbox();
+  }
+
+  // Card click → open lightbox
+  allCards.forEach(card => {
+    card.addEventListener('click', () => openLightbox(card as HTMLElement));
+    card.addEventListener('keydown', (e) => {
+      if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
+        e.preventDefault();
+        openLightbox(card as HTMLElement);
+      }
+    });
+  });
+
+  // Lightbox controls
+  lbClose.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', () => lbGo(-1));
+  lbNext.addEventListener('click', () => lbGo(1));
+
+  // Keyboard nav
+  document.addEventListener('keydown', (e) => {
+    if (lightbox.style.display === 'none') return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') lbGo(-1);
+    else if (e.key === 'ArrowRight') lbGo(1);
+  });
+
+  // Click backdrop to close
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox || (e.target as HTMLElement).id === 'cc-lb-stage') closeLightbox();
+  });
+
+  // === TOUCH SWIPE in Lightbox ===
+  let touchStartX = 0;
+  let touchStartY = 0;
+  const lbStage = document.getElementById('cc-lb-stage')!;
+
+  lbStage.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  lbStage.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // Only swipe if horizontal movement > vertical and > 50px
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      lbGo(dx < 0 ? 1 : -1);
+    }
+  }, { passive: true });
 </script>
 
 <style>
@@ -207,6 +506,70 @@ import { Image } from 'astro:assets';
   @media (min-width: 769px) and (max-width: 1024px) {
     .cc-grid {
       grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  /* Card focus for keyboard nav */
+  .cc-project-card:focus-visible {
+    outline: 2px solid #FFDE21;
+    outline-offset: 2px;
+  }
+
+  /* Card hover effects */
+  .cc-project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(37,99,70,0.1);
+  }
+  .cc-project-card:hover .cc-card-photo {
+    transform: scale(1.04);
+  }
+  .cc-project-card:hover .cc-photo-overlay {
+    opacity: 1 !important;
+  }
+
+  /* Filter button hover */
+  .cc-filter-btn:hover {
+    border-color: #256346 !important;
+    color: #256346 !important;
+    background: rgba(37,99,70,0.04) !important;
+  }
+
+  /* Lightbox button hover */
+  #cc-lb-close:hover,
+  #cc-lb-prev:hover,
+  #cc-lb-next:hover {
+    background: rgba(0,0,0,0.7) !important;
+  }
+
+  /* Hide scrollbar on filter tabs */
+  .cc-filter-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Lightbox mobile adjustments */
+  @media (max-width: 768px) {
+    #cc-lb-stage {
+      inset: 60px 44px 90px !important;
+    }
+    #cc-lb-prev,
+    #cc-lb-next {
+      width: 36px !important;
+      height: 36px !important;
+    }
+    #cc-lb-prev { left: 4px !important; }
+    #cc-lb-next { right: 4px !important; }
+    #cc-lb-info {
+      max-width: calc(100% - 60px) !important;
+    }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .cc-project-card,
+    .cc-project-card .cc-card-photo,
+    .cc-project-card .cc-photo-overlay,
+    .cc-filter-btn {
+      transition: none !important;
     }
   }
 </style>
