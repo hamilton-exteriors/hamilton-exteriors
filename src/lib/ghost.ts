@@ -74,3 +74,11 @@ export async function getTags(): Promise<{ name: string; slug: string; count: nu
 export function isGhostConfigured(): boolean {
   return Boolean(GHOST_URL && GHOST_KEY);
 }
+
+export function formatDate(dateStr: string): string {
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
