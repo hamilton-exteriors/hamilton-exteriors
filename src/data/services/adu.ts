@@ -8,7 +8,7 @@ export const data: ServicePageData = {
     'Hamilton Exteriors builds beautiful ADUs across the Bay Area. Attached, detached, conversions, and full permitting.',
   announcementText: 'Limited Time: Free ADU Design Consultation + Permit Guarantee*',
   hero: {
-    headline: 'Beautiful ADUs  and Homes  Across the  Bay Area',
+    headline: 'Bay Areas  Best ADU  Builder',
     formTitle: 'Get a FREE Consultation',
     formSubtitle:
       "We'll contact you in 3-5 minutes to discuss your ADU project.",
