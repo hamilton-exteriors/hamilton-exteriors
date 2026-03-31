@@ -10,12 +10,12 @@ import { data as marin } from './counties/marin-county-ca';
 /* ── Page metadata ────────────────────────────────────────────── */
 
 export const pageTitle =
-  'Service Areas for ADU Contractor in Castro valley, CA | Hamilton Exteriors';
+  'Bay Area Roofing, Siding & Exteriors | Service Areas | Hamilton Exteriors';
 
 export const pageDescription =
-  'Hamilton Exteriors serves the entire Bay Area. Find your local service area for expert ADU construction, roofing, siding, and window services.';
+  'Hamilton Exteriors serves Alameda, Contra Costa, Marin, Napa & Santa Clara counties. Expert roofing, siding, windows, and ADU construction across the Bay Area.';
 
-export const heroHeadline = 'Service Areas  ADU Contractor  Castro Valley';
+export const heroHeadline = 'Roofing, Siding & Exteriors  Across the Bay Area';
 export const heroFormTitle = 'Get a FREE QUOTE';
 
 /* ── County card images (one representative photo per county) ── */

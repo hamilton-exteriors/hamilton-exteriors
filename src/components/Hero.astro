@@ -43,7 +43,7 @@ const step2Options = serviceOptions || ['Roofing', 'Siding', 'Windows', 'Other']
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 ---
 
-<section id="quote" class="relative w-full overflow-hidden" style="padding-top: 24px; padding-bottom: 32px;">
+<section id="quote" class="relative w-full overflow-hidden" style="padding-top: 40px; padding-bottom: 40px;">
   <!-- Background image — zoomed out on mobile -->
   <div class="absolute inset-0">
     <Image
@@ -79,7 +79,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
     <div class="flex flex-col items-start lg:w-[55%] lg:py-6">
 
       <!-- Rating badge -->
-      <div class="mb-4 inline-flex items-center gap-2 lg:mb-0">
+      <div class="mb-4 inline-flex items-center gap-2 lg:mb-3">
         <div class="flex gap-0.5">
           {Array.from({ length: 5 }).map(() => (
             <div class="relative h-[16px] w-[16px] shrink-0 lg:h-[20px] lg:w-[20px]">
@@ -105,7 +105,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
       <!-- Headline -->
       <h1
         class="hero-h1 w-full text-white"
-        style="font-family: var(--font-oswald); font-weight: 400; text-transform: uppercase; line-height: 1.05; letter-spacing: 0.01em;"
+        style="font-family: var(--font-oswald); font-weight: 400; text-transform: uppercase; line-height: 1.1; letter-spacing: 0.01em;"
       >
         {headline}
       </h1>
@@ -144,7 +144,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
           </p>
 
           <!-- 3-Step Form -->
-          <form method="POST" action={formAction} id="hero-form" data-preset-service={serviceType || ''} data-has-options={serviceOptions ? 'true' : 'false'}>
+          <form method="POST" action={formAction} id="hero-form" aria-label="Get a free quote" data-preset-service={serviceType || ''} data-has-options={serviceOptions ? 'true' : 'false'}>
             <!-- Step 1: Contact Info -->
             <div id="step-1" class="form-step">
               <div class="mb-3 flex items-center gap-2">
@@ -239,7 +239,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
                   class="mt-0.5 h-4 w-4 shrink-0"
                   style="border-radius: 4px; accent-color: var(--color-primary);"
                 />
-                <label for="consent-checkbox" style="font-family: var(--font-dm-sans); font-size: 10px; line-height: 1.5; color: var(--color-light); cursor: pointer;">
+                <label for="consent-checkbox" style="font-family: var(--font-dm-sans); font-size: 11px; line-height: 1.5; color: var(--color-light); cursor: pointer;">
                   I agree to the <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Terms</a> & <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Privacy Policy</a>. Msg & data rates may apply.
                 </label>
               </div>

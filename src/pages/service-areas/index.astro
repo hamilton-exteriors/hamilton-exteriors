@@ -8,6 +8,7 @@ import LogoSlider from '../../components/LogoSlider.astro';
 import ContactUs from '../../components/ContactUs.astro';
 import Reviews from '../../components/Reviews.astro';
 import Footer from '../../components/Footer.astro';
+import Services from '../../components/Services.astro';
 import {
   pageTitle, pageDescription, heroHeadline, heroFormTitle, counties,
 } from '../../data/service-areas-index';
@@ -26,16 +27,46 @@ import {
   />
   <LogoSlider />
 
-  <!-- Locations Grid — matches production -->
-  <section id="service" class="w-full" style="padding: 79px 0;">
-    <div class="mx-auto max-w-[1170px] px-4">
-      <p style="font-family: 'Satoshi', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(13, 43, 29); margin: 0 0 32px 0;">
-        LOCATIONS
+  <!-- Stats Strip -->
+  <section class="w-full" style="background-color: var(--color-heading); padding: 40px 0;">
+    <div class="mx-auto max-w-[1170px] px-5 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <p style="font-family: var(--font-oswald); font-size: clamp(32px, 5vw, 48px); font-weight: 400; color: var(--color-yellow); line-height: 1; text-transform: uppercase;">5</p>
+        <p style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px;">Counties Served</p>
+      </div>
+      <div>
+        <p style="font-family: var(--font-oswald); font-size: clamp(32px, 5vw, 48px); font-weight: 400; color: var(--color-white); line-height: 1; text-transform: uppercase;">500+</p>
+        <p style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px;">Projects Completed</p>
+      </div>
+      <div>
+        <p style="font-family: var(--font-oswald); font-size: clamp(32px, 5vw, 48px); font-weight: 400; color: var(--color-white); line-height: 1; text-transform: uppercase;">50yr</p>
+        <p style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px;">Warranty Coverage</p>
+      </div>
+      <div>
+        <p style="font-family: var(--font-oswald); font-size: clamp(32px, 5vw, 48px); font-weight: 400; color: var(--color-white); line-height: 1; text-transform: uppercase;">4.9</p>
+        <p style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px;">Google Rating</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations Grid -->
+  <section id="service" class="w-full" style="padding: 80px 0;">
+    <div class="mx-auto max-w-[1170px] px-5">
+      <p class="text-label" style="color: var(--color-primary); margin: 0 0 12px;">
+        Service Areas
       </p>
-      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <h2
+        style="font-family: var(--font-oswald); font-size: clamp(28px, 5vw, 44px); line-height: 1.15; font-weight: 400; color: var(--color-heading); text-transform: uppercase; margin: 0 0 12px;"
+      >
+        5 Counties. 25+ Cities. One Standard.
+      </h2>
+      <p style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.7; color: var(--color-muted); max-width: 55ch; margin: 0 0 48px;">
+        Licensed, bonded, and insured across the Bay Area. Find your county below to see what we're building near you.
+      </p>
+      <div class="county-grid">
         {counties.map((county) => (
           <a href={county.slug} class="county-card group">
-            <div class="w-full overflow-hidden" style="border-radius: 12px;">
+            <div class="county-card__img relative w-full overflow-hidden" style="border-radius: 8px;">
               <Image
                 src={county.image}
                 alt={county.name}
@@ -44,16 +75,23 @@ import {
                 style="width: 100%; height: auto; aspect-ratio: 540 / 312; object-fit: cover; display: block;"
                 loading="lazy"
               />
+              <div class="county-card__overlay">
+                <span style="font-family: var(--font-oswald); font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: white; display: flex; align-items: center; gap: 6px;">
+                  {county.cities.length > 0 ? `View ${county.cities.length} Cities` : 'View Service Area'} <span>&rarr;</span>
+                </span>
+              </div>
             </div>
-            <div style="padding: 16px 0 0;">
+            <div style="padding: 14px 0 0;">
               <h3
-                style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 600; line-height: 1.4; color: rgb(13, 43, 29); margin: 0 0 8px;"
+                style="font-family: var(--font-oswald); font-size: clamp(20px, 3vw, 24px); font-weight: 700; line-height: 1.2; color: var(--color-heading); text-transform: uppercase; margin: 0 0 6px;"
               >
                 {county.name}
               </h3>
-              <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: rgb(37, 99, 70);" class="group-hover:underline">
-                Explore Service Area &rarr;
-              </span>
+              {county.cities.length > 0 && (
+                <p style="font-family: var(--font-dm-sans); font-size: 13px; line-height: 1.5; color: var(--color-muted); margin: 0;">
+                  {county.cities.join(' · ')}
+                </p>
+              )}
             </div>
           </a>
         ))}
@@ -61,20 +99,59 @@ import {
     </div>
   </section>
 
+  <Services />
+
   <ContactUs />
   <Reviews />
   <Footer />
 </Layout>
 
 <style>
+  .county-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 640px) {
+    .county-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .county-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    /* First 3 cards: each takes 2 cols = fills 6 */
+    .county-card:nth-child(-n+3) {
+      grid-column: span 2;
+    }
+    /* Last 2 cards: each takes 3 cols = fills 6, centered */
+    .county-card:nth-child(n+4) {
+      grid-column: span 3;
+    }
+  }
   .county-card {
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: inherit;
   }
-  .county-card:hover img {
-    transform: scale(1.03);
-    transition: transform 0.3s ease;
+  .county-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 43, 29, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .county-card:hover .county-card__overlay {
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .county-card, .county-card__img img, .county-card__overlay {
+      transition: none !important;
+    }
   }
 </style>

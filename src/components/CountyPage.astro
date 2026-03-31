@@ -78,7 +78,7 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
                 alt={`${city.name}, CA`}
                 width={540}
                 height={312}
-                class="h-full w-full object-cover transition-transform group-hover:scale-105"
+                class="h-full w-full object-cover transition-opacity group-hover:opacity-90"
                 loading="lazy"
               />
             </div>
@@ -470,7 +470,6 @@ const showFaqComponent = data.showSharedFaq !== false && !data.customFaqs;
     transition: transform 0.3s ease;
   }
   .cc-city-card:hover .cc-city-card-image {
-    transform: scale(1.03);
   }
   .cc-city-card-content {
     padding: 16px 20px 20px;

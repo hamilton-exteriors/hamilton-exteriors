@@ -1,4 +1,5 @@
 import type { CountyPageData } from '../../lib/county-page-types';
+import { areaHayward } from '../../lib/images';
 
 export const data: CountyPageData = {
   county: 'Napa County',
@@ -9,6 +10,14 @@ export const data: CountyPageData = {
   description: 'Hamilton Exteriors provides skilled ADU contractors throughout Napa County, CA. Expert design, permits, and construction for accessory dwelling units.',
   heroHeadline: 'Skilled  ADU  Contractors  in Napa County',
   heroFormTitle: 'Get a FREE Estimate in Napa County',
+
+  cities: [
+    { name: 'Napa', slug: '/service-areas/napa-county-ca', image: areaHayward },
+    { name: 'American Canyon', slug: '/service-areas/napa-county-ca', image: areaHayward },
+    { name: 'St. Helena', slug: '/service-areas/napa-county-ca', image: areaHayward },
+    { name: 'Calistoga', slug: '/service-areas/napa-county-ca', image: areaHayward },
+    { name: 'Yountville', slug: '/service-areas/napa-county-ca', image: areaHayward },
+  ],
 
   whyChooseExpanded: {
     heading: 'Why Choose Hamilton Exteriors as Your Skilled ADU Contractors in Napa County, CA?',

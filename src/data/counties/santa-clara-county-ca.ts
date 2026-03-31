@@ -1,4 +1,5 @@
 import type { CountyPageData } from '../../lib/county-page-types';
+import { areaBerkeley } from '../../lib/images';
 
 export const data: CountyPageData = {
   county: 'Santa Clara County',
@@ -9,6 +10,19 @@ export const data: CountyPageData = {
   description: 'Hamilton Exteriors provides trusted ADU contractors throughout Santa Clara County, CA. Expert design, permits, and construction for accessory dwelling units.',
   heroHeadline: 'Trusted  ADU  Contractors  in Santa Clara County',
   heroFormTitle: 'Get a FREE Estimate in Santa Clara County',
+
+  cities: [
+    { name: 'San Jose', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
+    { name: 'Palo Alto', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
+    { name: 'Mountain View', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
+    { name: 'Sunnyvale', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
+    { name: 'Cupertino', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
+    { name: 'Santa Clara', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
+    { name: 'Saratoga', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
+    { name: 'Los Gatos', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
+    { name: 'Campbell', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
+    { name: 'Milpitas', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
+  ],
 
   whyChooseExpanded: {
     heading: 'Why Choose Hamilton Exteriors as Your Trusted ADU Contractors in Santa Clara County, CA?',

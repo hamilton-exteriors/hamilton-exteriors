@@ -1,6 +1,5 @@
 /* ── Font Imports ─────────────────────────────────────────────────────── */
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
-@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap");
+/* DM Sans & Satoshi loaded via preload in Layout.astro to avoid render-blocking */
 
 /* ── THE BOLD FONT — exact same font from Framer site ────────────────── */
 @font-face {
@@ -80,13 +79,22 @@ button[type="submit"]:active {
   --color-green-light: rgb(227, 239, 211);   /* light green tint */
   --color-green-bg: rgb(240, 247, 240);      /* very light green — service buttons */
   --color-error: rgb(220, 38, 38);           /* red — validation errors */
-  --color-footer: rgb(36, 99, 69);           /* same as primary-dark */
+  --color-footer: rgb(13, 43, 29);           /* dark green — matches Difference section */
 
   /* Font Families — 3 fonts only: THE BOLD FONT, DM Sans, Satoshi */
   --font-dm-sans: "DM Sans", sans-serif;
   --font-oswald: "THE BOLD FONT (FREE VERSION)", "THE BOLD FONT PRO", "Oswald", sans-serif;
   --font-satoshi: "Satoshi", sans-serif;
 }
+
+/* ── Type Scale ──────────────────────────────────────────────────────── */
+/*
+ * 5-step scale: caption → secondary → body → subheading → heading
+ * Ratio: ~1.25 (major third)
+ * Headings: fluid clamp() with Oswald
+ * Body: fixed rem with DM Sans
+ * Labels: fixed rem with Satoshi
+ */
 
 /* ── Base Layer ───────────────────────────────────────────────────────── */
 @layer base {
@@ -98,7 +106,7 @@ button[type="submit"]:active {
 
   body {
     font-family: var(--font-dm-sans);
-    font-size: 17px;
+    font-size: 1rem;
     line-height: 1.7;
     color: var(--color-charcoal);
     background-color: var(--color-cream);
@@ -107,40 +115,36 @@ button[type="submit"]:active {
 
   h1, h2, h3, h4, h5 {
     font-family: var(--font-oswald);
-    color: var(--color-charcoal);
+    color: var(--color-heading);
+    font-weight: 400;
+    text-transform: uppercase;
   }
 
   h1 {
-    font-weight: 700;
-    font-size: 56px;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
   }
 
   h2 {
-    font-weight: 600;
-    font-size: 44px;
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
     line-height: 1.15;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 
   h3 {
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 1.3;
-    letter-spacing: -0.02em;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    line-height: 1.25;
+    letter-spacing: 0;
   }
 
   h4 {
-    font-weight: 500;
-    font-size: 26px;
-    line-height: 1.35;
-    letter-spacing: -0.01em;
+    font-size: 1.25rem;
+    line-height: 1.3;
   }
 
   h5 {
-    font-weight: 500;
-    font-size: 22px;
+    font-size: 1.125rem;
     line-height: 1.4;
     letter-spacing: -0.01em;
   }
@@ -148,42 +152,58 @@ button[type="submit"]:active {
 
 /* ── Text Style Utilities ─────────────────────────────────────────────── */
 @layer utilities {
+  /* Body: 1rem (16px) / 1.7 — DM Sans 400 */
   .text-body {
     font-family: var(--font-dm-sans);
     font-weight: 400;
-    font-size: 17px;
+    font-size: 1rem;
     line-height: 1.7;
   }
 
-  .text-body-satoshi {
-    font-family: var(--font-satoshi);
+  /* Secondary: 0.875rem (14px) / 1.5 — DM Sans 400 */
+  .text-secondary {
+    font-family: var(--font-dm-sans);
     font-weight: 400;
-    font-size: 17px;
-    line-height: 1.7;
+    font-size: 0.875rem;
+    line-height: 1.5;
   }
 
-  .text-label-uppercase {
+  /* Caption: 0.75rem (12px) / 1.4 — DM Sans 400 */
+  .text-caption {
+    font-family: var(--font-dm-sans);
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--color-muted);
+  }
+
+  /* Label: 0.6875rem (11px) / 1.4 — Satoshi 700, uppercase */
+  .text-label {
     font-family: var(--font-satoshi);
     font-weight: 700;
-    font-size: 12px;
+    font-size: 0.6875rem;
     line-height: 1.4;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
-  .text-badge-green {
+  /* Badge: 0.8125rem (13px) / 1.4 — DM Sans 600, uppercase */
+  .text-badge {
     font-family: var(--font-dm-sans);
     font-weight: 600;
-    font-size: 13px;
+    font-size: 0.8125rem;
     line-height: 1.4;
     letter-spacing: 0.03em;
     text-transform: uppercase;
   }
 
+  /* Button: 0.875rem (14px) / 1.4 — Oswald 700, uppercase */
   .text-button {
-    font-family: var(--font-dm-sans);
-    font-weight: 600;
-    font-size: 16px;
+    font-family: var(--font-oswald);
+    font-weight: 700;
+    font-size: 0.875rem;
     line-height: 1.4;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 }

@@ -55,12 +55,12 @@ const blogJsonLd = {
   <AnnouncementBar />
   <Navbar />
 
-  <section class="w-full" style="background-color: #0d2b1d; padding: 80px 0 60px;">
+  <section class="w-full" style="background-color: var(--color-footer); padding: 48px 0 36px;">
     <div class="mx-auto max-w-[1200px] px-5">
-      <h1 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(36px, 5vw, 56px); line-height: 1.1; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
+      <h1 style="font-family: var(--font-oswald); font-size: clamp(36px, 5vw, 56px); line-height: 1.1; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
         {activeTag ? activeTag.name : 'Blog'}
       </h1>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 18px; line-height: 30px; color: rgba(255,255,255,0.7); max-width: 600px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 18px; line-height: 30px; color: rgba(255,255,255,0.7); max-width: 600px;">
         {activeTag
           ? `${pagination.total} article${pagination.total !== 1 ? 's' : ''} about ${activeTag.name.toLowerCase()}`
           : 'Expert insights on ADU construction, roofing, and home improvement across the Bay Area.'}
@@ -75,10 +75,10 @@ const blogJsonLd = {
         <a
           href="/blog"
           class:list={[
-            'px-4 py-2.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#256346]',
-            !tag ? 'bg-[#0d2b1d] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+            'px-4 py-2.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
+            !tag ? 'bg-footer text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
           ]}
-          style="font-family: 'DM Sans', sans-serif;"
+          style="font-family: var(--font-dm-sans);"
         >
           All Posts
         </a>
@@ -86,10 +86,10 @@ const blogJsonLd = {
           <a
             href={`/blog?tag=${t.slug}`}
             class:list={[
-              'px-4 py-2.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#256346]',
-              tag === t.slug ? 'bg-[#0d2b1d] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+              'px-4 py-2.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
+              tag === t.slug ? 'bg-footer text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
             ]}
-            style="font-family: 'DM Sans', sans-serif;"
+            style="font-family: var(--font-dm-sans);"
           >
             {t.name} ({t.count})
           </a>
@@ -102,18 +102,18 @@ const blogJsonLd = {
     <div class="mx-auto max-w-[1200px] px-5">
       {error ? (
         <div class="rounded-xl border-2 border-dashed border-gray-300 p-12 text-center">
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: rgb(104, 104, 105);">{error}</p>
+          <p style="font-family: var(--font-dm-sans); font-size: 16px; color: var(--color-muted);">{error}</p>
         </div>
       ) : posts.length === 0 ? (
         <div class="rounded-xl border-2 border-dashed border-gray-300 p-12 text-center">
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 18px; color: rgb(13, 43, 29); font-weight: 600; margin-bottom: 8px;">
+          <p style="font-family: var(--font-dm-sans); font-size: 18px; color: var(--color-heading); font-weight: 600; margin-bottom: 8px;">
             {tag ? `No posts tagged "${activeTag?.name || tag}"` : 'No posts yet'}
           </p>
-          <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: rgb(104, 104, 105); margin-bottom: 20px;">
+          <p style="font-family: var(--font-dm-sans); font-size: 16px; color: var(--color-muted); margin-bottom: 20px;">
             {tag ? 'Try a different category or browse all posts.' : 'Check back soon for expert insights on ADU construction and home improvement.'}
           </p>
           {tag && (
-            <a href="/blog" style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: #256346; text-decoration: underline;">
+            <a href="/blog" style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-primary); text-decoration: underline;">
               View all posts
             </a>
           )}
@@ -128,32 +128,32 @@ const blogJsonLd = {
                   <img
                     src={featuredPost.feature_image}
                     alt={featuredPost.title}
-                    class="h-full w-full object-cover transition-transform group-hover:scale-105"
+                    class="h-full w-full object-cover transition-opacity group-hover:opacity-90"
                   />
                 ) : (
-                  <div class="h-full w-full bg-gradient-to-br from-[#0d2b1d] to-[#256346] flex items-center justify-center min-h-[200px]">
-                    <span style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 32px; color: rgba(255,255,255,0.2); text-transform: uppercase;">Hamilton</span>
+                  <div class="h-full w-full bg-gradient-to-br from-footer to-primary flex items-center justify-center min-h-[200px]">
+                    <span style="font-family: var(--font-oswald); font-size: 32px; color: rgba(255,255,255,0.2); text-transform: uppercase;">Hamilton</span>
                   </div>
                 )}
               </div>
               <div class="flex flex-col justify-center p-5 md:p-10">
-                <span style="font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #256346; margin-bottom: 12px;">
+                <span style="font-family: var(--font-dm-sans); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-primary); margin-bottom: 12px;">
                   Latest Article
                 </span>
                 {(featuredPost.primary_tag ?? featuredPost.tags?.[0]) && (
-                  <span style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 8px;">
+                  <span style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary); margin-bottom: 8px;">
                     {(featuredPost.primary_tag ?? featuredPost.tags[0]).name}
                   </span>
                 )}
-                <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(22px, 3vw, 32px); font-weight: 400; line-height: 1.25; color: #0d2b1d; text-transform: uppercase; margin-bottom: 12px;" class="group-hover:text-[#256346] transition-colors">
+                <h2 style="font-family: var(--font-oswald); font-size: clamp(22px, 3vw, 32px); font-weight: 400; line-height: 1.25; color: var(--color-footer); text-transform: uppercase; margin-bottom: 12px;" class="group-hover:text-primary transition-colors">
                   {featuredPost.title}
                 </h2>
                 {featuredPost.excerpt && (
-                  <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 26px; color: rgb(104, 104, 105); margin-bottom: 16px;" class="line-clamp-3">
+                  <p style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: var(--color-muted); margin-bottom: 16px;" class="line-clamp-3">
                     {featuredPost.excerpt}
                   </p>
                 )}
-                <div class="flex items-center gap-3" style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(110, 110, 110);">
+                <div class="flex items-center gap-3" style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-light);">
                   <time datetime={featuredPost.published_at}>{formatDate(featuredPost.published_at)}</time>
                   {featuredPost.reading_time > 0 && (
                     <>
@@ -162,7 +162,7 @@ const blogJsonLd = {
                     </>
                   )}
                 </div>
-                <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: #256346; margin-top: 20px; display: inline-flex; align-items: center; gap: 6px;" class="group-hover:gap-3 transition-all">
+                <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-primary); margin-top: 20px; display: inline-flex; align-items: center; gap: 6px;" class="group-hover:gap-3 transition-all">
                   Read Article <span>&rarr;</span>
                 </span>
               </div>
@@ -178,30 +178,30 @@ const blogJsonLd = {
                     <img
                       src={post.feature_image}
                       alt={post.title}
-                      class="h-full w-full object-cover transition-transform group-hover:scale-105"
+                      class="h-full w-full object-cover transition-opacity group-hover:opacity-90"
                       loading="lazy"
                     />
                   </div>
                 ) : (
-                  <div class="aspect-[16/10] w-full bg-gradient-to-br from-[#0d2b1d] to-[#256346] flex items-center justify-center">
-                    <span style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: 24px; color: rgba(255,255,255,0.3); text-transform: uppercase;">Hamilton</span>
+                  <div class="aspect-[16/10] w-full bg-gradient-to-br from-footer to-primary flex items-center justify-center">
+                    <span style="font-family: var(--font-oswald); font-size: 24px; color: rgba(255,255,255,0.3); text-transform: uppercase;">Hamilton</span>
                   </div>
                 )}
                 <div class="flex flex-1 flex-col p-5">
                   {(post.primary_tag ?? post.tags?.[0]) && (
-                    <span style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgb(36, 99, 69); margin-bottom: 8px;">
+                    <span style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary); margin-bottom: 8px;">
                       {(post.primary_tag ?? post.tags[0]).name}
                     </span>
                   )}
-                  <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 18px; font-weight: 700; line-height: 1.4; color: rgb(13, 43, 29); margin-bottom: 8px;" class="group-hover:text-[#256346] transition-colors">
+                  <h2 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; line-height: 1.4; color: var(--color-heading); margin-bottom: 8px;" class="group-hover:text-primary transition-colors">
                     {post.title}
                   </h2>
                   {post.excerpt && (
-                    <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 24px; color: rgb(104, 104, 105); margin-bottom: 12px;" class="line-clamp-3">
+                    <p style="font-family: var(--font-dm-sans); font-size: 15px; line-height: 24px; color: var(--color-muted); margin-bottom: 12px;" class="line-clamp-3">
                       {post.excerpt}
                     </p>
                   )}
-                  <div class="mt-auto flex items-center gap-3" style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgb(110, 110, 110);">
+                  <div class="mt-auto flex items-center gap-3" style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-light);">
                     <time datetime={post.published_at}>{formatDate(post.published_at)}</time>
                     {post.reading_time > 0 && (
                       <>
@@ -217,26 +217,26 @@ const blogJsonLd = {
 
           {/* Newsletter CTA — between content and pagination */}
           {page === 1 && (
-            <div class="mt-16 rounded-xl overflow-hidden" style="background: linear-gradient(135deg, #0d2b1d 0%, #256346 100%);">
+            <div class="mt-16 rounded-xl overflow-hidden" style="background: linear-gradient(135deg, var(--color-footer) 0%, var(--color-primary) 100%);">
               <div class="px-8 py-12 md:px-12 md:py-14 text-center">
-                <h3 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(24px, 3vw, 36px); font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 8px;">
+                <h3 style="font-family: var(--font-oswald); font-size: clamp(24px, 3vw, 36px); font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 8px;">
                   Get a Free Roof Inspection
                 </h3>
-                <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                <p style="font-family: var(--font-dm-sans); font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
                   Bay Area homeowners — find out the true condition of your roof with a no-obligation inspection from our certified team.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-3 justify-center">
                   <a
                     href="/buy"
                     class="inline-block rounded-full px-8 py-3.5 font-bold uppercase text-sm tracking-wide"
-                    style="background-color: #FFDE21; color: #0d2b1d; font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif;"
+                    style="background-color: var(--color-yellow); color: var(--color-footer); font-family: var(--font-oswald);"
                   >
                     Scan Your Roof Online
                   </a>
                   <a
                     href={PHONE_HREF}
                     class="inline-block rounded-full px-8 py-3.5 font-bold uppercase text-sm tracking-wide border-2 border-white/30 text-white hover:bg-white/10 transition-colors"
-                    style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif;"
+                    style="font-family: var(--font-oswald);"
                   >
                     Call {PHONE_DISPLAY}
                   </a>
@@ -252,19 +252,19 @@ const blogJsonLd = {
                 <a
                   href={`/blog?page=${pagination.page - 1}${tag ? `&tag=${tag}` : ''}`}
                   class="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 inline-flex items-center gap-2"
-                  style="font-family: 'DM Sans', sans-serif;"
+                  style="font-family: var(--font-dm-sans);"
                 >
                   &larr; Previous
                 </a>
               )}
-              <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgb(104, 104, 105);">
+              <span style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-muted);">
                 Page {pagination.page} of {pagination.pages}
               </span>
               {pagination.page < pagination.pages && (
                 <a
                   href={`/blog?page=${pagination.page + 1}${tag ? `&tag=${tag}` : ''}`}
                   class="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 inline-flex items-center gap-2"
-                  style="font-family: 'DM Sans', sans-serif;"
+                  style="font-family: var(--font-dm-sans);"
                 >
                   Next &rarr;
                 </a>

@@ -14,7 +14,7 @@ const services = [
     description:
       'Ground-up custom home construction tailored to your vision. From foundation to finishing touches, our team manages every detail to deliver the home you\'ve always wanted.',
     image: serviceCustomHomes,
-    href: '/custom-homes',
+    href: '/additions',
   },
   {
     title: 'Additions',
@@ -36,6 +36,7 @@ const services = [
       'Energy-efficient window replacements that transform your home\'s comfort and curb appeal. Double-hung, casement, bay, and more — professionally installed with a full warranty.',
     image: serviceWindows,
     href: '/windows',
+    mobileHidden: true,
   },
   {
     title: 'Roofing',
@@ -61,22 +62,22 @@ const services = [
       class="mb-6"
       style="font-family: var(--font-oswald); font-size: clamp(28px, 5vw, 40px); line-height: 1.25; font-weight: 400; color: var(--color-heading); text-transform: uppercase;"
     >
-      Exterior Services Offered in {city}
+      Design-Build Services in {city}
     </h2>
 
     <!-- Service cards grid — 2x2 -->
     <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
       {
         services.map((service) => (
-          <a href={service.href} class="service-card">
+          <a href={service.href} class={`service-card${service.mobileHidden ? ' hidden sm:flex' : ''}`}>
             {/* Service image */}
-            <div class="w-full overflow-hidden" style="border-radius: 10px;">
+            <div class="w-full overflow-hidden">
               <Image
                 src={service.image}
                 alt={service.title}
                 width={566}
                 height={292}
-                style="width: 100%; height: auto; aspect-ratio: 566 / 292; object-fit: cover; display: block; border-radius: 10px;"
+                style="width: 100%; height: auto; aspect-ratio: 566 / 292; object-fit: cover; display: block;"
                 loading="lazy"
               />
             </div>
@@ -109,8 +110,4 @@ const services = [
     color: inherit;
   }
 
-  .service-card:hover img {
-    transform: scale(1.02);
-    transition: transform 0.3s ease;
-  }
 </style>

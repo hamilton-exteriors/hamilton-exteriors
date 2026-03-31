@@ -46,7 +46,7 @@ const platforms = [
   },
 ];
 
-const starColor = 'rgb(0, 94, 136)';
+const starColor = 'var(--color-primary)';
 ---
 
 <section class="w-full py-10 lg:py-16">
@@ -116,12 +116,6 @@ const starColor = 'rgb(0, 94, 136)';
             </div>
           )}
 
-          <!-- Trustpilot name under its star icon -->
-          {platform.name === 'Trustpilot' && (
-            <span class="review-card__trustpilot-name">
-              Trustpilot
-            </span>
-          )}
 
           <!-- Trustpilot 5-star bar -->
           {platform.name === 'Trustpilot' && (
@@ -203,7 +197,7 @@ const starColor = 'rgb(0, 94, 136)';
     font-weight: 800;
     line-height: 1.3;
     text-align: center;
-    color: rgb(0, 94, 136);
+    color: var(--color-primary);
   }
 
   .review-card__stars {
@@ -218,7 +212,7 @@ const starColor = 'rgb(0, 94, 136)';
     font-weight: 600;
     line-height: 1.2;
     text-align: center;
-    color: rgb(0, 0, 0);
+    color: var(--color-charcoal);
   }
 
   .review-card__trustpilot-stars {

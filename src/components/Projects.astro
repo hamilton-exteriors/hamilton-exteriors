@@ -97,18 +97,18 @@ import { Image } from 'astro:assets';
             class="cc-filter-btn"
             style={`
               font-family: var(--font-satoshi);
-              font-size: 13px;
-              font-weight: 700;
+              font-size: 11px;
+              font-weight: 600;
               text-transform: uppercase;
-              letter-spacing: 0.8px;
-              padding: 9px 20px;
-              border-radius: 4px;
-              border: 1.5px solid rgba(37,99,70,0.2);
+              letter-spacing: 0.6px;
+              padding: 6px 14px;
+              border-radius: 100px;
+              border: 1px solid rgba(37,99,70,0.15);
               background: var(--color-white);
-              color: var(--color-charcoal);
+              color: var(--color-muted);
               cursor: pointer;
               white-space: nowrap;
-              transition: all 0.2s ease;
+              transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
             `}
           >
             {cat.label}
@@ -135,14 +135,14 @@ import { Image } from 'astro:assets';
         >
 
           <!-- Featured Photo with badges -->
-          <div style="display: block; position: relative; width: 100%; padding-top: 62%; overflow: hidden; background: rgb(220,220,220);">
+          <div style="display: block; position: relative; width: 100%; padding-top: 62%; overflow: hidden; background: var(--color-border);">
             <Image
               class="cc-card-photo"
               src={project.featuredPhoto}
               alt={project.title}
               width={900}
               height={558}
-              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;"
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
               loading="lazy"
             />
             <!-- Location + date badge (bottom-left) -->
@@ -210,17 +210,17 @@ import { Image } from 'astro:assets';
 
     <!-- Pagination -->
     <div id="cc-pagination" style="display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 20px;">
-      <button data-action="first" aria-label="First page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: var(--color-white); border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
+      <button data-action="first" aria-label="First page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--color-border); background: var(--color-white); border-radius: 4px; cursor: pointer; color: var(--color-muted);">
         <IconChevronDoubleLeft size={14} />
       </button>
-      <button data-action="prev" aria-label="Previous page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: var(--color-white); border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
+      <button data-action="prev" aria-label="Previous page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--color-border); background: var(--color-white); border-radius: 4px; cursor: pointer; color: var(--color-muted);">
         <IconChevronLeft size={14} />
       </button>
-      <span id="cc-page-label" style="font-size: 0.8125rem; color: rgb(60,60,60); padding: 0 8px;">1 of 1</span>
-      <button data-action="next" aria-label="Next page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: var(--color-white); border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
+      <span id="cc-page-label" style="font-size: 0.8125rem; color: var(--color-muted); padding: 0 8px;">1 of 1</span>
+      <button data-action="next" aria-label="Next page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--color-border); background: var(--color-white); border-radius: 4px; cursor: pointer; color: var(--color-muted);">
         <IconChevronRight size={14} />
       </button>
-      <button data-action="last" aria-label="Last page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgb(210,210,210); background: var(--color-white); border-radius: 4px; cursor: pointer; color: rgb(60,60,60);">
+      <button data-action="last" aria-label="Last page" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--color-border); background: var(--color-white); border-radius: 4px; cursor: pointer; color: var(--color-muted);">
         <IconChevronDoubleRight size={14} />
       </button>
     </div>
@@ -275,40 +275,31 @@ import { Image } from 'astro:assets';
   const label = document.getElementById('cc-page-label');
   const pagination = document.getElementById('cc-pagination');
 
-  // === PAGINATION FUNCTIONS (declared before applyFilter which calls renderPagination) ===
-  function getVisibleCards() {
-    return allCards.filter(card => (card as HTMLElement).style.display !== 'none');
-  }
-
+  // === PAGINATION ===
   function getPerPage() {
     return window.innerWidth <= 768 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
   }
 
+  function getFilteredCards() {
+    return allCards.filter(card => {
+      const cat = card.getAttribute('data-category');
+      return activeFilter === 'all' || cat === activeFilter;
+    });
+  }
+
   function renderPagination() {
-    const visible = getVisibleCards();
+    const filtered = getFilteredCards();
     const perPage = getPerPage();
-    const totalPages = Math.max(1, Math.ceil(visible.length / perPage));
+    const totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
     if (currentPage > totalPages) currentPage = totalPages;
 
-    visible.forEach((card, i) => {
-      const pageOfCard = Math.floor(i / perPage) + 1;
-      (card as HTMLElement).style.display = pageOfCard === currentPage ? '' : 'none';
-    });
-
-    // Also hide filtered-out cards
+    // Hide all cards first
     allCards.forEach(card => {
-      const cardCat = card.getAttribute('data-category');
-      if (activeFilter !== 'all' && cardCat !== activeFilter) {
-        (card as HTMLElement).style.display = 'none';
-      }
+      (card as HTMLElement).style.display = 'none';
     });
 
-    // Re-show only current page of visible
-    const filteredCards = allCards.filter(card => {
-      const cardCat = card.getAttribute('data-category');
-      return activeFilter === 'all' || cardCat === activeFilter;
-    });
-    filteredCards.forEach((card, i) => {
+    // Show only current page of filtered cards
+    filtered.forEach((card, i) => {
       const pageOfCard = Math.floor(i / perPage) + 1;
       (card as HTMLElement).style.display = pageOfCard === currentPage ? '' : 'none';
     });
@@ -325,14 +316,21 @@ import { Image } from 'astro:assets';
     }
   }
 
+  // Re-render on resize so perPage stays in sync with CSS grid
+  if (typeof window !== 'undefined') {
+    let resizeTimer = 0;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => renderPagination(), 150);
+    });
+  }
+
   // === CATEGORY FILTERS ===
   function applyFilter(category: string) {
     activeFilter = category;
     filterBtns.forEach(btn => {
       const isActive = btn.getAttribute('data-filter') === category;
-      (btn as HTMLElement).style.background = isActive ? '#256346' : 'white';
-      (btn as HTMLElement).style.color = isActive ? 'white' : 'rgb(80,80,80)';
-      (btn as HTMLElement).style.borderColor = isActive ? '#256346' : 'rgb(210,210,210)';
+      (btn as HTMLElement).setAttribute('data-active', String(isActive));
     });
 
     allCards.forEach(card => {
@@ -524,22 +522,20 @@ import { Image } from 'astro:assets';
   }
 
   /* Card hover effects */
-  .cc-project-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(37,99,70,0.1);
-  }
-  .cc-project-card:hover .cc-card-photo {
-    transform: scale(1.04);
-  }
   .cc-project-card:hover .cc-photo-overlay {
     opacity: 1 !important;
   }
 
   /* Filter button hover */
   .cc-filter-btn:hover {
+    border-color: rgba(37,99,70,0.3) !important;
+    color: var(--color-heading) !important;
+  }
+  /* Filter button active/selected */
+  .cc-filter-btn[data-active="true"] {
+    background: var(--color-primary) !important;
+    color: var(--color-white) !important;
     border-color: var(--color-primary) !important;
-    color: var(--color-primary) !important;
-    background: rgba(37,99,70,0.04) !important;
   }
 
   /* Lightbox button hover */

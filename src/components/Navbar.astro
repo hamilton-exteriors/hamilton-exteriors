@@ -26,7 +26,7 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
       <ul style="display: flex; align-items: center; font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 500; color: var(--color-heading); list-style: none; margin: 0; padding: 0; gap: 28px;">
         <li><a href="/#about" style="text-decoration: none; color: inherit; white-space: nowrap;">About Us</a></li>
         <li><a href="/#financing" style="text-decoration: none; color: inherit; white-space: nowrap;">Financing</a></li>
-        <li><a href="/#contact" style="text-decoration: none; color: inherit; white-space: nowrap;">Contact Us</a></li>
+        <li><a href={PHONE_HREF} style="text-decoration: none; color: inherit; white-space: nowrap;">Call Us</a></li>
         <li><a href="/#service" style="text-decoration: none; color: inherit; white-space: nowrap;">Services</a></li>
         <li><a href="/service-areas" style="text-decoration: none; color: inherit; white-space: nowrap;">Service Areas</a></li>
         <li><a href="/#review" style="text-decoration: none; color: inherit; white-space: nowrap;">Reviews</a></li>
@@ -68,12 +68,12 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
     <div class="flex flex-col items-center gap-4 px-5 py-6" style="font-family: var(--font-dm-sans);">
       <a href="/#about" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">About Us</a>
       <a href="/#financing" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Financing</a>
-      <a href="/#contact" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Contact Us</a>
+      <a href={PHONE_HREF} class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Call Us</a>
       <a href="/#service" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Services</a>
       <a href="/service-areas" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Service Areas</a>
       <a href="/#review" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Reviews</a>
       <a href="/blog" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Blog</a>
-      <hr class="w-full border-gray-200" />
+      <hr class="w-full" style="border-color: var(--color-border);" />
       <a href={PHONE_HREF} class="text-[1rem] font-bold" style="color: var(--color-heading);">{PHONE_DISPLAY}</a>
       <a href="/#quote" class="w-full max-w-xs text-center text-white" style="font-size: 0.8125rem; font-weight: 600; background-color: var(--color-primary); border-radius: 8px; padding: 10px 24px;">Get Your Free Inspection</a>
     </div>
@@ -84,17 +84,38 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
   if (toggle && menu) {
+    const focusableSelector = 'a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])';
+
+    function openMenu() {
+      menu.classList.remove('hidden');
+      toggle.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.addEventListener('keydown', trapFocus);
+    }
+
+    function closeMenu() {
+      menu.classList.add('hidden');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.removeEventListener('keydown', trapFocus);
+      toggle.focus();
+    }
+
+    function trapFocus(e: KeyboardEvent) {
+      if (e.key === 'Escape') { closeMenu(); return; }
+      if (e.key !== 'Tab') return;
+      const focusable = [toggle, ...menu.querySelectorAll(focusableSelector)] as HTMLElement[];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+
     toggle.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-      toggle.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', String(!menu.classList.contains('hidden')));
+      menu.classList.contains('hidden') ? openMenu() : closeMenu();
     });
     menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        menu.classList.add('hidden');
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.classList.remove('open');
-      });
+      link.addEventListener('click', () => closeMenu());
     });
   }
 </script>

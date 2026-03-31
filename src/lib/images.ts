@@ -47,7 +47,7 @@ export { default as iconContactClock } from '../assets/images/icon-contact-clock
 // Services
 export { default as serviceRoofing } from '../assets/images/service-roofing.png';
 export { default as serviceSiding } from '../assets/images/service-siding.png';
-export { default as serviceWindows } from '../assets/images/service-windows.png';
+export { default as serviceWindows } from '../assets/images/window-double-hung.png';
 export { default as serviceCustomHomes } from '../assets/images/service-custom-homes.jpg';
 export { default as serviceCustomHomesFull } from '../assets/images/service-custom-homes-full.jpg';
 export { default as serviceAdditions } from '../assets/images/service-additions.png';

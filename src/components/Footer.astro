@@ -3,10 +3,8 @@ import { Image } from 'astro:assets';
 import { logoFooter, badgeGoogle, badgeYelp } from '../lib/images';
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 import IconFacebook from './icons/IconFacebook.astro';
-import IconTwitter from './icons/IconTwitter.astro';
 import IconInstagram from './icons/IconInstagram.astro';
 import IconLinkedIn from './icons/IconLinkedIn.astro';
-import IconYouTube from './icons/IconYouTube.astro';
 ---
 
 <footer class="w-full bg-footer">
@@ -24,7 +22,7 @@ import IconYouTube from './icons/IconYouTube.astro';
           loading="lazy"
         />
         <p class="text-center text-sm leading-relaxed text-white/70 lg:text-left">
-          Serving the Bay Area with roofing, siding, and window installations since 2020. Licensed, bonded, and insured.
+          500+ roofing, siding, and construction projects across the Bay Area. Licensed, bonded, and insured.
         </p>
         <a href={PHONE_HREF} class="font-oswald text-xl font-bold tracking-wide text-white underline underline-offset-4">
           {PHONE_DISPLAY}
@@ -51,11 +49,11 @@ import IconYouTube from './icons/IconYouTube.astro';
         <h3 class="font-oswald text-xl font-bold uppercase tracking-[0.06em] text-white">
           Newsletter
         </h3>
-        <p class="text-center text-sm leading-relaxed text-white/80 lg:text-left">
-          Stay updated with offers and new services.
+        <p class="text-center text-sm leading-relaxed text-white/70 lg:text-left">
+          Seasonal tips, project updates, and exclusive financing offers.
         </p>
 
-        <form class="flex w-full flex-col gap-3 lg:max-w-[320px]" action="/api/newsletter" method="POST">
+        <form id="newsletter-form" class="flex w-full flex-col gap-3 lg:max-w-[320px]" action="/api/newsletter" method="POST">
           <label for="footerName" class="sr-only">Name</label>
           <input
             type="text"
@@ -77,57 +75,51 @@ import IconYouTube from './icons/IconYouTube.astro';
             type="submit"
             class="footer-btn"
           >
-            GET UPDATES
+            SIGN ME UP
           </button>
+          <p id="newsletter-msg" class="text-center text-sm" style="display: none;"></p>
         </form>
 
         <!-- Review Badges -->
         <div class="flex flex-wrap items-center justify-center gap-3 pt-2 lg:justify-start">
-          <a href="https://g.page/r/review" target="_blank" rel="noopener noreferrer" aria-label="Review us on Google">
+          <div aria-label="Google reviews">
             <Image
               src={badgeGoogle}
-              alt="Review us on Google"
+              alt="Hamilton Exteriors on Google"
               width={239}
               height={80}
               class="h-10 w-auto"
               loading="lazy"
             />
-          </a>
-          <a href="https://yelp.com/review" target="_blank" rel="noopener noreferrer" aria-label="Review us on Yelp">
+          </div>
+          <div aria-label="Yelp reviews">
             <Image
               src={badgeYelp}
-              alt="Review us on Yelp"
+              alt="Hamilton Exteriors on Yelp"
               width={239}
               height={80}
               class="h-10 w-auto"
               loading="lazy"
             />
-          </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Bottom Row -->
-  <div class="mx-auto max-w-[1170px] px-5">
+  <div class="mx-auto max-w-[1170px] px-0 md:px-5">
     <div class="flex flex-col items-center gap-4 border-t border-white/20 py-6 md:flex-row md:justify-between">
       <!-- Social Icons -->
       <div class="flex items-center gap-1">
-        <!-- TODO: Replace with actual company social URLs -->
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon">
+        <a href="https://www.facebook.com/share/1B88MrKBaC/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon">
           <IconFacebook size={15} />
         </a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="social-icon">
-          <IconTwitter size={20} />
-        </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
+        <a href="https://www.instagram.com/hamiltonexteriors" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
           <IconInstagram size={20} />
         </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
+        <a href="https://www.linkedin.com/company/hamilton-exteriors/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
           <IconLinkedIn size={20} />
-        </a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="social-icon">
-          <IconYouTube size={20} />
         </a>
       </div>
 
@@ -139,15 +131,46 @@ import IconYouTube from './icons/IconYouTube.astro';
   </div>
 </footer>
 
+<script>
+  const form = document.getElementById('newsletter-form') as HTMLFormElement;
+  const msg = document.getElementById('newsletter-msg') as HTMLParagraphElement;
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const original = btn.textContent || '';
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    msg.style.display = 'none';
+    try {
+      const res = await fetch('/api/newsletter', { method: 'POST', body: new FormData(form) });
+      const data = await res.json();
+      if (res.ok) {
+        msg.textContent = 'You\'re in! Watch your inbox.';
+        msg.style.color = 'var(--color-green-light)';
+        form.reset();
+      } else {
+        msg.textContent = data.error || 'Something went wrong. Try again.';
+        msg.style.color = 'var(--color-yellow)';
+      }
+    } catch {
+      msg.textContent = 'Network error. Please try again.';
+      msg.style.color = 'var(--color-yellow)';
+    }
+    msg.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = original;
+  });
+</script>
+
 <style>
   .bg-footer {
-    background-color: var(--color-primary-dark);
+    background-color: var(--color-footer);
   }
   .bg-primary {
     background-color: var(--color-primary);
   }
   .footer-link {
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans);
     font-size: 0.875rem;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.8);
@@ -160,22 +183,22 @@ import IconYouTube from './icons/IconYouTube.astro';
   .footer-input {
     width: 100%;
     border-radius: 0.5rem;
-    border: 1px solid rgba(196, 191, 182, 0.8);
-    background-color: var(--color-white);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.08);
     padding: 0.75rem 1rem;
     min-height: 44px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans);
     font-size: 0.875rem;
-    color: var(--color-charcoal);
+    color: var(--color-white);
     outline: none;
     transition: border-color 0.2s ease-out;
   }
   .footer-input::placeholder {
-    color: rgb(140, 140, 140);
+    color: rgba(255, 255, 255, 0.45);
   }
   .footer-input:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px rgba(37, 99, 70, 0.2);
+    border-color: var(--color-yellow);
+    box-shadow: 0 0 0 2px rgba(255, 222, 33, 0.15);
   }
   footer {
     padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -184,6 +207,7 @@ import IconYouTube from './icons/IconYouTube.astro';
     display: flex;
     align-items: center;
     justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
     width: 44px;
     height: 44px;
     border-radius: 0.375rem;
@@ -199,17 +223,16 @@ import IconYouTube from './icons/IconYouTube.astro';
     border: none;
     padding: 0.75rem 1rem;
     min-height: 44px;
-    font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif;
+    font-family: var(--font-oswald);
     font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.08em;
-    color: var(--color-primary-dark);
+    color: var(--color-heading);
     cursor: pointer;
     transition: transform 0.2s ease-out, background-color 0.2s ease-out;
   }
   .footer-btn:hover {
     background-color: rgb(240, 208, 20);
-    transform: scale(1.02);
   }
   footer a:focus-visible,
   footer button:focus-visible {

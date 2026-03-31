@@ -12,13 +12,13 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
   <Navbar />
 
   <!-- ── HERO — address input drives to /buy/scan ──────────────────── -->
-  <section class="w-full relative overflow-hidden" style="background-color: #0d2b1d; padding: 120px 20px 80px;">
+  <section class="w-full relative overflow-hidden" style="background-color: var(--color-footer); padding: 120px 20px 80px;">
     <div class="mx-auto text-center relative z-10" style="max-width: 720px;">
-      <p class="mb-4" style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #FFDE21;">No salespeople. No commission. No games.</p>
-      <h1 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
+      <p class="mb-4" style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-yellow);">No salespeople. No commission. No games.</p>
+      <h1 style="font-family: var(--font-oswald); font-size: clamp(40px, 7vw, 72px); line-height: 1.05; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
         Buy Your Roof Online
       </h1>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 18px; line-height: 28px; color: rgba(255,255,255,0.7); max-width: 480px; margin: 0 auto 32px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 18px; line-height: 28px; color: rgba(255,255,255,0.7); max-width: 480px; margin: 0 auto 32px;">
         Enter your address. We'll scan your roof and give you an instant price — no salesperson required.
       </p>
       <form id="hero-form" class="relative mx-auto" style="max-width: 520px;" action="/buy/scan">
@@ -32,18 +32,18 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
           aria-label="Home address"
           maxlength="200"
           class="w-full rounded-xl"
-          style="font-family: 'DM Sans', sans-serif; padding: 18px 140px 18px 20px; border: 2px solid rgba(255,255,255,0.15); font-size: 17px; outline: none; background: rgba(255,255,255,0.08); color: white; transition: border-color 0.2s;"
+          style="font-family: var(--font-dm-sans); padding: 18px 140px 18px 20px; border: 2px solid rgba(255,255,255,0.15); font-size: 17px; outline: none; background: rgba(255,255,255,0.08); color: white; transition: border-color 0.2s;"
         />
         <button
           type="submit"
-          class="absolute top-1/2 right-2 -translate-y-1/2 rounded-lg transition-all hover:scale-[1.02]"
-          style="padding: 12px 24px; font-size: 14px; font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background-color: #FFDE21; color: #0d2b1d;"
+          class="absolute top-1/2 right-2 -translate-y-1/2 rounded-lg transition-all hover:opacity-90"
+          style="padding: 12px 24px; font-size: 14px; font-family: var(--font-oswald); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background-color: var(--color-yellow); color: var(--color-footer);"
         >
           Scan Roof
         </button>
         <div id="hero-dropdown" class="hidden absolute left-0 right-0 top-full mt-1 bg-white rounded-xl shadow-lg border z-10 overflow-hidden" style="border-color: var(--color-border);"></div>
       </form>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 16px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 16px;">
         Bay Area only &middot; Alameda, Contra Costa, Marin, Napa & Santa Clara counties
       </p>
     </div>
@@ -52,44 +52,44 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
   <!-- ── WHY WE'RE DIFFERENT — comparison + stats ───────────────────── -->
   <section class="w-full bg-white" style="padding: 64px 20px 0;">
     <div class="mx-auto" style="max-width: 1060px;">
-      <h2 class="text-center mb-4" style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 400; color: #0d2b1d; text-transform: uppercase; line-height: 1.1;">
+      <h2 class="text-center mb-4" style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 48px); font-weight: 400; color: var(--color-footer); text-transform: uppercase; line-height: 1.1;">
         Where does your money <em style="font-style: italic; text-transform: none;">actually</em> go?
       </h2>
-      <p class="text-center mb-12 mx-auto" style="font-family: 'DM Sans', sans-serif; max-width: 600px; color: var(--color-input);">
+      <p class="text-center mb-12 mx-auto" style="font-family: var(--font-dm-sans); max-width: 600px; color: var(--color-muted);">
 
         Most roofing companies are sales organizations with a construction crew attached. Here's the difference.
       </p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Traditional -->
         <div class="rounded-2xl" style="background: var(--color-cream); padding: 32px; border: 2px solid var(--color-border);">
-          <p class="text-label-uppercase mb-4" style="color: var(--color-input);">Typical Roofing Company</p>
+          <p class="text-label-uppercase mb-4" style="color: var(--color-muted);">Typical Roofing Company</p>
           <div class="flex flex-col gap-4">
             <div class="flex items-start gap-3">
               <span style="color: #c44; font-size: 20px; line-height: 1.4;">&#10007;</span>
               <div>
                 <p class="font-semibold text-charcoal" style="font-size: 15px;">30-40% sales commission</p>
-                <p style="font-size: 13px; color: var(--color-input);">The guy knocking on your door gets paid before anyone touches your roof.</p>
+                <p style="font-size: 13px; color: var(--color-muted);">The guy knocking on your door gets paid before anyone touches your roof.</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
               <span style="color: #c44; font-size: 20px; line-height: 1.4;">&#10007;</span>
               <div>
                 <p class="font-semibold text-charcoal" style="font-size: 15px;">High-pressure sales tactics</p>
-                <p style="font-size: 13px; color: var(--color-input);">"This price is only good today." Sound familiar?</p>
+                <p style="font-size: 13px; color: var(--color-muted);">"This price is only good today." Sound familiar?</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
               <span style="color: #c44; font-size: 20px; line-height: 1.4;">&#10007;</span>
               <div>
                 <p class="font-semibold text-charcoal" style="font-size: 15px;">Opaque pricing</p>
-                <p style="font-size: 13px; color: var(--color-input);">No breakdown, no comparison. Just a number on a clipboard.</p>
+                <p style="font-size: 13px; color: var(--color-muted);">No breakdown, no comparison. Just a number on a clipboard.</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
               <span style="color: #c44; font-size: 20px; line-height: 1.4;">&#10007;</span>
               <div>
                 <p class="font-semibold text-charcoal" style="font-size: 15px;">Undertrained install crews</p>
-                <p style="font-size: 13px; color: var(--color-input);">Budget goes to sales, not skilled labor.</p>
+                <p style="font-size: 13px; color: var(--color-muted);">Budget goes to sales, not skilled labor.</p>
               </div>
             </div>
           </div>
@@ -110,28 +110,28 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
               <span style="color: var(--color-primary); font-size: 20px; line-height: 1.4;">&#10003;</span>
               <div>
                 <p class="font-semibold text-charcoal" style="font-size: 15px;">0% sales commission</p>
-                <p style="font-size: 13px; color: var(--color-input);">Buy online. No salesperson, no markup, no games.</p>
+                <p style="font-size: 13px; color: var(--color-muted);">Buy online. No salesperson, no markup, no games.</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
               <span style="color: var(--color-primary); font-size: 20px; line-height: 1.4;">&#10003;</span>
               <div>
                 <p class="font-semibold text-charcoal" style="font-size: 15px;">Transparent, instant pricing</p>
-                <p style="font-size: 13px; color: var(--color-input);">See every line item. Materials, labor, permits — no hidden fees.</p>
+                <p style="font-size: 13px; color: var(--color-muted);">See every line item. Materials, labor, permits — no hidden fees.</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
               <span style="color: var(--color-primary); font-size: 20px; line-height: 1.4;">&#10003;</span>
               <div>
                 <p class="font-semibold text-charcoal" style="font-size: 15px;">100% focused on installation quality</p>
-                <p style="font-size: 13px; color: var(--color-input);">All staff, all budget, all energy goes into your roof — not closing deals.</p>
+                <p style="font-size: 13px; color: var(--color-muted);">All staff, all budget, all energy goes into your roof — not closing deals.</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
               <span style="color: var(--color-primary); font-size: 20px; line-height: 1.4;">&#10003;</span>
               <div>
                 <p class="font-semibold text-charcoal" style="font-size: 15px;">Experienced, certified crews</p>
-                <p style="font-size: 13px; color: var(--color-input);">GAF Master Elite certified. We invest in craft, not commissions.</p>
+                <p style="font-size: 13px; color: var(--color-muted);">GAF Master Elite certified. We invest in craft, not commissions.</p>
               </div>
             </div>
           </div>
@@ -147,20 +147,20 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
       <!-- Stats -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center" style="padding: 40px 0 48px;">
         <div>
-          <p class="font-instrument text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">0%</p>
-          <p style="font-size: 13px; color: var(--color-input); margin-top: 4px;">Sales Commission</p>
+          <p class="font-oswald text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">0%</p>
+          <p style="font-size: 13px; color: var(--color-muted); margin-top: 4px;">Sales Commission</p>
         </div>
         <div>
-          <p class="font-instrument text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">$4,200</p>
-          <p style="font-size: 13px; color: var(--color-input); margin-top: 4px;">Avg. Customer Savings</p>
+          <p class="font-oswald text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">$4,200</p>
+          <p style="font-size: 13px; color: var(--color-muted); margin-top: 4px;">Avg. Customer Savings</p>
         </div>
         <div>
-          <p class="font-instrument text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">500+</p>
-          <p style="font-size: 13px; color: var(--color-input); margin-top: 4px;">Roofs Completed</p>
+          <p class="font-oswald text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">500+</p>
+          <p style="font-size: 13px; color: var(--color-muted); margin-top: 4px;">Roofs Completed</p>
         </div>
         <div>
-          <p class="font-instrument text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">4.9</p>
-          <p style="font-size: 13px; color: var(--color-input); margin-top: 4px;">Google Rating</p>
+          <p class="font-oswald text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">4.9</p>
+          <p style="font-size: 13px; color: var(--color-muted); margin-top: 4px;">Google Rating</p>
         </div>
       </div>
     </div>
@@ -171,35 +171,35 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
     <div class="mx-auto" style="max-width: 1060px;">
       <p class="text-label-uppercase text-primary text-center mb-6">What homeowners say</p>
       <div class="mb-8 rounded-2xl bg-white mx-auto" style="max-width: 760px; padding: 40px; border: 1px solid var(--color-border);">
-        <blockquote class="font-instrument text-charcoal text-center" style="font-size: clamp(20px, 3vw, 28px); line-height: 1.4; font-style: italic;">
+        <blockquote class="font-oswald text-charcoal text-center" style="font-size: clamp(20px, 3vw, 28px); line-height: 1.4; font-style: italic;">
           "I got three quotes from traditional roofers — all $15k+. Hamilton's online price was $11,200 for better materials. The savings from cutting out the salesman are real."
         </blockquote>
         <div class="flex items-center justify-center gap-3 mt-6">
           <div class="rounded-full bg-primary flex items-center justify-center text-white font-semibold" style="width: 40px; height: 40px; font-size: 15px;">DK</div>
           <div>
             <p class="font-semibold text-charcoal" style="font-size: 14px;">David & Lin K.</p>
-            <p style="font-size: 13px; color: var(--color-input);">San Leandro, CA &middot; Saved $3,800</p>
+            <p style="font-size: 13px; color: var(--color-muted);">San Leandro, CA &middot; Saved $3,800</p>
           </div>
         </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style="max-width: 760px; margin: 0 auto;">
         <div class="rounded-xl bg-white" style="padding: 24px; border: 1px solid var(--color-border);">
           <div class="flex gap-1 mb-2">
-            <span style="color: var(--color-terracotta); font-size: 14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span style="color: var(--color-yellow); font-size: 14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           </div>
           <p class="text-charcoal mb-3" style="font-size: 14px; line-height: 1.7;">
             "Typed my address, got an instant price. No waiting for some guy to come measure. So easy."
           </p>
-          <p class="font-semibold text-charcoal" style="font-size: 13px;">Maria S. <span style="font-weight: 400; color: var(--color-input);">&middot; Oakland</span></p>
+          <p class="font-semibold text-charcoal" style="font-size: 13px;">Maria S. <span style="font-weight: 400; color: var(--color-muted);">&middot; Oakland</span></p>
         </div>
         <div class="rounded-xl bg-white" style="padding: 24px; border: 1px solid var(--color-border);">
           <div class="flex gap-1 mb-2">
-            <span style="color: var(--color-terracotta); font-size: 14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span style="color: var(--color-yellow); font-size: 14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           </div>
           <p class="text-charcoal mb-3" style="font-size: 14px; line-height: 1.7;">
             "The transparency blew me away. Every line item right there. The crew showed up on time and did an incredible job."
           </p>
-          <p class="font-semibold text-charcoal" style="font-size: 13px;">James T. <span style="font-weight: 400; color: var(--color-input);">&middot; Pleasanton</span></p>
+          <p class="font-semibold text-charcoal" style="font-size: 13px;">James T. <span style="font-weight: 400; color: var(--color-muted);">&middot; Pleasanton</span></p>
         </div>
       </div>
     </div>
@@ -208,7 +208,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
   <!-- ── FAQ ───────────────────────────────────────────────────────── -->
   <section class="w-full bg-white" style="padding: 56px 20px 72px;">
     <div class="mx-auto" style="max-width: 720px;">
-      <h2 class="text-center mb-12" style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 400; color: #0d2b1d; text-transform: uppercase; line-height: 1.1;">
+      <h2 class="text-center mb-12" style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 48px); font-weight: 400; color: var(--color-footer); text-transform: uppercase; line-height: 1.1;">
         Common questions
       </h2>
       <div class="flex flex-col gap-3">
@@ -253,12 +253,12 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
   </section>
 
   <!-- ── FINAL CTA ─────────────────────────────────────────────────── -->
-  <section class="w-full" style="background-color: #0d2b1d; padding: 64px 20px;">
+  <section class="w-full" style="background-color: var(--color-footer); padding: 64px 20px;">
     <div class="mx-auto text-center" style="max-width: 640px;">
-      <h2 style="font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 400; color: white; text-transform: uppercase; line-height: 1.1; margin-bottom: 16px;">
+      <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 44px); font-weight: 400; color: white; text-transform: uppercase; line-height: 1.1; margin-bottom: 16px;">
         Ready to skip the salesman?
       </h2>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 32px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 32px;">
         Enter your address, see your price, and buy your roof in minutes.
       </p>
       <form class="relative mx-auto cta-address-form" style="max-width: 480px;" action="/buy/scan">
@@ -271,18 +271,18 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
           aria-label="Home address"
           maxlength="200"
           class="w-full rounded-xl cta-address-input"
-          style="font-family: 'DM Sans', sans-serif; padding: 18px 140px 18px 20px; border: 2px solid rgba(255,255,255,0.15); font-size: 17px; outline: none; background: rgba(255,255,255,0.08); color: white;"
+          style="font-family: var(--font-dm-sans); padding: 18px 140px 18px 20px; border: 2px solid rgba(255,255,255,0.15); font-size: 17px; outline: none; background: rgba(255,255,255,0.08); color: white;"
         />
         <div class="cta-dropdown hidden absolute left-0 right-0 top-full mt-1 bg-white rounded-xl shadow-lg border z-10 overflow-hidden" style="border-color: var(--color-border);"></div>
         <button
           type="submit"
-          class="absolute top-1/2 right-2 -translate-y-1/2 rounded-lg transition-all hover:scale-[1.02]"
-          style="padding: 12px 24px; font-size: 14px; font-family: 'THE BOLD FONT (FREE VERSION)', 'Oswald', sans-serif; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background-color: #FFDE21; color: #0d2b1d;"
+          class="absolute top-1/2 right-2 -translate-y-1/2 rounded-lg transition-all hover:opacity-90"
+          style="padding: 12px 24px; font-size: 14px; font-family: var(--font-oswald); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background-color: var(--color-yellow); color: var(--color-footer);"
         >
           Scan Roof
         </button>
       </form>
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 24px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 24px;">
         Or call us at <a href="tel:6509773351" style="color: rgba(255,255,255,0.7); text-decoration: underline;">(650) 977-3351</a>
       </p>
     </div>
@@ -303,7 +303,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
     list-style: none;
     cursor: pointer;
     padding: 18px 48px 18px 20px;
-    font-family: var(--font-fraunces);
+    font-family: var(--font-dm-sans);
     font-size: 17px;
     font-weight: 500;
     color: var(--color-charcoal);
@@ -320,7 +320,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
     font-family: var(--font-dm-sans);
     font-size: 22px;
     font-weight: 300;
-    color: var(--color-input);
+    color: var(--color-muted);
   }
   .faq-item[open] .faq-summary::after { content: '\2212'; }
   .faq-answer {
@@ -328,7 +328,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
     font-family: var(--font-dm-sans);
     font-size: 15px;
     line-height: 1.7;
-    color: var(--color-input);
+    color: var(--color-muted);
   }
   footer a[aria-label] {
     min-width: 44px;
