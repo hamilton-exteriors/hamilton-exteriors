@@ -122,11 +122,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
     <!-- Right Column — Lead Form -->
     <div class="w-full lg:w-[45%]">
-      <div
-        class="w-full"
-        style="background: linear-gradient(rgb(255, 255, 255) 0%, rgb(153, 153, 153) 107%);"
-      >
-        <div style="background-color: var(--color-white); padding: 30px 28px 28px;">
+      <div class="w-full" style="background-color: var(--color-white); padding: 30px 28px 28px;">
           <h2
             class="mb-1 text-center"
             style="font-family: var(--font-oswald); font-size: 26px; line-height: 1.2; font-weight: 400; color: var(--color-heading);"
@@ -142,7 +138,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
           <form action="/success" method="POST">
             <div class="flex flex-col gap-3">
-              <input type="text" name="fullName" placeholder="Name" required class="hero-input w-full" />
+              <input type="text" name="fullName" placeholder="Name" required maxlength="100" autocomplete="name" aria-label="Full name" class="hero-input w-full" />
               <div class="flex gap-3">
                 <div class="relative w-1/2">
                   <div class="flex overflow-hidden" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;">
@@ -155,14 +151,18 @@ const imageMap: Record<string, ImageMetadata> = {
                       name="phone"
                       placeholder="Phone Number"
                       required
+                      maxlength="20"
+                      autocomplete="tel"
+                      inputmode="tel"
+                      aria-label="Phone number"
                       class="flex-1 border-none bg-transparent outline-none"
                       style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 400; line-height: 26px; color: rgb(32, 26, 22); padding: 12px;"
                     />
                   </div>
                 </div>
-                <input type="email" name="email" placeholder="Email" required class="hero-input w-1/2" />
+                <input type="email" name="email" placeholder="Email" required maxlength="254" autocomplete="email" aria-label="Email" class="hero-input w-1/2" />
               </div>
-              <input type="text" name="address" placeholder="Project Address" required class="hero-input w-full" />
+              <input type="text" name="address" placeholder="Project Address" required maxlength="200" autocomplete="address-line1" aria-label="Project address" class="hero-input w-full" />
               <textarea
                 name="message"
                 rows="3"
@@ -186,24 +186,23 @@ const imageMap: Record<string, ImageMetadata> = {
                   <strong>I also agree to the <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Terms of Service</a> and <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Privacy Policy</a>. 4 Msgs/Month. Msg &amp; Data rates may apply. Text HELP for help or STOP to stop.</strong>
                 </span>
               </label>
-              <button type="submit" class="mt-1 w-full" style="border-radius: 10px;">
-                <div class="w-full py-4" style="background-color: var(--color-primary-dark); border-radius: 40px;">
-                  <p class="text-center text-white uppercase" style="font-family: var(--font-dm-sans); font-size: 17px; font-weight: 700; line-height: 17px;">
-                    {hero.formButtonText || 'Get My Free Consultation'}
-                  </p>
-                </div>
+              <button
+                type="submit"
+                class="mt-1 w-full py-4 text-center text-white uppercase transition-opacity hover:opacity-90"
+                style="background-color: var(--color-primary-dark); font-family: var(--font-dm-sans); font-size: 17px; font-weight: 700; line-height: 17px; border: none; cursor: pointer;"
+              >
+                {hero.formButtonText || 'Get My Free Consultation'}
               </button>
             </div>
           </form>
         </div>
-      </div>
     </div>
   </div>
 </section>
 
 <!-- Logo Slider + License -->
 <LogoSlider />
-<div class="w-full text-center" style="background-color: #fff; margin-top: -40px; padding-bottom: 40px;">
+<div class="w-full text-center" style="background-color: var(--color-white); margin-top: -40px; padding-bottom: 40px;">
   <p style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-muted);">
     CA Contractor License #1082377
   </p>
@@ -244,14 +243,14 @@ const imageMap: Record<string, ImageMetadata> = {
           </p>
           <div>
             <p style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 600; color: var(--color-white); margin-bottom: 2px;">{reviews.featured.name}</p>
-            <p style="font-family: var(--font-dm-sans); font-size: 14px; color: rgba(255,255,255,0.6);">{reviews.featured.location}</p>
+            <p style="font-family: var(--font-dm-sans); font-size: 14px; color: rgba(255,255,255,0.8);">{reviews.featured.location}</p>
           </div>
         </div>
 
         <!-- Side reviews -->
         <div class="flex flex-col gap-6">
           {reviews.side.map((review) => (
-            <div class="rounded-2xl p-6" style="background-color: var(--color-white);">
+            <div class="p-6" style="background-color: var(--color-white);">
               <div class="flex gap-0.5 mb-3">
                 {Array.from({ length: 5 }).map(() => (
                   <IconStar size={16} fill="#FFDE21" class="h-[16px] w-[16px]" />
@@ -274,7 +273,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Services / Pricing Cards -->
 {pricingCards && pricingCards.length > 0 && (
-  <section class="w-full" style="background-color: #fff; padding: 105px 0;">
+  <section class="w-full" style="background-color: var(--color-white); padding: 105px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-primary-dark); margin-bottom: 12px;">
         {pricingLabel || 'Our Services'}
@@ -297,7 +296,7 @@ const imageMap: Record<string, ImageMetadata> = {
               <h3 style={`font-family: var(--font-oswald); font-size: 20px; font-weight: 700; color: var(--color-white); margin-bottom: 4px;${card.badge ? ' margin-top: 8px;' : ''}`}>{card.title}</h3>
               <p style="font-family: var(--font-dm-sans); font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 16px;">{card.subtitle}</p>
               <p style="font-family: var(--font-oswald); font-size: 28px; font-weight: 800; color: var(--color-yellow); margin-bottom: 4px;">{card.price}</p>
-              <p style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 20px;">{card.sqft}</p>
+              <p style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 20px;">{card.sqft}</p>
               <ul class="flex flex-col gap-2 mt-auto">
                 {card.features.map(item => (
                   <li class="flex items-start gap-2">
@@ -356,7 +355,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         {whyBuildStats.stats.map((stat) => (
-          <div class="rounded-2xl p-8 text-center" style="background-color: var(--color-white);">
+          <div class="p-8 text-center" style="background-color: var(--color-white);">
             <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
               {stat.icon === 'dollar' && (
                 <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -431,7 +430,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Our Process (desktop) -->
 {processSection && (
-  <section class="hidden lg:block w-full" style="background-color: #fff; padding: 105px 0;">
+  <section class="hidden lg:block w-full" style="background-color: var(--color-white); padding: 105px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <p style="font-family: var(--font-dm-sans); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 12px;">HOW IT WORKS</p>
       <h2
@@ -454,7 +453,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Recent ADU Projects -->
 {projects && projects.length > 0 && (
-  <section class="w-full" style="background-color: #fff; padding: 105px 0;">
+  <section class="w-full" style="background-color: var(--color-white); padding: 105px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <h2
         style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 40px;"
@@ -508,7 +507,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {regulations.items.map((item) => (
-          <div class="rounded-2xl p-6 text-center" style="background-color: var(--color-white);">
+          <div class="p-6 text-center" style="background-color: var(--color-white);">
             <p style="font-family: var(--font-oswald); font-size: 42px; font-weight: 800; color: var(--color-primary-dark); margin-bottom: 8px;">{item.value}</p>
             <p style="font-family: var(--font-dm-sans); font-size: 15px; font-weight: 600; color: var(--color-heading); margin-bottom: 4px;">{item.label}</p>
             <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); line-height: 20px;">{item.description}</p>
@@ -521,7 +520,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Neighborhoods Section -->
 {neighborhoods && (
-  <section class="w-full" style="background-color: #fff; padding: 105px 0;">
+  <section class="w-full" style="background-color: var(--color-white); padding: 105px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <h2
         style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;"
@@ -534,7 +533,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
         {neighborhoods.items.map((hood) => (
-          <div class="rounded-2xl p-8" style="background-color: var(--color-cream);">
+          <div class="p-8" style="background-color: var(--color-cream);">
             <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
               {hood.icon === 'home' && (
                 <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -706,7 +705,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
       <!-- Right Column — Form -->
       <div class="flex w-full flex-col lg:w-1/2" style="padding: 0;">
-        <div class="rounded-2xl" style="background-color: var(--color-cream); padding: 40px 32px;">
+        <div style="background-color: var(--color-cream); padding: 40px 32px;">
           <h3 style="font-family: var(--font-oswald); font-size: 22px; font-weight: 700; color: var(--color-heading); margin-bottom: 4px;">
             {contact.formTitle}
           </h3>
@@ -793,7 +792,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3 mb-12">
         {resources.nearbyLinks.map((link) => (
-          <a href={link.href} class="rounded-2xl p-6 block" style="background-color: rgba(255, 255, 255, 0.05);">
+          <a href={link.href} class="p-6 block" style="background-color: rgba(255, 255, 255, 0.05);">
             <p style="font-family: var(--font-dm-sans); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 8px;">NEARBY CITY</p>
             <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-white); margin-bottom: 8px;">{link.title}</h3>
             <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.6); margin-bottom: 12px;">{link.description}</p>
@@ -805,7 +804,7 @@ const imageMap: Record<string, ImageMetadata> = {
       {resources.infoCards && resources.infoCards.length > 0 && (
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           {resources.infoCards.map((card) => (
-            <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05);">
+            <div class="p-8" style="background-color: rgba(255, 255, 255, 0.05);">
               <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-white); margin-bottom: 12px;">{card.title}</h3>
               <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 24px; color: rgba(255, 255, 255, 0.6);">
                 {card.description}
