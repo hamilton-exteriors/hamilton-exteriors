@@ -127,7 +127,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Services / Pricing Cards -->
 {pricingCards && pricingCards.length > 0 && (
-  <section class="w-full" style="background-color: var(--color-white); padding: 96px 0;">
+  <section class="w-full" style="background-color: var(--color-white); padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-primary-dark); margin-bottom: 12px;">
         {pricingLabel || 'Our Services'}
@@ -177,7 +177,7 @@ const imageMap: Record<string, ImageMetadata> = {
               <ul class="flex flex-col gap-2 mt-auto">
                 {card.features.map(item => (
                   <li class="flex items-start gap-2">
-                    <IconCheck size={16} stroke="rgb(36, 99, 69)" class="h-[16px] w-[16px] shrink-0 mt-1" />
+                    <IconCheck size={16} stroke="var(--color-primary)" class="h-[16px] w-[16px] shrink-0 mt-1" />
                     <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); line-height: 20px;">{item}</span>
                   </li>
                 ))}
@@ -210,21 +210,21 @@ const imageMap: Record<string, ImageMetadata> = {
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         {whyBuildStats.stats.map((stat) => (
           <div class="p-8 text-center" style="background-color: var(--color-white);">
-            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
+            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full" style="background-color: rgba(37, 99, 70, 0.1);">
               {stat.icon === 'dollar' && (
-                <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="12" y1="1" x2="12" y2="23"></line>
                   <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                 </svg>
               )}
               {stat.icon === 'trend' && (
-                <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                   <polyline points="17 6 23 6 23 12"></polyline>
                 </svg>
               )}
               {stat.icon === 'document' && (
-                <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                   <polyline points="14 2 14 8 20 8"></polyline>
                   <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -388,15 +388,15 @@ const imageMap: Record<string, ImageMetadata> = {
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
         {neighborhoods.items.map((hood) => (
           <div class="p-8" style="background-color: var(--color-cream);">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full" style="background-color: rgba(37, 99, 70, 0.1);">
               {hood.icon === 'home' && (
-                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                   <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
               )}
               {hood.icon === 'people' && (
-                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                   <circle cx="9" cy="7" r="4"></circle>
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
@@ -404,7 +404,7 @@ const imageMap: Record<string, ImageMetadata> = {
                 </svg>
               )}
               {hood.icon === 'building' && (
-                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
                   <line x1="12" y1="18" x2="12" y2="18"></line>
                   <line x1="8" y1="6" x2="16" y2="6"></line>
@@ -479,18 +479,18 @@ const imageMap: Record<string, ImageMetadata> = {
         {faqs.map((faq) => (
           <details
             class="group"
-            style="border-bottom: 1px solid rgb(196, 191, 182); background-color: transparent;"
+            style="border-bottom: 1px solid var(--color-border); background-color: transparent;"
           >
             <summary class="flex cursor-pointer items-center justify-between list-none [&::-webkit-details-marker]:hidden" style="padding: 20px 0;">
-              <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); padding-right: 16px;">
+              <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 400; line-height: 24px; color: var(--color-charcoal); padding-right: 16px;">
                 {faq.question}
               </span>
-              <span class="relative flex shrink-0 items-center justify-center" style="width: 24px; height: 24px; color: rgb(3, 7, 18);">
+              <span class="relative flex shrink-0 items-center justify-center" style="width: 24px; height: 24px; color: var(--color-charcoal);">
                 <IconPlus />
               </span>
             </summary>
             <div style="padding-bottom: 20px; padding-right: 48px;">
-              <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); opacity: 0.7; margin: 0;">
+              <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 400; line-height: 24px; color: var(--color-charcoal); opacity: 0.7; margin: 0;">
                 {faq.answer}
               </p>
             </div>
@@ -623,7 +623,7 @@ const imageMap: Record<string, ImageMetadata> = {
     font-size: 16px;
     font-weight: 400;
     line-height: 26px;
-    color: rgb(32, 26, 22);
+    color: var(--color-charcoal);
     background-color: var(--color-white);
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 10px;
@@ -632,16 +632,16 @@ const imageMap: Record<string, ImageMetadata> = {
     transition: border-color 0.2s;
   }
   .hero-input::placeholder {
-    color: rgb(134, 134, 134);
+    color: var(--color-muted);
   }
   .hero-input:focus {
-    border-color: rgb(37, 99, 70);
+    border-color: var(--color-primary);
   }
 
   .contact-input {
     width: 100%;
     border-radius: 10px;
-    border: 1px solid rgb(196, 191, 182);
+    border: 1px solid var(--color-border);
     padding: 10px 16px;
     font-family: var(--font-dm-sans);
     font-size: 14px;
@@ -651,10 +651,10 @@ const imageMap: Record<string, ImageMetadata> = {
     transition: border-color 0.2s;
   }
   .contact-input::placeholder {
-    color: rgb(136, 136, 136);
+    color: var(--color-light);
   }
   .contact-input:focus {
-    border-color: rgb(37, 99, 70);
+    border-color: var(--color-primary);
   }
 
   /* FAQ accordion toggle */

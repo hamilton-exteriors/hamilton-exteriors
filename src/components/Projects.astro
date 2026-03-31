@@ -90,7 +90,7 @@ import { Image } from 'astro:assets';
 
     <!-- Category Filter Tabs -->
     {showFilters && (
-      <div class="cc-filter-tabs mb-6 flex gap-2.5 overflow-x-auto" style="scrollbar-width: none; -ms-overflow-style: none;">
+      <div class="cc-filter-tabs mb-6 flex gap-1.5 overflow-x-auto" style="scrollbar-width: none; -ms-overflow-style: none;">
         {categories.map((cat) => (
           <button
             data-filter={cat.id}
@@ -150,7 +150,7 @@ import { Image } from 'astro:assets';
               {project.city.toUpperCase()} &middot; {project.date}
             </div>
             <!-- Photo count badge (bottom-right, always visible) -->
-            <div style="position: absolute; bottom: 8px; right: 8px; background: var(--color-primary); color: var(--color-white); font-family: var(--font-satoshi); font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 3px; letter-spacing: 0.3px; display: flex; align-items: center; gap: 4px;">
+            <div style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.65); color: var(--color-white); font-family: var(--font-satoshi); font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 3px; letter-spacing: 0.3px; display: flex; align-items: center; gap: 4px;">
               <IconImage size={12} class="text-white" />
               {project.mediaCount}
             </div>
@@ -172,13 +172,13 @@ import { Image } from 'astro:assets';
 
             <!-- Project Type -->
             <div style="margin-bottom: 8px;">
-              <p style="font-family: var(--font-satoshi); font-size: 10px; font-weight: 700; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.8px; margin: 0 0 2px;">PROJECT TYPE</p>
+              <p style="font-family: var(--font-satoshi); font-size: 10px; font-weight: 700; color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.8px; margin: 0 0 2px;">PROJECT TYPE</p>
               <p style="font-size: 0.875rem; color: var(--color-charcoal); margin: 0;">{project.projectType}</p>
             </div>
 
             <!-- Products Used -->
             <div style="margin-bottom: 12px;">
-              <p style="font-family: var(--font-satoshi); font-size: 10px; font-weight: 700; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.8px; margin: 0 0 2px;">PRODUCTS USED</p>
+              <p style="font-family: var(--font-satoshi); font-size: 10px; font-weight: 700; color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.8px; margin: 0 0 2px;">PRODUCTS USED</p>
               <p style="font-size: 0.875rem; color: var(--color-charcoal); margin: 0;">{project.productsUsed}</p>
             </div>
 
@@ -197,7 +197,7 @@ import { Image } from 'astro:assets';
                 </div>
               ))}
               {project.extraCount > 0 && (
-                <div style="width: 48px; height: 48px; border-radius: 4px; background: var(--color-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <div style="width: 48px; height: 48px; border-radius: 4px; background: var(--color-heading); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                   <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-white);">+{project.extraCount}</span>
                 </div>
               )}

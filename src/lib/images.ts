@@ -10,6 +10,7 @@ export { default as heroRoofing } from '../assets/images/hero-roofing.png';
 export { default as heroWindows } from '../assets/images/hero-windows.png';
 export { default as aduHero } from '../assets/images/adu-hero.jpeg';
 export { default as ctaAssistant } from '../assets/images/cta-assistant.jpg';
+export { default as designEngineering } from '../assets/images/design-engineering.jpg';
 
 // Financing
 export { default as financingHouse } from '../assets/images/financing-house.jpeg';
@@ -74,13 +75,37 @@ export { default as sidingFiberCement } from '../assets/images/siding-fiber-ceme
 export { default as sidingWood } from '../assets/images/siding-wood.png';
 export { default as sidingStucco } from '../assets/images/siding-stucco.png';
 
-// Service area photos
+// Service area photos — Alameda County
 export { default as areaOakland } from '../assets/images/area-oakland.jpg';
 export { default as areaFremont } from '../assets/images/area-fremont.jpg';
 export { default as areaHayward } from '../assets/images/area-hayward.jpg';
 export { default as areaBerkeley } from '../assets/images/area-berkeley.jpg';
 export { default as areaSanLeandro } from '../assets/images/area-san-leandro.jpg';
+// Contra Costa County
 export { default as areaAntioch } from '../assets/images/area-antioch.jpg';
 export { default as areaConcord } from '../assets/images/area-concord.jpg';
 export { default as areaWalnutCreek } from '../assets/images/area-walnut-creek.jpg';
 export { default as areaSanRamon } from '../assets/images/area-san-ramon.jpg';
+export { default as areaRichmond } from '../assets/images/area-richmond.jpg';
+// Marin County
+export { default as areaLarkspur } from '../assets/images/area-larkspur.jpg';
+export { default as areaMillValley } from '../assets/images/area-mill-valley.jpg';
+export { default as areaNovato } from '../assets/images/area-novato.jpg';
+export { default as areaSanRafael } from '../assets/images/area-san-rafael.jpg';
+// Santa Clara County
+export { default as areaSanJose } from '../assets/images/area-san-jose.jpg';
+export { default as areaPaloAlto } from '../assets/images/area-palo-alto.jpg';
+export { default as areaMountainView } from '../assets/images/area-mountain-view.jpg';
+export { default as areaSunnyvale } from '../assets/images/area-sunnyvale.jpg';
+export { default as areaCupertino } from '../assets/images/area-cupertino.jpg';
+export { default as areaSantaClara } from '../assets/images/area-santa-clara.jpg';
+export { default as areaSaratoga } from '../assets/images/area-saratoga.jpg';
+export { default as areaLosGatos } from '../assets/images/area-los-gatos.jpg';
+export { default as areaCampbell } from '../assets/images/area-campbell.jpg';
+export { default as areaMilpitas } from '../assets/images/area-milpitas.jpg';
+// Napa County
+export { default as areaNapa } from '../assets/images/area-napa.jpg';
+export { default as areaCalistoga } from '../assets/images/area-calistoga.jpg';
+export { default as areaStHelena } from '../assets/images/area-st-helena.jpg';
+export { default as areaYountville } from '../assets/images/area-yountville.jpg';
+export { default as areaAmericanCanyon } from '../assets/images/area-american-canyon.jpg';

@@ -1,5 +1,5 @@
 import type { ServicePageData } from '../../lib/service-page-types';
-import { serviceCustomHomesFull, serviceCustomHomes, serviceAdditions, financingHouse, financingWorker } from '../../lib/images';
+import { serviceCustomHomesFull, serviceCustomHomes, serviceAdditions, designEngineering } from '../../lib/images';
 
 export const data: ServicePageData = {
   title: 'Custom Home Builder in the Bay Area | Hamilton Exteriors',
@@ -37,13 +37,13 @@ export const data: ServicePageData = {
             title: 'Design & Architecture',
             description:
               'Our in-house architects and designers work with you from concept to blueprints. We create floor plans, 3D renderings, and construction documents that bring your vision to life — tailored to your lot, budget, and lifestyle.',
-            image: financingHouse,
+            image: designEngineering,
           },
           {
             title: 'Engineering & Permits',
             description:
               'We handle structural engineering, Title 24 energy compliance, soils reports, and all permit applications. Bay Area permitting is complex — we navigate city planning departments daily so you don\'t have to.',
-            image: financingWorker,
+            image: designEngineering,
           },
           {
             title: 'Additions & Renovations',
