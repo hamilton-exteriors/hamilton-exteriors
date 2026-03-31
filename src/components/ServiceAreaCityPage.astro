@@ -202,15 +202,15 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Logo Slider + License -->
 <LogoSlider />
-<div class="w-full text-center" style="background-color: var(--color-white); margin-top: -40px; padding-bottom: 40px;">
-  <p style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-muted);">
+<div class="w-full text-center" style="background-color: var(--color-white); padding: 16px 0;">
+  <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); letter-spacing: 0.02em;">
     CA Contractor License #1082377
   </p>
 </div>
 
 <!-- Reviews Section -->
 {reviews && (
-  <section class="w-full" style="background-color: var(--color-cream); padding: 105px 0;">
+  <section class="w-full" style="background-color: var(--color-cream); padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <!-- Section Label -->
       <div class="mb-4 flex items-center gap-2">
@@ -273,7 +273,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Services / Pricing Cards -->
 {pricingCards && pricingCards.length > 0 && (
-  <section class="w-full" style="background-color: var(--color-white); padding: 105px 0;">
+  <section class="w-full" style="background-color: var(--color-white); padding: 96px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-primary-dark); margin-bottom: 12px;">
         {pricingLabel || 'Our Services'}
@@ -341,7 +341,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Why Build an ADU Stats -->
 {whyBuildStats && (
-  <section class="w-full" style="background-color: var(--color-cream); padding: 105px 0;">
+  <section class="w-full" style="background-color: var(--color-cream); padding: 64px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <h2
         class="text-center"
@@ -393,7 +393,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Trusted ADU Experts -->
 {trustedExperts && (
-  <section class="w-full" style="background-color: var(--color-heading); padding: 105px 0;">
+  <section class="w-full" style="background-color: var(--color-heading); padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
         <div>
@@ -430,7 +430,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Our Process (desktop) -->
 {processSection && (
-  <section class="hidden lg:block w-full" style="background-color: var(--color-white); padding: 105px 0;">
+  <section class="hidden lg:block w-full" style="background-color: var(--color-white); padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <p style="font-family: var(--font-dm-sans); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 12px;">HOW IT WORKS</p>
       <h2
@@ -453,7 +453,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Recent ADU Projects -->
 {projects && projects.length > 0 && (
-  <section class="w-full" style="background-color: var(--color-white); padding: 105px 0;">
+  <section class="w-full" style="background-color: var(--color-white); padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <h2
         style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 40px;"
@@ -493,7 +493,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Regulations Section -->
 {regulations && (
-  <section class="w-full" style="background-color: var(--color-cream); padding: 105px 0;">
+  <section class="w-full" style="background-color: var(--color-cream); padding: 64px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <h2
         class="text-center"
@@ -520,7 +520,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Neighborhoods Section -->
 {neighborhoods && (
-  <section class="w-full" style="background-color: var(--color-white); padding: 105px 0;">
+  <section class="w-full" style="background-color: var(--color-white); padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <h2
         style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;"
@@ -722,7 +722,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- More Resources (desktop) -->
 {resources && (
-  <section class="hidden lg:block w-full" style="background-color: var(--color-heading); padding: 105px 0;">
+  <section class="hidden lg:block w-full" style="background-color: var(--color-heading); padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <p style="font-family: var(--font-dm-sans); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 12px;">RELATED RESOURCES</p>
       <h2
