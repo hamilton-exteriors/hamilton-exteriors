@@ -1,10 +1,10 @@
 import type { ServicePageData } from '../../lib/service-page-types';
-import { serviceCustomHomesFull } from '../../lib/images';
+import { serviceCustomHomesFull, serviceCustomHomes, serviceAdditions, financingHouse, financingWorker } from '../../lib/images';
 
 export const data: ServicePageData = {
   title: 'Custom Home Builder in the Bay Area | Hamilton Exteriors',
   description:
-    'Hamilton Exteriors builds custom homes across the San Francisco Bay Area. From design to completion — licensed, bonded, and insured. Call for a free consultation.',
+    'Hamilton Exteriors is a full-service custom home builder in the Bay Area. Design, architecture, engineering, permitting, and construction — all under one roof.',
   announcementText: 'Limited Time: Free Design Consultation for Custom Home Projects*',
   hero: {
     headline: 'Bay Areas  Best Custom  Home Builder',
@@ -25,27 +25,31 @@ export const data: ServicePageData = {
       type: 'styles',
       data: {
         heading: 'Custom Home Services',
-        cardVariant: 'adu',
+        cardVariant: 'roofing',
         items: [
           {
             title: 'Ground-Up Construction',
             description:
-              'Build your dream home from the ground up. We handle everything from site preparation and foundation to framing, electrical, plumbing, and finishing. Our design-build approach means one team manages your entire project — no miscommunication between architects, engineers, and builders.',
+              'Build your dream home from the ground up. We manage every phase — site prep, foundation, framing, electrical, plumbing, and finishing. One team, one point of contact, no miscommunication.',
+            image: serviceCustomHomes,
           },
           {
-            title: 'Major Renovations',
+            title: 'Design & Architecture',
             description:
-              'Transform your existing home with a full-scale renovation. Whether you want to open up your floor plan, modernize your kitchen and bathrooms, or completely reimagine your living space, our experienced crews deliver high-quality craftsmanship on time and on budget.',
+              'Our in-house architects and designers work with you from concept to blueprints. We create floor plans, 3D renderings, and construction documents that bring your vision to life — tailored to your lot, budget, and lifestyle.',
+            image: financingHouse,
           },
           {
-            title: 'Second Story Additions',
+            title: 'Engineering & Permits',
             description:
-              'Double your living space without expanding your footprint. A second story addition is the most cost-effective way to add bedrooms, bathrooms, and living areas when your lot is maxed out. We handle structural engineering, permits, and construction seamlessly.',
+              'We handle structural engineering, Title 24 energy compliance, soils reports, and all permit applications. Bay Area permitting is complex — we navigate city planning departments daily so you don\'t have to.',
+            image: financingWorker,
           },
           {
-            title: 'Design & Permitting',
+            title: 'Additions & Renovations',
             description:
-              'We simplify the entire planning process. Our in-house team handles architectural design, structural engineering, permit applications, and city approvals. Bay Area permitting is complex — we navigate it daily so you don\'t have to.',
+              'Expand your home with second story additions, room additions, or full-scale renovations. We handle structural engineering, load-bearing wall removal, and seamless integration with your existing home.',
+            image: serviceAdditions,
           },
         ],
       },

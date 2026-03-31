@@ -207,34 +207,33 @@ const { data } = Astro.props;
       );
     }
 
-    /* ─── Windows variant ─── */
+    /* ─── Windows variant — 3-col grid, flat like roofing ─── */
     if (variant === 'windows') {
       return (
-        <section class="w-full bg-cream">
-          <div class="mx-auto max-w-[1294px] px-5 py-20">
+        <section class="w-full" style="padding: 79px 0;">
+          <div class="mx-auto" style="max-width: 1182px; padding: 0 15px;">
             <h2
-              class="mb-4 text-center"
-              style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; letter-spacing: 0px; font-weight: 400; color: var(--color-heading);"
+              class="mb-6 text-center"
+              style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; letter-spacing: 0px; font-weight: 400; color: var(--color-heading); text-transform: uppercase;"
             >
               {styles.heading}
             </h2>
-            <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {styles.items.map((item, i) => hasImage(item) && (
-                <div class:list={["overflow-hidden rounded-2xl bg-white shadow-sm", i >= 3 && "hidden sm:block"]}>
-                  <div class="h-[240px] sm:h-[362px] w-full overflow-hidden">
+                <div class:list={[i >= 3 && "hidden sm:block"]}>
+                  <div class="w-full overflow-hidden">
                     <Image
                       src={item.image}
                       alt={item.title}
                       width={566}
                       height={362}
-                      class="h-full w-full object-cover"
+                      style="width: 100%; height: auto; aspect-ratio: 566 / 362; object-fit: cover; display: block;"
                       loading="lazy"
                     />
                   </div>
-                  <div class="p-6">
+                  <div style="padding-top: 16px;">
                     <h3
-                      class="mb-2"
-                      style="font-family: var(--font-oswald); font-size: 18px; font-weight: 800; line-height: 24px;"
+                      style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; line-height: 24px; color: var(--color-heading); margin-bottom: 6px; text-transform: uppercase;"
                     >
                       {item.title}
                     </h3>
