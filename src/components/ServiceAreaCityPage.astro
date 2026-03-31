@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import { heroBg, serviceRoofing, serviceSiding, serviceWindows, serviceAdu, iconContactPhone, iconContactEmail, iconContactClock, iconContactMap } from '../lib/images';
 import AnnouncementBar from './AnnouncementBar.astro';
 import Navbar from './Navbar.astro';
+import Hero from './Hero.astro';
 import LogoSlider from './LogoSlider.astro';
 import Footer from './Footer.astro';
 import type { ServiceAreaCity } from '../lib/service-area-types';
@@ -44,161 +45,14 @@ const imageMap: Record<string, ImageMetadata> = {
   </div>
 </nav>
 
-<!-- Hero Section -->
-<section id="quote" class="relative w-full overflow-hidden">
-  <!-- Background image -->
-  <div class="absolute inset-0">
-    <Image
-      src={heroBg}
-      alt=""
-      width={1920}
-      height={1080}
-      class="h-full w-full object-cover"
-      loading="eager"
-    />
-    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(13, 43, 29, 0.92) 0%, rgba(13, 43, 29, 0.78) 100%);"></div>
-  </div>
-
-  <div
-    class="relative mx-auto flex flex-col gap-10 px-5 lg:flex-row lg:items-start lg:gap-12"
-    style="max-width: 1294px; padding-top: 50px; padding-bottom: 50px;"
-  >
-    <!-- Left Column -->
-    <div class="flex flex-col items-start gap-6 lg:w-[55%] lg:py-6">
-      <!-- Rating badge -->
-      <div class="inline-flex items-center gap-2 rounded-full" style="background: rgba(255,255,255,0.12); padding: 8px 18px;">
-        <div class="flex gap-0.5">
-          {Array.from({ length: 5 }).map(() => (
-            <div class="relative h-[18px] w-[18px] shrink-0">
-              <IconStar size={18} fill="#FFDE21" class="h-full w-full" />
-            </div>
-          ))}
-        </div>
-        <span
-          class="text-white"
-          style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;"
-        >
-          50+ Five-Star Reviews
-        </span>
-      </div>
-
-      <!-- Headline -->
-      <h1
-        class="text-white"
-        style="font-family: var(--font-oswald); font-size: 56px; line-height: 68px; letter-spacing: normal; font-weight: 400;"
-      >
-        {hero.headline}
-      </h1>
-
-      <!-- Subtitle -->
-      <p
-        class="text-white"
-        style="font-family: var(--font-dm-sans); font-size: 18px; line-height: 30px; opacity: 0.9; max-width: 520px;"
-      >
-        {hero.subtitle}
-      </p>
-
-      <!-- Trust badges / bullets -->
-      <div class="flex flex-col gap-3">
-        {hero.badges.map((badge) => (
-          <div class="flex items-center gap-3">
-            <div class="flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full" style="background: rgba(255, 222, 33, 0.2);">
-              <IconCheck size={14} stroke="#FFDE21" strokeWidth={2.5} class="h-[14px] w-[14px]" />
-            </div>
-            <span class="text-white" style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 24px; font-weight: 600;">{badge}</span>
-          </div>
-        ))}
-      </div>
-
-      <!-- CTA button -->
-      <a
-        href={PHONE_HREF}
-        class="inline-block transition-opacity hover:opacity-90"
-        style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; line-height: 24px; background-color: var(--color-yellow); color: var(--color-heading); border-radius: 8px; padding: 12px 28px;"
-      >
-        Call Us - {PHONE_DISPLAY}
-      </a>
-    </div>
-
-    <!-- Right Column — Lead Form -->
-    <div class="w-full lg:w-[45%]">
-      <div class="w-full" style="background-color: var(--color-white); padding: 30px 28px 28px;">
-          <h2
-            class="mb-1 text-center"
-            style="font-family: var(--font-oswald); font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--color-heading);"
-          >
-            {hero.formTitle}
-          </h2>
-          <p
-            class="mb-5 text-center"
-            style="font-family: var(--font-dm-sans); line-height: 26px; color: rgb(134, 134, 134); font-size: 14px;"
-          >
-            {hero.formSubtitle}
-          </p>
-
-          <form action="/success" method="POST">
-            <div class="flex flex-col gap-3">
-              <input type="text" name="fullName" placeholder="Name" required maxlength="100" autocomplete="name" aria-label="Full name" class="hero-input w-full" />
-              <div class="flex gap-3">
-                <div class="relative w-1/2">
-                  <div class="flex overflow-hidden" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;">
-                    <div class="flex items-center shrink-0" style="padding: 12px 0 12px 12px; width: 52px;">
-                      <span style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: rgb(32, 26, 22);">+1</span>
-                    </div>
-                    <div style="width: 1px; margin-top: 8px; margin-bottom: 8px; background-color: rgba(0, 0, 0, 0.2);"></div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Phone Number"
-                      required
-                      maxlength="20"
-                      autocomplete="tel"
-                      inputmode="tel"
-                      aria-label="Phone number"
-                      class="flex-1 border-none bg-transparent outline-none"
-                      style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 400; line-height: 26px; color: rgb(32, 26, 22); padding: 12px;"
-                    />
-                  </div>
-                </div>
-                <input type="email" name="email" placeholder="Email" required maxlength="254" autocomplete="email" aria-label="Email" class="hero-input w-1/2" />
-              </div>
-              <input type="text" name="address" placeholder="Project Address" required maxlength="200" autocomplete="address-line1" aria-label="Project address" class="hero-input w-full" />
-              <textarea
-                name="message"
-                rows="3"
-                placeholder={hero.formTextareaPlaceholder || `Tell us about your ADU project — type, size, timeline?`}
-                class="hero-input w-full resize-none"
-              ></textarea>
-              <label class="flex items-start gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="consent"
-                  required
-                  class="mt-0.5 h-4 w-4 shrink-0"
-                  style="border-radius: 4px; border: 1px solid rgba(136, 136, 136, 0.2); background: rgba(187, 187, 187, 0.2);"
-                />
-                <span
-                  class="italic"
-                  style="font-family: var(--font-satoshi); font-size: 12px; font-weight: 600; line-height: 17px; color: rgb(136, 136, 136);"
-                >
-                  <strong>I agree to receive promotional messages sent via an autodialer, and this agreement isn't a condition of any purchase.</strong>
-                  <br /><br />
-                  <strong>I also agree to the <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Terms of Service</a> and <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Privacy Policy</a>. 4 Msgs/Month. Msg &amp; Data rates may apply. Text HELP for help or STOP to stop.</strong>
-                </span>
-              </label>
-              <button
-                type="submit"
-                class="mt-1 w-full py-4 text-center text-white uppercase transition-opacity hover:opacity-90"
-                style="background-color: var(--color-primary-dark); font-family: var(--font-dm-sans); font-size: 16px; font-weight: 700; line-height: 17px; border: none; cursor: pointer;"
-              >
-                {hero.formButtonText || 'Get My Free Consultation'}
-              </button>
-            </div>
-          </form>
-        </div>
-    </div>
-  </div>
-</section>
+<!-- Hero — shared component -->
+<Hero
+  headline={hero.headline}
+  formTitle={hero.formTitle}
+  formSubtitle={hero.formSubtitle}
+  badges={hero.badges}
+/>
+<!-- END shared hero -->
 
 <!-- Logo Slider + License -->
 <LogoSlider />

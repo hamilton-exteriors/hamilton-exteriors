@@ -12,17 +12,18 @@ export const data: CountyPageData = {
   heroFormTitle: 'Get a FREE Estimate in Santa Clara County',
 
   cities: [
-    { name: 'San Jose', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
-    { name: 'Palo Alto', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
-    { name: 'Mountain View', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
-    { name: 'Sunnyvale', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
-    { name: 'Cupertino', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
-    { name: 'Santa Clara', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
-    { name: 'Saratoga', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
-    { name: 'Los Gatos', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
-    { name: 'Campbell', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
-    { name: 'Milpitas', slug: '/service-areas/santa-clara-county-ca', image: areaBerkeley },
+    { name: 'San Jose', slug: '/service-areas/santa-clara-county-ca/san-jose-ca', image: areaBerkeley },
+    { name: 'Palo Alto', slug: '/service-areas/santa-clara-county-ca/palo-alto-ca', image: areaBerkeley },
+    { name: 'Mountain View', slug: '/service-areas/santa-clara-county-ca/mountain-view-ca', image: areaBerkeley },
+    { name: 'Sunnyvale', slug: '/service-areas/santa-clara-county-ca/sunnyvale-ca', image: areaBerkeley },
+    { name: 'Cupertino', slug: '/service-areas/santa-clara-county-ca/cupertino-ca', image: areaBerkeley },
+    { name: 'Santa Clara', slug: '/service-areas/santa-clara-county-ca/santa-clara-ca', image: areaBerkeley },
+    { name: 'Saratoga', slug: '/service-areas/santa-clara-county-ca/saratoga-ca', image: areaBerkeley },
+    { name: 'Los Gatos', slug: '/service-areas/santa-clara-county-ca/los-gatos-ca', image: areaBerkeley },
+    { name: 'Campbell', slug: '/service-areas/santa-clara-county-ca/campbell-ca', image: areaBerkeley },
+    { name: 'Milpitas', slug: '/service-areas/santa-clara-county-ca/milpitas-ca', image: areaBerkeley },
   ],
+  citySectionStyle: 'heading',
 
   whyChooseExpanded: {
     heading: 'Why Choose Hamilton Exteriors as Your Trusted ADU Contractors in Santa Clara County, CA?',

@@ -1,22 +1,94 @@
 ---
+import { Image } from 'astro:assets';
+import { hamiltonSilhouette } from '../lib/images';
 ---
 
-<section id="about" class="w-full py-10 lg:py-16">
+<section id="about" class="mission-section w-full">
   <div class="mx-auto max-w-[1200px] px-5">
-    <div class="flex flex-col items-center gap-4 text-center">
+    <div class="flex flex-col items-center text-center">
+
+      <!-- Hamilton silhouette (historical paper-cut portrait) -->
+      <div class="mission-silhouette" aria-hidden="true">
+        <Image
+          src={hamiltonSilhouette}
+          alt=""
+          width={200}
+          height={240}
+          class="mission-silhouette-img"
+          loading="lazy"
+        />
+      </div>
+
       <!-- Title -->
-      <h2
-        style="font-family: var(--font-oswald); font-size: clamp(32px, 5vw, 40px); line-height: 1.2; font-weight: 400; color: var(--color-heading); text-transform: uppercase;"
-      >
-        Our Mission
-      </h2>
+      <h2 class="mission-title">Our Mission</h2>
+
+      <!-- Decorative rule -->
+      <div class="mission-rule" aria-hidden="true"></div>
+
       <!-- Body -->
-      <p
-        class="max-w-[65ch]"
-        style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.7; font-weight: 400; color: var(--color-body);"
-      >
-        We build roofs, siding, and homes the way we'd want them done on our own. Over 50 years of combined experience, meticulous craftsmanship, and a simple promise: every detail right the first time.
+      <p class="mission-body max-w-[65ch]">
+        Named for the man who built a nation's foundation, Hamilton Exteriors carries that same conviction: build it right, build it to last. Over 50 years of combined experience, meticulous craftsmanship, and a simple promise&mdash;every detail right, no matter what.
       </p>
     </div>
   </div>
 </section>
+
+<style>
+  .mission-section {
+    padding: 20px 0 48px;
+  }
+  @media (min-width: 1024px) {
+    .mission-section {
+      padding: 32px 0 64px;
+    }
+  }
+
+  .mission-silhouette {
+    width: 160px;
+    height: 192px;
+    margin-bottom: 20px;
+    opacity: 0.18;
+    mix-blend-mode: multiply;
+    overflow: hidden;
+  }
+  @media (min-width: 1024px) {
+    .mission-silhouette {
+      width: 180px;
+      height: 216px;
+      margin-bottom: 24px;
+    }
+  }
+
+  .mission-silhouette-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.8) brightness(0.9);
+  }
+
+  .mission-title {
+    font-family: var(--font-oswald);
+    font-size: clamp(32px, 5vw, 40px);
+    line-height: 1.2;
+    font-weight: 400;
+    color: var(--color-heading);
+    text-transform: uppercase;
+    margin: 0 0 12px;
+  }
+
+  .mission-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--color-primary);
+    margin-bottom: 16px;
+  }
+
+  .mission-body {
+    font-family: var(--font-dm-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 400;
+    color: var(--color-body);
+    margin: 0;
+  }
+</style>

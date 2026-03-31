@@ -4,6 +4,7 @@
  */
 
 // Hero & backgrounds
+export { default as hamiltonSilhouette } from '../assets/images/hamilton-silhouette.jpg';
 export { default as heroBg } from '../assets/images/hero-bg-2400.jpg';
 export { default as heroRoofing } from '../assets/images/hero-roofing.png';
 export { default as heroWindows } from '../assets/images/hero-windows.png';

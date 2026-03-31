@@ -12,12 +12,13 @@ export const data: CountyPageData = {
   heroFormTitle: 'Get a FREE Estimate in Napa County',
 
   cities: [
-    { name: 'Napa', slug: '/service-areas/napa-county-ca', image: areaHayward },
-    { name: 'American Canyon', slug: '/service-areas/napa-county-ca', image: areaHayward },
-    { name: 'St. Helena', slug: '/service-areas/napa-county-ca', image: areaHayward },
-    { name: 'Calistoga', slug: '/service-areas/napa-county-ca', image: areaHayward },
-    { name: 'Yountville', slug: '/service-areas/napa-county-ca', image: areaHayward },
+    { name: 'Napa', slug: '/service-areas/napa-county-ca/napa-ca', image: areaHayward },
+    { name: 'American Canyon', slug: '/service-areas/napa-county-ca/american-canyon-ca', image: areaHayward },
+    { name: 'St. Helena', slug: '/service-areas/napa-county-ca/st-helena-ca', image: areaHayward },
+    { name: 'Calistoga', slug: '/service-areas/napa-county-ca/calistoga-ca', image: areaHayward },
+    { name: 'Yountville', slug: '/service-areas/napa-county-ca/yountville-ca', image: areaHayward },
   ],
+  citySectionStyle: 'heading',
 
   whyChooseExpanded: {
     heading: 'Why Choose Hamilton Exteriors as Your Skilled ADU Contractors in Napa County, CA?',
