@@ -1,8 +1,42 @@
 ---
 import { Image } from 'astro:assets';
-import { serviceRoofing, serviceSiding, serviceAdu, serviceWindows } from '../lib/images';
+import { serviceRoofing, serviceSiding, serviceWindows, serviceCustomHomes, serviceAdditions, serviceAdu } from '../lib/images';
+
+interface Props {
+  city?: string;
+}
+
+const { city = 'the Bay Area' } = Astro.props;
 
 const services = [
+  {
+    title: 'Custom Homes',
+    description:
+      'Ground-up custom home construction tailored to your vision. From foundation to finishing touches, our team manages every detail to deliver the home you\'ve always wanted.',
+    image: serviceCustomHomes,
+    href: '/custom-homes',
+  },
+  {
+    title: 'Additions',
+    description:
+      'Expand your living space with seamless room additions that match your home\'s existing style. We handle permits, design, and construction — adding value and square footage.',
+    image: serviceAdditions,
+    href: './additions',
+  },
+  {
+    title: 'ADUs',
+    description:
+      'Detached ADUs, garage conversions, and junior ADUs that add living space and rental income. We handle design, permits, and construction from start to finish.',
+    image: serviceAdu,
+    href: './adu',
+  },
+  {
+    title: 'Windows',
+    description:
+      'Energy-efficient window replacements that transform your home\'s comfort and curb appeal. Double-hung, casement, bay, and more — professionally installed with a full warranty.',
+    image: serviceWindows,
+    href: '/windows',
+  },
   {
     title: 'Roofing',
     description:
@@ -17,20 +51,6 @@ const services = [
     image: serviceSiding,
     href: './siding',
   },
-  {
-    title: 'Windows',
-    description:
-      'Energy-efficient Anlin windows that cut your heating and cooling bills. Double-pane, low-E glass installed by factory-trained crews. Most homes done in one day.',
-    image: serviceAdu,
-    href: './windows',
-  },
-  {
-    title: 'Waterproofing',
-    description:
-      'Protect your foundation and basement from water damage. We install drainage systems, apply waterproof coatings, and fix grading issues before they become costly problems.',
-    image: serviceWindows,
-    href: './waterproofing',
-  },
 ];
 ---
 
@@ -39,9 +59,9 @@ const services = [
     <!-- Section heading -->
     <h2
       class="mb-6"
-      style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: clamp(28px, 5vw, 40px); line-height: 1.25; font-weight: 400; color: var(--color-heading); text-transform: uppercase;"
+      style="font-family: var(--font-oswald); font-size: clamp(28px, 5vw, 40px); line-height: 1.25; font-weight: 400; color: var(--color-heading); text-transform: uppercase;"
     >
-      Exterior Services Offered in Castro Valley, CA
+      Exterior Services Offered in {city}
     </h2>
 
     <!-- Service cards grid — 2x2 -->
@@ -64,7 +84,7 @@ const services = [
             {/* Card content */}
             <div style="padding-top: 16px;">
               <h3
-                style="font-family: 'THE BOLD FONT (FREE VERSION)', 'THE BOLD FONT PRO', 'Oswald', sans-serif; font-size: 1.25rem; font-weight: 700; line-height: 1.3; margin-bottom: 6px; color: var(--color-heading); text-transform: uppercase;"
+                style="font-family: var(--font-oswald); font-size: 1.25rem; font-weight: 700; line-height: 1.3; margin-bottom: 6px; color: var(--color-heading); text-transform: uppercase;"
               >
                 {service.title}
               </h3>

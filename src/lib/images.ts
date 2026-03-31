@@ -5,6 +5,7 @@
 
 // Hero & backgrounds
 export { default as heroBg } from '../assets/images/hero-bg-2400.jpg';
+export { default as heroRoofing } from '../assets/images/hero-roofing.png';
 export { default as heroWindows } from '../assets/images/hero-windows.png';
 export { default as aduHero } from '../assets/images/adu-hero.jpeg';
 export { default as ctaAssistant } from '../assets/images/cta-assistant.jpg';
@@ -46,8 +47,11 @@ export { default as iconContactClock } from '../assets/images/icon-contact-clock
 // Services
 export { default as serviceRoofing } from '../assets/images/service-roofing.png';
 export { default as serviceSiding } from '../assets/images/service-siding.png';
-export { default as serviceAdu } from '../assets/images/service-adu.png';
 export { default as serviceWindows } from '../assets/images/service-windows.png';
+export { default as serviceCustomHomes } from '../assets/images/service-custom-homes.jpg';
+export { default as serviceCustomHomesFull } from '../assets/images/service-custom-homes-full.jpg';
+export { default as serviceAdditions } from '../assets/images/service-additions.png';
+export { default as serviceAdu } from '../assets/images/service-adu.jpg';
 
 // Windows page
 export { default as windowDoubleHung } from '../assets/images/window-double-hung.png';

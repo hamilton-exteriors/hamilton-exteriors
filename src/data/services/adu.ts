@@ -6,14 +6,17 @@ export const data: ServicePageData = {
     'ADU Builder in the San Francisco Bay Area | Design & Construction Experts | Hamilton Exteriors',
   description:
     'Hamilton Exteriors builds beautiful ADUs across the Bay Area. Attached, detached, conversions, and full permitting.',
+  announcementText: 'Limited Time: Free ADU Design Consultation + Permit Guarantee*',
   hero: {
     headline: 'Beautiful ADUs  and Homes  Across the  Bay Area',
     formTitle: 'Get a FREE Consultation',
+    formSubtitle:
+      "We'll contact you in 3-5 minutes to discuss your ADU project.",
     badges: [
       'Licensed Bonded & Insured',
       'Start with $0 Down',
-      '50 year Warranty',
-      '3-5 day install',
+      '60-Day Permit Guarantee',
+      'Full Design-Build',
     ],
     serviceType: 'ADU',
     serviceOptions: ['Detached ADU', 'Garage Conversion', 'Addition', 'Junior ADU'],
@@ -73,6 +76,7 @@ export const data: ServicePageData = {
     { type: 'difference' },
     { type: 'projects' },
     { type: 'cta' },
+    { type: 'yellowBar', text: 'Schedule a FREE ADU Consultation', href: '#contact' },
     { type: 'financing' },
     { type: 'faq' },
     { type: 'contactUs' },
