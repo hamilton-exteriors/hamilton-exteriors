@@ -44,6 +44,16 @@ const imageMap: Record<string, ImageMetadata> = {
     <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-heading); font-weight: 600;">{city}, CA</span>
   </div>
 </nav>
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hamilton-exteriors.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Service Areas", "item": "https://hamilton-exteriors.com/service-areas" },
+    { "@type": "ListItem", "position": 3, "name": county, "item": `https://hamilton-exteriors.com/service-areas/${countySlug}` },
+    { "@type": "ListItem", "position": 4, "name": `${city}, CA` }
+  ]
+})} />
 
 <!-- Hero — shared component -->
 <Hero

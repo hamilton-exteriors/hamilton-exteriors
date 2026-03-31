@@ -21,7 +21,32 @@ interface Props {
 }
 
 const { data } = Astro.props;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': data.title.split('|')[0].trim(),
+  'provider': {
+    '@type': 'HomeAndConstructionBusiness',
+    'name': 'Hamilton Exteriors',
+    'telephone': '+1-650-977-3351',
+    'address': {
+      '@type': 'PostalAddress',
+      'streetAddress': '21634 Redwood Rd Unit F',
+      'addressLocality': 'Castro Valley',
+      'addressRegion': 'CA',
+      'postalCode': '94546',
+    },
+  },
+  'areaServed': {
+    '@type': 'State',
+    'name': 'California',
+  },
+  'description': data.description,
+};
 ---
+
+<script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
 {data.announcementText ? <AnnouncementBar text={data.announcementText} /> : <AnnouncementBar />}
 <Navbar />
