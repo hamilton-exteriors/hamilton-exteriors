@@ -1,5 +1,5 @@
 import type { ServicePageData } from '../../lib/service-page-types';
-import { sidingVinyl, sidingFiberCement, sidingWood, sidingStucco } from '../../lib/images';
+import { sidingVinyl, sidingFiberCement, sidingWood, sidingStucco, serviceSiding } from '../../lib/images';
 
 export const data: ServicePageData = {
   title: 'Durable Siding in Castro Valley, CA | Hamilton Exteriors',
@@ -14,6 +14,7 @@ export const data: ServicePageData = {
     ctaText: 'Call Now - We Answer Fast',
     serviceType: 'Siding',
     serviceOptions: ['James Hardie', 'Vinyl Siding', 'Wood Siding', 'Fiber Cement'],
+    heroImage: serviceSiding,
   },
   sections: [
     { type: 'logoSlider' },
@@ -65,6 +66,7 @@ export const data: ServicePageData = {
     },
     { type: 'difference' },
     { type: 'projects' },
+    { type: 'yellowBar', text: 'Schedule a FREE Siding Inspection', href: '#contact' },
     { type: 'cta' },
     { type: 'faq' },
     { type: 'contactUs' },
