@@ -2,6 +2,11 @@
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 import IconPlus from './icons/IconPlus.astro';
 
+interface Props {
+  extraFaqs?: Array<{ question: string; answer: string }>;
+}
+const { extraFaqs } = Astro.props;
+
 const faqs = [
   {
     question: 'How does pricing work — any hidden fees?',
@@ -78,6 +83,20 @@ const faqs = [
     </div>
   </div>
 </section>
+
+<!-- FAQPage Schema -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': faqs.map(faq => ({
+    '@type': 'Question',
+    'name': faq.question,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': faq.answer,
+    },
+  })),
+})} />
 
 <style>
   summary svg {

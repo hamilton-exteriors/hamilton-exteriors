@@ -8,16 +8,21 @@ interface Props {
   type?: string;
   jsonLd?: Record<string, unknown>;
   includeMapbox?: boolean;
+  noindex?: boolean;
 }
 
 const {
-  title = 'Top Rated Exterior Company in Castro Valley, CA | Hamilton Exteriors',
-  description = 'Hamilton Exteriors is top rated Exterior Company in Castro Valley, CA. Our skilled team delivers high-value construction solutions. Call Now!',
+  title = 'Bay Area Roofing, Siding, ADUs & Custom Homes | Hamilton Exteriors',
+  description = 'Hamilton Exteriors — Bay Area design-build contractor. Roofing, siding, windows, ADUs, and custom homes. Licensed, bonded, insured. 50-year warranty. Call (650) 977-3351.',
   image,
   type = 'website',
   jsonLd,
   includeMapbox = false,
+  noindex = false,
 } = Astro.props;
+
+const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 ---
 
 <!doctype html>
@@ -39,22 +44,27 @@ const {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="geo.region" content="US-CA" />
+    <meta name="geo.placename" content="Castro Valley" />
 
     <!-- Canonical -->
-    <link rel="canonical" href={Astro.url.href} />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={type} />
-    <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:image" content={image || '/images/og-image.jpg'} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={image || `${siteUrl}/favicon.png`} />
+    <meta property="og:site_name" content="Hamilton Exteriors" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image || '/images/og-image.jpg'} />
+    <meta name="twitter:image" content={image || `${siteUrl}/favicon.png`} />
 
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

@@ -1,5 +1,5 @@
 import type { ImageMetadata } from 'astro';
-import { areaOakland, areaFremont, areaHayward, areaBerkeley, areaSanLeandro } from '../lib/images';
+import { areaOakland, areaFremont, areaNapa, areaSanJose, areaMillValley } from '../lib/images';
 
 import { data as alameda } from './counties/alameda-county-ca';
 import { data as contraCosta } from './counties/contra-costa-county-ca';
@@ -23,9 +23,9 @@ export const heroFormTitle = 'Get a FREE QUOTE';
 const countyCardImages: Record<string, ImageMetadata> = {
   'alameda-county-ca': areaOakland,
   'contra-costa-county-ca': areaFremont,
-  'napa-county-ca': areaHayward,
-  'santa-clara-county-ca': areaBerkeley,
-  'marin-county-ca': areaSanLeandro,
+  'napa-county-ca': areaNapa,
+  'santa-clara-county-ca': areaSanJose,
+  'marin-county-ca': areaMillValley,
 };
 
 /* ── County list (derived from data files) ────────────────────── */
