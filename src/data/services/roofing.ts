@@ -1,5 +1,5 @@
 import type { ServicePageData } from '../../lib/service-page-types';
-import { roofingAsphalt, roofingMetal, roofingTile, roofingFlat } from '../../lib/images';
+import { roofingAsphalt, roofingMetal, roofingTile, roofingFlat, heroRoofing } from '../../lib/images';
 
 export const data: ServicePageData = {
   title: 'Reliable Roofing in Castro Valley, CA | Hamilton Exteriors',
@@ -14,11 +14,12 @@ export const data: ServicePageData = {
     ctaText: 'Call Now - We Answer Fast',
     serviceType: 'Roofing',
     serviceOptions: ['Asphalt Shingles', 'Metal Roofing', 'Tile Roofing', 'Flat Roof'],
+    heroImage: heroRoofing,
   },
   sections: [
     { type: 'logoSlider' },
     { type: 'reviews' },
-    { type: 'cta' },
+    { type: 'financing' },
     { type: 'reviewLogos' },
     {
       type: 'styles',
@@ -56,7 +57,7 @@ export const data: ServicePageData = {
     { type: 'difference' },
     { type: 'projects' },
     { type: 'yellowBar', text: 'Schedule a FREE Inspection', href: '#contact' },
-    { type: 'financing' },
+    { type: 'cta' },
     { type: 'faq' },
     { type: 'contactUs' },
     { type: 'footer' },

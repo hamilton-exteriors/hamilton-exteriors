@@ -18,7 +18,7 @@ export const data: ServicePageData = {
   sections: [
     { type: 'logoSlider' },
     { type: 'reviews' },
-    { type: 'cta' },
+    { type: 'financing' },
     { type: 'reviewLogos' },
     {
       type: 'stats',
@@ -65,7 +65,7 @@ export const data: ServicePageData = {
     },
     { type: 'difference' },
     { type: 'projects' },
-    { type: 'financing' },
+    { type: 'cta' },
     { type: 'faq' },
     { type: 'contactUs' },
     { type: 'footer' },
