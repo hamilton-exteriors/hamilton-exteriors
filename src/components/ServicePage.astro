@@ -107,7 +107,7 @@ const { data } = Astro.props;
     const padding = stats.desktopOnly ? '60px 0' : '48px 0';
     const gridBreakpoint = stats.desktopOnly ? 'lg' : 'md';
     return (
-      <section class={`w-full ${stats.desktopOnly ? 'hidden lg:block' : ''}`} style={`background-color: #f9f8f6; padding: ${padding};`}>
+      <section class={`w-full ${stats.desktopOnly ? 'hidden lg:block' : ''}`} style={`background-color: var(--color-cream); padding: ${padding};`}>
         <div class={`mx-auto max-w-[1200px] px-5 grid grid-cols-1 ${gridBreakpoint === 'lg' ? `lg:grid-cols-${stats.items.length}` : `md:grid-cols-${stats.items.length} md:gap-8`} gap-${gridBreakpoint === 'lg' ? '8' : '4'}`}>
           {stats.items.map((stat) => (
             <div class="text-center">
@@ -137,21 +137,20 @@ const { data } = Astro.props;
             </h2>
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2" style="margin-top: 20px;">
               {styles.items.map((item) => hasImage(item) && (
-                <div class="overflow-hidden rounded-2xl bg-white shadow-sm">
-                  <div class="overflow-hidden" style="height: 220px;">
+                <div>
+                  <div class="w-full overflow-hidden" style="border-radius: 10px;">
                     <Image
                       src={item.image}
                       alt={item.title}
                       width={566}
-                      height={220}
-                      class="h-full w-full"
-                      style="object-fit: cover;"
+                      height={292}
+                      style="width: 100%; height: auto; aspect-ratio: 566 / 292; object-fit: cover; display: block; border-radius: 10px;"
                       loading="lazy"
                     />
                   </div>
-                  <div style="padding: 20px 24px 24px;">
+                  <div style="padding-top: 16px;">
                     <h3
-                      style="font-family: var(--font-oswald); font-size: 18px; font-weight: 800; line-height: 24px; color: var(--color-heading); margin-bottom: 6px;"
+                      style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; line-height: 24px; color: var(--color-heading); margin-bottom: 6px; text-transform: uppercase;"
                     >
                       {item.title}
                     </h3>
@@ -251,31 +250,35 @@ const { data } = Astro.props;
       );
     }
 
-    /* ─── ADU variant (text-only cards) ─── */
+    /* ─── ADU variant (text-only, no card borders — matches Framer) ─── */
     if (variant === 'adu') {
       return (
-        <section class="w-full bg-cream py-20">
-          <div class="mx-auto max-w-[1294px] px-5">
-            <div class="mb-12 text-center">
-              <h2>{styles.heading}</h2>
-            </div>
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <section class="w-full" style="padding: 79px 0;">
+          <div class="mx-auto" style="max-width: 1182px; padding: 0 15px;">
+            <h2
+              class="mb-6 text-center"
+              style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; letter-spacing: 0px; color: var(--color-heading); font-weight: 400; text-transform: uppercase;"
+            >
+              {styles.heading}
+            </h2>
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2" style="margin-top: 20px;">
               {styles.items.map((item) => {
-                const cardContent = (
-                  <div class="rounded-2xl border border-border/40 bg-white p-8 transition-shadow hover:shadow-lg">
-                    <h3 class="mb-3 font-fraunces text-[24px] font-600 text-charcoal">{item.title}</h3>
-                    <p class="font-dm-sans text-[17px] leading-relaxed text-input">{item.description}</p>
-                    {!hasImage(item) && item.href && (
-                      <span class="mt-5 inline-flex items-center font-satoshi text-[15px] font-bold text-primary">
-                        Learn More <span class="ml-1">&rarr;</span>
-                      </span>
-                    )}
+                const content = (
+                  <div style="padding-top: 4px;">
+                    <h3
+                      style="font-family: var(--font-oswald); font-size: 18px; font-weight: 800; line-height: 24px; color: var(--color-heading); margin-bottom: 6px; text-transform: uppercase;"
+                    >
+                      {item.title}
+                    </h3>
+                    <p style="font-size: 14px; line-height: 150%; color: var(--color-muted);">
+                      {item.description}
+                    </p>
                   </div>
                 );
                 return !hasImage(item) && item.href ? (
-                  <a href={item.href} class="group block">{cardContent}</a>
+                  <a href={item.href} class="block">{content}</a>
                 ) : (
-                  <div class="group block">{cardContent}</div>
+                  <div>{content}</div>
                 );
               })}
             </div>
