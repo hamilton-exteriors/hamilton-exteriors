@@ -1,0 +1,88 @@
+---
+/**
+ * Catch-all route for service area pages.
+ * Handles:
+ *   /service-areas/{countySlug}         → County page
+ *   /service-areas/{countySlug}/{city}  → City page
+ *
+ * Fetches from Ghost CMS first, falls back to static data files.
+ */
+import Layout from '../../layouts/Layout.astro';
+import CountyPage from '../../components/CountyPage.astro';
+import ServiceAreaCityPage from '../../components/ServiceAreaCityPage.astro';
+import { getServiceAreaCity, getServiceAreaCounty } from '../../lib/ghost';
+import { resolveImages } from '../../lib/image-map';
+import type { ServiceAreaCity } from '../../lib/service-area-types';
+import type { CountyPageData } from '../../lib/county-page-types';
+
+const slug = Astro.params.slug;
+if (!slug) return Astro.redirect('/service-areas');
+
+const segments = slug.split('/');
+
+let pageType: 'county' | 'city' | null = null;
+let cityData: ServiceAreaCity | null = null;
+let countyData: CountyPageData | null = null;
+
+if (segments.length === 2) {
+  // City page: /service-areas/{county}/{city}
+  const [countySlug, citySlug] = segments;
+  pageType = 'city';
+
+  // Try Ghost first
+  cityData = await getServiceAreaCity(countySlug, citySlug);
+
+  // Fallback to static data
+  if (!cityData) {
+    try {
+      const mod = await import(`../../data/service-areas/${citySlug}.ts`);
+      cityData = mod.data as ServiceAreaCity;
+    } catch {
+      // No static data either
+    }
+  }
+
+  if (!cityData) return Astro.rewrite('/404');
+
+} else if (segments.length === 1) {
+  // County page: /service-areas/{county}
+  const [countySlug] = segments;
+  pageType = 'county';
+
+  // Try Ghost first
+  countyData = await getServiceAreaCounty(countySlug);
+
+  // Fallback to static data
+  if (!countyData) {
+    try {
+      const mod = await import(`../../data/counties/${countySlug}.ts`);
+      countyData = mod.data as CountyPageData;
+      // Resolve image strings to ImageMetadata if coming from Ghost
+    } catch {
+      // No static data either
+    }
+  }
+
+  if (!countyData) return Astro.rewrite('/404');
+
+  // Resolve any string image references on county cities
+  if (countyData.cities) {
+    countyData.cities = resolveImages(countyData.cities) as typeof countyData.cities;
+  }
+
+} else {
+  return Astro.rewrite('/404');
+}
+---
+
+{pageType === 'city' && cityData && (
+  <Layout title={cityData.title} description={cityData.description}>
+    <ServiceAreaCityPage data={cityData} />
+  </Layout>
+)}
+
+{pageType === 'county' && countyData && (
+  <Layout title={countyData.title} description={countyData.description}>
+    <CountyPage data={countyData} />
+  </Layout>
+)}

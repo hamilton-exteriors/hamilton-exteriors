@@ -88,3 +88,112 @@ export function formatDate(dateStr: string): string {
     day: 'numeric',
   });
 }
+
+/* ── Service Area Pages (Ghost-powered) ────────────────────── */
+
+import { cacheGet, cacheSet } from './ghost-cache';
+import type { ServiceAreaCity } from './service-area-types';
+import type { CountyPageData } from './county-page-types';
+
+/**
+ * Extract JSON data from Ghost HTML card.
+ * Ghost wraps raw HTML in Koenig card markers; we extract the JSON from
+ * a <script type="application/json"> tag inside the html field.
+ */
+function extractJsonFromHtml(html: string): unknown | null {
+  // Match JSON inside <script type="application/json">...</script>
+  const match = html.match(/<script[^>]*type="application\/json"[^>]*>([\s\S]*?)<\/script>/);
+  if (!match?.[1]) return null;
+  try {
+    return JSON.parse(match[1]);
+  } catch {
+    return null;
+  }
+}
+
+/** Fetch a service-area city page from Ghost CMS. */
+export async function getServiceAreaCity(
+  countySlug: string,
+  citySlug: string,
+): Promise<ServiceAreaCity | null> {
+  const cacheKey = `sa-city--${countySlug}--${citySlug}`;
+
+  const cached = cacheGet<ServiceAreaCity>(cacheKey);
+  if (cached) return cached;
+
+  if (!isGhostConfigured()) return null;
+
+  try {
+    const post = await getPost(cacheKey);
+    if (!post?.html) return null;
+    const data = extractJsonFromHtml(post.html) as ServiceAreaCity | null;
+    if (data) {
+      // Overlay Ghost SEO fields if present
+      if (post.meta_title) data.title = post.meta_title;
+      if (post.meta_description) data.description = post.meta_description;
+      cacheSet(cacheKey, data);
+    }
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+/** Fetch a service-area county page from Ghost CMS. */
+export async function getServiceAreaCounty(
+  countySlug: string,
+): Promise<CountyPageData | null> {
+  const cacheKey = `sa-county--${countySlug}`;
+
+  const cached = cacheGet<CountyPageData>(cacheKey);
+  if (cached) return cached;
+
+  if (!isGhostConfigured()) return null;
+
+  try {
+    const post = await getPost(cacheKey);
+    if (!post?.html) return null;
+    const data = extractJsonFromHtml(post.html) as CountyPageData | null;
+    if (data) {
+      if (post.meta_title) data.title = post.meta_title;
+      if (post.meta_description) data.description = post.meta_description;
+      cacheSet(cacheKey, data);
+    }
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+/** Fetch all service-area city posts (for index page / sitemap). */
+export async function getAllServiceAreaCities(): Promise<
+  Array<{ slug: string; countySlug: string; citySlug: string; title: string }>
+> {
+  const cacheKey = 'sa-city--all';
+  const cached = cacheGet<Array<{ slug: string; countySlug: string; citySlug: string; title: string }>>(cacheKey);
+  if (cached) return cached;
+
+  if (!isGhostConfigured()) return [];
+
+  try {
+    const data = await ghostFetch('posts', {
+      filter: 'tag:hash-service-area-city',
+      fields: 'slug,title',
+      limit: 'all',
+    });
+    const results = (data.posts ?? []).map((p: { slug: string; title: string }) => {
+      // Slug format: sa-city--{countySlug}--{citySlug}
+      const parts = p.slug.replace('sa-city--', '').split('--');
+      return {
+        slug: p.slug,
+        countySlug: parts[0] || '',
+        citySlug: parts[1] || '',
+        title: p.title,
+      };
+    });
+    cacheSet(cacheKey, results);
+    return results;
+  } catch {
+    return [];
+  }
+}
