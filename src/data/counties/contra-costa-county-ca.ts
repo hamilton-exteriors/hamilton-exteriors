@@ -1,5 +1,5 @@
 import type { CountyPageData } from '../../lib/county-page-types';
-import { areaAntioch, areaConcord, areaWalnutCreek, areaSanRamon } from '../../lib/images';
+import { areaAntioch, areaConcord, areaWalnutCreek, areaSanRamon, areaRichmond } from '../../lib/images';
 
 export const data: CountyPageData = {
   county: 'Contra Costa County',
@@ -13,10 +13,10 @@ export const data: CountyPageData = {
 
   cities: [
     { name: 'Antioch', slug: '/service-areas/contra-costa-county-ca/antioch-ca', image: areaAntioch },
-    { name: 'Walnut Creek', slug: '/service-areas/contra-costa-county-ca/walnut-creek-ca', image: areaConcord },
+    { name: 'Walnut Creek', slug: '/service-areas/contra-costa-county-ca/walnut-creek-ca', image: areaWalnutCreek },
     { name: 'Concord', slug: '/service-areas/contra-costa-county-ca/concord-ca', image: areaConcord },
-    { name: 'San Ramon', slug: '/service-areas/contra-costa-county-ca/san-ramon-ca', image: areaWalnutCreek },
-    { name: 'Richmond', slug: '/service-areas/contra-costa-county-ca/richmond-ca', image: areaSanRamon },
+    { name: 'San Ramon', slug: '/service-areas/contra-costa-county-ca/san-ramon-ca', image: areaSanRamon },
+    { name: 'Richmond', slug: '/service-areas/contra-costa-county-ca/richmond-ca', image: areaRichmond },
   ],
   citySectionStyle: 'label',
 

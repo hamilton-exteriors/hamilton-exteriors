@@ -1,5 +1,5 @@
 import type { CountyPageData } from '../../lib/county-page-types';
-import { areaBerkeley } from '../../lib/images';
+import { areaSanJose, areaPaloAlto, areaMountainView, areaSunnyvale, areaCupertino, areaSantaClara, areaSaratoga, areaLosGatos, areaCampbell, areaMilpitas } from '../../lib/images';
 
 export const data: CountyPageData = {
   county: 'Santa Clara County',
@@ -12,16 +12,16 @@ export const data: CountyPageData = {
   heroFormTitle: 'Get a FREE Estimate in Santa Clara County',
 
   cities: [
-    { name: 'San Jose', slug: '/service-areas/santa-clara-county-ca/san-jose-ca', image: areaBerkeley },
-    { name: 'Palo Alto', slug: '/service-areas/santa-clara-county-ca/palo-alto-ca', image: areaBerkeley },
-    { name: 'Mountain View', slug: '/service-areas/santa-clara-county-ca/mountain-view-ca', image: areaBerkeley },
-    { name: 'Sunnyvale', slug: '/service-areas/santa-clara-county-ca/sunnyvale-ca', image: areaBerkeley },
-    { name: 'Cupertino', slug: '/service-areas/santa-clara-county-ca/cupertino-ca', image: areaBerkeley },
-    { name: 'Santa Clara', slug: '/service-areas/santa-clara-county-ca/santa-clara-ca', image: areaBerkeley },
-    { name: 'Saratoga', slug: '/service-areas/santa-clara-county-ca/saratoga-ca', image: areaBerkeley },
-    { name: 'Los Gatos', slug: '/service-areas/santa-clara-county-ca/los-gatos-ca', image: areaBerkeley },
-    { name: 'Campbell', slug: '/service-areas/santa-clara-county-ca/campbell-ca', image: areaBerkeley },
-    { name: 'Milpitas', slug: '/service-areas/santa-clara-county-ca/milpitas-ca', image: areaBerkeley },
+    { name: 'San Jose', slug: '/service-areas/santa-clara-county-ca/san-jose-ca', image: areaSanJose },
+    { name: 'Palo Alto', slug: '/service-areas/santa-clara-county-ca/palo-alto-ca', image: areaPaloAlto },
+    { name: 'Mountain View', slug: '/service-areas/santa-clara-county-ca/mountain-view-ca', image: areaMountainView },
+    { name: 'Sunnyvale', slug: '/service-areas/santa-clara-county-ca/sunnyvale-ca', image: areaSunnyvale },
+    { name: 'Cupertino', slug: '/service-areas/santa-clara-county-ca/cupertino-ca', image: areaCupertino },
+    { name: 'Santa Clara', slug: '/service-areas/santa-clara-county-ca/santa-clara-ca', image: areaSantaClara },
+    { name: 'Saratoga', slug: '/service-areas/santa-clara-county-ca/saratoga-ca', image: areaSaratoga },
+    { name: 'Los Gatos', slug: '/service-areas/santa-clara-county-ca/los-gatos-ca', image: areaLosGatos },
+    { name: 'Campbell', slug: '/service-areas/santa-clara-county-ca/campbell-ca', image: areaCampbell },
+    { name: 'Milpitas', slug: '/service-areas/santa-clara-county-ca/milpitas-ca', image: areaMilpitas },
   ],
   citySectionStyle: 'heading',
 

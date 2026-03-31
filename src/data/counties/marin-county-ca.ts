@@ -1,5 +1,5 @@
 import type { CountyPageData } from '../../lib/county-page-types';
-import { areaOakland, areaFremont, areaHayward, areaBerkeley } from '../../lib/images';
+import { areaLarkspur, areaMillValley, areaNovato, areaSanRafael } from '../../lib/images';
 
 export const data: CountyPageData = {
   county: 'Marin County',
@@ -12,10 +12,10 @@ export const data: CountyPageData = {
   heroFormTitle: 'Get a FREE Estimate in Marin County',
 
   cities: [
-    { name: 'Larkspur', slug: '/service-areas/marin-county-ca/larkspur-ca', image: areaOakland },
-    { name: 'Mill Valley', slug: '/service-areas/marin-county-ca/mill-valley-ca', image: areaFremont },
-    { name: 'Novato', slug: '/service-areas/marin-county-ca/novato-ca', image: areaHayward },
-    { name: 'San Rafael', slug: '/service-areas/marin-county-ca/san-rafael-ca', image: areaBerkeley },
+    { name: 'Larkspur', slug: '/service-areas/marin-county-ca/larkspur-ca', image: areaLarkspur },
+    { name: 'Mill Valley', slug: '/service-areas/marin-county-ca/mill-valley-ca', image: areaMillValley },
+    { name: 'Novato', slug: '/service-areas/marin-county-ca/novato-ca', image: areaNovato },
+    { name: 'San Rafael', slug: '/service-areas/marin-county-ca/san-rafael-ca', image: areaSanRafael },
   ],
   citySectionStyle: 'heading',
 

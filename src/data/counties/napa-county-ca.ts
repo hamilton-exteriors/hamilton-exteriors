@@ -1,5 +1,5 @@
 import type { CountyPageData } from '../../lib/county-page-types';
-import { areaHayward } from '../../lib/images';
+import { areaNapa, areaCalistoga, areaStHelena, areaYountville, areaAmericanCanyon } from '../../lib/images';
 
 export const data: CountyPageData = {
   county: 'Napa County',
@@ -12,11 +12,11 @@ export const data: CountyPageData = {
   heroFormTitle: 'Get a FREE Estimate in Napa County',
 
   cities: [
-    { name: 'Napa', slug: '/service-areas/napa-county-ca/napa-ca', image: areaHayward },
-    { name: 'American Canyon', slug: '/service-areas/napa-county-ca/american-canyon-ca', image: areaHayward },
-    { name: 'St. Helena', slug: '/service-areas/napa-county-ca/st-helena-ca', image: areaHayward },
-    { name: 'Calistoga', slug: '/service-areas/napa-county-ca/calistoga-ca', image: areaHayward },
-    { name: 'Yountville', slug: '/service-areas/napa-county-ca/yountville-ca', image: areaHayward },
+    { name: 'Napa', slug: '/service-areas/napa-county-ca/napa-ca', image: areaNapa },
+    { name: 'American Canyon', slug: '/service-areas/napa-county-ca/american-canyon-ca', image: areaAmericanCanyon },
+    { name: 'St. Helena', slug: '/service-areas/napa-county-ca/st-helena-ca', image: areaStHelena },
+    { name: 'Calistoga', slug: '/service-areas/napa-county-ca/calistoga-ca', image: areaCalistoga },
+    { name: 'Yountville', slug: '/service-areas/napa-county-ca/yountville-ca', image: areaYountville },
   ],
   citySectionStyle: 'heading',
 
