@@ -9,6 +9,7 @@ import type { ServiceAreaCity } from '../lib/service-area-types';
 import IconStar from './icons/IconStar.astro';
 import IconCheck from './icons/IconCheck.astro';
 import IconPlus from './icons/IconPlus.astro';
+import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 
 interface Props {
   data: ServiceAreaCity;
@@ -31,7 +32,7 @@ const imageMap: Record<string, ImageMetadata> = {
 <Navbar />
 
 <!-- Breadcrumb -->
-<nav class="w-full" style="background-color: #f9f8f6; border-bottom: 1px solid #e8e5df;">
+<nav class="w-full" style="background-color: var(--color-cream); border-bottom: 1px solid var(--color-border);">
   <div class="mx-auto flex items-center gap-2 px-5" style="max-width: 1294px; padding-top: 14px; padding-bottom: 14px;">
     <a href="/" style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); text-decoration: none;">Home</a>
     <span style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted);">/</span>
@@ -111,11 +112,11 @@ const imageMap: Record<string, ImageMetadata> = {
 
       <!-- CTA button -->
       <a
-        href="tel:6509773351"
+        href={PHONE_HREF}
         class="inline-block transition-opacity hover:opacity-90"
         style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; line-height: 24px; background-color: var(--color-yellow); color: var(--color-heading); border-radius: 8px; padding: 12px 28px;"
       >
-        Call Us - (650) 977-3351
+        Call Us - {PHONE_DISPLAY}
       </a>
     </div>
 
@@ -123,9 +124,9 @@ const imageMap: Record<string, ImageMetadata> = {
     <div class="w-full lg:w-[45%]">
       <div
         class="w-full"
-        style="background: linear-gradient(rgb(255, 255, 255) 0%, rgb(153, 153, 153) 107%); border-radius: 30px;"
+        style="background: linear-gradient(rgb(255, 255, 255) 0%, rgb(153, 153, 153) 107%);"
       >
-        <div style="background-color: var(--color-white); border-radius: 30px; padding: 30px 28px 28px;">
+        <div style="background-color: var(--color-white); padding: 30px 28px 28px;">
           <h2
             class="mb-1 text-center"
             style="font-family: var(--font-oswald); font-size: 26px; line-height: 1.2; font-weight: 400; color: var(--color-heading);"
@@ -210,7 +211,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Reviews Section -->
 {reviews && (
-  <section class="w-full" style="background-color: #f9f8f6; padding: 105px 0;">
+  <section class="w-full" style="background-color: var(--color-cream); padding: 105px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <!-- Section Label -->
       <div class="mb-4 flex items-center gap-2">
@@ -232,7 +233,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
       <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <!-- Featured review -->
-        <div class="lg:col-span-2 rounded-2xl p-8" style="background-color: var(--color-heading);">
+        <div class="lg:col-span-2 p-8" style="background-color: var(--color-heading);">
           <div class="flex gap-0.5 mb-4">
             {Array.from({ length: 5 }).map(() => (
               <IconStar size={20} fill="#FFDE21" class="h-[20px] w-[20px]" />
@@ -250,7 +251,7 @@ const imageMap: Record<string, ImageMetadata> = {
         <!-- Side reviews -->
         <div class="flex flex-col gap-6">
           {reviews.side.map((review) => (
-            <div class="rounded-2xl p-6" style="background-color: var(--color-white); border: 1px solid #e8e5df;">
+            <div class="rounded-2xl p-6" style="background-color: var(--color-white);">
               <div class="flex gap-0.5 mb-3">
                 {Array.from({ length: 5 }).map(() => (
                   <IconStar size={16} fill="#FFDE21" class="h-[16px] w-[16px]" />
@@ -287,7 +288,7 @@ const imageMap: Record<string, ImageMetadata> = {
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {pricingCards.map((card) => (
           card.highlighted ? (
-            <div class="pricing-card relative flex flex-col rounded-2xl p-6" style="background-color: var(--color-heading); border: 2px solid rgb(13, 43, 29);">
+            <div class="pricing-card relative flex flex-col p-6" style="background-color: var(--color-heading);">
               {card.badge && (
                 <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1" style={`background-color: ${card.badgeColor === 'yellow' ? 'var(--color-yellow)' : 'var(--color-primary-dark)'};`}>
                   <span style={`font-family: var(--font-satoshi); font-size: 11px; font-weight: 700; text-transform: uppercase; color: ${card.badgeColor === 'yellow' ? 'var(--color-heading)' : 'var(--color-white)'}; letter-spacing: 0.05em;`}>{card.badge}</span>
@@ -310,7 +311,7 @@ const imageMap: Record<string, ImageMetadata> = {
               </a>
             </div>
           ) : (
-            <div class={`pricing-card flex flex-col rounded-2xl p-6 ${card.badge ? 'relative' : ''}`} style="background-color: var(--color-white); border: 1px solid #e8e5df;">
+            <div class={`pricing-card flex flex-col p-6 ${card.badge ? 'relative' : ''}`} style="background-color: var(--color-white);">
               {card.badge && (
                 <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1" style={`background-color: ${card.badgeColor === 'yellow' ? 'var(--color-yellow)' : 'var(--color-primary-dark)'};`}>
                   <span style={`font-family: var(--font-satoshi); font-size: 11px; font-weight: 700; text-transform: uppercase; color: ${card.badgeColor === 'yellow' ? 'var(--color-heading)' : 'var(--color-white)'}; letter-spacing: 0.05em;`}>{card.badge}</span>
@@ -341,7 +342,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Why Build an ADU Stats -->
 {whyBuildStats && (
-  <section class="w-full" style="background-color: #f9f8f6; padding: 105px 0;">
+  <section class="w-full" style="background-color: var(--color-cream); padding: 105px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <h2
         class="text-center"
@@ -355,7 +356,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         {whyBuildStats.stats.map((stat) => (
-          <div class="rounded-2xl p-8 text-center" style="background-color: var(--color-white); border: 1px solid #e8e5df;">
+          <div class="rounded-2xl p-8 text-center" style="background-color: var(--color-white);">
             <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
               {stat.icon === 'dollar' && (
                 <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -417,7 +418,7 @@ const imageMap: Record<string, ImageMetadata> = {
         </div>
         <div class="grid grid-cols-2 gap-6">
           {trustedExperts.stats.map((stat) => (
-            <div class="rounded-xl p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
+            <div class="p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
               <p style="font-family: var(--font-oswald); font-size: 42px; font-weight: 800; color: var(--color-yellow);">{stat.value}</p>
               <p style="font-family: var(--font-dm-sans); font-size: 14px; color: rgba(255,255,255,0.7);">{stat.label}</p>
             </div>
@@ -465,7 +466,7 @@ const imageMap: Record<string, ImageMetadata> = {
         {projects.map((project) => {
           const img = imageMap[project.imageKey] || serviceRoofing;
           return (
-            <div class="group overflow-hidden rounded-2xl" style="border: 1px solid #e8e5df;">
+            <div class="group overflow-hidden" style="border: 1px solid var(--color-border);">
               <div class="relative w-full overflow-hidden" style="aspect-ratio: 4/3;">
                 <Image
                   src={img}
@@ -493,7 +494,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Regulations Section -->
 {regulations && (
-  <section class="w-full" style="background-color: #f9f8f6; padding: 105px 0;">
+  <section class="w-full" style="background-color: var(--color-cream); padding: 105px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
       <h2
         class="text-center"
@@ -507,7 +508,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {regulations.items.map((item) => (
-          <div class="rounded-2xl p-6 text-center" style="background-color: var(--color-white); border: 1px solid #e8e5df;">
+          <div class="rounded-2xl p-6 text-center" style="background-color: var(--color-white);">
             <p style="font-family: var(--font-oswald); font-size: 42px; font-weight: 800; color: var(--color-primary-dark); margin-bottom: 8px;">{item.value}</p>
             <p style="font-family: var(--font-dm-sans); font-size: 15px; font-weight: 600; color: var(--color-heading); margin-bottom: 4px;">{item.label}</p>
             <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); line-height: 20px;">{item.description}</p>
@@ -533,7 +534,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
         {neighborhoods.items.map((hood) => (
-          <div class="rounded-2xl p-8" style="background-color: #f9f8f6; border: 1px solid #e8e5df;">
+          <div class="rounded-2xl p-8" style="background-color: var(--color-cream);">
             <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full" style="background-color: rgba(36, 99, 69, 0.1);">
               {hood.icon === 'home' && (
                 <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="rgb(36, 99, 69)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -585,7 +586,7 @@ const imageMap: Record<string, ImageMetadata> = {
       </h2>
       <div class="grid grid-cols-1 gap-4">
         {mobileProcessResources.nearbyLinks.map((link) => (
-          <a href={link.href} class="rounded-xl p-5 block" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+          <a href={link.href} class="p-5 block" style="background-color: rgba(255, 255, 255, 0.05);">
             <h3 style="font-family: var(--font-oswald); font-size: 16px; font-weight: 700; color: var(--color-white); margin-bottom: 4px;">{link.title}</h3>
             <span style="font-family: var(--font-dm-sans); font-size: 13px; font-weight: 600; color: var(--color-primary-dark);">Learn More &rarr;</span>
           </a>
@@ -593,7 +594,7 @@ const imageMap: Record<string, ImageMetadata> = {
       </div>
       <div class="mt-6 grid grid-cols-1 gap-4">
         {mobileProcessResources.infoCards.map((card) => (
-          <div class="rounded-xl p-5" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+          <div class="p-5" style="background-color: rgba(255, 255, 255, 0.05);">
             <h3 style="font-family: var(--font-oswald); font-size: 16px; font-weight: 700; color: var(--color-white); margin-bottom: 8px;">{card.title}</h3>
             <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.6);">
               {card.description}
@@ -607,7 +608,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- FAQ Section -->
 {faqs && faqs.length > 0 && (
-  <section class="w-full" style="background-color: #f9f8f6; padding: 0;">
+  <section class="w-full" style="background-color: var(--color-cream); padding: 0;">
     <div class="mx-auto" style="max-width: 1170px; padding: 80px 15px;">
       <div class="flex flex-col items-start justify-between md:flex-row md:items-center" style="gap: 16px; margin-bottom: 40px;">
         <h2 style="font-family: var(--font-oswald); font-size: 40px; font-weight: 400; line-height: 50px; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin: 0;">
@@ -615,8 +616,8 @@ const imageMap: Record<string, ImageMetadata> = {
         </h2>
         <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 400; line-height: 150%; color: var(--color-heading); text-align: right; margin: 0;" class="whitespace-normal md:whitespace-nowrap">
           Have more questions?{' '}
-          <a href="tel:6509773351" style="font-weight: 600; color: var(--color-heading); text-decoration: none;">
-            Call (650) 977-3351
+          <a href={PHONE_HREF} style="font-weight: 600; color: var(--color-heading); text-decoration: none;">
+            Call {PHONE_DISPLAY}
           </a>
         </p>
       </div>
@@ -667,8 +668,8 @@ const imageMap: Record<string, ImageMetadata> = {
             <div class="shrink-0" style="width: 17px; height: 17px;">
               <Image src={iconContactPhone} alt="" width={17} height={17} style="display: block; width: 100%; height: 100%; object-fit: contain;" />
             </div>
-            <a href="tel:6509773351" style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 500; line-height: 24px; color: var(--color-heading); text-decoration: none;">
-              (650) 977-3351
+            <a href={PHONE_HREF} style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 500; line-height: 24px; color: var(--color-heading); text-decoration: none;">
+              {PHONE_DISPLAY}
             </a>
           </div>
           <div class="flex items-center" style="gap: 10px;">
@@ -697,7 +698,7 @@ const imageMap: Record<string, ImageMetadata> = {
             width={566}
             height={501}
             class="w-full"
-            style="object-fit: cover; object-position: center top; border-radius: 16px;"
+            style="object-fit: cover; object-position: center top;"
             loading="lazy"
           />
         </div>
@@ -705,7 +706,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
       <!-- Right Column — Form -->
       <div class="flex w-full flex-col lg:w-1/2" style="padding: 0;">
-        <div class="rounded-2xl" style="background-color: #f9f8f6; padding: 40px 32px;">
+        <div class="rounded-2xl" style="background-color: var(--color-cream); padding: 40px 32px;">
           <h3 style="font-family: var(--font-oswald); font-size: 22px; font-weight: 700; color: var(--color-heading); margin-bottom: 4px;">
             {contact.formTitle}
           </h3>
@@ -792,7 +793,7 @@ const imageMap: Record<string, ImageMetadata> = {
 
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3 mb-12">
         {resources.nearbyLinks.map((link) => (
-          <a href={link.href} class="rounded-2xl p-6 block" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+          <a href={link.href} class="rounded-2xl p-6 block" style="background-color: rgba(255, 255, 255, 0.05);">
             <p style="font-family: var(--font-dm-sans); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 8px;">NEARBY CITY</p>
             <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-white); margin-bottom: 8px;">{link.title}</h3>
             <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.6); margin-bottom: 12px;">{link.description}</p>
@@ -804,7 +805,7 @@ const imageMap: Record<string, ImageMetadata> = {
       {resources.infoCards && resources.infoCards.length > 0 && (
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           {resources.infoCards.map((card) => (
-            <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <div class="rounded-2xl p-8" style="background-color: rgba(255, 255, 255, 0.05);">
               <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-white); margin-bottom: 12px;">{card.title}</h3>
               <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 24px; color: rgba(255, 255, 255, 0.6);">
                 {card.description}
