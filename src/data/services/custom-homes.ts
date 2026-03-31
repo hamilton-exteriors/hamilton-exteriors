@@ -7,29 +7,20 @@ export const data: ServicePageData = {
     'Hamilton Exteriors builds custom homes across the San Francisco Bay Area. From design to completion — licensed, bonded, and insured. Call for a free consultation.',
   announcementText: 'Limited Time: Free Design Consultation for Custom Home Projects*',
   hero: {
-    headline: 'Custom Homes  Built for  Bay Area  Living',
+    headline: 'Bay Areas  Best Custom  Home Builder',
     formTitle: 'Get a FREE Consultation',
     formSubtitle:
       "Tell us about your dream home. We'll call within 5 minutes to discuss your project.",
-    badges: [
-      'Licensed Bonded & Insured',
-      'Start with $0 Down',
-      'Full Design-Build',
-      'Bay Area Experts',
-    ],
+    ctaText: 'Call Now - We Answer Fast',
+    heroImage: serviceCustomHomesFull,
     serviceType: 'Custom Home',
     serviceOptions: ['Ground-Up Build', 'Major Renovation', 'Second Story Addition', 'Modern Farmhouse'],
   },
   sections: [
-    {
-      type: 'imageBanner',
-      data: {
-        image: serviceCustomHomesFull,
-        alt: 'Custom home construction in the Bay Area',
-        height: 420,
-      },
-    },
     { type: 'logoSlider' },
+    { type: 'reviews' },
+    { type: 'cta' },
+    { type: 'reviewLogos' },
     {
       type: 'styles',
       data: {
@@ -56,19 +47,6 @@ export const data: ServicePageData = {
             description:
               'We simplify the entire planning process. Our in-house team handles architectural design, structural engineering, permit applications, and city approvals. Bay Area permitting is complex — we navigate it daily so you don\'t have to.',
           },
-        ],
-      },
-    },
-    { type: 'reviews' },
-    { type: 'reviewLogos' },
-    {
-      type: 'stats',
-      data: {
-        desktopOnly: true,
-        items: [
-          { value: '50+', label: 'Custom Projects Completed' },
-          { value: '$0', label: 'Down Payment Required' },
-          { value: '15+', label: 'Years of Bay Area Experience' },
         ],
       },
     },
