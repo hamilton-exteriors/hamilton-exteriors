@@ -294,7 +294,7 @@ const imageMap: Record<string, ImageMetadata> = {
                 </div>
               )}
               <h3 style={`font-family: var(--font-oswald); font-size: 20px; font-weight: 700; color: var(--color-white); margin-bottom: 4px;${card.badge ? ' margin-top: 8px;' : ''}`}>{card.title}</h3>
-              <p style="font-family: var(--font-dm-sans); font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 16px;">{card.subtitle}</p>
+              <p style="font-family: var(--font-dm-sans); font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 16px;">{card.subtitle}</p>
               <p style="font-family: var(--font-oswald); font-size: 28px; font-weight: 800; color: var(--color-yellow); margin-bottom: 4px;">{card.price}</p>
               <p style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 20px;">{card.sqft}</p>
               <ul class="flex flex-col gap-2 mt-auto">
@@ -419,7 +419,7 @@ const imageMap: Record<string, ImageMetadata> = {
           {trustedExperts.stats.map((stat) => (
             <div class="p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
               <p style="font-family: var(--font-oswald); font-size: 42px; font-weight: 800; color: var(--color-yellow);">{stat.value}</p>
-              <p style="font-family: var(--font-dm-sans); font-size: 14px; color: rgba(255,255,255,0.7);">{stat.label}</p>
+              <p style="font-family: var(--font-dm-sans); font-size: 14px; color: rgba(255,255,255,0.8);">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -577,7 +577,7 @@ const imageMap: Record<string, ImageMetadata> = {
       <h2 style="font-family: var(--font-oswald); font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--color-white); text-transform: uppercase; margin-bottom: 16px;">
         {mobileProcessResources.processTitle}
       </h2>
-      <p style="font-family: var(--font-dm-sans); font-size: 15px; line-height: 26px; color: rgba(255,255,255,0.7); margin-bottom: 24px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 15px; line-height: 26px; color: rgba(255,255,255,0.8); margin-bottom: 24px;">
         {mobileProcessResources.processSummary}
       </p>
       <h2 style="font-family: var(--font-oswald); font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--color-white); text-transform: uppercase; margin-bottom: 16px; margin-top: 32px;">
@@ -595,7 +595,7 @@ const imageMap: Record<string, ImageMetadata> = {
         {mobileProcessResources.infoCards.map((card) => (
           <div class="p-5" style="background-color: rgba(255, 255, 255, 0.05);">
             <h3 style="font-family: var(--font-oswald); font-size: 16px; font-weight: 700; color: var(--color-white); margin-bottom: 8px;">{card.title}</h3>
-            <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.6);">
+            <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.8);">
               {card.description}
             </p>
           </div>
@@ -647,129 +647,73 @@ const imageMap: Record<string, ImageMetadata> = {
   </section>
 )}
 
-<!-- Contact / CTA Section -->
+<!-- Contact / CTA Section — links back to hero form -->
 {contact && (
-  <section id="contact" class="w-full" style="background-color: var(--color-white); padding: 105px 0;">
-    <div class="mx-auto flex flex-col lg:flex-row" style="max-width: 1170px; padding: 0 15px; gap: 42px;">
+  <section id="contact" class="w-full" style="background-color: var(--color-heading); padding: 80px 0;">
+    <div class="mx-auto flex flex-col md:flex-row items-center" style="max-width: 1170px; padding: 0 15px; gap: 42px;">
 
       <!-- Left Column — Contact Info -->
-      <div class="flex w-full flex-col lg:w-1/2">
-        <h2 style="font-family: var(--font-oswald); font-size: 40px; font-weight: 400; line-height: 50px; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin: 0 0 16px;">
+      <div class="flex w-full flex-col md:w-1/2">
+        <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 40px); font-weight: 400; line-height: 1.2; color: var(--color-white); text-transform: uppercase; margin: 0 0 16px;">
           {contact.title}
         </h2>
-        <p style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 28px; color: var(--color-muted); margin-bottom: 32px;">
+        <p style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 28px; color: rgba(255,255,255,0.8); margin-bottom: 32px;">
           {contact.subtitle}
         </p>
 
-        <!-- Contact details -->
         <div class="flex flex-col" style="gap: 16px; margin-bottom: 32px;">
           <div class="flex items-center" style="gap: 10px;">
             <div class="shrink-0" style="width: 17px; height: 17px;">
-              <Image src={iconContactPhone} alt="" width={17} height={17} style="display: block; width: 100%; height: 100%; object-fit: contain;" />
+              <Image src={iconContactPhone} alt="" width={17} height={17} style="display: block; width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1);" />
             </div>
-            <a href={PHONE_HREF} style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 500; line-height: 24px; color: var(--color-heading); text-decoration: none;">
+            <a href={PHONE_HREF} style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 500; line-height: 24px; color: var(--color-white); text-decoration: none;">
               {PHONE_DISPLAY}
             </a>
           </div>
           <div class="flex items-center" style="gap: 10px;">
             <div class="shrink-0" style="width: 16px; height: 13px;">
-              <Image src={iconContactEmail} alt="" width={16} height={13} style="display: block; width: 100%; height: 100%; object-fit: contain;" />
+              <Image src={iconContactEmail} alt="" width={16} height={13} style="display: block; width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1);" />
             </div>
-            <a href="mailto:support@hamilton-exteriors.com" style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 500; line-height: 24px; color: var(--color-heading); text-decoration: none;">
+            <a href="mailto:support@hamilton-exteriors.com" style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 500; line-height: 24px; color: var(--color-white); text-decoration: none;">
               support@hamilton-exteriors.com
             </a>
           </div>
           <div class="flex items-start" style="gap: 10px;">
             <div class="shrink-0" style="width: 12px; height: 18px; margin-top: 3px;">
-              <Image src={iconContactClock} alt="" width={12} height={18} style="display: block; width: 100%; height: 100%; object-fit: contain;" />
+              <Image src={iconContactClock} alt="" width={12} height={18} style="display: block; width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1);" />
             </div>
-            <span style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 500; line-height: 24px; color: var(--color-heading);">
+            <span style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 500; line-height: 24px; color: var(--color-white);">
               21634 Redwood Rd Unit F, Castro Valley, CA 94546
             </span>
           </div>
         </div>
-
-        <!-- Map image -->
-        <div class="relative w-full">
-          <Image
-            src={iconContactMap}
-            alt="Service area map"
-            width={566}
-            height={501}
-            class="w-full"
-            style="object-fit: cover; object-position: center top;"
-            loading="lazy"
-          />
-        </div>
       </div>
 
-      <!-- Right Column — Form -->
-      <div class="flex w-full flex-col lg:w-1/2" style="padding: 0;">
-        <div style="background-color: var(--color-cream); padding: 40px 32px;">
-          <h3 style="font-family: var(--font-oswald); font-size: 22px; font-weight: 700; color: var(--color-heading); margin-bottom: 4px;">
-            {contact.formTitle}
-          </h3>
-          <p style="font-family: var(--font-dm-sans); font-size: 14px; color: rgb(136, 136, 136); margin-bottom: 24px;">
-            {contact.formSubtitle}
+      <!-- Right Column — CTA to hero form -->
+      <div class="flex w-full flex-col items-center md:w-1/2 text-center" style="padding: 0;">
+        <div>
+          <p style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 40px); font-weight: 400; color: var(--color-white); text-transform: uppercase; line-height: 1.15; margin-bottom: 16px;">
+            Ready to Start?
           </p>
-
-          <form action="/success" method="POST" class="flex flex-col" style="gap: 12px;">
-            <input type="text" name="fullName" placeholder="Full Name" required class="contact-input" />
-            <input type="text" name="address" placeholder={contact.formAddressPlaceholder || `Project Address in ${city}`} required class="contact-input" />
-            <input type="email" name="email" placeholder="Email Address" required class="contact-input" />
-            <input type="tel" name="phone" placeholder="Phone Number" required class="contact-input" />
-
-            {contact.aduTypeOptions && contact.aduTypeOptions.length > 0 && (
-              <fieldset style="border: none; padding: 0; margin: 8px 0 0 0;">
-                <legend style="font-family: var(--font-dm-sans); font-size: 13px; font-weight: 500; color: rgb(136, 136, 136); margin-bottom: 8px;">
-                  What type of ADU are you interested in?
-                </legend>
-                <div class="flex flex-wrap" style="gap: 16px;">
-                  {contact.aduTypeOptions.map((type, i) => (
-                    <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-heading);">
-                      <input
-                        type="radio"
-                        name="aduType"
-                        value={type}
-                        checked={i === 0}
-                        style="width: 16px; height: 16px; accent-color: rgb(37, 99, 70);"
-                      />
-                      {type}
-                    </label>
-                  ))}
-                </div>
-              </fieldset>
-            )}
-
-            {contact.showConsultationType && (
-              <fieldset style="border: none; padding: 0; margin: 8px 0 0 0;">
-                <legend style="font-family: var(--font-dm-sans); font-size: 13px; font-weight: 500; color: rgb(136, 136, 136); margin-bottom: 8px;">
-                  Preferred consultation type
-                </legend>
-                <div class="flex" style="gap: 24px;">
-                  <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-heading);">
-                    <input type="radio" name="consultationType" value="In-Home" checked style="width: 16px; height: 16px; accent-color: rgb(37, 99, 70);" />
-                    In-Home Visit
-                  </label>
-                  <label class="flex cursor-pointer items-center" style="gap: 8px; font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-heading);">
-                    <input type="radio" name="consultationType" value="Virtual" style="width: 16px; height: 16px; accent-color: rgb(37, 99, 70);" />
-                    Virtual
-                  </label>
-                </div>
-              </fieldset>
-            )}
-
-            <button
-              type="submit"
-              style="width: 100%; border-radius: 8px; background-color: var(--color-primary); border: none; padding: 14px 24px; font-family: var(--font-dm-sans); font-size: 15px; font-weight: 600; line-height: 150%; color: var(--color-white); cursor: pointer; margin-top: 8px;"
+          <p style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 28px; color: rgba(255,255,255,0.8); margin-bottom: 32px;">
+            Fill out the form above or call us — we respond within 5 minutes.
+          </p>
+          <div class="flex flex-col gap-3 w-full" style="max-width: 320px;">
+            <a
+              href="#quote"
+              class="block w-full text-center py-4 transition-opacity hover:opacity-90"
+              style="background-color: var(--color-yellow); color: var(--color-heading); font-family: var(--font-oswald); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; text-decoration: none;"
             >
-              {contact.formButtonText}
-            </button>
-          </form>
-
-          <p style="font-family: var(--font-satoshi); font-size: 10px; font-weight: 500; line-height: 150%; color: rgb(136, 136, 136); margin-top: 16px;">
-            By submitting this form, you agree to be contacted about your ADU project. We respect your privacy and will never share your information. View our <a href="/privacy-policy" style="color: rgb(136, 136, 136); text-decoration: underline;">Privacy Policy</a>.
-          </p>
+              Get Your Free Consultation
+            </a>
+            <a
+              href={PHONE_HREF}
+              class="block w-full text-center py-4 transition-opacity hover:opacity-90"
+              style="border: 2px solid rgba(255,255,255,0.3); color: var(--color-white); font-family: var(--font-dm-sans); font-size: 15px; font-weight: 600; text-decoration: none;"
+            >
+              Call {PHONE_DISPLAY}
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -786,7 +730,7 @@ const imageMap: Record<string, ImageMetadata> = {
       >
         {resources.title}
       </h2>
-      <p style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 28px; color: rgba(255, 255, 255, 0.7); margin-bottom: 48px; max-width: 640px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 28px; color: rgba(255, 255, 255, 0.8); margin-bottom: 48px; max-width: 640px;">
         {resources.subtitle}
       </p>
 
@@ -795,7 +739,7 @@ const imageMap: Record<string, ImageMetadata> = {
           <a href={link.href} class="p-6 block" style="background-color: rgba(255, 255, 255, 0.05);">
             <p style="font-family: var(--font-dm-sans); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 8px;">NEARBY CITY</p>
             <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-white); margin-bottom: 8px;">{link.title}</h3>
-            <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.6); margin-bottom: 12px;">{link.description}</p>
+            <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.8); margin-bottom: 12px;">{link.description}</p>
             <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-primary-dark);">Learn More &rarr;</span>
           </a>
         ))}
@@ -806,7 +750,7 @@ const imageMap: Record<string, ImageMetadata> = {
           {resources.infoCards.map((card) => (
             <div class="p-8" style="background-color: rgba(255, 255, 255, 0.05);">
               <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-white); margin-bottom: 12px;">{card.title}</h3>
-              <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 24px; color: rgba(255, 255, 255, 0.6);">
+              <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 24px; color: rgba(255, 255, 255, 0.8);">
                 {card.description}
               </p>
             </div>
