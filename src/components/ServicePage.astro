@@ -138,13 +138,13 @@ const { data } = Astro.props;
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2" style="margin-top: 20px;">
               {styles.items.map((item) => hasImage(item) && (
                 <div>
-                  <div class="w-full overflow-hidden" style="border-radius: 10px;">
+                  <div class="w-full overflow-hidden" style="">
                     <Image
                       src={item.image}
                       alt={item.title}
                       width={566}
                       height={292}
-                      style="width: 100%; height: auto; aspect-ratio: 566 / 292; object-fit: cover; display: block; border-radius: 10px;"
+                      style="width: 100%; height: auto; aspect-ratio: 566 / 292; object-fit: cover; display: block; "
                       loading="lazy"
                     />
                   </div>
@@ -179,13 +179,13 @@ const { data } = Astro.props;
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
               {styles.items.map((item) => hasImage(item) && (
                 <div>
-                  <div class="w-full overflow-hidden" style="border-radius: 10px;">
+                  <div class="w-full overflow-hidden" style="">
                     <Image
                       src={item.image}
                       alt={item.title}
                       width={566}
                       height={292}
-                      style="width: 100%; height: auto; aspect-ratio: 566 / 292; object-fit: cover; display: block; border-radius: 10px;"
+                      style="width: 100%; height: auto; aspect-ratio: 566 / 292; object-fit: cover; display: block; "
                       loading="lazy"
                     />
                   </div>
