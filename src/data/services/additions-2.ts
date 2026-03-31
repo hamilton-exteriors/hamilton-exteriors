@@ -1,21 +1,21 @@
 import type { ServicePageData } from '../../lib/service-page-types';
-import { serviceAdditions, serviceAdu, financingHouse, financingWorker } from '../../lib/images';
+import { serviceAdditions, financingHouse, financingWorker, serviceAdu } from '../../lib/images';
 
 export const data: ServicePageData = {
   title:
-    'Home Extensions in the Bay Area | Room Additions & Second Stories | Hamilton Exteriors',
+    'Room Additions & Second Stories in the Bay Area | Hamilton Exteriors',
   description:
-    'Hamilton Exteriors builds quality home extensions across the Bay Area. Room additions, second stories, kitchen expansions — design, engineering, permits, and construction.',
-  announcementText: 'Limited Time: Free Design Consultation for Home Extensions*',
+    'Hamilton Exteriors builds room additions, second stories, and kitchen extensions across the Bay Area. Design, structural engineering, permits, and construction.',
+  announcementText: 'Limited Time: Free Design Consultation for Room Additions*',
   hero: {
-    headline: 'Bay Areas  Best Home  Extension  Builder',
+    headline: 'Room Additions  & Second  Stories',
     formTitle: 'Get a FREE Consultation',
     formSubtitle:
       "We'll contact you in 3-5 minutes to discuss your extension project.",
     ctaText: 'Call Now - We Answer Fast',
     heroImage: serviceAdditions,
     serviceType: 'Extension',
-    serviceOptions: ['Room Addition', 'Second Story', 'Kitchen Extension', 'Sunroom'],
+    serviceOptions: ['Room Addition', 'Second Story', 'Kitchen Extension', 'Master Suite'],
   },
   sections: [
     { type: 'logoSlider' },
@@ -25,31 +25,31 @@ export const data: ServicePageData = {
     {
       type: 'styles',
       data: {
-        heading: 'Home Extension Services',
+        heading: 'Extension Services',
         cardVariant: 'roofing',
         items: [
           {
-            title: 'Room Additions',
+            title: 'Second Story Additions',
             description:
-              'Add bedrooms, bathrooms, or living areas that integrate seamlessly with your existing floor plan. We handle structural engineering, permits, and construction so every addition feels like it was always part of your home.',
+              'Add a full second floor when your lot is maxed out. We design the structural system, reinforce your existing foundation if needed, and build upward — bedrooms, bathrooms, even a rooftop deck.',
             image: serviceAdditions,
           },
           {
-            title: 'Second Story Additions',
+            title: 'Room Additions',
             description:
-              'Expand upward to maximize your lot space without sacrificing your yard. Our structural engineers design load-bearing systems that support a full second floor safely and to code.',
+              'Expand outward with a new bedroom, family room, or home office that blends seamlessly with your existing home. We match rooflines, siding, and interior finishes so it never looks like an afterthought.',
             image: financingHouse,
           },
           {
-            title: 'Kitchen Extensions',
+            title: 'Kitchen & Living Extensions',
             description:
-              'Create the open, spacious kitchen you\'ve always wanted with a bump-out or full addition. We handle plumbing, electrical, structural changes, and finishing — from demo to countertops.',
+              'Open up your floor plan with a kitchen bump-out, great room expansion, or indoor-outdoor living space. We handle structural wall removal, electrical, plumbing, and everything through to countertops.',
             image: financingWorker,
           },
           {
-            title: 'Design & Engineering',
+            title: 'ADUs & In-Law Suites',
             description:
-              'Our in-house architects and engineers create plans that maximize your space within local zoning codes. We handle Title 24 compliance, structural calculations, and all permit applications.',
+              'Add a detached or attached unit for family, guests, or rental income. Full design-build with our 60-day permit guarantee. The most popular addition in the Bay Area right now.',
             image: serviceAdu,
           },
         ],

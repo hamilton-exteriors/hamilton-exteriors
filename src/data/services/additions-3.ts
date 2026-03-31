@@ -3,12 +3,12 @@ import { serviceCustomHomes, serviceAdditions, financingHouse, financingWorker }
 
 export const data: ServicePageData = {
   title:
-    'Custom Home Building in the Bay Area | Design-Build Experts | Hamilton Exteriors',
+    'Custom Home Building in the Bay Area | Full Design-Build | Hamilton Exteriors',
   description:
-    'Hamilton Exteriors builds custom homes in the Bay Area. Full design-build — architecture, engineering, permitting, and construction under one roof.',
+    'Hamilton Exteriors is a full-service custom home builder in the Bay Area. Architecture, structural engineering, permitting, and construction — one team from concept to keys.',
   announcementText: 'Limited Time: Free Design Consultation for Custom Home Projects*',
   hero: {
-    headline: 'Custom Home  Building in  the Bay Area',
+    headline: 'Custom Home  Building  From Concept  to Keys',
     formTitle: 'Get a FREE Consultation',
     formSubtitle:
       "Tell us about your dream home. We'll call within 5 minutes to discuss your project.",
@@ -25,32 +25,32 @@ export const data: ServicePageData = {
     {
       type: 'styles',
       data: {
-        heading: 'Custom Home Services',
+        heading: 'Our Design-Build Process',
         cardVariant: 'roofing',
         items: [
           {
-            title: 'Design & Architecture',
+            title: 'Architecture & Design',
             description:
-              'Work with our in-house architects to design a home that reflects your vision, lifestyle, and budget. We create floor plans, 3D renderings, and full construction documents.',
+              'Our architects work with you from initial concept through construction documents. Floor plans, 3D renderings, material selections, and interior layouts — all designed around your lot, budget, and how you actually live.',
             image: serviceCustomHomes,
           },
           {
-            title: 'Foundation & Framing',
+            title: 'Engineering & Permits',
             description:
-              'Solid structural work built to code with premium materials. Our engineers design foundations and framing systems that stand the test of time — from standard slabs to hillside engineering.',
+              'Structural engineering, Title 24 energy compliance, soils reports, and every permit application. We sit in planning meetings, respond to plan check corrections, and get your approvals — Bay Area permitting is what we do.',
             image: financingWorker,
           },
           {
-            title: 'Interior Finishing',
+            title: 'Construction & Framing',
             description:
-              'From flooring to cabinetry, we handle every detail of your interior build-out. Custom millwork, tile, hardwood, paint — our finishing crews deliver craftsmanship you can see and feel.',
-            image: financingHouse,
+              'Site prep, foundation, framing, roofing, electrical, plumbing, HVAC — our crews build it all. One project manager coordinates every trade so your build stays on schedule and on budget.',
+            image: serviceAdditions,
           },
           {
-            title: 'Permits & Project Management',
+            title: 'Finishing & Handover',
             description:
-              'We manage the full permitting process and keep your project on schedule and on budget. One project manager, one point of contact, clear communication throughout.',
-            image: serviceAdditions,
+              'Drywall, paint, flooring, cabinetry, countertops, fixtures, landscaping — the details that make a house feel like your home. We handle final inspections and walk you through everything before handing over the keys.',
+            image: financingHouse,
           },
         ],
       },
