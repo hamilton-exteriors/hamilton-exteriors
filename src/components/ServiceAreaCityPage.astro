@@ -34,13 +34,13 @@ const imageMap: Record<string, ImageMetadata> = {
 <!-- Breadcrumb -->
 <nav class="w-full" style="background-color: var(--color-cream); border-bottom: 1px solid var(--color-border);">
   <div class="mx-auto flex items-center gap-2 px-5" style="max-width: 1294px; padding-top: 14px; padding-bottom: 14px;">
-    <a href="/" style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); text-decoration: none;">Home</a>
-    <span style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted);">/</span>
-    <a href="/service-areas" style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); text-decoration: none;">Service Areas</a>
-    <span style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted);">/</span>
-    <a href={`/service-areas/${countySlug}`} style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); text-decoration: none;">{county}</a>
-    <span style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted);">/</span>
-    <span style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-heading); font-weight: 500;">{city}, CA</span>
+    <a href="/" style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); text-decoration: none;">Home</a>
+    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted);">/</span>
+    <a href="/service-areas" style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); text-decoration: none;">Service Areas</a>
+    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted);">/</span>
+    <a href={`/service-areas/${countySlug}`} style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); text-decoration: none;">{county}</a>
+    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted);">/</span>
+    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-heading); font-weight: 600;">{city}, CA</span>
   </div>
 </nav>
 
@@ -76,7 +76,7 @@ const imageMap: Record<string, ImageMetadata> = {
         </div>
         <span
           class="text-white"
-          style="font-family: var(--font-dm-sans); font-size: 15px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;"
+          style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;"
         >
           50+ Five-Star Reviews
         </span>
@@ -93,7 +93,7 @@ const imageMap: Record<string, ImageMetadata> = {
       <!-- Subtitle -->
       <p
         class="text-white"
-        style="font-family: var(--font-dm-sans); font-size: 19px; line-height: 30px; opacity: 0.9; max-width: 520px;"
+        style="font-family: var(--font-dm-sans); font-size: 18px; line-height: 30px; opacity: 0.9; max-width: 520px;"
       >
         {hero.subtitle}
       </p>
@@ -105,7 +105,7 @@ const imageMap: Record<string, ImageMetadata> = {
             <div class="flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full" style="background: rgba(255, 222, 33, 0.2);">
               <IconCheck size={14} stroke="#FFDE21" strokeWidth={2.5} class="h-[14px] w-[14px]" />
             </div>
-            <span class="text-white" style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 24px; font-weight: 500;">{badge}</span>
+            <span class="text-white" style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 24px; font-weight: 600;">{badge}</span>
           </div>
         ))}
       </div>
@@ -125,7 +125,7 @@ const imageMap: Record<string, ImageMetadata> = {
       <div class="w-full" style="background-color: var(--color-white); padding: 30px 28px 28px;">
           <h2
             class="mb-1 text-center"
-            style="font-family: var(--font-oswald); font-size: 26px; line-height: 1.2; font-weight: 400; color: var(--color-heading);"
+            style="font-family: var(--font-oswald); font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--color-heading);"
           >
             {hero.formTitle}
           </h2>
@@ -179,7 +179,7 @@ const imageMap: Record<string, ImageMetadata> = {
                 />
                 <span
                   class="italic"
-                  style="font-family: var(--font-satoshi); font-size: 10px; font-weight: 500; line-height: 17px; color: rgb(136, 136, 136);"
+                  style="font-family: var(--font-satoshi); font-size: 12px; font-weight: 600; line-height: 17px; color: rgb(136, 136, 136);"
                 >
                   <strong>I agree to receive promotional messages sent via an autodialer, and this agreement isn't a condition of any purchase.</strong>
                   <br /><br />
@@ -189,7 +189,7 @@ const imageMap: Record<string, ImageMetadata> = {
               <button
                 type="submit"
                 class="mt-1 w-full py-4 text-center text-white uppercase transition-opacity hover:opacity-90"
-                style="background-color: var(--color-primary-dark); font-family: var(--font-dm-sans); font-size: 17px; font-weight: 700; line-height: 17px; border: none; cursor: pointer;"
+                style="background-color: var(--color-primary-dark); font-family: var(--font-dm-sans); font-size: 16px; font-weight: 700; line-height: 17px; border: none; cursor: pointer;"
               >
                 {hero.formButtonText || 'Get My Free Consultation'}
               </button>
@@ -203,7 +203,7 @@ const imageMap: Record<string, ImageMetadata> = {
 <!-- Logo Slider + License -->
 <LogoSlider />
 <div class="w-full text-center" style="background-color: var(--color-white); padding: 16px 0;">
-  <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); letter-spacing: 0.02em;">
+  <p style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); letter-spacing: 0.02em;">
     CA Contractor License #1082377
   </p>
 </div>
@@ -256,12 +256,12 @@ const imageMap: Record<string, ImageMetadata> = {
                   <IconStar size={16} fill="#FFDE21" class="h-[16px] w-[16px]" />
                 ))}
               </div>
-              <p style="font-family: var(--font-dm-sans); font-size: 15px; line-height: 26px; color: var(--color-muted); margin-bottom: 16px;">
+              <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 24px; color: var(--color-muted); margin-bottom: 16px;">
                 "{review.text}"
               </p>
               <div>
                 <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-heading);">{review.name}</p>
-                <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted);">{review.location}</p>
+                <p style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted);">{review.location}</p>
               </div>
             </div>
           ))}
@@ -290,18 +290,18 @@ const imageMap: Record<string, ImageMetadata> = {
             <div class="pricing-card relative flex flex-col p-6" style="background-color: var(--color-heading);">
               {card.badge && (
                 <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1" style={`background-color: ${card.badgeColor === 'yellow' ? 'var(--color-yellow)' : 'var(--color-primary-dark)'};`}>
-                  <span style={`font-family: var(--font-satoshi); font-size: 11px; font-weight: 700; text-transform: uppercase; color: ${card.badgeColor === 'yellow' ? 'var(--color-heading)' : 'var(--color-white)'}; letter-spacing: 0.05em;`}>{card.badge}</span>
+                  <span style={`font-family: var(--font-satoshi); font-size: 12px; font-weight: 700; text-transform: uppercase; color: ${card.badgeColor === 'yellow' ? 'var(--color-heading)' : 'var(--color-white)'}; letter-spacing: 0.05em;`}>{card.badge}</span>
                 </div>
               )}
               <h3 style={`font-family: var(--font-oswald); font-size: 20px; font-weight: 700; color: var(--color-white); margin-bottom: 4px;${card.badge ? ' margin-top: 8px;' : ''}`}>{card.title}</h3>
               <p style="font-family: var(--font-dm-sans); font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 16px;">{card.subtitle}</p>
-              <p style="font-family: var(--font-oswald); font-size: 28px; font-weight: 800; color: var(--color-yellow); margin-bottom: 4px;">{card.price}</p>
-              <p style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 20px;">{card.sqft}</p>
+              <p style="font-family: var(--font-oswald); font-size: 28px; font-weight: 700; color: var(--color-yellow); margin-bottom: 4px;">{card.price}</p>
+              <p style="font-family: var(--font-dm-sans); font-size: 12px; color: rgba(255,255,255,0.8); margin-bottom: 20px;">{card.sqft}</p>
               <ul class="flex flex-col gap-2 mt-auto">
                 {card.features.map(item => (
                   <li class="flex items-start gap-2">
                     <IconCheck size={16} stroke="#FFDE21" class="h-[16px] w-[16px] shrink-0 mt-1" />
-                    <span style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.85); line-height: 20px;">{item}</span>
+                    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: rgba(255,255,255,0.85); line-height: 20px;">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -313,18 +313,18 @@ const imageMap: Record<string, ImageMetadata> = {
             <div class={`pricing-card flex flex-col p-6 ${card.badge ? 'relative' : ''}`} style="background-color: var(--color-white);">
               {card.badge && (
                 <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1" style={`background-color: ${card.badgeColor === 'yellow' ? 'var(--color-yellow)' : 'var(--color-primary-dark)'};`}>
-                  <span style={`font-family: var(--font-satoshi); font-size: 11px; font-weight: 700; text-transform: uppercase; color: ${card.badgeColor === 'yellow' ? 'var(--color-heading)' : 'var(--color-white)'}; letter-spacing: 0.05em;`}>{card.badge}</span>
+                  <span style={`font-family: var(--font-satoshi); font-size: 12px; font-weight: 700; text-transform: uppercase; color: ${card.badgeColor === 'yellow' ? 'var(--color-heading)' : 'var(--color-white)'}; letter-spacing: 0.05em;`}>{card.badge}</span>
                 </div>
               )}
               <h3 style={`font-family: var(--font-oswald); font-size: 20px; font-weight: 700; color: var(--color-heading); margin-bottom: 4px;${card.badge ? ' margin-top: 8px;' : ''}`}>{card.title}</h3>
               <p style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-muted); margin-bottom: 16px;">{card.subtitle}</p>
-              <p style="font-family: var(--font-oswald); font-size: 28px; font-weight: 800; color: var(--color-heading); margin-bottom: 4px;">{card.price}</p>
-              <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); margin-bottom: 20px;">{card.sqft}</p>
+              <p style="font-family: var(--font-oswald); font-size: 28px; font-weight: 700; color: var(--color-heading); margin-bottom: 4px;">{card.price}</p>
+              <p style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); margin-bottom: 20px;">{card.sqft}</p>
               <ul class="flex flex-col gap-2 mt-auto">
                 {card.features.map(item => (
                   <li class="flex items-start gap-2">
                     <IconCheck size={16} stroke="rgb(36, 99, 69)" class="h-[16px] w-[16px] shrink-0 mt-1" />
-                    <span style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); line-height: 20px;">{item}</span>
+                    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); line-height: 20px;">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -349,7 +349,7 @@ const imageMap: Record<string, ImageMetadata> = {
       >
         {whyBuildStats.title}
       </h2>
-      <p class="text-center mx-auto" style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 28px; color: var(--color-muted); max-width: 640px; margin-bottom: 48px;">
+      <p class="text-center mx-auto" style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: var(--color-muted); max-width: 640px; margin-bottom: 48px;">
         {whyBuildStats.subtitle}
       </p>
 
@@ -379,7 +379,7 @@ const imageMap: Record<string, ImageMetadata> = {
                 </svg>
               )}
             </div>
-            <p style="font-family: var(--font-oswald); font-size: 36px; font-weight: 800; color: var(--color-heading); margin-bottom: 4px;">{stat.value}</p>
+            <p style="font-family: var(--font-oswald); font-size: 36px; font-weight: 700; color: var(--color-heading); margin-bottom: 4px;">{stat.value}</p>
             <p style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 600; color: var(--color-heading); margin-bottom: 8px;">{stat.label}</p>
             <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 22px; color: var(--color-muted);">
               {stat.description}
@@ -403,7 +403,7 @@ const imageMap: Record<string, ImageMetadata> = {
             {trustedExperts.title}
           </h2>
           {trustedExperts.paragraphs.map((p, i) => (
-            <p style={`font-family: var(--font-dm-sans); font-size: 17px; line-height: 30px; color: rgba(255,255,255,0.8); margin-bottom: ${i === trustedExperts.paragraphs.length - 1 ? '32' : '24'}px;`}>
+            <p style={`font-family: var(--font-dm-sans); font-size: 16px; line-height: 30px; color: rgba(255,255,255,0.8); margin-bottom: ${i === trustedExperts.paragraphs.length - 1 ? '32' : '24'}px;`}>
               {p}
             </p>
           ))}
@@ -418,7 +418,7 @@ const imageMap: Record<string, ImageMetadata> = {
         <div class="grid grid-cols-2 gap-6">
           {trustedExperts.stats.map((stat) => (
             <div class="p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
-              <p style="font-family: var(--font-oswald); font-size: 42px; font-weight: 800; color: var(--color-yellow);">{stat.value}</p>
+              <p style="font-family: var(--font-oswald); font-size: 42px; font-weight: 700; color: var(--color-yellow);">{stat.value}</p>
               <p style="font-family: var(--font-dm-sans); font-size: 14px; color: rgba(255,255,255,0.8);">{stat.label}</p>
             </div>
           ))}
@@ -432,7 +432,7 @@ const imageMap: Record<string, ImageMetadata> = {
 {processSection && (
   <section class="hidden lg:block w-full" style="background-color: var(--color-white); padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
-      <p style="font-family: var(--font-dm-sans); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 12px;">HOW IT WORKS</p>
+      <p style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 12px;">HOW IT WORKS</p>
       <h2
         style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 48px;"
       >
@@ -443,7 +443,7 @@ const imageMap: Record<string, ImageMetadata> = {
           <div>
             <div style="width: 48px; height: 48px; border-radius: 50%; background-color: var(--color-primary-dark); color: var(--color-white); display: flex; align-items: center; justify-content: center; font-family: var(--font-oswald); font-size: 20px; font-weight: 700; margin-bottom: 16px;">{i + 1}</div>
             <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-heading); margin-bottom: 8px;">{step.title}</h3>
-            <p style="font-family: var(--font-dm-sans); font-size: 15px; line-height: 26px; color: var(--color-muted);">{step.description}</p>
+            <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 24px; color: var(--color-muted);">{step.description}</p>
           </div>
         ))}
       </div>
@@ -501,16 +501,16 @@ const imageMap: Record<string, ImageMetadata> = {
       >
         {regulations.title}
       </h2>
-      <p class="text-center mx-auto" style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 28px; color: var(--color-muted); max-width: 640px; margin-bottom: 48px;">
+      <p class="text-center mx-auto" style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: var(--color-muted); max-width: 640px; margin-bottom: 48px;">
         {regulations.subtitle}
       </p>
 
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {regulations.items.map((item) => (
           <div class="p-6 text-center" style="background-color: var(--color-white);">
-            <p style="font-family: var(--font-oswald); font-size: 42px; font-weight: 800; color: var(--color-primary-dark); margin-bottom: 8px;">{item.value}</p>
-            <p style="font-family: var(--font-dm-sans); font-size: 15px; font-weight: 600; color: var(--color-heading); margin-bottom: 4px;">{item.label}</p>
-            <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); line-height: 20px;">{item.description}</p>
+            <p style="font-family: var(--font-oswald); font-size: 42px; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 8px;">{item.value}</p>
+            <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-heading); margin-bottom: 4px;">{item.label}</p>
+            <p style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); line-height: 20px;">{item.description}</p>
           </div>
         ))}
       </div>
@@ -527,7 +527,7 @@ const imageMap: Record<string, ImageMetadata> = {
       >
         {neighborhoods.title}
       </h2>
-      <p style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 28px; color: var(--color-muted); margin-bottom: 40px; max-width: 640px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: var(--color-muted); margin-bottom: 40px; max-width: 640px;">
         {neighborhoods.subtitle}
       </p>
 
@@ -577,7 +577,7 @@ const imageMap: Record<string, ImageMetadata> = {
       <h2 style="font-family: var(--font-oswald); font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--color-white); text-transform: uppercase; margin-bottom: 16px;">
         {mobileProcessResources.processTitle}
       </h2>
-      <p style="font-family: var(--font-dm-sans); font-size: 15px; line-height: 26px; color: rgba(255,255,255,0.8); margin-bottom: 24px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 24px; color: rgba(255,255,255,0.8); margin-bottom: 24px;">
         {mobileProcessResources.processSummary}
       </p>
       <h2 style="font-family: var(--font-oswald); font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--color-white); text-transform: uppercase; margin-bottom: 16px; margin-top: 32px;">
@@ -587,7 +587,7 @@ const imageMap: Record<string, ImageMetadata> = {
         {mobileProcessResources.nearbyLinks.map((link) => (
           <a href={link.href} class="p-5 block" style="background-color: rgba(255, 255, 255, 0.05);">
             <h3 style="font-family: var(--font-oswald); font-size: 16px; font-weight: 700; color: var(--color-white); margin-bottom: 4px;">{link.title}</h3>
-            <span style="font-family: var(--font-dm-sans); font-size: 13px; font-weight: 600; color: var(--color-primary-dark);">Learn More &rarr;</span>
+            <span style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; color: var(--color-primary-dark);">Learn More &rarr;</span>
           </a>
         ))}
       </div>
@@ -628,7 +628,7 @@ const imageMap: Record<string, ImageMetadata> = {
             style="border-bottom: 1px solid rgb(196, 191, 182); background-color: transparent;"
           >
             <summary class="flex cursor-pointer items-center justify-between list-none [&::-webkit-details-marker]:hidden" style="padding: 20px 0;">
-              <span style="font-family: var(--font-dm-sans); font-size: 15px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); padding-right: 16px;">
+              <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); padding-right: 16px;">
                 {faq.question}
               </span>
               <span class="relative flex shrink-0 items-center justify-center" style="width: 24px; height: 24px; color: rgb(3, 7, 18);">
@@ -636,7 +636,7 @@ const imageMap: Record<string, ImageMetadata> = {
               </span>
             </summary>
             <div style="padding-bottom: 20px; padding-right: 48px;">
-              <p style="font-family: var(--font-dm-sans); font-size: 15px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); opacity: 0.7; margin: 0;">
+              <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 400; line-height: 24px; color: rgb(3, 7, 18); opacity: 0.7; margin: 0;">
                 {faq.answer}
               </p>
             </div>
@@ -657,7 +657,7 @@ const imageMap: Record<string, ImageMetadata> = {
         <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 40px); font-weight: 400; line-height: 1.2; color: var(--color-white); text-transform: uppercase; margin: 0 0 16px;">
           {contact.title}
         </h2>
-        <p style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 28px; color: rgba(255,255,255,0.8); margin-bottom: 32px;">
+        <p style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: rgba(255,255,255,0.8); margin-bottom: 32px;">
           {contact.subtitle}
         </p>
 
@@ -666,7 +666,7 @@ const imageMap: Record<string, ImageMetadata> = {
             <div class="shrink-0" style="width: 17px; height: 17px;">
               <Image src={iconContactPhone} alt="" width={17} height={17} style="display: block; width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1);" />
             </div>
-            <a href={PHONE_HREF} style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 500; line-height: 24px; color: var(--color-white); text-decoration: none;">
+            <a href={PHONE_HREF} style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 600; line-height: 24px; color: var(--color-white); text-decoration: none;">
               {PHONE_DISPLAY}
             </a>
           </div>
@@ -674,7 +674,7 @@ const imageMap: Record<string, ImageMetadata> = {
             <div class="shrink-0" style="width: 16px; height: 13px;">
               <Image src={iconContactEmail} alt="" width={16} height={13} style="display: block; width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1);" />
             </div>
-            <a href="mailto:support@hamilton-exteriors.com" style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 500; line-height: 24px; color: var(--color-white); text-decoration: none;">
+            <a href="mailto:support@hamilton-exteriors.com" style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 600; line-height: 24px; color: var(--color-white); text-decoration: none;">
               support@hamilton-exteriors.com
             </a>
           </div>
@@ -682,7 +682,7 @@ const imageMap: Record<string, ImageMetadata> = {
             <div class="shrink-0" style="width: 12px; height: 18px; margin-top: 3px;">
               <Image src={iconContactClock} alt="" width={12} height={18} style="display: block; width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1);" />
             </div>
-            <span style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 500; line-height: 24px; color: var(--color-white);">
+            <span style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 600; line-height: 24px; color: var(--color-white);">
               21634 Redwood Rd Unit F, Castro Valley, CA 94546
             </span>
           </div>
@@ -695,7 +695,7 @@ const imageMap: Record<string, ImageMetadata> = {
           <p style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 40px); font-weight: 400; color: var(--color-white); text-transform: uppercase; line-height: 1.15; margin-bottom: 16px;">
             Ready to Start?
           </p>
-          <p style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 28px; color: rgba(255,255,255,0.8); margin-bottom: 32px;">
+          <p style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: rgba(255,255,255,0.8); margin-bottom: 32px;">
             Fill out the form above or call us — we respond within 5 minutes.
           </p>
           <div class="flex flex-col gap-3 w-full" style="max-width: 320px;">
@@ -709,7 +709,7 @@ const imageMap: Record<string, ImageMetadata> = {
             <a
               href={PHONE_HREF}
               class="block w-full text-center py-4 transition-opacity hover:opacity-90"
-              style="border: 2px solid rgba(255,255,255,0.3); color: var(--color-white); font-family: var(--font-dm-sans); font-size: 15px; font-weight: 600; text-decoration: none;"
+              style="border: 2px solid rgba(255,255,255,0.3); color: var(--color-white); font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; text-decoration: none;"
             >
               Call {PHONE_DISPLAY}
             </a>
@@ -724,20 +724,20 @@ const imageMap: Record<string, ImageMetadata> = {
 {resources && (
   <section class="hidden lg:block w-full" style="background-color: var(--color-heading); padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
-      <p style="font-family: var(--font-dm-sans); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 12px;">RELATED RESOURCES</p>
+      <p style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 12px;">RELATED RESOURCES</p>
       <h2
         style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-white); text-transform: uppercase; margin-bottom: 16px;"
       >
         {resources.title}
       </h2>
-      <p style="font-family: var(--font-dm-sans); font-size: 17px; line-height: 28px; color: rgba(255, 255, 255, 0.8); margin-bottom: 48px; max-width: 640px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: rgba(255, 255, 255, 0.8); margin-bottom: 48px; max-width: 640px;">
         {resources.subtitle}
       </p>
 
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3 mb-12">
         {resources.nearbyLinks.map((link) => (
           <a href={link.href} class="p-6 block" style="background-color: rgba(255, 255, 255, 0.05);">
-            <p style="font-family: var(--font-dm-sans); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 8px;">NEARBY CITY</p>
+            <p style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 8px;">NEARBY CITY</p>
             <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-white); margin-bottom: 8px;">{link.title}</h3>
             <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.8); margin-bottom: 12px;">{link.description}</p>
             <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-primary-dark);">Learn More &rarr;</span>
