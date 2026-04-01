@@ -591,7 +591,7 @@ const imageMap: Record<string, ImageMetadata> = {
 {resources && (
   <section class="hidden lg:block w-full" style="background-color: var(--color-heading); padding: 80px 0;">
     <div class="mx-auto max-w-[1200px] px-5">
-      <p style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 12px;">RELATED RESOURCES</p>
+      <p style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-green-light); margin-bottom: 12px;">RELATED RESOURCES</p>
       <h2
         style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-white); text-transform: uppercase; margin-bottom: 16px;"
       >
@@ -604,10 +604,10 @@ const imageMap: Record<string, ImageMetadata> = {
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3 mb-12">
         {resources.nearbyLinks.map((link) => (
           <a href={link.href} class="p-6 block" style="background-color: rgba(255, 255, 255, 0.05);">
-            <p style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 8px;">NEARBY CITY</p>
+            <p style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-green-light); margin-bottom: 8px;">NEARBY CITY</p>
             <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-white); margin-bottom: 8px;">{link.title}</h3>
             <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 22px; color: rgba(255, 255, 255, 0.8); margin-bottom: 12px;">{link.description}</p>
-            <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-primary-dark);">Learn More &rarr;</span>
+            <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-green-light);">Learn More &rarr;</span>
           </a>
         ))}
       </div>

@@ -15,7 +15,7 @@ import GeneralCityPage from '../../components/GeneralCityPage.astro';
 import ServicePage from '../../components/ServicePage.astro';
 import { getServiceAreaCity, getServiceAreaCounty, getServiceAreaCityService } from '../../lib/ghost';
 import { resolveImages } from '../../lib/image-map';
-import { generateGeneralCityPage, generateCityServicePage } from '../../lib/pseo/generate';
+import { generateGeneralCityPage, generateCityServicePage, generateCountyServicePage } from '../../lib/pseo/generate';
 import { getCitySeed } from '../../lib/pseo/city-seed-data';
 import { getServiceTemplate } from '../../lib/pseo/service-templates';
 import type { ServiceAreaCity } from '../../lib/service-area-types';
@@ -28,11 +28,14 @@ if (!slug) return Astro.redirect('/service-areas');
 
 const segments = slug.split('/');
 
-let pageType: 'county' | 'city' | 'cityService' | null = null;
+const SERVICE_SLUGS = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions'];
+
+let pageType: 'county' | 'city' | 'cityService' | 'countyService' | null = null;
 let cityData: ServiceAreaCity | null = null;
 let countyData: CountyPageData | null = null;
 let generalCityData: GeneralCityPageData | null = null;
 let cityServiceData: CityServicePageData | null = null;
+let countyServiceData: CityServicePageData | null = null;
 
 if (segments.length === 3) {
   // City+service page: /service-areas/{county}/{city}/{service}
@@ -57,6 +60,20 @@ if (segments.length === 3) {
   if (!cityServiceData) return Astro.rewrite('/404');
 
   console.log(`[service-area] ${pageType} ${slug} — title: ${cityServiceData?.title?.slice(0,50)} desc: ${cityServiceData?.description?.slice(0,50)}`);
+
+} else if (segments.length === 2 && SERVICE_SLUGS.includes(segments[1])) {
+  // County-service page: /service-areas/{county}/{service}
+  const [countySlug, serviceSlug] = segments;
+  pageType = 'countyService';
+
+  const template = getServiceTemplate(serviceSlug);
+  if (template) {
+    countyServiceData = generateCountyServicePage(countySlug, template);
+  }
+
+  if (!countyServiceData) return Astro.rewrite('/404');
+
+  console.log(`[service-area] ${pageType} ${slug} — title: ${countyServiceData.title?.slice(0,50)}`);
 
 } else if (segments.length === 2) {
   // City page: /service-areas/{county}/{city}
@@ -173,6 +190,12 @@ if (pageType === 'city' && generalCityData) {
   };
 }
 ---
+
+{pageType === 'countyService' && countyServiceData && (
+  <Layout title={countyServiceData.title} description={countyServiceData.description} includeMapbox>
+    <ServicePage data={countyServiceData as any} />
+  </Layout>
+)}
 
 {pageType === 'cityService' && cityServiceData && (
   <Layout title={cityServiceData.title} description={cityServiceData.description} jsonLd={cityServiceJsonLd} includeMapbox>

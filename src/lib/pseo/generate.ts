@@ -378,3 +378,145 @@ export function generateCityServicePage(
     nearbyCityServices,
   };
 }
+
+// ── 3. County + Service Page ────────────────────────────────────────────────
+
+/**
+ * County slug mapping for seed data lookup.
+ * Seed data uses short county slugs ("alameda"), but URLs use full slugs ("alameda-county-ca").
+ */
+const COUNTY_SLUG_MAP: Record<string, string> = {
+  'alameda-county-ca': 'alameda',
+  'contra-costa-county-ca': 'contra-costa',
+  'marin-county-ca': 'marin',
+  'napa-county-ca': 'napa',
+  'santa-clara-county-ca': 'santa-clara',
+};
+
+const COUNTY_NAME_MAP: Record<string, string> = {
+  'alameda-county-ca': 'Alameda County',
+  'contra-costa-county-ca': 'Contra Costa County',
+  'marin-county-ca': 'Marin County',
+  'napa-county-ca': 'Napa County',
+  'santa-clara-county-ca': 'Santa Clara County',
+};
+
+/**
+ * Generate a county+service page (e.g., "Roofing in Alameda County").
+ * Uses the same ServicePage template as city+service pages but scoped to the county.
+ */
+export function generateCountyServicePage(
+  countySlug: string,
+  template: ServiceTemplate,
+): CityServicePageData | null {
+  const countyName = COUNTY_NAME_MAP[countySlug];
+  if (!countyName) return null;
+
+  const shortCounty = COUNTY_SLUG_MAP[countySlug];
+  const countyCities = CITY_SEEDS.filter(c => c.countySlug === shortCounty);
+  if (countyCities.length === 0) return null;
+
+  // Use the first city's seed for neighborhood data and interpolation
+  const primarySeed = countyCities[0];
+  const {
+    serviceSlug,
+    serviceName,
+    heroHeadlinePattern,
+    heroFormTitle,
+    heroFormSubtitle,
+    serviceType,
+    serviceOptions,
+    titlePattern,
+    descriptionPattern,
+    faqTemplates,
+    stylesHeading,
+    stylesItems,
+  } = template;
+
+  // Build vars using county name instead of city
+  const vars: Record<string, string> = {
+    city: countyName,
+    county: countyName.replace(' County', ''),
+    neighborhood: primarySeed.neighborhoods[0],
+    medianHomePrice: primarySeed.medianHomePrice,
+    population: primarySeed.population,
+    keyFeature: primarySeed.keyFeature,
+    serviceName,
+  };
+
+  const title = interpolate(titlePattern, vars);
+  const description = interpolate(descriptionPattern, vars);
+  const heroHeadline = interpolate(heroHeadlinePattern, vars);
+
+  const cityList = countyCities.map(c => c.city).join(', ');
+
+  const hero: HeroProps = {
+    headline: heroHeadline,
+    formTitle: heroFormTitle,
+    formSubtitle: heroFormSubtitle,
+    serviceType,
+    serviceOptions,
+    badges: [
+      `Serving ${cityList}`,
+      'Licensed & Insured',
+      'Free Estimates',
+    ],
+  };
+
+  // FAQs scoped to county
+  const localFaqs = faqTemplates.map((faq, i) => {
+    const faqVars = { ...vars, neighborhood: primarySeed.neighborhoods[i % primarySeed.neighborhoods.length] };
+    return {
+      question: interpolate(faq.questionPattern, faqVars),
+      answer: interpolate(faq.answerPattern, faqVars),
+    };
+  });
+
+  const stylesSection: SectionBlock = {
+    type: 'styles',
+    data: {
+      heading: stylesHeading,
+      items: stylesItems.map(item => ({
+        title: item.title,
+        description: item.description,
+      })),
+      cardVariant: cardVariantForService(serviceSlug),
+    },
+  };
+
+  const sections: SectionBlock[] = [
+    { type: 'logoSlider' },
+    { type: 'reviews' },
+    { type: 'financing' },
+    { type: 'reviewLogos' },
+    stylesSection,
+    { type: 'difference' },
+    { type: 'projects' },
+    { type: 'faq' },
+    { type: 'contactUs' },
+    { type: 'footer' },
+  ];
+
+  // Link to same service in each city
+  const nearbyCityServices = countyCities.map(c => ({
+    name: `${serviceName} in ${c.city}`,
+    href: `/service-areas/${countySlug}/${c.slug}-ca/${serviceSlug}`,
+  }));
+
+  return {
+    city: countyName,
+    county: countyName.replace(' County', ''),
+    state: 'CA',
+    citySlug: countySlug,
+    countySlug,
+    serviceSlug,
+    serviceName,
+    title,
+    description,
+    hero,
+    sections,
+    localFaqs,
+    neighborhoods: primarySeed.neighborhoods,
+    nearbyCityServices,
+  };
+}

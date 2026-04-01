@@ -24,6 +24,11 @@ const cityServicePages = counties.flatMap(c =>
   )
 );
 
+// County+service pages (5 counties x 6 services = 30 pages)
+const countyServicePages = counties.flatMap(c =>
+  services.map(s => `https://hamilton-exteriors.com/service-areas/${c.slug}/${s}`)
+);
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://hamilton-exteriors.com',
@@ -36,6 +41,8 @@ export default defineConfig({
       ...cityPages,
       // City+service pages (29 cities x 6 services = 174 pages)
       ...cityServicePages,
+      // County+service pages (5 counties x 6 services = 30 pages)
+      ...countyServicePages,
     ],
     filter: (page) => {
       // Exclude noindex pages from sitemap
