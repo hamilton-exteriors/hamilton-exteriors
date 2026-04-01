@@ -23,7 +23,7 @@ export const server = {
       }
 
       // TODO: Send to CRM, email, or webhook
-      console.log('New lead:', input);
+      if (import.meta.env.DEV) console.log('New lead:', input);
       return { success: true, name: input.fullName };
     },
   }),

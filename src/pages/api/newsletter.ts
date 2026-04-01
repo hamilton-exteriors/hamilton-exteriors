@@ -15,8 +15,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   // TODO: Wire up to Mailchimp, ConvertKit, or your email service
-  // For now, log and return success
-  console.log(`[Newsletter] ${name || 'Anonymous'} <${email}>`);
+  if (import.meta.env.DEV) console.log(`[Newsletter] ${name || 'Anonymous'} <${email}>`);
 
   return new Response(JSON.stringify({ ok: true }), {
     status: 200,
