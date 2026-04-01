@@ -131,10 +131,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
   <!-- Service Areas -->
   <div class="mx-auto max-w-[1170px] px-4 lg:px-5">
     <div class="border-t border-white/10 pt-8 pb-4">
-      <details class="footer-areas-details" open>
-        <summary class="font-oswald text-sm font-bold uppercase tracking-[0.1em] text-white/60 mb-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden md:pointer-events-none">
-          Service Areas <span class="footer-areas-chevron md:hidden inline-block ml-1 text-[10px] transition-transform">&#9660;</span>
-        </summary>
+      <h3 class="font-oswald text-sm font-bold uppercase tracking-[0.1em] text-white/60 mb-4">Service Areas</h3>
       <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3 md:grid-cols-5">
         <div>
           <a href="/service-areas/alameda-county-ca" class="footer-area-county">Alameda County</a>
@@ -182,7 +179,6 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
         </div>
       </div>
       <a href="/service-areas" class="inline-block mt-4" style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: rgba(255,255,255,0.65); text-decoration: underline; text-underline-offset: 2px;">View all service areas &rarr;</a>
-      </details>
     </div>
   </div>
 
@@ -351,24 +347,8 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
   .footer-btn:hover {
     background-color: rgb(240, 208, 20);
   }
-  /* Collapse city grid on mobile, always open on desktop */
-  @media (max-width: 767px) {
-    .footer-areas-details:not([open]) .footer-areas-chevron {
-      transform: rotate(-90deg);
-    }
-    .footer-areas-details:not([open]) > :not(summary) {
-      display: none;
-    }
-  }
-  @media (min-width: 768px) {
-    .footer-areas-details > summary {
-      cursor: default;
-    }
-  }
-
   footer a:focus-visible,
-  footer button:focus-visible,
-  footer summary:focus-visible {
+  footer button:focus-visible {
     outline: 2px solid var(--color-yellow);
     outline-offset: 2px;
     border-radius: 2px;
