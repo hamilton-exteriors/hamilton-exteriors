@@ -66,9 +66,15 @@ if (segments.length === 3) {
   const [countySlug, serviceSlug] = segments;
   pageType = 'countyService';
 
-  const template = getServiceTemplate(serviceSlug);
-  if (template) {
-    countyServiceData = generateCountyServicePage(countySlug, template);
+  // Try Ghost first
+  countyServiceData = await getServiceAreaCityService(countySlug, countySlug, serviceSlug);
+
+  // Fallback: generate from template
+  if (!countyServiceData) {
+    const template = getServiceTemplate(serviceSlug);
+    if (template) {
+      countyServiceData = generateCountyServicePage(countySlug, template);
+    }
   }
 
   if (!countyServiceData) return Astro.rewrite('/404');
@@ -80,17 +86,17 @@ if (segments.length === 3) {
   const [countySlug, citySlug] = segments;
   pageType = 'city';
 
-  // Prefer GeneralCityPage (all-services) from seed data
-  const seedCitySlug = citySlug.replace(/-ca$/, '');
-  const seed = getCitySeed(seedCitySlug);
-
-  if (seed) {
-    generalCityData = generateGeneralCityPage(seed);
+  // Try Ghost CMS first
+  const ghostCity = await getServiceAreaCity(countySlug, citySlug);
+  if (ghostCity) {
+    cityData = ghostCity;
   } else {
-    // Fallback: try Ghost CMS
-    const ghostCity = await getServiceAreaCity(countySlug, citySlug);
-    if (ghostCity) {
-      cityData = ghostCity;
+    // Fallback: generate from seed data
+    const seedCitySlug = citySlug.replace(/-ca$/, '');
+    const seed = getCitySeed(seedCitySlug);
+
+    if (seed) {
+      generalCityData = generateGeneralCityPage(seed);
     } else {
       // Last fallback: static data files (backward compat)
       try {
