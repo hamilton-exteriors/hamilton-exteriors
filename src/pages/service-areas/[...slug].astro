@@ -80,21 +80,19 @@ if (segments.length === 3) {
   const [countySlug, citySlug] = segments;
   pageType = 'city';
 
-  // Try Ghost first
-  const ghostCity = await getServiceAreaCity(countySlug, citySlug);
+  // Prefer GeneralCityPage (all-services) from seed data
+  const seedCitySlug = citySlug.replace(/-ca$/, '');
+  const seed = getCitySeed(seedCitySlug);
 
-  if (ghostCity) {
-    // Ghost returned old-format ServiceAreaCity data — use old component
-    cityData = ghostCity;
+  if (seed) {
+    generalCityData = generateGeneralCityPage(seed);
   } else {
-    // Fallback: generate GeneralCityPage from seed
-    const seedCitySlug = citySlug.replace(/-ca$/, '');
-    const seed = getCitySeed(seedCitySlug);
-
-    if (seed) {
-      generalCityData = generateGeneralCityPage(seed);
+    // Fallback: try Ghost CMS
+    const ghostCity = await getServiceAreaCity(countySlug, citySlug);
+    if (ghostCity) {
+      cityData = ghostCity;
     } else {
-      // Second fallback: static data files (backward compat)
+      // Last fallback: static data files (backward compat)
       try {
         const mod = await import(`../../data/service-areas/${citySlug}.ts`);
         cityData = mod.data as ServiceAreaCity;
