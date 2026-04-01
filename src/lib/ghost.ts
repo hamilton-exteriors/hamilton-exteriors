@@ -1,7 +1,5 @@
-import { createHmac } from 'node:crypto';
-
 const GHOST_URL = import.meta.env.PUBLIC_GHOST_URL || '';
-const GHOST_ADMIN_KEY = import.meta.env.GHOST_ADMIN_API_KEY || '';
+const GHOST_KEY = import.meta.env.PUBLIC_GHOST_CONTENT_API_KEY || '';
 
 export interface GhostPost {
   id: string;
@@ -26,35 +24,19 @@ export interface GhostPagination {
   total: number;
 }
 
-/** Create a short-lived JWT for the Ghost Admin API. */
-function makeAdminToken(): string {
-  const [keyId, keySecret] = GHOST_ADMIN_KEY.split(':');
-  const header = Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT', kid: keyId })).toString('base64url');
-  const now = Math.floor(Date.now() / 1000);
-  const payload = Buffer.from(JSON.stringify({ iat: now, exp: now + 300, aud: '/admin/' })).toString('base64url');
-  const sig = createHmac('sha256', Buffer.from(keySecret, 'hex'))
-    .update(`${header}.${payload}`)
-    .digest('base64url');
-  return `${header}.${payload}.${sig}`;
-}
-
-/** Fetch from Ghost Admin API (no Content API rate limit). */
-async function ghostAdminFetch(endpoint: string, params: Record<string, string> = {}) {
-  if (!GHOST_URL || !GHOST_ADMIN_KEY) {
-    throw new Error('Ghost Admin API not configured. Set PUBLIC_GHOST_URL and GHOST_ADMIN_API_KEY.');
+async function ghostFetch(endpoint: string, params: Record<string, string> = {}) {
+  if (!GHOST_URL || !GHOST_KEY) {
+    throw new Error('Ghost CMS not configured. Set PUBLIC_GHOST_URL and PUBLIC_GHOST_CONTENT_API_KEY.');
   }
-  const url = new URL(`${GHOST_URL}/ghost/api/admin/${endpoint}/`);
+  const url = new URL(`${GHOST_URL}/ghost/api/content/${endpoint}/`);
+  url.searchParams.set('key', GHOST_KEY);
   for (const [k, v] of Object.entries(params)) {
     url.searchParams.set(k, v);
   }
-  const res = await fetch(url.toString(), {
-    headers: { Authorization: `Ghost ${makeAdminToken()}` },
-    signal: AbortSignal.timeout(15_000),
-  });
-  if (!res.ok) throw new Error(`Ghost Admin API error: ${res.status}`);
+  const res = await fetch(url.toString(), { signal: AbortSignal.timeout(10_000) });
+  if (!res.ok) throw new Error(`Ghost API error: ${res.status}`);
   return res.json();
 }
-
 
 export async function getPosts(options?: {
   page?: number;
@@ -75,12 +57,12 @@ export async function getPosts(options?: {
   ];
   const tagFilter = options?.tag ? `tag:${options.tag}` : '';
   params.filter = [tagFilter, ...excludeFilters].filter(Boolean).join('+');
-  const data = await ghostAdminFetch('posts', params);
+  const data = await ghostFetch('posts', params);
   return { posts: data.posts, pagination: data.meta.pagination };
 }
 
 export async function getPost(slug: string): Promise<GhostPost | null> {
-  const data = await ghostAdminFetch(`posts/slug/${slug}`, {
+  const data = await ghostFetch(`posts/slug/${slug}`, {
     include: 'tags',
   });
   return data.posts?.[0] ?? null;
@@ -93,7 +75,7 @@ export interface GhostTag {
 }
 
 export async function getTags(): Promise<GhostTag[]> {
-  const data = await ghostAdminFetch('tags', {
+  const data = await ghostFetch('tags', {
     include: 'count.posts',
     limit: 'all',
   });
@@ -103,7 +85,7 @@ export async function getTags(): Promise<GhostTag[]> {
 }
 
 export function isGhostConfigured(): boolean {
-  return Boolean(GHOST_URL && GHOST_ADMIN_KEY);
+  return Boolean(GHOST_URL && GHOST_KEY);
 }
 
 
@@ -154,7 +136,7 @@ async function warmServiceAreaCache(): Promise<void> {
     let more = true;
     while (more) {
       try {
-        const data = await ghostAdminFetch('posts', {
+        const data = await ghostFetch('posts', {
           filter: `tag:${tag}`,
           include: 'tags',
           limit: '100',
@@ -269,22 +251,14 @@ export async function getAllServiceAreaCities(): Promise<
   const results: Array<{ slug: string; countySlug: string; citySlug: string; title: string }> = [];
   for (const [slug, post] of _saCache) {
     if (!slug.startsWith('sa-city-')) continue;
-    // Slug format: sa-city-{countySlug}-{citySlug}
-    // County slugs always contain "-county-ca", city slugs end with "-ca"
-    // Use the tag to distinguish city pages from city+service pages
-    const hasServiceTag = post.tags?.some(t => t.slug === 'hash-service-area-city-service');
-    if (hasServiceTag) continue;
+    // Skip city+service posts (have 4+ segments after sa-city-)
     const withoutPrefix = slug.replace('sa-city-', '');
-    // Split on "-county-ca-" to separate county from city
-    const splitIdx = withoutPrefix.indexOf('-county-ca-');
-    if (splitIdx === -1) continue;
-    const countySlug = withoutPrefix.slice(0, splitIdx + '-county-ca'.length);
-    const citySlug = withoutPrefix.slice(splitIdx + '-county-ca-'.length);
-    if (!citySlug.endsWith('-ca')) continue;
+    const countyMatch = withoutPrefix.match(/^(.+-county-ca)-([^-]+-ca)$/);
+    if (!countyMatch) continue; // not a plain city post
     results.push({
       slug,
-      countySlug,
-      citySlug,
+      countySlug: countyMatch[1],
+      citySlug: countyMatch[2],
       title: post.title,
     });
   }
