@@ -3,11 +3,27 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
+
+const webAppJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Hamilton Exteriors Online Roof Scanner',
+  url: 'https://hamilton-exteriors.com/buy',
+  applicationCategory: 'BusinessApplication',
+  description: 'Scan your roof with satellite imagery and get an instant price for a new roof — no salesperson required.',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    description: 'Free roof scan and instant pricing',
+  },
+};
 ---
 
 <Layout
   title="Buy Your Roof Online | Hamilton Exteriors"
   description="Skip the salesman. Enter your address, see your roof, get an instant price. Buy your new roof online from Hamilton Exteriors."
+  jsonLd={webAppJsonLd}
 >
   <Navbar />
 

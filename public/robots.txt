@@ -3,6 +3,7 @@ Allow: /
 Disallow: /api/
 
 Sitemap: https://hamilton-exteriors.com/sitemap-index.xml
+Sitemap: https://hamilton-exteriors.com/image-sitemap.xml
 
 # AI/LLM content files
 # See https://llmstxt.org for specification

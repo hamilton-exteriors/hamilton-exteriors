@@ -12,12 +12,25 @@ import Services from '../../components/Services.astro';
 import {
   pageTitle, pageDescription, heroHeadline, heroFormTitle, counties,
 } from '../../data/service-areas-index';
+
+const itemListJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Hamilton Exteriors Service Areas',
+  itemListElement: counties.map((county, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: county.name,
+    url: `https://hamilton-exteriors.com${county.slug}`,
+  })),
+};
 ---
 
 <Layout
   title={pageTitle}
   description={pageDescription}
   includeMapbox
+  jsonLd={itemListJsonLd}
 >
   <AnnouncementBar />
   <Navbar />
