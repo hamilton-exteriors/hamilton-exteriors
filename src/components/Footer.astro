@@ -9,10 +9,10 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
 
 <footer class="w-full bg-footer">
   <div class="mx-auto max-w-[1170px] px-4 py-12 lg:px-5 lg:py-16">
-    <div class="flex flex-col items-center gap-10 md:grid md:grid-cols-2 md:items-start md:gap-x-12 md:gap-y-10 lg:flex lg:flex-row lg:justify-between lg:gap-16">
+    <div class="flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
 
       <!-- Column 1: Logo + Info -->
-      <div class="flex flex-col items-center gap-5 md:items-start lg:max-w-[320px]">
+      <div class="flex flex-col items-center gap-5 lg:items-start lg:max-w-[320px]">
         <Image
           src={logoFooter}
           alt="Hamilton Exteriors"
@@ -21,10 +21,10 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
           class="w-full max-w-[250px]"
           loading="lazy"
         />
-        <p class="text-center text-sm leading-relaxed text-white/70 md:text-left">
+        <p class="text-center text-sm leading-relaxed text-white/70 lg:text-left">
           500+ roofing, siding, and construction projects across the Bay Area. Licensed, bonded, and insured.
         </p>
-        <p class="text-center text-xs leading-relaxed text-white/50 md:text-left">
+        <p class="text-center text-xs leading-relaxed text-white/50 lg:text-left">
           CSLB License #1082377 &middot; <a href="https://www.google.com/maps/place/Hamilton+Exteriors" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-white/70 transition-colors">Google Business Profile</a>
         </p>
         <a href={PHONE_HREF} class="font-oswald text-xl font-bold tracking-wide text-white underline underline-offset-4">
@@ -33,11 +33,11 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
       </div>
 
       <!-- Column 2: Services -->
-      <div class="flex flex-col items-center gap-4 md:items-start">
+      <div class="flex flex-col items-center gap-4 lg:items-start">
         <h3 class="font-oswald text-xl font-bold uppercase tracking-[0.06em] text-white">
           Services
         </h3>
-        <nav class="flex flex-col items-center gap-1.5 md:items-start md:gap-2">
+        <nav class="flex flex-col items-center gap-1.5 lg:items-start lg:gap-2">
           <a href="/roofing" class="footer-link min-h-[44px] flex items-center">Roofing</a>
           <a href="/siding" class="footer-link min-h-[44px] flex items-center">Siding</a>
           <a href="/windows" class="footer-link min-h-[44px] flex items-center">Windows</a>
@@ -48,11 +48,11 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
       </div>
 
       <!-- Column 3: Quick Links -->
-      <div class="flex flex-col items-center gap-4 md:items-start">
+      <div class="flex flex-col items-center gap-4 lg:items-start">
         <h3 class="font-oswald text-xl font-bold uppercase tracking-[0.06em] text-white">
           Quick Links
         </h3>
-        <nav class="flex flex-col items-center gap-1.5 md:items-start md:gap-2">
+        <nav class="flex flex-col items-center gap-1.5 lg:items-start lg:gap-2">
           <a href="/terms" class="footer-link min-h-[44px] flex items-center">Terms</a>
           <a href="/privacy-policy" class="footer-link min-h-[44px] flex items-center">Privacy Policy</a>
           <a href="/privacy-notice-ca" class="footer-link min-h-[44px] flex items-center">Privacy Notice for CA Residents</a>
@@ -64,11 +64,11 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
       </div>
 
       <!-- Column 4: Newsletter + Reviews -->
-      <div class="flex w-full flex-col items-center gap-5 md:items-start md:col-span-2 lg:col-span-1 lg:w-auto lg:max-w-[320px]">
+      <div class="flex w-full flex-col items-center gap-5 lg:w-auto lg:items-start lg:max-w-[320px]">
         <h3 class="font-oswald text-xl font-bold uppercase tracking-[0.06em] text-white">
           Newsletter
         </h3>
-        <p class="text-center text-sm leading-relaxed text-white/70 md:text-left">
+        <p class="text-center text-sm leading-relaxed text-white/70 lg:text-left">
           Seasonal tips, project updates, and exclusive financing offers.
         </p>
 
@@ -102,7 +102,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
         </form>
 
         <!-- Review Badges -->
-        <div class="flex flex-wrap items-center justify-center gap-3 pt-2 md:justify-start">
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-2 lg:justify-start">
           <a href="https://www.google.com/maps/place/Hamilton+Exteriors" target="_blank" rel="noopener noreferrer" aria-label="Google reviews">
             <Image
               src={badgeGoogle}
@@ -132,7 +132,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
   <div class="mx-auto max-w-[1170px] px-4 lg:px-5">
     <div class="border-t border-white/10 pt-8 pb-4">
       <h3 class="font-oswald text-sm font-bold uppercase tracking-[0.1em] text-white/60 mb-4">Service Areas</h3>
-      <div class="grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3 lg:grid-cols-5">
+      <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3 md:grid-cols-5">
         <div>
           <a href="/service-areas/alameda-county-ca" class="footer-area-county">Alameda County</a>
           <a href="/service-areas/alameda-county-ca/oakland-ca" class="footer-area-city">Oakland</a>
