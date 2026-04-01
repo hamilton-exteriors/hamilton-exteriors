@@ -139,6 +139,7 @@ async function warmServiceAreaCache(): Promise<void> {
         const data = await ghostFetch('posts', {
           filter: `tag:${tag}`,
           include: 'tags',
+          formats: 'html',
           limit: '100',
           page: String(page),
         });
