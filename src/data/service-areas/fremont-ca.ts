@@ -11,9 +11,9 @@ export const data: ServiceAreaCity = {
   description: 'Hamilton Exteriors provides dedicated ADU contractors in Fremont, CA. Expert design, permits, and construction. Call for a free consultation!',
   hero: {
     headline: 'Build Your Dream ADU in Fremont',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Fremont ADU project so you can focus on what matters.',
+    subtitle: 'Fremont is the Bay Area\'s fourth-largest city with 230,000+ residents — and its generous lot sizes in Niles, Warm Springs, and Mission San Jose make it one of the best ADU markets in the East Bay.',
     badges: [
-      '15+ years of Fremont ADU expertise',
+      'Fremont\'s Warm Springs & Niles ADU specialists',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -51,9 +51,9 @@ export const data: ServiceAreaCity = {
   whyChoose: {
     subtitle: 'Reliable. Skilled. Proven.',
     paragraphs: [
-      "Hamilton Exteriors provides dedicated ADU contractors in Fremont, CA who bring focused attention to every project in this thriving South Bay city. Fremont's generous lot sizes in neighborhoods like Mission San Jose, Niles, and Warm Springs make it one of the best cities in Alameda County for ADU construction, and our team knows exactly how to maximize that potential.",
-      "We manage every detail of your ADU build from site evaluation and design through permitting and final walkthrough. Our dedication means we stay involved at every phase, coordinating with the City of Fremont's planning department and ensuring your project meets all current building codes and ADU regulations without costly delays.",
-      "Whether you're building an ADU for aging parents, a young adult returning home, or rental income near the BART corridor, our team delivers quality construction on schedule and within budget.",
+      "Hamilton Exteriors provides dedicated ADU contractors in Fremont, CA who bring focused attention to every project in this thriving East Bay city. From the historic charm of the Niles district — with its silent film-era Main Street — to the tech-driven development around Warm Springs BART and the hillside estates of Mission San Jose, Fremont's diverse neighborhoods each present unique ADU opportunities on lots that average 6,000-8,000+ square feet.",
+      "We manage every detail of your ADU build from site evaluation and design through permitting and final walkthrough. Our team coordinates with the City of Fremont's planning department, navigating the specific requirements for Irvington's older residential lots, the Centerville corridor near the 880, and the newer Ardenwood developments near the Dumbarton Bridge corridor.",
+      "Whether you're building an ADU for aging parents near Mission San Jose's top-rated schools, a rental unit close to Tesla's Fremont factory and Warm Springs BART, or a home office in the Glenmoor Gardens neighborhood, our team delivers quality construction on schedule and within budget.",
     ],
     features: [
       { title: 'Expert Design', description: 'Custom ADU plans designed to maximize your property\'s potential while complementing the architectural character of your neighborhood.' },
@@ -65,8 +65,8 @@ export const data: ServiceAreaCity = {
   whyEssential: {
     subtitle: 'Space. Value. Flexibility.',
     paragraphs: [
-      "Fremont is the fourth-largest city in the Bay Area, and its growing population has driven housing demand to record levels. ADUs give Fremont homeowners a smart way to add square footage without the cost and hassle of moving. With strong rental demand driven by proximity to Tesla's factory, tech employers along the 880 corridor, and excellent schools, a well-built ADU can generate meaningful monthly income.",
-      "Dedicated ADU contractors matter in Fremont because the city's permitting process requires detailed plans that comply with specific lot coverage ratios, parking requirements, and utility connection standards. A contractor who knows Fremont's rules can avoid the rejected plans and re-submissions that cost homeowners weeks of delays and thousands in additional fees.",
+      "Fremont is the fourth-largest city in the Bay Area with a population exceeding 230,000, and its proximity to Tesla's factory, the Silicon Valley tech corridor, and the new Warm Springs BART station has driven housing demand to record levels. ADUs give Fremont homeowners a smart way to add square footage — with median home prices above $1.4 million, a well-built ADU generating $2,800-$3,200/month in rental income is one of the best returns on investment in Alameda County.",
+      "Dedicated ADU contractors matter in Fremont because the city's five distinct community districts — Centerville, Niles, Irvington, Warm Springs, and Mission San Jose — each have different lot configurations and neighborhood character. A contractor who knows the difference between building on a compact Irvington lot versus a spacious Mission San Jose hillside parcel can avoid rejected plans and costly re-submissions.",
       "With a dedicated team managing your project from concept to completion, you get a finished ADU that adds real value to your property and gives your family the flexible living space you need in one of the East Bay's most desirable communities.",
     ],
   },

@@ -47,6 +47,10 @@ export default defineConfig({
       const exclude = ['/success', '/quote-calculator', '/404', '/privacy-policy', '/privacy-notice-ca', '/terms', '/eeo-policy', '/opt-out'];
       return !exclude.some(path => page.includes(path));
     },
+    serialize: (item) => {
+      item.lastmod = new Date().toISOString();
+      return item;
+    },
   })],
   image: {
     remotePatterns: [

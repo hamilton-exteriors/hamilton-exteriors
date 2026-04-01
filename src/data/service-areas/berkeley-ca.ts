@@ -11,9 +11,9 @@ export const data: ServiceAreaCity = {
   description: 'Hamilton Exteriors provides innovative ADU contractors in Berkeley, CA. Expert design, permits, and construction. Call for a free consultation!',
   hero: {
     headline: 'Build Your Dream ADU in Berkeley',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Berkeley ADU project so you can focus on what matters.',
+    subtitle: 'Berkeley is home to UC Berkeley, a thriving arts scene, and some of the most architecturally distinctive neighborhoods in the East Bay. We build ADUs that match this city\'s creative spirit.',
     badges: [
-      '15+ years of Berkeley ADU expertise',
+      'Berkeley\'s Craftsman & mid-century ADU specialists',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -51,8 +51,8 @@ export const data: ServiceAreaCity = {
   whyChoose: {
     subtitle: 'Creative. Skilled. Reliable.',
     paragraphs: [
-      "Hamilton Exteriors provides innovative ADU contractors in Berkeley, CA who understand the unique architectural character of this vibrant East Bay city. Berkeley homeowners value creativity and sustainability, and our team delivers ADU designs that complement the eclectic mix of Craftsman bungalows, mid-century homes, and modern builds found throughout neighborhoods like Elmwood, Rockridge, and the Berkeley Hills.",
-      "We handle every stage of your ADU project from initial concept through final inspection. Our team navigates Berkeley's specific zoning requirements and permitting processes so you can focus on the exciting parts of adding a new living space to your property. Whether you need a detached backyard unit, a garage conversion, or an attached addition, we bring fresh ideas and proven construction methods to every build.",
+      "Hamilton Exteriors provides innovative ADU contractors in Berkeley, CA who understand the unique architectural character of this vibrant East Bay city. From the tree-lined streets of North Berkeley and Elmwood to the hillside homes of Claremont and the Berkeley Hills, our team delivers ADU designs that complement each neighborhood's distinctive character — whether that's a Craftsman bungalow on a Thousand Oaks lot or a mid-century modern in Cragmont.",
+      "We handle every stage of your ADU project from initial concept through final inspection. Our team navigates Berkeley's specific zoning requirements — including the city's green building standards, seismic retrofit considerations for pre-1940s homes, and the Hillside Overlay district requirements in the eastern hills. Whether you need a detached backyard unit in Westbrae, a garage conversion in Lorin, or an attached addition near the Solano Avenue corridor, we bring fresh ideas and proven construction methods to every build.",
       "Our commitment to innovation means we incorporate energy-efficient materials, smart home features, and space-maximizing layouts that make your ADU both functional and forward-thinking.",
     ],
     features: [
@@ -65,8 +65,8 @@ export const data: ServiceAreaCity = {
   whyEssential: {
     subtitle: 'Function. Style. Value.',
     paragraphs: [
-      "Berkeley's housing market is one of the most competitive in the Bay Area, and ADUs offer homeowners a practical way to add living space, generate rental income, or house family members without the cost of buying a second property. With the city's proximity to UC Berkeley and downtown Oakland, well-built ADUs are in high demand from renters and can significantly boost your property value.",
-      "Innovative contractors are essential in Berkeley because the city has specific design review requirements and sustainability mandates that generic builders often struggle to meet. An experienced ADU contractor who understands Berkeley's municipal code can design a unit that passes inspection the first time and maximizes your available square footage within setback and height restrictions.",
+      "Berkeley's housing market is one of the most competitive in the Bay Area, with a median home price exceeding $1.3 million and a built-in rental market of 45,000+ UC Berkeley students, faculty, and staff. ADUs offer homeowners a practical way to add living space, generate $2,800-$3,500/month in rental income, or house family members without the cost of buying a second property.",
+      "Innovative contractors are essential in Berkeley because the city has specific design review requirements, Title 24 green building mandates, and seismic safety considerations for its many pre-war homes. An experienced ADU contractor who understands Berkeley's municipal code — including the unique regulations around the Downtown Plan area and the R-1/R-1A residential zones — can design a unit that passes inspection the first time and maximizes your available square footage.",
       "Choosing a contractor with an innovative approach means your ADU won't just meet minimum code requirements — it will be a thoughtfully designed space that serves your needs for years to come while adding lasting value to your Berkeley home.",
     ],
   },

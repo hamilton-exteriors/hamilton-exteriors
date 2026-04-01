@@ -12,9 +12,9 @@ export const data: ServiceAreaCity = {
   layout: 'single-column',
   hero: {
     headline: 'Build Your Dream ADU in San Leandro',
-    subtitle: 'From permit to keys in hand — we handle every detail of your San Leandro ADU project so you can focus on what matters.',
+    subtitle: 'San Leandro is a city in transition — with a booming downtown transit village near BART, the Bay Fair mall redevelopment, and waterfront Marina homes. We build ADUs that capitalize on this momentum.',
     badges: [
-      '15+ years of San Leandro ADU expertise',
+      'San Leandro\'s Bay Fair & Marina ADU specialists',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -52,9 +52,9 @@ export const data: ServiceAreaCity = {
   whyChoose: {
     subtitle: 'Efficient. Skilled. Reliable.',
     paragraphs: [
-      "Hamilton Exteriors provides reliable ADU contractors in San Leandro, CA who deliver consistent results for homeowners across this well-established East Bay community. San Leandro's stable residential neighborhoods like Estudillo Estates, Washington Manor, and Bay-O-Vista feature the kind of properties that are ideal for ADU additions, and our team has the track record to prove we get the job done right.",
-      "Reliability is the foundation of everything we do. When we commit to a timeline, a budget, and a scope of work, we follow through. Our process includes detailed pre-construction planning, clear communication at every milestone, and a structured approach to permitting with the City of San Leandro that avoids unnecessary delays. We understand that building an ADU is a major investment, and we treat every project with the care and professionalism it deserves.",
-      "From garage conversions to new detached units, we build ADUs that meet San Leandro's building standards while providing comfortable, well-finished living spaces your family or tenants will appreciate. Our team handles everything from architectural design and engineering to foundation work, framing, electrical, plumbing, and finish carpentry — all under one roof so you never have to coordinate multiple contractors.",
+      "Hamilton Exteriors provides reliable ADU contractors in San Leandro, CA who deliver consistent results for homeowners across this well-established East Bay community. From the stately Estudillo Estates with its Spanish Colonial homes near downtown, to the mid-century ranches of Washington Manor along the 880 corridor, to the waterfront properties near the San Leandro Marina and Mulford Gardens — our team has the track record to prove we get the job done right in every neighborhood.",
+      "Reliability is the foundation of everything we do. When we commit to a timeline, a budget, and a scope of work, we follow through. Our process includes detailed pre-construction planning, clear communication at every milestone, and a structured approach to permitting with the City of San Leandro. We're experienced with the specific requirements around the Bay Fair BART transit village redevelopment zone, the downtown San Leandro BART station area, and the Marina district's proximity to the shoreline.",
+      "From garage conversions in Bay-O-Vista to new detached units in the Broadmoor neighborhood, we build ADUs that meet San Leandro's building standards while providing comfortable, well-finished living spaces. Our team handles everything from architectural design and engineering to foundation work, framing, electrical, plumbing, and finish carpentry — all under one roof.",
     ],
     desktopOnlyParagraphs: [
       "San Leandro's proximity to BART, major freeways, and the Oakland waterfront makes it an increasingly popular area for young professionals and families. An ADU on your property can generate $1,800–$2,800 per month in rental income, or provide a private living space for aging parents or adult children — all while boosting your property value by an estimated 20–30%.",
@@ -69,8 +69,8 @@ export const data: ServiceAreaCity = {
   whyEssential: {
     subtitle: 'Value. Comfort. Compliance.',
     paragraphs: [
-      "San Leandro has seen significant growth and revitalization in recent years, with new transit-oriented development and rising property values making it one of the East Bay's most attractive communities. Adding an ADU to your San Leandro property is one of the smartest investments you can make — it increases your home's appraised value while providing flexible space for family or rental income. With the City of San Leandro actively encouraging ADU development through streamlined permitting, there has never been a better time to build.",
-      "Reliable contractors are essential because ADU construction involves coordinating multiple trades, managing city inspections, and meeting strict deadlines for permit renewals. An unreliable contractor can leave your project half-finished, burn through your budget on change orders, or fail inspections that set you back weeks. San Leandro homeowners deserve a builder they can count on from day one — someone who shows up, communicates clearly, and delivers quality work on schedule.",
+      "San Leandro has seen significant growth and revitalization in recent years — the downtown transit village near San Leandro BART is drawing new investment, the Bay Fair mall site is being reimagined as a mixed-use community, and the Marina waterfront continues to attract young professionals. With median home prices around $900K and one-bedroom rents approaching $2,400/month, adding an ADU to your San Leandro property is one of the smartest investments you can make.",
+      "Reliable contractors are essential because ADU construction involves coordinating multiple trades, managing city inspections, and meeting strict deadlines for permit renewals. San Leandro's housing stock spans nearly a century — from 1920s Estudillo Estates bungalows to 1960s Washington Manor tract homes to newer Marina-area construction — and each era presents different structural, electrical, and plumbing considerations that require experienced, reliable builders.",
     ],
     desktopOnlyParagraphs: [
       "With a reliable ADU contractor, you get a finished product that complies with all local building codes, passes every inspection, and delivers the comfortable, functional living space you envisioned when you started the project. From the initial design consultation through final walkthrough, our team ensures every detail is handled with precision and care.",

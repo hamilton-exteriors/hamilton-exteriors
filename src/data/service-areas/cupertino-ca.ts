@@ -12,7 +12,7 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in Cupertino',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Cupertino ADU project so you can focus on what matters.',
+    subtitle: 'Cupertino is the home of Apple Park, De Anza College, and some of California\'s top-rated public schools — with 60,000+ residents and extraordinary ADU demand from tech professionals and families seeking the school district.',
     badges: [
       '15+ years of Silicon Valley ADU expertise',
       '$0 down financing available',
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$3,500+/mo',
         label: 'Rental Income',
-        description: "Cupertino's proximity to Apple Park and world-class schools drives exceptional rental demand for your ADU.",
+        description: "With Apple Park's 12,000+ employees just blocks away and the Cupertino Union School District ranked among California's best, families and tech professionals compete for ADU rentals here.",
         icon: 'dollar',
       },
       {
         value: '25-35%',
         label: 'Home Value Increase',
-        description: 'A well-built ADU can significantly increase your Cupertino property value in this ultra-competitive market.',
+        description: "Cupertino's median home price exceeds $2.3 million — driven by Apple and the school district. A quality ADU adds $300K-$450K in appraised value in this ultra-competitive market.",
         icon: 'trend',
       },
       {
         value: 'Permit-Friendly',
         label: 'Streamlined Process',
-        description: 'Cupertino has streamlined ADU regulations to encourage housing development with faster permit approvals.',
+        description: "Cupertino's Community Development Department offers streamlined ADU review, waived impact fees under 750 sq ft, and no extra parking requirements near VTA bus stops along Stevens Creek Boulevard.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "Cupertino's Premier ADU Builders",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Cupertino and throughout Silicon Valley, we've earned the trust of homeowners across every neighborhood. Our in-house team handles every phase — from initial design and city permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew knows Cupertino's building codes inside and out, ensuring your ADU is built right the first time.",
+      "With over 15 years of experience building ADUs in Cupertino, we've earned the trust of homeowners from the Monta Vista hillside homes near the foothills to the Rancho Rinconada Eichler community, the Garden Gate neighborhood near Apple Park, the Oak Valley homes near De Anza College, and the South Blaney and Homestead Villa areas near Vallco shopping. Our in-house team handles every phase from design to final inspection.",
+      "We don't subcontract critical work. Our licensed crew understands Cupertino's specific requirements — including the Eichler-era considerations in Rancho Rinconada where post-and-beam construction and flat rooflines require specialized ADU design approaches, the hillside grading standards in Monta Vista near Stevens Creek, and the school-district-driven rental market that makes Cupertino ADUs among the most sought-after in Silicon Valley.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',

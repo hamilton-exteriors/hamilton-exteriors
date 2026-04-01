@@ -12,9 +12,9 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in St. Helena',
-    subtitle: 'From permit to keys in hand — we handle every detail of your St. Helena ADU project, blending wine country elegance with modern living.',
+    subtitle: 'St. Helena is the heart of Napa Valley — where Main Street wineries, Michelin-starred restaurants, and vineyard estates create one of California\'s most exclusive addresses. We build ADUs worthy of this setting.',
     badges: [
-      '15+ years of Napa Valley ADU expertise',
+      'St. Helena\'s Main Street & vineyard estate ADU experts',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$4,000+/mo',
         label: 'Rental Income',
-        description: "St. Helena's premium wine country location commands top-tier rental rates, especially for short-term vacation rentals.",
+        description: "With Charles Krug, Beringer, and dozens of tasting rooms along Main Street, St. Helena ADUs attract wine country visitors willing to pay $300+/night — generating $4,000+/month in vacation rental income.",
         icon: 'dollar',
       },
       {
         value: '25-40%',
         label: 'Home Value Increase',
-        description: "A well-designed ADU significantly increases your property value in St. Helena's high-end real estate market.",
+        description: "With a median home price exceeding $2.5 million, St. Helena is among the priciest small towns in California. A well-designed ADU adds $300K-$500K in appraised value to these already-premium properties.",
         icon: 'trend',
       },
       {
         value: 'World-Class',
         label: 'Location Appeal',
-        description: 'Surrounded by renowned wineries and Michelin-starred restaurants, St. Helena ADUs attract premium guests year-round.',
+        description: "Home to the Culinary Institute of America at Greystone, Meadowood Napa Valley, and 100+ wineries within 10 minutes, St. Helena ADUs attract premium guests year-round — not just harvest season.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "St. Helena's Premier ADU Experts",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Napa Valley, we've earned the trust of St. Helena homeowners who demand the highest quality. Our in-house team handles every phase — from initial design and city permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew understands St. Helena's strict design standards and historic preservation requirements, ensuring your ADU enhances your property's character and value.",
+      "With over 15 years of experience building ADUs in Napa Valley, we've earned the trust of St. Helena homeowners from the historic Main Street corridor and the Meadowood resort neighborhood to the Spring Mountain and Sulphur Springs vineyard estates. Our in-house team handles every phase — from initial design and city permits to construction and final inspection.",
+      "We don't subcontract critical work. Our licensed crew understands St. Helena's strict design standards — including the historic overlay requirements for properties near the downtown National Register Historic District, the agricultural preserve setbacks for vineyard-adjacent parcels, and the fire-safe construction mandates for hillside properties along Spring Mountain Road and Crystal Springs Road.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',

@@ -12,9 +12,9 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in American Canyon',
-    subtitle: 'From permit to keys in hand — we handle every detail of your American Canyon ADU project so you can maximize your property\'s potential.',
+    subtitle: 'American Canyon is the Gateway to Napa Valley — a fast-growing city of 21,000+ with spacious new developments, Wetlands Edge nature preserve, and some of the most ADU-friendly lot sizes in the county.',
     badges: [
-      '15+ years of Napa County ADU expertise',
+      'American Canyon\'s fastest-growing ADU builder',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$2,800+/mo',
         label: 'Rental Income',
-        description: "American Canyon's proximity to Napa Valley and the Bay Area creates strong rental demand for well-built ADUs.",
+        description: "American Canyon sits at the crossroads of Napa Valley wine country and the Bay Area — drawing renters who work in Vallejo, Napa, or commute south on I-80, with one-bedrooms commanding $2,400+/month.",
         icon: 'dollar',
       },
       {
         value: '20-30%',
         label: 'Home Value Increase',
-        description: 'A quality ADU can substantially increase your American Canyon property value in this growing market.',
+        description: "American Canyon's population has doubled since 2000, driving steady home appreciation. A quality ADU adds $150K-$300K in appraised value while generating monthly cash flow.",
         icon: 'trend',
       },
       {
         value: 'Spacious Lots',
         label: 'Room to Build',
-        description: 'American Canyon\'s newer developments feature generous lot sizes that are ideal for detached ADU construction.',
+        description: "Unlike older Napa Valley towns, American Canyon's post-2000 developments like Canyon Estates and Village Walk feature 5,000-7,000+ sq ft lots with modern utilities already sized for ADU additions.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "American Canyon's Expert ADU Builders",
     paragraphs: [
-      "With over 15 years of experience building ADUs across Napa County, we've earned the trust of homeowners in American Canyon and beyond. Our in-house team handles every phase of your project — from initial design and city permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew knows American Canyon's building codes and Napa County regulations inside and out, ensuring your ADU is built right the first time.",
+      "With over 15 years of experience building ADUs across Napa County, we've earned the trust of homeowners in American Canyon's Canyon Estates, Village Walk, Napa Junction, and the newer Green Island and Eucalyptus Grove developments. Our in-house team handles every phase — from initial design through city permits to construction and final inspection.",
+      "We don't subcontract critical work. Our licensed crew understands American Canyon's unique position as the county's youngest and fastest-growing city — with newer infrastructure, generous lot sizes in Wetlands Edge-adjacent developments, and building codes that reflect modern California standards rather than the historic preservation requirements of upper Napa Valley towns.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',

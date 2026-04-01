@@ -12,7 +12,7 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in Santa Clara',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Santa Clara ADU project so you can focus on what matters.',
+    subtitle: 'Santa Clara is home to Levi\'s Stadium, Santa Clara University, and major tech campuses for Intel and Nvidia — with 130,000+ residents and ADU rental demand driven by a uniquely diverse employment base.',
     badges: [
       '15+ years of Silicon Valley ADU expertise',
       '$0 down financing available',
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$2,900+/mo',
         label: 'Rental Income',
-        description: "Santa Clara's tech employers and university community create consistent rental demand for your ADU from day one.",
+        description: "Intel's 15,000+ Santa Clara employees, Nvidia's headquarters, Santa Clara University's 9,000 students, and Levi's Stadium events create diverse, year-round ADU rental demand from day one.",
         icon: 'dollar',
       },
       {
         value: '25-35%',
         label: 'Home Value Increase',
-        description: 'A well-built ADU can significantly boost your Santa Clara property value in this growing market.',
+        description: "Santa Clara's median home price exceeds $1.6 million. A quality ADU adds $200K-$380K in appraised value — with strong returns in the Old Quad, Rivermark, and Agnew neighborhoods.",
         icon: 'trend',
       },
       {
         value: 'Permit-Friendly',
         label: 'Streamlined Process',
-        description: 'Santa Clara has streamlined ADU regulations with reduced fees and faster permit approvals.',
+        description: "Santa Clara's Planning Division offers streamlined review with waived fees under 750 sq ft and no parking requirements near VTA light rail stations along Tasman Drive and the El Camino corridor.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "Santa Clara's Trusted ADU Experts",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Santa Clara and throughout Silicon Valley, we've earned the trust of homeowners across every neighborhood. Our in-house team handles every phase — from initial design and city permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew knows Santa Clara's building codes inside and out, ensuring your ADU is built right the first time.",
+      "With over 15 years of experience building ADUs in Santa Clara, we've earned the trust of homeowners from the historic Old Quad and Washington Square neighborhoods near Santa Clara University to the modern Rivermark community along the Guadalupe River, the Agnew area near Intel's campus, and the established Central Park and Briarwood neighborhoods near the Great America theme park corridor.",
+      "We don't subcontract critical work. Our licensed crew understands Santa Clara's unique mix — from century-old homes near the Mission Santa Clara campus that require careful foundation and electrical upgrades, to newer Rivermark and Northside construction with modern infrastructure, to the Levi's Stadium event-day traffic considerations for properties along Tasman Drive and Great America Parkway.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',

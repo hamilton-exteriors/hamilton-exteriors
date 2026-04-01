@@ -11,9 +11,9 @@ export const data: ServiceAreaCity = {
   description: 'Hamilton Exteriors provides trusted ADU contractors in Concord, CA. Expert design, permits, and construction. Call for a free consultation!',
   hero: {
     headline: 'Build Your Dream ADU in Concord',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Concord ADU project so you can focus on what matters.',
+    subtitle: 'Concord is Contra Costa County\'s largest city, centered around Todos Santos Plaza and undergoing a massive transformation with the former Naval Weapons Station redevelopment. We build ADUs that match Concord\'s energy.',
     badges: [
-      '15+ years of Concord ADU expertise',
+      'Concord\'s most experienced ADU builder',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -51,9 +51,9 @@ export const data: ServiceAreaCity = {
   whyChoose: {
     subtitle: 'Expert. Dependable. Local.',
     paragraphs: [
-      "Hamilton Exteriors provides trusted ADU contractors in Concord, CA who have earned the confidence of homeowners throughout this central Contra Costa County city. Concord's well-established neighborhoods like Dana Estates, Holbrook Heights, and the Crossings offer strong opportunities for ADU construction, and our reputation for honest work and quality results makes us the team homeowners turn to.",
-      "Trust is built through transparency, and that's how we operate. We provide clear written estimates, explain the permitting process with the City of Concord in plain language, and keep you informed at every stage of construction. There are no hidden costs, no vague timelines, and no shortcuts in our work.",
-      "Whether you want to add a detached studio in your backyard, convert an existing garage, or build a full one-bedroom ADU, we bring the same trusted approach that has made us a preferred contractor in the Concord area.",
+      "Hamilton Exteriors provides trusted ADU contractors in Concord, CA who have earned the confidence of homeowners throughout the county's largest city. From the leafy streets of Dana Estates and Holbrook Heights near Lime Ridge Open Space, to the Todos Santos Plaza downtown dining district, to the Crossings and Ellis Lake neighborhoods near the Concord BART station — we know each area's lot configurations, architectural styles, and building requirements.",
+      "Trust is built through transparency, and that's how we operate. We provide clear written estimates, explain the permitting process with the City of Concord in plain language, and keep you informed at every stage. We're especially experienced with properties near the 2,300-acre Concord Naval Weapons Station redevelopment site — the largest infill project in the Bay Area — where ADU values are poised to increase as the area transforms.",
+      "Whether you want to add a detached studio in your Meadow Homes backyard, convert a garage in Sun Terrace, or build a full one-bedroom ADU in the Pine Hollow neighborhood, we bring the same trusted approach that has made us a preferred contractor in the Concord area.",
     ],
     features: [
       { title: 'Custom Design', description: "We create ADU plans tailored to your neighborhood's architectural character, ensuring your new unit complements your existing home and property layout." },
@@ -65,8 +65,8 @@ export const data: ServiceAreaCity = {
   whyEssential: {
     subtitle: 'Comfort. Functionality. Growth.',
     paragraphs: [
-      "Concord is the largest city in Contra Costa County and a major hub for families, commuters, and small business owners. With BART access, excellent schools, and a revitalizing downtown, property values in Concord have risen steadily. An ADU adds functional living space that keeps pace with your family's changing needs while increasing your home's market value.",
-      "Trusted contractors are essential because ADU construction is a significant investment, and Concord homeowners need a builder they can rely on to deliver what was promised. Too many homeowners have been burned by contractors who underquote to win the job and then pile on change orders. A trusted contractor gives you an honest estimate, sticks to the scope, and delivers a quality result.",
+      "Concord is the largest city in Contra Costa County with 130,000+ residents and a major hub for families and commuters. With two BART stations (Concord and North Concord), a revitalizing downtown centered on the landmark Todos Santos Plaza, and the transformative 12,800-home Concord Naval Weapons Station redevelopment underway, property values have risen steadily. An ADU adds functional living space while increasing your home's market value in a city that's only getting more desirable.",
+      "Trusted contractors are essential because Concord's housing stock spans from 1950s Holbrook Heights ranch homes to 1980s Crystyl Ranch developments to modern Crossings condos — each presenting different structural and utility considerations. A trusted contractor who understands the difference between upgrading a 70-year-old foundation versus tying into modern infrastructure gives you an honest estimate, sticks to the scope, and delivers a quality result.",
       "With a trusted team handling your Concord ADU project, you can move forward with confidence knowing your investment is in capable hands and your finished unit will be a comfortable, functional space built to last.",
     ],
   },

@@ -11,9 +11,9 @@ export const data: ServiceAreaCity = {
   description: 'Hamilton Exteriors provides expert ADU contractors in Hayward, CA. Expert design, permits, and construction. Call for a free consultation!',
   hero: {
     headline: 'Build Your Dream ADU in Hayward',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Hayward ADU project so you can focus on what matters.',
+    subtitle: 'Hayward sits at the heart of the East Bay with Cal State East Bay on its hillside and a revitalizing downtown anchored by the South Hayward BART station. We build ADUs that match this city\'s momentum.',
     badges: [
-      '15+ years of Hayward ADU expertise',
+      'Hayward\'s downtown & hillside ADU specialists',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -51,9 +51,9 @@ export const data: ServiceAreaCity = {
   whyChoose: {
     subtitle: 'Skilled. Dependable. Proven.',
     paragraphs: [
-      "Hamilton Exteriors provides expert ADU contractors in Hayward, CA with deep knowledge of this centrally located East Bay city. Hayward's mix of single-family homes in neighborhoods like Hayward Hills, Tennyson, and Southgate offers excellent opportunities for ADU construction, and our team brings the expertise needed to turn your backyard or garage into valuable living space.",
-      "Our expert approach covers the full scope of ADU development. We start with a thorough property assessment, create detailed architectural plans that comply with Hayward's municipal code, manage all permit applications, and execute construction with skilled tradespeople who take pride in their craft. Every decision is backed by years of ADU building experience in the East Bay.",
-      "From foundation to finish, we apply expert-level attention to structural integrity, plumbing, electrical, and interior finishes that make your ADU feel like a true home rather than an afterthought.",
+      "Hamilton Exteriors provides expert ADU contractors in Hayward, CA with deep knowledge of this centrally located East Bay city. From the flatland bungalows near downtown's B Street corridor and the South Hayward BART station to the hillside homes in Hayward Hills with views of the entire Bay, our team brings the expertise needed to build ADUs tailored to each neighborhood's terrain and character.",
+      "Our expert approach covers the full scope of ADU development. We start with a thorough property assessment, create detailed architectural plans that comply with Hayward's municipal code, and navigate the specific requirements for Tennyson's post-war subdivisions, Southgate's larger lots near Cal State East Bay, and the Jackson Triangle neighborhood near downtown's revitalization zone.",
+      "From foundation to finish, we apply expert-level attention to structural integrity, plumbing, electrical, and interior finishes that make your ADU feel like a true home — whether you're in the Cherryland unincorporated area, the Harder-Tennyson corridor, or the established Eden Shores community near the shoreline.",
     ],
     features: [
       { title: 'Local Expertise', description: 'Deep knowledge of local zoning regulations and building codes ensures your ADU project moves through permitting smoothly and efficiently.' },
@@ -65,8 +65,8 @@ export const data: ServiceAreaCity = {
   whyEssential: {
     subtitle: 'Space. Growth. Reliability.',
     paragraphs: [
-      "Hayward sits at the geographic heart of the East Bay with easy access to both San Francisco and Silicon Valley, making it an increasingly popular city for families and professionals. As housing costs continue to climb across the region, ADUs provide Hayward homeowners with a practical solution for multigenerational living, home office space, or supplemental rental income.",
-      "Expert contractors are essential in Hayward because the city's varied terrain — from flatland lots near downtown to hillside properties along the eastern hills — presents different construction challenges that require specialized knowledge. Foundation requirements, drainage planning, and utility hookups vary significantly depending on where your property sits, and mistakes in these areas lead to expensive fixes down the road.",
+      "Hayward sits at the geographic heart of the East Bay — equidistant between San Francisco and San Jose — making it an increasingly popular city for families and professionals. With a population of 160,000+, Cal State East Bay bringing 15,000 students to the hillside, and downtown revitalization attracting new restaurants and transit-oriented development, ADUs provide Hayward homeowners with a practical solution for rental income in a market where one-bedroom apartments already command $2,200+/month.",
+      "Expert contractors are essential in Hayward because the city's varied terrain — from the flat lots along Mission Boulevard and the Tennyson corridor to the steep hillside properties above Foothill Boulevard near Cal State — presents dramatically different construction challenges. Hayward also sits on the Hayward Fault, making seismic considerations critical for ADU foundations, and the eastern hills require specific grading and drainage engineering that flatland builders often miss.",
       "Working with expert ADU contractors ensures your project is built right the first time, with proper engineering, quality materials, and construction techniques that protect your investment and deliver a space your family can rely on for decades.",
     ],
   },

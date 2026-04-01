@@ -12,7 +12,7 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in Campbell',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Campbell ADU project so you can focus on what matters.',
+    subtitle: 'Campbell is Silicon Valley\'s small-town gem — with the Pruneyard Shopping Center, a vibrant Downtown Campbell Avenue, and proximity to the Winchester Mystery House. Its central location and walkability make ADU rentals highly desirable.',
     badges: [
       '15+ years of Silicon Valley ADU expertise',
       '$0 down financing available',
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$2,800+/mo',
         label: 'Rental Income',
-        description: "Campbell's walkable downtown and central Silicon Valley location means strong rental demand for your ADU from day one.",
+        description: "Campbell's Downtown Avenue restaurants, Pruneyard entertainment district, and VTA light rail to San Jose create walkability that tech professionals love — ADUs here rent faster than almost anywhere in the West Valley.",
         icon: 'dollar',
       },
       {
         value: '25-35%',
         label: 'Home Value Increase',
-        description: 'A well-built ADU can significantly boost your Campbell property value in this desirable West Valley market.',
+        description: "Campbell's median home price exceeds $1.6 million, up 40%+ since 2020. A quality ADU adds $200K-$350K in appraised value while generating monthly cash flow from the West Valley's strong rental market.",
         icon: 'trend',
       },
       {
         value: 'Permit-Friendly',
         label: 'Streamlined Process',
-        description: 'Campbell has adopted ADU-friendly regulations with streamlined permitting to encourage housing development.',
+        description: "Campbell's Community Development Department offers streamlined ADU review, waived impact fees for units under 750 sq ft, and no extra parking near the VTA light rail station on Winchester Boulevard.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "Campbell's Professional ADU Builders",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Campbell and throughout Silicon Valley, we've earned the trust of homeowners across every neighborhood. Our in-house team handles every phase — from initial design and city permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew knows Campbell's building codes inside and out, ensuring your ADU is built right the first time.",
+      "With over 15 years of experience building ADUs in Campbell, we've earned the trust of homeowners from the walkable Downtown Campbell Avenue area near the VTA light rail station, to the Pruneyard/Dry Creek neighborhoods, the Hacienda Park and Ainsley Park family homes, the San Tomas corridor near the expressway, and the White Oaks neighborhood bordering Los Gatos Creek Park.",
+      "We don't subcontract critical work. Our licensed crew understands Campbell's specific requirements — including the downtown mixed-use zone considerations, the Los Gatos Creek setback requirements for properties near the popular trail system, and the VTA light rail proximity benefits that eliminate extra parking requirements for ADUs near the Campbell station on Winchester Boulevard.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',

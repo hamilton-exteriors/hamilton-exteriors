@@ -11,9 +11,9 @@ export const data: ServiceAreaCity = {
   description: 'Hamilton Exteriors provides expert ADU contractors in San Rafael, CA. Expert design, permits, and construction. Call for a free consultation!',
   hero: {
     headline: 'Build Your Dream ADU in San Rafael',
-    subtitle: 'From permit to keys in hand — we handle every detail of your San Rafael ADU project so you can focus on what matters.',
+    subtitle: 'San Rafael is the Marin County seat and its largest city — home to Dominican University, a vibrant downtown Fourth Street, and diverse neighborhoods from Gerstle Park to Terra Linda. We build ADUs worthy of this community.',
     badges: [
-      '15+ years of San Rafael ADU expertise',
+      'San Rafael\'s Gerstle Park & Terra Linda ADU experts',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -51,9 +51,9 @@ export const data: ServiceAreaCity = {
   whyChoose: {
     subtitle: 'Precise. Innovative. Trusted.',
     paragraphs: [
-      "Hamilton Exteriors provides expert ADU contractors in San Rafael, CA who bring comprehensive knowledge and refined execution to the county seat of Marin. San Rafael's diverse neighborhoods — from the Dominican area and Gerstle Park to Sun Valley and Terra Linda — offer a wide range of ADU opportunities, and our expert team tailors each project to the specific conditions and character of your location.",
-      "Our expertise spans the full ADU lifecycle. We assess your property's feasibility, create designs that maximize livable space within San Rafael's zoning parameters, prepare permit-ready plans for the city's building department, and execute construction with precision and care. Every technical decision — from foundation type to roof pitch to utility routing — is informed by deep experience building in Marin County.",
-      "We deliver finished ADUs that are move-in ready, fully permitted, and built to a standard that reflects both our expertise and San Rafael's expectations for quality residential construction.",
+      "Hamilton Exteriors provides expert ADU contractors in San Rafael, CA who bring comprehensive knowledge and refined execution to the county seat of Marin. From the tree-canopied streets of Gerstle Park near downtown's Fourth Street, to the Dominican University neighborhood, to the mid-century homes of Terra Linda and the Sun Valley hillside properties with bay views — our expert team tailors each project to the specific conditions and character of your location.",
+      "Our expertise spans the full ADU lifecycle. We understand the specific requirements of San Rafael's varied neighborhoods — the historic overlay considerations in the Forbes Avenue area, flood zone regulations for properties near San Rafael Creek, the hillside development standards in the Peacock Gap and Santa Venetia communities, and the proximity-to-transit benefits near the San Rafael BART-bus hub and SMART train station on Tamalpais Avenue.",
+      "We deliver finished ADUs that are move-in ready, fully permitted, and built to a standard that reflects both our expertise and San Rafael's expectations — whether you're in the Canal neighborhood, the Montecito area near the Marin Civic Center, or the family-friendly Marinwood community near Lucas Valley.",
     ],
     features: [
       { title: 'Custom Design', description: "We create ADU plans tailored to your neighborhood's architectural character, ensuring your new unit complements your existing home and property layout." },
@@ -65,8 +65,8 @@ export const data: ServiceAreaCity = {
   whyEssential: {
     subtitle: 'Knowledge. Efficiency. Security.',
     paragraphs: [
-      "San Rafael is Marin County's largest city and its commercial and cultural center, with a diverse housing stock that ranges from downtown condos to hillside estates. The city has been proactive about encouraging ADU construction as part of its housing strategy, but navigating San Rafael's building requirements still demands expertise. From flood zone considerations in low-lying areas to hillside development standards in the western neighborhoods, every property presents its own technical requirements.",
-      "Expert contractors are essential in San Rafael because the stakes are high. With median home values well above a million dollars, your ADU needs to be built correctly — structurally sound, code-compliant, and finished to a standard that protects your property's value. Mistakes in permitting, design, or construction don't just cost money to fix; they can reduce your home's marketability and create legal liabilities.",
+      "San Rafael is Marin County's largest city with 60,000+ residents and serves as the county's commercial and cultural center, anchored by the Frank Lloyd Wright-designed Marin Civic Center. The city has been proactive about encouraging ADU construction — with the San Rafael SMART station, the downtown Fourth Street corridor, and Dominican University creating strong rental demand — but navigating San Rafael's building requirements still demands expertise across its dramatically varied terrain.",
+      "Expert contractors are essential in San Rafael because the stakes are high. With median home values around $1.3 million and neighborhoods ranging from the flat, transit-accessible Canal district to the steep hillsides of Sun Valley and the waterfront homes of Loch Lomond Marina, your ADU needs to be built correctly for its specific location. Flood zone compliance near San Rafael Creek, hillside grading permits, and fire-safe construction in the WUI zones all require contractors who have navigated these requirements before.",
       "With expert ADU contractors handling your San Rafael project, you gain the security of knowing every detail has been addressed by professionals who understand the technical, regulatory, and quality requirements of building in one of California's most desirable counties.",
     ],
   },

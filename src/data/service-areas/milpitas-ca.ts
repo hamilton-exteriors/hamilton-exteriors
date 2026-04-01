@@ -12,7 +12,7 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in Milpitas',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Milpitas ADU project so you can focus on what matters.',
+    subtitle: 'Milpitas sits at the crossroads of Silicon Valley and the East Bay — home to the Great Mall, a new BART station, and the semiconductor corridor that houses Western Digital, KLA, and Flex. ADU demand here is surging.',
     badges: [
       '15+ years of Silicon Valley ADU expertise',
       '$0 down financing available',
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$2,700+/mo',
         label: 'Rental Income',
-        description: "Milpitas's proximity to major tech employers and the new BART station means steady rental demand for your ADU.",
+        description: "Western Digital, KLA, and Flex headquarters are in Milpitas, with Cisco and Tesla within 10 minutes. The new Milpitas BART station has supercharged rental demand — ADUs near transit rent within days.",
         icon: 'dollar',
       },
       {
         value: '25-35%',
         label: 'Home Value Increase',
-        description: 'A well-built ADU can significantly boost your Milpitas property value as the area continues to grow.',
+        description: "Milpitas's median home price exceeds $1.4 million and has risen 35%+ since the BART station opened. A quality ADU adds $200K-$350K in appraised value in this rapidly appreciating market.",
         icon: 'trend',
       },
       {
         value: 'Permit-Friendly',
         label: 'Streamlined Process',
-        description: 'Milpitas has adopted ADU-friendly regulations with streamlined permitting to encourage housing development.',
+        description: "Milpitas's Building Department offers streamlined ADU review, and properties within half a mile of the BART station qualify for no extra parking requirements — making transit-adjacent ADUs easier and cheaper to build.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "Milpitas's Trusted ADU Experts",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Milpitas and throughout Silicon Valley, we've earned the trust of homeowners across every neighborhood. Our in-house team handles every phase — from initial design and city permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew knows Milpitas's building codes inside and out, ensuring your ADU is built right the first time.",
+      "With over 15 years of experience building ADUs in Milpitas, we've earned the trust of homeowners from the established Sunnyhills and Calaveras Hills hillside neighborhoods to the modern Summitpointe and Serra Center communities, the Midtown area near the new Milpitas BART station, and the Jacklin Road corridor along the semiconductor manufacturing belt. Our in-house team handles every phase from design to final inspection.",
+      "We don't subcontract critical work. Our licensed crew understands Milpitas's unique position — the BART Transit Area Specific Plan that governs development near the station, the hillside grading requirements for properties in the Calaveras Hills along the Ed Levin Park boundary, and the growing Milpitas Metro Specific Plan area near the Great Mall that's transforming former industrial parcels into mixed-use neighborhoods.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',

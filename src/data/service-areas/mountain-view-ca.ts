@@ -12,7 +12,7 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in Mountain View',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Mountain View ADU project so you can focus on what matters.',
+    subtitle: 'Mountain View is home to Google\'s global headquarters, the iconic Castro Street downtown, and Shoreline Amphitheatre — with 80,000+ residents and some of the strongest ADU rental demand in Silicon Valley.',
     badges: [
       '15+ years of Silicon Valley ADU expertise',
       '$0 down financing available',
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$3,200+/mo',
         label: 'Rental Income',
-        description: "Mountain View's proximity to Google, LinkedIn, and other tech giants means your ADU can command premium rents from day one.",
+        description: "With Google's 25,000+ Mountain View employees, plus LinkedIn, Intuit, and Samsung nearby, ADUs here rent within days of listing — especially within biking distance of the Googleplex along Shoreline Boulevard.",
         icon: 'dollar',
       },
       {
         value: '25-35%',
         label: 'Home Value Increase',
-        description: 'A well-built ADU can significantly increase your Mountain View property value in this high-demand housing market.',
+        description: "Mountain View's median home price exceeds $1.8 million. A quality ADU adds $250K-$400K in appraised value — making it one of the highest ROI home improvements in Silicon Valley.",
         icon: 'trend',
       },
       {
         value: 'Permit-Friendly',
         label: 'Streamlined Process',
-        description: 'Mountain View has adopted ADU-friendly regulations with streamlined permitting to encourage housing development.',
+        description: "Mountain View's Community Development Department has streamlined ADU permitting with online plan submission, reduced fees for units under 750 sq ft, and no parking requirements near Caltrain stations.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "Mountain View's Expert ADU Builders",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Mountain View and throughout Silicon Valley, we've earned the trust of homeowners across every neighborhood. Our in-house team handles every phase — from initial design and city permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew knows Mountain View's building codes inside and out, ensuring your ADU is built right the first time.",
+      "With over 15 years of experience building ADUs in Mountain View, we've earned the trust of homeowners from the walkable Old Mountain View neighborhood near Castro Street to the Cuesta Park bungalows, the Rex Manor mid-century homes, and the Monta Loma and Shoreline West neighborhoods adjacent to Google's Bayshore campus. Our in-house team handles every phase from design to final inspection.",
+      "We don't subcontract critical work. Our licensed crew understands Mountain View's specific building requirements — including the R-1 zoning that covers most single-family neighborhoods, the Caltrain corridor proximity rules for properties near the downtown and San Antonio stations, and the unique considerations for lots near the Shoreline Regional Park wetlands that require specific drainage engineering.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',

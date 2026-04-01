@@ -11,9 +11,9 @@ export const data: ServiceAreaCity = {
   description: 'Hamilton Exteriors provides premier ADU contractors in Larkspur, CA. Expert design, permits, and construction. Call for a free consultation!',
   hero: {
     headline: 'Build Your Dream ADU in Larkspur',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Larkspur ADU project so you can focus on what matters.',
+    subtitle: 'Larkspur is a jewel of southern Marin — with its Golden Gate Ferry terminal providing 30-minute access to SF, the charming Magnolia Avenue downtown, and homes nestled along Corte Madera Creek and the surrounding hillsides.',
     badges: [
-      '15+ years of Larkspur ADU expertise',
+      'Larkspur\'s ferry-corridor ADU specialists',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -51,9 +51,9 @@ export const data: ServiceAreaCity = {
   whyChoose: {
     subtitle: 'Elite. Reliable. Proven.',
     paragraphs: [
-      "Hamilton Exteriors provides premier ADU contractors in Larkspur, CA who deliver construction quality that matches this charming Marin County town's exceptional character. Larkspur's intimate neighborhoods, nestled between Mount Tamalpais and the bay, feature distinctive homes on varied terrain, and our premier team has the skill and experience to build ADUs that complement this special setting.",
-      "As premier contractors, we bring a higher standard to every aspect of your ADU project. Our designs respect Larkspur's architectural heritage while incorporating modern amenities. We navigate the Town of Larkspur's planning and building departments with familiarity, and our construction crews deliver the caliber of work that homeowners in this community rightfully expect.",
-      "Whether your property sits along Magnolia Avenue, in the hillside areas above downtown, or near the Larkspur Ferry terminal, we design and build ADUs that feel like a natural part of your property rather than an addition.",
+      "Hamilton Exteriors provides premier ADU contractors in Larkspur, CA who deliver construction quality that matches this charming Marin County town's exceptional character. From the boutique-lined Magnolia Avenue corridor and the creekside homes along Corte Madera Creek, to the hillside properties in Baltimore Park and the Madrone Canyon area, to the newer Larkspur Landing homes near the Golden Gate Ferry terminal — our premier team builds ADUs that complement each setting.",
+      "As premier contractors, we bring a higher standard to every aspect of your ADU project. We understand the specific considerations of Larkspur's neighborhoods — the flood zone requirements for properties near the creek, the hillside grading standards in the Dolliver Park and King Mountain areas, and the design expectations along Magnolia Avenue where Larkspur's small-town character is most visible.",
+      "Whether your property sits in the walkable downtown area near the Lark Theater, in the hillside redwood groves of Baltimore Canyon, or in the Greenbrae Boardwalk area with its bay views, we design and build ADUs that feel like a natural part of your property rather than an addition.",
     ],
     features: [
       { title: 'Custom Design', description: "We create ADU plans tailored to your neighborhood's architectural character, ensuring your new unit complements your existing home and property layout." },
@@ -65,8 +65,8 @@ export const data: ServiceAreaCity = {
   whyEssential: {
     subtitle: 'Quality. Trust. Value.',
     paragraphs: [
-      "Larkspur is one of Marin County's most desirable small towns, with a walkable downtown, ferry access to San Francisco, and a tight-knit community feel that draws families and professionals alike. Home values here are among the highest in the Bay Area, and any construction on your property needs to enhance rather than diminish that value. A premier ADU contractor ensures your new unit meets the quality threshold this market demands.",
-      "Premier contractors are essential in Larkspur because the town's smaller size means the building department knows good work from bad, neighbors notice construction quality, and substandard ADUs stand out conspicuously. Additionally, many Larkspur lots have unique topographical challenges — creek setbacks, hillside grading, and mature tree preservation — that require experienced, skilled builders to handle correctly.",
+      "Larkspur is one of Marin County's most desirable small towns, with just 13,000 residents, a walkable Magnolia Avenue downtown, and the Larkspur Ferry providing direct 30-minute service to San Francisco's Ferry Building. Home values here regularly exceed $1.8 million, and any construction on your property needs to enhance rather than diminish that value. A premier ADU contractor ensures your new unit meets the quality threshold this market demands.",
+      "Premier contractors are essential in Larkspur because the town's smaller size means the building department knows good work from bad, neighbors notice construction quality, and substandard ADUs stand out conspicuously. Many Larkspur lots have unique topographical challenges — Corte Madera Creek flood setbacks for properties in Murray Park, hillside grading requirements in Baltimore Canyon, mature redwood preservation in Madrone Canyon, and SMART train corridor proximity in Larkspur Landing — all requiring experienced builders.",
       "By choosing premier ADU contractors, you protect your Larkspur home's value and ensure your new unit is a source of pride — a well-crafted space that serves your family's needs while respecting the character of this remarkable Marin community.",
     ],
   },

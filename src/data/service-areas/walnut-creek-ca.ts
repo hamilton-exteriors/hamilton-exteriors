@@ -11,9 +11,9 @@ export const data: ServiceAreaCity = {
   description: 'Hamilton Exteriors provides dedicated ADU contractors in Walnut Creek, CA. Expert design, permits, and construction. Call for a free consultation!',
   hero: {
     headline: 'Build Your Dream ADU in Walnut Creek',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Walnut Creek ADU project so you can focus on what matters.',
+    subtitle: 'Walnut Creek is the East Bay\'s premier downtown destination — with Broadway Plaza shopping, a nationally recognized dining scene, and BART-connected convenience that makes ADU rentals highly sought after.',
     badges: [
-      '15+ years of Walnut Creek ADU expertise',
+      'Walnut Creek\'s BART-adjacent ADU specialists',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -51,9 +51,9 @@ export const data: ServiceAreaCity = {
   whyChoose: {
     subtitle: 'Focused. Reliable. Trusted.',
     paragraphs: [
-      "Hamilton Exteriors provides dedicated ADU contractors in Walnut Creek, CA who give your project the focused attention it deserves in this upscale East Bay community. Walnut Creek's tree-lined streets and established neighborhoods like Northgate, Rossmoor, and Saranap are home to properties that benefit greatly from well-designed ADU additions, and our dedicated team ensures every build meets the area's high standards.",
-      "When we take on a Walnut Creek ADU project, we dedicate the resources and attention needed to do it right. That means a thorough initial consultation, custom design that complements your existing home, efficient navigation of Walnut Creek's building permit process, and hands-on construction management that keeps quality high and disruption low.",
-      "Our dedication extends beyond just building. We help you understand your options, make informed decisions about layout and finishes, and deliver a completed ADU that enhances both your property and your daily life.",
+      "Hamilton Exteriors provides dedicated ADU contractors in Walnut Creek, CA who give your project the focused attention it deserves in this upscale East Bay community. From the Northgate neighborhood with its proximity to Mt. Diablo trails, to the Parkmead and Larkey Park homes near downtown, to the Saranap district bordering Pleasant Hill, to the renowned Rossmoor active-adult community — our team ensures every build meets the area's high standards.",
+      "When we take on a Walnut Creek ADU project, we dedicate the resources and attention needed to do it right. We understand the specific considerations of building near the Walnut Creek BART station — where reduced parking requirements apply — as well as the design expectations in the Indian Valley and Shell Ridge neighborhoods where hillside lots require engineered foundations and retaining walls.",
+      "Our dedication extends beyond just building. Whether your property faces Broadway Plaza's vibrant shopping district, backs up to the Iron Horse Trail, or sits in the Rudgear Estates area with its spacious lots, we help you make informed decisions about layout and finishes that deliver a completed ADU matching your neighborhood's premium character.",
     ],
     features: [
       { title: 'Custom Design', description: "We create ADU plans tailored to your neighborhood's architectural character, ensuring your new unit complements your existing home and property layout." },
@@ -65,8 +65,8 @@ export const data: ServiceAreaCity = {
   whyEssential: {
     subtitle: 'Stability. Comfort. Value.',
     paragraphs: [
-      "Walnut Creek is one of the most sought-after communities in the East Bay, known for its vibrant downtown, excellent dining and shopping, and access to open space trails. Property values here reflect that desirability, and homeowners who add a quality ADU can see significant returns — whether through rental income in this high-demand market or increased property value at resale.",
-      "Dedicated contractors are essential in Walnut Creek because this community expects excellence. A generic ADU that looks like it was bolted onto the back of your home will detract from your property rather than enhance it. Dedicated contractors invest the time to design a unit that integrates with your existing architecture, uses materials that match or complement your home's exterior, and delivers an interior that feels polished and complete.",
+      "Walnut Creek is one of the most sought-after communities in the East Bay, with median home prices exceeding $1.2 million, a vibrant downtown anchored by the recently expanded Broadway Plaza, and 2,700+ acres of open space including the Shell Ridge and Lime Ridge trails. BART access from the Walnut Creek station means ADU renters can reach San Francisco in 35 minutes, driving one-bedroom rents above $2,800/month.",
+      "Dedicated contractors are essential in Walnut Creek because this community expects excellence. Properties range from 1960s Northgate split-levels to custom hillside homes in Indian Valley — and a generic ADU that looks like it was bolted onto the back of your home will detract from your property rather than enhance it. Dedicated contractors invest the time to design a unit that integrates with your existing architecture, whether that's matching Parkmead's ranch-style aesthetic or complementing a Rudgear Estates contemporary.",
       "With dedicated ADU contractors managing your Walnut Creek project, the finished unit becomes a natural extension of your home — adding comfort, stability, and tangible value to one of the East Bay's finest addresses.",
     ],
   },

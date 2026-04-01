@@ -12,9 +12,9 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in Yountville',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Yountville ADU project in the culinary capital of Napa Valley.',
+    subtitle: 'Yountville is Napa Valley\'s culinary capital — home to The French Laundry, the Napa Valley Veterans Home, and just 3,000 residents in the most walkable wine country town in California. ADU demand here is extraordinary.',
     badges: [
-      '15+ years of Napa Valley ADU expertise',
+      'Yountville\'s premier wine country ADU builder',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$4,200+/mo',
         label: 'Rental Income',
-        description: "Yountville's Michelin-starred restaurants and luxury resorts attract high-end visitors willing to pay premium nightly rates for vacation rentals.",
+        description: "Home to The French Laundry, Bottega, and Bouchon — plus luxury hotels like Bardessono and the Napa Valley Lodge — Yountville visitors pay $350-$600/night for private vacation rental stays.",
         icon: 'dollar',
       },
       {
         value: '30-40%',
         label: 'Home Value Increase',
-        description: "A well-designed ADU substantially increases your property value in Yountville's ultra-premium real estate market.",
+        description: "With just 3,000 residents and extremely limited housing inventory, Yountville median home prices exceed $1.5 million. A well-designed ADU adds $350K-$500K in this supply-constrained market.",
         icon: 'trend',
       },
       {
         value: 'Walkable',
         label: 'Town Center',
-        description: "Yountville's compact, walkable layout means ADU guests can enjoy world-class dining, galleries, and tasting rooms without a car.",
+        description: "Yountville's 1.5-mile walkable main strip — from the Napa Valley Museum to Domaine Chandon — means ADU guests enjoy Michelin dining, art galleries, and tasting rooms without needing a car.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "Yountville's Experienced ADU Experts",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Napa Valley, we understand what Yountville homeowners expect: exceptional quality, refined design, and seamless execution. Our in-house team handles every phase — from initial design and town permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew knows Yountville's building standards and the town's commitment to architectural excellence, ensuring your ADU enhances your property and the community.",
+      "With over 15 years of experience building ADUs in Napa Valley, we understand what Yountville homeowners expect. From the Washington Street corridor steps from The French Laundry and Bouchon Bakery, to the residential streets of Yount Street and Oak Circle, to the Finnell Road properties bordering Dominus Estate and Opus One vineyards — our in-house team delivers the quality this town demands.",
+      "We don't subcontract critical work. Our licensed crew understands Yountville's architectural standards — the town's commitment to maintaining its intimate village character, the Veterans Home campus adjacency considerations, and the design expectations in a community that hosts more Michelin stars per capita than anywhere else in America.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',

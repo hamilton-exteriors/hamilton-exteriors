@@ -12,7 +12,7 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in Los Gatos',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Los Gatos ADU project so you can focus on what matters.',
+    subtitle: 'Los Gatos is a charming foothill town of 33,000 — home to Netflix\'s global headquarters, a walkable downtown with boutiques and restaurants, and hillside estates with Santa Cruz Mountain views. ADU demand here is premium.',
     badges: [
       '15+ years of Silicon Valley ADU expertise',
       '$0 down financing available',
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$3,500+/mo',
         label: 'Rental Income',
-        description: "Los Gatos's desirability and limited housing supply means your ADU can command premium rents from tech executives and professionals.",
+        description: "With Netflix's HQ on Winchester Boulevard and Apple, Google, and eBay campuses within 15 minutes, Los Gatos ADUs attract C-suite executives and senior engineers willing to pay top rents for small-town charm.",
         icon: 'dollar',
       },
       {
         value: '25-40%',
         label: 'Home Value Increase',
-        description: 'A well-built ADU adds substantial value to your Los Gatos property in this highly sought-after market.',
+        description: "Los Gatos median home prices exceed $2.5 million, with hillside estates reaching $5M+. A quality ADU adds $350K-$500K in appraised value — exceptional ROI in this supply-constrained town.",
         icon: 'trend',
       },
       {
         value: 'Permit-Friendly',
         label: 'Streamlined Process',
-        description: 'Los Gatos has updated ADU regulations in line with state law, making it easier to add housing to your property.',
+        description: "Los Gatos's Community Development Department reviews ADU applications with design sensitivity to the town's character, while state mandates ensure streamlined approvals and reduced fees for qualifying units.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "Los Gatos's Expert ADU Builders",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Los Gatos and throughout Silicon Valley, we've earned the trust of homeowners across every neighborhood. Our in-house team handles every phase — from initial design and town permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew understands Los Gatos's design expectations and building codes, ensuring your ADU is built right the first time.",
+      "With over 15 years of experience building ADUs in Los Gatos, we've earned the trust of homeowners from the walkable downtown core near Santa Cruz Avenue and the North 40 development, to the Blossom Hill and Shannon Park family neighborhoods, to the hillside estates in Belgatos, Kennedy Road, and the Los Gatos Mountains above Highway 17. Our in-house team handles every phase from design to final inspection.",
+      "We don't subcontract critical work. Our licensed crew understands Los Gatos's specific requirements — including the town's Architecture and Site Review Committee expectations for properties near the downtown historic core, the steep-slope hillside development standards for Kennedy Road and Forrester properties, and the Los Gatos Creek setback requirements for homes along the popular creek trail system.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',

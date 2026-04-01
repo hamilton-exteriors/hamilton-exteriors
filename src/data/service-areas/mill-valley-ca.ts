@@ -11,9 +11,9 @@ export const data: ServiceAreaCity = {
   description: 'Hamilton Exteriors provides innovative ADU contractors in Mill Valley, CA. Expert design, permits, and construction. Call for a free consultation!',
   hero: {
     headline: 'Build Your Dream ADU in Mill Valley',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Mill Valley ADU project so you can focus on what matters.',
+    subtitle: 'Mill Valley is nestled at the base of Mt. Tamalpais — a community of 15,000 where Throckmorton Avenue\'s boutiques meet Blithedale Canyon\'s redwood groves. We build ADUs that honor this extraordinary setting.',
     badges: [
-      '15+ years of Mill Valley ADU expertise',
+      'Mill Valley\'s hillside & canyon ADU specialists',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -51,9 +51,9 @@ export const data: ServiceAreaCity = {
   whyChoose: {
     subtitle: 'Creative. Modern. Practical.',
     paragraphs: [
-      "Hamilton Exteriors provides innovative ADU contractors in Mill Valley, CA who bring creative design thinking to one of Marin County's most architecturally distinctive communities. Mill Valley's eclectic mix of redwood cabins, mid-century modern homes, and contemporary hillside residences calls for ADU designs that are just as thoughtful, and our innovative approach delivers exactly that.",
-      "Innovation in Mill Valley ADU construction means finding creative solutions for the unique challenges this town presents — steep hillside lots, mature redwood trees that must be preserved, narrow access roads, and design review standards that demand architectural quality. Our team embraces these constraints and turns them into opportunities for distinctive, well-integrated ADU designs.",
-      "From compact studios tucked beneath the canopy to full one-bedroom units with modern amenities, we build ADUs that feel intentional and inspired — matching the creative spirit that defines Mill Valley living.",
+      "Hamilton Exteriors provides innovative ADU contractors in Mill Valley, CA who bring creative design thinking to one of Marin County's most architecturally distinctive communities. From the redwood cabins of Blithedale Canyon and Cascade Canyon to the mid-century modern homes on Edgewood Avenue, from the Throckmorton Avenue corridor downtown to the Sycamore Park and Alto neighborhoods — our innovative approach delivers ADU designs as thoughtful as the homes they complement.",
+      "Innovation in Mill Valley ADU construction means finding creative solutions for this town's unique challenges — steep hillside lots in Tamalpais Valley, mature redwood trees in Homestead Valley that must be preserved, narrow access roads in the canyon neighborhoods, and WUI (Wildland-Urban Interface) fire zone requirements that apply to properties above Blithedale Ridge. Our team embraces these constraints and turns them into opportunities for distinctive design.",
+      "From compact studios tucked beneath the canopy in Scott Valley to full one-bedroom units with Mt. Tam views in the Shelter Ridge area, we build ADUs that feel intentional and inspired — matching the creative spirit that defines Mill Valley living.",
     ],
     features: [
       { title: 'Custom Design', description: "We create ADU plans tailored to your neighborhood's architectural character, ensuring your new unit complements your existing home and property layout." },
@@ -65,8 +65,8 @@ export const data: ServiceAreaCity = {
   whyEssential: {
     subtitle: 'Creativity. Progress. Value.',
     paragraphs: [
-      "Mill Valley is one of the most beautiful and expensive communities in the Bay Area, where homes at the base of Mount Tamalpais command premium prices and the local culture values design, sustainability, and connection to nature. An ADU in Mill Valley is a high-value asset — rental demand is strong from professionals who want to live in this community without paying full home prices, and the additional space adds meaningful value to your property.",
-      "Innovative contractors are essential in Mill Valley because cookie-cutter ADU designs simply don't work here. The town's varied topography, stringent design review process, and environmentally sensitive areas require contractors who can think creatively and adapt their approach to each unique property. Standard prefab solutions or generic plans will either fail design review or produce a unit that clashes with the surrounding environment.",
+      "Mill Valley is one of the most beautiful and expensive communities in the Bay Area, with a median home price exceeding $2 million, where homes at the base of Mount Tamalpais command premium prices and the local culture values design, sustainability, and connection to nature. An ADU in Mill Valley is a high-value asset — rental demand is strong from professionals who commute via the Sausalito ferry or Highway 101, with well-built units commanding $3,500-$4,500/month.",
+      "Innovative contractors are essential in Mill Valley because cookie-cutter ADU designs simply don't work here. The town's varied topography — from sea-level Alto wetlands to 800-foot Panoramic Highway elevations — its stringent design review process, and environmentally sensitive creekside and redwood grove areas require contractors who can think creatively. The Mill Valley Planning Division expects ADUs to complement the town's character, not generic prefab boxes.",
       "With innovative ADU contractors, your Mill Valley project becomes a space that reflects the creativity and quality this community is known for — a functional, beautiful addition that you and your neighbors can appreciate.",
     ],
   },

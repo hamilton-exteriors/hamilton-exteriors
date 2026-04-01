@@ -11,9 +11,9 @@ export const data: ServiceAreaCity = {
   description: 'Hamilton Exteriors provides experienced ADU contractors in Richmond, CA. Expert design, permits, and construction. Call for a free consultation!',
   hero: {
     headline: 'Build Your Dream ADU in Richmond',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Richmond ADU project so you can focus on what matters.',
+    subtitle: 'Richmond is the West Contra Costa hub — from the charming village of Point Richmond to the Marina Bay waterfront and the historic Craneway Pavilion. We build ADUs that match this city\'s revitalization.',
     badges: [
-      '15+ years of Richmond ADU expertise',
+      'Richmond\'s Point Richmond & Marina Bay ADU experts',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -51,9 +51,9 @@ export const data: ServiceAreaCity = {
   whyChoose: {
     subtitle: 'Proven. Skilled. Reliable.',
     paragraphs: [
-      "Hamilton Exteriors provides experienced ADU contractors in Richmond, CA who understand the unique character and potential of this waterfront city. Richmond's diverse neighborhoods — from the Point Richmond hills to the El Cerrito border, from Hilltop to Marina Bay — each present distinct opportunities for ADU construction, and our years of experience mean we know how to navigate them all.",
-      "Experience matters when building ADUs because every property is different. Older Richmond homes may need updated utility connections, hillside lots require careful foundation work, and properties in certain zones have specific design requirements. Our team has encountered and solved these challenges many times over, giving you the benefit of lessons learned across dozens of completed projects.",
-      "We guide you through Richmond's permit process, design a unit that complements your existing home, and build with the attention to detail that only comes from years of hands-on ADU construction experience.",
+      "Hamilton Exteriors provides experienced ADU contractors in Richmond, CA who understand the unique character and potential of this waterfront city. From the charming hillside village of Point Richmond with its galleries and cafes, to the modern Marina Bay waterfront condos, to the established residential streets of Hilltop, El Sobrante, and Parchester Village — each neighborhood presents distinct ADU opportunities, and our years of experience mean we know how to navigate them all.",
+      "Experience matters when building ADUs in Richmond because properties range from WWII-era worker housing near the Rosie the Riveter National Historic Park to hillside homes along Nicholl Knob, to modern construction in the Civic Center area. Our team has encountered and solved the challenges unique to each — from updating 1940s-era utility connections to engineering foundations on Point Richmond's steep terrain to working with the Hilltop Mall redevelopment zone requirements.",
+      "We guide you through Richmond's permit process, design a unit that complements your existing home, and build with the attention to detail that has earned us repeat clients from the Atchison Village neighborhood to the Iron Triangle's rapidly appreciating properties near the Richmond BART station.",
     ],
     features: [
       { title: 'Custom Design', description: "We create ADU plans tailored to your neighborhood's architectural character, ensuring your new unit complements your existing home and property layout." },
@@ -65,8 +65,8 @@ export const data: ServiceAreaCity = {
   whyEssential: {
     subtitle: 'Knowledge. Value. Confidence.',
     paragraphs: [
-      "Richmond is experiencing a renaissance, with new investment in its waterfront, arts district, and residential communities driving property values upward. For homeowners, ADUs represent one of the best ways to capitalize on this growth — adding rentable square footage in a city where housing demand consistently outpaces supply, especially near BART stations and the Richmond Ferry terminal.",
-      "Experienced contractors are essential in Richmond because many properties were built decades ago and present construction challenges that newer subdivisions don't. Outdated electrical panels, aging sewer laterals, and non-standard lot configurations require a contractor who has seen these issues before and knows the most cost-effective way to address them during an ADU build.",
+      "Richmond is experiencing a renaissance — the Craneway Pavilion on the waterfront hosts major events, the Richmond Ferry now runs direct service to San Francisco, Marina Bay has become a sought-after address, and Point Richmond remains one of the Bay Area's best-kept-secret neighborhoods. For homeowners, ADUs represent one of the best ways to capitalize on this growth, especially near the Richmond and El Cerrito del Norte BART stations where rental demand is strongest.",
+      "Experienced contractors are essential in Richmond because many properties were built during the WWII shipyard era of the 1940s and present construction challenges that newer subdivisions don't. Outdated electrical panels, aging sewer laterals, and non-standard lot configurations in neighborhoods like Pullman Point, Shields-Reid, and East Richmond Heights require a contractor who has seen these issues before and knows the most cost-effective way to address them.",
       "When you work with experienced ADU contractors, you benefit from their accumulated knowledge — better material choices, faster problem resolution, and a finished product that reflects the quality and care that comes from doing this work year after year in the communities they serve.",
     ],
   },

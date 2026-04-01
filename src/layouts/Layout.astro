@@ -50,6 +50,8 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="author" content="Hamilton Exteriors" />
+    <meta name="publisher" content="Hamilton Exteriors" />
     <meta name="geo.region" content="US-CA" />
     <meta name="geo.placename" content="Castro Valley" />
 
@@ -74,6 +76,9 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     )}
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Hamilton Exteriors Blog" href="/blog/rss.xml" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />

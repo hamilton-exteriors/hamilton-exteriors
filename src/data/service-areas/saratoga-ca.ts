@@ -12,7 +12,7 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in Saratoga',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Saratoga ADU project so you can focus on what matters.',
+    subtitle: 'Saratoga is Silicon Valley\'s most exclusive residential enclave — home to Hakone Gardens, the Montalvo Arts Center, and a charming Village downtown, with spacious hillside lots that are ideal for premium ADU construction.',
     badges: [
       '15+ years of Silicon Valley ADU expertise',
       '$0 down financing available',
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$3,500+/mo',
         label: 'Rental Income',
-        description: "Saratoga's affluent location and proximity to tech headquarters drives premium rental rates for well-designed ADUs.",
+        description: "Saratoga's ZIP code 95070 is among the wealthiest in California. With Apple, Netflix, and Google campuses within 15 minutes, tech executives and families pay premium rates for ADU rentals in this school district.",
         icon: 'dollar',
       },
       {
         value: '25-40%',
         label: 'Home Value Increase',
-        description: 'A well-built ADU can significantly increase your Saratoga property value, adding substantial equity to already-premium homes.',
+        description: "With median home prices exceeding $3.5 million and lots averaging half an acre or more, a Saratoga ADU adds $400K-$600K in appraised value — among the highest ADU ROI in the Bay Area.",
         icon: 'trend',
       },
       {
         value: 'Permit-Friendly',
         label: 'Streamlined Process',
-        description: 'Saratoga has updated ADU regulations in line with state law, making it easier than ever to build on your property.',
+        description: "Saratoga's Community Development Department processes ADU permits in line with California AB 68/SB 13 mandates, with reduced fees and streamlined review for properties with qualifying lot sizes.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "Saratoga's Leading ADU Builders",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Saratoga and throughout Silicon Valley, we've earned the trust of homeowners in the most exclusive neighborhoods. Our in-house team handles every phase — from initial design and city permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew understands Saratoga's high design standards and building requirements, ensuring your ADU is built right the first time.",
+      "With over 15 years of experience building ADUs in Saratoga, we've earned the trust of homeowners from the charming Village downtown along Big Basin Way to the Saratoga Hills and foothills estates, the Brookglen and Quito Village family neighborhoods near the Saratoga Avenue corridor, and the luxury properties along Saratoga-Sunnyvale Road near Hakone Gardens and Congress Springs.",
+      "We don't subcontract critical work. Our licensed crew understands Saratoga's specific challenges — the hillside grading and geotechnical requirements for properties along Monte Sereno's border, the design standards that reflect this city's commitment to preserving its semi-rural character, and the mature oak and redwood preservation requirements that apply to many Saratoga lots.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',

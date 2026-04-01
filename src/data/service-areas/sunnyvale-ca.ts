@@ -12,7 +12,7 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in Sunnyvale',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Sunnyvale ADU project so you can focus on what matters.',
+    subtitle: 'Sunnyvale sits at the heart of Silicon Valley with 155,000+ residents — home to Juniper Networks, Yahoo, and the historic Murphy Avenue district. Its central location between Google and Apple makes ADU rental demand here exceptional.',
     badges: [
       '15+ years of Silicon Valley ADU expertise',
       '$0 down financing available',
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$3,100+/mo',
         label: 'Rental Income',
-        description: "Sunnyvale's central Silicon Valley location and proximity to Apple, Google, and LinkedIn means strong rental demand for your ADU.",
+        description: "Equidistant between Google in Mountain View and Apple in Cupertino, with Juniper Networks and Amazon locally, Sunnyvale ADUs rent to tech professionals within days — especially near Caltrain stations.",
         icon: 'dollar',
       },
       {
         value: '25-35%',
         label: 'Home Value Increase',
-        description: 'A well-built ADU can significantly boost your Sunnyvale property value in this competitive housing market.',
+        description: "Sunnyvale's median home price exceeds $1.9 million — among the highest in Santa Clara County. A quality ADU adds $250K-$400K in appraised value to these already-premium properties.",
         icon: 'trend',
       },
       {
         value: 'Permit-Friendly',
         label: 'Streamlined Process',
-        description: 'Sunnyvale has adopted ADU-friendly regulations with faster permitting to support housing development.',
+        description: "Sunnyvale's Building Division offers online ADU plan submittal, waived impact fees for units under 750 sq ft, and no extra parking near Caltrain stations on Evelyn Avenue and Mary Avenue.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "Sunnyvale's Professional ADU Builders",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Sunnyvale and throughout Silicon Valley, we've earned the trust of homeowners across every neighborhood. Our in-house team handles every phase — from initial design and city permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew knows Sunnyvale's building codes inside and out, ensuring your ADU is built right the first time.",
+      "With over 15 years of experience building ADUs in Sunnyvale, we've earned the trust of homeowners from the charming Murphy Avenue area near the Sunken Gardens park, to the Lakewood Village and Cherry Chase family neighborhoods, to the Birdland and Ponderosa Park communities near Lockheed Martin and Juniper Networks campuses. Our in-house team handles every phase from design to final inspection.",
+      "We don't subcontract critical work. Our licensed crew understands Sunnyvale's specific requirements — including the Heritage Preservation District regulations for older properties near Murphy Avenue, the Caltrain and Lawrence Expressway corridor considerations, and the Moffett Park area requirements for properties near the former Naval Air Station that now houses Google and Amazon facilities.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',

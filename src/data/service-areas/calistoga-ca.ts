@@ -12,9 +12,9 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in Calistoga',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Calistoga ADU project in the heart of upper Napa Valley.',
+    subtitle: 'Calistoga is Napa Valley\'s hot springs capital — a town of 5,000 where Old Faithful Geyser, world-class spas, and Silver Rose winery create year-round tourism demand that makes ADU investment exceptionally rewarding.',
     badges: [
-      '15+ years of Napa Valley ADU expertise',
+      'Calistoga\'s resort-town ADU specialists',
       '$0 down financing available',
       'Design, permits & build — all in-house',
       '60-day permit guarantee',
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$3,800+/mo',
         label: 'Rental Income',
-        description: "Calistoga's thriving tourism economy — hot springs, wineries, and fine dining — drives exceptional demand for vacation rental accommodations.",
+        description: "With Indian Springs, Solage, and Dr. Wilkinson's drawing spa visitors year-round, plus Chateau Montelena and Sterling Vineyards nearby, Calistoga ADUs command $250-$400/night as vacation rentals.",
         icon: 'dollar',
       },
       {
         value: '25-35%',
         label: 'Home Value Increase',
-        description: "A quality ADU adds significant value to your Calistoga property in this sought-after wine country market.",
+        description: "In a town of just 5,000 residents where median home prices approach $1 million, a well-built ADU adds $200K-$350K in appraised value while generating vacation rental income.",
         icon: 'trend',
       },
       {
         value: 'Year-Round',
         label: 'Tourism Demand',
-        description: "Calistoga's hot springs and spa culture attract visitors all year long, ensuring consistent occupancy for vacation rental ADUs.",
+        description: "Unlike seasonal wine regions, Calistoga's hot springs — including the famous Old Faithful Geyser — draw visitors even in winter, ensuring 70%+ occupancy rates for well-appointed vacation rental ADUs.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "Calistoga's Skilled ADU Experts",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Napa Valley, we've earned the trust of Calistoga homeowners who value quality and character. Our in-house team handles every phase — from initial design and permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew understands Calistoga's unique small-town building requirements and fire-safe construction standards, ensuring your ADU is built right the first time.",
+      "With over 15 years of experience building ADUs in Napa Valley, we've earned the trust of Calistoga homeowners from the Silverado Trail corridor to the Bennett Lane vineyard properties, from the walkable Lincoln Avenue downtown to the Diamond Mountain hillside estates and Tubbs Lane rural parcels. Our in-house team handles every phase — from initial design through permits to construction and final inspection.",
+      "We don't subcontract critical work. Our licensed crew understands Calistoga's unique challenges — the fire-safe construction mandates for properties in the WUI zone following the 2017 Tubbs Fire, the geothermal considerations near the city's hot springs, and the small-town design standards that keep Calistoga's charming character intact while allowing modern ADU additions.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',
