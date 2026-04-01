@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { reviewLogoYelp } from '../lib/images';
+import { reviewLogoGoogle, reviewLogoYelp } from '../lib/images';
 import IconStar from './icons/IconStar.astro';
 /**
  * ReviewLogos – 4 platform rating cards in a horizontal row.
@@ -9,9 +9,9 @@ import IconStar from './icons/IconStar.astro';
 const platforms = [
   {
     name: 'BBB',
-    logo: null,
-    logoWidth: 0,
-    logoHeight: 0,
+    logo: reviewLogoGoogle,
+    logoWidth: 44,
+    logoHeight: 44,
     score: '4.8',
     showStars: true,
     ratingLabel: 'Rated 4.5/5.0',
@@ -66,20 +66,14 @@ const starColor = 'var(--color-primary)';
           <!-- Logo / Icon -->
           <div class="review-card__logo">
             {platform.name === 'BBB' && (
-              /* BBB torch/shield icon — uses paths instead of <text> for cross-browser consistency */
-              <svg viewBox="0 0 48 48" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M24 2L6 10v12c0 11.1 7.7 21.5 18 24 10.3-2.5 18-12.9 18-24V10L24 2z" fill="#005a78"/>
-                <rect x="11" y="19" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="11" y="23" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="11" y="27" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="20" y="19" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="20" y="23" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="20" y="27" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="29" y="19" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="29" y="23" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="29" y="27" width="8" height="2" rx="1" fill="#fff"/>
-                <circle cx="24" cy="14" r="2.5" fill="#ffd700"/>
-              </svg>
+              <Image
+                src={platform.logo}
+                alt="Hamilton Exteriors BBB rating"
+                width={platform.logoWidth}
+                height={platform.logoHeight}
+                style={`width: ${platform.logoWidth}px; height: ${platform.logoHeight}px; object-fit: contain;`}
+                loading="lazy"
+              />
             )}
             {platform.name === 'Trustpilot' && (
               /* Trustpilot green star icon (36x35 SVG) */
