@@ -1,0 +1,24 @@
+---
+interface Props {
+  color?: 'primary' | 'muted' | 'white';
+  class?: string;
+}
+
+const {
+  color = 'primary',
+  class: className = '',
+} = Astro.props;
+
+const colorMap = {
+  primary: 'var(--color-primary-dark)',
+  muted: 'var(--color-muted)',
+  white: 'white',
+};
+---
+
+<p
+  class={`text-label ${className}`}
+  style={`color: ${colorMap[color]}; margin: 0;`}
+>
+  <slot />
+</p>

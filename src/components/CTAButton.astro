@@ -1,0 +1,41 @@
+---
+interface Props {
+  href: string;
+  variant?: 'yellow' | 'green' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  fullWidth?: boolean;
+}
+
+const {
+  href,
+  variant = 'yellow',
+  size = 'md',
+  class: className = '',
+  fullWidth = false,
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center justify-center text-center whitespace-nowrap transition-opacity hover:opacity-90 text-button';
+
+const sizeStyles = {
+  sm: 'min-h-[40px] px-5 py-2.5 rounded-lg text-[0.8125rem]',
+  md: 'min-h-[48px] px-8 py-3.5 rounded-lg',
+  lg: 'min-h-[52px] px-12 py-4 rounded-lg',
+};
+
+const variantStyles = {
+  yellow: 'bg-yellow text-primary',
+  green: 'bg-primary text-white',
+  outline: 'border border-white/25 text-white',
+};
+
+const widthClass = fullWidth ? 'w-full' : '';
+---
+
+<a
+  href={href}
+  class={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${widthClass} ${className}`}
+  style="text-decoration: none;"
+>
+  <slot />
+</a>

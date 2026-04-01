@@ -1,0 +1,36 @@
+---
+interface Props {
+  count?: number;
+  size?: number;
+  fill?: string;
+  label?: string;
+  class?: string;
+}
+
+const {
+  count = 5,
+  size = 18,
+  fill = '#FFCF33',
+  label = `${count} out of 5 stars`,
+  class: className = '',
+} = Astro.props;
+---
+
+<div class={`flex items-center gap-0.5 ${className}`} role="img" aria-label={label}>
+  {Array.from({ length: count }).map(() => (
+    <svg
+      class="shrink-0"
+      width={size}
+      height={size}
+      viewBox="0 0 20 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        fill={fill}
+        d="m4.854 18 1.355-5.854-4.542-3.938 6-.52L10 2.167l2.334 5.52 6 .521-4.542 3.938L15.146 18 10 14.896 4.854 18Z"
+      />
+    </svg>
+  ))}
+</div>
