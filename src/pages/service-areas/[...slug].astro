@@ -121,16 +121,67 @@ if (segments.length === 3) {
 } else {
   return Astro.rewrite('/404');
 }
+
+// --- Structured data for pSEO pages ---
+
+const siteUrl = 'https://hamilton-exteriors.com';
+
+// City+service pages: localized Service + BreadcrumbList
+let cityServiceJsonLd: Record<string, unknown>[] | undefined;
+if (pageType === 'cityService' && cityServiceData) {
+  cityServiceJsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      'name': `${cityServiceData.serviceName} in ${cityServiceData.city}, CA`,
+      'provider': {
+        '@type': 'HomeAndConstructionBusiness',
+        'name': 'Hamilton Exteriors',
+        'telephone': '+1-650-977-3351',
+      },
+      'areaServed': {
+        '@type': 'City',
+        'name': cityServiceData.city,
+        'containedInPlace': { '@type': 'State', 'name': 'California' },
+      },
+      'description': cityServiceData.description,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
+        { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
+        { '@type': 'ListItem', 'position': 3, 'name': cityServiceData.county, 'item': `${siteUrl}/service-areas/${cityServiceData.countySlug}` },
+        { '@type': 'ListItem', 'position': 4, 'name': `${cityServiceData.city}, ${cityServiceData.state}`, 'item': `${siteUrl}/service-areas/${cityServiceData.countySlug}/${cityServiceData.citySlug}` },
+        { '@type': 'ListItem', 'position': 5, 'name': cityServiceData.serviceName },
+      ],
+    },
+  ];
+}
+
+// General city pages: LocalBusiness schema
+let generalCityJsonLd: Record<string, unknown> | undefined;
+if (pageType === 'city' && generalCityData) {
+  generalCityJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'HomeAndConstructionBusiness',
+    'name': `Hamilton Exteriors - ${generalCityData.city}`,
+    'telephone': '+1-650-977-3351',
+    'areaServed': { '@type': 'City', 'name': generalCityData.city },
+    'aggregateRating': { '@type': 'AggregateRating', 'ratingValue': '4.8', 'reviewCount': '50' },
+  };
+}
 ---
 
 {pageType === 'cityService' && cityServiceData && (
-  <Layout title={cityServiceData.title} description={cityServiceData.description}>
+  <Layout title={cityServiceData.title} description={cityServiceData.description} jsonLd={cityServiceJsonLd}>
     <ServicePage data={cityServiceData as any} />
   </Layout>
 )}
 
 {pageType === 'city' && generalCityData && (
-  <Layout title={generalCityData.title} description={generalCityData.description}>
+  <Layout title={generalCityData.title} description={generalCityData.description} jsonLd={generalCityJsonLd}>
     <GeneralCityPage data={generalCityData} />
   </Layout>
 )}

@@ -257,5 +257,21 @@ const breadcrumbSchema = {
   </section>
 )}
 
+<!-- Popular services in this city -->
+<section class="w-full" style="background-color: var(--color-white); padding: 40px 0;">
+  <div class="mx-auto max-w-[1200px] px-5">
+    <h3 style="font-family: var(--font-oswald); font-size: 20px; font-weight: 400; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;">
+      Services in {data.city}
+    </h3>
+    <div class="flex flex-wrap gap-2">
+      {data.services.map(s => (
+        <a href={s.href} style="font-family: var(--font-dm-sans); font-size: 13px; font-weight: 500; color: var(--color-primary); text-decoration: none; padding: 8px 16px; border: 1px solid var(--color-border); border-radius: 100px;">
+          {s.title} in {data.city} →
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
 <!-- Footer -->
 <Footer />

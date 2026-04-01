@@ -6,7 +6,7 @@ interface Props {
   description?: string;
   image?: string;
   type?: string;
-  jsonLd?: Record<string, unknown>;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   includeMapbox?: boolean;
   noindex?: boolean;
 }
@@ -73,9 +73,12 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image || `${siteUrl}/favicon.png`} />
 
-    {jsonLd && (
+    {jsonLd && !Array.isArray(jsonLd) && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     )}
+    {jsonLd && Array.isArray(jsonLd) && jsonLd.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
 
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="Hamilton Exteriors Blog" href="/blog/rss.xml" />
