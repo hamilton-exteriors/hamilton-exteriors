@@ -175,25 +175,25 @@ if (pageType === 'city' && generalCityData) {
 ---
 
 {pageType === 'cityService' && cityServiceData && (
-  <Layout title={cityServiceData.title} description={cityServiceData.description} jsonLd={cityServiceJsonLd}>
+  <Layout title={cityServiceData.title} description={cityServiceData.description} jsonLd={cityServiceJsonLd} includeMapbox>
     <ServicePage data={cityServiceData as any} />
   </Layout>
 )}
 
 {pageType === 'city' && generalCityData && (
-  <Layout title={generalCityData.title} description={generalCityData.description} jsonLd={generalCityJsonLd}>
+  <Layout title={generalCityData.title} description={generalCityData.description} jsonLd={generalCityJsonLd} includeMapbox>
     <GeneralCityPage data={generalCityData} />
   </Layout>
 )}
 
 {pageType === 'city' && cityData && !generalCityData && (
-  <Layout title={cityData.title} description={cityData.description}>
+  <Layout title={cityData.title} description={cityData.description} includeMapbox>
     <ServiceAreaCityPage data={cityData} />
   </Layout>
 )}
 
 {pageType === 'county' && countyData && (
-  <Layout title={countyData.title} description={countyData.description}>
+  <Layout title={countyData.title} description={countyData.description} includeMapbox>
     <CountyPage data={countyData} />
   </Layout>
 )}

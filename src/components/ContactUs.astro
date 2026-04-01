@@ -8,10 +8,10 @@ import { PHONE_DISPLAY, PHONE_HREF, EMAIL, ADDRESS } from '../lib/constants';
   <div class="mx-auto max-w-[1170px] px-5 py-16 md:py-20">
 
     <!-- Two-column layout -->
-    <div class="flex flex-col gap-12 md:flex-row md:items-center md:justify-between md:gap-16">
+    <div class="flex flex-col gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
 
       <!-- Left: Heading + CTA -->
-      <div class="flex flex-col items-start md:max-w-[520px]">
+      <div class="flex flex-col items-start lg:max-w-[520px]">
         <h2
           style="font-family: var(--font-oswald); font-size: clamp(32px, 5vw, 48px); font-weight: 400; line-height: 1.1; text-transform: uppercase; margin: 0;"
         >
@@ -48,7 +48,7 @@ import { PHONE_DISPLAY, PHONE_HREF, EMAIL, ADDRESS } from '../lib/constants';
       </div>
 
       <!-- Right: Map + Address -->
-      <div class="w-full md:max-w-[480px]">
+      <div class="w-full lg:max-w-[480px]">
         <div style="border-radius: 12px; overflow: hidden;">
           <Image
             src={iconContactMap}
@@ -63,7 +63,7 @@ import { PHONE_DISPLAY, PHONE_HREF, EMAIL, ADDRESS } from '../lib/constants';
         <p class="mt-4" style="font-family: var(--font-dm-sans); font-size: 0.875rem; line-height: 1.5; color: rgba(255,255,255,0.6);">
           {ADDRESS}
         </p>
-        <p class="mt-2" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; line-height: 1.8; color: rgba(255,255,255,0.45);">
+        <p class="mt-2" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; line-height: 1.8; color: rgba(255,255,255,0.65);">
           Serving
           <a href="/service-areas/alameda-county-ca/oakland-ca" style="color: rgba(255,255,255,0.65); text-decoration: underline; text-underline-offset: 2px;">Oakland</a>,
           <a href="/service-areas/alameda-county-ca/berkeley-ca" style="color: rgba(255,255,255,0.65); text-decoration: underline; text-underline-offset: 2px;">Berkeley</a>,

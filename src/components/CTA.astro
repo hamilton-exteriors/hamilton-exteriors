@@ -5,10 +5,10 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 ---
 
 <section class="w-full" style="background-color: var(--color-white);">
-  <div class="mx-auto flex flex-col md:flex-row" style="max-width: 1170px;">
+  <div class="mx-auto flex flex-col lg:flex-row" style="max-width: 1170px;">
 
     <!-- Left Column: Content -->
-    <div class="flex w-full flex-col justify-center px-5 py-10 md:w-1/2 md:px-10 md:py-16">
+    <div class="flex w-full flex-col justify-center px-5 py-10 lg:w-1/2 lg:px-10 lg:py-16">
 
       <!-- Heading -->
       <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 5vw, 48px); line-height: 1.15; color: var(--color-charcoal); font-weight: 400; text-transform: uppercase; margin: 0;">
@@ -29,10 +29,10 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
       </p>
 
       <!-- Buttons -->
-      <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+      <div class="mt-5 flex flex-col gap-3 lg:flex-row lg:items-center">
         <a
           href={PHONE_HREF}
-          class="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-3 text-sm font-semibold transition-colors hover:bg-gray-50"
+          class="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-3 text-sm font-semibold transition-colors hover:bg-gray-50 whitespace-nowrap"
           style="font-family: var(--font-dm-sans); color: var(--color-heading); text-decoration: none;"
         >
           <Image src={iconCheckmarkCircle} alt="" width={15} height={15} style="display: block;" />
@@ -40,7 +40,7 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
         </a>
         <a
           href="#contact"
-          class="flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-opacity hover:opacity-90"
+          class="flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-opacity hover:opacity-90 whitespace-nowrap"
           style="background-color: var(--color-primary); color: var(--color-white); text-decoration: none; font-family: var(--font-dm-sans);"
         >
           Schedule a FREE Inspection
@@ -49,7 +49,7 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
     </div>
 
     <!-- Right Column: Construction Photo -->
-    <div class="relative w-full md:w-1/2" style="min-height: 250px;">
+    <div class="relative w-full lg:w-1/2" style="min-height: 250px;">
       <Image
         src={ctaAssistant}
         alt="Hamilton Exteriors crew installing siding on a Bay Area home"

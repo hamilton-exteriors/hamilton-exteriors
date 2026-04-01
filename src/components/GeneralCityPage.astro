@@ -12,12 +12,14 @@ import Footer from './Footer.astro';
 import IconStar from './icons/IconStar.astro';
 import { resolveImage } from '../lib/image-map';
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
+import { getCityProximity } from '../lib/city-coordinates';
 
 interface Props {
   data: GeneralCityPageData;
 }
 
 const { data } = Astro.props;
+const proximity = getCityProximity(data.slug);
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -56,6 +58,7 @@ const breadcrumbSchema = {
   formTitle={data.hero.formTitle}
   formSubtitle={data.hero.formSubtitle}
   badges={data.hero.badges}
+  proximity={proximity}
 />
 
 <!-- Logo Slider -->

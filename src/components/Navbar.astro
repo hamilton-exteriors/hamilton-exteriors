@@ -52,11 +52,18 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
       Get Your Free Inspection
     </a>
 
-    <!-- Mobile -->
-    <div class="flex xl:hidden items-center">
+    <!-- Mobile/Tablet -->
+    <div class="flex xl:hidden items-center gap-3 ml-auto">
       <a href={PHONE_HREF} class="whitespace-nowrap min-h-[44px] flex items-center" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; font-weight: 700; color: var(--color-heading);">{PHONE_DISPLAY}</a>
+      <a
+        href="/#quote"
+        class="hidden md:flex shrink-0 text-center text-white transition-opacity hover:opacity-90 whitespace-nowrap"
+        style="font-family: var(--font-dm-sans); font-size: 0.75rem; font-weight: 600; background-color: var(--color-primary); border-radius: 6px; padding: 10px 20px;"
+      >
+        Free Quote
+      </a>
     </div>
-    <button id="menu-toggle" class="xl:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] z-50 -mr-1" aria-label="Toggle navigation menu" aria-expanded="false">
+    <button id="menu-toggle" class="xl:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] z-50" aria-label="Toggle navigation menu" aria-expanded="false">
       <span class="hamburger-line block w-6 h-[2px] rounded transition-all duration-300" style="background-color: var(--color-heading);"></span>
       <span class="hamburger-line block w-6 h-[2px] rounded transition-all duration-300" style="background-color: var(--color-heading);"></span>
       <span class="hamburger-line block w-6 h-[2px] rounded transition-all duration-300" style="background-color: var(--color-heading);"></span>
