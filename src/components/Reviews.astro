@@ -18,21 +18,21 @@ const reviews = [
     name: "Sarah M",
     time: "2 months ago",
     date: "2026-01-22",
-    text: "The team at Hamilton Exteriors was respectful, on time, and did excellent work. They made sure to communicate with us throughout the entire process, ensuring we were informed every step of the way. Our new siding looks beautiful, and the quality of the materials they used is top-notch. The crew worked efficiently and left our property clean and tidy. We couldn\u2019t be happier with the final result and would highly recommend Hamilton Exteriors for any home improvement needs!",
+    text: "The team at Hamilton Exteriors was respectful, on time, and did excellent work. They made sure to communicate with us throughout the entire process, ensuring we were informed every step of the way. Our new siding looks beautiful, and the quality of the materials they used is top-notch. The crew worked efficiently and left our property clean and tidy. We couldn't be happier with the final result and would highly recommend Hamilton Exteriors for any home improvement needs!",
   },
   {
     photo: reviewer3,
     name: "Robert Holt",
     time: "4 months ago",
     date: "2025-11-08",
-    text: "We\u2019d been putting off replacing the windows in our home for years, but we finally decided it was time. From the very first consultation with Hamilton Exteriors, we knew we\u2019d made the right choice. The team was not only knowledgeable but genuinely listened to our concerns about energy efficiency and design. When the windows were installed, we were amazed at how much brighter and more comfortable our home felt. It\u2019s been a few months now, and we\u2019ve already noticed a drop in our energy bills. It\u2019s like we\u2019re living in a new house, and we couldn\u2019t be happier with the transformation!",
+    text: "We'd been putting off replacing the windows in our home for years, but we finally decided it was time. From the very first consultation with Hamilton Exteriors, we knew we'd made the right choice. The team was not only knowledgeable but genuinely listened to our concerns about energy efficiency and design. When the windows were installed, we were amazed at how much brighter and more comfortable our home felt. It's been a few months now, and we\u2019ve already noticed a drop in our energy bills. It's like we\u2019re living in a new house, and we couldn't be happier with the transformation!",
   },
   {
     photo: reviewer4,
     name: "Laura Gaubin",
     time: "4 months ago",
     date: "2025-12-03",
-    text: "Hamilton Exteriors repaired extensive dry rot damage on our home\u2019s exterior. Their attention to detail and commitment to quality were evident throughout the project. The crew was polite, professional, and ensured the site was clean before leaving each day. Our home looks better than ever, and we have peace of mind knowing the repairs were done correctly. We highly recommend their services.",
+    text: "Hamilton Exteriors repaired extensive dry rot damage on our home's exterior. Their attention to detail and commitment to quality were evident throughout the project. The crew was polite, professional, and ensured the site was clean before leaving each day. Our home looks better than ever, and we have peace of mind knowing the repairs were done correctly. We highly recommend their services.",
   },
 ];
 ---
@@ -114,16 +114,4 @@ const reviews = [
   </div>
 </section>
 
-<script type="application/ld+json" set:html={JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'RoofingContractor',
-  '@id': 'https://hamilton-exteriors.com/#business',
-  'review': reviews.map(r => ({
-    '@type': 'Review',
-    'datePublished': r.date,
-    'author': { '@type': 'Person', 'name': r.name },
-    'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5', 'worstRating': '1' },
-    'reviewBody': r.text,
-    'itemReviewed': { '@type': 'RoofingContractor', '@id': 'https://hamilton-exteriors.com/#business', 'name': 'Hamilton Exteriors' },
-  })),
-})} />
+<!-- Review schema merged into main RoofingContractor block in Layout.astro to avoid duplicate @id -->
