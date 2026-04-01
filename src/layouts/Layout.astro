@@ -9,6 +9,7 @@ interface Props {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   includeMapbox?: boolean;
   noindex?: boolean;
+  geoPlacename?: string;
 }
 
 const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs, and custom homes. Licensed, bonded, insured. 50-year warranty. $0 down financing. Free estimate — (650) 977-3351.';
@@ -21,6 +22,7 @@ const {
   jsonLd,
   includeMapbox = false,
   noindex = false,
+  geoPlacename = 'Bay Area, California',
 } = Astro.props;
 
 // Guard against empty-string descriptions that would blank out the meta tag
@@ -39,6 +41,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <!-- Self-hosted font preloads — critical fonts only to avoid LCP delay -->
     <link rel="preload" href="/fonts/the-bold-font.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -46,7 +49,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta name="author" content="Hamilton Exteriors" />
     <meta name="publisher" content="Hamilton Exteriors" />
     <meta name="geo.region" content="US-CA" />
-    <meta name="geo.placename" content="Castro Valley" />
+    <meta name="geo.placename" content={geoPlacename} />
 
     <!-- Canonical -->
     <link rel="canonical" href={canonicalUrl} />
@@ -56,9 +59,10 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta property="og:description" content={description} />
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={image || `${siteUrl}/og-default.svg`} />
+    <meta property="og:image" content={image || `${siteUrl}/og-default.jpg`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:site_name" content="Hamilton Exteriors" />
     <meta property="og:locale" content="en_US" />
 
@@ -66,7 +70,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image || `${siteUrl}/og-default.svg`} />
+    <meta name="twitter:image" content={image || `${siteUrl}/og-default.jpg`} />
 
     {jsonLd && !Array.isArray(jsonLd) && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
@@ -86,6 +90,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     {
       "@context": "https://schema.org",
       "@type": "HomeAndConstructionBusiness",
+      "@id": "https://hamilton-exteriors.com/#business",
       "name": "Hamilton Exteriors",
       "url": "https://hamilton-exteriors.com",
       "telephone": "+1-650-977-3351",
@@ -100,9 +105,19 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 37.6941,
-        "longitude": -122.0828
+        "latitude": 37.69412,
+        "longitude": -122.08276
       },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
+      ],
+      "sameAs": [
+        "https://www.yelp.com/biz/hamilton-exteriors-castro-valley",
+        "https://www.facebook.com/share/1B88MrKBaC/",
+        "https://www.instagram.com/hamiltonexteriors",
+        "https://www.linkedin.com/company/hamilton-exteriors/"
+      ],
       "areaServed": [
         "Castro Valley, CA", "Oakland, CA", "Berkeley, CA", "Fremont, CA", "Hayward, CA", "San Leandro, CA",
         "Walnut Creek, CA", "Concord, CA", "Richmond, CA", "San Ramon, CA", "Antioch, CA",
@@ -117,7 +132,13 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
         "reviewCount": "50"
       },
       "priceRange": "$$",
-      "image": "https://hamilton-exteriors.com/favicon.png",
+      "image": "https://hamilton-exteriors.com/og-default.jpg",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://hamilton-exteriors.com/og-default.jpg",
+        "width": 1200,
+        "height": 630
+      },
       "description": "Bay Area exterior remodeling — roofing, siding, windows, and waterproofing. Licensed, bonded, insured. 50-year warranty. 3-5 day installs."
     }
     </script>

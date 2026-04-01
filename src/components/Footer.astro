@@ -25,7 +25,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
           500+ roofing, siding, and construction projects across the Bay Area. Licensed, bonded, and insured.
         </p>
         <p class="text-center text-xs leading-relaxed text-white/50 lg:text-left">
-          CSLB License #1078806 &middot; <a href="https://www.google.com/maps/place/Hamilton+Exteriors" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-white/70 transition-colors">Google Business Profile</a>
+          CSLB License #1082377 &middot; <a href="https://www.google.com/maps/place/Hamilton+Exteriors" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-white/70 transition-colors">Google Business Profile</a>
         </p>
         <a href={PHONE_HREF} class="font-oswald text-xl font-bold tracking-wide text-white underline underline-offset-4">
           {PHONE_DISPLAY}
@@ -98,7 +98,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
           >
             SIGN ME UP
           </button>
-          <p id="newsletter-msg" class="text-center text-sm" style="display: none;"></p>
+          <p id="newsletter-msg" class="text-center text-sm" style="display: none;" aria-live="polite"></p>
         </form>
 
         <!-- Review Badges -->
@@ -309,14 +309,15 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
     color: var(--color-white);
   }
   .footer-area-city {
-    display: block;
+    display: flex;
+    align-items: center;
     font-family: var(--font-dm-sans);
     font-size: 0.75rem;
     line-height: 1.9;
     color: rgba(255, 255, 255, 0.65);
     text-decoration: none;
     transition: color 0.2s ease-out;
-    min-height: 24px;
+    min-height: 44px;
     padding-block: 2px;
   }
   .footer-area-city:hover {

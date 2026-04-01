@@ -46,7 +46,7 @@ export default defineConfig({
     ],
     filter: (page) => {
       // Exclude noindex pages from sitemap
-      const exclude = ['/success', '/quote-calculator', '/404', '/privacy-policy', '/privacy-notice-ca', '/terms', '/eeo-policy', '/opt-out'];
+      const exclude = ['/success', '/quote-calculator', '/404', '/privacy-policy', '/privacy-notice-ca', '/terms', '/eeo-policy', '/opt-out', '/buy/scan', '/additions-2', '/additions-3'];
       return !exclude.some(path => page.includes(path));
     },
     serialize: (item) => {

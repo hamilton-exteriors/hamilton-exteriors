@@ -1,3 +1,25 @@
+# AI Search Crawlers — Allow
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# AI Training Crawlers — Block
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+# Default
 User-agent: *
 Allow: /
 Disallow: /api/
@@ -7,5 +29,4 @@ Sitemap: https://hamilton-exteriors.com/image-sitemap.xml
 
 # AI/LLM content files
 # See https://llmstxt.org for specification
-Allow: /llms.txt
-Allow: /llms-full.txt
+# Discoverable at /llms.txt and /llms-full.txt

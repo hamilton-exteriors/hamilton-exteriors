@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 const apiUrl = import.meta.env.PUBLIC_ROOF_SCAN_API || 'http://localhost:3001';
 ---
-<Layout title="Your Roof Scan | Hamilton Exteriors" description="See your roof measurements and get an instant price.">
+<Layout title="Your Roof Scan | Hamilton Exteriors" description="See your roof measurements and get an instant price." noindex>
 <Navbar />
 <script is:inline>
   // Hide step 1 immediately if address is in URL — prevents flash of address input
@@ -153,7 +153,7 @@ const apiUrl = import.meta.env.PUBLIC_ROOF_SCAN_API || 'http://localhost:3001';
 <div class="flex justify-between" style="font-size:15px;"><span style="color:var(--color-muted);">Labor & Install</span><span class="font-semibold text-charcoal" id="price-labor">$0</span></div>
 <div class="flex justify-between" style="font-size:15px;"><span style="color:var(--color-muted);">Tear-off & Disposal</span><span class="font-semibold text-charcoal" id="price-tearoff">$0</span></div>
 <div class="flex justify-between" style="font-size:15px;"><span style="color:var(--color-muted);">Permits & Warranty</span><span class="font-semibold text-charcoal" id="price-permits">$0</span></div>
-<div class="flex justify-between" style="font-size:15px;"><span style="color:var(--color-muted);text-decoration:line-through;">Sales Commission</span><span class="font-semibold line-through" style="color:#bbb;">$0</span></div>
+<div class="flex justify-between" style="font-size:15px;"><span style="color:var(--color-muted);text-decoration:line-through;">Sales Commission</span><span class="font-semibold line-through" style="color:var(--color-muted);">$0</span></div>
 <p style="font-size:12px;color:var(--color-primary);font-weight:600;margin-top:-4px;">You save <span id="commission-savings">$0</span> — no salesman, no markup.</p>
 </div>
 <!-- Add-ons -->

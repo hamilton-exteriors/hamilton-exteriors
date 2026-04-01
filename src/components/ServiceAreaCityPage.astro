@@ -12,6 +12,7 @@ import IconCheck from './icons/IconCheck.astro';
 import IconPlus from './icons/IconPlus.astro';
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 import { getCityProximity } from '../lib/city-coordinates';
+import Breadcrumb from './Breadcrumb.astro';
 
 interface Props {
   data: ServiceAreaCity;
@@ -35,17 +36,12 @@ const imageMap: Record<string, ImageMetadata> = {
 <Navbar />
 
 <!-- Breadcrumb -->
-<nav class="w-full" style="background-color: var(--color-cream); border-bottom: 1px solid var(--color-border);">
-  <div class="mx-auto flex items-center gap-2 px-5" style="max-width: 1294px; padding-top: 14px; padding-bottom: 14px;">
-    <a href="/" style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); text-decoration: none;">Home</a>
-    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted);">/</span>
-    <a href="/service-areas" style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); text-decoration: none;">Service Areas</a>
-    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted);">/</span>
-    <a href={`/service-areas/${countySlug}`} style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); text-decoration: none;">{county}</a>
-    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted);">/</span>
-    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-heading); font-weight: 600;">{city}, CA</span>
-  </div>
-</nav>
+<Breadcrumb items={[
+  { label: 'Home', href: '/' },
+  { label: 'Service Areas', href: '/service-areas' },
+  { label: county, href: `/service-areas/${countySlug}` },
+  { label: `${city}, CA` },
+]} />
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -71,7 +67,7 @@ const imageMap: Record<string, ImageMetadata> = {
 <LogoSlider />
 <div class="w-full text-center" style="background-color: var(--color-white); padding: 16px 0;">
   <p style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); letter-spacing: 0.02em;">
-    CA Contractor License #1078806
+    CA Contractor License #1082377
   </p>
 </div>
 
@@ -339,7 +335,7 @@ const imageMap: Record<string, ImageMetadata> = {
                   alt={project.title}
                   width={600}
                   height={450}
-                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-85"
                   loading="lazy"
                 />
                 <div class="absolute bottom-3 left-3 rounded-full px-3 py-1" style="background-color: rgba(13, 43, 29, 0.85);">
