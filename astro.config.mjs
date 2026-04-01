@@ -39,8 +39,10 @@ export default defineConfig({
     customPages: [
       // City pages (29 cities)
       ...cityPages,
-      // City+service and county+service pages excluded until Ghost CMS data exists
-      // (174 + 30 pages were 404ing, polluting sitemap with dead URLs)
+      // City+service pages (29 cities x 6 services = 174 pages)
+      ...cityServicePages,
+      // County+service pages (5 counties x 6 services = 30 pages)
+      ...countyServicePages,
     ],
     filter: (page) => {
       // Exclude noindex pages from sitemap
