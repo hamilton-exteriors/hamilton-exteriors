@@ -4,6 +4,26 @@ import tailwindcss from '@tailwindcss/vite';
 import node from '@astrojs/node';
 import sitemap from '@astrojs/sitemap';
 
+// City+service URL generation for sitemap
+const counties = [
+  { slug: 'alameda-county-ca', cities: ['oakland-ca', 'berkeley-ca', 'fremont-ca', 'hayward-ca', 'san-leandro-ca'] },
+  { slug: 'contra-costa-county-ca', cities: ['antioch-ca', 'concord-ca', 'richmond-ca', 'san-ramon-ca', 'walnut-creek-ca'] },
+  { slug: 'marin-county-ca', cities: ['larkspur-ca', 'mill-valley-ca', 'novato-ca', 'san-rafael-ca'] },
+  { slug: 'napa-county-ca', cities: ['napa-ca', 'american-canyon-ca', 'st-helena-ca', 'calistoga-ca', 'yountville-ca'] },
+  { slug: 'santa-clara-county-ca', cities: ['san-jose-ca', 'palo-alto-ca', 'mountain-view-ca', 'sunnyvale-ca', 'cupertino-ca', 'santa-clara-ca', 'saratoga-ca', 'los-gatos-ca', 'campbell-ca', 'milpitas-ca'] },
+];
+const services = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions'];
+
+const cityPages = counties.flatMap(c =>
+  c.cities.map(city => `https://hamilton-exteriors.com/service-areas/${c.slug}/${city}`)
+);
+
+const cityServicePages = counties.flatMap(c =>
+  c.cities.flatMap(city =>
+    services.map(s => `https://hamilton-exteriors.com/service-areas/${c.slug}/${city}/${s}`)
+  )
+);
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://hamilton-exteriors.com',
@@ -11,36 +31,10 @@ export default defineConfig({
   adapter: node({ mode: 'standalone' }),
   integrations: [sitemap({
     customPages: [
-      // City pages (served by Ghost CMS via catch-all route)
-      'https://hamilton-exteriors.com/service-areas/alameda-county-ca/oakland-ca',
-      'https://hamilton-exteriors.com/service-areas/alameda-county-ca/berkeley-ca',
-      'https://hamilton-exteriors.com/service-areas/alameda-county-ca/fremont-ca',
-      'https://hamilton-exteriors.com/service-areas/alameda-county-ca/hayward-ca',
-      'https://hamilton-exteriors.com/service-areas/alameda-county-ca/san-leandro-ca',
-      'https://hamilton-exteriors.com/service-areas/contra-costa-county-ca/antioch-ca',
-      'https://hamilton-exteriors.com/service-areas/contra-costa-county-ca/concord-ca',
-      'https://hamilton-exteriors.com/service-areas/contra-costa-county-ca/richmond-ca',
-      'https://hamilton-exteriors.com/service-areas/contra-costa-county-ca/san-ramon-ca',
-      'https://hamilton-exteriors.com/service-areas/contra-costa-county-ca/walnut-creek-ca',
-      'https://hamilton-exteriors.com/service-areas/marin-county-ca/larkspur-ca',
-      'https://hamilton-exteriors.com/service-areas/marin-county-ca/mill-valley-ca',
-      'https://hamilton-exteriors.com/service-areas/marin-county-ca/novato-ca',
-      'https://hamilton-exteriors.com/service-areas/marin-county-ca/san-rafael-ca',
-      'https://hamilton-exteriors.com/service-areas/napa-county-ca/napa-ca',
-      'https://hamilton-exteriors.com/service-areas/napa-county-ca/american-canyon-ca',
-      'https://hamilton-exteriors.com/service-areas/napa-county-ca/st-helena-ca',
-      'https://hamilton-exteriors.com/service-areas/napa-county-ca/calistoga-ca',
-      'https://hamilton-exteriors.com/service-areas/napa-county-ca/yountville-ca',
-      'https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/san-jose-ca',
-      'https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/palo-alto-ca',
-      'https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/mountain-view-ca',
-      'https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/sunnyvale-ca',
-      'https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/cupertino-ca',
-      'https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/santa-clara-ca',
-      'https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/saratoga-ca',
-      'https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/los-gatos-ca',
-      'https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/campbell-ca',
-      'https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/milpitas-ca',
+      // City pages (29 cities)
+      ...cityPages,
+      // City+service pages (29 cities x 6 services = 174 pages)
+      ...cityServicePages,
     ],
     filter: (page) => {
       // Exclude noindex pages from sitemap

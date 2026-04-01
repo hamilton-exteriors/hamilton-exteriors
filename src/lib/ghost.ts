@@ -94,6 +94,7 @@ export function formatDate(dateStr: string): string {
 import { cacheGet, cacheSet } from './ghost-cache';
 import type { ServiceAreaCity } from './service-area-types';
 import type { CountyPageData } from './county-page-types';
+import type { CityServicePageData } from './city-service-types';
 
 /**
  * Extract JSON data from Ghost HTML card.
@@ -161,6 +162,36 @@ export async function getServiceAreaCounty(
     if (data) {
       if (post.meta_title) data.title = post.meta_title;
       if (post.meta_description) data.description = post.meta_description;
+      cacheSet(cacheKey, data);
+    }
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+/** Fetch a service-area city+service page from Ghost CMS. */
+export async function getServiceAreaCityService(
+  countySlug: string,
+  citySlug: string,
+  serviceSlug: string,
+): Promise<CityServicePageData | null> {
+  const ghostSlug = `sa-city-${countySlug}-${citySlug}-${serviceSlug}`;
+  const cacheKey = ghostSlug;
+
+  const cached = cacheGet<CityServicePageData>(cacheKey);
+  if (cached) return cached;
+
+  if (!isGhostConfigured()) return null;
+
+  try {
+    const post = await getPost(ghostSlug);
+    if (!post?.html) return null;
+    const data = extractJsonFromHtml(post.html) as CityServicePageData | null;
+    if (data) {
+      if (post.meta_title) data.title = post.meta_title;
+      if (post.meta_description) data.description = post.meta_description;
+      console.log(`[ghost] cityService ${ghostSlug} — json desc: ${(data as any).description?.slice(0,60) ?? 'MISSING'}, meta_desc: ${post.meta_description?.slice(0,60) ?? 'null'}`);
       cacheSet(cacheKey, data);
     }
     return data;

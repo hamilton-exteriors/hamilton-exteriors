@@ -2,49 +2,94 @@
 /**
  * Catch-all route for service area pages.
  * Handles:
- *   /service-areas/{countySlug}         → County page
- *   /service-areas/{countySlug}/{city}  → City page
+ *   /service-areas/{countySlug}                     → County page
+ *   /service-areas/{countySlug}/{city}              → General city page
+ *   /service-areas/{countySlug}/{city}/{service}    → City+service page
  *
- * Fetches from Ghost CMS first, falls back to static data files.
+ * Fetches from Ghost CMS first, falls back to template generation / static data.
  */
 import Layout from '../../layouts/Layout.astro';
 import CountyPage from '../../components/CountyPage.astro';
 import ServiceAreaCityPage from '../../components/ServiceAreaCityPage.astro';
-import { getServiceAreaCity, getServiceAreaCounty } from '../../lib/ghost';
+import GeneralCityPage from '../../components/GeneralCityPage.astro';
+import ServicePage from '../../components/ServicePage.astro';
+import { getServiceAreaCity, getServiceAreaCounty, getServiceAreaCityService } from '../../lib/ghost';
 import { resolveImages } from '../../lib/image-map';
+import { generateGeneralCityPage, generateCityServicePage } from '../../lib/pseo/generate';
+import { getCitySeed } from '../../lib/pseo/city-seed-data';
+import { getServiceTemplate } from '../../lib/pseo/service-templates';
 import type { ServiceAreaCity } from '../../lib/service-area-types';
 import type { CountyPageData } from '../../lib/county-page-types';
+import type { GeneralCityPageData } from '../../lib/general-city-types';
+import type { CityServicePageData } from '../../lib/city-service-types';
 
 const slug = Astro.params.slug;
 if (!slug) return Astro.redirect('/service-areas');
 
 const segments = slug.split('/');
 
-let pageType: 'county' | 'city' | null = null;
+let pageType: 'county' | 'city' | 'cityService' | null = null;
 let cityData: ServiceAreaCity | null = null;
 let countyData: CountyPageData | null = null;
+let generalCityData: GeneralCityPageData | null = null;
+let cityServiceData: CityServicePageData | null = null;
 
-if (segments.length === 2) {
+if (segments.length === 3) {
+  // City+service page: /service-areas/{county}/{city}/{service}
+  const [countySlug, citySlug, serviceSlug] = segments;
+  pageType = 'cityService';
+
+  // Try Ghost first
+  cityServiceData = await getServiceAreaCityService(countySlug, citySlug, serviceSlug);
+
+  // Fallback: generate from template
+  if (!cityServiceData) {
+    // Strip -ca suffix from city slug, -county-ca from county slug for seed lookup
+    const seedCitySlug = citySlug.replace(/-ca$/, '');
+    const seed = getCitySeed(seedCitySlug);
+    const template = getServiceTemplate(serviceSlug);
+
+    if (seed && template) {
+      cityServiceData = generateCityServicePage(seed, template);
+    }
+  }
+
+  if (!cityServiceData) return Astro.rewrite('/404');
+
+  console.log(`[service-area] ${pageType} ${slug} — title: ${cityServiceData?.title?.slice(0,50)} desc: ${cityServiceData?.description?.slice(0,50)}`);
+
+} else if (segments.length === 2) {
   // City page: /service-areas/{county}/{city}
   const [countySlug, citySlug] = segments;
   pageType = 'city';
 
   // Try Ghost first
-  cityData = await getServiceAreaCity(countySlug, citySlug);
+  const ghostCity = await getServiceAreaCity(countySlug, citySlug);
 
-  // Fallback to static data
-  if (!cityData) {
-    try {
-      const mod = await import(`../../data/service-areas/${citySlug}.ts`);
-      cityData = mod.data as ServiceAreaCity;
-    } catch {
-      // No static data either
+  if (ghostCity) {
+    // Ghost returned old-format ServiceAreaCity data — use old component
+    cityData = ghostCity;
+  } else {
+    // Fallback: generate GeneralCityPage from seed
+    const seedCitySlug = citySlug.replace(/-ca$/, '');
+    const seed = getCitySeed(seedCitySlug);
+
+    if (seed) {
+      generalCityData = generateGeneralCityPage(seed);
+    } else {
+      // Second fallback: static data files (backward compat)
+      try {
+        const mod = await import(`../../data/service-areas/${citySlug}.ts`);
+        cityData = mod.data as ServiceAreaCity;
+      } catch {
+        // No static data either
+      }
     }
   }
 
-  if (!cityData) return Astro.rewrite('/404');
+  if (!cityData && !generalCityData) return Astro.rewrite('/404');
 
-  console.log(`[service-area] ${pageType} ${slug} — title: ${cityData?.title?.slice(0,50)} desc: ${cityData?.description?.slice(0,50)}`);
+  console.log(`[service-area] ${pageType} ${slug} — title: ${(generalCityData?.title ?? cityData?.title)?.slice(0,50)} desc: ${(generalCityData?.description ?? cityData?.description)?.slice(0,50)}`);
 
 } else if (segments.length === 1) {
   // County page: /service-areas/{county}
@@ -59,7 +104,6 @@ if (segments.length === 2) {
     try {
       const mod = await import(`../../data/counties/${countySlug}.ts`);
       countyData = mod.data as CountyPageData;
-      // Resolve image strings to ImageMetadata if coming from Ghost
     } catch {
       // No static data either
     }
@@ -79,7 +123,19 @@ if (segments.length === 2) {
 }
 ---
 
-{pageType === 'city' && cityData && (
+{pageType === 'cityService' && cityServiceData && (
+  <Layout title={cityServiceData.title} description={cityServiceData.description}>
+    <ServicePage data={cityServiceData as any} />
+  </Layout>
+)}
+
+{pageType === 'city' && generalCityData && (
+  <Layout title={generalCityData.title} description={generalCityData.description}>
+    <GeneralCityPage data={generalCityData} />
+  </Layout>
+)}
+
+{pageType === 'city' && cityData && !generalCityData && (
   <Layout title={cityData.title} description={cityData.description}>
     <ServiceAreaCityPage data={cityData} />
   </Layout>
