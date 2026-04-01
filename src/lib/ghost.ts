@@ -127,56 +127,58 @@ async function warmServiceAreaCache(): Promise<void> {
   if (_saCache.size > 0) return; // already warmed
   if (!isGhostConfigured()) return;
 
-  // Fetch ALL sa-* posts in pages of 100 (Ghost max per page is 100 on Content API)
-  let page = 1;
-  let hasMore = true;
-  while (hasMore) {
-    try {
-      const data = await ghostFetch('posts', {
-        filter: 'slug:sa-',
-        include: 'tags',
-        limit: '100',
-        page: String(page),
-      });
-      const posts: GhostPost[] = data.posts ?? [];
-      for (const post of posts) {
-        _saCache.set(post.slug, post);
+  // Bulk-fetch all service area posts by tag — ~5 API calls instead of 400+
+  const tags = ['hash-service-area-city', 'hash-service-area-county', 'hash-service-area-city-service'];
+  for (const tag of tags) {
+    let page = 1;
+    let more = true;
+    while (more) {
+      try {
+        const data = await ghostFetch('posts', {
+          filter: `tag:${tag}`,
+          include: 'tags',
+          limit: '100',
+          page: String(page),
+        });
+        const posts: GhostPost[] = data.posts ?? [];
+        for (const post of posts) {
+          _saCache.set(post.slug, post);
+        }
+        more = posts.length === 100;
+        page++;
+      } catch (e) {
+        if (import.meta.env.DEV) console.error(`[ghost] Failed to fetch tag ${tag} page ${page}:`, e);
+        more = false;
       }
-      hasMore = posts.length === 100;
-      page++;
-    } catch {
-      hasMore = false;
     }
   }
 
-  // If slug filter didn't work, try tag-based fetch
+  // Fallback: if no tagged posts found, fetch ALL posts and filter by slug prefix
   if (_saCache.size === 0) {
-    const tags = ['hash-service-area-city', 'hash-service-area-county', 'hash-service-area-city-service'];
-    for (const tag of tags) {
-      let p = 1;
-      let more = true;
-      while (more) {
-        try {
-          const data = await ghostFetch('posts', {
-            filter: `tag:${tag}`,
-            include: 'tags',
-            limit: '100',
-            page: String(p),
-          });
-          const posts: GhostPost[] = data.posts ?? [];
-          for (const post of posts) {
+    let page = 1;
+    let more = true;
+    while (more) {
+      try {
+        const data = await ghostFetch('posts', {
+          include: 'tags',
+          limit: '100',
+          page: String(page),
+        });
+        const posts: GhostPost[] = data.posts ?? [];
+        for (const post of posts) {
+          if (post.slug.startsWith('sa-')) {
             _saCache.set(post.slug, post);
           }
-          more = posts.length === 100;
-          p++;
-        } catch {
-          more = false;
         }
+        more = posts.length === 100;
+        page++;
+      } catch {
+        more = false;
       }
     }
   }
 
-  if (import.meta.env.DEV) console.log(`[ghost] Warmed service area cache: ${_saCache.size} posts`);
+  console.log(`[ghost] Warmed service area cache: ${_saCache.size} posts`);
 }
 
 function ensureWarmed(): Promise<void> {
