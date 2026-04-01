@@ -344,9 +344,12 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
   document.getElementById('back-btn-1')?.addEventListener('click', () => showStep(step1));
   document.getElementById('back-btn-2')?.addEventListener('click', () => showStep(skipStep2 ? step1 : step2));
 
-  // Form submit — use Astro Action
+  // Form submit — use Astro Action (with double-submit guard)
+  let isSubmitting = false;
   heroForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+    isSubmitting = true;
     const submitBtn = heroForm.querySelector('button[type="submit"]') as HTMLButtonElement;
     const originalText = submitBtn?.textContent || '';
     if (submitBtn) {
@@ -388,6 +391,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
           submitBtn.disabled = false;
           submitBtn.textContent = originalText;
         }
+        isSubmitting = false;
         return;
       }
 
@@ -411,6 +415,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
       }
+      isSubmitting = false;
       alert('Something went wrong. Please call us at (650) 977-3351.');
     }
   });

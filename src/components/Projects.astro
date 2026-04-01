@@ -82,9 +82,10 @@ import { Image } from 'astro:assets';
     <!-- Header -->
     <div class="mb-6 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
       <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 5vw, 36px); font-weight: 400; color: var(--color-charcoal); margin: 0; text-transform: uppercase; line-height: 1.1;">Our Latest Projects</h2>
-      <a href="https://www.backofficeautomations.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5" style="opacity: 0.45; text-decoration: none;">
-        <span style="font-size: 11px; color: var(--color-charcoal); font-weight: 400; letter-spacing: 0.3px;">Powered by</span>
-        <span style="font-family: var(--font-dm-sans); font-size: 11px; font-weight: 600; color: var(--color-charcoal);">BackOffice</span>
+      <a href="https://www.backofficeautomations.com/" target="_blank" rel="noopener noreferrer" class="backoffice-badge flex items-center gap-1.5" style="text-decoration: none;">
+        <span class="backoffice-label" style="font-size: 11px; font-weight: 400; letter-spacing: 0.3px;">Powered by</span>
+        <span class="backoffice-name" style="font-family: var(--font-dm-sans); font-size: 11px; font-weight: 600;">BackOffice</span>
+        <svg class="backoffice-arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 1h6v6M9 1L1 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
 
@@ -543,6 +544,32 @@ import { Image } from 'astro:assets';
   #cc-lb-prev:hover,
   #cc-lb-next:hover {
     background: rgba(0,0,0,0.7) !important;
+  }
+
+  /* BackOffice badge hover delight */
+  .backoffice-badge {
+    opacity: 0.35;
+    color: var(--color-charcoal);
+    transition: opacity 0.3s ease, color 0.3s ease;
+  }
+  .backoffice-arrow {
+    opacity: 0;
+    transform: translate(-3px, 3px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .backoffice-badge:hover {
+    opacity: 1;
+    color: var(--color-primary);
+  }
+  .backoffice-badge:hover .backoffice-arrow {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  .backoffice-badge:hover .backoffice-name {
+    letter-spacing: 0.02em;
+  }
+  .backoffice-name {
+    transition: letter-spacing 0.3s ease;
   }
 
   /* Hide scrollbar on filter tabs */

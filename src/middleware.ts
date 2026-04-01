@@ -11,6 +11,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const response = await next();
   const { pathname } = context.url;
 
+  // Security headers
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+
   // API routes — never cache
   if (pathname.startsWith('/api/') || pathname.startsWith('/api.')) {
     response.headers.set('Cache-Control', 'no-store');

@@ -79,6 +79,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
             id="footerName"
             name="footerName"
             placeholder="Name"
+            maxlength="100"
             class="footer-input"
           />
           <label for="footerEmail" class="sr-only">Email</label>
@@ -88,6 +89,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
             name="footerEmail"
             placeholder="Email"
             required
+            maxlength="254"
             class="footer-input"
           />
           <button
@@ -129,7 +131,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
   <!-- Service Areas -->
   <div class="mx-auto max-w-[1170px] px-4 lg:px-5">
     <div class="border-t border-white/10 pt-8 pb-4">
-      <h3 class="font-oswald text-sm font-bold uppercase tracking-[0.1em] text-white/40 mb-4">Service Areas</h3>
+      <h3 class="font-oswald text-sm font-bold uppercase tracking-[0.1em] text-white/60 mb-4">Service Areas</h3>
       <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3 md:grid-cols-5">
         <div>
           <a href="/service-areas/alameda-county-ca" class="footer-area-county">Alameda County</a>
@@ -176,7 +178,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
           <a href="/service-areas/napa-county-ca/yountville-ca" class="footer-area-city">Yountville</a>
         </div>
       </div>
-      <a href="/service-areas" class="inline-block mt-4" style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: rgba(255,255,255,0.5); text-decoration: underline; text-underline-offset: 2px;">View all service areas &rarr;</a>
+      <a href="/service-areas" class="inline-block mt-4" style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: rgba(255,255,255,0.65); text-decoration: underline; text-underline-offset: 2px;">View all service areas &rarr;</a>
     </div>
   </div>
 
@@ -207,8 +209,11 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
 <script>
   const form = document.getElementById('newsletter-form') as HTMLFormElement;
   const msg = document.getElementById('newsletter-msg') as HTMLParagraphElement;
+  let submitting = false;
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (submitting) return;
+    submitting = true;
     const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
     const original = btn.textContent || '';
     btn.disabled = true;
@@ -232,6 +237,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
     msg.style.display = 'block';
     btn.disabled = false;
     btn.textContent = original;
+    submitting = false;
   });
 </script>
 
@@ -307,9 +313,11 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
     font-family: var(--font-dm-sans);
     font-size: 0.75rem;
     line-height: 1.9;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.65);
     text-decoration: none;
     transition: color 0.2s ease-out;
+    min-height: 24px;
+    padding-block: 2px;
   }
   .footer-area-city:hover {
     color: rgba(255, 255, 255, 0.8);

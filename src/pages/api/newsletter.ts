@@ -1,11 +1,13 @@
 import type { APIRoute } from 'astro';
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 export const POST: APIRoute = async ({ request }) => {
   const formData = await request.formData();
-  const email = formData.get('footerEmail')?.toString().trim();
-  const name = formData.get('footerName')?.toString().trim();
+  const email = formData.get('footerEmail')?.toString().trim().slice(0, 254);
+  const name = formData.get('footerName')?.toString().trim().slice(0, 100);
 
-  if (!email || !email.includes('@')) {
+  if (!email || !EMAIL_RE.test(email)) {
     return new Response(JSON.stringify({ error: 'Valid email is required.' }), {
       status: 400,
       headers: { 'Content-Type': 'application/json' },
