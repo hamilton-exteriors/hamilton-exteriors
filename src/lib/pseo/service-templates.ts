@@ -53,7 +53,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       {
         questionPattern: 'How long does a roof replacement take in {city}?',
         answerPattern:
-          'Most roof replacements in {city} take 1-3 days depending on the size and complexity. We handle all permits required by {county} County and keep your property clean throughout the process.',
+          'Most roof replacements in {city} take 3-5 days depending on the size and complexity. We handle all permits required by {county} County and keep your property clean throughout the process.',
       },
       {
         questionPattern: 'Does Hamilton Exteriors offer roof financing in {city}?',
@@ -123,7 +123,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       {
         questionPattern: 'How long does siding installation take in {city}?',
         answerPattern:
-          'Most siding projects in {city} take 3-5 days depending on home size. We handle all {county} County permits and protect your landscaping throughout the installation.',
+          'Most siding projects in {city} take 1-2 weeks depending on home size. We handle all {county} County permits and protect your landscaping throughout the installation.',
       },
       {
         questionPattern: 'Do you offer waterproofing with siding in {city}?',
