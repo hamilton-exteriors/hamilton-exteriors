@@ -59,6 +59,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
           <a href="/eeo-policy" class="footer-link min-h-[44px] flex items-center">EEO Policy</a>
           <a href="/opt-out" class="footer-link min-h-[44px] flex items-center">Opt Out</a>
           <a href="/blog" class="footer-link min-h-[44px] flex items-center">Blog</a>
+          <a href="/service-areas" class="footer-link min-h-[44px] flex items-center">Service Areas</a>
         </nav>
       </div>
 
@@ -100,17 +101,17 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
 
         <!-- Review Badges -->
         <div class="flex flex-wrap items-center justify-center gap-3 pt-2 lg:justify-start">
-          <div aria-label="Google reviews">
+          <a href="https://www.google.com/maps/place/Hamilton+Exteriors" target="_blank" rel="noopener noreferrer" aria-label="Google reviews">
             <Image
               src={badgeGoogle}
-              alt="Hamilton Exteriors on Google"
+              alt="Hamilton Exteriors on Google — 4.8 stars"
               width={239}
               height={80}
               class="h-10 w-auto"
               loading="lazy"
             />
-          </div>
-          <div aria-label="Yelp reviews">
+          </a>
+          <a href="https://www.yelp.com/biz/hamilton-exteriors-castro-valley" target="_blank" rel="noopener noreferrer" aria-label="Yelp reviews">
             <Image
               src={badgeYelp}
               alt="Hamilton Exteriors on Yelp"
@@ -119,7 +120,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
               class="h-10 w-auto"
               loading="lazy"
             />
-          </div>
+          </a>
         </div>
       </div>
     </div>

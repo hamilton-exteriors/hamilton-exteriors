@@ -256,6 +256,7 @@ const blogJsonLd = {
               {pagination.page > 1 && (
                 <a
                   href={`/blog?page=${pagination.page - 1}${tag ? `&tag=${tag}` : ''}`}
+                  rel="prev"
                   class="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 inline-flex items-center gap-2"
                   style="font-family: var(--font-dm-sans);"
                 >
@@ -268,6 +269,7 @@ const blogJsonLd = {
               {pagination.page < pagination.pages && (
                 <a
                   href={`/blog?page=${pagination.page + 1}${tag ? `&tag=${tag}` : ''}`}
+                  rel="next"
                   class="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 inline-flex items-center gap-2"
                   style="font-family: var(--font-dm-sans);"
                 >
