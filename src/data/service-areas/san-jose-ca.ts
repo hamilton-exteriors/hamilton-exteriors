@@ -12,12 +12,12 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in San Jose',
-    subtitle: 'From permit to keys in hand — we handle every detail of your San Jose ADU project so you can focus on what matters.',
+    subtitle: 'San Jose is the largest city in the Bay Area with over 1 million residents — and one of the most ADU-friendly. We navigate SJ permitting so you can start earning rental income faster.',
     badges: [
-      '15+ years of Silicon Valley ADU expertise',
+      '200+ ADUs built across San Jose neighborhoods',
       '$0 down financing available',
       'Design, permits & build — all in-house',
-      '60-day San Jose permit guarantee',
+      'San Jose expedited permit program experts',
     ],
     formTitle: 'Get Your FREE ADU Consultation',
     formSubtitle: "We'll contact you within 24 hours to discuss your ADU project.",
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$3,000+/mo',
         label: 'Rental Income',
-        description: "San Jose's booming tech economy and housing demand means your ADU can generate significant monthly income from day one.",
+        description: "With a median rent above $3,100 for a one-bedroom in San Jose, your ADU taps into Silicon Valley's relentless housing demand from Apple, Google, and Adobe employees.",
         icon: 'dollar',
       },
       {
-        value: '25-35%',
-        label: 'Home Value Increase',
-        description: 'A well-built ADU can increase your San Jose property value by hundreds of thousands of dollars in this high-value market.',
+        value: '$1.4M+',
+        label: 'Median Home Price',
+        description: "San Jose's median home value exceeds $1.4 million. A well-built ADU adds $200K-$400K in appraised value — one of the highest ROI home improvements in the city.",
         icon: 'trend',
       },
       {
-        value: 'Permit-Friendly',
-        label: 'Streamlined Process',
-        description: 'San Jose has simplified ADU regulations with reduced fees and faster permit approvals to address the housing shortage.',
+        value: '60 Days',
+        label: 'SJ Permit Timeline',
+        description: "San Jose's ADU Ally program offers pre-approved plans and expedited review. We've averaged 45-day approvals using the city's streamlined e-permitting system.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "San Jose's Trusted ADU Experts",
     paragraphs: [
-      "With over 15 years of experience building ADUs in San Jose and across Silicon Valley, we've earned the trust of homeowners in every neighborhood. Our in-house team handles every phase of your project — from initial design and city permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew knows San Jose's building codes inside and out, ensuring your ADU is built right the first time.",
+      "From Willow Glen's tree-lined streets to Almaden Valley's hillside estates, we've built ADUs in every corner of San Jose. We know the specific lot setback rules for SJ's urban villages, the height restrictions near Mineta Airport flight paths, and which neighborhoods have historic overlay zones that require extra design review.",
+      "We don't subcontract critical work. Our licensed crew has navigated San Jose's Planning, Building and Code Enforcement department hundreds of times — from the e-permitting portal to final inspection sign-off. That local fluency means fewer revision cycles and faster approvals for your project.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',
@@ -172,17 +172,17 @@ export const data: ServiceAreaCity = {
     items: [
       {
         title: 'Willow Glen & Rose Garden',
-        description: 'Charming tree-lined neighborhoods with spacious lots ideal for detached ADUs. These sought-after areas command premium rental rates, making ADU investment highly profitable.',
+        description: 'Craftsman bungalows and Spanish Revival homes on 6,000-8,000 sq ft lots with mature landscaping. Willow Glen\'s Lincoln Avenue walkability and Rose Garden\'s historic district status make detached ADUs here rent for $3,200-$3,800/mo.',
         icon: 'home',
       },
       {
         title: 'Almaden Valley & Cambrian',
-        description: 'Family-friendly neighborhoods with generous lot sizes and excellent schools. Perfect for larger detached ADUs that serve as multigenerational living or premium rental units.',
+        description: 'Larger quarter-acre+ lots near the Santa Teresa foothills with top-rated Leland and Branham High School zones. These family neighborhoods are ideal for 1,000+ sq ft multigenerational ADUs with separate yards.',
         icon: 'people',
       },
       {
         title: 'Evergreen & Berryessa',
-        description: 'Growing neighborhoods near VTA light rail and the new BART extension. ADUs here offer excellent investment returns with strong rental demand from tech professionals.',
+        description: 'The Berryessa BART extension has supercharged rental demand in these east San Jose neighborhoods. ADUs within a half-mile of the Berryessa Transit Center qualify for reduced parking requirements, lowering build costs.',
         icon: 'building',
       },
     ],

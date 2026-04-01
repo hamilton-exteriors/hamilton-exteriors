@@ -12,12 +12,12 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in Napa',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Napa ADU project so you can enjoy wine country living to the fullest.',
+    subtitle: 'Napa\'s tourism-driven economy and $900K+ median home values make ADUs one of the smartest investments in wine country — whether for vacation rentals, vineyard worker housing, or multigenerational living.',
     badges: [
-      '15+ years of Napa ADU expertise',
+      'Napa wine country ADU design specialists',
       '$0 down financing available',
       'Design, permits & build — all in-house',
-      '60-day Napa permit guarantee',
+      'Vacation rental & long-term ADU experts',
     ],
     formTitle: 'Get Your FREE ADU Consultation',
     formSubtitle: "We'll contact you within 24 hours to discuss your ADU project.",
@@ -89,19 +89,19 @@ export const data: ServiceAreaCity = {
       {
         value: '$3,500+/mo',
         label: 'Rental Income',
-        description: "Napa's thriving wine country tourism and strong rental market mean your ADU can generate exceptional monthly income year-round.",
+        description: "Long-term rentals in Napa average $2,800/mo for a one-bedroom, but vacation-rental ADUs near downtown tasting rooms and the Oxbow Public Market can gross $5,000+/mo in peak harvest season (Aug-Oct).",
         icon: 'dollar',
       },
       {
-        value: '25-35%',
-        label: 'Home Value Increase',
-        description: 'A well-built ADU can increase your Napa property value significantly, given the area\'s premium real estate market.',
+        value: '$925K+',
+        label: 'Median Home Price',
+        description: "Napa's median home price exceeds $925,000 and has risen 40% in five years. A quality ADU adds $150K-$300K in appraised value while generating income from day one.",
         icon: 'trend',
       },
       {
-        value: 'Tourism Demand',
-        label: 'Vacation Rental Potential',
-        description: 'Napa Valley attracts millions of visitors annually, creating strong demand for short-term vacation rentals and guest accommodations.',
+        value: '3.5M+',
+        label: 'Annual Visitors',
+        description: "Napa Valley welcomes over 3.5 million visitors each year. With the city's vacation rental permit program, your ADU can tap into wine country's $2.23 billion tourism economy.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "Napa's Trusted ADU Experts",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Napa, we've earned the trust of homeowners across every neighborhood. Our in-house team handles every phase of your project — from initial design and city permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew knows Napa's building codes and wine country architectural standards inside and out, ensuring your ADU is built right the first time.",
+      "From the Victorian cottages along the Napa River to the vineyard estates off Silverado Trail, we've built ADUs that honor Napa's unique character. We understand the city's Downtown Specific Plan overlay, the Napa County Agricultural Preserve setbacks for properties bordering vineyards, and the short-term rental permit requirements that let you legally list on Airbnb and VRBO.",
+      "We don't subcontract critical work. Our licensed crew coordinates with the Napa Community Development Department and knows the fire-hardening requirements for WUI (Wildland-Urban Interface) zones in the hillside neighborhoods. That local expertise means fewer surprises and faster approvals.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',
@@ -171,18 +171,18 @@ export const data: ServiceAreaCity = {
     subtitle: "We build ADUs across every Napa neighborhood, with deep knowledge of each area's unique building requirements and architectural character.",
     items: [
       {
-        title: 'Old Town & Downtown',
-        description: 'Historic homes on generous lots perfect for detached ADUs. These walkable neighborhoods near restaurants and tasting rooms command premium rental rates for vacation rentals.',
+        title: 'Old Town & Downtown Napa',
+        description: 'Walk to the Oxbow Public Market, First Street tasting rooms, and the Napa River Trail. Historic Victorian and Craftsman lots of 5,000-8,000 sq ft are ideal for detached guest cottages that double as high-earning vacation rentals.',
         icon: 'home',
       },
       {
         title: 'Browns Valley & Westwood',
-        description: 'Established residential neighborhoods with spacious properties ideal for family-oriented ADUs. Tree-lined streets and proximity to parks make these areas highly desirable.',
+        description: 'Quiet, family-oriented neighborhoods near Westwood Hills Park with quarter-acre lots and mature oak canopy. Strong demand from Napa Valley Unified School District families makes these areas excellent for long-term rental ADUs averaging $2,800-$3,200/mo.',
         icon: 'people',
       },
       {
         title: 'Alta Heights & Silverado',
-        description: 'Hillside and vineyard-adjacent properties with stunning valley views. We specialize in ADU designs that work with varied terrain and complement the natural wine country surroundings.',
+        description: 'Hillside properties with panoramic valley and vineyard views near the Silverado Resort. These lots often fall in WUI fire zones, requiring ember-resistant vents and Class A roofing — details our crew handles from the design phase.',
         icon: 'building',
       },
     ],

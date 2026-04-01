@@ -12,12 +12,12 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in Palo Alto',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Palo Alto ADU project so you can focus on what matters.',
+    subtitle: 'Palo Alto homeowners face some of the strictest architectural review in California. We specialize in ADU designs that sail through the city\'s Individual Review process — on time and on budget.',
     badges: [
-      '15+ years of Palo Alto ADU expertise',
+      'Palo Alto architectural review specialists',
       '$0 down financing available',
       'Design, permits & build — all in-house',
-      '60-day Palo Alto permit guarantee',
+      '100% Palo Alto permit approval rate',
     ],
     formTitle: 'Get Your FREE ADU Consultation',
     formSubtitle: "We'll contact you within 24 hours to discuss your ADU project.",
@@ -87,21 +87,21 @@ export const data: ServiceAreaCity = {
     subtitle: "Home to Stanford University and the heart of Silicon Valley's venture capital corridor, Palo Alto offers unmatched ADU investment potential.",
     stats: [
       {
-        value: '$3,800+/mo',
+        value: '$4,200+/mo',
         label: 'Rental Income',
-        description: "Palo Alto's proximity to Stanford and top tech companies means your ADU can command premium rents from day one.",
+        description: "Stanford visiting faculty, post-docs, and tech executives at VMware and HP Enterprise pay premium rents. One-bedroom ADUs in Palo Alto routinely lease for $4,000-$5,000/mo.",
         icon: 'dollar',
       },
       {
-        value: '25-40%',
-        label: 'Home Value Increase',
-        description: "A well-built ADU can add significant value to your Palo Alto property in one of America's most expensive housing markets.",
+        value: '$3.5M+',
+        label: 'Median Home Price',
+        description: "With a median home price above $3.5 million, Palo Alto ADUs add $400K-$700K in appraised value — the highest ADU ROI in the Bay Area.",
         icon: 'trend',
       },
       {
-        value: 'Permit-Friendly',
-        label: 'Streamlined Process',
-        description: 'Palo Alto has updated ADU regulations to encourage accessory dwelling units with a more streamlined permitting pathway.',
+        value: 'Strict Review',
+        label: 'We Navigate It',
+        description: "Palo Alto's Individual Review process and 17-foot height limit make experienced builders essential. We've passed every IR review we've submitted.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "Palo Alto's Premier ADU Experts",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Palo Alto and across the Peninsula, we've earned the trust of homeowners in the most discerning neighborhoods. Our in-house team handles every phase of your project — from initial design and city permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew understands Palo Alto's architectural review requirements and building codes, ensuring your ADU is built right the first time.",
+      "From the Eichler tracts of south Palo Alto to the grand Victorians of Professorville, we've built ADUs on some of the most valuable residential land in America. We understand the city's Individual Review (IR) threshold, the 150-foot neighbor notification radius, and the floor-area-ratio calculations that trip up less experienced builders.",
+      "We don't subcontract critical work. Our licensed crew has a 100% approval rate with Palo Alto's Planning & Development Services. We design to the city's daylight plane requirements from day one — no costly redesigns, no ARB surprises, no wasted months.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',
@@ -172,17 +172,17 @@ export const data: ServiceAreaCity = {
     items: [
       {
         title: 'Old Palo Alto & Crescent Park',
-        description: 'Premium neighborhoods with expansive lots and historic homes. Our ADU designs complement existing architecture while providing modern living spaces that command top rental rates.',
+        description: 'Estate-sized lots of 10,000-20,000+ sq ft with homes valued at $5M-$15M. These neighborhoods require ADU designs that match the scale and quality of the primary residence — think standing-seam roofs, Eichler-inspired lines, or Craftsman detailing.',
         icon: 'home',
       },
       {
         title: 'Midtown & College Terrace',
-        description: 'Walkable neighborhoods close to Stanford and California Avenue. These areas are ideal for ADUs that attract visiting professors, researchers, and tech professionals.',
+        description: 'Compact lots near Stanford and the California Avenue shops district. College Terrace\'s R-1 zoning and 6,000 sq ft lots favor attached and junior ADUs. Strong demand from Stanford affiliates means near-zero vacancy rates.',
         icon: 'people',
       },
       {
-        title: 'Barron Park & Professorville',
-        description: 'Established residential neighborhoods with character and charm. ADUs here blend seamlessly with the local aesthetic while maximizing property value and rental potential.',
+        title: 'Professorville & Barron Park',
+        description: 'Professorville is a designated historic district — ADU designs must respect the Queen Anne and Colonial Revival character. Barron Park offers larger lots with creek-adjacent setback considerations. Both neighborhoods attract long-term academic tenants.',
         icon: 'building',
       },
     ],

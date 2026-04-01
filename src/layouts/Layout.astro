@@ -11,15 +11,20 @@ interface Props {
   noindex?: boolean;
 }
 
+const DEFAULT_DESCRIPTION = 'Hamilton Exteriors — Bay Area design-build contractor. Roofing, siding, windows, ADUs, and custom homes. Licensed, bonded, insured. 50-year warranty. Call (650) 977-3351.';
+
 const {
   title = 'Bay Area Roofing, Siding, ADUs & Custom Homes | Hamilton Exteriors',
-  description = 'Hamilton Exteriors — Bay Area design-build contractor. Roofing, siding, windows, ADUs, and custom homes. Licensed, bonded, insured. 50-year warranty. Call (650) 977-3351.',
+  description: rawDescription,
   image,
   type = 'website',
   jsonLd,
   includeMapbox = false,
   noindex = false,
 } = Astro.props;
+
+// Guard against empty-string descriptions that would blank out the meta tag
+const description = rawDescription?.trim() || DEFAULT_DESCRIPTION;
 
 const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;

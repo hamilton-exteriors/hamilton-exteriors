@@ -133,6 +133,7 @@ export async function getServiceAreaCity(
       // Overlay Ghost SEO fields if present
       if (post.meta_title) data.title = post.meta_title;
       if (post.meta_description) data.description = post.meta_description;
+      console.log(`[ghost] city ${ghostSlug} — json desc: ${(data as any).description?.slice(0,60) ?? 'MISSING'}, meta_desc: ${post.meta_description?.slice(0,60) ?? 'null'}`);
       cacheSet(cacheKey, data);
     }
     return data;

@@ -12,12 +12,12 @@ export const data: ServiceAreaCity = {
 
   hero: {
     headline: 'Build Your Dream ADU in Oakland',
-    subtitle: 'From permit to keys in hand — we handle every detail of your Oakland ADU project so you can focus on what matters.',
+    subtitle: 'Oakland is the East Bay\'s hottest ADU market — with no owner-occupancy requirement and strong BART-adjacent rental demand. We handle design, permits, and construction so you can start earning income sooner.',
     badges: [
-      '15+ years of Oakland ADU expertise',
+      'Oakland\'s most experienced ADU builder',
       '$0 down financing available',
       'Design, permits & build — all in-house',
-      '60-day Oakland permit guarantee',
+      'Oakland hillside & flat-lot specialists',
     ],
     formTitle: 'Get Your FREE ADU Consultation',
     formSubtitle: "We'll contact you within 24 hours to discuss your ADU project.",
@@ -87,21 +87,21 @@ export const data: ServiceAreaCity = {
     subtitle: "Oakland is one of the best cities in California for ADU investment. Here's why homeowners are adding ADUs to their properties.",
     stats: [
       {
-        value: '$2,500+/mo',
+        value: '$2,800+/mo',
         label: 'Rental Income',
-        description: "Oakland's strong rental market means your ADU can generate significant monthly income from day one.",
+        description: "Oakland's median one-bedroom rent tops $2,400. ADUs near Rockridge or MacArthur BART stations command $2,800-$3,500/mo — with no owner-occupancy requirement, you can rent both units.",
         icon: 'dollar',
       },
       {
-        value: '20-30%',
-        label: 'Home Value Increase',
-        description: 'A well-built ADU can increase your Oakland property value by hundreds of thousands of dollars.',
+        value: '$1.05M+',
+        label: 'Median Home Price',
+        description: "Oakland's median home price has surpassed $1.05 million. A quality ADU adds $180K-$350K in appraised value while generating monthly cash flow from day one.",
         icon: 'trend',
       },
       {
-        value: 'Permit-Friendly',
-        label: 'Streamlined Process',
-        description: 'Oakland has simplified ADU regulations with reduced fees and faster permit approvals to encourage development.',
+        value: 'No Owner-Occ',
+        label: 'Investor Friendly',
+        description: "Unlike many Bay Area cities, Oakland does not require owner-occupancy for properties with ADUs. This makes Oakland one of the best cities for ADU investment properties.",
         icon: 'document',
       },
     ],
@@ -110,8 +110,8 @@ export const data: ServiceAreaCity = {
   trustedExperts: {
     title: "Oakland's Trusted ADU Experts",
     paragraphs: [
-      "With over 15 years of experience building ADUs in Oakland, we've earned the trust of homeowners across every neighborhood. Our in-house team handles every phase of your project — from initial design and city permits to construction and final inspection.",
-      "We don't subcontract critical work. Our licensed crew knows Oakland's building codes inside and out, ensuring your ADU is built right the first time.",
+      "From Rockridge's Craftsman bungalows to West Oakland's rapidly appreciating Victorians, we've built ADUs across Oakland's wildly diverse housing stock. We know which neighborhoods fall in the city's S-7 fire zone (requiring ignition-resistant construction), how to handle the sloped lots in Montclair and the Oakland Hills, and which BART-adjacent parcels qualify for reduced parking.",
+      "We don't subcontract critical work. Our licensed crew coordinates directly with Oakland's Bureau of Planning and Building and has navigated the city's ADU-specific zoning amendments since they were first adopted. That means fewer revision cycles and faster path to your Certificate of Occupancy.",
     ],
     ctaText: 'Start Your ADU Project',
     ctaHref: '#contact',
@@ -172,17 +172,17 @@ export const data: ServiceAreaCity = {
     items: [
       {
         title: 'Rockridge & Temescal',
-        description: 'Classic Craftsman homes with spacious backyards ideal for detached ADUs. These walkable neighborhoods command top rental rates, making ADU investment highly profitable.',
+        description: 'Craftsman and Tudor homes on 5,000-7,000 sq ft lots along College and Telegraph Avenues. Walking distance to Rockridge BART eliminates the parking requirement, and the neighborhood\'s restaurant scene keeps vacancy rates near zero.',
         icon: 'home',
       },
       {
         title: 'Oakland Hills & Montclair',
-        description: 'Hillside properties with stunning views. We specialize in ADU designs that work with sloped terrain and complement the natural surroundings while maximizing living space.',
+        description: 'Sloped lots with bay views require engineered foundations and fire-hardened construction (S-7 zone). Our hillside expertise means we handle retaining walls, drainage, and CalFire setbacks that flat-lot builders miss.',
         icon: 'people',
       },
       {
         title: 'West Oakland & Jack London',
-        description: 'Rapidly developing areas where ADUs offer exceptional investment returns. Urban lots benefit from garage conversions and attached ADUs that maximize compact spaces.',
+        description: 'Victorian-era lots near the West Oakland BART station have seen 60%+ appreciation in five years. Garage conversions and compact detached ADUs on 3,000-4,000 sq ft parcels deliver strong rental yields in this transit-rich corridor.',
         icon: 'building',
       },
     ],

@@ -44,6 +44,8 @@ if (segments.length === 2) {
 
   if (!cityData) return Astro.rewrite('/404');
 
+  console.log(`[service-area] ${pageType} ${slug} — title: ${cityData?.title?.slice(0,50)} desc: ${cityData?.description?.slice(0,50)}`);
+
 } else if (segments.length === 1) {
   // County page: /service-areas/{county}
   const [countySlug] = segments;
@@ -64,6 +66,8 @@ if (segments.length === 2) {
   }
 
   if (!countyData) return Astro.rewrite('/404');
+
+  console.log(`[service-area] ${pageType} ${slug} — title: ${countyData?.title?.slice(0,50)} desc: ${countyData?.description?.slice(0,50)}`);
 
   // Resolve any string image references on county cities
   if (countyData.cities) {
