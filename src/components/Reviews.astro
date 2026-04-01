@@ -124,3 +124,15 @@ const reviews = [
     </div>
   </div>
 </section>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  'name': 'Hamilton Exteriors',
+  'review': reviews.map(r => ({
+    '@type': 'Review',
+    'author': { '@type': 'Person', 'name': r.name },
+    'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' },
+    'reviewBody': r.text,
+  })),
+})} />
