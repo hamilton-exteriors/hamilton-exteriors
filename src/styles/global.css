@@ -110,6 +110,13 @@ button[type="submit"]:active {
   --color-error: rgb(220, 38, 38);           /* red — validation errors */
   --color-footer: rgb(13, 43, 29);           /* dark green — matches Difference section */
 
+  /* Third-party brand colors — manufacturer/review platform identity */
+  --color-brand-gaf: rgb(0, 61, 165);         /* #003da5 — GAF */
+  --color-brand-certainteed: rgb(0, 84, 60);  /* #00543c — CertainTeed */
+  --color-brand-owens-corning: rgb(212, 69, 26); /* #d4451a — Owens Corning */
+  --color-brand-trustpilot: rgb(0, 182, 122); /* #00B67A — Trustpilot */
+  --color-brand-yelp: rgb(211, 35, 35);       /* #D32323 — Yelp */
+
   /* Font Families — 3 fonts only: THE BOLD FONT, DM Sans, Satoshi */
   --font-dm-sans: "DM Sans", sans-serif;
   --font-oswald: "THE BOLD FONT (FREE VERSION)", "THE BOLD FONT PRO", "Oswald", sans-serif;

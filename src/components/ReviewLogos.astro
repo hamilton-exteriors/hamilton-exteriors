@@ -66,10 +66,19 @@ const starColor = 'var(--color-primary)';
           <!-- Logo / Icon -->
           <div class="review-card__logo">
             {platform.name === 'BBB' && (
-              /* BBB shield icon */
+              /* BBB torch/shield icon — uses paths instead of <text> for cross-browser consistency */
               <svg viewBox="0 0 48 48" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M24 2L6 10v12c0 11.1 7.7 21.5 18 24 10.3-2.5 18-12.9 18-24V10L24 2z" fill="#005a78"/>
-                <text x="24" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" font-family="sans-serif">BBB</text>
+                <rect x="11" y="19" width="8" height="2" rx="1" fill="#fff"/>
+                <rect x="11" y="23" width="8" height="2" rx="1" fill="#fff"/>
+                <rect x="11" y="27" width="8" height="2" rx="1" fill="#fff"/>
+                <rect x="20" y="19" width="8" height="2" rx="1" fill="#fff"/>
+                <rect x="20" y="23" width="8" height="2" rx="1" fill="#fff"/>
+                <rect x="20" y="27" width="8" height="2" rx="1" fill="#fff"/>
+                <rect x="29" y="19" width="8" height="2" rx="1" fill="#fff"/>
+                <rect x="29" y="23" width="8" height="2" rx="1" fill="#fff"/>
+                <rect x="29" y="27" width="8" height="2" rx="1" fill="#fff"/>
+                <circle cx="24" cy="14" r="2.5" fill="#ffd700"/>
               </svg>
             )}
             {platform.name === 'Trustpilot' && (
@@ -224,7 +233,7 @@ const starColor = 'var(--color-primary)';
     justify-content: center;
     width: 22px;
     height: 21px;
-    background-color: #00B67A; /* Trustpilot brand green */
+    background-color: var(--color-brand-trustpilot);
   }
 
   .review-card__yelp-stars {
@@ -239,7 +248,7 @@ const starColor = 'var(--color-primary)';
     justify-content: center;
     width: 22px;
     height: 21px;
-    background-color: #D32323; /* Yelp brand red */
+    background-color: var(--color-brand-yelp);
   }
 
   .review-card__rating {
