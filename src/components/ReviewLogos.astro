@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { reviewLogoGoogle, reviewLogoYelp } from '../lib/images';
+import { reviewLogoYelp } from '../lib/images';
 import IconStar from './icons/IconStar.astro';
 /**
  * ReviewLogos – 4 platform rating cards in a horizontal row.
@@ -9,9 +9,9 @@ import IconStar from './icons/IconStar.astro';
 const platforms = [
   {
     name: 'BBB',
-    logo: reviewLogoGoogle,
-    logoWidth: 44,
-    logoHeight: 44,
+    logo: null,
+    logoWidth: 0,
+    logoHeight: 0,
     score: '4.8',
     showStars: true,
     ratingLabel: 'Rated 4.5/5.0',
@@ -66,14 +66,11 @@ const starColor = 'var(--color-primary)';
           <!-- Logo / Icon -->
           <div class="review-card__logo">
             {platform.name === 'BBB' && (
-              <Image
-                src={platform.logo}
-                alt="Hamilton Exteriors BBB rating"
-                width={platform.logoWidth}
-                height={platform.logoHeight}
-                style={`width: ${platform.logoWidth}px; height: ${platform.logoHeight}px; object-fit: contain;`}
-                loading="lazy"
-              />
+              /* BBB shield icon */
+              <svg viewBox="0 0 48 48" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M24 2L6 10v12c0 11.1 7.7 21.5 18 24 10.3-2.5 18-12.9 18-24V10L24 2z" fill="#005a78"/>
+                <text x="24" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" font-family="sans-serif">BBB</text>
+              </svg>
             )}
             {platform.name === 'Trustpilot' && (
               /* Trustpilot green star icon (36x35 SVG) */
@@ -227,7 +224,7 @@ const starColor = 'var(--color-primary)';
     justify-content: center;
     width: 22px;
     height: 21px;
-    background-color: #00B67A;
+    background-color: #00B67A; /* Trustpilot brand green */
   }
 
   .review-card__yelp-stars {
@@ -242,7 +239,7 @@ const starColor = 'var(--color-primary)';
     justify-content: center;
     width: 22px;
     height: 21px;
-    background-color: #D32323;
+    background-color: #D32323; /* Yelp brand red */
   }
 
   .review-card__rating {

@@ -189,7 +189,7 @@ import { Image } from 'astro:assets';
                 <div style="width: 48px; height: 48px; border-radius: 4px; overflow: hidden; flex-shrink: 0; background: var(--color-cream);">
                   <Image
                     src={thumb}
-                    alt=""
+                    alt={`${project.title} thumbnail`}
                     width={250}
                     height={250}
                     style="width: 100%; height: 100%; object-fit: cover;"
@@ -424,7 +424,7 @@ import { Image } from 'astro:assets';
     lbImages.forEach((src, i) => {
       const thumb = document.createElement('div');
       thumb.style.cssText = 'width: 48px; height: 48px; border-radius: 4px; overflow: hidden; flex-shrink: 0; cursor: pointer; border: 2px solid transparent; transition: border-color 0.15s;';
-      thumb.innerHTML = `<img src="${src.replace('d=900x900', 'd=250x250')}" alt="" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />`;
+      thumb.innerHTML = `<img src="${src.replace('d=900x900', 'd=250x250')}" alt="Thumbnail ${i + 1}" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />`;
       thumb.addEventListener('click', () => { lbIndex = i; updateLightbox(); });
       lbThumbs.appendChild(thumb);
     });
@@ -433,12 +433,13 @@ import { Image } from 'astro:assets';
 
   function updateLightbox() {
     lbImg.src = lbImages[lbIndex];
-    lbImg.alt = `Photo ${lbIndex + 1} of ${lbImages.length}`;
+    const title = lbTitle.textContent || 'Project';
+    lbImg.alt = `${title} — photo ${lbIndex + 1} of ${lbImages.length}`;
     lbCounter.textContent = `${lbIndex + 1} / ${lbImages.length}`;
 
     // Update thumb highlights only
     Array.from(lbThumbs.children).forEach((thumb, i) => {
-      (thumb as HTMLElement).style.borderColor = i === lbIndex ? '#FFDE21' : 'transparent';
+      (thumb as HTMLElement).style.borderColor = i === lbIndex ? 'rgb(255, 222, 33)' : 'transparent';
     });
 
     const activeTh = lbThumbs.children[lbIndex] as HTMLElement;

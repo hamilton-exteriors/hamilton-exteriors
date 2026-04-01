@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { iconContactMap, iconContactPhone, iconContactEmail, iconContactClock } from '../lib/images';
 import { PHONE_DISPLAY, PHONE_HREF, EMAIL, ADDRESS } from '../lib/constants';
+import CTAButton from './CTAButton.astro';
 ---
 
 <section id="contact" class="w-full" style="background-color: var(--color-heading);">
@@ -22,20 +23,8 @@ import { PHONE_DISPLAY, PHONE_HREF, EMAIL, ADDRESS } from '../lib/constants';
           Call us or fill out the form above. We'll get back to you within 5 minutes to schedule your free inspection.
         </p>
         <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
-          <a
-            href="#quote"
-            class="inline-flex items-center justify-center w-full sm:w-auto min-h-[48px] px-12 py-4 transition-all hover:opacity-90"
-            style="background-color: var(--color-yellow); color: var(--color-heading); font-family: var(--font-oswald); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; border-radius: 8px; min-width: 220px;"
-          >
-            Get Your Free Quote
-          </a>
-          <a
-            href={PHONE_HREF}
-            class="inline-flex items-center justify-center w-full sm:w-auto min-h-[48px] px-12 py-4 transition-all hover:opacity-90"
-            style="border: 1px solid rgba(255,255,255,0.25); color: var(--color-white); font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 600; text-decoration: none; border-radius: 8px; min-width: 220px;"
-          >
-            Call {PHONE_DISPLAY}
-          </a>
+          <CTAButton href="#quote" size="lg" class="w-full sm:w-auto min-w-[220px]">Get Your Free Quote</CTAButton>
+          <CTAButton href={PHONE_HREF} variant="outline" size="lg" class="w-full sm:w-auto min-w-[220px]">Call {PHONE_DISPLAY}</CTAButton>
         </div>
         <p class="mt-4" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; line-height: 1.6; color: rgba(255,255,255,0.55);">
           Learn more about our

@@ -11,6 +11,9 @@ import FAQ from './FAQ.astro';
 import ContactUs from './ContactUs.astro';
 import Footer from './Footer.astro';
 import { serviceRoofing, serviceSiding, serviceWindows, serviceAdu, serviceCustomHomes, serviceAdditions } from '../lib/images';
+import Breadcrumb from './Breadcrumb.astro';
+import SectionLabel from './SectionLabel.astro';
+import ServiceCard from './ServiceCard.astro';
 
 interface Props {
   data: CountyPageData;
@@ -44,15 +47,11 @@ const breadcrumbSchema = {
 <Navbar />
 
 <!-- Breadcrumb -->
-<nav class="w-full" style="background-color: var(--color-cream); border-bottom: 1px solid var(--color-border);">
-  <div class="mx-auto flex items-center gap-2 px-5" style="max-width: 1294px; padding-top: 14px; padding-bottom: 14px;">
-    <a href="/" style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted); text-decoration: none;">Home</a>
-    <span style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted);">/</span>
-    <a href="/service-areas" style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted); text-decoration: none;">Service Areas</a>
-    <span style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted);">/</span>
-    <span style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-heading); font-weight: 600;">{data.county}, {data.state}</span>
-  </div>
-</nav>
+<Breadcrumb items={[
+  { label: 'Home', href: '/' },
+  { label: 'Service Areas', href: '/service-areas' },
+  { label: `${data.county}, ${data.state}` },
+]} />
 
 <Hero
   formTitle={data.heroFormTitle}
@@ -64,9 +63,7 @@ const breadcrumbSchema = {
 <!-- Services Grid -->
 <section class="w-full" style="background-color: var(--color-white); padding: 80px 0;">
   <div class="mx-auto max-w-[1200px] px-5">
-    <p style="font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-primary-dark); margin-bottom: 12px;">
-      Our Services
-    </p>
+    <SectionLabel class="mb-3">Our Services</SectionLabel>
     <h2
       style="font-family: var(--font-oswald); font-size: clamp(28px, 5vw, 40px); line-height: 1.25; font-weight: 400; color: var(--color-heading); text-transform: uppercase; margin-bottom: 48px;"
     >
@@ -75,38 +72,13 @@ const breadcrumbSchema = {
 
     <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {services.map((service) => (
-        <a href={service.href} class="block" style="text-decoration: none; color: inherit;">
-          <div class="overflow-hidden" style="background-color: var(--color-cream);">
-            <div class="w-full overflow-hidden">
-              <Image
-                src={service.image}
-                alt={`${service.title} services by Hamilton Exteriors in ${data.county}`}
-                width={400}
-                height={240}
-                style="width: 100%; height: auto; aspect-ratio: 400 / 240; object-fit: cover; display: block;"
-                loading="lazy"
-                class="hover:opacity-90 transition-opacity duration-200"
-              />
-            </div>
-            <div style="padding: 20px;">
-              <h3
-                style="font-size: 1.25rem; margin-bottom: 8px;"
-              >
-                {service.title}
-              </h3>
-              <p
-                style="font-family: var(--font-dm-sans); font-size: 0.875rem; line-height: 1.6; color: var(--color-muted); margin-bottom: 16px;"
-              >
-                {service.description}
-              </p>
-              <span
-                style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 600; color: var(--color-primary-dark);"
-              >
-                Learn More &rarr;
-              </span>
-            </div>
-          </div>
-        </a>
+        <ServiceCard
+          title={service.title}
+          description={service.description}
+          image={service.image}
+          href={service.href}
+          city={data.county}
+        />
       ))}
     </div>
   </div>
