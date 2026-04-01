@@ -126,6 +126,60 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
     </div>
   </div>
 
+  <!-- Service Areas -->
+  <div class="mx-auto max-w-[1170px] px-4 lg:px-5">
+    <div class="border-t border-white/10 pt-8 pb-4">
+      <h3 class="font-oswald text-sm font-bold uppercase tracking-[0.1em] text-white/40 mb-4">Service Areas</h3>
+      <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3 md:grid-cols-5">
+        <div>
+          <a href="/service-areas/alameda-county-ca" class="footer-area-county">Alameda County</a>
+          <a href="/service-areas/alameda-county-ca/oakland-ca" class="footer-area-city">Oakland</a>
+          <a href="/service-areas/alameda-county-ca/berkeley-ca" class="footer-area-city">Berkeley</a>
+          <a href="/service-areas/alameda-county-ca/fremont-ca" class="footer-area-city">Fremont</a>
+          <a href="/service-areas/alameda-county-ca/hayward-ca" class="footer-area-city">Hayward</a>
+          <a href="/service-areas/alameda-county-ca/san-leandro-ca" class="footer-area-city">San Leandro</a>
+        </div>
+        <div>
+          <a href="/service-areas/contra-costa-county-ca" class="footer-area-county">Contra Costa County</a>
+          <a href="/service-areas/contra-costa-county-ca/walnut-creek-ca" class="footer-area-city">Walnut Creek</a>
+          <a href="/service-areas/contra-costa-county-ca/concord-ca" class="footer-area-city">Concord</a>
+          <a href="/service-areas/contra-costa-county-ca/san-ramon-ca" class="footer-area-city">San Ramon</a>
+          <a href="/service-areas/contra-costa-county-ca/richmond-ca" class="footer-area-city">Richmond</a>
+          <a href="/service-areas/contra-costa-county-ca/antioch-ca" class="footer-area-city">Antioch</a>
+        </div>
+        <div>
+          <a href="/service-areas/santa-clara-county-ca" class="footer-area-county">Santa Clara County</a>
+          <a href="/service-areas/santa-clara-county-ca/san-jose-ca" class="footer-area-city">San Jose</a>
+          <a href="/service-areas/santa-clara-county-ca/palo-alto-ca" class="footer-area-city">Palo Alto</a>
+          <a href="/service-areas/santa-clara-county-ca/sunnyvale-ca" class="footer-area-city">Sunnyvale</a>
+          <a href="/service-areas/santa-clara-county-ca/mountain-view-ca" class="footer-area-city">Mountain View</a>
+          <a href="/service-areas/santa-clara-county-ca/cupertino-ca" class="footer-area-city">Cupertino</a>
+          <a href="/service-areas/santa-clara-county-ca/santa-clara-ca" class="footer-area-city">Santa Clara</a>
+          <a href="/service-areas/santa-clara-county-ca/campbell-ca" class="footer-area-city">Campbell</a>
+          <a href="/service-areas/santa-clara-county-ca/saratoga-ca" class="footer-area-city">Saratoga</a>
+          <a href="/service-areas/santa-clara-county-ca/los-gatos-ca" class="footer-area-city">Los Gatos</a>
+          <a href="/service-areas/santa-clara-county-ca/milpitas-ca" class="footer-area-city">Milpitas</a>
+        </div>
+        <div>
+          <a href="/service-areas/marin-county-ca" class="footer-area-county">Marin County</a>
+          <a href="/service-areas/marin-county-ca/san-rafael-ca" class="footer-area-city">San Rafael</a>
+          <a href="/service-areas/marin-county-ca/mill-valley-ca" class="footer-area-city">Mill Valley</a>
+          <a href="/service-areas/marin-county-ca/novato-ca" class="footer-area-city">Novato</a>
+          <a href="/service-areas/marin-county-ca/larkspur-ca" class="footer-area-city">Larkspur</a>
+        </div>
+        <div>
+          <a href="/service-areas/napa-county-ca" class="footer-area-county">Napa County</a>
+          <a href="/service-areas/napa-county-ca/napa-ca" class="footer-area-city">Napa</a>
+          <a href="/service-areas/napa-county-ca/american-canyon-ca" class="footer-area-city">American Canyon</a>
+          <a href="/service-areas/napa-county-ca/st-helena-ca" class="footer-area-city">St. Helena</a>
+          <a href="/service-areas/napa-county-ca/calistoga-ca" class="footer-area-city">Calistoga</a>
+          <a href="/service-areas/napa-county-ca/yountville-ca" class="footer-area-city">Yountville</a>
+        </div>
+      </div>
+      <a href="/service-areas" class="inline-block mt-4" style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: rgba(255,255,255,0.5); text-decoration: underline; text-underline-offset: 2px;">View all service areas &rarr;</a>
+    </div>
+  </div>
+
   <!-- Bottom Row -->
   <div class="mx-auto max-w-[1170px] px-0 md:px-5">
     <div class="flex flex-col items-center gap-4 border-t border-white/20 py-6 md:flex-row md:justify-between">
@@ -234,6 +288,31 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
   }
   .social-icon:hover {
     background-color: rgba(255, 255, 255, 0.1);
+  }
+  .footer-area-county {
+    display: block;
+    font-family: var(--font-dm-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    margin-bottom: 6px;
+    transition: color 0.2s ease-out;
+  }
+  .footer-area-county:hover {
+    color: var(--color-white);
+  }
+  .footer-area-city {
+    display: block;
+    font-family: var(--font-dm-sans);
+    font-size: 0.75rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    transition: color 0.2s ease-out;
+  }
+  .footer-area-city:hover {
+    color: rgba(255, 255, 255, 0.8);
   }
   .footer-btn {
     width: 100%;
