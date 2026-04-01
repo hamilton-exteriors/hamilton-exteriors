@@ -49,7 +49,14 @@ export async function getPosts(options?: {
     page: String(options?.page ?? 1),
     fields: 'id,slug,title,excerpt,feature_image,published_at,updated_at,reading_time,meta_title,meta_description',
   };
-  if (options?.tag) params.filter = `tag:${options.tag}`;
+  // Exclude service area CMS pages from blog listings
+  const excludeFilters = [
+    'tag:-hash-service-area-city',
+    'tag:-hash-service-area-county',
+    'tag:-hash-service-area-city-service',
+  ];
+  const tagFilter = options?.tag ? `tag:${options.tag}` : '';
+  params.filter = [tagFilter, ...excludeFilters].filter(Boolean).join('+');
   const data = await ghostFetch('posts', params);
   return { posts: data.posts, pagination: data.meta.pagination };
 }
@@ -73,7 +80,7 @@ export async function getTags(): Promise<GhostTag[]> {
     limit: 'all',
   });
   return (data.tags ?? [])
-    .filter((t: any) => t.count?.posts > 0)
+    .filter((t: any) => t.count?.posts > 0 && !t.slug.startsWith('hash-service-area'))
     .map((t: any) => ({ name: t.name, slug: t.slug, count: t.count.posts }));
 }
 
