@@ -116,7 +116,9 @@ export async function getServiceAreaCity(
   countySlug: string,
   citySlug: string,
 ): Promise<ServiceAreaCity | null> {
-  const cacheKey = `sa-city--${countySlug}--${citySlug}`;
+  // Ghost normalizes -- to - in slugs
+  const ghostSlug = `sa-city-${countySlug}-${citySlug}`;
+  const cacheKey = ghostSlug;
 
   const cached = cacheGet<ServiceAreaCity>(cacheKey);
   if (cached) return cached;
@@ -124,7 +126,7 @@ export async function getServiceAreaCity(
   if (!isGhostConfigured()) return null;
 
   try {
-    const post = await getPost(cacheKey);
+    const post = await getPost(ghostSlug);
     if (!post?.html) return null;
     const data = extractJsonFromHtml(post.html) as ServiceAreaCity | null;
     if (data) {
@@ -143,7 +145,8 @@ export async function getServiceAreaCity(
 export async function getServiceAreaCounty(
   countySlug: string,
 ): Promise<CountyPageData | null> {
-  const cacheKey = `sa-county--${countySlug}`;
+  const ghostSlug = `sa-county-${countySlug}`;
+  const cacheKey = ghostSlug;
 
   const cached = cacheGet<CountyPageData>(cacheKey);
   if (cached) return cached;
@@ -151,7 +154,7 @@ export async function getServiceAreaCounty(
   if (!isGhostConfigured()) return null;
 
   try {
-    const post = await getPost(cacheKey);
+    const post = await getPost(ghostSlug);
     if (!post?.html) return null;
     const data = extractJsonFromHtml(post.html) as CountyPageData | null;
     if (data) {
@@ -182,8 +185,12 @@ export async function getAllServiceAreaCities(): Promise<
       limit: 'all',
     });
     const results = (data.posts ?? []).map((p: { slug: string; title: string }) => {
-      // Slug format: sa-city--{countySlug}--{citySlug}
-      const parts = p.slug.replace('sa-city--', '').split('--');
+      // Slug format: sa-city-{countySlug}-{citySlug} (Ghost normalizes -- to -)
+      // Parse by removing prefix and splitting on known county suffixes
+      const withoutPrefix = p.slug.replace('sa-city-', '');
+      // Find the county slug (ends with -county-ca)
+      const countyMatch = withoutPrefix.match(/^(.+-county-ca)-(.+)$/);
+      const parts = countyMatch ? [countyMatch[1], countyMatch[2]] : withoutPrefix.split('-');
       return {
         slug: p.slug,
         countySlug: parts[0] || '',
