@@ -3,3 +3,8 @@ Allow: /
 Disallow: /api/
 
 Sitemap: https://hamilton-exteriors.com/sitemap-index.xml
+
+# AI/LLM content files
+# See https://llmstxt.org for specification
+Allow: /llms.txt
+Allow: /llms-full.txt

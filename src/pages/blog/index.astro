@@ -129,6 +129,9 @@ const blogJsonLd = {
                     src={featuredPost.feature_image}
                     alt={featuredPost.title}
                     class="h-full w-full object-cover transition-opacity group-hover:opacity-90"
+                    loading="eager"
+                    width="600"
+                    height="375"
                   />
                 ) : (
                   <div class="h-full w-full bg-gradient-to-br from-footer to-primary flex items-center justify-center min-h-[200px]">
@@ -180,6 +183,8 @@ const blogJsonLd = {
                       alt={post.title}
                       class="h-full w-full object-cover transition-opacity group-hover:opacity-90"
                       loading="lazy"
+                      width="400"
+                      height="250"
                     />
                   </div>
                 ) : (

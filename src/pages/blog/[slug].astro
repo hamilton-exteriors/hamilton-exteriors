@@ -148,6 +148,9 @@ try {
             alt={post.title}
             class="w-full h-auto"
             style="max-height: 500px; object-fit: cover;"
+            loading="eager"
+            width="1000"
+            height="500"
           />
         </div>
       </div>
@@ -213,7 +216,7 @@ try {
               <a href={`/blog/${rp.slug}`} class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-lg">
                 {rp.feature_image ? (
                   <div class="aspect-[16/10] w-full overflow-hidden bg-gray-100">
-                    <img src={rp.feature_image} alt={rp.title} class="h-full w-full object-cover transition-transform group-hover:scale-105" loading="lazy" />
+                    <img src={rp.feature_image} alt={rp.title} class="h-full w-full object-cover transition-transform group-hover:scale-105" loading="lazy" width="400" height="250" />
                   </div>
                 ) : (
                   <div class="aspect-[16/10] w-full bg-gradient-to-br from-footer to-primary flex items-center justify-center">
