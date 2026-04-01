@@ -1,5 +1,5 @@
 import type { ServicePageData } from '../../lib/service-page-types';
-import { serviceCustomHomesFull, serviceCustomHomes, serviceAdditions, designEngineering } from '../../lib/images';
+import { serviceCustomHomesFull, serviceCustomHomes, serviceAdditions, designEngineering, designPlanning } from '../../lib/images';
 
 export const data: ServicePageData = {
   title: 'Custom Home Builder in the Bay Area | Hamilton Exteriors',
@@ -37,7 +37,7 @@ export const data: ServicePageData = {
             title: 'Design & Architecture',
             description:
               'Our in-house architects and designers work with you from concept to blueprints. We create floor plans, 3D renderings, and construction documents that bring your vision to life — tailored to your lot, budget, and lifestyle.',
-            image: designEngineering,
+            image: designPlanning,
           },
           {
             title: 'Engineering & Permits',

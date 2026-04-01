@@ -11,6 +11,7 @@ export { default as heroWindows } from '../assets/images/hero-windows.png';
 export { default as aduHero } from '../assets/images/adu-hero.jpeg';
 export { default as ctaAssistant } from '../assets/images/cta-assistant.jpg';
 export { default as designEngineering } from '../assets/images/design-engineering.jpg';
+export { default as designPlanning } from '../assets/images/design-planning.jpg';
 
 // Financing
 export { default as financingHouse } from '../assets/images/financing-house.jpeg';
