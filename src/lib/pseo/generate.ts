@@ -226,7 +226,7 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
     slug,
     countySlug,
     title: `Roofing, Siding, ADUs & Custom Homes in ${city}, CA | Hamilton Exteriors`,
-    description: `Hamilton Exteriors is ${city}'s trusted design-build contractor. Roofing, siding, windows, ADUs, additions, and custom homes in ${county} County. Licensed, insured, and locally operated. Free estimates.`,
+    description: `${city}'s trusted design-build contractor. Roofing, siding, windows, ADUs & custom homes in ${county} County. Licensed, insured. Free estimates.`,
     hero: {
       headline: `${city}'s Top  Design-Build  Contractor`,
       formTitle: 'Get a FREE Estimate',

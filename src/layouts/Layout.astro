@@ -12,7 +12,7 @@ interface Props {
   geoPlacename?: string;
 }
 
-const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs, and custom homes. Licensed, bonded, insured. 50-year warranty. $0 down financing. Free estimate — (650) 977-3351.';
+const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs & custom homes. Licensed, bonded, insured. 50-year warranty. $0 down financing. Call (650) 977-3351.';
 
 const {
   title = 'Bay Area Roofing, Siding, ADUs & Custom Homes | Hamilton Exteriors',
@@ -140,6 +140,18 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
         "height": 630
       },
       "description": "Bay Area exterior remodeling — roofing, siding, windows, and waterproofing. Licensed, bonded, insured. 50-year warranty. 3-5 day installs."
+    }
+    </script>
+
+    <!-- WebSite Schema -->
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://hamilton-exteriors.com/#website",
+      "url": "https://hamilton-exteriors.com",
+      "name": "Hamilton Exteriors",
+      "publisher": { "@id": "https://hamilton-exteriors.com/#business" }
     }
     </script>
 

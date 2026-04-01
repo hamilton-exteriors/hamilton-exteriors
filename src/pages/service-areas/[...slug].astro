@@ -144,32 +144,17 @@ const siteUrl = 'https://hamilton-exteriors.com';
 // City+service pages: localized Service + BreadcrumbList
 let cityServiceJsonLd: Record<string, unknown>[] | undefined;
 if (pageType === 'cityService' && cityServiceData) {
+  // Use the actual URL segments (which include -county-ca and -ca suffixes)
+  const [urlCountySlug, urlCitySlug, urlServiceSlug] = segments;
   cityServiceJsonLd = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      'name': `${cityServiceData.serviceName} in ${cityServiceData.city}, CA`,
-      'provider': {
-        '@type': 'HomeAndConstructionBusiness',
-        '@id': 'https://hamilton-exteriors.com/#business',
-        'name': 'Hamilton Exteriors',
-        'telephone': '+1-650-977-3351',
-      },
-      'areaServed': {
-        '@type': 'City',
-        'name': cityServiceData.city,
-        'containedInPlace': { '@type': 'State', 'name': 'California' },
-      },
-      'description': cityServiceData.description,
-    },
     {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       'itemListElement': [
         { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
         { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
-        { '@type': 'ListItem', 'position': 3, 'name': cityServiceData.county, 'item': `${siteUrl}/service-areas/${cityServiceData.countySlug}` },
-        { '@type': 'ListItem', 'position': 4, 'name': `${cityServiceData.city}, ${cityServiceData.state}`, 'item': `${siteUrl}/service-areas/${cityServiceData.countySlug}/${cityServiceData.citySlug}` },
+        { '@type': 'ListItem', 'position': 3, 'name': `${cityServiceData.county} County`, 'item': `${siteUrl}/service-areas/${urlCountySlug}` },
+        { '@type': 'ListItem', 'position': 4, 'name': `${cityServiceData.city}, ${cityServiceData.state}`, 'item': `${siteUrl}/service-areas/${urlCountySlug}/${urlCitySlug}` },
         { '@type': 'ListItem', 'position': 5, 'name': cityServiceData.serviceName },
       ],
     },

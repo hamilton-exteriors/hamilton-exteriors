@@ -9,10 +9,14 @@ import Difference from './Difference.astro';
 import FAQ from './FAQ.astro';
 import ContactUs from './ContactUs.astro';
 import Footer from './Footer.astro';
-import IconStar from './icons/IconStar.astro';
 import { resolveImage } from '../lib/image-map';
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 import { getCityProximity } from '../lib/city-coordinates';
+import Reviews from './Reviews.astro';
+import Breadcrumb from './Breadcrumb.astro';
+import SectionLabel from './SectionLabel.astro';
+import StarRating from './StarRating.astro';
+import ServiceCard from './ServiceCard.astro';
 
 interface Props {
   data: GeneralCityPageData;
@@ -21,13 +25,16 @@ interface Props {
 const { data } = Astro.props;
 const proximity = getCityProximity(data.slug);
 
+// Seed data uses short county slugs ("alameda"), URLs use full slugs ("alameda-county-ca")
+const countyUrlSlug = `${data.countySlug}-county-ca`;
+
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   'itemListElement': [
     { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://hamilton-exteriors.com/' },
     { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': 'https://hamilton-exteriors.com/service-areas' },
-    { '@type': 'ListItem', 'position': 3, 'name': data.county, 'item': `https://hamilton-exteriors.com/service-areas/${data.countySlug}` },
+    { '@type': 'ListItem', 'position': 3, 'name': `${data.county} County`, 'item': `https://hamilton-exteriors.com/service-areas/${countyUrlSlug}` },
     { '@type': 'ListItem', 'position': 4, 'name': `${data.city}, ${data.state}` },
   ],
 };
@@ -37,17 +44,12 @@ const breadcrumbSchema = {
 <Navbar />
 
 <!-- Breadcrumb -->
-<nav class="w-full" style="background-color: var(--color-cream); border-bottom: 1px solid var(--color-border);">
-  <div class="mx-auto flex items-center gap-2 px-5" style="max-width: 1294px; padding-top: 14px; padding-bottom: 14px;">
-    <a href="/" style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); text-decoration: none;">Home</a>
-    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted);">/</span>
-    <a href="/service-areas" style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); text-decoration: none;">Service Areas</a>
-    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted);">/</span>
-    <a href={`/service-areas/${data.countySlug}`} style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); text-decoration: none;">{data.county}</a>
-    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted);">/</span>
-    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-heading); font-weight: 600;">{data.city}, {data.state}</span>
-  </div>
-</nav>
+<Breadcrumb items={[
+  { label: 'Home', href: '/' },
+  { label: 'Service Areas', href: '/service-areas' },
+  { label: `${data.county} County`, href: `/service-areas/${countyUrlSlug}` },
+  { label: `${data.city}, ${data.state}` },
+]} />
 
 <!-- BreadcrumbList JSON-LD -->
 <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
@@ -78,75 +80,13 @@ const breadcrumbSchema = {
   </section>
 )}
 
-<!-- Reviews Section -->
-{data.reviews && (
-  <section class="w-full" style="background-color: var(--color-cream); padding: 80px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
-      <!-- Section Label -->
-      <div class="mb-4 flex items-center gap-2">
-        <div class="flex gap-0.5">
-          {Array.from({ length: 5 }).map(() => (
-            <IconStar size={18} fill="#FFDE21" class="h-[18px] w-[18px]" />
-          ))}
-        </div>
-        <span style="font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 700; color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.15em;">
-          On Google Reviews
-        </span>
-      </div>
-
-      <h2
-        style="margin-bottom: 40px;"
-      >
-        {data.reviews.sectionTitle}
-      </h2>
-
-      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <!-- Featured review -->
-        <div class="lg:col-span-2 p-8" style="background-color: var(--color-heading);">
-          <div class="flex gap-0.5 mb-4">
-            {Array.from({ length: 5 }).map(() => (
-              <IconStar size={20} fill="#FFDE21" class="h-[20px] w-[20px]" />
-            ))}
-          </div>
-          <p style="font-family: var(--font-dm-sans); font-size: 1.125rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin-bottom: 24px;">
-            "{data.reviews.featured.text}"
-          </p>
-          <div>
-            <p style="font-family: var(--font-dm-sans); font-size: 1rem; font-weight: 600; color: var(--color-white); margin-bottom: 2px;">{data.reviews.featured.name}</p>
-            <p style="font-family: var(--font-dm-sans); font-size: 0.875rem; color: rgba(255,255,255,0.65);">{data.reviews.featured.location}</p>
-          </div>
-        </div>
-
-        <!-- Side reviews -->
-        <div class="flex flex-col gap-6">
-          {data.reviews.side.map((review) => (
-            <div class="p-6" style="background-color: var(--color-white);">
-              <div class="flex gap-0.5 mb-3">
-                {Array.from({ length: 5 }).map(() => (
-                  <IconStar size={16} fill="#FFDE21" class="h-[16px] w-[16px]" />
-                ))}
-              </div>
-              <p style="font-family: var(--font-dm-sans); font-size: 0.875rem; line-height: 1.7; color: var(--color-muted); margin-bottom: 16px;">
-                "{review.text}"
-              </p>
-              <div>
-                <p style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 600; color: var(--color-heading);">{review.name}</p>
-                <p style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted);">{review.location}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-)}
+<!-- Reviews Section — uses real reviews from Reviews.astro -->
+<Reviews />
 
 <!-- Services Grid -->
 <section class="w-full" style="background-color: var(--color-white); padding: 80px 0;">
   <div class="mx-auto max-w-[1200px] px-5">
-    <p style="font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-primary-dark); margin-bottom: 12px;">
-      Our Services
-    </p>
+    <SectionLabel class="mb-3">Our Services</SectionLabel>
     <h2
       style="font-family: var(--font-oswald); font-size: clamp(28px, 5vw, 40px); line-height: 1.25; font-weight: 400; color: var(--color-heading); text-transform: uppercase; margin-bottom: 48px;"
     >
@@ -155,42 +95,13 @@ const breadcrumbSchema = {
 
     <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {data.services.map((service) => (
-        <a
+        <ServiceCard
+          title={service.title}
+          description={service.description}
+          image={resolveImage(service.imageKey)}
           href={service.href}
-          class="block text-decoration-none"
-          style="text-decoration: none; color: inherit;"
-        >
-          <div class="overflow-hidden" style="background-color: var(--color-cream);">
-            <div class="w-full overflow-hidden">
-              <Image
-                src={resolveImage(service.imageKey)}
-                alt={`${service.title} services by Hamilton Exteriors in ${data.city}`}
-                width={400}
-                height={240}
-                style="width: 100%; height: auto; aspect-ratio: 400 / 240; object-fit: cover; display: block;"
-                loading="lazy"
-                class="hover:opacity-90 transition-opacity duration-200"
-              />
-            </div>
-            <div style="padding: 20px;">
-              <h3
-                style="font-size: 1.25rem; margin-bottom: 8px;"
-              >
-                {service.title}
-              </h3>
-              <p
-                style="font-family: var(--font-dm-sans); font-size: 0.875rem; line-height: 1.6; color: var(--color-muted); margin-bottom: 16px;"
-              >
-                {service.description}
-              </p>
-              <span
-                style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 600; color: var(--color-primary-dark);"
-              >
-                Learn More &rarr;
-              </span>
-            </div>
-          </div>
-        </a>
+          city={data.city}
+        />
       ))}
     </div>
   </div>

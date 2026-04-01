@@ -22,26 +22,22 @@ interface Props {
 
 const { data } = Astro.props;
 
+// Build areaServed — use city if available (pSEO pages), otherwise State
+const areaServed = (data as any).city
+  ? { '@type': 'City', 'name': (data as any).city, 'containedInPlace': { '@type': 'State', 'name': 'California' } }
+  : { '@type': 'State', 'name': 'California' };
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   'name': data.title.split('|')[0].trim(),
+  'url': `https://hamilton-exteriors.com${Astro.url.pathname}`,
   'provider': {
     '@type': 'HomeAndConstructionBusiness',
+    '@id': 'https://hamilton-exteriors.com/#business',
     'name': 'Hamilton Exteriors',
-    'telephone': '+1-650-977-3351',
-    'address': {
-      '@type': 'PostalAddress',
-      'streetAddress': '21634 Redwood Rd Unit F',
-      'addressLocality': 'Castro Valley',
-      'addressRegion': 'CA',
-      'postalCode': '94546',
-    },
   },
-  'areaServed': {
-    '@type': 'State',
-    'name': 'California',
-  },
+  'areaServed': areaServed,
   'description': data.description,
 };
 ---
