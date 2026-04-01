@@ -90,18 +90,9 @@ if (pageType === 'cityService' && cityServiceData) {
     },
   ];
 } else if (pageType === 'city' && cityData) {
+  // BreadcrumbList is handled by ServiceAreaCityPage/GeneralCityPage components — only add Service schema here
   const [urlCountySlug, urlCitySlug] = segments;
   jsonLd = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      'itemListElement': [
-        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
-        { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
-        { '@type': 'ListItem', 'position': 3, 'name': cityData.county || segments[0].replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()), 'item': `${siteUrl}/service-areas/${urlCountySlug}` },
-        { '@type': 'ListItem', 'position': 4, 'name': cityData.cityName || cityData.title?.split(' in ')?.[1]?.split(' |')?.[0] || urlCitySlug, 'item': `${siteUrl}/service-areas/${urlCountySlug}/${urlCitySlug}` },
-      ],
-    },
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
@@ -112,19 +103,9 @@ if (pageType === 'cityService' && cityServiceData) {
       'serviceType': ['Roofing', 'Siding', 'Windows', 'ADUs', 'Custom Homes', 'Additions'],
     },
   ];
-} else if (pageType === 'county' && countyData) {
-  const [urlCountySlug] = segments;
-  jsonLd = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      'itemListElement': [
-        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
-        { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
-        { '@type': 'ListItem', 'position': 3, 'name': countyData.title?.split(' |')?.[0] || urlCountySlug, 'item': `${siteUrl}/service-areas/${urlCountySlug}` },
-      ],
-    },
-  ];
+} else if (pageType === 'county') {
+  // BreadcrumbList is handled by CountyPage component — no additional schema needed
+  jsonLd = undefined;
 } else if (pageType === 'countyService' && countyServiceData) {
   const [urlCountySlug, serviceSlug] = segments;
   jsonLd = [
