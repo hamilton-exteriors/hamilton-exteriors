@@ -105,11 +105,8 @@ import type { CityServicePageData } from './city-service-types';
 
 /**
  * Extract JSON data from Ghost HTML card.
- * Ghost wraps raw HTML in Koenig card markers; we extract the JSON from
- * a <script type="application/json"> tag inside the html field.
  */
 function extractJsonFromHtml(html: string): unknown | null {
-  // Match JSON inside <script type="application/json">...</script>
   const match = html.match(/<script[^>]*type="application\/json"[^>]*>([\s\S]*?)<\/script>/);
   if (!match?.[1]) return null;
   try {
@@ -119,35 +116,101 @@ function extractJsonFromHtml(html: string): unknown | null {
   }
 }
 
+/**
+ * Bulk-fetch ALL service area posts from Ghost in one request and cache them by slug.
+ * Called once on first access — eliminates N+1 API calls that cause rate limiting.
+ */
+let _saWarmPromise: Promise<void> | null = null;
+const _saCache = new Map<string, GhostPost>();
+
+async function warmServiceAreaCache(): Promise<void> {
+  if (_saCache.size > 0) return; // already warmed
+  if (!isGhostConfigured()) return;
+
+  // Fetch ALL sa-* posts in pages of 100 (Ghost max per page is 100 on Content API)
+  let page = 1;
+  let hasMore = true;
+  while (hasMore) {
+    try {
+      const data = await ghostFetch('posts', {
+        filter: 'slug:sa-',
+        include: 'tags',
+        limit: '100',
+        page: String(page),
+      });
+      const posts: GhostPost[] = data.posts ?? [];
+      for (const post of posts) {
+        _saCache.set(post.slug, post);
+      }
+      hasMore = posts.length === 100;
+      page++;
+    } catch {
+      hasMore = false;
+    }
+  }
+
+  // If slug filter didn't work, try tag-based fetch
+  if (_saCache.size === 0) {
+    const tags = ['hash-service-area-city', 'hash-service-area-county', 'hash-service-area-city-service'];
+    for (const tag of tags) {
+      let p = 1;
+      let more = true;
+      while (more) {
+        try {
+          const data = await ghostFetch('posts', {
+            filter: `tag:${tag}`,
+            include: 'tags',
+            limit: '100',
+            page: String(p),
+          });
+          const posts: GhostPost[] = data.posts ?? [];
+          for (const post of posts) {
+            _saCache.set(post.slug, post);
+          }
+          more = posts.length === 100;
+          p++;
+        } catch {
+          more = false;
+        }
+      }
+    }
+  }
+
+  if (import.meta.env.DEV) console.log(`[ghost] Warmed service area cache: ${_saCache.size} posts`);
+}
+
+function ensureWarmed(): Promise<void> {
+  if (!_saWarmPromise) {
+    _saWarmPromise = warmServiceAreaCache();
+  }
+  return _saWarmPromise;
+}
+
+function getServiceAreaPost(slug: string): GhostPost | undefined {
+  return _saCache.get(slug);
+}
+
 /** Fetch a service-area city page from Ghost CMS. */
 export async function getServiceAreaCity(
   countySlug: string,
   citySlug: string,
 ): Promise<ServiceAreaCity | null> {
-  // Ghost normalizes -- to - in slugs
   const ghostSlug = `sa-city-${countySlug}-${citySlug}`;
-  const cacheKey = ghostSlug;
 
-  const cached = cacheGet<ServiceAreaCity>(cacheKey);
+  const cached = cacheGet<ServiceAreaCity>(ghostSlug);
   if (cached) return cached;
 
-  if (!isGhostConfigured()) return null;
+  await ensureWarmed();
+  const post = getServiceAreaPost(ghostSlug);
+  if (!post?.html) return null;
 
-  try {
-    const post = await getPost(ghostSlug);
-    if (!post?.html) return null;
-    const data = extractJsonFromHtml(post.html) as ServiceAreaCity | null;
-    if (data) {
-      // Overlay Ghost SEO fields if present
-      if (post.meta_title) data.title = post.meta_title;
-      if (post.meta_description) data.description = post.meta_description;
-      if (import.meta.env.DEV) console.log(`[ghost] city ${ghostSlug} — json desc: ${(data as any).description?.slice(0,60) ?? 'MISSING'}, meta_desc: ${post.meta_description?.slice(0,60) ?? 'null'}`);
-      cacheSet(cacheKey, data);
-    }
-    return data;
-  } catch {
-    return null;
+  const data = extractJsonFromHtml(post.html) as ServiceAreaCity | null;
+  if (data) {
+    if (post.meta_title) data.title = post.meta_title;
+    if (post.meta_description) data.description = post.meta_description;
+    cacheSet(ghostSlug, data);
   }
+  return data;
 }
 
 /** Fetch a service-area county page from Ghost CMS. */
@@ -155,26 +218,21 @@ export async function getServiceAreaCounty(
   countySlug: string,
 ): Promise<CountyPageData | null> {
   const ghostSlug = `sa-county-${countySlug}`;
-  const cacheKey = ghostSlug;
 
-  const cached = cacheGet<CountyPageData>(cacheKey);
+  const cached = cacheGet<CountyPageData>(ghostSlug);
   if (cached) return cached;
 
-  if (!isGhostConfigured()) return null;
+  await ensureWarmed();
+  const post = getServiceAreaPost(ghostSlug);
+  if (!post?.html) return null;
 
-  try {
-    const post = await getPost(ghostSlug);
-    if (!post?.html) return null;
-    const data = extractJsonFromHtml(post.html) as CountyPageData | null;
-    if (data) {
-      if (post.meta_title) data.title = post.meta_title;
-      if (post.meta_description) data.description = post.meta_description;
-      cacheSet(cacheKey, data);
-    }
-    return data;
-  } catch {
-    return null;
+  const data = extractJsonFromHtml(post.html) as CountyPageData | null;
+  if (data) {
+    if (post.meta_title) data.title = post.meta_title;
+    if (post.meta_description) data.description = post.meta_description;
+    cacheSet(ghostSlug, data);
   }
+  return data;
 }
 
 /** Fetch a service-area city+service page from Ghost CMS. */
@@ -184,27 +242,21 @@ export async function getServiceAreaCityService(
   serviceSlug: string,
 ): Promise<CityServicePageData | null> {
   const ghostSlug = `sa-city-${countySlug}-${citySlug}-${serviceSlug}`;
-  const cacheKey = ghostSlug;
 
-  const cached = cacheGet<CityServicePageData>(cacheKey);
+  const cached = cacheGet<CityServicePageData>(ghostSlug);
   if (cached) return cached;
 
-  if (!isGhostConfigured()) return null;
+  await ensureWarmed();
+  const post = getServiceAreaPost(ghostSlug);
+  if (!post?.html) return null;
 
-  try {
-    const post = await getPost(ghostSlug);
-    if (!post?.html) return null;
-    const data = extractJsonFromHtml(post.html) as CityServicePageData | null;
-    if (data) {
-      if (post.meta_title) data.title = post.meta_title;
-      if (post.meta_description) data.description = post.meta_description;
-      if (import.meta.env.DEV) console.log(`[ghost] cityService ${ghostSlug} — json desc: ${(data as any).description?.slice(0,60) ?? 'MISSING'}, meta_desc: ${post.meta_description?.slice(0,60) ?? 'null'}`);
-      cacheSet(cacheKey, data);
-    }
-    return data;
-  } catch {
-    return null;
+  const data = extractJsonFromHtml(post.html) as CityServicePageData | null;
+  if (data) {
+    if (post.meta_title) data.title = post.meta_title;
+    if (post.meta_description) data.description = post.meta_description;
+    cacheSet(ghostSlug, data);
   }
+  return data;
 }
 
 /** Fetch all service-area city posts (for index page / sitemap). */
@@ -215,31 +267,23 @@ export async function getAllServiceAreaCities(): Promise<
   const cached = cacheGet<Array<{ slug: string; countySlug: string; citySlug: string; title: string }>>(cacheKey);
   if (cached) return cached;
 
-  if (!isGhostConfigured()) return [];
+  await ensureWarmed();
 
-  try {
-    const data = await ghostFetch('posts', {
-      filter: 'tag:hash-service-area-city',
-      fields: 'slug,title',
-      limit: 'all',
+  const results: Array<{ slug: string; countySlug: string; citySlug: string; title: string }> = [];
+  for (const [slug, post] of _saCache) {
+    if (!slug.startsWith('sa-city-')) continue;
+    // Skip city+service posts (have 4+ segments after sa-city-)
+    const withoutPrefix = slug.replace('sa-city-', '');
+    const countyMatch = withoutPrefix.match(/^(.+-county-ca)-([^-]+-ca)$/);
+    if (!countyMatch) continue; // not a plain city post
+    results.push({
+      slug,
+      countySlug: countyMatch[1],
+      citySlug: countyMatch[2],
+      title: post.title,
     });
-    const results = (data.posts ?? []).map((p: { slug: string; title: string }) => {
-      // Slug format: sa-city-{countySlug}-{citySlug} (Ghost normalizes -- to -)
-      // Parse by removing prefix and splitting on known county suffixes
-      const withoutPrefix = p.slug.replace('sa-city-', '');
-      // Find the county slug (ends with -county-ca)
-      const countyMatch = withoutPrefix.match(/^(.+-county-ca)-(.+)$/);
-      const parts = countyMatch ? [countyMatch[1], countyMatch[2]] : withoutPrefix.split('-');
-      return {
-        slug: p.slug,
-        countySlug: parts[0] || '',
-        citySlug: parts[1] || '',
-        title: p.title,
-      };
-    });
-    cacheSet(cacheKey, results);
-    return results;
-  } catch {
-    return [];
   }
+
+  cacheSet(cacheKey, results);
+  return results;
 }
