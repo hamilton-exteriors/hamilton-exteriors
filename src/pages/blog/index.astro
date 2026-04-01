@@ -55,30 +55,30 @@ const blogJsonLd = {
   <AnnouncementBar />
   <Navbar />
 
-  <section class="w-full" style="background-color: var(--color-footer); padding: 48px 0 36px;">
+  <section class="w-full" style="background-color: var(--color-heading); padding: 56px 0 40px;">
     <div class="mx-auto max-w-[1200px] px-5">
-      <h1 style="font-family: var(--font-oswald); font-size: clamp(36px, 5vw, 56px); line-height: 1.1; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
-        {activeTag ? activeTag.name : 'Blog'}
+      <h1 style="color: white; margin-bottom: 12px;">
+        {activeTag ? activeTag.name : 'Roofing & Exteriors Blog'}
       </h1>
-      <p style="font-family: var(--font-dm-sans); font-size: 18px; line-height: 30px; color: rgba(255,255,255,0.7); max-width: 600px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 1.0625rem; line-height: 1.7; color: rgba(255,255,255,0.65); max-width: 540px;">
         {activeTag
           ? `${pagination.total} article${pagination.total !== 1 ? 's' : ''} about ${activeTag.name.toLowerCase()}`
-          : 'Expert insights on ADU construction, roofing, and home improvement across the Bay Area.'}
+          : 'Expert insights on roofing, siding, ADUs, and home improvement across the Bay Area.'}
       </p>
     </div>
   </section>
 
   {/* Tag Filter */}
   {tags.length > 0 && (
-    <nav aria-label="Filter by topic" class="w-full bg-white border-b border-gray-200 sticky top-0 z-40">
+    <nav aria-label="Filter by topic" class="w-full bg-white sticky top-0 z-40" style="border-bottom: 1px solid var(--color-border);">
       <div class="mx-auto max-w-[1200px] px-5 py-3 flex gap-2 overflow-x-auto" style="scrollbar-width: none; -ms-overflow-style: none;">
         <a
           href="/blog"
           class:list={[
-            'px-4 py-2.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
-            !tag ? 'bg-footer text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+            'px-4 py-2.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap shrink-0',
+            !tag ? 'text-white' : 'hover:opacity-80',
           ]}
-          style="font-family: var(--font-dm-sans);"
+          style={!tag ? 'background-color: var(--color-heading); font-family: var(--font-dm-sans);' : 'background-color: var(--color-cream); color: var(--color-heading); font-family: var(--font-dm-sans);'}
         >
           All Posts
         </a>
@@ -86,10 +86,10 @@ const blogJsonLd = {
           <a
             href={`/blog?tag=${t.slug}`}
             class:list={[
-              'px-4 py-2.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
-              tag === t.slug ? 'bg-footer text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+              'px-4 py-2.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap shrink-0',
+              tag === t.slug ? 'text-white' : 'hover:opacity-80',
             ]}
-            style="font-family: var(--font-dm-sans);"
+            style={tag === t.slug ? 'background-color: var(--color-heading); font-family: var(--font-dm-sans);' : 'background-color: var(--color-cream); color: var(--color-heading); font-family: var(--font-dm-sans);'}
           >
             {t.name} ({t.count})
           </a>
@@ -98,14 +98,14 @@ const blogJsonLd = {
     </nav>
   )}
 
-  <section class="w-full bg-white" style="padding: 48px 0 80px;">
+  <section class="w-full bg-white" style="padding: 56px 0 80px;">
     <div class="mx-auto max-w-[1200px] px-5">
       {error ? (
-        <div class="rounded-xl border-2 border-dashed border-gray-300 p-12 text-center">
+        <div class="rounded-[12px] border-2 border-dashed p-12 text-center" style="border-color: var(--color-border);">
           <p style="font-family: var(--font-dm-sans); font-size: 16px; color: var(--color-muted);">{error}</p>
         </div>
       ) : posts.length === 0 ? (
-        <div class="rounded-xl border-2 border-dashed border-gray-300 p-12 text-center">
+        <div class="rounded-[12px] border-2 border-dashed p-12 text-center" style="border-color: var(--color-border);">
           <p style="font-family: var(--font-dm-sans); font-size: 18px; color: var(--color-heading); font-weight: 600; margin-bottom: 8px;">
             {tag ? `No posts tagged "${activeTag?.name || tag}"` : 'No posts yet'}
           </p>
@@ -122,7 +122,7 @@ const blogJsonLd = {
         <>
           {/* Featured Post (first post, full width, only on page 1 without tag filter) */}
           {featuredPost && (
-            <a href={`/blog/${featuredPost.slug}`} class="group mb-12 grid grid-cols-1 md:grid-cols-2 gap-0 overflow-hidden rounded-xl border border-gray-200 transition-shadow hover:shadow-xl">
+            <a href={`/blog/${featuredPost.slug}`} class="group mb-12 grid grid-cols-1 md:grid-cols-2 gap-0 overflow-hidden rounded-[12px] transition-all hover:shadow-xl" style="border: 1px solid var(--color-border);">
               <div class="aspect-[16/10] md:aspect-auto overflow-hidden bg-gray-100">
                 {featuredPost.feature_image ? (
                   <img
@@ -140,15 +140,15 @@ const blogJsonLd = {
                 )}
               </div>
               <div class="flex flex-col justify-center p-5 md:p-10">
-                <span style="font-family: var(--font-dm-sans); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-primary); margin-bottom: 12px;">
+                <span style="font-family: var(--font-satoshi); font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-primary); margin-bottom: 12px;">
                   Latest Article
                 </span>
                 {(featuredPost.primary_tag ?? featuredPost.tags?.[0]) && (
-                  <span style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary); margin-bottom: 8px;">
+                  <span style="font-family: var(--font-satoshi); font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-primary); margin-bottom: 8px;">
                     {(featuredPost.primary_tag ?? featuredPost.tags[0]).name}
                   </span>
                 )}
-                <h2 style="font-family: var(--font-oswald); font-size: clamp(22px, 3vw, 32px); font-weight: 400; line-height: 1.25; color: var(--color-footer); text-transform: uppercase; margin-bottom: 12px;" class="group-hover:text-primary transition-colors">
+                <h2 style="font-size: clamp(22px, 3vw, 32px); color: var(--color-heading); margin-bottom: 12px;" class="group-hover:text-primary transition-colors">
                   {featuredPost.title}
                 </h2>
                 {featuredPost.excerpt && (
@@ -156,7 +156,7 @@ const blogJsonLd = {
                     {featuredPost.excerpt}
                   </p>
                 )}
-                <div class="flex items-center gap-3" style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-light);">
+                <div class="flex items-center gap-3" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted);">
                   <time datetime={featuredPost.published_at}>{formatDate(featuredPost.published_at)}</time>
                   {featuredPost.reading_time > 0 && (
                     <>
@@ -175,7 +175,7 @@ const blogJsonLd = {
           {/* Post Grid */}
           <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {gridPosts.map((post: any) => (
-              <a href={`/blog/${post.slug}`} class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 transition-shadow hover:shadow-lg">
+              <a href={`/blog/${post.slug}`} class="blog-card group flex flex-col overflow-hidden rounded-[12px] transition-all hover:shadow-lg" style="border: 1px solid var(--color-border);">
                 {post.feature_image ? (
                   <div class="aspect-[16/10] w-full overflow-hidden bg-gray-100">
                     <img
@@ -194,11 +194,11 @@ const blogJsonLd = {
                 )}
                 <div class="flex flex-1 flex-col p-5">
                   {(post.primary_tag ?? post.tags?.[0]) && (
-                    <span style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary); margin-bottom: 8px;">
+                    <span style="font-family: var(--font-satoshi); font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-primary); margin-bottom: 8px;">
                       {(post.primary_tag ?? post.tags[0]).name}
                     </span>
                   )}
-                  <h2 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; line-height: 1.4; color: var(--color-heading); margin-bottom: 8px;" class="group-hover:text-primary transition-colors">
+                  <h3 style="font-size: 1.125rem; margin-bottom: 8px;" class="group-hover:text-primary transition-colors">
                     {post.title}
                   </h2>
                   {post.excerpt && (
@@ -206,7 +206,7 @@ const blogJsonLd = {
                       {post.excerpt}
                     </p>
                   )}
-                  <div class="mt-auto flex items-center gap-3" style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-light);">
+                  <div class="mt-auto flex items-center gap-3" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted);">
                     <time datetime={post.published_at}>{formatDate(post.published_at)}</time>
                     {post.reading_time > 0 && (
                       <>
@@ -222,12 +222,12 @@ const blogJsonLd = {
 
           {/* Newsletter CTA — between content and pagination */}
           {page === 1 && (
-            <div class="mt-16 rounded-xl overflow-hidden" style="background: linear-gradient(135deg, var(--color-footer) 0%, var(--color-primary) 100%);">
+            <div class="mt-16 rounded-[12px] overflow-hidden" style="background-color: var(--color-heading);">
               <div class="px-8 py-12 md:px-12 md:py-14 text-center">
-                <h3 style="font-family: var(--font-oswald); font-size: clamp(24px, 3vw, 36px); font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 8px;">
+                <h3 style="color: white; margin-bottom: 8px;">
                   Get a Free Roof Inspection
                 </h3>
-                <p style="font-family: var(--font-dm-sans); font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                <p style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.65); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
                   Bay Area homeowners — find out the true condition of your roof with a no-obligation inspection from our certified team.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-3 justify-center">
@@ -257,21 +257,21 @@ const blogJsonLd = {
                 <a
                   href={`/blog?page=${pagination.page - 1}${tag ? `&tag=${tag}` : ''}`}
                   rel="prev"
-                  class="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 inline-flex items-center gap-2"
-                  style="font-family: var(--font-dm-sans);"
+                  class="rounded-[8px] px-5 py-2.5 text-sm font-medium inline-flex items-center gap-2 transition-colors hover:bg-cream"
+                  style="font-family: var(--font-dm-sans); border: 1px solid var(--color-border); color: var(--color-heading);"
                 >
                   &larr; Previous
                 </a>
               )}
-              <span style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-muted);">
+              <span style="font-family: var(--font-dm-sans); font-size: 0.875rem; color: var(--color-muted);">
                 Page {pagination.page} of {pagination.pages}
               </span>
               {pagination.page < pagination.pages && (
                 <a
                   href={`/blog?page=${pagination.page + 1}${tag ? `&tag=${tag}` : ''}`}
                   rel="next"
-                  class="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 inline-flex items-center gap-2"
-                  style="font-family: var(--font-dm-sans);"
+                  class="rounded-[8px] px-5 py-2.5 text-sm font-medium inline-flex items-center gap-2 transition-colors hover:bg-cream"
+                  style="font-family: var(--font-dm-sans); border: 1px solid var(--color-border); color: var(--color-heading);"
                 >
                   Next &rarr;
                 </a>
@@ -290,4 +290,13 @@ const blogJsonLd = {
 <style>
   /* Hide scrollbar on tag filter strip */
   section::-webkit-scrollbar { display: none; }
+
+  /* Blog card hover — lift + border shift */
+  .blog-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .blog-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary) !important;
+  }
 </style>
