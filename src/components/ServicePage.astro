@@ -106,7 +106,7 @@ const serviceSchema = {
   if (section.type === 'yellowBar') {
     return (
       <div class="w-full text-center" style="background-color: var(--color-yellow); padding: 14px 0;">
-        <a href={section.href} style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-heading); text-decoration: none;">{section.text} &rarr;</a>
+        <a href={section.href} style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 600; color: var(--color-heading); text-decoration: none;">{section.text} &rarr;</a>
       </div>
     );
   }
@@ -136,8 +136,8 @@ const serviceSchema = {
         <div class={`mx-auto max-w-[1200px] px-5 grid grid-cols-1 ${gridBreakpoint === 'lg' ? `lg:grid-cols-${stats.items.length}` : `md:grid-cols-${stats.items.length} md:gap-8`} gap-${gridBreakpoint === 'lg' ? '8' : '4'}`}>
           {stats.items.map((stat) => (
             <div class="text-center">
-              <div style="font-family: var(--font-oswald); font-size: 48px; font-weight: 400; color: var(--color-primary-dark); margin-bottom: 8px;">{stat.value}</div>
-              <p style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-muted);">{stat.label}</p>
+              <div style="font-family: var(--font-oswald); font-size: 3rem; font-weight: 400; color: var(--color-primary-dark); margin-bottom: 8px;">{stat.value}</div>
+              <p style="font-family: var(--font-dm-sans); font-size: 0.875rem; color: var(--color-muted);">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -157,19 +157,19 @@ const serviceSchema = {
         <div class="mx-auto" style="max-width: 1182px; padding: 0 15px;">
           <h2
             class="mb-6 text-center"
-            style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; letter-spacing: 0px; color: var(--color-heading); font-weight: 400; text-transform: uppercase;"
+            style="margin-bottom: 0;"
           >
             {styles.heading}
           </h2>
           <div class={gridClass} style="margin-top: 20px;">
             {styles.items.map((item, i) => {
               const titleEl = (
-                <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; line-height: 24px; color: var(--color-heading); margin-bottom: 6px; text-transform: uppercase;">
+                <h3 style="font-size: 1.125rem; margin-bottom: 6px;">
                   {item.title}
                 </h3>
               );
               const descEl = (
-                <p style="font-size: 14px; line-height: 150%; color: var(--color-muted);">
+                <p style="font-size: 0.875rem; line-height: 1.5; color: var(--color-muted);">
                   {item.description}
                 </p>
               );
