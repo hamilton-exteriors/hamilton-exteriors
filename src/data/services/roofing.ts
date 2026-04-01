@@ -55,6 +55,40 @@ export const data: ServicePageData = {
       },
     },
     { type: 'difference' },
+    {
+      type: 'pricing',
+      data: {
+        heading: 'Roofing Pricing',
+        tiers: [
+          {
+            name: 'Standard',
+            rows: [
+              { product: 'GAF Timberline HDZ', pricePerSq: '~$950', materialCost: '$350' },
+              { product: 'CertainTeed Landmark', pricePerSq: '~$940', materialCost: '$340' },
+              { product: 'Owens Corning Duration', pricePerSq: '~$960', materialCost: '$360' },
+            ],
+          },
+          {
+            name: 'Premium',
+            rows: [
+              { product: 'CertainTeed Landmark PRO', pricePerSq: '~$1,000', materialCost: '$400' },
+              { product: 'GAF Timberline AS II', pricePerSq: '~$1,050', materialCost: '$450' },
+              { product: 'Owens Corning Duration STORM', pricePerSq: '~$1,080', materialCost: '$480' },
+            ],
+          },
+          {
+            name: 'Designer / Luxury',
+            rows: [
+              { product: 'GAF Camelot II', pricePerSq: '~$1,175', materialCost: '$500' },
+              { product: 'GAF Grand Sequoia', pricePerSq: '~$1,330', materialCost: '$580' },
+              { product: 'CertainTeed Presidential Shake', pricePerSq: '~$1,400', materialCost: '$650' },
+              { product: 'CertainTeed Grand Manor', pricePerSq: '~$1,525', materialCost: '$700' },
+            ],
+          },
+        ],
+        footnote: 'Includes tear-off, materials, labor, underlayment, starter strip, ridge cap, nails, and full cleanup. Prices valid as of 2025.',
+      },
+    },
     { type: 'projects' },
     { type: 'yellowBar', text: 'Schedule a FREE Inspection', href: '#contact' },
     { type: 'cta' },

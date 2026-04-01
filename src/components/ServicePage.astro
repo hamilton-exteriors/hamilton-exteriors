@@ -87,6 +87,46 @@ const serviceSchema = {
     return <Financing />;
   }
 
+  if (section.type === 'pricing') {
+    const { data: p } = section;
+    return (
+      <section class="w-full" style="background-color: var(--color-cream); padding: 80px 0;">
+        <div class="mx-auto max-w-[1000px] px-5">
+          <h2 style="margin-bottom: 8px;">{p.heading}</h2>
+          <p style="font-family: var(--font-dm-sans); font-size: 0.875rem; color: var(--color-muted); margin-bottom: 40px;">All prices are per roofing square (100 sq ft), fully installed.</p>
+          <div class="overflow-x-auto">
+            <table style="width: 100%; border-collapse: collapse; font-family: var(--font-dm-sans); font-size: 0.9375rem;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--color-primary);">
+                  <th style="text-align: left; padding: 12px 16px; font-weight: 600; color: var(--color-heading);">Product</th>
+                  <th style="text-align: right; padding: 12px 16px; font-weight: 600; color: var(--color-heading);">Price / sq</th>
+                  <th style="text-align: right; padding: 12px 16px; font-weight: 600; color: var(--color-heading);">Materials</th>
+                </tr>
+              </thead>
+              <tbody>
+                {p.tiers.map((tier) => (
+                  <>
+                    <tr style="background-color: rgba(37, 99, 70, 0.08);">
+                      <td colspan="3" style="padding: 10px 16px; font-family: var(--font-oswald); font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-primary);">{tier.name}</td>
+                    </tr>
+                    {tier.rows.map((row) => (
+                      <tr style="border-bottom: 1px solid var(--color-border);">
+                        <td style="padding: 12px 16px; color: var(--color-charcoal);">{row.product}</td>
+                        <td style="padding: 12px 16px; text-align: right; font-weight: 600; color: var(--color-heading);">{row.pricePerSq}</td>
+                        <td style="padding: 12px 16px; text-align: right; color: var(--color-muted);">{row.materialCost}</td>
+                      </tr>
+                    ))}
+                  </>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted); margin-top: 16px;">{p.footnote}</p>
+        </div>
+      </section>
+    );
+  }
+
   if (section.type === 'faq') {
     return <FAQ />;
   }

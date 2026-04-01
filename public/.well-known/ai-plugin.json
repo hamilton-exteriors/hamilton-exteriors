@@ -8,10 +8,9 @@
     "type": "none"
   },
   "api": {
-    "type": "openapi",
-    "url": "https://hamilton-exteriors.com/llms.txt"
+    "type": "none"
   },
-  "logo_url": "https://hamilton-exteriors.com/favicon.png",
+  "logo_url": "https://hamilton-exteriors.com/og-default.jpg",
   "contact_email": "support@hamilton-exteriors.com",
   "legal_info_url": "https://hamilton-exteriors.com/terms"
 }

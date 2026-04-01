@@ -74,6 +74,20 @@ export interface HeroProps {
  * which blocks appear and in what order, while the template handles
  * the rendering.
  */
+/** A row in the pricing table */
+export interface PricingRow {
+  product: string;
+  pricePerSq: string;
+  materialCost: string;
+}
+
+/** Pricing table section */
+export interface PricingSection {
+  heading: string;
+  tiers: { name: string; rows: PricingRow[] }[];
+  footnote: string;
+}
+
 export type SectionBlock =
   | { type: 'logoSlider' }
   | { type: 'reviews' }
@@ -86,6 +100,7 @@ export type SectionBlock =
   | { type: 'projects' }
   | { type: 'yellowBar'; text: string; href: string }
   | { type: 'financing' }
+  | { type: 'pricing'; data: PricingSection }
   | { type: 'faq' }
   | { type: 'contactUs' }
   | { type: 'footer' };
