@@ -32,7 +32,8 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
       <div class="mt-5 flex flex-col gap-3 lg:flex-row lg:items-center">
         <a
           href={PHONE_HREF}
-          class="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-3 text-sm font-semibold transition-colors hover:bg-gray-50 whitespace-nowrap"
+          class="flex items-center justify-center gap-2 rounded-[8px] min-h-[44px] px-5 py-3.5 text-sm font-semibold transition-colors whitespace-nowrap"
+          style="border: 1px solid var(--color-border);"
           style="font-family: var(--font-dm-sans); color: var(--color-heading); text-decoration: none;"
         >
           <Image src={iconCheckmarkCircle} alt="" width={15} height={15} style="display: block;" />
@@ -40,7 +41,7 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
         </a>
         <a
           href="#contact"
-          class="flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-opacity hover:opacity-90 whitespace-nowrap"
+          class="flex items-center justify-center rounded-[8px] min-h-[44px] px-5 py-3.5 text-sm font-semibold transition-opacity hover:opacity-90 whitespace-nowrap"
           style="background-color: var(--color-primary); color: var(--color-white); text-decoration: none; font-family: var(--font-dm-sans);"
         >
           Schedule a FREE Inspection
@@ -49,7 +50,7 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
     </div>
 
     <!-- Right Column: Construction Photo -->
-    <div class="relative w-full lg:w-1/2" style="min-height: 250px;">
+    <div class="relative w-full lg:w-1/2" style="min-height: 250px; aspect-ratio: 4/3;">
       <Image
         src={ctaAssistant}
         alt="Hamilton Exteriors crew installing siding on a Bay Area home"

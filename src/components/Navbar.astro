@@ -72,17 +72,17 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 
   <!-- Mobile menu -->
   <div id="mobile-menu" class="mobile-menu xl:hidden hidden absolute top-full left-0 w-full bg-white shadow-lg z-40">
-    <div class="flex flex-col items-center gap-4 px-5 py-6" style="font-family: var(--font-dm-sans);">
-      <a href="/#about" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">About Us</a>
-      <a href="/#financing" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Financing</a>
-      <a href={PHONE_HREF} class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Call Us</a>
-      <a href="/#service" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Services</a>
-      <a href="/service-areas" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Service Areas</a>
-      <a href="/#review" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Reviews</a>
-      <a href="/blog" class="text-[0.875rem] font-medium" style="color: var(--color-heading);">Blog</a>
+    <div class="flex flex-col items-center gap-1 px-5 py-4" style="font-family: var(--font-dm-sans);">
+      <a href="/#about" class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">About Us</a>
+      <a href="/#financing" class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">Financing</a>
+      <a href={PHONE_HREF} class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">Call Us</a>
+      <a href="/#service" class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">Services</a>
+      <a href="/service-areas" class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">Service Areas</a>
+      <a href="/#review" class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">Reviews</a>
+      <a href="/blog" class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">Blog</a>
       <hr class="w-full" style="border-color: var(--color-border);" />
-      <a href={PHONE_HREF} class="text-[1rem] font-bold" style="color: var(--color-heading);">{PHONE_DISPLAY}</a>
-      <a href="/#quote" class="w-full max-w-xs text-center text-white" style="font-size: 0.8125rem; font-weight: 600; background-color: var(--color-primary); border-radius: 8px; padding: 10px 24px;">Get Your Free Inspection</a>
+      <a href={PHONE_HREF} class="min-h-[44px] flex items-center text-[1rem] font-bold" style="color: var(--color-heading);">{PHONE_DISPLAY}</a>
+      <a href="/#quote" class="w-full max-w-xs min-h-[48px] flex items-center justify-center text-center text-white" style="font-size: 0.875rem; font-weight: 600; background-color: var(--color-primary); border-radius: 8px;">Get Your Free Inspection</a>
     </div>
   </div>
 </nav>
