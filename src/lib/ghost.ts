@@ -88,6 +88,7 @@ export function isGhostConfigured(): boolean {
   return Boolean(GHOST_URL && GHOST_KEY);
 }
 
+
 export function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -127,8 +128,9 @@ async function warmServiceAreaCache(): Promise<void> {
   if (_saCache.size > 0) return; // already warmed
   if (!isGhostConfigured()) return;
 
-  // Bulk-fetch all service area posts by tag — ~5 API calls instead of 400+
+  // Bulk-fetch all service area posts by internal tag (~5 API calls total)
   const tags = ['hash-service-area-city', 'hash-service-area-county', 'hash-service-area-city-service'];
+
   for (const tag of tags) {
     let page = 1;
     let more = true;
@@ -140,39 +142,14 @@ async function warmServiceAreaCache(): Promise<void> {
           limit: '100',
           page: String(page),
         });
-        const posts: GhostPost[] = data.posts ?? [];
+        const posts: GhostPost[] = data?.posts ?? [];
         for (const post of posts) {
           _saCache.set(post.slug, post);
         }
         more = posts.length === 100;
         page++;
       } catch (e) {
-        if (import.meta.env.DEV) console.error(`[ghost] Failed to fetch tag ${tag} page ${page}:`, e);
-        more = false;
-      }
-    }
-  }
-
-  // Fallback: if no tagged posts found, fetch ALL posts and filter by slug prefix
-  if (_saCache.size === 0) {
-    let page = 1;
-    let more = true;
-    while (more) {
-      try {
-        const data = await ghostFetch('posts', {
-          include: 'tags',
-          limit: '100',
-          page: String(page),
-        });
-        const posts: GhostPost[] = data.posts ?? [];
-        for (const post of posts) {
-          if (post.slug.startsWith('sa-')) {
-            _saCache.set(post.slug, post);
-          }
-        }
-        more = posts.length === 100;
-        page++;
-      } catch {
+        console.error(`[ghost] Failed to fetch tag ${tag} page ${page}:`, e);
         more = false;
       }
     }
