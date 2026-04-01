@@ -11,7 +11,7 @@ interface Props {
   noindex?: boolean;
 }
 
-const DEFAULT_DESCRIPTION = 'Hamilton Exteriors — Bay Area design-build contractor. Roofing, siding, windows, ADUs, and custom homes. Licensed, bonded, insured. 50-year warranty. Call (650) 977-3351.';
+const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs, and custom homes. Licensed, bonded, insured. 50-year warranty. $0 down financing. Free estimate — (650) 977-3351.';
 
 const {
   title = 'Bay Area Roofing, Siding, ADUs & Custom Homes | Hamilton Exteriors',
@@ -36,16 +36,9 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Preconnect to font origins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-
-    <!-- Font stylesheets (preloaded to avoid render-blocking @import) -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" /></noscript>
-    <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" /></noscript>
+    <!-- Self-hosted font preloads — critical fonts only to avoid LCP delay -->
+    <link rel="preload" href="/fonts/the-bold-font.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -63,7 +56,9 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta property="og:description" content={description} />
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={image || `${siteUrl}/favicon.png`} />
+    <meta property="og:image" content={image || `${siteUrl}/og-default.svg`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Hamilton Exteriors" />
     <meta property="og:locale" content="en_US" />
 
@@ -71,7 +66,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image || `${siteUrl}/favicon.png`} />
+    <meta name="twitter:image" content={image || `${siteUrl}/og-default.svg`} />
 
     {jsonLd && !Array.isArray(jsonLd) && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
@@ -138,10 +133,23 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       }, 2000);
     </script>
 
-    <!-- Google Analytics — fired via GTM (GTM-MTRC8MMK) to avoid double-counting -->
-    {/* Mapbox Address Autofill — only loaded on pages with address form */}
+    <!-- Mapbox Address Autofill — lazy-loaded on first interaction to avoid 1.5MB initial JS -->
     {includeMapbox && (
-      <script id="search-js" defer src="https://api.mapbox.com/search-js/v1.5.0/web.js"></script>
+      <script is:inline>
+        (function(){
+          var loaded=false;
+          function loadMapbox(){
+            if(loaded)return;loaded=true;
+            var s=document.createElement('script');s.src='https://api.mapbox.com/search-js/v1.5.0/web.js';s.id='search-js';document.head.appendChild(s);
+          }
+          var addr=document.getElementById('hero-address');
+          if(addr){addr.addEventListener('focus',loadMapbox,{once:true});addr.addEventListener('click',loadMapbox,{once:true});}
+          else{document.addEventListener('DOMContentLoaded',function(){
+            var a=document.getElementById('hero-address');
+            if(a){a.addEventListener('focus',loadMapbox,{once:true});a.addEventListener('click',loadMapbox,{once:true});}
+          });}
+        })();
+      </script>
     )}
   </head>
   <body class="overflow-x-hidden">

@@ -27,6 +27,7 @@ const cityServicePages = counties.flatMap(c =>
 // https://astro.build/config
 export default defineConfig({
   site: 'https://hamilton-exteriors.com',
+  trailingSlash: 'never',
   output: 'server',
   adapter: node({ mode: 'standalone' }),
   integrations: [sitemap({

@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { reviewer1, reviewer2, reviewer3, reviewer4, iconStar } from '../lib/images';
+import { reviewer1, reviewer2, reviewer3, reviewer4 } from '../lib/images';
 import IconGoogle from './icons/IconGoogle.astro';
 
 const reviews = [
@@ -89,14 +89,7 @@ const reviews = [
           <!-- Star Rating -->
           <div class="mb-[10px] flex gap-[2px]" aria-label="5 out of 5 stars" role="img">
             {Array.from({ length: 5 }).map(() => (
-              <Image
-                src={iconStar}
-                alt=""
-                width={20}
-                height={21}
-                class="h-[20px] w-[20px] object-contain"
-                loading="lazy"
-              />
+              <svg class="h-[20px] w-[20px]" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#FFCF33" d="m4.854 18 1.355-5.854-4.542-3.938 6-.52L10 2.167l2.334 5.52 6 .521-4.542 3.938L15.146 18 10 14.896 4.854 18Z"/></svg>
             ))}
           </div>
 

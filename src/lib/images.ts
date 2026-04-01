@@ -42,7 +42,7 @@ export { default as reviewHouse } from '../assets/images/review-house.png';
 // Icons (SVG)
 export { default as iconCheckmarkCircle } from '../assets/images/icon-checkmark-circle.svg';
 export { default as iconStar } from '../assets/images/icon-star.svg';
-export { default as iconContactMap } from '../assets/images/icon-contact-map.svg';
+export { default as iconContactMap } from '../assets/images/contact-map.png';
 export { default as iconContactPhone } from '../assets/images/icon-contact-phone.svg';
 export { default as iconContactEmail } from '../assets/images/icon-contact-email.svg';
 export { default as iconContactClock } from '../assets/images/icon-contact-clock.svg';

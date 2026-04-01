@@ -32,7 +32,7 @@ if (isGhostConfigured()) {
 const featuredPost = !tag && page === 1 && posts.length > 0 ? posts[0] : null;
 const gridPosts = featuredPost ? posts.slice(1) : posts;
 const activeTag = tags.find((t: any) => t.slug === tag);
-const pageTitle = activeTag ? `${activeTag.name} | Blog | Hamilton Exteriors` : 'Blog | Hamilton Exteriors';
+const pageTitle = activeTag ? `${activeTag.name} — Roofing & Exteriors Blog | Hamilton Exteriors` : 'Bay Area Roofing & Home Improvement Blog | Hamilton Exteriors';
 const pageDesc = activeTag
   ? `Articles about ${activeTag.name.toLowerCase()} from Hamilton Exteriors — Bay Area's trusted contractor.`
   : 'Expert insights on ADU construction, roofing, siding, and home improvement in the Bay Area.';

@@ -18,12 +18,49 @@ const webAppJsonLd = {
     description: 'Free roof scan and instant pricing',
   },
 };
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How do you know what my roof needs without visiting?',
+      acceptedAnswer: { '@type': 'Answer', text: 'We use high-resolution satellite imagery and aerial measurement technology — the same tools insurance adjusters use. Before any work begins, our project manager does a free on-site verification to confirm measurements and check for any hidden issues.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How can you be so much cheaper without cutting corners?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Traditional roofing companies pay their salespeople 30-40% commission on every job. We eliminated the sales force entirely. Same materials, same (or better) installation crews, dramatically lower price.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What about the warranty?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Every roof comes with a manufacturer\'s warranty (25 years to lifetime, depending on the material) plus our own 10-year workmanship guarantee. We\'re a GAF Master Elite contractor — only 2% of roofers in the country qualify.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does financing work?',
+      acceptedAnswer: { '@type': 'Answer', text: 'We offer 0% APR financing for up to 60 months with approved credit. Apply during checkout — approval takes about 2 minutes. No prepayment penalties.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What if the on-site inspection finds something different?',
+      acceptedAnswer: { '@type': 'Answer', text: 'We\'ll update your quote with an itemized explanation of what changed and why. You approve any changes before we proceed. No surprises.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does a typical roof take?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Most residential roofs are completed in 1-3 days depending on size and complexity. We handle permits, material delivery, and cleanup.' },
+    },
+  ],
+};
 ---
 
 <Layout
   title="Buy Your Roof Online | Hamilton Exteriors"
   description="Skip the salesman. Enter your address, see your roof, get an instant price. Buy your new roof online from Hamilton Exteriors."
-  jsonLd={webAppJsonLd}
+  jsonLd={[webAppJsonLd, faqJsonLd]}
 >
   <Navbar />
 

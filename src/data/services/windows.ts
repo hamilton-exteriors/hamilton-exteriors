@@ -10,9 +10,9 @@ import {
 } from '../../lib/images';
 
 export const data: ServicePageData = {
-  title: 'Energy-Efficient Windows in Castro Valley, CA | Hamilton Exteriors',
+  title: 'Bay Area Window Installation — Double Hung, Casement & Sliding | Hamilton Exteriors',
   description:
-    'Hamilton Exteriors provides top-rated window installation in Castro Valley. Single hung, double hung, sliding, casement, and more.',
+    'Energy-efficient window installation across the Bay Area. Double hung, casement, sliding, bay, and picture windows. 50-year warranty. Free quote — (650) 977-3351.',
   hero: {
     headline: 'Best Window  Company in  the Bay Area',
     formTitle: 'Get A FREE Window Quote',

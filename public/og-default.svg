@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#256346"/>
+  <rect x="450" y="250" width="300" height="4" fill="#FFDE21" rx="2"/>
+  <text x="600" y="320" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="64" fill="#FFFFFF" letter-spacing="6">HAMILTON</text>
+  <text x="600" y="380" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="64" fill="#FFFFFF" letter-spacing="6">EXTERIORS</text>
+  <text x="600" y="430" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="24" fill="#FFFFFF" opacity="0.85" letter-spacing="2">Bay Area Roofing, Siding &amp; Exteriors</text>
+</svg>
