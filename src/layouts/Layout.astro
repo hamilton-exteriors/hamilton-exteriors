@@ -89,7 +89,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <script type="application/ld+json" is:inline>
     {
       "@context": "https://schema.org",
-      "@type": "HomeAndConstructionBusiness",
+      "@type": "RoofingContractor",
       "@id": "https://hamilton-exteriors.com/#business",
       "name": "Hamilton Exteriors",
       "url": "https://hamilton-exteriors.com",
@@ -119,12 +119,11 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
         "https://www.linkedin.com/company/hamilton-exteriors/"
       ],
       "areaServed": [
-        "Castro Valley, CA", "Oakland, CA", "Berkeley, CA", "Fremont, CA", "Hayward, CA", "San Leandro, CA",
-        "Walnut Creek, CA", "Concord, CA", "Richmond, CA", "San Ramon, CA", "Antioch, CA",
-        "San Rafael, CA", "Novato, CA", "Mill Valley, CA", "Larkspur, CA",
-        "Napa, CA", "American Canyon, CA", "St. Helena, CA", "Calistoga, CA", "Yountville, CA",
-        "San Jose, CA", "Palo Alto, CA", "Mountain View, CA", "Sunnyvale, CA", "Cupertino, CA",
-        "Santa Clara, CA", "Saratoga, CA", "Los Gatos, CA", "Campbell, CA", "Milpitas, CA"
+        { "@type": "County", "name": "Alameda County", "sameAs": "https://en.wikipedia.org/wiki/Alameda_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
+        { "@type": "County", "name": "Contra Costa County", "sameAs": "https://en.wikipedia.org/wiki/Contra_Costa_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
+        { "@type": "County", "name": "Marin County", "sameAs": "https://en.wikipedia.org/wiki/Marin_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
+        { "@type": "County", "name": "Napa County", "sameAs": "https://en.wikipedia.org/wiki/Napa_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
+        { "@type": "County", "name": "Santa Clara County", "sameAs": "https://en.wikipedia.org/wiki/Santa_Clara_County,_California", "containedInPlace": { "@type": "State", "name": "California" } }
       ],
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -135,11 +134,29 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       "image": "https://hamilton-exteriors.com/og-default.jpg",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://hamilton-exteriors.com/og-default.jpg",
-        "width": 1200,
-        "height": 630
+        "url": "https://hamilton-exteriors.com/favicon.png",
+        "width": 512,
+        "height": 512
       },
-      "description": "Bay Area exterior remodeling — roofing, siding, windows, and waterproofing. Licensed, bonded, insured. 50-year warranty. 3-5 day installs."
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Hamilton Exteriors Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roofing", "url": "https://hamilton-exteriors.com/roofing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Siding", "url": "https://hamilton-exteriors.com/siding" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Windows", "url": "https://hamilton-exteriors.com/windows" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ADUs", "url": "https://hamilton-exteriors.com/adu" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Homes", "url": "https://hamilton-exteriors.com/custom-homes" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Additions", "url": "https://hamilton-exteriors.com/additions" } }
+        ]
+      },
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "license",
+        "name": "CSLB Contractor License #1082377",
+        "recognizedBy": { "@type": "Organization", "name": "Contractors State License Board", "url": "https://www.cslb.ca.gov" }
+      },
+      "description": "Bay Area exterior remodeling - roofing, siding, windows, and waterproofing. Licensed, bonded, insured. 50-year warranty. 3-5 day installs."
     }
     </script>
 

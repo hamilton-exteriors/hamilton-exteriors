@@ -50,7 +50,8 @@ export default defineConfig({
       return !exclude.some(path => page.includes(path));
     },
     serialize: (item) => {
-      item.lastmod = new Date().toISOString();
+      // Don't set lastmod — a per-build timestamp is meaningless to crawlers
+      delete item.lastmod;
       return item;
     },
   })],

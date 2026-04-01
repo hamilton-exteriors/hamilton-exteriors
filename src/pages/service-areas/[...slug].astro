@@ -85,7 +85,57 @@ if (pageType === 'cityService' && cityServiceData) {
         { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
         { '@type': 'ListItem', 'position': 3, 'name': `${cityServiceData.county} County`, 'item': `${siteUrl}/service-areas/${urlCountySlug}` },
         { '@type': 'ListItem', 'position': 4, 'name': `${cityServiceData.city}, ${cityServiceData.state}`, 'item': `${siteUrl}/service-areas/${urlCountySlug}/${urlCitySlug}` },
-        { '@type': 'ListItem', 'position': 5, 'name': cityServiceData.serviceName },
+        { '@type': 'ListItem', 'position': 5, 'name': cityServiceData.serviceName, 'item': `${siteUrl}/service-areas/${urlCountySlug}/${urlCitySlug}/${segments[2]}` },
+      ],
+    },
+  ];
+} else if (pageType === 'city' && cityData) {
+  const [urlCountySlug, urlCitySlug] = segments;
+  jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
+        { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
+        { '@type': 'ListItem', 'position': 3, 'name': cityData.county || segments[0].replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()), 'item': `${siteUrl}/service-areas/${urlCountySlug}` },
+        { '@type': 'ListItem', 'position': 4, 'name': cityData.cityName || cityData.title?.split(' in ')?.[1]?.split(' |')?.[0] || urlCitySlug, 'item': `${siteUrl}/service-areas/${urlCountySlug}/${urlCitySlug}` },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      'name': `Roofing and Exterior Services in ${cityData.cityName || urlCitySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())}, CA`,
+      'url': `${siteUrl}/service-areas/${urlCountySlug}/${urlCitySlug}`,
+      'provider': { '@type': 'RoofingContractor', '@id': `${siteUrl}/#business`, 'name': 'Hamilton Exteriors' },
+      'areaServed': { '@type': 'City', 'name': cityData.cityName || urlCitySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()), 'containedInPlace': { '@type': 'State', 'name': 'California' } },
+      'serviceType': ['Roofing', 'Siding', 'Windows', 'ADUs', 'Custom Homes', 'Additions'],
+    },
+  ];
+} else if (pageType === 'county' && countyData) {
+  const [urlCountySlug] = segments;
+  jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
+        { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
+        { '@type': 'ListItem', 'position': 3, 'name': countyData.title?.split(' |')?.[0] || urlCountySlug, 'item': `${siteUrl}/service-areas/${urlCountySlug}` },
+      ],
+    },
+  ];
+} else if (pageType === 'countyService' && countyServiceData) {
+  const [urlCountySlug, serviceSlug] = segments;
+  jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
+        { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
+        { '@type': 'ListItem', 'position': 3, 'name': `${countyServiceData.county} County`, 'item': `${siteUrl}/service-areas/${urlCountySlug}` },
+        { '@type': 'ListItem', 'position': 4, 'name': countyServiceData.serviceName, 'item': `${siteUrl}/service-areas/${urlCountySlug}/${serviceSlug}` },
       ],
     },
   ];
@@ -93,7 +143,7 @@ if (pageType === 'cityService' && cityServiceData) {
 ---
 
 {pageType === 'countyService' && countyServiceData && (
-  <Layout title={countyServiceData.title} description={countyServiceData.description} includeMapbox>
+  <Layout title={countyServiceData.title} description={countyServiceData.description} jsonLd={jsonLd} includeMapbox>
     <ServicePage data={countyServiceData as any} />
   </Layout>
 )}
@@ -105,13 +155,13 @@ if (pageType === 'cityService' && cityServiceData) {
 )}
 
 {pageType === 'city' && cityData && (
-  <Layout title={cityData.title} description={cityData.description} includeMapbox>
+  <Layout title={cityData.title} description={cityData.description} jsonLd={jsonLd} includeMapbox geoPlacename={`${cityData.cityName || ''}, CA`}>
     <ServiceAreaCityPage data={cityData} />
   </Layout>
 )}
 
 {pageType === 'county' && countyData && (
-  <Layout title={countyData.title} description={countyData.description} includeMapbox>
+  <Layout title={countyData.title} description={countyData.description} jsonLd={jsonLd} includeMapbox>
     <CountyPage data={countyData} />
   </Layout>
 )}

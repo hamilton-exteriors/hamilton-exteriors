@@ -22,10 +22,16 @@ interface Props {
 
 const { data } = Astro.props;
 
-// Build areaServed — use city if available (pSEO pages), otherwise State
+// Build areaServed — use city if available (pSEO pages), otherwise counties
 const areaServed = (data as any).city
   ? { '@type': 'City', 'name': (data as any).city, 'containedInPlace': { '@type': 'State', 'name': 'California' } }
-  : { '@type': 'State', 'name': 'California' };
+  : [
+      { '@type': 'County', 'name': 'Alameda County', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
+      { '@type': 'County', 'name': 'Contra Costa County', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
+      { '@type': 'County', 'name': 'Marin County', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
+      { '@type': 'County', 'name': 'Napa County', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
+      { '@type': 'County', 'name': 'Santa Clara County', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
+    ];
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -33,7 +39,7 @@ const serviceSchema = {
   'name': data.title.split('|')[0].trim(),
   'url': `https://hamilton-exteriors.com${Astro.url.pathname}`,
   'provider': {
-    '@type': 'HomeAndConstructionBusiness',
+    '@type': 'RoofingContractor',
     '@id': 'https://hamilton-exteriors.com/#business',
     'name': 'Hamilton Exteriors',
   },

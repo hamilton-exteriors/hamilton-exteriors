@@ -7,7 +7,7 @@ export const data: ServicePageData = {
     'James Hardie Elite Preferred installer serving the Bay Area. Fiber cement, vinyl, stucco, and waterproofing. 50-year warranty, $0 down financing. Free estimate.',
   announcementText: 'Limited Time Get up to 20% off your Siding Replacement',
   hero: {
-    headline: 'Bay Areas  Best Siding  Installers',
+    headline: "Bay Area's  Best Siding  Installers",
     formTitle: 'Get a FREE SIDING INSPECTION',
     formSubtitle:
       "We'll contact you in 3-5 minutes to schedule a FREE SIDING inspection.",
