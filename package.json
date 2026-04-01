@@ -16,11 +16,14 @@
     "@astrojs/node": "^10.0.4",
     "@astrojs/sitemap": "^3.7.2",
     "@tailwindcss/vite": "^4.2.2",
+    "@types/jsonwebtoken": "^9.0.10",
     "astro": "^6.1.2",
+    "jsonwebtoken": "^9.0.3",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
-    "dotenv": "^17.3.1"
+    "dotenv": "^17.3.1",
+    "vitest": "^4.1.2"
   }
 }
