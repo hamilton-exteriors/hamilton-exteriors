@@ -318,12 +318,6 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       <slot />
     </main>
 
-    <!-- Sticky mobile CTA — only shows on pages with a hero form, hidden once form is in view -->
-    <div id="mobile-sticky-cta" class="fixed bottom-0 left-0 right-0 z-40 xl:hidden translate-y-full transition-transform duration-300" style="padding: 12px 16px; padding-bottom: max(12px, env(safe-area-inset-bottom)); background: var(--color-primary); box-shadow: 0 -2px 12px rgba(0,0,0,0.15);">
-      <a href="#quote" class="flex items-center justify-center gap-2 w-full rounded-lg text-white no-underline" style="font-family: var(--font-dm-sans); font-size: 1rem; font-weight: 600; height: 48px; background: var(--color-yellow); color: var(--color-charcoal); border-radius: 8px;">
-        Get Your Free Inspection
-      </a>
-    </div>
 
     <script>
       // Navbar scroll shadow
@@ -336,19 +330,6 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
         onScroll();
       }
 
-      // Sticky mobile CTA — show after scrolling 400px, hide when hero form is visible
-      const stickyCta = document.getElementById('mobile-sticky-cta');
-      const heroForm = document.getElementById('hero-form');
-      if (stickyCta && heroForm) {
-        const observer = new IntersectionObserver(([entry]) => {
-          stickyCta.classList.toggle('translate-y-full', entry.isIntersecting);
-          stickyCta.classList.toggle('translate-y-0', !entry.isIntersecting);
-        }, { threshold: 0.3 });
-        observer.observe(heroForm);
-        // Also hide on pages without a hero form (like /buy which has its own CTA)
-      } else if (stickyCta) {
-        stickyCta.remove();
-      }
 
       // Scroll #quote links to center the form on screen
       document.querySelectorAll('a[href="#quote"], a[href="/#quote"]').forEach(link => {
