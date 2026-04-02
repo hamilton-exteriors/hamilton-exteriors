@@ -96,40 +96,31 @@ async function postExists(slug: string): Promise<boolean> {
   }
 }
 
-function makeLexical(jsonData: unknown): string {
+function makeMobiledoc(jsonData: unknown): string {
   const htmlContent = `<script type="application/json">${JSON.stringify(jsonData)}</script>`;
   return JSON.stringify({
-    root: {
-      children: [
-        {
-          type: 'html',
-          version: 1,
-          html: htmlContent,
-        },
-      ],
-      direction: null,
-      format: '',
-      indent: 0,
-      type: 'root',
-      version: 1,
-    },
+    version: '0.3.1',
+    atoms: [],
+    cards: [['html', { html: htmlContent }]],
+    markups: [],
+    sections: [[10, 0]],
   });
 }
 
 async function createOrUpdatePost(slug: string, title: string, metaTitle: string, metaDescription: string, jsonData: unknown, tags: string[]): Promise<'created' | 'updated' | 'failed'> {
-  const lexical = makeLexical(jsonData);
+  const mobiledoc = makeMobiledoc(jsonData);
 
   // Check if post exists
   try {
     const existing = await ghostAdminFetch(`posts/slug/${slug}/`, { method: 'GET' });
     if (existing?.posts?.[0]) {
-      // Update existing post with correct lexical content
       const post = existing.posts[0];
       await ghostAdminFetch(`posts/${post.id}/`, {
         method: 'PUT',
         body: JSON.stringify({
           posts: [{
-            lexical,
+            mobiledoc,
+            lexical: null,
             meta_title: metaTitle,
             meta_description: metaDescription,
             updated_at: post.updated_at,
@@ -149,7 +140,7 @@ async function createOrUpdatePost(slug: string, title: string, metaTitle: string
         posts: [{
           title,
           slug,
-          lexical,
+          mobiledoc,
           status: 'published',
           meta_title: metaTitle,
           meta_description: metaDescription,
