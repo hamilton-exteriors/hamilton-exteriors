@@ -8,7 +8,7 @@ export const data: CountyPageData = {
   adjective: 'Experienced',
   title: 'Roofing, Siding, ADUs & Custom Homes in Contra Costa County | Hamilton Exteriors',
   description: 'Hamilton Exteriors serves Contra Costa County with full-service roofing, siding, windows, ADUs, additions, and custom homes. Serving Walnut Creek, Concord, San Ramon, Antioch, and Richmond.',
-  heroHeadline: 'Contra Costa County\u2019s Top  Roofing & Design-Build  Contractor',
+  heroHeadline: 'Contra Costa County\u2019s Top  Design-Build &  Exteriors Contractor',
   heroFormTitle: 'Get a FREE Estimate in Contra Costa County',
   proximity: '-121.93,37.92',
 

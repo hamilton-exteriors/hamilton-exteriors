@@ -26,7 +26,19 @@ const { data } = Astro.props;
 const proximity = getCityProximity(data.slug);
 
 // Seed data uses short county slugs ("alameda"), URLs use full slugs ("alameda-county-ca")
-const countyUrlSlug = `${data.countySlug}-county-ca`;
+const countyUrlSlug = data.countySlug.endsWith('-county-ca') ? data.countySlug : `${data.countySlug}-county-ca`;
+const cityUrlSlug = data.slug.endsWith('-ca') ? data.slug : `${data.slug}-ca`;
+const basePath = `/service-areas/${countyUrlSlug}/${cityUrlSlug}`;
+
+// Fallback services grid if Ghost data doesn't include it (old ADU-format data)
+const services = data.services || [
+  { title: 'Roofing', description: 'Full roof replacements and repairs with GAF-certified shingles and a 50-year warranty. Most jobs done in 3–5 days.', imageKey: 'serviceRoofing', href: `${basePath}/roofing` },
+  { title: 'Siding', description: 'James Hardie fiber cement siding that protects your home and looks great for decades. We handle dry rot repair and full replacements.', imageKey: 'serviceSiding', href: `${basePath}/siding` },
+  { title: 'Windows', description: 'Energy-efficient window replacements that transform comfort and curb appeal. Double-hung, casement, bay, and more.', imageKey: 'serviceWindows', href: `${basePath}/windows` },
+  { title: 'ADUs', description: 'Detached ADUs, garage conversions, and junior ADUs. Design, permits, and construction from start to finish.', imageKey: 'serviceAdu', href: `${basePath}/adu` },
+  { title: 'Custom Homes', description: 'Ground-up custom home construction tailored to your vision. From foundation to finishing touches.', imageKey: 'serviceCustomHomes', href: `${basePath}/custom-homes` },
+  { title: 'Additions', description: 'Seamless room additions that match your home\u2019s existing style. We handle permits, design, and construction.', imageKey: 'serviceAdditions', href: `${basePath}/additions` },
+];
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -94,7 +106,7 @@ const breadcrumbSchema = {
     </h2>
 
     <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {data.services.map((service) => (
+      {services.map((service) => (
         <ServiceCard
           title={service.title}
           description={service.description}
@@ -178,7 +190,7 @@ const breadcrumbSchema = {
       Services in {data.city}
     </h3>
     <div class="flex flex-wrap gap-2">
-      {data.services.map(s => (
+      {services.map(s => (
         <a href={s.href} style="font-family: var(--font-dm-sans); font-size: 0.8125rem; font-weight: 500; color: var(--color-primary); text-decoration: none; padding: 8px 16px; border: 1px solid var(--color-border); border-radius: 100px;" class="hover:opacity-80 transition-opacity">
           {s.title} in {data.city} →
         </a>
