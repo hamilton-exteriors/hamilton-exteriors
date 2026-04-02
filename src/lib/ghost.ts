@@ -76,14 +76,38 @@ export interface GhostTag {
   count: number;
 }
 
+/** Human-readable names for Ghost tag slugs */
+const TAG_DISPLAY_NAMES: Record<string, string> = {
+  'blog_post': 'Blog',
+  'cost_guide': 'Cost Guides',
+  'news': 'News',
+  'roofing': 'Roofing',
+  'siding': 'Siding',
+  'windows': 'Windows',
+  'adu': 'ADUs',
+  'tips': 'Tips',
+};
+
+/** Tags to hide from the public filter UI */
+const HIDDEN_TAGS = new Set([
+  'hash-service-area-city',
+  'hash-service-area-county',
+  'hash-service-area-city-service',
+  'location_page',
+]);
+
 export async function getTags(): Promise<GhostTag[]> {
   const data = await ghostFetch('tags', {
     include: 'count.posts',
     limit: 'all',
   });
   return (data.tags ?? [])
-    .filter((t: any) => t.count?.posts > 0 && !t.slug.startsWith('hash-service-area'))
-    .map((t: any) => ({ name: t.name, slug: t.slug, count: t.count.posts }));
+    .filter((t: any) => t.count?.posts > 0 && !t.slug.startsWith('hash-') && !HIDDEN_TAGS.has(t.slug))
+    .map((t: any) => ({
+      name: TAG_DISPLAY_NAMES[t.slug] || t.name.replace(/_/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()),
+      slug: t.slug,
+      count: t.count.posts,
+    }));
 }
 
 export function isGhostConfigured(): boolean {
