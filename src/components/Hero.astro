@@ -505,7 +505,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     opacity: 0.9;
   }
   .service-btn:active {
-    transform: scale(0.97);
+    opacity: 0.85;
   }
   .service-btn:focus-visible {
     outline: 2px solid var(--color-yellow);
@@ -515,7 +515,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     border-color: var(--color-primary);
     background: var(--color-primary);
     color: white;
-    transform: scale(0.97);
+    opacity: 0.95;
   }
 
   .hero-input {
@@ -575,6 +575,12 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
   mapbox-address-autofill .suggestion-address {
     font-size: 0.8125rem !important;
     color: var(--color-muted) !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .form-step { transition: none !important; }
+    .service-btn { transition: none !important; }
+    .hero-input { transition: none !important; }
   }
 
 </style>

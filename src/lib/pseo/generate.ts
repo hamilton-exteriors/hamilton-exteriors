@@ -137,9 +137,9 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
   // Badges
   const badges = [
     `Serving ${city} & ${county} County`,
-    `${neighborhoods.length}+ neighborhoods covered`,
-    `Median home price: ${seed.medianHomePrice}`,
-    `Population: ${seed.population}`,
+    'Licensed Bonded & Insured',
+    '$0 Down Financing Available',
+    '50-Year Warranty',
   ];
 
   // Reviews — three deterministic reviews using real neighborhoods
