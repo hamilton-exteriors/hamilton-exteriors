@@ -16,6 +16,7 @@ import Footer from './Footer.astro';
 import { hasImage } from '../lib/service-page-types';
 import type { ServicePageData, SectionBlock, StylesSection } from '../lib/service-page-types';
 import { resolveImage } from '../lib/image-map';
+import { getCityWikipedia } from '../lib/city-wikipedia';
 
 interface Props {
   data: ServicePageData;
@@ -40,11 +41,13 @@ for (const section of data.sections) {
 // Build areaServed — use city if available (pSEO pages), otherwise counties
 // Use AdministrativeArea for county-level entities (name contains "County")
 const cityOrArea = (data as any).city;
+const citySlug = (data as any).citySlug || '';
 const isCountyArea = cityOrArea && /county/i.test(cityOrArea);
+const cityWiki = !isCountyArea && citySlug ? getCityWikipedia(citySlug) : undefined;
 const areaServed = cityOrArea
   ? isCountyArea
     ? { '@type': 'AdministrativeArea', 'name': cityOrArea, 'containedInPlace': { '@type': 'State', 'name': 'California' } }
-    : { '@type': 'City', 'name': cityOrArea, 'containedInPlace': { '@type': 'State', 'name': 'California' } }
+    : { '@type': 'City', 'name': cityOrArea, ...(cityWiki && { 'sameAs': cityWiki }), 'containedInPlace': { '@type': 'State', 'name': 'California' } }
   : [
       { '@type': 'County', 'name': 'Alameda County', 'sameAs': 'https://en.wikipedia.org/wiki/Alameda_County,_California', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
       { '@type': 'County', 'name': 'Contra Costa County', 'sameAs': 'https://en.wikipedia.org/wiki/Contra_Costa_County,_California', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
@@ -52,6 +55,20 @@ const areaServed = cityOrArea
       { '@type': 'County', 'name': 'Napa County', 'sameAs': 'https://en.wikipedia.org/wiki/Napa_County,_California', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
       { '@type': 'County', 'name': 'Santa Clara County', 'sameAs': 'https://en.wikipedia.org/wiki/Santa_Clara_County,_California', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
     ];
+
+// Detect if this is a main service page (not city/county-specific) for cross-linking
+const pathname = Astro.url.pathname.replace(/\/$/, '');
+const SERVICE_SLUG_MAP: Record<string, string> = { roofing: 'Roofing', siding: 'Siding', windows: 'Windows', adu: 'ADUs', 'custom-homes': 'Custom Homes', additions: 'Additions' };
+const isMainServicePage = !cityOrArea && Object.keys(SERVICE_SLUG_MAP).includes(pathname.replace('/', ''));
+const currentServiceSlug = pathname.replace('/', '');
+
+const counties = [
+  { name: 'Alameda County', slug: 'alameda-county-ca' },
+  { name: 'Contra Costa County', slug: 'contra-costa-county-ca' },
+  { name: 'Marin County', slug: 'marin-county-ca' },
+  { name: 'Napa County', slug: 'napa-county-ca' },
+  { name: 'Santa Clara County', slug: 'santa-clara-county-ca' },
+];
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -163,7 +180,33 @@ const serviceSchema = {
   }
 
   if (section.type === 'footer') {
-    return <Footer />;
+    return (
+      <>
+        {isMainServicePage && (
+          <section class="w-full" style="background-color: var(--color-cream); padding: 60px 0;">
+            <div class="mx-auto max-w-[1200px] px-5">
+              <h2 style="margin-bottom: 32px;">
+                {SERVICE_SLUG_MAP[currentServiceSlug] || 'Our Services'} Across the Bay Area
+              </h2>
+              <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {counties.map(c => (
+                  <a href={`/service-areas/${c.slug}/${currentServiceSlug}`} style="display: block; padding: 20px; background: var(--color-white); border: 1px solid var(--color-border); text-decoration: none; transition: opacity 0.2s;" class="hover:opacity-80">
+                    <h3 style="font-size: 1rem; margin-bottom: 4px; color: var(--color-heading);">{c.name}</h3>
+                    <p style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted);">
+                      {SERVICE_SLUG_MAP[currentServiceSlug]} services in {c.name}
+                    </p>
+                  </a>
+                ))}
+                <a href="/service-areas" style="display: flex; align-items: center; justify-content: center; padding: 20px; background: var(--color-primary); text-decoration: none; transition: opacity 0.2s;" class="hover:opacity-90">
+                  <span style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 600; color: white;">View All Service Areas &rarr;</span>
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
+        <Footer />
+      </>
+    );
   }
 
   if (section.type === 'yellowBar') {

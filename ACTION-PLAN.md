@@ -1,166 +1,187 @@
 # Hamilton Exteriors — SEO Action Plan
 
-**Generated:** April 2, 2026 | **Current Score:** 70/100 | **Target:** 85/100
+**Generated:** April 2, 2026 | **Current Score:** 75/100 | **Target:** 88/100
 
 ---
 
-## Critical — Fix Immediately
+## Critical (Fix Immediately)
 
-### C1. Point `hamilton-exteriors.com` DNS to Railway
-**Impact:** Unlocks ALL schema, canonicals, sitemap, and citation signals
-**Effort:** 30 min (DNS change + SSL verification)
-**Score lift:** +5-8 points across Technical, Local, Schema
+### 1. Fix blog post title duplication
+**Impact:** SERP display for all blog posts | **Effort:** 5 min | **Score impact:** +2
+- Template bug: blog layout appends `| Hamilton Exteriors`, then site Layout appends again
+- All 3 blog posts show double brand suffix (77-88 chars, over 60-char guideline)
+- Fix in blog post layout to not append brand when Layout already does
+- **File:** `src/pages/blog/[slug].astro` — check title prop passed to Layout
 
-Every schema `@id`, canonical URL, sitemap entry, and `sameAs` link references `hamilton-exteriors.com`. Until DNS resolves, Google sees a complete mismatch between schema claims and crawled URLs. This single action unblocks the full value of all existing SEO work.
+### 2. Fix sitemap — 214 pages missing
+**Impact:** 46% of site invisible to search engines via sitemap | **Effort:** 30 min | **Score impact:** +4
+- sitemap-0.xml has 251 URLs, expected 465
+- Check `@astrojs/sitemap` config in `astro.config.mjs`
+- Verify all city-service pages are generated at build time
+- Submit updated sitemap to Google Search Console after fix
 
----
+### 3. Add `logo-schema.png` to `/public/`
+**Impact:** Schema validation error on every page | **Effort:** 5 min | **Score impact:** +1
+- `RoofingContractor` schema references `logo-schema.png` which returns 404
+- Create 600x120px logo PNG and place in `/public/logo-schema.png`
 
-### C2. Fix duplicate meta descriptions across 150+ city/service pages
-**Impact:** Eliminates massive crawl signal dilution
-**Effort:** 2-4 hours (code change in Layout.astro)
-**File:** `src/layouts/Layout.astro` (line ~36)
-**Score lift:** +3-4 points On-Page
+### 4. Fix llms.txt license declaration
+**Impact:** Legal exposure + AI training conflict | **Effort:** 10 min | **Score impact:** +1
+- CC BY 4.0 grants redistribution rights — conflicts with robots.txt training blocks
+- Replace in both `public/llms.txt` and `public/llms-full.txt` line 5:
+  ```
+  > License: Content may be cited by AI search engines with attribution to Hamilton Exteriors (hamilton-exteriors.com). Reproduction, redistribution, or use for AI model training is prohibited.
+  ```
+- Update stale "Prices valid as of 2025" to "2026" in llms-full.txt
 
-Add a city-specific templated fallback when `rawDescription` is empty and `geoPlacename` is set:
-```
-"Hamilton Exteriors serves [City], CA — [service] with 50-year warranty. CSLB #1082377. Free estimate: (650) 977-3351."
-```
-Also audit Ghost CMS for empty `meta_description` fields on all city posts.
-
----
-
-### C3. Update pricing footnotes from "2025" to "2026"
-**Impact:** Removes visible trust-eroding signal on highest-traffic pages
-**Effort:** 5 minutes
-**Files:**
-- `src/data/services/roofing.ts` (~line 89)
-- `src/data/services/siding.ts` (~line 96)
-- `src/data/services/windows.ts` (~line 108)
-
----
-
-### C4. Fix or remove broken SearchAction `/blog?q=`
-**Impact:** Prevents sitelinks search box suppression
-**Effort:** 15 minutes
-**File:** `src/layouts/Layout.astro` (lines 228-245)
-**Action:** Remove the `potentialAction` block from WebSite schema, or implement a real `?q=` search handler.
+### 5. Fix Google Maps `sameAs` with real Place ID
+**Impact:** GBP entity linking on every page | **Effort:** 15 min | **Score impact:** +2
+- Current: `https://www.google.com/maps/place/Hamilton+Exteriors` (name search)
+- Find Place ID from GBP dashboard or Google Search Console
+- Replace with `https://www.google.com/maps/place/?q=place_id:ChIJ...`
+- Update in `src/layouts/Layout.astro` and `src/components/Footer.astro`
 
 ---
 
-### C5. Remove duplicate FAQPage JSON-LD from `/buy`
-**Impact:** Eliminates content mismatch between JSON-LD and visible HTML
-**Effort:** 10 minutes
-**File:** `src/pages/buy/index.astro` (lines 48-83)
+## High (Fix Within 1 Week)
+
+### 6. Preload THE BOLD FONT
+**Impact:** LCP improvement, eliminates heading FOUT | **Effort:** 5 min | **Score impact:** +1
+- Add to Layout `<head>`:
+  ```html
+  <link rel="preload" href="/fonts/the-bold-font-700.woff2" as="font" type="font/woff2" crossorigin>
+  ```
+- DM Sans and Satoshi already preloaded; this font is not
+
+### 7. Remove unused font preconnects
+**Impact:** 2 unnecessary DNS lookups per page | **Effort:** 5 min | **Score impact:** +0.5
+- Remove `<link rel="preconnect" href="https://fonts.googleapis.com">` and gstatic equivalent
+- All fonts are self-hosted — these connections are never used
+
+### 8. Add Google Maps iframe embed
+**Impact:** GBP signal strength | **Effort:** 30 min | **Score impact:** +2
+- No interactive Maps embed on any page — significant GBP signal gap
+- Add embed to homepage contact section or footer
+- Use CID-anchored embed URL once Place ID is obtained
+
+### 9. Correct geo coordinates in schema
+**Impact:** Entity accuracy | **Effort:** 5 min | **Score impact:** +0.5
+- Current: `37.69412, -122.08276` (~350m west of actual address)
+- Correct: approximately `37.69427, -122.07887`
+- Update in `src/layouts/Layout.astro` lines 138-139
+
+### 10. Add Wikipedia `sameAs` to city-level `areaServed`
+**Impact:** AI entity recognition for city pages | **Effort:** 1 hr | **Score impact:** +1
+- County-level schema has Wikipedia `sameAs` — city-level does not
+- Add Wikipedia URLs to each city in `ServiceAreaCityPage.astro` and `[...slug].astro`
+
+### 11. Add `@type` array: `["RoofingContractor", "GeneralContractor"]`
+**Impact:** Entity matching for ADU/custom home queries | **Effort:** 5 min | **Score impact:** +0.5
+- Update in `src/layouts/Layout.astro` line 123
+
+### 12. Add cross-links from service pages to city-service pages
+**Impact:** PageRank flow to pSEO pages, reduces crawl depth | **Effort:** 2 hrs | **Score impact:** +2
+- `/roofing` should link to `/service-areas/alameda-county-ca/roofing` etc.
+- Add "Service Areas" section to bottom of each service page
+- Reduces effective crawl depth of city-service pages by 2 levels
 
 ---
 
-### C6. Add `description` to Service schema on city pages
-**Impact:** Strengthens entity signals for 150+ pages
-**Effort:** 30 minutes
-**File:** `src/pages/service-areas/alameda-county-ca/[...slug].astro` (lines 75-84)
+## Medium (Fix Within 1 Month)
+
+### 13. Enrich thin city-service pages with local data
+**Impact:** Doorway page risk, AI citability | **Effort:** High (data pipeline) | **Score impact:** +5
+- Top 10 cities by search volume need: neighborhood paragraph, local regulation note, project reference
+- Add `localFacts` field to city page CMS data
+- City-specific permit costs, housing stock age, weather factors
+- Even 2-3 sentences of unique local content transforms citability
+
+### 14. Add FAQ section to blog posts
+**Impact:** Featured snippet eligibility, AI citation | **Effort:** 2 hrs per post | **Score impact:** +1
+- Roof cost blog post has no FAQ — highest-traffic AI citation asset
+- Add 4-6 FAQs with 134-167 word answers (optimal AI passage length)
+- Add FAQPage schema alongside BlogPosting
+
+### 15. Expand blog posts to 1,500-2,500 words
+**Impact:** AI citation threshold | **Effort:** 2-4 hrs per post | **Score impact:** +1
+- Current ~1,000 words is below optimal for AI-cited long-form content
+- Add external source citations (BLS, NRCA, county permit schedules)
+- Add data tables, comparison charts
+
+### 16. Fix `og:type` on blog posts to "article"
+**Impact:** Social sharing card rendering | **Effort:** 15 min | **Score impact:** +0.5
+
+### 17. Create unique `og:image` for blog posts
+**Impact:** Social CTR | **Effort:** 1 hr per post | **Score impact:** +0.5
+- All pages use `og-default.jpg`
+- Blog posts need article-specific images
+
+### 18. Implement IndexNow
+**Impact:** Bing/Yandex/Naver index freshness | **Effort:** 30 min | **Score impact:** +1
+- Generate key at bing.com/indexnow
+- Place key file in `/public/`
+- Add API call to deploy pipeline
+
+### 19. Implement live review widget
+**Impact:** Review freshness, social proof | **Effort:** 2 hrs | **Score impact:** +2
+- Replace 4 hardcoded reviews with live GBP feed
+- Address 18-day review velocity risk (last visible review: Jan 22, 2026)
+- Options: EmbedSocial, Widewail, ReviewsOnMyWebsite
+
+### 20. Address review velocity
+**Impact:** Local pack ranking maintenance | **Effort:** Ongoing | **Score impact:** +2
+- Implement post-job review request flow (SMS or email 3 days after completion)
+- Most recent visible review is 69+ days old — potential ranking cliff
 
 ---
 
-## High — Fix Within 1 Week
+## Low (Backlog)
 
-### H1. Fix BlogPosting author type fallback
-**Effort:** 30 min | **File:** `src/pages/blog/[slug].astro`
-Fall back to `"@type": "Organization"` when author missing. Add `keywords`, `articleSection`, `isPartOf`.
+### 21. Create and verify BBB profile
+**Impact:** Most trust-critical citation for home services | **Effort:** 1-2 weeks | **Score impact:** +1
 
-### H2. Replace schema logo with proper business logo
-**Effort:** 1 hr | **File:** `src/layouts/Layout.astro`
-Create `/logo-schema.png` (600x120). Keep favicon for `<link rel="icon">` only.
+### 22. Claim Thumbtack and NextDoor profiles
+**Impact:** Tier 1 home services citations | **Effort:** 1 hr each | **Score impact:** +0.5
 
-### H3. Add `@id`, `breadcrumb`, `isPartOf` to blog CollectionPage
-**Effort:** 30 min | **File:** `src/pages/blog/index.astro`
+### 23. Establish YouTube presence
+**Impact:** 0.737 correlation with AI citation frequency | **Effort:** Ongoing | **Score impact:** +2
+- 4-6 videos: install timelapse, estimate explainer, FAQ with Marcus Hamilton
+- Add channel URL to llms.txt and site footer
 
-### H4. Restart review velocity — target 1 new Google review every 14 days
-**Effort:** Ongoing process. Implement post-job SMS/email with direct GBP review link.
+### 24. Build Reddit presence
+**Impact:** AI training data source, entity recognition | **Effort:** Ongoing | **Score impact:** +1
+- Organic participation in r/bayarea, r/homeimprovement, r/roofing
 
-### H5. Replace Google Maps `sameAs` with Place ID URL
-**Effort:** 15 min | **File:** `src/layouts/Layout.astro`
+### 25. Change blog author from Organization to Person
+**Impact:** Google author panel eligibility | **Effort:** 15 min | **Score impact:** +0.5
 
-### H6. Fix "3-5 day install" badge on ADU and custom homes pages
-**Effort:** 30 min. ADU projects take months. Conditional badge text per service type.
+### 26. Add Bingbot explicit allow in robots.txt
+**Impact:** Bing Copilot signal clarity | **Effort:** 5 min | **Score impact:** +0.5
 
-### H7. Remove/fix "Untitled" blog draft
-**Effort:** 5 min in Ghost CMS.
+### 27. Set font cache to 1 year immutable
+**Impact:** Returning visitor bandwidth | **Effort:** 15 min | **Score impact:** +0.25
 
-### H8. Add missing canonical tags to `/buy` and `/siding`
-**Effort:** 15 min.
+### 28. Fix `favicon.png` 404
+**Impact:** Older browser/crawler compatibility | **Effort:** 5 min | **Score impact:** +0.25
 
----
+### 29. Add CSLB verification link in footer
+**Impact:** Trust signal for anxious homeowners | **Effort:** 5 min | **Score impact:** +0.25
+- Link license number to `cslb.ca.gov/onlineservices/checklicenseII/checklicense.aspx?license=1082377`
 
-## Medium — Fix Within 1 Month
-
-### M1. Add Product/Offer schema to pricing tables
-**Effort:** 4-6 hr | **File:** `src/components/ServicePage.astro`
-Strongest rich result opportunity. Product + AggregateOffer per roofing tier.
-
-### M2. Add city-specific LocalBusiness schema to city pages
-**Effort:** 2-3 hr | **Files:** `GeneralCityPage.astro`, `ServiceAreaCityPage.astro`
-
-### M3. Fix schema type on `/adu` and `/custom-homes`
-**Effort:** 1 hr | Use `GeneralContractor` instead of `RoofingContractor`.
-
-### M4. Build an About/Team page
-**Effort:** 4-8 hr. Marcus Hamilton headshot, bio, CSLB license. Major E-E-A-T lift.
-
-### M5. Add outbound citation links to service page statistics
-**Effort:** 2-3 hr | Link ARMA, ORNL, MRA references to source URLs.
-
-### M6. Refactor FAQPage JSON-LD to opt-in (not automatic on every page)
-**Effort:** 2 hr | **File:** `FAQ.astro`
-
-### M7. Claim Tier 1 home services citations
-**Effort:** 4-6 hr | BBB, Angi, Houzz, Thumbtack. Match NAP exactly.
-
-### M8. Fill llms.txt gaps (windows pricing, ADU costs, formal license)
-**Effort:** 2-3 hr | **Files:** `public/llms.txt`, `public/llms-full.txt`
-
-### M9. Fix LCP (3.0s) — hero image optimization
-**Effort:** 2-4 hr | `fetchpriority="high"`, preload, WebP/AVIF, mobile sizing.
-
-### M10. Add city-specific FAQ questions to location pages
-**Effort:** 8-16 hr (content). Replace generic FAQs with city-specific questions.
+### 30. Remove `/blog/untitled` link from blog index
+**Impact:** Crawl budget | **Effort:** 5 min | **Score impact:** +0.25
 
 ---
 
-## Low — Backlog
+## Score Projection
 
-| # | Action | Effort |
-|---|--------|--------|
-| L1 | Create YouTube channel with 3-5 project videos | 2-3 days |
-| L2 | Publish 9 more blog posts (12 total by Q3 2026) | Ongoing |
-| L3 | Add `<link rel="ai-content-declaration" href="/llms.txt">` to head | 5 min |
-| L4 | Fix `ItemList` `url` → `item` on `/service-areas` | 10 min |
-| L5 | Per-page OG images for service pages | 4-8 hr |
-| L6 | Add `ImageObject` schema to project gallery | 2 hr |
-| L7 | Add manufacturer certs as `hasCredential` schema | 1 hr |
-| L8 | Cross-link city pages to nearby cities | 4-8 hr |
-| L9 | Add `foundingDate`, `numberOfEmployees` to schema | 15 min |
-| L10 | Create Wikidata entry for Hamilton Exteriors | 2 hr |
+| Milestone | Actions | Projected Score |
+|-----------|---------|----------------|
+| After Critical fixes (1-5) | Title, sitemap, logo, llms.txt, Maps sameAs | 85/100 |
+| After High fixes (6-12) | Font preload, Maps embed, geo, cross-links | 88/100 |
+| After Medium fixes (13-20) | City content, blog FAQs, IndexNow, reviews | 92/100 |
+| After all fixes | Full implementation | 95/100 |
 
 ---
 
-## Priority Impact Matrix
-
-| Action | Effort | Impact | Priority |
-|--------|--------|--------|----------|
-| Point DNS | 30 min | +5-8 pts | Do first |
-| Fix meta descriptions | 2-4 hr | +3-4 pts | Critical |
-| Update pricing dates | 5 min | +1 pt | Quick win |
-| Fix SearchAction | 15 min | +1 pt | Quick win |
-| Remove /buy FAQ dupe | 10 min | +0.5 pt | Quick win |
-| Restart review velocity | Ongoing | +3-5 pts | High (process) |
-| Product/Offer schema | 4-6 hr | +2-3 pts | Medium |
-| About/Team page | 4-8 hr | +2-3 pts | Medium |
-| Fix LCP hero image | 2-4 hr | +2-3 pts | Medium |
-| YouTube channel | 2-3 days | +3-5 pts | Low (highest long-term ROI) |
-
-**Projected score after Critical + High fixes: ~80/100**
-**Projected score after all fixes: ~88/100**
-
----
-
-*Generated by SEO Audit Agent — April 2, 2026*
+*Generated by SEO Audit Suite — April 2, 2026*

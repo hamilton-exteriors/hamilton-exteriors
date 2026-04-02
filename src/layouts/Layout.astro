@@ -119,7 +119,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <script type="application/ld+json" is:inline>
     {
       "@context": "https://schema.org",
-      "@type": "RoofingContractor",
+      "@type": ["RoofingContractor", "GeneralContractor"],
       "@id": "https://hamilton-exteriors.com/#business",
       "name": "Hamilton Exteriors",
       "url": "https://hamilton-exteriors.com",
@@ -135,8 +135,8 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 37.69412,
-        "longitude": -122.08276
+        "latitude": 37.69427,
+        "longitude": -122.07887
       },
       "openingHoursSpecification": [
         { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
@@ -295,8 +295,6 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 
     <!-- preconnect for third-party domains -->
     <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://api.mapbox.com" crossorigin />
 
     <!-- Page-specific head content -->

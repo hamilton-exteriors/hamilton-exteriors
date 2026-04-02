@@ -92,7 +92,7 @@ try {
 ---
 
 <Layout
-  title={`${title} | Hamilton Exteriors`}
+  title={title.replace(/\s*\|\s*Hamilton Exteriors$/i, '') + ' | Hamilton Exteriors'}
   description={description}
   image={postImage}
   type="article"
