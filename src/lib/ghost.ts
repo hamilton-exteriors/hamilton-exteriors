@@ -45,9 +45,10 @@ export async function getPosts(options?: {
 }): Promise<{ posts: GhostPost[]; pagination: GhostPagination }> {
   const params: Record<string, string> = {
     include: 'tags',
+    formats: 'html',
     limit: String(options?.limit ?? 12),
     page: String(options?.page ?? 1),
-    fields: 'id,slug,title,excerpt,feature_image,published_at,updated_at,reading_time,meta_title,meta_description',
+    fields: 'id,slug,title,html,excerpt,feature_image,published_at,updated_at,reading_time,meta_title,meta_description',
   };
   // Exclude service area CMS pages from blog listings
   const excludeFilters = [
@@ -64,6 +65,7 @@ export async function getPosts(options?: {
 export async function getPost(slug: string): Promise<GhostPost | null> {
   const data = await ghostFetch(`posts/slug/${slug}`, {
     include: 'tags',
+    formats: 'html',
   });
   return data.posts?.[0] ?? null;
 }
