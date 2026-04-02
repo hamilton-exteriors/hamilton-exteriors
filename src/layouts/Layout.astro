@@ -127,7 +127,8 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
         "https://www.yelp.com/biz/hamilton-exteriors-castro-valley",
         "https://www.facebook.com/hamiltonexteriors",
         "https://www.instagram.com/hamiltonexteriors",
-        "https://www.linkedin.com/company/hamilton-exteriors/"
+        "https://www.linkedin.com/company/hamilton-exteriors/",
+        "https://www.google.com/maps/place/Hamilton+Exteriors"
       ],
       "areaServed": [
         { "@type": "County", "name": "Alameda County", "sameAs": "https://en.wikipedia.org/wiki/Alameda_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
@@ -167,6 +168,24 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
         "name": "CSLB Contractor License #1082377",
         "recognizedBy": { "@type": "Organization", "name": "Contractors State License Board", "url": "https://www.cslb.ca.gov" }
       },
+      "additionalType": [
+        "https://en.wikipedia.org/wiki/Roofing",
+        "https://en.wikipedia.org/wiki/Siding",
+        "https://en.wikipedia.org/wiki/General_contractor"
+      ],
+      "knowsAbout": [
+        "Roof replacement",
+        "Asphalt shingle roofing",
+        "Metal roofing",
+        "Tile roofing",
+        "James Hardie siding",
+        "Fiber cement siding",
+        "Energy-efficient windows",
+        "ADU construction",
+        "Custom home building",
+        "Bay Area building codes",
+        "California contractor licensing"
+      ],
       "description": "Bay Area exterior remodeling - roofing, siding, windows, and waterproofing. Licensed, bonded, insured. 50-year warranty. 3-5 day installs.",
       "review": [
         {
@@ -213,7 +232,15 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       "@id": "https://hamilton-exteriors.com/#website",
       "url": "https://hamilton-exteriors.com",
       "name": "Hamilton Exteriors",
-      "publisher": { "@id": "https://hamilton-exteriors.com/#business" }
+      "publisher": { "@id": "https://hamilton-exteriors.com/#business" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://hamilton-exteriors.com/blog?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
 
@@ -255,9 +282,9 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       </script>
     )}
 
-    <!-- dns-prefetch for third-party domains -->
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="https://api.mapbox.com" />
+    <!-- preconnect for third-party domains -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://api.mapbox.com" crossorigin />
 
     <!-- Page-specific head content -->
     <slot name="head" />

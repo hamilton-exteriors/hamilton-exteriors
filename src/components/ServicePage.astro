@@ -53,6 +53,58 @@ const areaServed = cityOrArea
       { '@type': 'County', 'name': 'Santa Clara County', 'sameAs': 'https://en.wikipedia.org/wiki/Santa_Clara_County,_California', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
     ];
 
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  'name': `How Hamilton Exteriors Handles Your ${data.title.split('|')[0].trim()} Project`,
+  'description': `Our proven process for ${data.title.split('|')[0].trim().toLowerCase()} projects in the Bay Area, from free inspection to warranty registration.`,
+  'totalTime': 'P7D',
+  'step': [
+    {
+      '@type': 'HowToStep',
+      'position': 1,
+      'name': 'Free Inspection',
+      'text': 'We visit your property for a thorough, no-obligation inspection to assess the condition of your roof and identify any issues.',
+    },
+    {
+      '@type': 'HowToStep',
+      'position': 2,
+      'name': 'Detailed Estimate',
+      'text': 'You receive a transparent, itemized estimate with clear pricing — no hidden fees or surprises.',
+    },
+    {
+      '@type': 'HowToStep',
+      'position': 3,
+      'name': 'Material Selection',
+      'text': 'Choose from premium roofing materials suited to your home, budget, and Bay Area climate.',
+    },
+    {
+      '@type': 'HowToStep',
+      'position': 4,
+      'name': 'Scheduling',
+      'text': 'We coordinate a start date that works for your schedule with minimal disruption.',
+    },
+    {
+      '@type': 'HowToStep',
+      'position': 5,
+      'name': 'Installation',
+      'text': 'Our certified crew completes your project in 3-5 days with careful attention to quality and cleanliness.',
+    },
+    {
+      '@type': 'HowToStep',
+      'position': 6,
+      'name': 'Final Walkthrough',
+      'text': 'We walk through the completed project together to ensure every detail meets your expectations.',
+    },
+    {
+      '@type': 'HowToStep',
+      'position': 7,
+      'name': 'Warranty Registration',
+      'text': 'We register your manufacturer warranty and provide documentation for your records.',
+    },
+  ],
+};
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -69,6 +121,7 @@ const serviceSchema = {
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
 
 {data.announcementText ? <AnnouncementBar text={data.announcementText} /> : <AnnouncementBar />}
 <Navbar />

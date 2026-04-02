@@ -2,8 +2,18 @@
 import Layout from '../layouts/Layout.astro';
 import ServicePage from '../components/ServicePage.astro';
 import { data } from '../data/services/custom-homes';
+
+const siteUrl = 'https://hamilton-exteriors.com';
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: 'Custom Homes', item: `${siteUrl}/custom-homes` },
+  ],
+};
 ---
 
-<Layout title={data.title} description={data.description} includeMapbox preloadHero>
+<Layout title={data.title} description={data.description} includeMapbox preloadHero jsonLd={breadcrumbJsonLd}>
   <ServicePage data={data} />
 </Layout>

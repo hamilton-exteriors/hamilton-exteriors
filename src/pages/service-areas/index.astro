@@ -13,6 +13,8 @@ import {
   pageTitle, pageDescription, heroHeadline, heroFormTitle, counties,
 } from '../../data/service-areas-index';
 
+const siteUrl = 'https://hamilton-exteriors.com';
+
 const itemListJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
@@ -21,8 +23,17 @@ const itemListJsonLd = {
     '@type': 'ListItem',
     position: i + 1,
     name: county.name,
-    url: `https://hamilton-exteriors.com${county.slug}`,
+    url: `${siteUrl}${county.slug}`,
   })),
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: 'Service Areas', item: `${siteUrl}/service-areas` },
+  ],
 };
 ---
 
@@ -30,7 +41,7 @@ const itemListJsonLd = {
   title={pageTitle}
   description={pageDescription}
   includeMapbox
-  jsonLd={itemListJsonLd}
+  jsonLd={[itemListJsonLd, breadcrumbJsonLd]}
 >
   <AnnouncementBar />
   <Navbar />

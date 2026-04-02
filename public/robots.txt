@@ -19,6 +19,9 @@ Disallow: /
 User-agent: anthropic-ai
 Disallow: /
 
+User-agent: cohere-ai
+Disallow: /
+
 # Default
 User-agent: *
 Allow: /
