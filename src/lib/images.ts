@@ -23,7 +23,7 @@ export { default as logoFooter } from '../assets/images/logo-footer.png';
 export { default as logoCert1 } from '../assets/images/logo-cert-1.png';
 export { default as logoPartner1 } from '../assets/images/logo-partner-1.png';
 export { default as logoGaf } from '../assets/images/logo-gaf.png';
-export { default as logoCert2 } from '../assets/images/logo-cert-2.svg';
+export { default as logoCert2 } from '../assets/images/logo-cert-2.png';
 export { default as logoPartner2 } from '../assets/images/logo-partner-2.png';
 
 // Review badges

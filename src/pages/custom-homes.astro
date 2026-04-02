@@ -4,6 +4,6 @@ import ServicePage from '../components/ServicePage.astro';
 import { data } from '../data/services/custom-homes';
 ---
 
-<Layout title={data.title} description={data.description} includeMapbox>
+<Layout title={data.title} description={data.description} includeMapbox preloadHero>
   <ServicePage data={data} />
 </Layout>

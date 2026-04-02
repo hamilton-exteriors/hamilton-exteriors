@@ -10,7 +10,7 @@
 import jwt from 'jsonwebtoken';
 import { CITY_SEEDS } from '../src/lib/pseo/city-seed-data';
 import { getServiceTemplate } from '../src/lib/pseo/service-templates';
-import { generateCityServicePage, generateCountyServicePage, generateGeneralCityPage } from '../src/lib/pseo/generate';
+import { generateCityServicePage, generateCountyServicePage, generateGeneralCityPage, generateCountyPage } from '../src/lib/pseo/generate';
 
 // ── Config ──────────────────────────────────────────────────────────────────
 
@@ -248,22 +248,24 @@ async function main() {
     else { failed++; }
   }
 
-  // 4. County pages (5 counties) — just check, these are manually managed
+  // 4. County pages (5 counties)
   console.log('\n=== County Pages ===');
   for (const countySlug of COUNTY_SLUGS) {
     const ghostSlug = `sa-county-${countySlug}`;
-    try {
-      const data = await ghostAdminFetch(`posts/slug/${ghostSlug}/`, { method: 'GET' });
-      if (data?.posts?.[0]) {
-        console.log(`  OK: ${ghostSlug}`);
-      } else {
-        console.log(`  MISSING: ${ghostSlug}`);
-        failed++;
-      }
-    } catch {
-      console.log(`  MISSING: ${ghostSlug}`);
-      failed++;
-    }
+    const data = generateCountyPage(countySlug);
+    if (!data) { failed++; continue; }
+
+    const result = await createOrUpdatePost(
+      ghostSlug,
+      `${data.county} County Services`,
+      data.title,
+      data.description,
+      data,
+      ['#service-area-county'],
+    );
+    if (result === 'created') { created++; console.log(`  CREATED: ${ghostSlug}`); }
+    else if (result === 'updated') { updated++; console.log(`  UPDATED: ${ghostSlug}`); }
+    else { failed++; }
   }
 
   console.log(`\n=== Done ===`);

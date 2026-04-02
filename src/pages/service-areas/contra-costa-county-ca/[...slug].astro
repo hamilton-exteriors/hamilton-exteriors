@@ -1,0 +1,136 @@
+---
+/**
+ * Catch-all for routes under /service-areas/contra-costa-county-ca/...
+ * Handles city, county+service, and city+service pages via Ghost CMS.
+ */
+import Layout from '../../../layouts/Layout.astro';
+import GeneralCityPage from '../../../components/GeneralCityPage.astro';
+import ServicePage from '../../../components/ServicePage.astro';
+import { getServiceAreaCity, getServiceAreaCityService } from '../../../lib/ghost';
+import type { GeneralCityPageData } from '../../../lib/general-city-types';
+import type { CityServicePageData } from '../../../lib/city-service-types';
+
+const COUNTY_SLUG = 'contra-costa-county-ca';
+const slug = Astro.params.slug;
+if (!slug) return Astro.redirect(`/service-areas/${COUNTY_SLUG}`);
+
+const segments = slug.split('/');
+const SERVICE_SLUGS = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions'];
+
+let pageType: 'city' | 'cityService' | 'countyService' | null = null;
+let cityData: GeneralCityPageData | null = null;
+let cityServiceData: CityServicePageData | null = null;
+let countyServiceData: CityServicePageData | null = null;
+
+const siteUrl = 'https://hamilton-exteriors.com';
+
+if (segments.length === 2) {
+  // City+service: /service-areas/{county}/{city}/{service}
+  const [citySlug, serviceSlug] = segments;
+  pageType = 'cityService';
+  cityServiceData = await getServiceAreaCityService(COUNTY_SLUG, citySlug, serviceSlug);
+  if (!cityServiceData) return Astro.rewrite('/404');
+
+} else if (segments.length === 1 && SERVICE_SLUGS.includes(segments[0])) {
+  // County+service: /service-areas/{county}/{service}
+  const serviceSlug = segments[0];
+  pageType = 'countyService';
+  countyServiceData = await getServiceAreaCityService(COUNTY_SLUG, COUNTY_SLUG, serviceSlug);
+  if (!countyServiceData) return Astro.rewrite('/404');
+
+} else if (segments.length === 1) {
+  // City page: /service-areas/{county}/{city}
+  const citySlug = segments[0];
+  pageType = 'city';
+  cityData = await getServiceAreaCity(COUNTY_SLUG, citySlug);
+  if (!cityData) return Astro.rewrite('/404');
+
+} else {
+  return Astro.rewrite('/404');
+}
+
+// --- Structured data ---
+let jsonLd: Record<string, unknown>[] | undefined;
+
+if (pageType === 'cityService' && cityServiceData) {
+  const [urlCitySlug] = segments;
+  jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
+        { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
+        { '@type': 'ListItem', 'position': 3, 'name': `${cityServiceData.county} County`, 'item': `${siteUrl}/service-areas/${COUNTY_SLUG}` },
+        { '@type': 'ListItem', 'position': 4, 'name': `${cityServiceData.city}, ${cityServiceData.state}`, 'item': `${siteUrl}/service-areas/${COUNTY_SLUG}/${urlCitySlug}` },
+        { '@type': 'ListItem', 'position': 5, 'name': cityServiceData.serviceName, 'item': `${siteUrl}/service-areas/${COUNTY_SLUG}/${urlCitySlug}/${segments[1]}` },
+      ],
+    },
+  ];
+} else if (pageType === 'city' && cityData) {
+  const urlCitySlug = segments[0];
+  const cityName = cityData.city || urlCitySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+  jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
+        { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
+        { '@type': 'ListItem', 'position': 3, 'name': 'Contra Costa County', 'item': `${siteUrl}/service-areas/${COUNTY_SLUG}` },
+        { '@type': 'ListItem', 'position': 4, 'name': `${cityName}, CA`, 'item': `${siteUrl}/service-areas/${COUNTY_SLUG}/${urlCitySlug}` },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      'name': `Roofing and Exterior Services in ${cityName}, CA`,
+      'url': `${siteUrl}/service-areas/${COUNTY_SLUG}/${urlCitySlug}`,
+      'provider': { '@type': 'RoofingContractor', '@id': `${siteUrl}/#business`, 'name': 'Hamilton Exteriors' },
+      'areaServed': { '@type': 'City', 'name': cityName, 'containedInPlace': { '@type': 'State', 'name': 'California' } },
+      'serviceType': ['Roofing', 'Siding', 'Windows', 'ADUs', 'Custom Homes', 'Additions'],
+    },
+  ];
+} else if (pageType === 'countyService' && countyServiceData) {
+  const serviceSlug = segments[0];
+  jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
+        { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
+        { '@type': 'ListItem', 'position': 3, 'name': `${countyServiceData.county} County`, 'item': `${siteUrl}/service-areas/${COUNTY_SLUG}` },
+        { '@type': 'ListItem', 'position': 4, 'name': countyServiceData.serviceName, 'item': `${siteUrl}/service-areas/${COUNTY_SLUG}/${serviceSlug}` },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      'name': `${countyServiceData.serviceName} in Contra Costa County, CA`,
+      'url': `${siteUrl}/service-areas/${COUNTY_SLUG}/${serviceSlug}`,
+      'provider': { '@type': 'RoofingContractor', '@id': `${siteUrl}/#business`, 'name': 'Hamilton Exteriors' },
+      'areaServed': { '@type': 'AdministrativeArea', 'name': 'Contra Costa County', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
+      'serviceType': countyServiceData.serviceName,
+    },
+  ];
+}
+---
+
+{pageType === 'countyService' && countyServiceData && (
+  <Layout title={countyServiceData.title} description={countyServiceData.description} jsonLd={jsonLd} includeMapbox>
+    <ServicePage data={countyServiceData as any} />
+  </Layout>
+)}
+
+{pageType === 'cityService' && cityServiceData && (
+  <Layout title={cityServiceData.title} description={cityServiceData.description} jsonLd={jsonLd} includeMapbox geoPlacename={`${cityServiceData.city}, CA`}>
+    <ServicePage data={cityServiceData as any} />
+  </Layout>
+)}
+
+{pageType === 'city' && cityData && (
+  <Layout title={cityData.title} description={cityData.description} jsonLd={jsonLd} includeMapbox geoPlacename={`${cityData.city || ''}, CA`}>
+    <GeneralCityPage data={cityData} />
+  </Layout>
+)}

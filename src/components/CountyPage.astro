@@ -39,9 +39,24 @@ const breadcrumbSchema = {
     { '@type': 'ListItem', 'position': 3, 'name': `${data.county}, ${data.state}`, 'item': `https://hamilton-exteriors.com/service-areas/${data.countySlug}` },
   ],
 };
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': `Roofing and Exterior Services in ${data.county}, ${data.state}`,
+  'url': `https://hamilton-exteriors.com/service-areas/${data.countySlug}`,
+  'provider': { '@type': 'RoofingContractor', '@id': 'https://hamilton-exteriors.com/#business', 'name': 'Hamilton Exteriors' },
+  'serviceType': ['Roofing', 'Siding', 'Windows', 'ADUs', 'Custom Homes', 'Additions'],
+  'areaServed': {
+    '@type': 'AdministrativeArea',
+    'name': data.county,
+    'containedInPlace': { '@type': 'State', 'name': 'California' },
+  },
+};
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
 <AnnouncementBar />
 <Navbar />

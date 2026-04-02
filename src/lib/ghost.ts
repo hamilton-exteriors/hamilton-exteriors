@@ -101,6 +101,7 @@ export function formatDate(dateStr: string): string {
 
 import { cacheGet, cacheSet } from './ghost-cache';
 import type { ServiceAreaCity } from './service-area-types';
+import type { GeneralCityPageData } from './general-city-types';
 import type { CountyPageData } from './county-page-types';
 import type { CityServicePageData } from './city-service-types';
 
@@ -174,17 +175,17 @@ function getServiceAreaPost(slug: string): GhostPost | undefined {
 export async function getServiceAreaCity(
   countySlug: string,
   citySlug: string,
-): Promise<ServiceAreaCity | null> {
+): Promise<GeneralCityPageData | null> {
   const ghostSlug = `sa-city-${countySlug}-${citySlug}`;
 
-  const cached = cacheGet<ServiceAreaCity>(ghostSlug);
+  const cached = cacheGet<GeneralCityPageData>(ghostSlug);
   if (cached) return cached;
 
   await ensureWarmed();
   const post = getServiceAreaPost(ghostSlug);
   if (!post?.html) return null;
 
-  const data = extractJsonFromHtml(post.html) as ServiceAreaCity | null;
+  const data = extractJsonFromHtml(post.html) as GeneralCityPageData | null;
   if (data) {
     if (post.meta_title) data.title = post.meta_title;
     if (post.meta_description) data.description = post.meta_description;

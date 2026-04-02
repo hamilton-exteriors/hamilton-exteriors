@@ -65,6 +65,37 @@ export const data: ServicePageData = {
       },
     },
     { type: 'difference' },
+    {
+      type: 'pricing',
+      data: {
+        heading: 'Siding Pricing',
+        tiers: [
+          {
+            name: 'Vinyl Siding',
+            rows: [
+              { product: 'Standard Vinyl', pricePerSq: '~$450', materialCost: '$150' },
+              { product: 'Insulated Vinyl', pricePerSq: '~$600', materialCost: '$250' },
+            ],
+          },
+          {
+            name: 'Fiber Cement (James Hardie)',
+            rows: [
+              { product: 'HardiePlank Lap Siding', pricePerSq: '~$1,100', materialCost: '$450' },
+              { product: 'HardieShingle Siding', pricePerSq: '~$1,250', materialCost: '$500' },
+              { product: 'HardiePanel Vertical', pricePerSq: '~$1,150', materialCost: '$475' },
+            ],
+          },
+          {
+            name: 'Stucco & Specialty',
+            rows: [
+              { product: 'Three-Coat Stucco', pricePerSq: '~$1,000', materialCost: '$350' },
+              { product: 'Exterior Waterproofing', pricePerSq: '~$400', materialCost: '$100' },
+            ],
+          },
+        ],
+        footnote: 'Prices per 100 sq ft (one square) installed. Includes removal of existing siding, new weather barrier, materials, labor, trim, and cleanup. Prices valid as of 2025.',
+      },
+    },
     { type: 'projects' },
     { type: 'yellowBar', text: 'Schedule a FREE Siding Inspection', href: '#contact' },
     { type: 'cta' },

@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import { heroBg } from '../lib/images';
 
 interface Props {
   title?: string;
@@ -10,7 +12,10 @@ interface Props {
   includeMapbox?: boolean;
   noindex?: boolean;
   geoPlacename?: string;
+  preloadHero?: boolean;
 }
+
+const heroOptimized = await getImage({ src: heroBg, width: 1920, height: 1080, format: 'webp' });
 
 const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs & custom homes. Licensed, bonded, insured. 50-year warranty. $0 down financing. Call (650) 977-3351.';
 
@@ -23,6 +28,7 @@ const {
   includeMapbox = false,
   noindex = false,
   geoPlacename = 'Bay Area, California',
+  preloadHero = false,
 } = Astro.props;
 
 // Guard against empty-string descriptions that would blank out the meta tag
@@ -42,6 +48,9 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <link rel="preload" href="/fonts/the-bold-font.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin />
+
+    {/* Preload hero/LCP image on pages that use the default hero background */}
+    {preloadHero && <link rel="preload" href={heroOptimized.src} as="image" type="image/webp" fetchpriority="high" />}
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -114,7 +123,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       ],
       "sameAs": [
         "https://www.yelp.com/biz/hamilton-exteriors-castro-valley",
-        "https://www.facebook.com/share/1B88MrKBaC/",
+        "https://www.facebook.com/hamiltonexteriors",
         "https://www.instagram.com/hamiltonexteriors",
         "https://www.linkedin.com/company/hamilton-exteriors/"
       ],
@@ -134,9 +143,9 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       "image": "https://hamilton-exteriors.com/og-default.jpg",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://hamilton-exteriors.com/favicon.png",
-        "width": 512,
-        "height": 512
+        "url": "https://hamilton-exteriors.com/og-default.jpg",
+        "width": 1200,
+        "height": 630
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",

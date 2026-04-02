@@ -122,7 +122,9 @@ const SERVICE_DEFS = [
 
 export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
   const { city, county, state, slug, countySlug, neighborhoods } = seed;
-  const basePath = `/service-areas/${countySlug}/${slug}`;
+  const countyUrlSlug = `${countySlug}-county-ca`;
+  const cityUrlSlug = `${slug}-ca`;
+  const basePath = `/service-areas/${countyUrlSlug}/${cityUrlSlug}`;
 
   // Services grid
   const services = SERVICE_DEFS.map((s) => ({
@@ -244,6 +246,85 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
     faqs,
     nearbyCities,
     stats,
+  };
+}
+
+// ── 1b. County Page ───────────────────────────────────────────────────────
+
+export interface CountyPageSeedData {
+  county: string;
+  countySlug: string;
+  state: string;
+  adjective: string;
+  title: string;
+  description: string;
+  heroHeadline: string;
+  heroFormTitle: string;
+  proximity?: string;
+  cities: Array<{ name: string; slug: string; image: string }>;
+  citySectionStyle: 'heading' | 'label';
+}
+
+const COUNTY_ADJECTIVES: Record<string, string> = {
+  'alameda': 'Trusted',
+  'contra-costa': 'Experienced',
+  'marin': 'Premium',
+  'napa': 'Expert',
+  'santa-clara': 'Top-Rated',
+};
+
+const COUNTY_PROXIMITY: Record<string, string> = {
+  'alameda': '-122.08,37.65',
+  'contra-costa': '-122.00,37.95',
+  'marin': '-122.53,37.95',
+  'napa': '-122.30,38.30',
+  'santa-clara': '-121.89,37.34',
+};
+
+const COUNTY_SECTION_STYLES: Record<string, 'heading' | 'label'> = {
+  'alameda': 'heading',
+  'contra-costa': 'label',
+  'marin': 'heading',
+  'napa': 'heading',
+  'santa-clara': 'heading',
+};
+
+/**
+ * Convert city slug to image key.
+ * e.g., "oakland" → "areaOakland"
+ */
+function cityImageKey(citySlug: string): string {
+  return 'area' + citySlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()).replace(/ /g, '');
+}
+
+export function generateCountyPage(countyUrlSlug: string): CountyPageSeedData | null {
+  const shortCounty = COUNTY_SLUG_MAP[countyUrlSlug];
+  if (!shortCounty) return null;
+
+  const countyName = COUNTY_NAME_MAP[countyUrlSlug];
+  if (!countyName) return null;
+
+  const countyCities = CITY_SEEDS.filter(c => c.countySlug === shortCounty);
+  if (countyCities.length === 0) return null;
+
+  const displayCounty = countyName.replace(' County', '');
+
+  return {
+    county: displayCounty,
+    countySlug: countyUrlSlug,
+    state: 'CA',
+    adjective: COUNTY_ADJECTIVES[shortCounty] || 'Trusted',
+    title: `Roofing, Siding & Exteriors in ${displayCounty} County, CA | Hamilton Exteriors`,
+    description: `Hamilton Exteriors serves ${displayCounty} County with expert roofing, siding, windows, ADUs & custom homes. Licensed, insured. Free estimates — call (650) 977-3351.`,
+    heroHeadline: `${displayCounty} County's  Top  Design-Build  Contractor`,
+    heroFormTitle: 'Get a FREE Estimate',
+    proximity: COUNTY_PROXIMITY[shortCounty],
+    cities: countyCities.map(c => ({
+      name: c.city,
+      slug: `${countyUrlSlug}/${c.slug}-ca`,
+      image: cityImageKey(c.slug),
+    })),
+    citySectionStyle: COUNTY_SECTION_STYLES[shortCounty] || 'heading',
   };
 }
 

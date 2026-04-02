@@ -15,12 +15,27 @@ import ContactUs from './ContactUs.astro';
 import Footer from './Footer.astro';
 import { hasImage } from '../lib/service-page-types';
 import type { ServicePageData, SectionBlock, StylesSection } from '../lib/service-page-types';
+import { resolveImage } from '../lib/image-map';
 
 interface Props {
   data: ServicePageData;
 }
 
 const { data } = Astro.props;
+
+// Resolve any string file paths in section images to Astro ImageMetadata
+for (const section of data.sections) {
+  if (section.type === 'styles' && section.data?.items) {
+    for (const item of section.data.items) {
+      if (typeof item.image === 'string') {
+        item.image = resolveImage(item.image);
+      }
+    }
+  }
+  if (section.type === 'imageBanner' && section.data && typeof section.data.image === 'string') {
+    section.data.image = resolveImage(section.data.image);
+  }
+}
 
 // Build areaServed — use city if available (pSEO pages), otherwise counties
 const areaServed = (data as any).city

@@ -76,6 +76,38 @@ export const data: ServicePageData = {
       },
     },
     { type: 'difference' },
+    {
+      type: 'pricing',
+      data: {
+        heading: 'Window Pricing',
+        tiers: [
+          {
+            name: 'Standard Windows',
+            rows: [
+              { product: 'Single Hung (per window)', pricePerSq: '~$650', materialCost: '$250' },
+              { product: 'Double Hung (per window)', pricePerSq: '~$750', materialCost: '$300' },
+              { product: 'Single Slider (per window)', pricePerSq: '~$600', materialCost: '$225' },
+            ],
+          },
+          {
+            name: 'Specialty Windows',
+            rows: [
+              { product: 'Casement (per window)', pricePerSq: '~$800', materialCost: '$350' },
+              { product: 'Picture Window (per window)', pricePerSq: '~$700', materialCost: '$275' },
+              { product: 'Bay / Bow Window', pricePerSq: '~$2,500', materialCost: '$1,200' },
+            ],
+          },
+          {
+            name: 'Doors',
+            rows: [
+              { product: 'Sliding Glass Door', pricePerSq: '~$2,800', materialCost: '$1,400' },
+              { product: 'French Door (pair)', pricePerSq: '~$3,200', materialCost: '$1,600' },
+            ],
+          },
+        ],
+        footnote: 'Prices per unit installed. Includes removal of existing window, new flashing, materials, labor, trim, and cleanup. Energy-efficient Low-E glass standard on all windows. Prices valid as of 2025.',
+      },
+    },
     { type: 'projects' },
     { type: 'yellowBar', text: 'Schedule a FREE Inspection', href: '#contact' },
     { type: 'cta' },
