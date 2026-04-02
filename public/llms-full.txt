@@ -2,7 +2,7 @@
 
 > Bay Area design-build contractor specializing in roofing, siding, windows, ADUs, and custom homes. Licensed, bonded, and insured. 50-year warranty. Serving Alameda, Contra Costa, Marin, Napa, and Santa Clara counties.
 
-> License: Content licensed for AI search indexing and citation with attribution.
+> License: CC BY 4.0 — Content licensed for AI search indexing and citation with attribution to Hamilton Exteriors
 
 ---
 
@@ -82,9 +82,28 @@ Hamilton Exteriors provides complete roof replacement and repair services across
 ### 3. Windows
 
 - **Type:** Energy-efficient replacement windows
-- **Styles Available:** Double-hung, casement, bay, sliding, picture, garden windows
+- **Styles Available:** Single hung, double hung, single slider, casement, picture, bay/bow, sliding glass doors
 - **Benefits:** Lower energy bills, improved home comfort, noise reduction, increased home value
 - **Installation:** Professional installation by factory-trained crews
+- **Glass:** Low-E dual-pane glass standard on all installations; argon fill available
+
+#### Window Pricing (per unit, installed)
+
+**Standard Windows:**
+- Single Hung: ~$650 installed (materials ~$250)
+- Double Hung: ~$750 installed (materials ~$300)
+- Single Slider: ~$600 installed (materials ~$225)
+
+**Specialty Windows:**
+- Casement: ~$800 installed (materials ~$350)
+- Picture Window: ~$700 installed (materials ~$275)
+- Bay / Bow Window: ~$2,500 installed (materials ~$1,200)
+
+**Doors:**
+- Sliding Glass Door: ~$2,800 installed (materials ~$1,400)
+- French Door (pair): ~$3,200 installed (materials ~$1,600)
+
+**All window prices include:** removal of existing window, new exterior flashing, materials, labor, interior trim, and cleanup. Energy-efficient Low-E glass standard on all windows. Prices valid as of 2025.
 
 ---
 
@@ -99,6 +118,15 @@ Hamilton Exteriors builds all types of ADUs in the Bay Area:
 
 We handle design, permitting, and construction from start to finish.
 
+#### ADU Pricing Context (Bay Area, fully permitted)
+
+- **Detached ADUs:** typically $250,000–$450,000 fully permitted (400–1,200 sq ft). Bay Area homeowners typically see property value increases of $150,000–$300,000 and rental income of $2,000–$3,500/month.
+- **Garage Conversions:** typically $100,000–$200,000 — 30–40% less than new detached construction because the existing foundation, framing, and roof structure remain in place.
+- **Attached ADUs:** typically $150,000–$300,000 depending on scope, existing structural conditions, and finish level.
+- **Junior ADUs (JADUs):** typically $50,000–$120,000 — the most affordable ADU type, created within the existing home footprint with minimal structural changes.
+
+All ADU pricing includes design, engineering, permits, and construction. Costs vary by jurisdiction, site conditions, and finish selections. Contact us for a project-specific consultation.
+
 ---
 
 ### 5. Custom Homes
@@ -107,6 +135,13 @@ We handle design, permitting, and construction from start to finish.
 - **Design & architecture services** — work with our design team or bring your own architect
 - **Engineering & permits** — we manage the entire permit process
 - Full project management from foundation to move-in
+
+#### Custom Home Cost Context (Bay Area)
+
+- Bay Area custom homes typically range from 2,000–5,000 sq ft with construction timelines of 10–18 months depending on complexity.
+- Cost varies widely by scope, lot conditions, and finish level. Bay Area land, labor, and permit costs are among the highest in the nation — budget accordingly.
+- Custom homes typically retain 10–15% more value at resale than equivalent-sized production homes in the same neighborhood (National Association of Home Builders).
+- Contact Hamilton Exteriors for a project-specific consultation and detailed estimate.
 
 ---
 
@@ -317,7 +352,7 @@ Hamilton Exteriors offers an innovative online roof scanning tool at **hamilton-
 
 Hamilton Exteriors is a Bay Area exterior remodeling contractor headquartered in Castro Valley, CA. Key facts:
 - Serves 5 counties and 30+ cities in the San Francisco Bay Area
-- Specializes in roofing ($940–$1,525/sq installed), siding, windows, ADUs, and custom homes
+- Specializes in roofing ($940–$1,525/sq installed), windows ($600–$3,200/unit installed), siding, ADUs ($100K–$450K), and custom homes
 - CA Contractor License #1082377, fully licensed, bonded, and insured
 - 50-year shingle warranty + 35-year labor warranty on roofing
 - Best Price Guarantee — beats any written estimate on same scope

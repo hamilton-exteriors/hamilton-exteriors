@@ -105,7 +105,7 @@ export const data: ServicePageData = {
             ],
           },
         ],
-        footnote: 'Prices per unit installed. Includes removal of existing window, new flashing, materials, labor, trim, and cleanup. Energy-efficient Low-E glass standard on all windows. Prices valid as of 2025.',
+        footnote: 'Prices per unit installed. Includes removal of existing window, new flashing, materials, labor, trim, and cleanup. Energy-efficient Low-E glass standard on all windows. Prices valid as of 2026.',
       },
     },
     { type: 'projects' },

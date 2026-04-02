@@ -19,6 +19,7 @@ const heroMobilePreload = await getImage({ src: heroBg, width: 768, height: 432,
 const heroDesktopPreload = await getImage({ src: heroBg, width: 1920, height: 1080, format: 'webp' });
 
 const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs & custom homes. Licensed, bonded, insured. 50-year warranty. $0 down financing. Call (650) 977-3351.';
+const DEFAULT_GEO_PLACENAME = 'Bay Area, California';
 
 const {
   title = "Bay Area's Top Design-Build & Exteriors Contractor | Hamilton Exteriors",
@@ -28,12 +29,27 @@ const {
   jsonLd,
   includeMapbox = false,
   noindex = false,
-  geoPlacename = 'Bay Area, California',
+  geoPlacename = DEFAULT_GEO_PLACENAME,
   preloadHero = false,
 } = Astro.props;
 
-// Guard against empty-string descriptions that would blank out the meta tag
-const description = rawDescription?.trim() || DEFAULT_DESCRIPTION;
+// When no description is provided, generate a city-specific one for location pages
+// (geoPlacename is passed as "CityName, CA" or "County Name, CA" by city/service routes).
+// Falls back to the generic site-wide description for non-location pages.
+function buildDescription(raw: string | undefined, geo: string): string {
+  const trimmed = raw?.trim();
+  if (trimmed) return trimmed;
+
+  if (geo !== DEFAULT_GEO_PLACENAME) {
+    // Normalise: strip trailing ", California" to keep it at ", CA"
+    const place = geo.replace(/, California$/, ', CA');
+    return `Hamilton Exteriors serves ${place} — roofing, siding, windows & more. 50-year warranty. CSLB #1082377. Free estimate: (650) 977-3351.`;
+  }
+
+  return DEFAULT_DESCRIPTION;
+}
+
+const description = buildDescription(rawDescription, geoPlacename);
 
 const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
@@ -61,8 +77,11 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta name="geo.region" content="US-CA" />
     <meta name="geo.placename" content={geoPlacename} />
 
-    <!-- Canonical -->
+    <!-- Canonical — derived from Astro.url.pathname; no prop override needed -->
     <link rel="canonical" href={canonicalUrl} />
+
+    <!-- AI content declaration for llms.txt discovery -->
+    <link rel="ai-content-declaration" href="/llms.txt" type="text/plain" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -146,9 +165,9 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       "image": "https://hamilton-exteriors.com/og-default.jpg",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://hamilton-exteriors.com/favicon.png",
-        "width": 512,
-        "height": 512
+        "url": "https://hamilton-exteriors.com/logo-schema.png",
+        "width": 600,
+        "height": 120
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -232,15 +251,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       "@id": "https://hamilton-exteriors.com/#website",
       "url": "https://hamilton-exteriors.com",
       "name": "Hamilton Exteriors",
-      "publisher": { "@id": "https://hamilton-exteriors.com/#business" },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://hamilton-exteriors.com/blog?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
+      "publisher": { "@id": "https://hamilton-exteriors.com/#business" }
     }
     </script>
 

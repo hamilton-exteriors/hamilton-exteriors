@@ -15,6 +15,12 @@ export const data: ServicePageData = {
     ctaText: 'Call Now - We Answer Fast',
     heroImage: aduHero,
     serviceType: 'ADU',
+    badges: [
+      'Licensed Bonded & Insured',
+      'Start with $0 Down',
+      '50-Year Warranty',
+      '8-12 Week Builds',
+    ],
     // serviceOptions removed — service is known from page context, form is 2 steps
   },
   sections: [

@@ -43,9 +43,18 @@ const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
 const blogJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
+  '@id': 'https://hamilton-exteriors.com/blog#collection',
   name: pageTitle,
   description: pageDesc,
   url: `${siteUrl}/blog`,
+  isPartOf: { '@id': 'https://hamilton-exteriors.com/#website' },
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Ground Up', item: `${siteUrl}/blog` },
+    ],
+  },
   publisher: {
     '@type': 'Organization',
     '@id': 'https://hamilton-exteriors.com/#business',

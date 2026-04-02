@@ -50,16 +50,18 @@ const articleJsonLd = {
   dateModified: post.updated_at || post.published_at,
   url: canonicalUrl,
   ...(estimatedWordCount && { wordCount: estimatedWordCount }),
-  author: {
-    '@type': 'Person',
-    name: authorName,
-    jobTitle: 'Owner & Lead Contractor',
-    worksFor: {
-      '@type': 'Organization',
-      '@id': 'https://hamilton-exteriors.com/#business',
-      name: 'Hamilton Exteriors',
-    },
-  },
+  author: authorName === 'Hamilton Exteriors'
+    ? { '@type': 'Organization', '@id': 'https://hamilton-exteriors.com/#business', name: 'Hamilton Exteriors' }
+    : {
+        '@type': 'Person',
+        name: authorName,
+        jobTitle: 'Owner & Lead Contractor',
+        worksFor: {
+          '@type': 'Organization',
+          '@id': 'https://hamilton-exteriors.com/#business',
+          name: 'Hamilton Exteriors',
+        },
+      },
   publisher: {
     '@type': 'Organization',
     '@id': 'https://hamilton-exteriors.com/#business',
@@ -67,12 +69,15 @@ const articleJsonLd = {
     url: 'https://hamilton-exteriors.com',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://hamilton-exteriors.com/favicon.png',
-      width: 512,
-      height: 512,
+      url: 'https://hamilton-exteriors.com/logo-schema.png',
+      width: 600,
+      height: 120,
     },
   },
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+  isPartOf: { '@id': 'https://hamilton-exteriors.com/blog#collection' },
+  ...(post.tags?.length && { keywords: post.tags.map((t: any) => t.name).join(', ') }),
+  ...(post.primary_tag && { articleSection: post.primary_tag.name }),
 };
 
 // Fetch related posts (same primary tag, exclude current)

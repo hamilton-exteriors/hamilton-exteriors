@@ -93,7 +93,7 @@ export const data: ServicePageData = {
             ],
           },
         ],
-        footnote: 'Prices per 100 sq ft (one square) installed. Includes removal of existing siding, new weather barrier, materials, labor, trim, and cleanup. Prices valid as of 2025.',
+        footnote: 'Prices per 100 sq ft (one square) installed. Includes removal of existing siding, new weather barrier, materials, labor, trim, and cleanup. Prices valid as of 2026.',
       },
     },
     { type: 'projects' },

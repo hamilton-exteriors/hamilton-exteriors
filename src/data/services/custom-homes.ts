@@ -14,6 +14,12 @@ export const data: ServicePageData = {
     ctaText: 'Call Now - We Answer Fast',
     heroImage: serviceCustomHomesFull,
     serviceType: 'Custom Home',
+    badges: [
+      'Licensed Bonded & Insured',
+      'Start with $0 Down',
+      '50-Year Warranty',
+      'Custom Project Timelines',
+    ],
     // serviceOptions removed — service is known from page context, form is 2 steps
   },
   sections: [

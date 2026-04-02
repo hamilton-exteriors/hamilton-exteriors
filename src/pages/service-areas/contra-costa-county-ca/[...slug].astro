@@ -80,6 +80,7 @@ if (pageType === 'cityService' && cityServiceData) {
       'provider': { '@type': 'RoofingContractor', '@id': `${siteUrl}/#business`, 'name': 'Hamilton Exteriors' },
       'areaServed': { '@type': 'City', 'name': cityName, 'containedInPlace': { '@type': 'State', 'name': 'California' } },
       'serviceType': ['Roofing', 'Siding', 'Windows', 'ADUs', 'Custom Homes', 'Additions'],
+      'description': cityData.description || `Hamilton Exteriors provides roofing, siding, windows, ADUs, custom homes, and additions in ${cityName}, CA. Licensed, bonded, insured. 50-year warranty. CSLB #1082377.`,
     },
   ];
 } else if (pageType === 'countyService' && countyServiceData) {

@@ -86,7 +86,7 @@ export const data: ServicePageData = {
             ],
           },
         ],
-        footnote: 'Includes tear-off, materials, labor, underlayment, starter strip, ridge cap, nails, and full cleanup. Prices valid as of 2025.',
+        footnote: 'Includes tear-off, materials, labor, underlayment, starter strip, ridge cap, nails, and full cleanup. Prices valid as of 2026.',
       },
     },
     { type: 'projects' },

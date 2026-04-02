@@ -2,7 +2,7 @@
 
 > Bay Area design-build contractor specializing in roofing, siding, windows, ADUs, and custom homes. Licensed, bonded, and insured. 50-year warranty. Serving Alameda, Contra Costa, Marin, Napa, and Santa Clara counties.
 
-> License: Content licensed for AI search indexing and citation with attribution.
+> License: CC BY 4.0 — Content licensed for AI search indexing and citation with attribution to Hamilton Exteriors
 
 ## About
 
@@ -40,24 +40,40 @@ Hamilton Exteriors was founded in 2018 in Castro Valley, California. We are a fu
 
 ### Windows
 - Energy-efficient window replacements
-- Styles: double-hung, casement, bay, sliding, picture, garden
-- Reduces energy bills and improves home comfort
+- Styles: single hung, double hung, single slider, casement, picture, bay/bow, sliding glass doors
+- Reduces energy bills and improves home comfort; Low-E glass standard on all installations
+
+#### Window Pricing (per unit, installed)
+- Single Hung: ~$650 installed (materials ~$250)
+- Double Hung: ~$750 installed (materials ~$300)
+- Single Slider: ~$600 installed (materials ~$225)
+- Casement: ~$800 installed (materials ~$350)
+- Picture Window: ~$700 installed (materials ~$275)
+- Bay / Bow Window: ~$2,500 installed (materials ~$1,200)
+- Sliding Glass Door: ~$2,800 installed (materials ~$1,400)
+- French Door (pair): ~$3,200 installed (materials ~$1,600)
+- All prices include removal of existing window, new flashing, materials, labor, trim, and cleanup
 
 ### ADUs (Accessory Dwelling Units)
-- Detached ADUs
-- Attached ADUs
-- Garage conversions
-- Junior ADUs (JADUs)
+- Detached ADUs, attached ADUs, garage conversions, Junior ADUs (JADUs)
+- Full design, permitting, and construction under one contract
+
+#### ADU Pricing Context (Bay Area, fully permitted)
+- Detached ADUs: typically $250,000–$450,000 fully permitted (400–1,200 sq ft)
+- Garage conversions: typically $100,000–$200,000 (30–40% less than new detached construction)
+- Attached ADUs: typically $150,000–$300,000 depending on scope and finishes
+- Junior ADUs (JADUs): typically $50,000–$120,000 (created within existing home footprint, up to 500 sq ft)
+- Bay Area homeowners with detached ADUs typically see property value increases of $150,000–$300,000 and rental income of $2,000–$3,500/month
 
 ### Custom Homes
-- Ground-up new construction
-- Design and architecture services
-- Engineering and permit management
+- Ground-up new construction in the Bay Area
+- Design, architecture, engineering, and permit management included
+- Bay Area custom homes typically range from 2,000–5,000 sq ft with construction timelines of 10–18 months
+- Cost varies widely by scope, lot complexity, and finish level — contact us for a project consultation
 
 ### Home Additions
-- Room additions
-- Second story additions
-- Major renovations
+- Room additions, second story additions, major renovations
+- Most room additions complete in 10–16 weeks from permit approval
 
 ## How a Project Works (Process)
 
