@@ -15,7 +15,7 @@ export interface ServiceTemplate {
   heroFormTitle: string;
   heroFormSubtitle: string;
   serviceType: string;
-  serviceOptions: string[];
+  serviceOptions?: string[];
   heroImageKey: string;
   titlePattern: string;
   descriptionPattern: string;
@@ -34,7 +34,6 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     heroFormSubtitle:
       "We'll contact you in 3-5 minutes to schedule a FREE roof inspection.",
     serviceType: 'Roofing',
-    serviceOptions: ['Asphalt Shingles', 'Metal Roofing', 'Tile Roofing', 'Flat Roof'],
     heroImageKey: 'heroRoofing',
     titlePattern: 'Reliable Roofing in {city}, CA | Hamilton Exteriors',
     descriptionPattern:
@@ -104,7 +103,6 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     heroFormSubtitle:
       "We'll contact you in 3-5 minutes to schedule a FREE siding inspection.",
     serviceType: 'Siding',
-    serviceOptions: ['James Hardie', 'Vinyl Siding', 'Wood Siding', 'Fiber Cement'],
     heroImageKey: 'serviceSiding',
     titlePattern: 'Durable Siding in {city}, CA | Hamilton Exteriors',
     descriptionPattern:
@@ -174,7 +172,6 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     heroFormSubtitle:
       "We'll contact you in 3-5 minutes to schedule a FREE window inspection.",
     serviceType: 'Windows',
-    serviceOptions: ['Double Hung', 'Casement', 'Bay / Bow', 'Sliding'],
     heroImageKey: 'heroWindows',
     titlePattern: 'Energy-Efficient Windows in {city}, CA | Hamilton Exteriors',
     descriptionPattern:
@@ -256,7 +253,6 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     heroFormSubtitle:
       "We'll contact you in 3-5 minutes to discuss your ADU project.",
     serviceType: 'ADU',
-    serviceOptions: ['Detached ADU', 'Garage Conversion', 'Addition', 'Junior ADU'],
     heroImageKey: 'aduHero',
     titlePattern: 'ADU Builder in {city}, CA | Design & Construction | Hamilton Exteriors',
     descriptionPattern:
@@ -326,7 +322,6 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     heroFormSubtitle:
       "Tell us about your dream home. We'll call within 5 minutes to discuss your project.",
     serviceType: 'Custom Home',
-    serviceOptions: ['Ground-Up Build', 'Major Renovation', 'Second Story Addition', 'Modern Farmhouse'],
     heroImageKey: 'serviceCustomHomesFull',
     titlePattern: 'Custom Home Builder in {city}, CA | Hamilton Exteriors',
     descriptionPattern:
@@ -396,7 +391,6 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     heroFormSubtitle:
       "We'll contact you in 3-5 minutes to discuss your project.",
     serviceType: 'Addition',
-    serviceOptions: ['Second Story', 'Room Addition', 'ADU', 'Full Remodel'],
     heroImageKey: 'serviceAdditions',
     titlePattern: 'Home Additions & Construction in {city}, CA | Hamilton Exteriors',
     descriptionPattern:

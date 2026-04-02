@@ -15,7 +15,7 @@ export const data: ServicePageData = {
     ctaText: 'Call Now - We Answer Fast',
     heroImage: aduHero,
     serviceType: 'ADU',
-    serviceOptions: ['Detached ADU', 'Garage Conversion', 'Addition', 'Junior ADU'],
+    // serviceOptions removed — service is known from page context, form is 2 steps
   },
   sections: [
     { type: 'logoSlider' },

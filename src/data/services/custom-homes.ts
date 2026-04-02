@@ -14,7 +14,7 @@ export const data: ServicePageData = {
     ctaText: 'Call Now - We Answer Fast',
     heroImage: serviceCustomHomesFull,
     serviceType: 'Custom Home',
-    serviceOptions: ['Ground-Up Build', 'Major Renovation', 'Second Story Addition', 'Modern Farmhouse'],
+    // serviceOptions removed — service is known from page context, form is 2 steps
   },
   sections: [
     { type: 'logoSlider' },

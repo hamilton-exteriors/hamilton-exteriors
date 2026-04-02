@@ -21,7 +21,7 @@ export const data: ServicePageData = {
     ctaText: 'Call Now (650) 977-3351',
     heroImage: heroWindows,
     serviceType: 'Windows',
-    serviceOptions: ['Double Hung', 'Casement', 'Bay / Bow', 'Sliding'],
+    // serviceOptions removed — service is known from page context, form is 2 steps
   },
   sections: [
     { type: 'logoSlider' },

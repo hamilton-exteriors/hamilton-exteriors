@@ -13,7 +13,7 @@ export const data: ServicePageData = {
       "We'll contact you in 3-5 minutes to schedule a FREE SIDING inspection.",
     ctaText: 'Call Now - We Answer Fast',
     serviceType: 'Siding',
-    serviceOptions: ['James Hardie', 'Vinyl Siding', 'Wood Siding', 'Fiber Cement'],
+    // serviceOptions removed — service is known from page context, form is 2 steps
     heroImage: serviceSiding,
   },
   sections: [

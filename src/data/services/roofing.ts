@@ -13,7 +13,7 @@ export const data: ServicePageData = {
       "We'll contact you in 3-5 minutes to schedule a FREE roof inspection.",
     ctaText: 'Call Now - We Answer Fast',
     serviceType: 'Roofing',
-    serviceOptions: ['Asphalt Shingles', 'Metal Roofing', 'Tile Roofing', 'Flat Roof'],
+    // serviceOptions removed — service is known from page context, form is 2 steps
     heroImage: heroRoofing,
   },
   sections: [

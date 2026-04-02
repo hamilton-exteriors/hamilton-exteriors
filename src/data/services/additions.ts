@@ -15,7 +15,7 @@ export const data: ServicePageData = {
     ctaText: 'Call Now - We Answer Fast',
     heroImage: serviceAdditions,
     serviceType: 'Addition',
-    serviceOptions: ['Second Story', 'Room Addition', 'ADU', 'Full Remodel'],
+    // serviceOptions removed — service is known from page context, form is 2 steps
   },
   sections: [
     { type: 'logoSlider' },
