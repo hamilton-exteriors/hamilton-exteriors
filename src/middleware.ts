@@ -21,7 +21,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google.com https://googleads.g.doubleclick.net https://connect.facebook.net https://api.mapbox.com",
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: https://*.companycam.com https://companycam.imgix.net https://img.companycam.com https://images.unsplash.com https://images.pexels.com https://events.mapbox.com https://www.googletagmanager.com https://www.google.com https://googleads.g.doubleclick.net https://www.facebook.com https://*.google-analytics.com",
+    "img-src 'self' data: https://*.companycam.com https://companycam.imgix.net https://img.companycam.com https://images.unsplash.com https://images.pexels.com https://hamilton-exteriors.com https://hamilton-exteriors-production.up.railway.app https://events.mapbox.com https://www.googletagmanager.com https://www.google.com https://googleads.g.doubleclick.net https://www.facebook.com https://*.google-analytics.com",
     "font-src 'self'",
     "connect-src 'self' https://api.mapbox.com https://events.mapbox.com https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://*.google.com https://googleads.g.doubleclick.net https://connect.facebook.net https://*.facebook.com https://*.conversionsapigateway.com https://*.a.run.app https://hamilton-exteriors.com https://hamilton-exteriors-production.up.railway.app",
     "frame-src 'self' https://www.googletagmanager.com https://www.google.com https://td.doubleclick.net https://www.facebook.com",
