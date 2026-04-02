@@ -15,7 +15,8 @@ interface Props {
   preloadHero?: boolean;
 }
 
-const heroOptimized = await getImage({ src: heroBg, width: 1920, height: 1080, format: 'webp' });
+const heroMobilePreload = await getImage({ src: heroBg, width: 768, height: 432, format: 'webp' });
+const heroDesktopPreload = await getImage({ src: heroBg, width: 1920, height: 1080, format: 'webp' });
 
 const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs & custom homes. Licensed, bonded, insured. 50-year warranty. $0 down financing. Call (650) 977-3351.';
 
@@ -44,13 +45,13 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Self-hosted font preloads — critical fonts only to avoid LCP delay -->
-    <link rel="preload" href="/fonts/the-bold-font.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Self-hosted font preloads — body fonts only; display font loads via font-display:swap -->
     <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin />
 
-    {/* Preload hero/LCP image on pages that use the default hero background */}
-    {preloadHero && <link rel="preload" href={heroOptimized.src} as="image" type="image/webp" fetchpriority="high" />}
+    {/* Preload hero/LCP image — mobile gets 768px, desktop gets 1920px */}
+    {preloadHero && <link rel="preload" href={heroMobilePreload.src} as="image" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />}
+    {preloadHero && <link rel="preload" href={heroDesktopPreload.src} as="image" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />}
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -91,7 +92,8 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="Hamilton Exteriors Blog" href="/blog/rss.xml" />
 
-    <!-- Favicon -->
+    <!-- Favicon — SVG for modern browsers, PNG fallback -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <!-- LocalBusiness Schema -->
