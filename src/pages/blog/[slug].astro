@@ -24,8 +24,10 @@ if (!post) {
 }
 
 const title = post.meta_title || post.title;
-const description = post.meta_description || post.excerpt || '';
-const canonicalUrl = new URL(`/blog/${slug}`, Astro.site || Astro.url.origin).href;
+const description = post.meta_description || post.custom_excerpt || post.excerpt || '';
+const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
+const canonicalUrl = `${siteUrl}/blog/${slug}`;
+const postImage = post.feature_image || 'https://hamilton-exteriors.com/og-default.jpg';
 
 // Article structured data for SEO
 const authorName = post.primary_author?.name || 'Hamilton Exteriors';
@@ -34,7 +36,7 @@ const articleJsonLd = {
   '@type': 'BlogPosting',
   headline: post.title,
   description,
-  image: post.feature_image || undefined,
+  image: postImage,
   datePublished: post.published_at,
   dateModified: post.updated_at || post.published_at,
   url: canonicalUrl,
@@ -71,7 +73,7 @@ try {
 <Layout
   title={`${title} | Hamilton Exteriors`}
   description={description}
-  image={post.feature_image || undefined}
+  image={postImage}
   type="article"
   jsonLd={articleJsonLd}
 >
@@ -279,7 +281,7 @@ try {
       var articleTop = rect.top + window.scrollY;
       var articleHeight = rect.height;
       var scrolled = window.scrollY - articleTop;
-      var progress = Math.max(0, Math.min(100, (scrolled / (articleHeight - window.innerHeight)) * 100));
+      var progress = 100 - Math.max(0, Math.min(100, (scrolled / (articleHeight - window.innerHeight)) * 100));
       bar.style.width = progress + '%';
       bar.setAttribute('aria-valuenow', String(Math.round(progress)));
     }, { passive: true });
