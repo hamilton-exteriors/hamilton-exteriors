@@ -78,5 +78,35 @@
     "attribution": "Photo by Santiago Manuel De la Colina on Pexels",
     "filename": "4-pexels-3621348.jpeg",
     "usedInSection": "Material Comparison at a Glance"
+  },
+  {
+    "id": "RGkNFjRPyO0",
+    "source": "unsplash",
+    "photographer": "Raze Solar",
+    "photographerUrl": "https://unsplash.com/@razesolar",
+    "license": "Unsplash License",
+    "attribution": "Photo by Raze Solar on Unsplash",
+    "filename": "2-unsplash-RGkNFjRPyO0.jpg",
+    "usedInSection": "What Drives the Price of a Roof Replacement"
+  },
+  {
+    "id": "28858039",
+    "source": "pexels",
+    "photographer": "Raul Kozenevski",
+    "photographerUrl": "https://www.pexels.com/@raulling",
+    "license": "Pexels License",
+    "attribution": "Photo by Raul Kozenevski on Pexels",
+    "filename": "3-pexels-28858039.jpeg",
+    "usedInSection": "Bay Area Specific Factors That Affect Roofing Costs"
+  },
+  {
+    "id": "13548818",
+    "source": "pexels",
+    "photographer": "Markus Winkler",
+    "photographerUrl": "https://www.pexels.com/@markus-winkler-1430818",
+    "license": "Pexels License",
+    "attribution": "Photo by Markus Winkler on Pexels",
+    "filename": "4-pexels-13548818.jpeg",
+    "usedInSection": "Material Comparison at a Glance"
   }
 ]

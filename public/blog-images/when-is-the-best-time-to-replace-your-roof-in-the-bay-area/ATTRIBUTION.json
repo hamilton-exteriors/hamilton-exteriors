@@ -48,5 +48,25 @@
     "attribution": "Photo by Raze Solar on Unsplash",
     "filename": "3-unsplash-eFOkg4ZMiBs.jpg",
     "usedInSection": "Permit Timing"
+  },
+  {
+    "id": "4sEcN73CwNw",
+    "source": "unsplash",
+    "photographer": "Blair Morris",
+    "photographerUrl": "https://unsplash.com/@bmorris_",
+    "license": "Unsplash License",
+    "attribution": "Photo by Blair Morris on Unsplash",
+    "filename": "2-unsplash-4sEcN73CwNw.jpg",
+    "usedInSection": "The Busy Season Tradeoff"
+  },
+  {
+    "id": "Scaj0T40nFI",
+    "source": "unsplash",
+    "photographer": "Raze Solar",
+    "photographerUrl": "https://unsplash.com/@razesolar",
+    "license": "Unsplash License",
+    "attribution": "Photo by Raze Solar on Unsplash",
+    "filename": "3-unsplash-Scaj0T40nFI.jpg",
+    "usedInSection": "Permit Timing"
   }
 ]

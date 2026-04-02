@@ -98,5 +98,25 @@
     "attribution": "Photo by Jan van der Wolf on Pexels",
     "filename": "5-pexels-35450667.jpeg",
     "usedInSection": "5. Sagging Roof Deck or Ridge Line"
+  },
+  {
+    "id": "33404248",
+    "source": "pexels",
+    "photographer": "Ryan  Stephens",
+    "photographerUrl": "https://www.pexels.com/@rstephens",
+    "license": "Pexels License",
+    "attribution": "Photo by Ryan  Stephens on Pexels",
+    "filename": "1-pexels-33404248.jpeg",
+    "usedInSection": "1. Missing or Blown-Off Shingles"
+  },
+  {
+    "id": "4015870",
+    "source": "pexels",
+    "photographer": "Serinus",
+    "photographerUrl": "https://www.pexels.com/@serinus",
+    "license": "Pexels License",
+    "attribution": "Photo by Serinus on Pexels",
+    "filename": "2-pexels-4015870.jpeg",
+    "usedInSection": "2. Curling, Cracking, or Buckling Shingles"
   }
 ]

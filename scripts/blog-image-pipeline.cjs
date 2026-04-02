@@ -831,10 +831,46 @@ async function processPost(slug) {
 
   log(`Targeting ${targetSections.length} images across ${sections.length} sections`);
 
+  // 3b. Find hero/feature image — broad search for the post's main topic
+  log(`\n--- Feature Image ---`);
+  const heroContext = {
+    postTopic: post.title,
+    sectionHeading: post.title,
+    sectionContent: post.title,
+  };
+  const heroTerms = [
+    `${post.title} construction`,
+    `${topic} residential Bay Area`,
+    `${topic} crew working house`,
+  ];
+  let heroImage = null;
+  for (const term of heroTerms) {
+    heroImage = await findBestImage(term, topic, heroContext);
+    if (heroImage) break;
+  }
+  if (heroImage) {
+    const heroFilename = await downloadImage(heroImage, slug, 0);
+    if (heroFilename) {
+      const heroPublicUrl = `/blog-images/${slug}/${heroFilename}`;
+      log(`  Feature image selected: ${heroFilename} [${heroImage.source}]`);
+      // Track Unsplash download
+      if (heroImage.source === 'unsplash' && heroImage.downloadTrackUrl) {
+        await trackUnsplashDownload(heroImage.downloadTrackUrl);
+      }
+      // Will be set below
+      heroImage._publicUrl = heroPublicUrl;
+      heroImage._filename = heroFilename;
+    }
+  } else {
+    log(`  No suitable feature image found`);
+  }
+
   // 4. Find and download images
   const imageInserts = [];
   const attributions = [];
   const usedImageIds = new Set();
+  // Exclude hero image from section selection
+  if (heroImage) usedImageIds.add(`${heroImage.source}-${heroImage.id}`);
 
   for (let i = 0; i < targetSections.length; i++) {
     const section = targetSections[i];
@@ -938,15 +974,18 @@ async function processPost(slug) {
   // 6. Insert images into Lexical content
   const updatedLexical = insertImagesIntoLexical(post.lexical, imageInserts);
 
-  // 7. Set feature image if none exists
+  // 7. Set feature image — always use the dedicated hero image
   const updates = {
     lexical: updatedLexical,
     mobiledoc: null,
   };
 
-  if (!post.feature_image && imageInserts.length > 0) {
+  if (heroImage && heroImage._publicUrl) {
+    updates.feature_image = heroImage._publicUrl;
+    log(`Setting feature image: ${heroImage._filename}`);
+  } else if (imageInserts.length > 0) {
     updates.feature_image = imageInserts[0].publicUrl;
-    log(`Setting feature image: ${imageInserts[0].filename}`);
+    log(`Setting feature image (fallback to first section image): ${imageInserts[0].filename}`);
   }
 
   // 8. Update Ghost post
