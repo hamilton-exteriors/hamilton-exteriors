@@ -48,6 +48,7 @@ if (GHOST_URL && GHOST_KEY) {
 
 // Build a lookup of blog lastmod dates for the serialize function
 const blogLastmodMap = new Map(blogSitemapEntries.map(e => [e.url, e.lastmod]));
+const buildDate = new Date().toISOString();
 
 // City+service URL generation for sitemap
 const counties = [
@@ -102,8 +103,8 @@ export default defineConfig({
       if (blogDate) {
         item.lastmod = new Date(blogDate).toISOString();
       } else {
-        // For non-blog pages, don't set lastmod — a per-build timestamp is meaningless
-        delete item.lastmod;
+        // For non-blog pages, use build date so Google can prioritize crawling
+        item.lastmod = buildDate;
       }
       return item;
     },

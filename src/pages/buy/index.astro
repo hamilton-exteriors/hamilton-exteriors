@@ -19,6 +19,32 @@ const webAppJsonLd = {
   },
 };
 
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Online Roof Replacement',
+  description: 'Buy a roof replacement online with satellite imagery pricing. No salespeople, no commission. GAF Master Elite certified installation with manufacturer warranty.',
+  provider: { '@type': 'RoofingContractor', '@id': 'https://hamilton-exteriors.com/#business', name: 'Hamilton Exteriors' },
+  areaServed: [
+    { '@type': 'County', name: 'Alameda County' },
+    { '@type': 'County', name: 'Contra Costa County' },
+    { '@type': 'County', name: 'Marin County' },
+    { '@type': 'County', name: 'Napa County' },
+    { '@type': 'County', name: 'Santa Clara County' },
+  ],
+  serviceType: 'Roof Replacement',
+  termsOfService: 'https://hamilton-exteriors.com/terms',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Roofing Packages',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Standard Shingles' }, priceSpecification: { '@type': 'UnitPriceSpecification', price: '940', priceCurrency: 'USD', unitText: 'per roofing square' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Premium Shingles' }, priceSpecification: { '@type': 'UnitPriceSpecification', price: '1000', priceCurrency: 'USD', unitText: 'per roofing square' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Designer Shingles' }, priceSpecification: { '@type': 'UnitPriceSpecification', price: '1175', priceCurrency: 'USD', unitText: 'per roofing square' } },
+    ],
+  },
+};
+
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -60,7 +86,7 @@ const faqJsonLd = {
 <Layout
   title="Buy Your Roof Online | Hamilton Exteriors"
   description="Skip the salesman. Enter your address, see your roof, get an instant price. Buy your new roof online from Hamilton Exteriors."
-  jsonLd={[webAppJsonLd, faqJsonLd]}
+  jsonLd={[webAppJsonLd, serviceJsonLd, faqJsonLd]}
 >
   <Navbar />
 
@@ -79,7 +105,7 @@ const faqJsonLd = {
           id="hero-address-input"
           name="address"
           type="text"
-          placeholder="Enter your home address..."
+          placeholder="Your address"
           autocomplete="off"
           required
           aria-label="Home address"
@@ -318,7 +344,7 @@ const faqJsonLd = {
         <input
           name="address"
           type="text"
-          placeholder="Enter your home address..."
+          placeholder="Your address"
           required
           autocomplete="off"
           aria-label="Home address"

@@ -39,6 +39,7 @@ const postImage = post.feature_image || 'https://hamilton-exteriors.com/og-defau
 
 // Article structured data for SEO
 const authorName = post.primary_author?.name || 'Hamilton Exteriors';
+const estimatedWordCount = post.reading_time ? post.reading_time * 200 : undefined;
 const articleJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -48,9 +49,10 @@ const articleJsonLd = {
   datePublished: post.published_at,
   dateModified: post.updated_at || post.published_at,
   url: canonicalUrl,
+  ...(estimatedWordCount && { wordCount: estimatedWordCount }),
   author: {
     '@type': 'Person',
-    name: 'Marcus Hamilton',
+    name: authorName,
     jobTitle: 'Owner & Lead Contractor',
     worksFor: {
       '@type': 'Organization',
@@ -60,13 +62,14 @@ const articleJsonLd = {
   },
   publisher: {
     '@type': 'Organization',
+    '@id': 'https://hamilton-exteriors.com/#business',
     name: 'Hamilton Exteriors',
     url: 'https://hamilton-exteriors.com',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://hamilton-exteriors.com/og-default.jpg',
-      width: 1200,
-      height: 630,
+      url: 'https://hamilton-exteriors.com/favicon.png',
+      width: 512,
+      height: 512,
     },
   },
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
