@@ -15,7 +15,7 @@ export const pageTitle =
 export const pageDescription =
   'Hamilton Exteriors serves Alameda, Contra Costa, Marin, Napa & Santa Clara counties. Expert roofing, siding, windows, and ADU construction across the Bay Area.';
 
-export const heroHeadline = 'Roofing, Siding & Exteriors  Across the Bay Area';
+export const heroHeadline = "Bay Area's Top  Design-Build &  Exteriors Contractor";
 export const heroFormTitle = 'Get a FREE QUOTE';
 
 /* ── County card images (one representative photo per county) ── */
