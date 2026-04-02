@@ -72,11 +72,24 @@ const counties = [
   { name: 'Santa Clara County', slug: 'santa-clara-county-ca' },
 ];
 
+// Derive serviceType from the page slug
+const serviceSlug = Astro.url.pathname.replace(/\/$/, '').split('/').pop() || '';
+const SERVICE_TYPE_MAP: Record<string, string> = {
+  roofing: 'Roofing',
+  siding: 'Siding',
+  windows: 'Window Installation',
+  adu: 'ADU Construction',
+  'custom-homes': 'Custom Home Building',
+  additions: 'Room Additions',
+};
+const serviceType = SERVICE_TYPE_MAP[serviceSlug] || data.title.split('|')[0].split('—')[0].trim();
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   'name': data.title.split('|')[0].trim(),
   'url': `https://hamilton-exteriors.com${Astro.url.pathname}`,
+  'serviceType': serviceType,
   'provider': {
     '@type': 'RoofingContractor',
     '@id': 'https://hamilton-exteriors.com/#business',

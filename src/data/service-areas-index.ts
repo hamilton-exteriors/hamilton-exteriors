@@ -10,12 +10,12 @@ import { data as marin } from './counties/marin-county-ca';
 /* ── Page metadata ────────────────────────────────────────────── */
 
 export const pageTitle =
-  'Bay Area Roofing, Siding & Exteriors | Service Areas | Hamilton Exteriors';
+  'Bay Area Service Areas | Hamilton Exteriors';
 
 export const pageDescription =
   'Hamilton Exteriors serves Alameda, Contra Costa, Marin, Napa & Santa Clara counties. Expert roofing, siding, windows, and ADU construction across the Bay Area.';
 
-export const heroHeadline = "Bay Area's Top  Design-Build &  Exteriors Contractor";
+export const heroHeadline = "Serving 5 Counties  Across the  Bay Area";
 export const heroFormTitle = 'Get a FREE QUOTE';
 
 /* ── County card images (one representative photo per county) ── */

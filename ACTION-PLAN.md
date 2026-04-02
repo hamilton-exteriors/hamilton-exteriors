@@ -1,187 +1,168 @@
 # Hamilton Exteriors — SEO Action Plan
 
-**Generated:** April 2, 2026 | **Current Score:** 75/100 | **Target:** 88/100
+**Generated:** April 2, 2026 | **Current Score:** 68/100 | **Target:** 85/100
 
 ---
 
-## Critical (Fix Immediately)
+## Critical — Fix Immediately
 
-### 1. Fix blog post title duplication
-**Impact:** SERP display for all blog posts | **Effort:** 5 min | **Score impact:** +2
-- Template bug: blog layout appends `| Hamilton Exteriors`, then site Layout appends again
-- All 3 blog posts show double brand suffix (77-88 chars, over 60-char guideline)
-- Fix in blog post layout to not append brand when Layout already does
-- **File:** `src/pages/blog/[slug].astro` — check title prop passed to Layout
+### 1. Point `hamilton-exteriors.com` DNS to Railway
+**Impact:** Unblocks all SEO (sitemap submission, Search Console, canonical resolution)
+**Effort:** 5 minutes
+**Details:** All 251 sitemap URLs, all canonical tags, all schema @id references point to hamilton-exteriors.com. Until DNS resolves, Google cannot crawl via sitemap and all structured data URLs are unreachable. This is the single highest-impact action.
 
-### 2. Fix sitemap — 214 pages missing
-**Impact:** 46% of site invisible to search engines via sitemap | **Effort:** 30 min | **Score impact:** +4
-- sitemap-0.xml has 251 URLs, expected 465
-- Check `@astrojs/sitemap` config in `astro.config.mjs`
-- Verify all city-service pages are generated at build time
-- Submit updated sitemap to Google Search Console after fix
+### 2. Fix BlogPosting schema placeholder values
+**Impact:** Removes embarrassing raw slugs from structured data
+**Effort:** 30 minutes
+**Files:** Blog post template (Ghost -> Astro integration)
+**Changes:**
+- Replace `keywords: "blog_post"` with actual article keywords
+- Replace `articleSection: "blog_post"` with human-readable section name (e.g., "Cost Guides")
+- Make `wordCount` dynamic at build time instead of hardcoded `1000`
+- Change `author` from Organization to Person (`Marcus Hamilton, Owner`)
 
-### 3. Add `logo-schema.png` to `/public/`
-**Impact:** Schema validation error on every page | **Effort:** 5 min | **Score impact:** +1
-- `RoofingContractor` schema references `logo-schema.png` which returns 404
-- Create 600x120px logo PNG and place in `/public/logo-schema.png`
-
-### 4. Fix llms.txt license declaration
-**Impact:** Legal exposure + AI training conflict | **Effort:** 10 min | **Score impact:** +1
-- CC BY 4.0 grants redistribution rights — conflicts with robots.txt training blocks
-- Replace in both `public/llms.txt` and `public/llms-full.txt` line 5:
-  ```
-  > License: Content may be cited by AI search engines with attribution to Hamilton Exteriors (hamilton-exteriors.com). Reproduction, redistribution, or use for AI model training is prohibited.
-  ```
-- Update stale "Prices valid as of 2025" to "2026" in llms-full.txt
-
-### 5. Fix Google Maps `sameAs` with real Place ID
-**Impact:** GBP entity linking on every page | **Effort:** 15 min | **Score impact:** +2
-- Current: `https://www.google.com/maps/place/Hamilton+Exteriors` (name search)
-- Find Place ID from GBP dashboard or Google Search Console
-- Replace with `https://www.google.com/maps/place/?q=place_id:ChIJ...`
-- Update in `src/layouts/Layout.astro` and `src/components/Footer.astro`
+### 3. Fix AggregateRating review count mismatch
+**Impact:** Prevents potential Google manual action for misleading structured data
+**Effort:** 30 minutes
+**File:** `src/layouts/Layout.astro`
+**Changes:** Either embed 10-12 Review objects to substantiate the claimed 50 count, or change `reviewCount` to match embedded reviews and add a `url` pointing to your Google review page.
 
 ---
 
-## High (Fix Within 1 Week)
+## High — Fix This Week
 
-### 6. Preload THE BOLD FONT
-**Impact:** LCP improvement, eliminates heading FOUT | **Effort:** 5 min | **Score impact:** +1
-- Add to Layout `<head>`:
-  ```html
-  <link rel="preload" href="/fonts/the-bold-font-700.woff2" as="font" type="font/woff2" crossorigin>
-  ```
-- DM Sans and Satoshi already preloaded; this font is not
+### 4. Trim title tags to <=60 characters (5 pages)
+**Impact:** Prevents SERP truncation, improves CTR
+**Effort:** 30 minutes
+**Examples:**
+- /roofing (84c): "Bay Area Roofing — Shingles, Metal, Tile & Solar | Hamilton Exteriors" -> "Bay Area Roofing: Shingles, Metal & Tile" (41c)
+- /siding (86c): "Bay Area Siding — James Hardie & Fiber Cement" (47c)
+- /windows (89c): "Bay Area Window Installation — Energy Efficient" (48c)
 
-### 7. Remove unused font preconnects
-**Impact:** 2 unnecessary DNS lookups per page | **Effort:** 5 min | **Score impact:** +0.5
-- Remove `<link rel="preconnect" href="https://fonts.googleapis.com">` and gstatic equivalent
-- All fonts are self-hosted — these connections are never used
+### 5. Add `fetchpriority="high"` to blog hero image
+**Impact:** Improves blog LCP from ~3.5-5s to ~2-2.5s
+**Effort:** 10 minutes
+**Files:** Blog post layout template
+**Changes:** Set `loading="eager"` and `fetchpriority="high"` on the first/hero image. Also add `<link rel="preload">` in `<head>` for the blog hero image.
 
-### 8. Add Google Maps iframe embed
-**Impact:** GBP signal strength | **Effort:** 30 min | **Score impact:** +2
-- No interactive Maps embed on any page — significant GBP signal gap
-- Add embed to homepage contact section or footer
-- Use CID-anchored embed URL once Place ID is obtained
+### 6. Proxy CompanyCam images through Astro image pipeline
+**Impact:** Converts 474 KB JPEG to ~60 KB WebP
+**Effort:** 2 hours
+**Details:** Instead of `<img src="https://img.companycam.com/...">`, use Astro's `<Image>` component or route through `/_image?href=` to get WebP conversion and responsive sizing.
 
-### 9. Correct geo coordinates in schema
-**Impact:** Entity accuracy | **Effort:** 5 min | **Score impact:** +0.5
-- Current: `37.69412, -122.08276` (~350m west of actual address)
-- Correct: approximately `37.69427, -122.07887`
-- Update in `src/layouts/Layout.astro` lines 138-139
+### 7. Implement IndexNow
+**Impact:** Instant URL submission to Bing, Yandex, Naver for 251 pages
+**Effort:** 1 hour
+**Steps:**
+1. Generate key at indexnow.org
+2. Place key file at `/public/<key>.txt`
+3. POST URL list to `api.indexnow.org/indexnow` after each deploy
 
-### 10. Add Wikipedia `sameAs` to city-level `areaServed`
-**Impact:** AI entity recognition for city pages | **Effort:** 1 hr | **Score impact:** +1
-- County-level schema has Wikipedia `sameAs` — city-level does not
-- Add Wikipedia URLs to each city in `ServiceAreaCityPage.astro` and `[...slug].astro`
+### 8. Fix `/service-areas` H1 (shows homepage tagline)
+**Impact:** Correct page-level heading for the service areas hub
+**Effort:** 15 minutes
+**Details:** Pass a page-specific `heroTitle` prop to the Hero component on the service-areas page.
 
-### 11. Add `@type` array: `["RoofingContractor", "GeneralContractor"]`
-**Impact:** Entity matching for ADU/custom home queries | **Effort:** 5 min | **Score impact:** +0.5
-- Update in `src/layouts/Layout.astro` line 123
+### 9. Fix Google Maps sameAs to use Place ID URL
+**Impact:** Enables entity disambiguation with Google Knowledge Graph
+**Effort:** 15 minutes
+**File:** `src/layouts/Layout.astro`, line ~148
+**Details:** Replace generic `google.com/maps/place/Hamilton+Exteriors` with actual CID-based URL from Google Maps Share button.
 
-### 12. Add cross-links from service pages to city-service pages
-**Impact:** PageRank flow to pSEO pages, reduces crawl depth | **Effort:** 2 hrs | **Score impact:** +2
-- `/roofing` should link to `/service-areas/alameda-county-ca/roofing` etc.
-- Add "Service Areas" section to bottom of each service page
-- Reduces effective crawl depth of city-service pages by 2 levels
-
----
-
-## Medium (Fix Within 1 Month)
-
-### 13. Enrich thin city-service pages with local data
-**Impact:** Doorway page risk, AI citability | **Effort:** High (data pipeline) | **Score impact:** +5
-- Top 10 cities by search volume need: neighborhood paragraph, local regulation note, project reference
-- Add `localFacts` field to city page CMS data
-- City-specific permit costs, housing stock age, weather factors
-- Even 2-3 sentences of unique local content transforms citability
-
-### 14. Add FAQ section to blog posts
-**Impact:** Featured snippet eligibility, AI citation | **Effort:** 2 hrs per post | **Score impact:** +1
-- Roof cost blog post has no FAQ — highest-traffic AI citation asset
-- Add 4-6 FAQs with 134-167 word answers (optimal AI passage length)
-- Add FAQPage schema alongside BlogPosting
-
-### 15. Expand blog posts to 1,500-2,500 words
-**Impact:** AI citation threshold | **Effort:** 2-4 hrs per post | **Score impact:** +1
-- Current ~1,000 words is below optimal for AI-cited long-form content
-- Add external source citations (BLS, NRCA, county permit schedules)
-- Add data tables, comparison charts
-
-### 16. Fix `og:type` on blog posts to "article"
-**Impact:** Social sharing card rendering | **Effort:** 15 min | **Score impact:** +0.5
-
-### 17. Create unique `og:image` for blog posts
-**Impact:** Social CTR | **Effort:** 1 hr per post | **Score impact:** +0.5
-- All pages use `og-default.jpg`
-- Blog posts need article-specific images
-
-### 18. Implement IndexNow
-**Impact:** Bing/Yandex/Naver index freshness | **Effort:** 30 min | **Score impact:** +1
-- Generate key at bing.com/indexnow
-- Place key file in `/public/`
-- Add API call to deploy pipeline
-
-### 19. Implement live review widget
-**Impact:** Review freshness, social proof | **Effort:** 2 hrs | **Score impact:** +2
-- Replace 4 hardcoded reviews with live GBP feed
-- Address 18-day review velocity risk (last visible review: Jan 22, 2026)
-- Options: EmbedSocial, Widewail, ReviewsOnMyWebsite
-
-### 20. Address review velocity
-**Impact:** Local pack ranking maintenance | **Effort:** Ongoing | **Score impact:** +2
-- Implement post-job review request flow (SMS or email 3 days after completion)
-- Most recent visible review is 69+ days old — potential ranking cliff
+### 10. Add homepage BreadcrumbList schema
+**Impact:** Enables breadcrumb rich results from homepage
+**Effort:** 15 minutes
 
 ---
 
-## Low (Backlog)
+## Medium — Fix This Month
 
-### 21. Create and verify BBB profile
-**Impact:** Most trust-critical citation for home services | **Effort:** 1-2 weeks | **Score impact:** +1
+### 11. Address pSEO content duplication (the big one)
+**Impact:** Prevents doorway page penalties, improves rankings for 203 pages
+**Effort:** 2-4 weeks (phased)
+**Options (pick one or combine):**
+- **Option A:** Add 200+ words of genuinely unique content per city (specific neighborhoods, permit office details, typical project examples, local housing stock data). Target 60%+ unique content.
+- **Option B:** Reduce to 10-15 high-value cities, add `noindex` to the rest. Focus on cities where you have real projects and reviews.
+- **Option C:** Add city-specific FAQ answers, city-specific testimonials, local permit office links, and neighborhood-specific pricing context.
 
-### 22. Claim Thumbtack and NextDoor profiles
-**Impact:** Tier 1 home services citations | **Effort:** 1 hr each | **Score impact:** +0.5
+### 12. Add `serviceType` and `offers` to Service schema
+**Impact:** Enables SERP price display, consistent schema across service pages
+**Effort:** 1 hour
+**Files:** Service page templates
+**Changes:**
+- Add `serviceType: "Roofing"` to /roofing Service block (already present on /windows)
+- Add `offers` with `UnitPriceSpecification` and price ranges to all service pages
 
-### 23. Establish YouTube presence
-**Impact:** 0.737 correlation with AI citation frequency | **Effort:** Ongoing | **Score impact:** +2
-- 4-6 videos: install timelapse, estimate explainer, FAQ with Marcus Hamilton
-- Add channel URL to llms.txt and site footer
+### 13. Trim meta descriptions to <=158 chars (4 pages)
+**Effort:** 20 minutes
 
-### 24. Build Reddit presence
-**Impact:** AI training data source, entity recognition | **Effort:** Ongoing | **Score impact:** +1
-- Organic participation in r/bayarea, r/homeimprovement, r/roofing
+### 14. Add `dateModified` and freshness signal to llms.txt
+**Effort:** 30 minutes
+**Changes:** Add `> Last updated: 2026-04-02` blockquote and `> Pricing valid as of Q1 2026` to both llms.txt and llms-full.txt.
 
-### 25. Change blog author from Organization to Person
-**Impact:** Google author panel eligibility | **Effort:** 15 min | **Score impact:** +0.5
+### 15. Fix font cache TTL to 1 year immutable
+**Effort:** 15 minutes
+**Details:** Change `/fonts/` cache headers from `max-age=604800` to `max-age=31536000, immutable`.
 
-### 26. Add Bingbot explicit allow in robots.txt
-**Impact:** Bing Copilot signal clarity | **Effort:** 5 min | **Score impact:** +0.5
+### 16. Resolve missing Satoshi font file
+**Effort:** 30 minutes
+**Details:** Either add `/fonts/satoshi.woff2` or remove all `font-family: satoshi` references.
 
-### 27. Set font cache to 1 year immutable
-**Impact:** Returning visitor bandwidth | **Effort:** 15 min | **Score impact:** +0.25
+### 17. Add HowTo schema to /roofing
+**Impact:** Unlocks a separate AI snippet type for procedural queries
+**Effort:** 1 hour
+**Details:** The "How a Project Works" 9-step block maps directly to HowTo schema.
 
-### 28. Fix `favicon.png` 404
-**Impact:** Older browser/crawler compatibility | **Effort:** 5 min | **Score impact:** +0.25
+### 18. Add editorial content to `/service-areas` hub
+**Effort:** 2 hours
+**Details:** Add 300+ words about Bay Area coverage above the county grid.
 
-### 29. Add CSLB verification link in footer
-**Impact:** Trust signal for anxious homeowners | **Effort:** 5 min | **Score impact:** +0.25
-- Link license number to `cslb.ca.gov/onlineservices/checklicenseII/checklicense.aspx?license=1082377`
+### 19. Convert blog H2s to question-format, add H3 subheadings
+**Impact:** Improves Google AIO and Perplexity passage extraction
+**Effort:** 3 hours (Ghost CMS content edit)
 
-### 30. Remove `/blog/untitled` link from blog index
-**Impact:** Crawl budget | **Effort:** 5 min | **Score impact:** +0.25
+### 20. Add BBB and Thumbtack profiles
+**Impact:** Top citation sources for home services + AI visibility
+**Effort:** 2 hours to create and verify profiles
+
+### 21. Fix Oakland BreadcrumbList URL bug
+**Effort:** 30 minutes
+**Details:** URL generates `.../oakland` instead of `.../oakland-ca`. Audit all city pages.
+
+### 22. Use city-specific testimonials on pSEO pages
+**Effort:** 2 hours
+**Details:** Stop repeating the same 4 reviews on every page. Match reviews to cities where the work was done.
+
+### 23. Move full LocalBusiness schema to homepage only
+**Effort:** 2 hours
+**Details:** Currently duplicated on all 251 pages. Keep lightweight `@id` reference on sub-pages.
+
+---
+
+## Low — Backlog
+
+### 24. Add embedded Google Map to homepage contact section
+### 25. Link manufacturer certifications to verification pages (GAF, CertainTeed, etc.)
+### 26. Add CSLB direct license lookup URL to schema and visible links
+### 27. Add `<link rel="ai-content" href="/llms.txt">` to Layout.astro head
+### 28. Add explicit Google-Extended / Applebot-Extended entries to robots.txt
+### 29. Add SpeakableSpecification schema to FAQ answers
+### 30. Add BreadcrumbList schema to blog posts
+### 31. Add COOP header in Railway config
+### 32. Convert /roofing hero source from PNG to JPG
+### 33. Add specific liability insurance amounts to "licensed, bonded, insured" copy
+### 34. Fix sitemap lastmod (use real content dates, not build time)
+### 35. Fix RSS feed 302 redirect
+### 36. Add `WebPage`/`ServicePage` schema to service pages
+### 37. Create YouTube channel with 3 anchor videos (highest AI citation signal)
 
 ---
 
 ## Score Projection
 
-| Milestone | Actions | Projected Score |
-|-----------|---------|----------------|
-| After Critical fixes (1-5) | Title, sitemap, logo, llms.txt, Maps sameAs | 85/100 |
-| After High fixes (6-12) | Font preload, Maps embed, geo, cross-links | 88/100 |
-| After Medium fixes (13-20) | City content, blog FAQs, IndexNow, reviews | 92/100 |
-| After all fixes | Full implementation | 95/100 |
-
----
-
-*Generated by SEO Audit Suite — April 2, 2026*
+| Action Set | Est. Score Change |
+|------------|------------------|
+| Critical fixes (#1-3) | 68 -> 73 |
+| + High fixes (#4-10) | 73 -> 78 |
+| + Medium fixes (#11-23) | 78 -> 85 |
+| + Low fixes (#24-37) | 85 -> 90 |

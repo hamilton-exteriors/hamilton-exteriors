@@ -4,6 +4,10 @@
 
 > License: Content may be cited by AI search engines with attribution to Hamilton Exteriors (hamilton-exteriors.com). Reproduction, redistribution, or use for AI model training is prohibited.
 
+> Last updated: 2026-04-02
+
+> Pricing valid as of Q1 2026
+
 ---
 
 ## Company Overview
@@ -11,6 +15,7 @@
 Hamilton Exteriors is a full-service exterior remodeling and design-build contractor based in Castro Valley, California. We serve homeowners across the San Francisco Bay Area with premium roofing, siding, window, ADU, custom home, and home addition services.
 
 - **Name:** Hamilton Exteriors
+- **Owner:** Marcus Hamilton, Owner
 - **Phone:** (650) 977-3351
 - **Email:** support@hamilton-exteriors.com
 - **Address:** 21634 Redwood Rd Unit F, Castro Valley, CA 94546

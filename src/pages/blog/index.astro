@@ -32,7 +32,7 @@ if (isGhostConfigured()) {
 const featuredPost = !tag && page === 1 && posts.length > 0 ? posts[0] : null;
 const gridPosts = featuredPost ? posts.slice(1) : posts;
 const activeTag = tags.find((t: any) => t.slug === tag);
-const pageTitle = activeTag ? `${activeTag.name} — Ground Up | Hamilton Exteriors` : 'Ground Up — Roofing & Home Improvement Insights | Hamilton Exteriors';
+const pageTitle = activeTag ? `${activeTag.name} — Ground Up | Hamilton Exteriors` : 'Ground Up — Roofing & Home Tips | Hamilton Exteriors';
 const pageDesc = activeTag
   ? `Articles about ${activeTag.name.toLowerCase()} from Hamilton Exteriors — Bay Area's trusted contractor.`
   : 'Ground Up is the Hamilton Exteriors blog. Expert insights on roofing, siding, ADUs, and home improvement across the Bay Area.';
@@ -143,6 +143,7 @@ const blogJsonLd = {
                     alt={featuredPost.title}
                     class="h-full w-full object-cover transition-opacity group-hover:opacity-90"
                     loading="eager"
+                    fetchpriority="high"
                     width="600"
                     height="375"
                   />

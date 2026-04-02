@@ -48,7 +48,6 @@ if (GHOST_URL && GHOST_KEY) {
 
 // Build a lookup of blog lastmod dates for the serialize function
 const blogLastmodMap = new Map(blogSitemapEntries.map(e => [e.url, e.lastmod]));
-const buildDate = new Date().toISOString();
 
 // City+service URL generation for sitemap
 const counties = [
@@ -98,14 +97,17 @@ export default defineConfig({
       return !exclude.some(path => page.includes(path));
     },
     serialize: (item) => {
-      // Add lastmod for blog posts (real content-change dates from Ghost)
+      // Blog posts: use real content-change dates from Ghost CMS
       const blogDate = blogLastmodMap.get(item.url);
       if (blogDate) {
         item.lastmod = new Date(blogDate).toISOString();
-      } else {
-        // For non-blog pages, use build date so Google can prioritize crawling
-        item.lastmod = buildDate;
+        return item;
       }
+      // Static pages: omit lastmod entirely.
+      // Stamping all static pages with the build timestamp is a known
+      // quality signal Google ignores or penalises — omitting it is
+      // preferable to a uniform fabricated date across 200+ pages.
+      delete item.lastmod;
       return item;
     },
   })],

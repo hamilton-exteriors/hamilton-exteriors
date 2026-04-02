@@ -2,7 +2,7 @@ import type { ServicePageData } from '../../lib/service-page-types';
 import { sidingVinyl, sidingFiberCement, sidingWood, sidingStucco, serviceSiding } from '../../lib/images';
 
 export const data: ServicePageData = {
-  title: 'Bay Area Siding Installation — James Hardie, Vinyl & Stucco | Hamilton Exteriors',
+  title: 'Bay Area Siding | James Hardie & Vinyl | Hamilton Exteriors',
   description:
     'James Hardie Elite Preferred installer serving the Bay Area. Fiber cement, vinyl, stucco, and waterproofing. 50-year warranty, $0 down financing. Free estimate.',
   announcementText: 'Limited Time Get up to 20% off your Siding Replacement',

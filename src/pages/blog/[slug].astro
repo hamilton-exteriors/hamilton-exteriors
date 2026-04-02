@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar.astro';
 import ContactUs from '../../components/ContactUs.astro';
 import Footer from '../../components/Footer.astro';
 import { getPost, getPosts, isGhostConfigured, formatDate } from '../../lib/ghost';
+import { Image } from 'astro:assets';
 
 const { slug } = Astro.params;
 
@@ -40,6 +41,17 @@ const postImage = post.feature_image || 'https://hamilton-exteriors.com/og-defau
 // Article structured data for SEO
 const authorName = post.primary_author?.name || 'Hamilton Exteriors';
 const estimatedWordCount = post.reading_time ? post.reading_time * 200 : undefined;
+
+// Build real keywords from tag names, filtering out slug-like values
+const tagKeywords = post.tags
+  ?.map((t: any) => t.name)
+  .filter((n: string) => n && !/^[a-z0-9_-]+$/.test(n)) // skip raw slugs like "blog_post"
+  .join(', ');
+
+// Build human-readable articleSection from primary tag, with fallback
+const rawSection = post.primary_tag?.name;
+const articleSection = rawSection && !/^[a-z0-9_-]+$/.test(rawSection) ? rawSection : 'Home Improvement';
+
 const articleJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -50,18 +62,17 @@ const articleJsonLd = {
   dateModified: post.updated_at || post.published_at,
   url: canonicalUrl,
   ...(estimatedWordCount && { wordCount: estimatedWordCount }),
-  author: authorName === 'Hamilton Exteriors'
-    ? { '@type': 'Organization', '@id': 'https://hamilton-exteriors.com/#business', name: 'Hamilton Exteriors' }
-    : {
-        '@type': 'Person',
-        name: authorName,
-        jobTitle: 'Owner & Lead Contractor',
-        worksFor: {
-          '@type': 'Organization',
-          '@id': 'https://hamilton-exteriors.com/#business',
-          name: 'Hamilton Exteriors',
-        },
-      },
+  author: {
+    '@type': 'Person',
+    name: authorName === 'Hamilton Exteriors' ? 'Marcus Hamilton' : authorName,
+    jobTitle: 'Owner & Licensed Contractor (CSLB #1082377)',
+    url: 'https://hamilton-exteriors.com',
+    worksFor: {
+      '@type': 'Organization',
+      '@id': 'https://hamilton-exteriors.com/#business',
+      name: 'Hamilton Exteriors',
+    },
+  },
   publisher: {
     '@type': 'Organization',
     '@id': 'https://hamilton-exteriors.com/#business',
@@ -76,8 +87,18 @@ const articleJsonLd = {
   },
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
   isPartOf: { '@id': 'https://hamilton-exteriors.com/blog#collection' },
-  ...(post.tags?.length && { keywords: post.tags.map((t: any) => t.name).join(', ') }),
-  ...(post.primary_tag && { articleSection: post.primary_tag.name }),
+  ...(tagKeywords && { keywords: tagKeywords }),
+  articleSection,
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: 'Ground Up', item: `${siteUrl}/blog` },
+    { '@type': 'ListItem', position: 3, name: post.title, item: canonicalUrl },
+  ],
 };
 
 // Fetch related posts (same primary tag, exclude current)
@@ -96,7 +117,7 @@ try {
   description={description}
   image={postImage}
   type="article"
-  jsonLd={shouldNoindex ? undefined : articleJsonLd}
+  jsonLd={shouldNoindex ? undefined : [articleJsonLd, breadcrumbJsonLd]}
   noindex={shouldNoindex}
 >
   <meta slot="head" property="article:published_time" content={post.published_at} />
@@ -192,6 +213,7 @@ try {
             class="w-full h-auto"
             style="max-height: 500px; object-fit: cover;"
             loading="eager"
+            fetchpriority="high"
             width="1000"
             height="500"
           />
