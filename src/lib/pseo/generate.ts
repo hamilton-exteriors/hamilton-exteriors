@@ -16,7 +16,7 @@ import type { HeroProps, SectionBlock } from '../service-page-types';
 import type { CitySeed } from './city-seed-data';
 import type { ServiceTemplate } from './service-templates';
 import { CITY_SEEDS } from './city-seed-data';
-import { resolveImage } from '../image-map';
+
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -405,7 +405,7 @@ export function generateCityServicePage(
     };
   });
 
-  // Styles section — resolve imageKey strings to actual ImageMetadata
+  // Styles section — store imageKey as string; ServicePage.astro resolves at render time
   const stylesSection: SectionBlock = {
     type: 'styles',
     data: {
@@ -413,7 +413,7 @@ export function generateCityServicePage(
       items: stylesItems.map((item) => ({
         title: item.title,
         description: item.description,
-        ...(item.imageKey ? { image: resolveImage(item.imageKey) } : {}),
+        ...(item.imageKey ? { image: item.imageKey } : {}),
       })),
       cardVariant: cardVariantForService(serviceSlug),
     },
@@ -559,7 +559,7 @@ export function generateCountyServicePage(
       items: stylesItems.map(item => ({
         title: item.title,
         description: item.description,
-        ...(item.imageKey ? { image: resolveImage(item.imageKey) } : {}),
+        ...(item.imageKey ? { image: item.imageKey } : {}),
       })),
       cardVariant: cardVariantForService(serviceSlug),
     },
