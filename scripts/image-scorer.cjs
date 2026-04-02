@@ -15,7 +15,7 @@ const https = require("https");
 // Defaults
 // ---------------------------------------------------------------------------
 
-const DEFAULT_MODEL = "meta-llama/Llama-3.2-90B-Vision-Instruct";
+const DEFAULT_MODEL = "Qwen/Qwen3-VL-30B-A3B-Instruct";
 const MAX_TOKENS = 300;
 const MAX_CONCURRENCY = 3;
 const TOP_N = 3;
