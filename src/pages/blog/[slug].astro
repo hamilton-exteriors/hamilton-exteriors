@@ -136,18 +136,20 @@ try {
     {/* Hero */}
     <section class="blog-hero w-full" style="background-color: var(--color-heading);">
       <div class="mx-auto max-w-[800px] px-5">
-        <a href="/blog" style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 600; color: var(--color-primary); text-decoration: none;" class="inline-flex items-center gap-2 mb-4 md:mb-6 hover:text-white transition-colors">
-          &larr; Back to Blog
-        </a>
-        {post.tags?.length > 0 && (
-          <div class="flex flex-wrap gap-2 mb-3 md:mb-4">
-            {post.tags.map((tag: any) => (
-              <a href={`/blog?tag=${tag.slug}`} style="font-family: var(--font-satoshi); font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-primary); background: rgba(36, 99, 69, 0.15); padding: 4px 12px; border-radius: 4px; text-decoration: none;" class="hover:opacity-80 transition-opacity">
-                {tag.name}
-              </a>
-            ))}
-          </div>
-        )}
+        <div class="flex items-start justify-between gap-4 mb-4 md:mb-6">
+          <a href="/blog" style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 600; color: var(--color-primary); text-decoration: none;" class="inline-flex items-center gap-2 hover:text-white transition-colors shrink-0">
+            &larr; Back to Blog
+          </a>
+          {post.tags?.length > 0 && (
+            <div class="flex flex-wrap gap-2 justify-end">
+              {post.tags.map((tag: any) => (
+                <a href={`/blog?tag=${tag.slug}`} style="font-family: var(--font-satoshi); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 4px; text-decoration: none;" class="hover:opacity-80 transition-opacity">
+                  {tag.name}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
         <h1 class="blog-hero-title" style="color: white;">
           {post.title}
         </h1>
