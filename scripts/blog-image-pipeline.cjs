@@ -35,7 +35,7 @@ const FLICKR_API_KEY = process.env.FLICKR_API_KEY;
 const SHUTTERSTOCK_CLIENT_ID = process.env.SHUTTERSTOCK_CLIENT_ID;
 const SHUTTERSTOCK_CLIENT_SECRET = process.env.SHUTTERSTOCK_CLIENT_SECRET;
 
-const SITE_URL = 'https://hamilton-exteriors.com';
+const SITE_URL = ''; // Use relative URLs so images work on localhost and production
 const IMAGES_DIR = path.resolve(__dirname, '..', 'public', 'blog-images');
 
 // Minimum quality score threshold (0-100)
