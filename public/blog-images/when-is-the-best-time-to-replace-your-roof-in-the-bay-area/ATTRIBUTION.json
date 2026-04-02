@@ -28,5 +28,25 @@
     "attribution": "Photo by Jan van der Wolf on Pexels",
     "filename": "3-pexels-29114658.jpeg",
     "usedInSection": "Permit Timing"
+  },
+  {
+    "id": "ArAFvC1DEYc",
+    "source": "unsplash",
+    "photographer": "Akhilan E",
+    "photographerUrl": "https://unsplash.com/@aeraniyan1",
+    "license": "Unsplash License",
+    "attribution": "Photo by Akhilan E on Unsplash",
+    "filename": "2-unsplash-ArAFvC1DEYc.jpg",
+    "usedInSection": "The Busy Season Tradeoff"
+  },
+  {
+    "id": "eFOkg4ZMiBs",
+    "source": "unsplash",
+    "photographer": "Raze Solar",
+    "photographerUrl": "https://unsplash.com/@razesolar",
+    "license": "Unsplash License",
+    "attribution": "Photo by Raze Solar on Unsplash",
+    "filename": "3-unsplash-eFOkg4ZMiBs.jpg",
+    "usedInSection": "Permit Timing"
   }
 ]

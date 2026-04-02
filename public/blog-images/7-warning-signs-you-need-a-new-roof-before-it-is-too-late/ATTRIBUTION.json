@@ -48,5 +48,55 @@
     "attribution": "Photo by Raze Solar on Unsplash",
     "filename": "5-unsplash-MyBBMM317A4.jpg",
     "usedInSection": "5. Sagging Roof Deck or Ridge Line"
+  },
+  {
+    "id": "OK-GsvBbmVc",
+    "source": "unsplash",
+    "photographer": "Harri P",
+    "photographerUrl": "https://unsplash.com/@haraldip",
+    "license": "Unsplash License",
+    "attribution": "Photo by Harri P on Unsplash",
+    "filename": "1-unsplash-OK-GsvBbmVc.jpg",
+    "usedInSection": "1. Missing or Blown-Off Shingles"
+  },
+  {
+    "id": "237907",
+    "source": "pexels",
+    "photographer": "morgan",
+    "photographerUrl": "https://www.pexels.com/@morgantakesphotos",
+    "license": "Pexels License",
+    "attribution": "Photo by morgan on Pexels",
+    "filename": "2-pexels-237907.jpeg",
+    "usedInSection": "2. Curling, Cracking, or Buckling Shingles"
+  },
+  {
+    "id": "rlQpg82Wtw4",
+    "source": "unsplash",
+    "photographer": "Igor Shalyminov",
+    "photographerUrl": "https://unsplash.com/@ishalyminov",
+    "license": "Unsplash License",
+    "attribution": "Photo by Igor Shalyminov on Unsplash",
+    "filename": "3-unsplash-rlQpg82Wtw4.jpg",
+    "usedInSection": "3. Granule Loss in Your Gutters"
+  },
+  {
+    "id": "19089540",
+    "source": "pexels",
+    "photographer": "Jean-Paul Wettstein",
+    "photographerUrl": "https://www.pexels.com/@jean-paul-wettstein-677916508",
+    "license": "Pexels License",
+    "attribution": "Photo by Jean-Paul Wettstein on Pexels",
+    "filename": "4-pexels-19089540.jpeg",
+    "usedInSection": "4. Daylight Visible Through Roof Boards"
+  },
+  {
+    "id": "35450667",
+    "source": "pexels",
+    "photographer": "Jan van der Wolf",
+    "photographerUrl": "https://www.pexels.com/@jan-van-der-wolf-11680885",
+    "license": "Pexels License",
+    "attribution": "Photo by Jan van der Wolf on Pexels",
+    "filename": "5-pexels-35450667.jpeg",
+    "usedInSection": "5. Sagging Roof Deck or Ridge Line"
   }
 ]
