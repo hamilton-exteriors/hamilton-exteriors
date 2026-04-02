@@ -96,8 +96,22 @@ async function postExists(slug: string): Promise<boolean> {
   }
 }
 
+/**
+ * Escape non-ASCII Unicode characters to \uXXXX form so they survive
+ * Ghost's mobiledoc storage pipeline without charset corruption.
+ */
+function escapeNonAscii(str: string): string {
+  return str.replace(/[^\x20-\x7E]/g, (ch) => {
+    const code = ch.charCodeAt(0);
+    return '\\u' + code.toString(16).padStart(4, '0');
+  });
+}
+
 function makeMobiledoc(jsonData: unknown): string {
-  const htmlContent = `<script type="application/json">${JSON.stringify(jsonData)}</script>`;
+  // Use escapeNonAscii on the inner JSON to prevent em dash / smart quote
+  // corruption when Ghost stores and re-renders the mobiledoc HTML card.
+  const innerJson = escapeNonAscii(JSON.stringify(jsonData));
+  const htmlContent = `<script type="application/json">${innerJson}</script>`;
   return JSON.stringify({
     version: '0.3.1',
     atoms: [],

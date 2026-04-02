@@ -108,13 +108,31 @@ import type { CountyPageData } from './county-page-types';
 import type { CityServicePageData } from './city-service-types';
 
 /**
+ * Fix common UTF-8 mojibake patterns caused by Ghost's content pipeline
+ * interpreting UTF-8 bytes as Windows-1252/Latin-1.
+ */
+function fixMojibake(text: string): string {
+  return text
+    .replace(/\u00e2\u0080\u0094/g, '\u2014')   // â€" → — (em dash)
+    .replace(/\u00e2\u0080\u0093/g, '\u2013')   // â€" → – (en dash)
+    .replace(/\u00e2\u0080\u0099/g, '\u2019')   // â€™ → ' (right single quote)
+    .replace(/\u00e2\u0080\u0098/g, '\u2018')   // â€˜ → ' (left single quote)
+    .replace(/\u00e2\u0080\u009c/g, '\u201c')   // â€œ → " (left double quote)
+    .replace(/\u00e2\u0080\u009d/g, '\u201d')   // â€ → " (right double quote)
+    .replace(/\u00c2\u00a0/g, '\u00a0');         // Â  → non-breaking space
+}
+
+/**
  * Extract JSON data from Ghost HTML card.
  */
 function extractJsonFromHtml(html: string): unknown | null {
   const match = html.match(/<script[^>]*type="application\/json"[^>]*>([\s\S]*?)<\/script>/);
   if (!match?.[1]) return null;
   try {
-    return JSON.parse(match[1]);
+    // Fix any mojibake before parsing — Ghost's content pipeline can corrupt
+    // UTF-8 em dashes, smart quotes, etc. when stored via mobiledoc.
+    const cleaned = fixMojibake(match[1]);
+    return JSON.parse(cleaned);
   } catch {
     return null;
   }

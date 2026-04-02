@@ -37,13 +37,15 @@ const pageDesc = activeTag
   ? `Articles about ${activeTag.name.toLowerCase()} from Hamilton Exteriors — Bay Area's trusted contractor.`
   : 'Expert insights on ADU construction, roofing, siding, and home improvement in the Bay Area.';
 
+const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
+
 // CollectionPage JSON-LD
 const blogJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   name: pageTitle,
   description: pageDesc,
-  url: Astro.url.href,
+  url: `${siteUrl}/blog`,
   publisher: {
     '@type': 'Organization',
     name: 'Hamilton Exteriors',

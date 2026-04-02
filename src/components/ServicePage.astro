@@ -38,8 +38,13 @@ for (const section of data.sections) {
 }
 
 // Build areaServed — use city if available (pSEO pages), otherwise counties
-const areaServed = (data as any).city
-  ? { '@type': 'City', 'name': (data as any).city, 'containedInPlace': { '@type': 'State', 'name': 'California' } }
+// Use AdministrativeArea for county-level entities (name contains "County")
+const cityOrArea = (data as any).city;
+const isCountyArea = cityOrArea && /county/i.test(cityOrArea);
+const areaServed = cityOrArea
+  ? isCountyArea
+    ? { '@type': 'AdministrativeArea', 'name': cityOrArea, 'containedInPlace': { '@type': 'State', 'name': 'California' } }
+    : { '@type': 'City', 'name': cityOrArea, 'containedInPlace': { '@type': 'State', 'name': 'California' } }
   : [
       { '@type': 'County', 'name': 'Alameda County', 'sameAs': 'https://en.wikipedia.org/wiki/Alameda_County,_California', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
       { '@type': 'County', 'name': 'Contra Costa County', 'sameAs': 'https://en.wikipedia.org/wiki/Contra_Costa_County,_California', 'containedInPlace': { '@type': 'State', 'name': 'California' } },

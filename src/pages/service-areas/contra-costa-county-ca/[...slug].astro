@@ -68,19 +68,10 @@ if (pageType === 'cityService' && cityServiceData) {
     },
   ];
 } else if (pageType === 'city' && cityData) {
+  // BreadcrumbList is handled by GeneralCityPage component — only add Service schema here
   const urlCitySlug = segments[0];
   const cityName = cityData.city || urlCitySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
   jsonLd = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      'itemListElement': [
-        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
-        { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
-        { '@type': 'ListItem', 'position': 3, 'name': 'Contra Costa County', 'item': `${siteUrl}/service-areas/${COUNTY_SLUG}` },
-        { '@type': 'ListItem', 'position': 4, 'name': `${cityName}, CA`, 'item': `${siteUrl}/service-areas/${COUNTY_SLUG}/${urlCitySlug}` },
-      ],
-    },
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
@@ -92,6 +83,7 @@ if (pageType === 'cityService' && cityServiceData) {
     },
   ];
 } else if (pageType === 'countyService' && countyServiceData) {
+  // Service schema is handled by ServicePage component — only add BreadcrumbList here
   const serviceSlug = segments[0];
   jsonLd = [
     {
@@ -103,15 +95,6 @@ if (pageType === 'cityService' && cityServiceData) {
         { '@type': 'ListItem', 'position': 3, 'name': `${countyServiceData.county} County`, 'item': `${siteUrl}/service-areas/${COUNTY_SLUG}` },
         { '@type': 'ListItem', 'position': 4, 'name': countyServiceData.serviceName, 'item': `${siteUrl}/service-areas/${COUNTY_SLUG}/${serviceSlug}` },
       ],
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      'name': `${countyServiceData.serviceName} in Contra Costa County, CA`,
-      'url': `${siteUrl}/service-areas/${COUNTY_SLUG}/${serviceSlug}`,
-      'provider': { '@type': 'RoofingContractor', '@id': `${siteUrl}/#business`, 'name': 'Hamilton Exteriors' },
-      'areaServed': { '@type': 'AdministrativeArea', 'name': 'Contra Costa County', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
-      'serviceType': countyServiceData.serviceName,
     },
   ];
 }

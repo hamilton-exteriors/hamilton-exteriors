@@ -218,7 +218,7 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
     { value: '500+', label: 'Projects Completed' },
     { value: '10+', label: 'Years Experience' },
     { value: '50yr', label: 'Warranty Coverage' },
-    { value: '4.9', label: 'Average Rating' },
+    { value: '4.8', label: 'Average Rating' },
   ];
 
   return {

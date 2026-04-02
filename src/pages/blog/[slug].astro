@@ -25,6 +25,14 @@ if (!post) {
 
 const title = post.meta_title || post.title;
 const description = post.meta_description || post.custom_excerpt || post.excerpt || '';
+
+// Noindex stub/placeholder posts that shouldn't appear in search results
+const NOINDEX_SLUGS = ['untitled', 'coming-soon'];
+const NOINDEX_TITLES = ['untitled', 'coming soon'];
+const shouldNoindex =
+  NOINDEX_SLUGS.includes(slug) ||
+  NOINDEX_TITLES.includes((post.title || '').toLowerCase().trim());
+
 const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
 const canonicalUrl = `${siteUrl}/blog/${slug}`;
 const postImage = post.feature_image || 'https://hamilton-exteriors.com/og-default.jpg';
@@ -75,7 +83,8 @@ try {
   description={description}
   image={postImage}
   type="article"
-  jsonLd={articleJsonLd}
+  jsonLd={shouldNoindex ? undefined : articleJsonLd}
+  noindex={shouldNoindex}
 >
   <meta slot="head" property="article:published_time" content={post.published_at} />
   {post.updated_at && <meta slot="head" property="article:modified_time" content={post.updated_at} />}
