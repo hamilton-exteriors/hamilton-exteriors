@@ -58,6 +58,12 @@
   }
 }
 
+/* ── Text Overflow Protection ──────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6, p, li, a, span, td, th {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 /* ── Delight — Subtle interaction polish ─────────────────────────────── */
 
 /* CTA buttons: satisfying press */
@@ -69,7 +75,7 @@ button[type="submit"] {
 a[href="#quote"]:active,
 a[href="/#quote"]:active,
 button[type="submit"]:active {
-  transform: translateY(1px) scale(0.98);
+  opacity: 0.9;
 }
 
 /* Navbar: shadow on scroll (toggled via JS) */
