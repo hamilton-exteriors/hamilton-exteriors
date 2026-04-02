@@ -17,6 +17,7 @@ import { hasImage } from '../lib/service-page-types';
 import type { ServicePageData, SectionBlock, StylesSection } from '../lib/service-page-types';
 import { resolveImage } from '../lib/image-map';
 import { getCityWikipedia } from '../lib/city-wikipedia';
+import { getCityLocalFacts } from '../lib/city-local-facts';
 
 interface Props {
   data: ServicePageData;
@@ -61,6 +62,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, '');
 const SERVICE_SLUG_MAP: Record<string, string> = { roofing: 'Roofing', siding: 'Siding', windows: 'Windows', adu: 'ADUs', 'custom-homes': 'Custom Homes', additions: 'Additions' };
 const isMainServicePage = !cityOrArea && Object.keys(SERVICE_SLUG_MAP).includes(pathname.replace('/', ''));
 const currentServiceSlug = pathname.replace('/', '');
+const localFacts = citySlug ? getCityLocalFacts(citySlug) : undefined;
 
 const counties = [
   { name: 'Alameda County', slug: 'alameda-county-ca' },
@@ -176,7 +178,25 @@ const serviceSchema = {
   }
 
   if (section.type === 'contactUs') {
-    return <ContactUs />;
+    return (
+      <>
+        {localFacts && (
+          <section class="w-full" style="background-color: var(--color-cream); padding: 60px 0;">
+            <div class="mx-auto max-w-[800px] px-5">
+              <h2 style="margin-bottom: 24px;">
+                {SERVICE_SLUG_MAP[currentServiceSlug] || 'Our Services'} in {cityOrArea}, California
+              </h2>
+              <div style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.75; color: var(--color-charcoal);" class="flex flex-col gap-4">
+                <p>{localFacts.housingNote}</p>
+                <p>{localFacts.permitNote}</p>
+                {localFacts.weatherNote && <p>{localFacts.weatherNote}</p>}
+              </div>
+            </div>
+          </section>
+        )}
+        <ContactUs />
+      </>
+    );
   }
 
   if (section.type === 'footer') {
