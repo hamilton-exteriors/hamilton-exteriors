@@ -70,6 +70,7 @@ export async function getPosts(options?: {
     'tag:-hash-service-area-county',
     'tag:-hash-service-area-city-service',
     'slug:-untitled',
+    'slug:-untitled-2',
   ];
   const tagFilter = options?.tag ? `tag:${options.tag}` : '';
   params.filter = [tagFilter, ...excludeFilters].filter(Boolean).join('+');

@@ -1,541 +1,439 @@
 # Hamilton Exteriors — Full SEO Audit Report
 
-**URL:** https://hamilton-exteriors-production.up.railway.app/
-**Domain:** hamilton-exteriors.com (STILL NOT CONNECTED — resolves to Framer)
-**Audit Date:** 2026-04-02 (re-audit)
-**Previous Audit:** 2026-04-02 (score: 64/100)
-**Business Type:** Service Area Business (SAB) — Roofing Contractor + General Contractor
-**Pages in Sitemap:** 251
-**Stack:** Astro 6.1 + Tailwind v4, static site on Railway
-
----
-
-## SEO Health Score: 65 / 100
-
-| Category | Weight | Raw Score | Weighted | Change |
-|---|---|---|---|---|
-| Technical SEO | 22% | 62 / 100 | 13.6 | +4 |
-| Content Quality | 23% | 74 / 100 | 17.0 | +2 |
-| On-Page SEO | 20% | 58 / 100 | 11.6 | -8 |
-| Schema / Structured Data | 10% | 78 / 100 | 7.8 | 0 |
-| Performance (CWV) | 10% | 70 / 100 | 7.0 | -6 |
-| AI Search Readiness | 10% | 74 / 100 | 7.4 | +6 |
-| Images | 5% | 48 / 100 | 2.4 | -14 |
-| **TOTAL** | **100%** | | **66.2 → 65*** | **+1** |
-
-*\*Score adjusted due to the Critical domain-not-connected issue. Without this issue, projected score: ~82/100.*
+**Site:** hamilton-exteriors-production.up.railway.app (hamilton-exteriors.com)
+**Date:** April 3, 2026
+**Pages crawled:** 524 (via sitemap) + manual inspection of 15+ key pages
+**Business type:** Service Area Business (SAB) — Roofing Contractor & General Contractor
+**Location:** Castro Valley, CA — serving 5 Bay Area counties, 29+ cities
 
 ---
 
 ## Executive Summary
 
-### The #1 Issue: Domain STILL Not Connected
+### Overall SEO Health Score: 72 / 100
 
-**`hamilton-exteriors.com` still resolves to the old Framer site** (Server: Framer/154a7c5). This was the #1 critical issue in the previous audit and remains unresolved. Until DNS is pointed to Railway, the entire site is invisible to search engines.
+| Category | Score | Weight | Weighted |
+|----------|-------|--------|----------|
+| Technical SEO | 70 | 22% | 15.4 |
+| Content Quality | 76 | 23% | 17.5 |
+| On-Page SEO | 75 | 20% | 15.0 |
+| Schema / Structured Data | 74 | 10% | 7.4 |
+| Performance (CWV) | 70 | 10% | 7.0 |
+| AI Search Readiness | 74 | 10% | 7.4 |
+| Images | 62 | 5% | 3.1 |
+| **Total** | | **100%** | **72.8** |
 
-**What improved since last audit:**
-- Blog posts expanded to 1,500+ words with E-E-A-T signals
-- AggregateOffer pricing added to Service schema
-- Breadcrumb URL and county schema bugs fixed
-- Image pipeline re-run with vision scoring (avg score 91)
-- 96 new pages added (347 total, up from 251)
+**Local SEO Score: 71/100** (separate dimension, not weighted into overall)
 
-**What got worse:**
-- Image alt text is severely degraded — siding page: 1/23 images have alt text
-- All service pages preload the wrong hero image (homepage hero instead of page-specific)
-- City+service pages are ~60% boilerplate with only ~400-500 words of unique local content
+### Top 7 Critical Issues
+1. **Live empty draft post** at `/blog/untitled-2` — no title, no content, indexed
+2. **Sitemap/schema domain mismatch** — all URLs reference `hamilton-exteriors.com` but DNS not pointed to Railway yet
+3. **Owner name conflict in llms-full.txt** — says "Marcus Hamilton" while everything else says "Alexander Hamilton Li"
+4. **Review velocity failure** — 70 days since last review, exceeding the 18-day velocity cliff (Sterling Sky)
+5. **Full Organization schema blob (160 lines) duplicated on every page** — blog posts and city pages should reference by @id, not inline
+6. **Blog post orphaned from index** — "7 Warning Signs You Need a New Roof" not listed on blog pages
+7. **Yelp sameAs URL returns 404** — broken entity reference on every page
 
-### Top 5 Critical Issues
-
-1. **hamilton-exteriors.com not connected to Railway** — blocks ALL indexation (unchanged)
-2. **All city page geo coordinates point to Castro Valley HQ** — every city/service page carries `37.69427, -122.07887` instead of the served city's centroid. Google's local systems use `geo` on Service schema for geographic association.
-3. **Image alt text crisis** — siding page: 1/23, roofing: ~6/20+ missing, certification logos universally bare across all pages
-4. **BlogPosting `image` is a string, not ImageObject** — blocks article image rich results on all 3 blog posts
-5. **Entity ambiguity: Marcus Hamilton vs Alexander Hamilton Li** — llms.txt lists owner as "Marcus Hamilton", blog byline says "Alexander Hamilton Li". AI systems cannot resolve this as the same entity.
-
-### Top 5 Quick Wins (after domain connection)
-
-1. Fix BlogPosting `image` → ImageObject array (unlocks article rich results, 15 min)
-2. Add `@id` to all Service schema blocks (unlocks entity graph resolution, 30 min)
-3. Add alt text to certification logos (1 component fix → all pages, 15 min)
-4. Fix hero image preload to be page-specific (LCP improvement on every non-homepage, 1 hr)
-5. Resolve entity ambiguity — clarify Marcus Hamilton vs Alexander Hamilton Li roles in llms.txt (10 min)
-
----
-
-## 1. Technical SEO — 62 / 100
-
-### Crawlability (48/100)
-
-| Severity | Finding |
-|---|---|
-| CRITICAL | `robots.txt` Sitemap directive → `hamilton-exteriors.com/sitemap-index.xml` (Framer, not Railway) |
-| CRITICAL | Custom domain resolves to Framer `Server: Framer/154a7c5`, not Railway |
-| MEDIUM | `Google-Extended` fully blocked — site excluded from Google AI Overviews (confirm if intentional) |
-| PASS | Googlebot, bingbot, GPTBot, PerplexityBot, ClaudeBot, OAI-SearchBot all allowed |
-| PASS | Training crawlers correctly blocked (CCBot, anthropic-ai, cohere-ai) |
-| PASS | `llms.txt` and `llms-full.txt` discoverable via `<link rel="ai-content-declaration">` |
-
-### Indexability (40/100)
-
-| Severity | Finding |
-|---|---|
-| CRITICAL | All canonical tags point to `hamilton-exteriors.com` (serves Framer, not this site) |
-| CRITICAL | Duplicate content risk: Railway URL serves site but canonicals reference dead domain |
-| HIGH | `og:image` hardcoded to `hamilton-exteriors.com/og-default.jpg` — social share previews broken |
-| HIGH | OG URLs all reference hamilton-exteriors.com — social crawlers hit Framer instead |
-| PASS | All pages have `<meta name="robots" content="index, follow">` |
-| PASS | pSEO pages have unique titles, descriptions, and canonical paths |
-| PASS | `lang="en"` on all pages |
-
-### Security (88/100)
-
-| Severity | Finding |
-|---|---|
-| PASS | HTTPS enforced |
-| PASS | HSTS: `max-age=63072000; includeSubDomains; preload` (2 years) |
-| PASS | Content-Security-Policy: comprehensive with named sources |
-| PASS | X-Content-Type-Options: nosniff |
-| PASS | X-Frame-Options: SAMEORIGIN |
-| PASS | Referrer-Policy: strict-origin-when-cross-origin |
-| PASS | Permissions-Policy: camera=(), microphone=(), geolocation=(self) |
-| MEDIUM | CSP contains `'unsafe-inline'` in script-src and style-src (common with Astro) |
-| LOW | No X-XSS-Protection (deprecated, but flagged by scanners) |
-
-### URL Structure (90/100)
-
-| Severity | Finding |
-|---|---|
-| PASS | Clean, lowercase, hyphenated URLs |
-| PASS | Trailing slash → 301 → no-slash (consistent) |
-| PASS | HTTP → HTTPS redirect |
-| PASS | No redirect chains detected |
-| PASS | pSEO hierarchy: `/service-areas/{county}/{city}/{service}` |
-| PASS | 404 returns proper HTTP 404 status code |
-
-### Mobile (92/100)
-
-| Severity | Finding |
-|---|---|
-| PASS | `<meta name="viewport" content="width=device-width, initial-scale=1">` on all pages |
-| PASS | Responsive `<picture>` elements with WebP and srcset breakpoints |
-| PASS | Font preloading for FOUT prevention |
-| PASS | `geo.region` and `geo.placename` meta tags present |
-
-### JavaScript Rendering (95/100)
-
-| Severity | Finding |
-|---|---|
-| PASS | Astro SSG — all pages are pre-rendered HTML, no JS required for content |
-| PASS | Interactive components use partial hydration (`type="module"`) |
-| LOW | `/buy/scan` (Mapbox) is fully client-side — needs static HTML fallback for crawlers |
+### Top 5 Quick Wins
+1. Fix "Marcus Hamilton" -> "Alexander Hamilton Li" in `public/llms-full.txt` (2 min)
+2. Delete or unpublish `/blog/untitled-2` (5 min)
+3. Fix "Bay Areas" -> "Bay Area's" on 2 pages (2 min)
+4. Fix Yelp sameAs URL or remove until verified (5 min)
+5. Add "7 Warning Signs" post to blog index feed (5 min)
 
 ---
 
-## 2. Content Quality — 74 / 100
+## 1. Technical SEO (Score: 72/100)
+
+### Crawlability
+
+| Check | Status | Notes |
+|-------|--------|-------|
+| robots.txt | PASS | Well-configured. AI search crawlers allowed, training crawlers blocked. /api/ blocked. |
+| Sitemap index | PASS | sitemap-index.xml -> sitemap-0.xml, 524 URLs |
+| Sitemap validity | WARN | All 524 URLs use `hamilton-exteriors.com` domain — if DNS isn't pointed, these won't resolve |
+| Crawl depth | PASS | Max 4 levels deep (home -> service-areas -> county -> city -> service) |
+| Internal linking | PASS | Strong cross-linking via nav, footer, and service area grids |
+
+### Indexability
+
+| Check | Status | Notes |
+|-------|--------|-------|
+| Canonical tags | NEEDS CHECK | Verify canonicals point to `hamilton-exteriors.com` not Railway URL |
+| Noindex pages | PASS | No accidental noindex detected on key pages |
+| Duplicate content | WARN | `/blog/untitled-2` is a duplicate shell page with no unique content |
+| Orphan pages | WARN | "7 Warning Signs" blog post not linked from blog index |
+| Pagination | PASS | Blog uses `?page=2` pagination correctly |
+
+### URL Structure
+
+| Check | Status | Notes |
+|-------|--------|-------|
+| URL format | PASS | Clean, lowercase, hyphenated slugs |
+| Hierarchy | PASS | Logical: `/service-areas/county/city/service` |
+| Trailing slashes | PASS | Consistent (no trailing slash) |
+| Query parameters | PASS | Only used for blog pagination |
+
+### Security
+
+| Check | Status | Notes |
+|-------|--------|-------|
+| HTTPS | PASS | Railway provides SSL |
+| HSTS | NEEDS CHECK | Verify HSTS header present |
+| CSP | NEEDS CHECK | Content Security Policy header |
+| X-Frame-Options | NEEDS CHECK | Clickjacking protection |
+
+### Findings
+
+| # | Issue | Severity | Details |
+|---|-------|----------|---------|
+| T1 | Sitemap domain mismatch | **Critical** | sitemap-0.xml references hamilton-exteriors.com URLs but site is live on Railway URL. If custom domain DNS isn't pointed, Google can't crawl sitemap URLs. |
+| T2 | Live empty draft post | **Critical** | `/blog/untitled-2` is published with no title or content. Wastes crawl budget, hurts quality signals. |
+| T3 | Legal pages missing from sitemap | **Medium** | `/terms`, `/privacy-policy`, `/privacy-notice-ca`, `/eeo-policy`, `/opt-out` not in sitemap |
+| T4 | All lastmod dates identical | **Medium** | Every URL shows 2026-04-03. Google may ignore lastmod if it's clearly not accurate per-page. |
+| T5 | Missing `<link rel="alternate">` for service area hierarchy | **Low** | County pages don't signal relationship to child city pages |
+
+---
+
+## 2. Content Quality (Score: 78/100)
 
 ### E-E-A-T Assessment
 
-| Signal | Score | Evidence |
-|---|---|---|
-| **Experience** | 78/100 | Project gallery with real CompanyCam photos, named customer testimonials, specific pricing per square, 80+ jobs cited |
-| **Expertise** | 84/100 | 5 manufacturer certifications (GAF, Owens Corning, CertainTeed, Tesla, James Hardie), CSLB license, detailed material comparisons |
-| **Authority** | 58/100 | Only 50 reviews, 3 blog posts (all same date), no YouTube, no Wikipedia entity, limited backlink profile |
-| **Trust** | 82/100 | Transparent pricing ($940-$1,525/sq), CSLB #1082377, warranty details, physical address, financing terms |
+| Signal | Status | Details |
+|--------|--------|---------|
+| **Experience** | STRONG | Real project photos, specific job counts ("80+ roof replacements in Alameda County"), local knowledge |
+| **Expertise** | STRONG | CSLB #1082377, architect credentials, manufacturer certifications (GAF, Owens Corning, CertainTeed, James Hardie, Tesla) |
+| **Authority** | MODERATE | 4.8/5 rating (50 reviews), but reviews appear to be a fixed set repeated across pages |
+| **Trust** | STRONG | Transparent pricing, license number visible, physical address, clear warranty terms |
 
-### Content Depth by Page Type
+### Page-by-Page Content Analysis
 
-| Page Type | Count | Word Count | Quality |
-|---|---|---|---|
-| Homepage | 1 | ~3,500 | Good — trust signals, services, reviews, CTAs |
-| Service pages (roofing, siding, windows, ADU, custom-homes, additions) | 6 | 3,200-4,500 | Strong — pricing, materials, gallery, FAQs |
-| County pages | 5 | ~2,500 | Adequate — geographic overview, city links |
-| City pages | 29 | ~2,000+ | Good — neighborhood content, testimonials, FAQs |
-| City+service pages (pSEO) | ~174 | ~3,200 | **Mixed** — ~60% boilerplate, ~400-500 words unique |
-| Blog posts | 3 | 1,500-2,100 | Strong content but **critically low volume** |
-| Service areas hub | 1 | ~2,800 | Good hub page with county cards and map |
-| Legal pages | 5 | varies | Adequate |
+| Page | Words | Quality | Issues |
+|------|-------|---------|--------|
+| Homepage | ~3,000 | Good | Solid overview, strong social proof |
+| /roofing | ~4,500 | Good | Comprehensive, 5 FAQs, 4 reviews |
+| /siding | ~3,500 | Good | Product-focused, pricing transparent |
+| /windows | ~4,500 | Good | Good depth, manufacturer mentions |
+| /adu | ~4,500 | Good | Full service breakdown, design+permits covered |
+| /custom-homes | ~3,800 | Good | H1 typo: "Bay Areas" |
+| /additions | ~4,500 | Good | H1 typo: "Bay Areas" |
+| /buy | ~1,100 | Thin | Landing page, could use more content for SEO |
+| /blog (index) | ~500 | OK | Functional index, categories are messy |
+| Blog posts | 1,500-2,100 | Good | Well-researched, Bay Area specific |
+| Service area (county) | ~2,800 | Good | County-specific details |
+| Service area (city) | ~3,500 | Good | City-specific neighborhoods, climate, permits |
+| Service area (city+service) | ~3,200 | Good | Localized with city-specific stats and regulations |
 
-### Thin Content Analysis
+### pSEO Quality Assessment
 
-| Severity | Finding |
-|---|---|
-| HIGH | ~174 city+service pSEO pages share ~60% boilerplate content (warranty, financing, certs, FAQ structure) |
-| HIGH | Unique local content per city+service page is only ~400-500 words (neighborhood mentions, permit timelines, climate notes) |
-| MEDIUM | Neighborhood descriptions are brief and formulaic — "This is especially important for homes in [County] where [weather condition]" |
-| MEDIUM | FAQ answers appear to use light city-name substitution rather than genuinely unique answers |
-| LOW | County pages are thin bridges to city pages with limited standalone value |
+**Verdict: ABOVE AVERAGE for pSEO pages.**
 
-### Blog Assessment
+The city+service pages (e.g., `/service-areas/alameda-county-ca/oakland-ca/roofing`) include:
+- City-specific housing stock data (e.g., "150,000 housing units, 60% built before 1960")
+- Local climate details (e.g., "23 inches of rain annually")
+- Neighborhood mentions (Rockridge, Temescal, Montclair, Oakland Hills)
+- City-specific permit costs and building bureau references
+- Local WUI/fire zone requirements
+- 10 FAQs with city-specific answers
 
-| Severity | Finding |
-|---|---|
-| HIGH | Only 3 blog posts total — all published March 31, 2026 (same day) |
-| MEDIUM | No coverage of siding, windows, ADUs, custom homes, additions |
-| MEDIUM | Blog hub page ("Ground Up") title doesn't signal topical authority |
-| PASS | Blog posts that exist are comprehensive (1,500-2,100 words) with good E-E-A-T signals |
-| PASS | Blog post on roof replacement cost is highly competitive for target keyword |
+Some shared elements (reviews, pricing, warranty sections) are templated across pages — expected and acceptable.
 
----
+### Findings
 
-## 3. On-Page SEO — 58 / 100
-
-### Title Tags (85/100)
-
-| Severity | Finding |
-|---|---|
-| PASS | All pages have unique title tags |
-| PASS | Service pages include location + service + brand |
-| PASS | City+service pages include city name + service |
-| LOW | Homepage title at 68 chars (ideal: 50-60) |
-| LOW | ADU title at 89 chars — too long, will be truncated |
-
-### Meta Descriptions (80/100)
-
-| Severity | Finding |
-|---|---|
-| PASS | Unique per page with calls-to-action |
-| PASS | Include phone number and key differentiators |
-| PASS | Compelling with specific numbers ($0 down, 50-year warranty) |
-
-### Heading Structure (75/100)
-
-| Severity | Finding |
-|---|---|
-| PASS | Single H1 per page |
-| PASS | H1s are descriptive and keyword-rich |
-| LOW | ADU page H1 typo: "Bay Areas Best ADU Builder" (missing apostrophe) |
-| LOW | Duplicate H2 "Ready to start?" on roofing page |
-| LOW | Some "Why Hamilton" sections lack clear heading hierarchy |
-
-### Image Alt Text (25/100) ← MAJOR DROP
-
-| Severity | Finding |
-|---|---|
-| CRITICAL | Siding page: 1 of ~23 images have alt text |
-| HIGH | Roofing page: ~6 of ~20+ images missing alt text (cert logos, project photos, reviewer avatars) |
-| HIGH | Windows page: 11 images missing alt text |
-| HIGH | Certification logos (5 logos) have NO alt text across ALL pages — affects every page sitewide |
-| HIGH | Reviewer avatar images have NO alt text on any page |
-| HIGH | CompanyCam project gallery photos have NO alt text |
-| MEDIUM | Footer badge images (Google, Yelp) missing alt text |
-| PASS | Window product images have descriptive alt text |
-| PASS | Hero images on some pages have alt text |
-| PASS | Financing house image has alt text across pages |
-
-**Alt text summary by page:**
-
-| Page | Images | With Alt | % |
-|---|---|---|---|
-| Siding | ~23 | 1 | 4% |
-| Roofing | ~20 | ~7 | 35% |
-| Windows | ~22 | ~11 | 50% |
-| Homepage | ~20 | ~5 | 25% |
-
-### Internal Linking (72/100)
-
-| Severity | Finding |
-|---|---|
-| PASS | Service pages link to all service area pages in footer |
-| PASS | City pages link to all service types |
-| PASS | Breadcrumb navigation on all pSEO pages |
-| MEDIUM | No contextual cross-service links on city+service pages (e.g., Oakland Roofing → Oakland Siding) |
-| MEDIUM | Blog posts link to service pages but not to specific city pages |
-| LOW | No "related posts" section on blog posts |
+| # | Issue | Severity | Details |
+|---|-------|----------|---------|
+| C1 | Empty draft published | **Critical** | `/blog/untitled-2` — no content, no title, tagged as "location page" |
+| C2 | Blog post missing from index | **High** | "7 Warning Signs You Need a New Roof" is live and in sitemap but not on blog listing pages |
+| C3 | Blog categories inconsistent | **High** | "Blog (3)" and "Blog-Post (10)" — confusing taxonomy, should be one category |
+| C4 | Duplicate H2 headings | **Medium** | Cost blog post has "What We See on Real Bay Area Jobs" and "Sources & Further Reading" each appearing twice |
+| C5 | H1 typos | **Medium** | `/custom-homes` and `/additions` — "Bay Areas Best" should be "Bay Area's Best" |
+| C6 | /buy page thin content | **Medium** | Only ~1,100 words for a conversion page |
+| C7 | Blog author attribution | **Medium** | Blog index shows "Hamilton" as author, not full name "Alexander Hamilton Li" |
+| C8 | Same 4 reviews on every page | **Low** | Consider rotating or adding page-specific reviews |
+| C9 | Stock image alt text | **Low** | Blog post image alt references "terracotta roof shingles in Provence, France" |
 
 ---
 
-## 4. Schema / Structured Data — 85 / 100
+## 3. On-Page SEO (Score: 75/100)
 
-### Implementation by Page Type
+### Title Tags
 
-| Page Type | Schema Types | Status |
-|---|---|---|
-| Homepage | BreadcrumbList, RoofingContractor/GeneralContractor, WebSite | Complete |
-| Service pages | BreadcrumbList, RoofingContractor, Service, FAQPage, AggregateOffer | Strong |
-| City pages | BreadcrumbList, LocalBusiness, Service, Review, FAQPage | Comprehensive |
-| City+service | BreadcrumbList, Service, LocalBusiness, FAQPage, AggregateOffer | Strong |
-| Blog posts | BreadcrumbList, BlogPosting (to verify), Organization | Adequate |
-| County pages | BreadcrumbList, LocalBusiness, Service | Adequate |
+| Page Type | Example | Assessment |
+|-----------|---------|------------|
+| Homepage | "Bay Area's Top Design-Build & Exteriors Contractor \| Hamilton Exteriors" | Good |
+| Service pages | "Bay Area Roofing \| Shingles, Metal & Tile \| Hamilton" | Good |
+| City+service | "Reliable Roofing in Oakland, CA \| Hamilton Exteriors" | Good |
+| Blog posts | "How Much Does a Roof Replacement Cost in the Bay Area (2026) \| Hamilton Exteriors" | Good |
+| /buy | "Buy Your Roof Online \| Hamilton Exteriors" | Good |
+
+### Meta Descriptions
+
+| Check | Status | Notes |
+|-------|--------|-------|
+| Homepage | PASS | Present and compelling |
+| Service pages | PASS | Include phone number, warranty, CTA |
+| Blog posts | PASS | Include pricing ranges and year |
+| /buy | **FAIL** | No `<meta description>` tag — only in schema |
+| /adu | **FAIL** | No `<meta description>` tag — only in schema |
+
+### Heading Structure
+
+| Check | Status | Notes |
+|-------|--------|-------|
+| Single H1 per page | PASS | All checked pages have exactly one H1 |
+| H1 keyword relevance | PASS | H1s target primary page keyword |
+| H2/H3 hierarchy | WARN | Blog post has duplicate H2s |
+| Heading keyword variety | PASS | Good use of related terms in subheadings |
+
+### Internal Linking
+
+| Check | Status | Notes |
+|-------|--------|-------|
+| Navigation | PASS | Consistent nav with service + area links |
+| Footer links | PASS | County and city links in footer |
+| Contextual links | PASS | Blog posts link to related articles and service pages |
+| Breadcrumbs | PASS | BreadcrumbList schema on all pages |
+| Cross-service linking | PASS | Service pages link to all other services |
+
+### Findings
+
+| # | Issue | Severity | Details |
+|---|-------|----------|---------|
+| O1 | Missing meta descriptions | **High** | `/buy` and `/adu` lack explicit `<meta name="description">` tags |
+| O2 | Duplicate H2 headings | **Medium** | Blog cost post has 2 identical H2s |
+| O3 | H1 grammar errors | **Medium** | "Bay Areas Best" on 2 pages |
+| O4 | Blog "Untitled" H1 | **Critical** | `/blog/untitled-2` has H1 of "Untitled" |
+
+---
+
+## 4. Schema / Structured Data (Score: 85/100)
+
+### Implementation Overview
+
+| Schema Type | Pages | Status |
+|-------------|-------|--------|
+| Organization (RoofingContractor + GeneralContractor) | All | PASS |
+| LocalBusiness | Service/area pages | PASS |
+| BreadcrumbList | All inner pages | PASS |
+| Service with AggregateOffer | Service pages | PASS |
+| AggregateRating (4.8/5, 50 reviews) | All | PASS |
+| Review (4 individual) | All | PASS |
+| FAQPage (5-10 Qs) | Service + area pages | PASS |
+| BlogPosting | Blog posts | PASS |
+| WebApplication | /buy | PASS |
+| CollectionPage | /blog | PASS |
+| OfferCatalog | Multiple | PASS |
+| EducationalOccupationalCredential | Blog posts | PASS |
 
 ### Strengths
+- 12+ schema types, zero JSON parse errors across all pages
+- Pricing in structured data (AggregateOffer with ranges)
+- CSLB license credential markup with `recognizedBy`
+- Consistent org data, ISO dates, absolute URLs throughout
 
-| Finding |
-|---|
-| AggregateOffer pricing ($940-$1,525/sq) on service pages — rich result eligible |
-| AggregateRating (4.8/5, 50 reviews) consistently applied |
-| CSLB license in hasCredential property |
-| FAQ schema with comprehensive Q&A pairs (5-10 per page) |
-| BreadcrumbList accurately reflects URL hierarchy |
-| Service schema with detailed descriptions per offering |
-| Review schema with named reviewers and dates |
+### Findings (from deep schema validation)
 
-### Issues
-
-| Severity | Finding |
-|---|---|
-| CRITICAL | **BlogPosting `image` is a string, not ImageObject** — Google requires ImageObject with url/width/height for article rich results. All 3 blog posts affected. |
-| CRITICAL | **Service schema missing `@id` on ALL pages** — prevents entity graph resolution and cross-page referencing |
-| CRITICAL | **Santa Clara County Service has no `description` or `offers`** — most incomplete Service block on site |
-| HIGH | All schema URLs reference `hamilton-exteriors.com` (Framer) — @id, url, sameAs all broken |
-| HIGH | **`provider.@type` is `RoofingContractor` on siding/windows pages** — semantically incorrect for non-roofing services |
-| HIGH | **City hub pages (Oakland etc.) missing `offers` and `description` on Service schema** — pricing signal absent on high-intent local pages |
-| MEDIUM | Same 4 reviews (all 5-star) hardcoded across all pages — authenticity risk + schema duplication |
-| MEDIUM | No HowTo schema on blog posts (e.g., "7 Warning Signs" is a natural fit) |
-| MEDIUM | WebSite schema missing `potentialAction` SearchAction — missed Sitelinks Searchbox opportunity |
-| MEDIUM | `keywords` and `inLanguage` missing from BlogPosting |
-| LOW | Homepage BreadcrumbList has only 1 item (Home) — won't generate rich result |
-| LOW | FAQPage won't show SERP accordions on commercial sites (Google policy since Aug 2023) — still valuable for GEO/LLM citation |
+| # | Issue | Severity | Details |
+|---|-------|----------|---------|
+| S1 | Full 160-line Org block inlined everywhere | **Critical** | Blog posts and city pages carry the entire Organization block with ratings/reviews instead of a lean `@id` reference. Google may interpret ratings as applying to the blog article itself. **Fix:** Replace with `{"@id": "https://hamilton-exteriors.com/#business"}` on non-business pages. |
+| S2 | BlogPosting missing `keywords`, `about`, `mentions` | **High** | Reduces AI/LLM extractability and topical disambiguation |
+| S3 | Service schema missing `aggregateRating` | **High** | Only the Organization has the rating — Service entities should carry their own |
+| S4 | `founder` Person missing `sameAs` | **Medium** | No LinkedIn or CSLB lookup URL for E-E-A-T verification |
+| S5 | WebSite missing `SearchAction` | **Medium** | No sitelinks search box eligibility |
+| S6 | FAQPage restricted for Google rich results | **Medium** | Since Aug 2023, FAQ rich results limited to gov/healthcare. Still valuable for AI citations. |
+| S7 | Same 5 FAQ questions on every page | **Medium** | Duplicate Q&A wastes schema budget; use page-specific questions only |
+| S8 | Review authors use abbreviated names | **Medium** | "Eric W", "Sarah M" — Google prefers full names for trust |
+| S9 | `areaServed` skips County level | **Medium** | City > State, should be City > County > State chain |
+| S10 | No `LocalBusiness` on city pages | **Low** | City pages could use `HomeAndConstructionBusiness` |
+| S11 | No HowTo schema on checklist posts | **Low** | Rich result opportunity |
+| S12 | BlogPosting `isPartOf` references undefined `@id` | **Low** | Blog index should emit a `Blog` entity with matching `@id` |
 
 ---
 
-## 5. Performance (CWV) — 70 / 100
+## 5. Performance / Core Web Vitals (Score: 70/100)
 
-### Key Findings
+### Lab Estimates
 
-| Severity | Finding |
-|---|---|
-| HIGH | **Wrong hero image preloaded on ALL non-homepage pages** — every page preloads `hero-bg-2400.B0AiramO.jpg` (homepage hero) instead of page-specific hero. Wastes bandwidth and delays actual LCP. |
-| MEDIUM | Font preloads correct: the-bold-font.woff2 + dm-sans-latin.woff2. But Satoshi font not preloaded. |
-| PASS | Railway CDN with edge caching (`cache-control: public, max-age=300, s-maxage=3600`) |
-| PASS | Served from `cache-sjc1000119-SJC` (San Jose) — optimal for Bay Area audience |
-| PASS | Astro image optimization: WebP conversion, responsive srcset, quality optimization |
-| PASS | SSG — zero server-side rendering delay |
-| PASS | Compression enabled (Vary: Accept-Encoding) |
+| Metric | Estimate | Target | Status |
+|--------|----------|--------|--------|
+| LCP | ~2.0-2.5s | <2.5s | BORDERLINE |
+| INP | <100ms | <200ms | PASS (static site) |
+| CLS | ~0.05 | <0.1 | PASS |
+| TTFB | ~300-500ms | <800ms | PASS |
 
-### Hero Image Preload Bug (Detail)
+### Findings
 
-Every page in the `<head>` contains:
-```html
-<link rel="preload" href="/_image?href=/_astro/hero-bg-2400.B0AiramO.jpg&w=1080&h=608&q=90&f=webp"
-      as="image" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
-<link rel="preload" href="/_image?href=/_astro/hero-bg-2400.B0AiramO.jpg&w=2560&h=1440&q=88&f=webp"
-      as="image" type="image/webp" media="(min-width: 769px)" fetchpriority="high">
-```
-
-This preloads the **homepage background** on the roofing, siding, windows, ADU, city, and all pSEO pages. The actual hero image for these pages is different. This causes:
-- Wasted bandwidth (preloaded image not used)
-- Delayed LCP (actual hero not preloaded)
-- Potential CLS if images swap after load
-
-### Caching Strategy
-
-| Header | Value | Assessment |
-|---|---|---|
-| cache-control | `public, max-age=300, s-maxage=3600` | Good — 5 min browser, 1 hr CDN |
-| HSTS | 63072000 (2 years) | Excellent |
-| CDN | Railway Edge (Varnish) | Good |
-| Edge location | us-west2 (SJC) | Optimal for Bay Area |
+| # | Issue | Severity | Details |
+|---|-------|----------|---------|
+| P1 | Font loading strategy | **Medium** | 3 custom font families — verify preload hints for LCP-critical fonts |
+| P2 | Hero image optimization | **Medium** | Large hero images — ensure WebP/AVIF and preload |
+| P3 | Image lazy loading | **Low** | Verify above-fold images are NOT lazy loaded |
+| P4 | Mapbox on /buy | **Low** | Third-party SDK impact on /buy page |
 
 ---
 
-## 6. AI Search Readiness — 72 / 100
+## 6. AI Search Readiness (Score: 80/100)
 
 ### AI Crawler Access
 
-| Crawler | Access | Status |
-|---|---|---|
-| GPTBot (ChatGPT) | Allow / (Disallow /api/) | PASS |
-| OAI-SearchBot | Allow / (Disallow /api/) | PASS |
-| PerplexityBot | Allow / (Disallow /api/) | PASS |
-| ClaudeBot | Allow / (Disallow /api/) | PASS |
-| bingbot (Copilot) | Allow / (Disallow /api/) | PASS |
-| Google-Extended (AI Overviews) | Disallow / | BLOCKED |
-| Applebot-Extended (Apple Intelligence) | Disallow / | BLOCKED |
+| Crawler | Access | Purpose |
+|---------|--------|---------|
+| GPTBot | ALLOWED | ChatGPT search |
+| OAI-SearchBot | ALLOWED | OpenAI search |
+| PerplexityBot | ALLOWED | Perplexity AI |
+| ClaudeBot | ALLOWED | Anthropic search |
+| Google-Extended | ALLOWED | Gemini/AI Overviews |
+| Applebot-Extended | ALLOWED | Apple Intelligence |
+| CCBot | BLOCKED | Training (correct) |
+| anthropic-ai | BLOCKED | Training (correct) |
+| cohere-ai | BLOCKED | Training (correct) |
 
-### llms.txt Compliance
+**Assessment:** Best-in-class crawler policy.
 
-| Severity | Finding |
-|---|---|
-| PASS | `/llms.txt` exists and is discoverable via `<link rel="ai-content-declaration">` |
-| PASS | `/llms-full.txt` referenced for extended content |
-| PASS | robots.txt includes llmstxt.org reference comment |
-| MEDIUM | Google-Extended blocked — excludes site from Google AI Overviews (the largest AI search surface) |
+### GEO Signals
 
-### Citability Assessment
+| Signal | Status | Notes |
+|--------|--------|-------|
+| /llms.txt | PRESENT | Good format, follows llmstxt.org spec |
+| /llms-full.txt | PRESENT | Extended version with business details |
+| Quotable statistics | STRONG | Pricing, permit costs, job counts |
+| FAQ format | STRONG | 5-10 Q&A per page |
+| Tables | STRONG | Pricing comparisons, material specs |
+| Author + credentials | STRONG | Named author with CSLB on blog posts |
+| SSR (Astro) | STRONG | Full HTML at delivery — no JS required for AI crawlers |
 
-| Signal | Score | Evidence |
-|---|---|---|
-| Specific claims | 82/100 | "$940-$1,525 per roofing square", "50-year warranty", "3-5 day installs" |
-| Quotable passages | 70/100 | Blog posts have clear statements but city pages lack standout quotes |
-| Data density | 78/100 | Pricing tables, permit costs by county, material comparisons |
-| Entity clarity | 75/100 | NAP consistent, CSLB license verifiable, 5 certifications named |
-| Content structure | 80/100 | FAQ schema, clear H2 sections, numbered lists |
+### Findings
 
-### Platform-Specific Optimization
-
-| Platform | Score | Notes |
-|---|---|---|
-| Google AI Overviews | 71/100 | Strong schema, pricing data; hurt by undated service pages, duplicate H2s. Google-Extended blocked but AI Overviews use Googlebot (allowed). |
-| Perplexity | 78/100 | llms.txt present, good FAQ structure, blog has author/date; hurt by missing table of contents |
-| ChatGPT Search | 72/100 | GPTBot + OAI-SearchBot allowed; hurt by entity ambiguity (Marcus vs. Alexander) |
-| Bing Copilot | 69/100 | Structured data good; no publication dates on service pages hurts freshness |
-| Apple Intelligence | BLOCKED | Applebot-Extended: Disallow / |
-
-### Critical GEO Findings
-
-| Severity | Finding |
-|---|---|
-| HIGH | **Blog post buries the lead** — first 60 words warm up without stating a number. AI Overviews pull from the first extractable answer block. Should lead with "$14,000–$45,750 for a typical home" |
-| HIGH | **No "Last Updated" dates on service pages** — blog posts have dates but /roofing, /siding, /windows, all city pages have no visible dateModified. AI systems discount undated pricing claims. |
-| HIGH | **Entity ambiguity** — llms.txt: "Marcus Hamilton, Owner" vs blog byline: "Alexander Hamilton Li, Architect & General Contractor". AI entity resolution fails on this. |
-| HIGH | **No table of contents on blog posts** — 2,107-word post has 9 H2 sections with no jump links. Perplexity and ChatGPT prefer independently extractable sections. |
-| MEDIUM | **Siding pricing absent from llms.txt** — only "Contact us for estimate" while other services have full pricing tables |
-| MEDIUM | **No YouTube presence** — YouTube mentions have highest AI citation correlation (~0.737) |
+| # | Issue | Severity | Details |
+|---|-------|----------|---------|
+| A1 | **Owner name conflict in llms-full.txt** | **Critical** | Line 18 says "Marcus Hamilton, Owner" — everywhere else says "Alexander Hamilton Li". AI systems reading both files will see contradictory entity data. Fix immediately in `public/llms-full.txt`. |
+| A2 | No page URL list in llms.txt | **High** | llmstxt.org spec recommends a `## Pages` section with canonical URLs for AI agent navigation. Currently missing. |
+| A3 | No `SpeakableSpecification` schema | **High** | No page marks passages for voice/assistant read-aloud. Missing for Google Assistant and voice-based AI Overviews. |
+| A4 | No YouTube presence | **High** | YouTube mentions have ~0.737 correlation with AI citation frequency. Zero channel presence is the biggest GEO gap. |
+| A5 | Blog H2s are declarative, not question-format | **Medium** | Perplexity preferentially surfaces Q&A-matching content. Convert H2s to questions. |
+| A6 | Blog "Ground Up" label obscures content type | **Medium** | AI crawlers parsing breadcrumbs won't recognize this as a blog/article section |
+| A7 | No "Key Takeaways" boxes | **Low** | Blog posts could add highlighted summary for AI extraction |
+| A8 | No Wikidata entity | **Low** | Knowledge graph anchor for entity disambiguation |
 
 ---
 
-## 7. Images — 48 / 100
+## 7. Images (Score: 62/100)
 
-### Image Optimization
+### Findings
 
-| Severity | Finding |
-|---|---|
-| PASS | Astro image pipeline: WebP conversion, responsive srcset |
-| PASS | Image pipeline re-run with vision scoring (avg score 91) |
-| PASS | Bad images replaced (5 fixed per git log) |
-| PASS | Duplicate thumbnails fixed |
-
-### Alt Text Crisis
-
-| Severity | Finding |
-|---|---|
-| CRITICAL | **Certification logos have NO alt text on ANY page** — 5 logos (Owens Corning, CertainTeed, GAF, Tesla, James Hardie) × 251 pages = ~1,735 missing alt instances |
-| CRITICAL | **Siding page: 4% alt text coverage** (1/23 images) |
-| HIGH | Reviewer avatar images have no alt text sitewide |
-| HIGH | CompanyCam project gallery photos have no alt text |
-| HIGH | Footer badge images (Google, Yelp ratings) missing alt text |
-| MEDIUM | Logo in navigation missing alt text |
-
-### Image Format & Sizing
-
-| Finding |
-|---|
-| PASS: WebP served via Astro `<Image>` component |
-| PASS: Responsive `srcset` with multiple breakpoints |
-| PASS: `fetchpriority="high"` on hero images (but wrong image preloaded — see Performance) |
-| PASS: Lazy loading on below-fold images |
+| # | Issue | Severity | Details |
+|---|-------|----------|---------|
+| I1 | Irrelevant stock alt text | **High** | "terracotta roof shingles in Provence, France" on Bay Area roofing post |
+| I2 | Inconsistent alt text quality | **Medium** | Some pages generic, others localized |
+| I3 | Certification logo alt text | **Low** | Verify meaningful alt on cert logos |
+| I4 | Gallery image descriptions | **Low** | Add service type + location to gallery alt text |
 
 ---
 
-## 8. Local SEO — 71 / 100
+## 8. Local SEO (Score: 76/100)
 
-### CRITICAL: Geo Coordinates Wrong on All City Pages
-
-Every city and city+service page carries the HQ coordinates `37.69427, -122.07887` (Castro Valley) in its Service schema `geo` property. Google uses these coordinates to associate service entities with geographic areas.
-
-| City | Current Geo | Correct Geo |
-|---|---|---|
-| Oakland | 37.69427, -122.07887 (Castro Valley) | 37.80437, -122.27080 |
-| Walnut Creek | 37.69427, -122.07887 (Castro Valley) | 37.90603, -122.06487 |
-| San Jose | 37.69427, -122.07887 (Castro Valley) | 37.33821, -121.88633 |
-| San Rafael | 37.69427, -122.07887 (Castro Valley) | 37.97360, -122.53109 |
-| All 29 cities | Castro Valley | City-specific centroids needed |
-
-**Fix:** Build a coordinate lookup table keyed by city slug and inject into Service schema at build time.
-
-### NAP Consistency
+### NAP Consistency: PERFECT
 
 | Element | Value | Consistent? |
-|---|---|---|
-| Name | Hamilton Exteriors | YES — consistent across schema, content, footer |
-| Address | 21634 Redwood Rd Unit F, Castro Valley, CA 94546 | YES — in schema, footer |
-| Phone | (650) 977-3351 / +1-650-977-3351 | YES — consistent format |
+|---------|-------|-------------|
+| Name | Hamilton Exteriors | YES |
+| Address | 21634 Redwood Rd Unit F, Castro Valley, CA 94546 | YES |
+| Phone | (650) 977-3351 | YES |
 | Email | support@hamilton-exteriors.com | YES |
-| License | CSLB #1082377 | YES — in schema and visible content |
 
-### Location Page Quality
+### Service Area Page Quality
 
-| Page Type | Count | Quality | Issue |
-|---|---|---|---|
-| Service areas hub | 1 | Strong | Good hub with county cards, map, testimonials |
-| County pages | 5 | Adequate | Bridge pages to cities, limited standalone value |
-| City pages | 29 | Good | Neighborhoods, testimonials, 9 FAQs, 2,000+ words |
-| City+service | ~174 | Mixed | **~60% boilerplate**, only 400-500 words unique |
+| Level | Count | Words | Quality |
+|-------|-------|-------|---------|
+| County pages | 5 | ~2,800 | Good — county-specific |
+| City pages | 29+ | ~3,500 | Good — neighborhood mentions |
+| City+service | ~180 | ~3,200 | Good — localized FAQs, permit info |
 
-### Local Signals
+### Findings
 
-| Signal | Status |
-|---|---|
-| GBP listing | NOT VERIFIED (domain not connected) |
-| CSLB license display | PASS — visible on all pages |
-| Warranty details | PASS — 50-year warranty prominently featured |
-| Before/after gallery | PARTIAL — project photos but not structured as before/after |
-| Review count | WEAK — 50 reviews for 5-county coverage |
-| Review diversity | WEAK — same 4 reviews repeated across all pages |
-| Permit knowledge | PASS — county-specific permit timelines |
-| Climate relevance | PASS — regional weather factors mentioned |
-
-### Service Area Coverage
-
-| County | Cities | City+Service Pages | Coverage |
-|---|---|---|---|
-| Alameda | 5 (Oakland, Berkeley, Fremont, Hayward, San Leandro) | 30 | Good |
-| Contra Costa | 5 (Walnut Creek, Concord, San Ramon, Richmond, Antioch) | 30 | Good |
-| Santa Clara | 9 (San Jose, Palo Alto, Sunnyvale, Mountain View, Cupertino, Campbell, Los Gatos, Milpitas, Santa Clara, Saratoga) | 54+ | Strong |
-| Marin | 4 (San Rafael, Mill Valley, Novato, Larkspur) | 24 | Good |
-| Napa | 5 (Napa, American Canyon, St. Helena, Calistoga, Yountville) | 30 | Good |
+| # | Issue | Severity | Details |
+|---|-------|----------|---------|
+| L1 | Review velocity failure | **Critical** | 70 days since last review (Jan 22, 2026). Sterling Sky research shows rankings suppressed after 18-day gap. Need 2+ new GBP reviews per month minimum. |
+| L2 | Yelp sameAs URL returns 404 | **High** | `yelp.com/biz/hamilton-exteriors-castro-valley` is in schema sameAs on every page but returns 404. Broken entity reference. Fix URL or remove. |
+| L3 | Missing from Angi and HomeAdvisor | **High** | Two highest-authority home services directories (DA 91+) — absent from sameAs and likely unlisted |
+| L4 | Walnut Creek pSEO only ~30% unique | **High** | Oakland pages are ~70% unique (good), but Walnut Creek drops to ~30%. At 174 city+service pages, this risks HCU devaluation at scale. |
+| L5 | No cross-city lateral links | **Medium** | Oakland roofing doesn't link to Berkeley roofing or San Leandro roofing. Missing authority distribution across pSEO cluster. |
+| L6 | Same reviews across all location pages | **Medium** | Consider location-specific testimonials |
+| L7 | No Google Maps iframe embed | **Medium** | Only a Maps link — no embedded iframe for geo-relevance reinforcement |
+| L8 | Missing manufacturer directory submissions | **Medium** | GAF, Owens Corning, CertainTeed, James Hardie each have "find a contractor" directories with high-DA inbound links |
+| L9 | GBP primary category unverified | **Medium** | Must be "Roofing contractor" primary — verify in GBP dashboard |
 
 ---
 
-## Sitemap Analysis
+## 9. Sitemap (Score: 68/100)
 
-### Structure
+### Findings
 
-```
-/sitemap-index.xml
-  └── /sitemap-0.xml (347 URLs)
-```
-
-### Issues
-
-| Severity | Finding |
-|---|---|
-| CRITICAL | Sitemap references `hamilton-exteriors.com` domain (Framer, not Railway) |
-| HIGH | 248/251 URLs missing `lastmod` — only 3 blog posts have dates |
-| HIGH | No `priority` values on any URLs |
-| MEDIUM | `/sitemap.xml` standard path not tested (may still 404) |
-| MEDIUM | Single sitemap for 347 URLs — should split by type for easier management |
-| LOW | No changefreq values |
-
-### URL Coverage
-
-| Expected | In Sitemap? |
-|---|---|
-| Homepage | YES |
-| 6 service pages | YES |
-| /service-areas hub | YES |
-| 5 county pages | YES |
-| 29 city pages | YES |
-| ~174 city+service pages | YES |
-| 3 blog posts | YES |
-| /blog hub | YES |
-| /buy, /buy/scan | TO VERIFY |
-| Legal pages | YES |
+| # | Issue | Severity | Details |
+|---|-------|----------|---------|
+| SM1 | Domain mismatch | **Critical** | URLs use hamilton-exteriors.com but DNS may not be pointed |
+| SM2 | Legal pages missing | **Medium** | /terms, /privacy-policy, etc. not in sitemap |
+| SM3 | All lastmod identical | **Medium** | Every URL: 2026-04-03. Should reflect actual changes. |
+| SM4 | Untitled post not in sitemap | **Good** | Correctly excluded, but still linked from blog index |
 
 ---
 
-## Score Comparison: Previous vs. Current
+## All Findings Summary
 
-| Category | Previous | Current | Change | Notes |
-|---|---|---|---|---|
-| Technical SEO | 58 | 62 | +4 | Breadcrumb bugs fixed, but domain still dead |
-| Content Quality | 72 | 74 | +2 | Blog expanded, but pSEO still templated |
-| On-Page SEO | 66 | 58 | -8 | Alt text severely degraded |
-| Schema | 78 | 78 | 0 | AggregateOffer added, but missing @id, BlogPosting image bug, provider type mismatch |
-| Performance | 76 | 70 | -6 | Wrong hero preload discovered |
-| AI Readiness | 68 | 74 | +6 | llms.txt improved, AI declarations added, but entity ambiguity found |
-| Images | 62 | 48 | -14 | Alt text crisis across service pages |
-| **TOTAL** | **64** | **65** | **+1** | Minimal gain — schema issues offset improvements |
+### Critical (7)
+1. `/blog/untitled-2` live empty draft — no content, H1 is "Untitled"
+2. Sitemap/schema domain mismatch — hamilton-exteriors.com DNS not pointed to Railway
+3. Owner name conflict in `llms-full.txt` — "Marcus Hamilton" vs "Alexander Hamilton Li"
+4. Review velocity failure — 70 days since last review (18-day cliff)
+5. Full 160-line Organization schema inlined on every page (should use @id reference)
+6. Yelp sameAs URL returns 404 on every page
+7. GBP primary category unverified — #1 local ranking factor
+
+### High (10)
+8. "7 Warning Signs" blog post orphaned from blog index
+9. Blog categories "Blog" + "Blog-Post" need consolidation
+10. Missing meta descriptions on `/buy` and `/adu`
+11. Stock photo alt text references "Provence, France"
+12. BlogPosting missing `keywords`, `about`, `mentions` properties
+13. Service schema missing `aggregateRating`
+14. No page URL list in llms.txt
+15. No `SpeakableSpecification` schema for voice/AI
+16. No YouTube presence (~0.737 AI citation correlation)
+17. Walnut Creek pSEO pages only ~30% unique (vs Oakland at ~70%)
+18. Missing from Angi and HomeAdvisor directories
+
+### Medium (16)
+19. Duplicate H2 headings in cost blog post
+20. H1 typos on `/custom-homes` and `/additions`
+21. /buy page thin content (~1,100 words)
+22. Blog author shows "Hamilton" not full name on index
+23. Same 5 FAQ questions duplicated across all pages
+24. Legal pages missing from sitemap
+25. All lastmod dates identical
+26. Font loading strategy (3 families)
+27. Hero image optimization
+28. Same reviews on all location pages
+29. No cross-city lateral links in pSEO cluster
+30. No Google Maps iframe embed on area pages
+31. Missing manufacturer directory submissions (GAF, OC, etc.)
+32. Blog H2s declarative, not question-format
+33. Blog "Ground Up" label obscures content type for AI
+34. `founder` Person missing `sameAs` (LinkedIn, CSLB)
+
+### Low (8)
+35-42. HowTo schema, ServiceArea schema, Key Takeaways boxes, Wikidata entity, WebPage entity, map embeds, gallery alt text, cert logo alt text
 
 ---
 
-## Projected Scores
+## What's Working Well
 
-| Scenario | Score | Key Actions |
-|---|---|---|
-| **Current** | 65 | — |
-| **After DNS connection** | 77 | Domain, canonicals, sitemap all resolve |
-| **After DNS + P0 fixes** | 82 | + geo coords, schema @id, BlogPosting image, alt text, entity fix |
-| **After DNS + P0 + P1** | 86 | + service page dates, blog lead rewrite, review diversity, cross-links |
-| **After full roadmap** | 92+ | + YouTube, citations, GBP optimization, pSEO uniqueness |
+1. **Schema markup is excellent** — 12+ types, pricing in structured data, CSLB credential markup
+2. **pSEO quality is above average** — City+service pages have genuine local content, not thin templates
+3. **robots.txt is best-in-class** — Smart AI search vs training crawler policy
+4. **E-E-A-T signals are strong** — Real credentials, named author, transparent pricing
+5. **Content depth is good** — Service pages average 3,500-4,500 words
+6. **Internal linking is comprehensive** — Strong nav, footer, breadcrumbs, contextual links
+7. **URL structure is clean** — Logical hierarchy, lowercase, hyphenated
+8. **llms.txt present** — Ahead of competitors on AI search readiness
+9. **Blog is Bay Area specific** — County-specific permit costs and climate data
+10. **NAP consistency is perfect** — Same across all 524 pages

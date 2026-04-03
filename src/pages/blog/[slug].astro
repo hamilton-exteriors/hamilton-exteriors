@@ -31,7 +31,7 @@ const description = post.meta_description || post.custom_excerpt || post.excerpt
 const NOINDEX_SLUGS = ['untitled', 'coming-soon'];
 const NOINDEX_TITLES = ['untitled', 'coming soon'];
 const shouldNoindex =
-  NOINDEX_SLUGS.includes(slug) ||
+  NOINDEX_SLUGS.some(s => slug.startsWith(s)) ||
   NOINDEX_TITLES.includes((post.title || '').toLowerCase().trim());
 
 const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';

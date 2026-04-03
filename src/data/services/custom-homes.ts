@@ -7,7 +7,7 @@ export const data: ServicePageData = {
     'Full-service custom home builder in the Bay Area. Design, architecture, engineering, permits & construction — all under one roof.',
   announcementText: 'Limited Time: Free Design Consultation for Custom Home Projects*',
   hero: {
-    headline: 'Bay Areas  Best Custom  Home Builder',
+    headline: "Bay Area's Best Custom Home Builder",
     formTitle: 'Get a FREE Consultation',
     formSubtitle:
       "Tell us about your dream home. We'll call within 5 minutes to discuss your project.",

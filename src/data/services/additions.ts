@@ -8,7 +8,7 @@ export const data: ServicePageData = {
     'Bay Area home additions, second stories & ADUs. Design, permits & construction under one roof. 50-year warranty. Call (650) 977-3351.',
   announcementText: 'Limited Time: Free Design Consultation for Your Addition Project*',
   hero: {
-    headline: 'Bay Areas  Best Home  Addition  Builder',
+    headline: "Bay Area's Best Home Addition Builder",
     formTitle: 'Get a FREE Consultation',
     formSubtitle:
       "We'll contact you in 3-5 minutes to discuss your project.",
