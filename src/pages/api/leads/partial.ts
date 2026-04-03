@@ -27,22 +27,30 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ error: 'Phone or email is required' }, 400);
   }
 
-  const result = await sendToBackOffice({
-    name,
-    phone: phone || undefined,
-    email: email || undefined,
-    source: 'website-form',
-    metadata: {
-      address: body.address || undefined,
-      service: body.service || undefined,
-      serviceDetail: body.serviceDetail || undefined,
-      step: body.step || undefined,
-      page_url: body.page_url || undefined,
-    },
-    utm_source: String(body.utm_source || '') || undefined,
-    utm_medium: String(body.utm_medium || '') || undefined,
-    utm_campaign: String(body.utm_campaign || '') || undefined,
-  });
+  // Build metadata — only include truthy values
+  const metadata: Record<string, unknown> = {};
+  if (body.address) metadata.address = body.address;
+  if (body.service) metadata.service = body.service;
+  if (body.serviceDetail) metadata.serviceDetail = body.serviceDetail;
+  if (body.step) metadata.step = body.step;
+  if (body.page_url) metadata.page_url = body.page_url;
+
+  let result;
+  try {
+    result = await sendToBackOffice({
+      name,
+      ...(phone && { phone }),
+      ...(email && { email }),
+      source: 'website-form',
+      ...(Object.keys(metadata).length > 0 && { metadata }),
+      ...(body.utm_source && { utm_source: String(body.utm_source) }),
+      ...(body.utm_medium && { utm_medium: String(body.utm_medium) }),
+      ...(body.utm_campaign && { utm_campaign: String(body.utm_campaign) }),
+    });
+  } catch (err) {
+    console.error('[partial] sendToBackOffice threw:', (err as Error).message);
+    return json({ error: 'Failed to send lead' }, 502);
+  }
 
   if (!result.success) {
     return json({ error: result.error || 'Failed to save lead' }, 502);
