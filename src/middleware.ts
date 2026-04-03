@@ -7,9 +7,23 @@ import { defineMiddleware } from 'astro:middleware';
  * - HTML pages: 5 min browser cache, 1 hour CDN cache
  * - API routes: no-store
  */
+// Permanent redirects for common probes and URL aliases
+const REDIRECTS: Record<string, string> = {
+  '/sitemap.xml': '/sitemap-index.xml',
+  '/privacy': '/privacy-policy',
+  '/blog/untitled-2': '/blog',
+};
+
 export const onRequest = defineMiddleware(async (context, next) => {
-  const response = await next();
   const { pathname } = context.url;
+
+  // Handle permanent redirects before processing
+  const redirectTo = REDIRECTS[pathname];
+  if (redirectTo) {
+    return new Response(null, { status: 301, headers: { Location: redirectTo } });
+  }
+
+  const response = await next();
 
   // Security headers
   response.headers.set('X-Content-Type-Options', 'nosniff');
@@ -47,8 +61,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   // HTML pages — short browser cache, longer CDN cache
+  // Don't cache error responses (404s are transient)
   const contentType = response.headers.get('Content-Type') || '';
-  if (contentType.includes('text/html') || !contentType) {
+  if (response.status >= 400) {
+    response.headers.set('Cache-Control', 'no-store');
+  } else if (contentType.includes('text/html') || !contentType) {
     response.headers.set('Cache-Control', 'public, max-age=300, s-maxage=3600');
   }
 
