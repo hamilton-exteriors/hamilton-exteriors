@@ -84,7 +84,15 @@ const SERVICE_TYPE_MAP: Record<string, string> = {
 };
 const serviceType = SERVICE_TYPE_MAP[serviceSlug] || data.title.split('|')[0].split('—')[0].trim();
 
-const serviceSchema = {
+// Pricing data for AggregateOffer — only on main service pages
+const SERVICE_PRICING: Record<string, { low: number; high: number; unit: string; currency: string }> = {
+  roofing: { low: 940, high: 1525, unit: 'per roofing square (100 sq ft)', currency: 'USD' },
+  siding: { low: 400, high: 1250, unit: 'per 100 sq ft installed', currency: 'USD' },
+  windows: { low: 600, high: 3200, unit: 'per window/unit installed', currency: 'USD' },
+};
+const pricing = SERVICE_PRICING[serviceSlug];
+
+const serviceSchema: Record<string, unknown> = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   'name': data.title.split('|')[0].trim(),
@@ -97,6 +105,16 @@ const serviceSchema = {
   },
   'areaServed': areaServed,
   'description': data.description,
+  ...(pricing && {
+    'offers': {
+      '@type': 'AggregateOffer',
+      'lowPrice': pricing.low,
+      'highPrice': pricing.high,
+      'priceCurrency': pricing.currency,
+      'unitText': pricing.unit,
+      'availability': 'https://schema.org/InStock',
+    },
+  }),
 };
 ---
 
@@ -187,7 +205,7 @@ const serviceSchema = {
   }
 
   if (section.type === 'faq') {
-    return <FAQ />;
+    return <FAQ extraFaqs={(data as any).localFaqs} />;
   }
 
   if (section.type === 'contactUs') {
