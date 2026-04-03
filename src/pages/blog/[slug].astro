@@ -36,11 +36,18 @@ const shouldNoindex =
 
 const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
 const canonicalUrl = `${siteUrl}/blog/${slug}`;
-const postImage = post.feature_image || 'https://hamilton-exteriors.com/og-default.jpg';
+
+// Ensure og:image is always absolute — social platforms need full URLs
+const rawImage = post.feature_image || '/og-default.jpg';
+const postImage = rawImage.startsWith('http') ? rawImage : `${siteUrl}${rawImage}`;
 
 // Article structured data for SEO
 const authorName = post.primary_author?.name || 'Hamilton Exteriors';
-const estimatedWordCount = post.reading_time ? post.reading_time * 200 : undefined;
+
+// Calculate actual word count from HTML content (not estimate)
+const actualWordCount = post.html
+  ? post.html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().split(' ').length
+  : (post.reading_time ? post.reading_time * 200 : undefined);
 
 // Build real keywords from tag names, filtering out slug-like values
 const tagKeywords = post.tags
@@ -61,7 +68,7 @@ const articleJsonLd = {
   datePublished: post.published_at,
   dateModified: post.updated_at || post.published_at,
   url: canonicalUrl,
-  ...(estimatedWordCount && { wordCount: estimatedWordCount }),
+  ...(actualWordCount && { wordCount: actualWordCount }),
   author: {
     '@type': 'Person',
     name: authorName === 'Hamilton Exteriors' ? 'Alexander Hamilton Li' : authorName,
