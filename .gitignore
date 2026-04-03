@@ -25,6 +25,8 @@ pnpm-debug.log*
 
 .playwright-mcp/
 *.png
+!src/assets/**/*.png
+!public/**/*.png
 *.jpeg
 extraction*.json
 pwc-extraction*.json
