@@ -5,7 +5,7 @@ export const data: ServicePageData = {
   title:
     'Home Additions & Construction in the Bay Area | Hamilton Exteriors',
   description:
-    'Hamilton Exteriors builds home additions, ADUs, second stories, and custom homes across the Bay Area. Design, engineering, permits, and construction — all under one roof.',
+    'Bay Area home additions, second stories & ADUs. Design, permits & construction under one roof. 50-year warranty. Call (650) 977-3351.',
   announcementText: 'Limited Time: Free Design Consultation for Your Addition Project*',
   hero: {
     headline: 'Bay Areas  Best Home  Addition  Builder',

@@ -4,7 +4,7 @@ import { serviceCustomHomesFull, serviceCustomHomes, serviceAdditions, designEng
 export const data: ServicePageData = {
   title: 'Custom Home Builder in the Bay Area | Hamilton Exteriors',
   description:
-    'Hamilton Exteriors is a full-service custom home builder in the Bay Area. Design, architecture, engineering, permitting, and construction — all under one roof.',
+    'Full-service custom home builder in the Bay Area. Design, architecture, engineering, permits & construction — all under one roof.',
   announcementText: 'Limited Time: Free Design Consultation for Custom Home Projects*',
   hero: {
     headline: 'Bay Areas  Best Custom  Home Builder',
