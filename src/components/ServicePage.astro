@@ -64,6 +64,16 @@ const isMainServicePage = !cityOrArea && Object.keys(SERVICE_SLUG_MAP).includes(
 const currentServiceSlug = pathname.replace('/', '');
 const localFacts = citySlug ? getCityLocalFacts(citySlug) : undefined;
 
+// Build cross-service links for city+service pages
+const pathParts = pathname.split('/').filter(Boolean); // e.g., ['service-areas', 'alameda-county-ca', 'oakland-ca', 'roofing']
+const isCityServicePage = pathParts.length === 4 && pathParts[0] === 'service-areas';
+const countySlugFromPath = isCityServicePage ? pathParts[1] : '';
+const citySlugFromPath = isCityServicePage ? pathParts[2] : '';
+const currentService = isCityServicePage ? pathParts[3] : '';
+const otherServices = isCityServicePage
+  ? Object.entries(SERVICE_SLUG_MAP).filter(([slug]) => slug !== currentService)
+  : [];
+
 const counties = [
   { name: 'Alameda County', slug: 'alameda-county-ca' },
   { name: 'Contra Costa County', slug: 'contra-costa-county-ca' },
@@ -95,16 +105,16 @@ const pricing = SERVICE_PRICING[serviceSlug];
 const serviceSchema: Record<string, unknown> = {
   '@context': 'https://schema.org',
   '@type': 'Service',
+  '@id': `https://hamilton-exteriors.com${Astro.url.pathname}#service`,
   'name': data.title.split('|')[0].trim(),
   'url': `https://hamilton-exteriors.com${Astro.url.pathname}`,
   'serviceType': serviceType,
   'provider': {
-    '@type': 'RoofingContractor',
     '@id': 'https://hamilton-exteriors.com/#business',
-    'name': 'Hamilton Exteriors',
   },
   'areaServed': areaServed,
   'description': data.description,
+  'dateModified': new Date().toISOString().split('T')[0],
   ...(pricing && {
     'offers': {
       '@type': 'AggregateOffer',
@@ -133,6 +143,10 @@ const serviceSchema: Record<string, unknown> = {
   serviceType={data.hero.serviceType}
   serviceOptions={data.hero.serviceOptions}
 />
+
+<div class="mx-auto max-w-7xl px-4 pt-3">
+  <p class="text-xs text-gray-400 font-[Satoshi]">Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
+</div>
 
 {data.sections.map((section) => {
   if (section.type === 'logoSlider') {
@@ -364,5 +378,25 @@ const serviceSchema: Record<string, unknown> = {
 
   return null;
 })}
+
+{isCityServicePage && otherServices.length > 0 && (
+  <section class="bg-[var(--color-cream)] py-10 px-4">
+    <div class="mx-auto max-w-5xl">
+      <p class="font-[Satoshi] text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">
+        Also serving {cityOrArea || 'this area'}
+      </p>
+      <div class="flex flex-wrap gap-2">
+        {otherServices.map(([slug, label]) => (
+          <a
+            href={`/service-areas/${countySlugFromPath}/${citySlugFromPath}/${slug}`}
+            class="rounded-full border border-[var(--color-primary)] px-4 py-2 font-[DM_Sans] text-sm text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-colors"
+          >
+            {label} in {cityOrArea}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
 
 {data.extraStyles && <style set:html={data.extraStyles} />}

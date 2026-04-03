@@ -100,17 +100,45 @@ export default defineConfig({
       return !exclude.some(path => page.includes(path));
     },
     serialize: (item) => {
+      const path = new URL(item.url).pathname;
+
       // Blog posts: use real content-change dates from Ghost CMS
       const blogDate = blogLastmodMap.get(item.url);
       if (blogDate) {
-        item.lastmod = new Date(blogDate).toISOString();
-        return item;
+        item.lastmod = new Date(blogDate).toISOString().split('T')[0];
+      } else {
+        item.lastmod = new Date().toISOString().split('T')[0];
       }
-      // Static pages: omit lastmod entirely.
-      // Stamping all static pages with the build timestamp is a known
-      // quality signal Google ignores or penalises — omitting it is
-      // preferable to a uniform fabricated date across 200+ pages.
-      delete item.lastmod;
+
+      // Priority by page type (Bing uses this; Google ignores it)
+      if (path === '/') {
+        item.priority = 1.0;
+        item.changefreq = 'weekly';
+      } else if (['/roofing', '/siding', '/windows', '/adu', '/custom-homes', '/additions'].includes(path)) {
+        item.priority = 0.9;
+        item.changefreq = 'monthly';
+      } else if (path === '/service-areas' || path === '/blog') {
+        item.priority = 0.8;
+        item.changefreq = 'weekly';
+      } else if (path.startsWith('/blog/')) {
+        item.priority = 0.7;
+        item.changefreq = 'monthly';
+      } else if (path.match(/^\/service-areas\/[^/]+-ca$/) || path === '/buy') {
+        // County pages
+        item.priority = 0.7;
+        item.changefreq = 'monthly';
+      } else if (path.match(/^\/service-areas\/[^/]+-ca\/[^/]+-ca$/)) {
+        // City hub pages
+        item.priority = 0.6;
+        item.changefreq = 'monthly';
+      } else if (path.startsWith('/service-areas/')) {
+        // City+service and county+service pages
+        item.priority = 0.5;
+        item.changefreq = 'monthly';
+      } else {
+        item.priority = 0.3;
+      }
+
       return item;
     },
   })],

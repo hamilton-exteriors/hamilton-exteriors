@@ -18,6 +18,7 @@ import { resolveImages } from '../../lib/image-map';
 import type { GeneralCityPageData } from '../../lib/general-city-types';
 import type { CountyPageData } from '../../lib/county-page-types';
 import type { CityServicePageData } from '../../lib/city-service-types';
+import { getCityProximity } from '../../lib/city-coordinates';
 
 const slug = Astro.params.slug;
 if (!slug) return Astro.redirect('/service-areas');
@@ -92,21 +93,59 @@ if (pageType === 'cityService' && cityServiceData) {
 } else if (pageType === 'city' && cityData) {
   // BreadcrumbList is handled by ServiceAreaCityPage/GeneralCityPage components — only add Service schema here
   const [urlCountySlug, urlCitySlug] = segments;
+  const cityProximity = getCityProximity(urlCitySlug);
+  const [cityLng, cityLat] = cityProximity ? cityProximity.split(',').map(Number) : [undefined, undefined];
+  const cityName = cityData.city || urlCitySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
   jsonLd = [
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      'name': `Roofing and Exterior Services in ${cityData.city || urlCitySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())}, CA`,
+      '@id': `${siteUrl}/service-areas/${urlCountySlug}/${urlCitySlug}#service`,
+      'name': `Roofing and Exterior Services in ${cityName}, CA`,
       'url': `${siteUrl}/service-areas/${urlCountySlug}/${urlCitySlug}`,
-      'provider': { '@type': 'RoofingContractor', '@id': `${siteUrl}/#business`, 'name': 'Hamilton Exteriors' },
-      'areaServed': { '@type': 'City', 'name': cityData.city || urlCitySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()), 'containedInPlace': { '@type': 'State', 'name': 'California' } },
+      'provider': { '@id': `${siteUrl}/#business` },
+      'areaServed': {
+        '@type': 'City',
+        'name': cityName,
+        'containedInPlace': { '@type': 'State', 'name': 'California' },
+        ...(cityLat && cityLng && { 'geo': { '@type': 'GeoCoordinates', 'latitude': cityLat, 'longitude': cityLng } }),
+      },
       'serviceType': ['Roofing', 'Siding', 'Windows', 'ADUs', 'Custom Homes', 'Additions'],
-      'description': cityData.description || `Hamilton Exteriors provides roofing, siding, windows, ADUs, custom homes, and additions in ${cityData.city || 'your area'}, CA. Licensed, bonded, insured. 50-year warranty. CSLB #1082377.`,
+      'description': cityData.description || `Hamilton Exteriors provides roofing, siding, windows, ADUs, custom homes, and additions in ${cityName}, CA. Licensed, bonded, insured. 50-year warranty. CSLB #1082377.`,
+      'offers': {
+        '@type': 'AggregateOffer',
+        'lowPrice': 400,
+        'highPrice': 3200,
+        'priceCurrency': 'USD',
+        'unitText': 'starting price varies by service',
+        'availability': 'https://schema.org/InStock',
+      },
     },
   ];
-} else if (pageType === 'county') {
-  // BreadcrumbList is handled by CountyPage component — no additional schema needed
-  jsonLd = undefined;
+} else if (pageType === 'county' && countyData) {
+  const [urlCountySlug] = segments;
+  const countyName = countyData.county || urlCountySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+  jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': `${siteUrl}/service-areas/${urlCountySlug}#service`,
+      'name': `Roofing and Exterior Services in ${countyName} County, CA`,
+      'url': `${siteUrl}/service-areas/${urlCountySlug}`,
+      'provider': { '@id': `${siteUrl}/#business` },
+      'areaServed': { '@type': 'County', 'name': `${countyName} County`, 'containedInPlace': { '@type': 'State', 'name': 'California' } },
+      'serviceType': ['Roofing', 'Siding', 'Windows', 'ADUs', 'Custom Homes', 'Additions'],
+      'description': countyData.description || `Hamilton Exteriors serves ${countyName} County with professional roofing, siding, windows, ADUs, and custom homes. CSLB #1082377.`,
+      'offers': {
+        '@type': 'AggregateOffer',
+        'lowPrice': 400,
+        'highPrice': 3200,
+        'priceCurrency': 'USD',
+        'unitText': 'starting price varies by service',
+        'availability': 'https://schema.org/InStock',
+      },
+    },
+  ];
 } else if (pageType === 'countyService' && countyServiceData) {
   const [urlCountySlug, serviceSlug] = segments;
   jsonLd = [

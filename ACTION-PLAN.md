@@ -1,144 +1,111 @@
 # Hamilton Exteriors — SEO Action Plan
 
-**Based on:** Full SEO Audit, April 2, 2026  
-**Current Score:** 76/100  
-**Target Score:** 88/100 (achievable with Critical + High items)
+**Based on:** Full SEO Audit (re-audit), April 2, 2026
+**Current Score:** 65/100
+**Projected Score (after P0+P1):** 82/100
+**Target Score:** 90/100
 
 ---
 
-## Critical — Fix Immediately
+## P0 — CRITICAL (This Week)
 
-### 1. Point DNS to Railway
-**Impact:** Unblocks entire SEO stack | **Effort:** 15 min  
-**What:** Update `hamilton-exteriors.com` DNS records to point to Railway.  
-**Why:** All schema `@id`, canonicals, sitemap URLs, and citation links reference the `.com` domain. Until DNS is live, Google cannot reconcile the entity graph. GBP website link, every citation, and every `sameAs` reference is broken.  
-**After cutover:** Verify `hamilton-exteriors.com/sitemap-index.xml` resolves. Submit to GSC. Decommission old Framer site.
+| # | Action | Impact | Effort |
+|---|---|---|---|
+| 1 | **Connect hamilton-exteriors.com DNS to Railway** | Unblocks ALL indexation. Resolves canonical, sitemap, schema, og:image issues instantly. This single fix jumps score from 66 → 78. | 30 min |
+| 2 | **Fix hero image preload bug** — each page preloads `hero-bg-2400` (homepage hero) instead of its own hero image. Update the base layout to pass page-specific hero to the preload tag. | Fixes wasted bandwidth on ALL 251 pages, improves LCP on every service/city page. | 1 hr |
+| 3 | **Fix image alt text on certification logos** — 5 logos (Owens Corning, CertainTeed, GAF, Tesla Powerwall, James Hardie) appear on every page with empty alt. One component fix propagates to all pages. | Fixes ~1,735 missing alt text instances. Huge accessibility + SEO win. | 15 min |
+| 4 | **Fix image alt text on reviewer avatars** — 4 reviewer images appear across all pages with no alt text. One component fix. | Fixes ~1,388 missing alt instances. | 10 min |
+| 5 | **Fix ADU page H1 typo** — "Bay Areas Best ADU Builder" → "Bay Area's Best ADU Builder" | Grammar fix on a main service page. | 2 min |
+| 6 | **Fix BlogPosting `image` schema** — change from bare string URL to ImageObject array with url/width/height. Blocks article image rich results on all 3 blog posts. | Unlocks article rich results in Google. | 15 min |
+| 7 | **Add `@id` to all Service schema blocks** — e.g., `"@id": "https://hamilton-exteriors.com/roofing#service"`. Currently no Service block has an @id, preventing entity graph resolution. | Enables cross-page entity referencing. | 30 min |
+| 8 | **Fix geo coordinates on all city pages** — every city/service page carries Castro Valley HQ coords (`37.69427, -122.07887`) instead of the served city's centroid. Build a coordinate lookup table by city slug. | Google's local systems use geo for geographic association. All 203 location pages affected. | 2 hrs |
+| 9 | **Resolve entity ambiguity** — llms.txt says "Marcus Hamilton, Owner", blog byline says "Alexander Hamilton Li, Architect & General Contractor". Clarify both people's roles in llms.txt. | AI entity resolution depends on unambiguous naming. | 10 min |
 
-### 2. Fix `aggregateRating.reviewCount` Mismatch
-**Impact:** Rich snippet eligibility | **Effort:** 5 min  
-**File:** `src/layouts/Layout.astro` ~line 161-167  
-**What:** Change `reviewCount: 4` and `ratingCount: 4` to match actual Google review count. If 50+ real Google reviews exist, update to `reviewCount: 50`. If not verifiable, remove `reviewCount`/`ratingCount` fields entirely.
-
-### 3. Solicit New Google Reviews (18-Day Rule)
-**Impact:** Local pack ranking recovery | **Effort:** Ongoing  
-**What:** Last schema review is Jan 22, 2026 (69 days ago). Rankings cliff after 18 days without new reviews. Send review requests to recent customers. Target: 2-4 new Google reviews within 2 weeks. Update schema reviews as they come in.
-
----
-
-## High — Fix Within 1 Week
-
-### 4. Add `/siding` and `/windows` to Sitemap
-**Impact:** Index coverage for 2 core service pages | **Effort:** 5 min  
-**File:** `astro.config.mjs` ~line 84 (`customPages` array)  
-**What:** Add `https://hamilton-exteriors.com/siding` and `https://hamilton-exteriors.com/windows` to the `customPages` array. These are top-level service pages returning 200 but missing from the sitemap.
-
-### 5. Add Author Bylines to Blog Posts
-**Impact:** E-E-A-T, AI citation eligibility | **Effort:** 15-30 min  
-**File:** `src/pages/blog/[slug].astro` or Ghost CMS author settings  
-**What:** Add "Marcus Hamilton, Owner, CSLB #1082377" as author on all blog posts. Add `Person` schema. Stagger future post dates (don't publish all on same day).
-
-### 6. Add `FAQPage` Schema to Service Pages
-**Impact:** AI Overview extraction, FAQ rich results | **Effort:** 20 min  
-**Files:** `src/pages/roofing.astro`, `src/pages/siding.astro`, etc.  
-**What:** The FAQ sections exist in HTML but lack `FAQPage` JSON-LD schema. Add structured data matching the existing Q&A content. City pages already have this — mirror the pattern.
-
-### 7. Fix Mill Valley Meta Description Bug
-**Impact:** CTR for Mill Valley page | **Effort:** 5 min  
-**What:** Meta description reads "Mill's trusted design-build contractor..." — the template drops "Valley" from multi-word city names. Fix the possessive template logic (likely `{city}'s` splitting on first word).
-
-### 8. Add Google Maps Embed
-**Impact:** Local trust signal, GBP entity connection | **Effort:** 20 min  
-**What:** Add an embedded Google Map showing the service territory to the homepage and `/service-areas` page. For an SAB, a service area overlay is preferred over a pin on the office address.
-
-### 9. Create BBB Listing
-**Impact:** Highest-DA missing citation | **Effort:** 30 min  
-**What:** Register Hamilton Exteriors with the Better Business Bureau (Bay Area chapter). BBB has high domain authority and is a trust signal for high-ticket home services.
+**P0 impact: Score 65 → 82 (+17 points)**
 
 ---
 
-## Medium — Fix Within 1 Month
+## P1 — HIGH (First 2 Weeks)
 
-### 10. Add Source Citations to Statistics
-**Effort:** 1-2 hours  
-**What:** Add external attribution to key claims:
-- "Metal roofing reflects up to 70% of solar radiant heat" → cite Oak Ridge National Lab or ENERGY STAR
-- "30% Federal Investment Tax Credit" → cite IRS Form 5695 or Energy.gov
-- Bay Area cost ranges → cite NAHB or local permit data
-- "$4,200 average customer savings" → add methodology
+| # | Action | Impact | Effort |
+|---|---|---|---|
+| 10 | **Add alt text to all service page images** — product photos on siding (vinyl, fiber cement, stucco, waterproofing), roofing (asphalt, metal, tile, energy), project gallery photos | Siding page goes from 4% → 90%+ alt coverage | 2 hrs |
+| 11 | **Add `lastmod` to all sitemap entries** — configure Astro to use build time or git last-modified date. Use `YYYY-MM-DD` format. | Crawl prioritization for 248 pages currently missing dates | 1 hr |
+| 12 | **Submit sitemap to GSC + Bing Webmaster Tools** (after DNS) | Triggers crawl of all pages | 15 min |
+| 13 | **Fix `provider.@type` on non-roofing service pages** — siding and windows Service schema uses `RoofingContractor` as provider type. Use `@id` reference only (no `@type` re-specification). | Semantic correctness for entity understanding | 30 min |
+| 14 | **Add `offers` and `description` to city hub Service schema** — Oakland, Berkeley, etc. missing pricing signal on high-intent local pages | Rich result eligibility on 29 city hub pages | 1 hr |
+| 15 | **Fill out Santa Clara County Service schema** — most incomplete block on site (missing description, offers, @id) | Weakest service entity affects 9 Santa Clara cities | 30 min |
+| 16 | **Add "Last Updated" dates to all service pages** — visible `dateModified` in HTML and schema. Blog posts have dates; service/city pages don't. | AI systems discount undated pricing claims | 1 hr |
+| 17 | **Rewrite blog post opening paragraph** — lead with the direct answer ("$14,000–$45,750 for a typical home") in the first 40 words. AI Overviews pull from first extractable answer block. | Highest-leverage edit for most competitive keyword | 30 min |
+| 18 | **Add table of contents with jump links to blog posts** — 2,107-word post has 9 H2 sections with no navigation. Perplexity/ChatGPT prefer independently extractable sections. | Improves AI citation for blog content | 1 hr |
+| 19 | **Restrict Railway staging URL** — add `noindex` or password protection after go-live | Prevents duplicate indexation between Railway URL and custom domain | 15 min |
+| 20 | **Diversify reviews across pages** — rotate pool of 10-15 real reviews instead of same 4 (all 5-star) everywhere. Current setup raises authenticity risk. | Reduces schema duplication signal, builds trust variety | 2 hrs |
+| 21 | **Add contextual cross-service links on city+service pages** + "nearby cities" inline section | Improves internal link equity and user journey | 2-3 hrs |
 
-### 11. Differentiate City Page FAQs
-**Effort:** 3-4 hours  
-**What:** Create 2-3 city-specific FAQ questions per city referencing local factors: Oakland fire zones, Marin design review boards, Napa WUI code, Santa Clara ADU density bonuses, Alameda permit timelines.
-
-### 12. Add `Article` Schema to Blog Posts
-**Effort:** 20 min  
-**What:** Add JSON-LD `Article` schema with `author`, `datePublished`, `dateModified`, `publisher` to blog post template.
-
-### 13. Create Thumbtack Profile
-**Effort:** 30 min  
-**What:** Thumbtack is now cited by ChatGPT and Amazon Alexa for contractor queries. Create and verify a profile with NAP matching the schema.
-
-### 14. Verify/Create `llms-full.txt`
-**Effort:** 1 hour  
-**What:** The `llms.txt` references `/llms-full.txt` but the file may not exist. Create it with full service page content, all blog text, and complete pricing in clean Markdown. Or remove the reference until built.
-
-### 15. Add `<link rel="alternate">` for llms.txt
-**Effort:** 5 min  
-**File:** `src/layouts/Layout.astro`  
-**What:** Add `<link rel="alternate" type="text/plain" href="/llms.txt">` to the `<head>` for AI crawler discovery.
-
-### 16. Fix Breadcrumb Tap Targets on City Pages
-**Effort:** 10 min  
-**What:** Breadcrumb links on city pages are ~20-24px height. Add `py-2` padding to breadcrumb `<a>` elements to meet 48px minimum touch target.
-
-### 17. Fix "BLOG_POST" Label on Blog Cards
-**Effort:** 5 min  
-**What:** Map the raw Ghost taxonomy slug "BLOG_POST" to a human-readable display string ("Blog" or "Article") in the blog card template.
+**P1 impact: Score 82 → 86 (+4 points)**
 
 ---
 
-## Low — Backlog
+## P2 — MEDIUM (First Month)
 
-### 18. Create YouTube Channel (4-6 Videos)
-**Effort:** Multi-day project  
-**What:** YouTube presence has ~0.737 correlation with AI citation frequency. Create short videos: roof replacement time-lapse, before/after siding, cost explainer, FAQ walkthrough.
+| # | Action | Impact | Effort |
+|---|---|---|---|
+| 13 | **Increase unique content on city+service pSEO pages** — add neighborhood-specific project stories, local permit experiences, material recommendations based on microclimate. Target: 800+ words unique per page. | Reduces thin content risk on ~174 pages | 1-2 weeks |
+| 14 | **Publish 5+ blog posts covering non-roofing topics** — siding cost guide, window replacement guide, ADU permits in Bay Area, custom home building timeline, how to choose a contractor | Broadens topical authority beyond roofing | 1 week |
+| 15 | **Verify and optimize GBP listing** — primary: "Roofing Contractor", secondary: "General Contractor", "Siding Contractor". Upload 10+ photos, respond to reviews, add products. | #1 local pack ranking factor | 2 hrs |
+| 16 | **Consider unblocking Google-Extended** — currently blocked, which excludes site from Google AI Overviews (the largest AI search surface). If training data concern is the reason, weigh traffic loss. | Could unlock significant AI Overview visibility | 5 min decision |
+| 17 | **Add HowTo schema to blog posts** — "7 Warning Signs" is a natural fit for HowTo rich results | Rich result eligibility | 1 hr |
+| 18 | **Split sitemap by page type** — separate sitemaps for services, cities, blog, legal | Easier management and monitoring in GSC | 1 hr |
+| 19 | **Add `priority` to sitemap entries** — homepage 1.0, services 0.9, cities 0.7, blog 0.6, legal 0.3 | Better crawl budget allocation signal | 30 min |
+| 20 | **Add "related posts" links to blog posts** | Internal link equity between content pieces | 30 min |
 
-### 19. Build Nextdoor Presence
-**Effort:** Ongoing  
-**What:** Nextdoor is a high-trust local signal for Bay Area residential services.
+**P2 impact: Score 86 → 90 (+4 points)**
 
-### 20. Add Manufacturer Locator URLs to `sameAs`
-**Effort:** 10 min  
-**What:** Add Owens Corning and GAF contractor finder profile URLs to the `sameAs` array in Layout.astro. These are pre-earned citations given existing certifications.
+---
 
-### 21. Fix County Service Schema Type
-**Effort:** 5 min  
-**File:** `src/components/CountyPage.astro` ~line 50  
-**What:** Change `@type: AdministrativeArea` to `@type: County` in the Service schema `areaServed`.
+## P3 — LOW (Backlog / Quarter)
 
-### 22. Add Sticky CTA to Blog Pages (Mobile)
-**Effort:** 15 min  
-**What:** Blog pages have no lead capture above the fold on mobile. Add a sticky bottom bar with phone number or "Get Free Estimate" CTA.
-
-### 23. Shorten Announcement Bar Copy for Mobile
-**Effort:** 5 min  
-**What:** "LIMITED TIME GET UP TO $2000 OFF YOUR ROOF REPLACEMENT*" wraps to 2 lines on mobile. Shorten to one line.
-
-### 24. Audit 174 City-Service Pages for Doorway Risk
-**Effort:** 2-4 hours  
-**What:** Verify city-service pages (e.g., `/oakland-ca/roofing`) have materially unique content per combination. If they're template-swapped with only city name changes, they risk doorway page classification. Consider noindexing low-value combinations or adding unique content.
+| # | Action | Impact | Effort |
+|---|---|---|---|
+| 21 | **Start YouTube channel** — 5-10 videos (cost guides, material comparisons, project walkthroughs) | Highest AI citation correlator (~0.737) | 2-3 days |
+| 22 | **Claim Tier 1 citation gaps** — BBB, Angi, Houzz, Nextdoor, Thumbtack | Local authority + AI brand signals | 2-3 hrs |
+| 23 | **Register on manufacturer directories** — GAF, Owens Corning, CertainTeed, James Hardie | High-authority contractor backlinks | 2-3 hrs |
+| 24 | **Build review velocity system** — post-job SMS/email with Google review link. Target: 100+ reviews in 6 months | Reviews are #2 local pack factor | 2 hrs setup |
+| 25 | **Add before/after gallery** — structured as image comparisons, not just project photos | Visual proof of work quality | 1 day |
+| 26 | **Add structured data for OpeningHoursSpecification** — visible hours in content, not just schema | User-visible trust signal matching schema | 30 min |
+| 27 | **Create unique OG images per page type** — service pages, city pages, blog posts | Better social sharing appearance | 1 day |
+| 28 | **Add `/buy` and `/buy/scan` to sitemap** if not already present | Primary conversion pages discoverable | 5 min |
+| 29 | **Add static HTML fallback for `/buy/scan`** | Ensures Mapbox page is crawlable | 1 hr |
+| 30 | **Expand FAQ answers to 134-167 words** per answer | Optimal AI citation passage length | 3-4 hrs |
 
 ---
 
 ## Implementation Roadmap
 
-| Week | Items | Expected Score Lift |
-|------|-------|-------------------|
-| **Now** | #1 DNS, #2 reviewCount, #3 reviews | +5 pts → 81 |
-| **Week 1** | #4-9 (sitemap, authors, FAQ schema, Mill Valley, maps, BBB) | +5 pts → 86 |
-| **Week 2-4** | #10-17 (citations, city FAQs, Article schema, Thumbtack, llms-full.txt) | +3 pts → 89 |
-| **Ongoing** | #18-24 (YouTube, Nextdoor, blog CTA, doorway audit) | +2 pts → 91 |
+```
+Week 1:  P0 items 1-9 (DNS + hero preload + alt text + schema fixes + geo coords + entity fix)
+         → Score: 65 → 82
+
+Week 2:  P1 items 10-21 (remaining alt text, sitemap, service schema, dates, blog lead, reviews)
+         → Score: 82 → 86
+
+Week 3-4: P2 items 22+ (pSEO content, blog posts, GBP, county pages)
+         → Score: 86 → 90
+
+Month 2+: P3 items (YouTube, citations, reviews, OG images)
+         → Score: 90 → 92+
+```
 
 ---
 
-*Action plan generated April 2, 2026.*
+## Key Metrics to Track
+
+| Metric | Current | Target (90 days) | Tool |
+|---|---|---|---|
+| Pages indexed | 0 (domain dead) | 347 | Google Search Console |
+| Organic clicks | 0 | 500+/month | GSC |
+| Google reviews | 50 | 100+ | GBP |
+| Blog posts | 3 | 10+ | Site |
+| Image alt text coverage | ~30% | 95%+ | Screaming Frog |
+| LCP (homepage) | TBD (field data after DNS) | < 2.5s | CrUX |
+| Local pack appearances | 0 | 50+ keywords | Rank tracker |

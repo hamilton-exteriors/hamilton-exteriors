@@ -14,12 +14,14 @@ User-agent: ClaudeBot
 Allow: /
 Disallow: /api/
 
-# AI Search Features — Allow (search feature, block training)
+# AI Search Features — Allow (enables AI Overviews / Apple Intelligence)
 User-agent: Google-Extended
-Disallow: /
+Allow: /
+Disallow: /api/
 
 User-agent: Applebot-Extended
-Disallow: /
+Allow: /
+Disallow: /api/
 
 
 # AI Training Crawlers — Block

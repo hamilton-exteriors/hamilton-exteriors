@@ -8,6 +8,7 @@ import GeneralCityPage from '../../../components/GeneralCityPage.astro';
 import ServicePage from '../../../components/ServicePage.astro';
 import { getServiceAreaCity, getServiceAreaCityService } from '../../../lib/ghost';
 import { getCityWikipedia } from '../../../lib/city-wikipedia';
+import { getCityProximity } from '../../../lib/city-coordinates';
 import type { GeneralCityPageData } from '../../../lib/general-city-types';
 import type { CityServicePageData } from '../../../lib/city-service-types';
 
@@ -72,16 +73,33 @@ if (pageType === 'cityService' && cityServiceData) {
   // BreadcrumbList is handled by GeneralCityPage component — only add Service schema here
   const urlCitySlug = segments[0];
   const cityName = cityData.city || urlCitySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+  const cityProximity = getCityProximity(urlCitySlug);
+  const [cityLng, cityLat] = cityProximity ? cityProximity.split(',').map(Number) : [undefined, undefined];
   jsonLd = [
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
+      '@id': `${siteUrl}/service-areas/${COUNTY_SLUG}/${urlCitySlug}#service`,
       'name': `Roofing and Exterior Services in ${cityName}, CA`,
       'url': `${siteUrl}/service-areas/${COUNTY_SLUG}/${urlCitySlug}`,
-      'provider': { '@type': 'RoofingContractor', '@id': `${siteUrl}/#business`, 'name': 'Hamilton Exteriors' },
-      'areaServed': { '@type': 'City', 'name': cityName, ...(getCityWikipedia(segments[0]) && { 'sameAs': getCityWikipedia(segments[0]) }), 'containedInPlace': { '@type': 'State', 'name': 'California' } },
+      'provider': { '@id': `${siteUrl}/#business` },
+      'areaServed': {
+        '@type': 'City',
+        'name': cityName,
+        ...(getCityWikipedia(segments[0]) && { 'sameAs': getCityWikipedia(segments[0]) }),
+        'containedInPlace': { '@type': 'State', 'name': 'California' },
+        ...(cityLat && cityLng && { 'geo': { '@type': 'GeoCoordinates', 'latitude': cityLat, 'longitude': cityLng } }),
+      },
       'serviceType': ['Roofing', 'Siding', 'Windows', 'ADUs', 'Custom Homes', 'Additions'],
       'description': cityData.description || `Hamilton Exteriors provides roofing, siding, windows, ADUs, custom homes, and additions in ${cityName}, CA. Licensed, bonded, insured. 50-year warranty. CSLB #1082377.`,
+      'offers': {
+        '@type': 'AggregateOffer',
+        'lowPrice': 400,
+        'highPrice': 3200,
+        'priceCurrency': 'USD',
+        'unitText': 'starting price varies by service',
+        'availability': 'https://schema.org/InStock',
+      },
     },
   ];
 } else if (pageType === 'countyService' && countyServiceData) {

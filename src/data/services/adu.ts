@@ -8,7 +8,7 @@ export const data: ServicePageData = {
     'Hamilton Exteriors is a full-service ADU builder in the Bay Area. Design, architecture, engineering, permitting, and construction — all under one roof.',
   announcementText: 'Limited Time: Free ADU Design Consultation + Permit Guarantee*',
   hero: {
-    headline: 'Bay Areas  Best ADU  Builder',
+    headline: "Bay Area's Best ADU Builder",
     formTitle: 'Get a FREE ADU Consultation',
     formSubtitle:
       "We'll contact you in 3-5 minutes to discuss your ADU project.",

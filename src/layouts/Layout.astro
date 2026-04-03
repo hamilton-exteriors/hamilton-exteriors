@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { heroBg } from '../lib/images';
 
 interface Props {
@@ -13,10 +14,12 @@ interface Props {
   noindex?: boolean;
   geoPlacename?: string;
   preloadHero?: boolean;
+  heroImage?: ImageMetadata;
 }
 
-const heroMobilePreload = await getImage({ src: heroBg, width: 1080, height: 608, format: 'webp', quality: 90 });
-const heroDesktopPreload = await getImage({ src: heroBg, width: 2560, height: 1440, format: 'webp', quality: 88 });
+const heroSrc = Astro.props.heroImage || heroBg;
+const heroMobilePreload = await getImage({ src: heroSrc, width: 1080, height: 608, format: 'webp', quality: 90 });
+const heroDesktopPreload = await getImage({ src: heroSrc, width: 2560, height: 1440, format: 'webp', quality: 88 });
 
 const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs & custom homes. Licensed, bonded, insured. 50-year warranty. $0 down financing. Call (650) 977-3351.';
 const DEFAULT_GEO_PLACENAME = 'Bay Area, California';
@@ -176,12 +179,12 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
         "@type": "OfferCatalog",
         "name": "Hamilton Exteriors Services",
         "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roofing", "url": "https://hamilton-exteriors.com/roofing" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Siding", "url": "https://hamilton-exteriors.com/siding" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Windows", "url": "https://hamilton-exteriors.com/windows" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ADUs", "url": "https://hamilton-exteriors.com/adu" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Homes", "url": "https://hamilton-exteriors.com/custom-homes" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Additions", "url": "https://hamilton-exteriors.com/additions" } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/roofing#service", "name": "Roofing", "url": "https://hamilton-exteriors.com/roofing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/siding#service", "name": "Siding", "url": "https://hamilton-exteriors.com/siding" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/windows#service", "name": "Windows", "url": "https://hamilton-exteriors.com/windows" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/adu#service", "name": "ADUs", "url": "https://hamilton-exteriors.com/adu" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/custom-homes#service", "name": "Custom Homes", "url": "https://hamilton-exteriors.com/custom-homes" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/additions#service", "name": "Additions", "url": "https://hamilton-exteriors.com/additions" } }
         ]
       },
       "hasCredential": {
