@@ -313,6 +313,34 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     });
   });
 
+  // ── Progressive lead capture ──────────────────────────────
+  // Fire-and-forget: send partial lead data to BackOffice on each step
+  // so we capture the contact even if they abandon the form.
+  function savePartialLead(step: number) {
+    const fd = new FormData(heroForm);
+    const body: Record<string, unknown> = {
+      name: fd.get('fullName') || '',
+      phone: fd.get('phone') || '',
+      email: fd.get('email') || '',
+      address: fd.get('address') || '',
+      service: fd.get('service') || presetService || '',
+      serviceDetail: fd.get('serviceDetail') || '',
+      step,
+      page_url: window.location.pathname,
+    };
+    // Capture UTM params from URL if present
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('utm_source')) body.utm_source = params.get('utm_source');
+    if (params.get('utm_medium')) body.utm_medium = params.get('utm_medium');
+    if (params.get('utm_campaign')) body.utm_campaign = params.get('utm_campaign');
+
+    fetch('/api/leads/partial', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }).catch(() => {}); // fire-and-forget — never block the UI
+  }
+
   // Step 1 → Step 2 (or Step 3 if skipping): validate
   document.getElementById('next-btn-1')?.addEventListener('click', () => {
     const fields = ['fullName', 'phone', 'email', 'address'].map(n =>
@@ -331,7 +359,10 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
       email.style.borderColor = 'var(--color-error)';
       valid = false;
     }
-    if (valid) showStep(skipStep2 ? step3 : step2);
+    if (valid) {
+      savePartialLead(1);
+      showStep(skipStep2 ? step3 : step2);
+    }
   });
 
   // Step 2: service selection auto-advances
@@ -346,6 +377,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
       }
       serviceBtns.forEach(b => b.classList.remove('service-btn--active'));
       btn.classList.add('service-btn--active');
+      savePartialLead(2);
       setTimeout(() => showStep(step3), 250);
     });
   });

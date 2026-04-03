@@ -1,6 +1,7 @@
 import { defineAction, ActionError } from 'astro:actions';
 import { z } from 'astro/zod';
 import { isInServiceArea, SERVICE_AREA_ERROR } from '../lib/service-area';
+import { sendToBackOffice } from '../lib/backoffice';
 
 export const server = {
   submitLead: defineAction({
@@ -22,8 +23,28 @@ export const server = {
         throw new ActionError({ code: 'BAD_REQUEST', message: SERVICE_AREA_ERROR });
       }
 
-      // TODO: Send to CRM, email, or webhook
-      if (import.meta.env.DEV) console.log('New lead:', input);
+      // Send to BackOffice CRM — deduplicates by phone/email so this is
+      // safe even if partial saves already created the contact.
+      const result = await sendToBackOffice({
+        name: input.fullName,
+        phone: input.phone,
+        email: input.email,
+        source: 'website-form',
+        notes: input.message || undefined,
+        metadata: {
+          address: input.address,
+          service: input.service || undefined,
+          serviceDetail: input.serviceDetail || undefined,
+          step: 'final',
+          consent: true,
+        },
+      });
+
+      if (!result.success) {
+        console.error('[submitLead] BackOffice send failed:', result.error);
+        // Don't block the user — still show success since we captured the data
+      }
+
       return { success: true, name: input.fullName };
     },
   }),
