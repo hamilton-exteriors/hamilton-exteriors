@@ -158,5 +158,35 @@
     "attribution": "Photo by Jerry Wei on Unsplash",
     "filename": "5-unsplash-yoA1GNDmC70.jpg",
     "usedInSection": "5. Sagging Roof Deck or Ridge Line"
+  },
+  {
+    "id": "WcZFFECAK_c",
+    "source": "unsplash",
+    "photographer": "engin akyurt",
+    "photographerUrl": "https://unsplash.com/@enginakyurt",
+    "license": "Unsplash License",
+    "attribution": "Photo by engin akyurt on Unsplash",
+    "filename": "3-unsplash-WcZFFECAK_c.jpg",
+    "usedInSection": "3. Granule Loss in Your Gutters"
+  },
+  {
+    "id": "69Fz2NfovB8",
+    "source": "unsplash",
+    "photographer": "Denny Müller",
+    "photographerUrl": "https://unsplash.com/@redaquamedia",
+    "license": "Unsplash License",
+    "attribution": "Photo by Denny Müller on Unsplash",
+    "filename": "4-unsplash-69Fz2NfovB8.jpg",
+    "usedInSection": "4. Daylight Visible Through Roof Boards"
+  },
+  {
+    "id": "9811330",
+    "source": "pexels",
+    "photographer": "Tom Fisk",
+    "photographerUrl": "https://www.pexels.com/@tomfisk",
+    "license": "Pexels License",
+    "attribution": "Photo by Tom Fisk on Pexels",
+    "filename": "5-pexels-9811330.jpeg",
+    "usedInSection": "5. Sagging Roof Deck or Ridge Line"
   }
 ]
