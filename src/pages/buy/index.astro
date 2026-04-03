@@ -91,7 +91,7 @@ const faqJsonLd = {
   <Navbar />
 
   <!-- ── HERO — address input drives to /buy/scan ──────────────────── -->
-  <section class="w-full relative overflow-hidden" style="background-color: var(--color-footer); padding: 120px 20px 80px;">
+  <section class="w-full relative" style="background-color: var(--color-footer); padding: 120px 20px 80px; z-index: 2;">
     <div class="mx-auto text-center relative z-10" style="max-width: 720px;">
       <p class="mb-4" style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-yellow);">No salespeople. No commission. No games.</p>
       <h1 style="font-family: var(--font-oswald); font-size: clamp(40px, 7vw, 72px); line-height: 1.05; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
@@ -100,7 +100,7 @@ const faqJsonLd = {
       <p style="font-family: var(--font-dm-sans); font-size: 18px; line-height: 28px; color: rgba(255,255,255,0.7); max-width: 480px; margin: 0 auto 32px;">
         Enter your address. We'll scan your roof and give you an instant price — no salesperson required.
       </p>
-      <form id="hero-form" class="relative mx-auto" style="max-width: 520px;" action="/buy/scan">
+      <form id="hero-form" class="relative mx-auto" style="max-width: 520px; z-index: 20;" action="/buy/scan">
         <input
           id="hero-address-input"
           name="address"
@@ -113,6 +113,9 @@ const faqJsonLd = {
           class="w-full rounded-[4px]"
           style="font-family: var(--font-dm-sans); padding: 18px 140px 18px 20px; border: 2px solid rgba(255,255,255,0.15); font-size: 17px; outline: none; background: rgba(255,255,255,0.08); color: white; transition: border-color 0.2s;"
         />
+        <button type="button" class="addr-clear-btn absolute top-1/2 -translate-y-1/2 hidden" style="right:130px;" aria-label="Clear address">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+        </button>
         <button
           type="submit"
           class="absolute top-1/2 right-2 -translate-y-1/2 rounded-[4px] transition-all hover:opacity-90"
@@ -120,7 +123,7 @@ const faqJsonLd = {
         >
           Scan Roof
         </button>
-        <div id="hero-dropdown" class="hidden absolute left-0 right-0 top-full mt-1 bg-white rounded-[4px] shadow-lg border z-10 overflow-hidden" style="border-color: var(--color-border);"></div>
+        <div id="hero-dropdown" class="addr-dropdown hidden absolute left-0 right-0 top-full mt-1 rounded-[4px] shadow-lg overflow-hidden" style="z-index:50;"></div>
       </form>
       <p style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 16px;">
         Bay Area only &middot; Alameda, Contra Costa, Marin, Napa & Santa Clara counties
@@ -352,7 +355,10 @@ const faqJsonLd = {
           class="w-full rounded-[4px] cta-address-input"
           style="font-family: var(--font-dm-sans); padding: 18px 140px 18px 20px; border: 2px solid rgba(255,255,255,0.15); font-size: 17px; outline: none; background: rgba(255,255,255,0.08); color: white;"
         />
-        <div class="cta-dropdown hidden absolute left-0 right-0 top-full mt-1 bg-white rounded-[4px] shadow-lg border z-10 overflow-hidden" style="border-color: var(--color-border);"></div>
+        <button type="button" class="addr-clear-btn absolute top-1/2 -translate-y-1/2 hidden" style="right:130px;" aria-label="Clear address">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+        </button>
+        <div class="cta-dropdown addr-dropdown hidden absolute left-0 right-0 top-full mt-1 rounded-[4px] shadow-lg overflow-hidden" style="z-index:50;"></div>
         <button
           type="submit"
           class="absolute top-1/2 right-2 -translate-y-1/2 rounded-[4px] transition-all hover:opacity-90"
@@ -416,9 +422,62 @@ const faqJsonLd = {
     align-items: center;
     justify-content: center;
   }
-  .address-suggestion{padding:12px 16px;cursor:pointer;font-family:var(--font-dm-sans);font-size:15px;color:var(--color-charcoal);border-bottom:1px solid rgba(196,191,182,.3);}
-  .address-suggestion:last-child{border-bottom:none;}
-  .address-suggestion:hover{background:var(--color-cream);}
+  /* Dark-themed address autocomplete dropdown — :global needed for JS-injected content */
+  .addr-dropdown {
+    background: #1c1c1c;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  :global(.address-suggestion) {
+    padding: 14px 16px;
+    cursor: pointer;
+    font-family: var(--font-dm-sans);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.15s;
+    text-align: left;
+  }
+  :global(.address-suggestion:last-child) { border-bottom: none; }
+  :global(.address-suggestion:hover),
+  :global(.address-suggestion--active) {
+    background: rgba(255,255,255,0.08);
+  }
+  :global(.address-suggestion .suggestion-name) {
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    line-height: 1.3;
+  }
+  :global(.address-suggestion .suggestion-detail) {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+  /* Pin icon in suggestions */
+  :global(.suggestion-icon) {
+    flex-shrink: 0;
+    color: rgba(255,255,255,0.3);
+    margin-top: 2px;
+  }
+  /* Clear / X button */
+  .addr-clear-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    transition: opacity 0.15s;
+  }
+  .addr-clear-btn.visible {
+    display: flex !important;
+  }
+  .addr-clear-btn:hover { opacity: 1; }
+  .addr-clear-btn:focus-visible {
+    outline: 2px solid var(--color-yellow);
+    outline-offset: 2px;
+  }
 </style>
 
 <script define:vars={{ mapboxToken }}>
@@ -428,14 +487,41 @@ const faqJsonLd = {
 (function() {
   var TOKEN = window.__MAPBOX_TOKEN || '';
   var session = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
-  // Bay Area bounding box for Mapbox proximity/filtering
   var BA_BBOX = '-123.1,36.9,-121.2,38.9';
+  var PIN_SVG = '<svg class="suggestion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
+
+  function esc(s) { return s.replace(/[<>"&]/g, function(c) { return '&#' + c.charCodeAt(0) + ';'; }); }
 
   function setupAutofill(input, dropdown) {
     if (!input || !dropdown) return;
     var timer = null;
+    var activeIdx = -1;
+    var clearBtn = input.parentElement.querySelector('.addr-clear-btn');
+
+    function toggleClear() {
+      if (!clearBtn) return;
+      clearBtn.classList.toggle('visible', input.value.trim().length > 0);
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function() {
+        input.value = '';
+        dropdown.classList.add('hidden');
+        toggleClear();
+        input.focus();
+      });
+    }
+
+    function setActive(items, idx) {
+      items.forEach(function(el, i) {
+        el.classList.toggle('address-suggestion--active', i === idx);
+      });
+    }
+
     input.addEventListener('input', function() {
       clearTimeout(timer);
+      toggleClear();
+      activeIdx = -1;
       var v = input.value.trim();
       if (v.length < 4) { dropdown.classList.add('hidden'); return; }
       timer = setTimeout(function() {
@@ -446,24 +532,64 @@ const faqJsonLd = {
           .then(function(data) {
             if (!data.suggestions || !data.suggestions.length) { dropdown.classList.add('hidden'); return; }
             dropdown.innerHTML = data.suggestions.map(function(s) {
-              var text = s.full_address || s.name || '';
-              return '<div class="address-suggestion">' + text.replace(/[<>"]/g, '') + '</div>';
+              var name = esc(s.name || s.full_address || '');
+              var detail = '';
+              if (s.full_address && s.name && s.full_address !== s.name) {
+                detail = esc(s.full_address.replace(s.name, '').replace(/^[\s,]+/, ''));
+              } else if (s.place_formatted) {
+                detail = esc(s.place_formatted);
+              }
+              return '<div class="address-suggestion flex items-start gap-3" role="option">' +
+                PIN_SVG +
+                '<div><div class="suggestion-name">' + name + '</div>' +
+                (detail ? '<div class="suggestion-detail">' + detail + '</div>' : '') +
+                '</div></div>';
             }).join('');
             dropdown.classList.remove('hidden');
+            activeIdx = -1;
           })
           .catch(function() { dropdown.classList.add('hidden'); });
       }, 250);
     });
 
+    input.addEventListener('keydown', function(e) {
+      var items = dropdown.querySelectorAll('.address-suggestion');
+      if (!items.length || dropdown.classList.contains('hidden')) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeIdx = (activeIdx + 1) % items.length;
+        setActive(items, activeIdx);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeIdx = activeIdx <= 0 ? items.length - 1 : activeIdx - 1;
+        setActive(items, activeIdx);
+      } else if (e.key === 'Enter' && activeIdx >= 0) {
+        e.preventDefault();
+        var nameEl = items[activeIdx].querySelector('.suggestion-name');
+        var detailEl = items[activeIdx].querySelector('.suggestion-detail');
+        input.value = (nameEl ? nameEl.textContent : '') + (detailEl ? ', ' + detailEl.textContent : '');
+        dropdown.classList.add('hidden');
+        toggleClear();
+      } else if (e.key === 'Escape') {
+        dropdown.classList.add('hidden');
+        activeIdx = -1;
+      }
+    });
+
     dropdown.addEventListener('click', function(e) {
       var item = e.target.closest('.address-suggestion');
       if (!item) return;
-      input.value = item.textContent;
+      var nameEl = item.querySelector('.suggestion-name');
+      var detailEl = item.querySelector('.suggestion-detail');
+      input.value = (nameEl ? nameEl.textContent : '') + (detailEl ? ', ' + detailEl.textContent : '');
       dropdown.classList.add('hidden');
+      toggleClear();
     });
 
     document.addEventListener('click', function(e) {
-      if (!e.target.closest('.address-suggestion') && e.target !== input) dropdown.classList.add('hidden');
+      if (!e.target.closest('.address-suggestion') && e.target !== input && e.target !== clearBtn) {
+        dropdown.classList.add('hidden');
+      }
     });
   }
 

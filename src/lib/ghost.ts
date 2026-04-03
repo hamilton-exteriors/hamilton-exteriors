@@ -1,17 +1,12 @@
 const GHOST_URL = import.meta.env.PUBLIC_GHOST_URL || '';
 const GHOST_KEY = import.meta.env.PUBLIC_GHOST_CONTENT_API_KEY || '';
 
-/** Strip Ghost's own domain from URLs so assets resolve from the Astro public/ folder */
+/**
+ * Images are stored as relative paths (/content/images/...) in Ghost.
+ * Ghost prepends its domain when returning HTML, producing correct absolute URLs.
+ * No transformation needed — pass through as-is.
+ */
 function stripGhostDomain(post: any): any {
-  if (!post) return post;
-  const ghostOrigin = GHOST_URL.replace(/\/$/, '');
-  if (!ghostOrigin) return post;
-  if (post.feature_image && post.feature_image.startsWith(ghostOrigin)) {
-    post.feature_image = post.feature_image.replace(ghostOrigin, '');
-  }
-  if (post.html && post.html.includes(ghostOrigin)) {
-    post.html = post.html.replaceAll(ghostOrigin + '/', '/');
-  }
   return post;
 }
 
@@ -94,22 +89,32 @@ export interface GhostTag {
 
 /** Human-readable names for Ghost tag slugs */
 const TAG_DISPLAY_NAMES: Record<string, string> = {
-  'blog_post': 'Blog',
-  'cost_guide': 'Cost Guides',
-  'news': 'News',
+  'blog-post': 'Blog',
+  'cost-guide': 'Cost Guide',
+  'cost-guide-2': 'Cost Guide',
   'roofing': 'Roofing',
   'siding': 'Siding',
-  'windows': 'Windows',
-  'adu': 'ADUs',
-  'tips': 'Tips',
+  'windows-doors': 'Windows & Doors',
+  'adu-additions': 'ADU & Additions',
+  'materials': 'Materials',
+  'comparison': 'Comparison',
+  'maintenance': 'Maintenance',
+  'warranty': 'Warranty',
+  'fire-safety': 'Fire Safety',
+  'regulations': 'Regulations',
+  'hiring-tips': 'Hiring Tips',
+  'timeline': 'Timeline',
+  'warning-signs': 'Warning Signs',
+  'seasonal': 'Seasonal',
 };
 
-/** Tags to hide from the public filter UI */
+/** Tags to hide from the public filter UI — internal/structural tags only */
 const HIDDEN_TAGS = new Set([
   'hash-service-area-city',
   'hash-service-area-county',
   'hash-service-area-city-service',
   'location_page',
+  'blog-post',  // internal type tag, not a content category
 ]);
 
 export async function getTags(): Promise<GhostTag[]> {
