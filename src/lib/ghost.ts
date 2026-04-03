@@ -1,6 +1,20 @@
 const GHOST_URL = import.meta.env.PUBLIC_GHOST_URL || '';
 const GHOST_KEY = import.meta.env.PUBLIC_GHOST_CONTENT_API_KEY || '';
 
+/** Strip Ghost's own domain from URLs so assets resolve from the Astro public/ folder */
+function stripGhostDomain(post: any): any {
+  if (!post) return post;
+  const ghostOrigin = GHOST_URL.replace(/\/$/, '');
+  if (!ghostOrigin) return post;
+  if (post.feature_image && post.feature_image.startsWith(ghostOrigin)) {
+    post.feature_image = post.feature_image.replace(ghostOrigin, '');
+  }
+  if (post.html && post.html.includes(ghostOrigin)) {
+    post.html = post.html.replaceAll(ghostOrigin + '/', '/');
+  }
+  return post;
+}
+
 export interface GhostPost {
   id: string;
   slug: string;
@@ -60,7 +74,7 @@ export async function getPosts(options?: {
   const tagFilter = options?.tag ? `tag:${options.tag}` : '';
   params.filter = [tagFilter, ...excludeFilters].filter(Boolean).join('+');
   const data = await ghostFetch('posts', params);
-  return { posts: data.posts, pagination: data.meta.pagination };
+  return { posts: (data.posts || []).map(stripGhostDomain), pagination: data.meta.pagination };
 }
 
 export async function getPost(slug: string): Promise<GhostPost | null> {
@@ -68,7 +82,7 @@ export async function getPost(slug: string): Promise<GhostPost | null> {
     include: 'tags',
     formats: 'html',
   });
-  return data.posts?.[0] ?? null;
+  return stripGhostDomain(data.posts?.[0]) ?? null;
 }
 
 export interface GhostTag {
