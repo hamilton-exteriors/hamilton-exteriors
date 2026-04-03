@@ -19,7 +19,7 @@ const { items } = Astro.props;
           <span style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted);">/</span>
         )}
         {item.href ? (
-          <a href={item.href} style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted); text-decoration: none;">{item.label}</a>
+          <a href={item.href} style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted); text-decoration: none; padding: 8px 0; display: inline-block;">{item.label}</a>
         ) : (
           <span style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-heading); font-weight: 600;">{item.label}</span>
         )}

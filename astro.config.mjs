@@ -82,6 +82,9 @@ export default defineConfig({
   adapter: node({ mode: 'standalone' }),
   integrations: [sitemap({
     customPages: [
+      // Top-level service pages not auto-discovered by SSR
+      'https://hamilton-exteriors.com/siding',
+      'https://hamilton-exteriors.com/windows',
       // Blog posts from Ghost CMS
       ...blogSitemapEntries.map(e => e.url),
       // City pages (29 cities)

@@ -8,9 +8,11 @@ Allow: /
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /api/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /api/
 
 # AI Search Features — Allow (search feature, block training)
 User-agent: Google-Extended

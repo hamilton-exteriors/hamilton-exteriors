@@ -15,8 +15,8 @@ interface Props {
   preloadHero?: boolean;
 }
 
-const heroMobilePreload = await getImage({ src: heroBg, width: 768, height: 432, format: 'webp' });
-const heroDesktopPreload = await getImage({ src: heroBg, width: 1920, height: 1080, format: 'webp' });
+const heroMobilePreload = await getImage({ src: heroBg, width: 1080, height: 608, format: 'webp', quality: 90 });
+const heroDesktopPreload = await getImage({ src: heroBg, width: 2560, height: 1440, format: 'webp', quality: 88 });
 
 const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs & custom homes. Licensed, bonded, insured. 50-year warranty. $0 down financing. Call (650) 977-3351.';
 const DEFAULT_GEO_PLACENAME = 'Bay Area, California';

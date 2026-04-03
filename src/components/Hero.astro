@@ -48,9 +48,9 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 
 // Generate responsive hero image variants from dynamic heroImage prop
 const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
-  getImage({ src: heroImage, width: 768, height: 432, format: 'webp' }),
-  getImage({ src: heroImage, width: 1280, height: 720, format: 'webp' }),
-  getImage({ src: heroImage, width: 1920, height: 1080, format: 'webp' }),
+  getImage({ src: heroImage, width: 1080, height: 608, format: 'webp', quality: 90 }),
+  getImage({ src: heroImage, width: 1280, height: 720, format: 'webp', quality: 90 }),
+  getImage({ src: heroImage, width: 2560, height: 1440, format: 'webp', quality: 88 }),
 ]);
 ---
 
@@ -58,7 +58,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
   <!-- Background image — zoomed out on mobile -->
   <div class="absolute inset-0">
     <picture>
-      <source srcset={heroMobile.src} media="(max-width: 768px)" type="image/webp" width="768" height="432" />
+      <source srcset={heroMobile.src} media="(max-width: 768px)" type="image/webp" width="1080" height="608" />
       <source srcset={heroTablet.src} media="(max-width: 1280px)" type="image/webp" width="1280" height="720" />
       <source srcset={heroDesktop.src} type="image/webp" width="1920" height="1080" />
       <img
@@ -450,7 +450,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
 
   /* Calibrated scrim: 25% uniform to boost contrast without killing image */
   .hero-scrim {
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.18);
   }
 
   .text-fit > :not([aria-hidden]) > * {
@@ -464,7 +464,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
   }
 
   .hero-grain {
-    opacity: 0.08;
+    opacity: 0.04;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 256px 256px;
