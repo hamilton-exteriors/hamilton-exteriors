@@ -25,19 +25,19 @@ export const server = {
 
       // Send to BackOffice CRM — deduplicates by phone/email so this is
       // safe even if partial saves already created the contact.
+      const noteParts: string[] = [];
+      if (input.address) noteParts.push(`Address: ${input.address}`);
+      if (input.service) noteParts.push(`Service: ${input.service}`);
+      if (input.serviceDetail) noteParts.push(`Detail: ${input.serviceDetail}`);
+      if (input.message) noteParts.push(`Message: ${input.message}`);
+      const notes = noteParts.join(' | ') || undefined;
+
       const result = await sendToBackOffice({
         name: input.fullName,
         phone: input.phone,
         email: input.email,
         source: 'website-form',
-        notes: input.message || undefined,
-        metadata: {
-          address: input.address,
-          service: input.service || undefined,
-          serviceDetail: input.serviceDetail || undefined,
-          step: 'final',
-          consent: true,
-        },
+        notes,
       });
 
       if (!result.success) {
