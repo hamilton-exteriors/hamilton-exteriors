@@ -114,11 +114,11 @@ const blogJsonLd = {
   <section class="w-full bg-white" style="padding: 56px 0 80px;">
     <div class="mx-auto max-w-[1200px] px-5">
       {error ? (
-        <div class="rounded-[12px] border-2 border-dashed p-12 text-center" style="border-color: var(--color-border);">
+        <div class="rounded-[4px] border-2 border-dashed p-12 text-center" style="border-color: var(--color-border);">
           <p style="font-family: var(--font-dm-sans); font-size: 16px; color: var(--color-muted);">{error}</p>
         </div>
       ) : posts.length === 0 ? (
-        <div class="rounded-[12px] border-2 border-dashed p-12 text-center" style="border-color: var(--color-border);">
+        <div class="rounded-[4px] border-2 border-dashed p-12 text-center" style="border-color: var(--color-border);">
           <p style="font-family: var(--font-dm-sans); font-size: 18px; color: var(--color-heading); font-weight: 600; margin-bottom: 8px;">
             {tag ? `No posts tagged "${activeTag?.name || tag}"` : 'No posts yet'}
           </p>
@@ -135,7 +135,7 @@ const blogJsonLd = {
         <>
           {/* Featured Post (first post, full width, only on page 1 without tag filter) */}
           {featuredPost && (
-            <a href={`/blog/${featuredPost.slug}`} class="group mb-12 grid grid-cols-1 md:grid-cols-2 gap-0 overflow-hidden rounded-[12px] transition-all hover:shadow-xl" style="border: 1px solid var(--color-border);">
+            <a href={`/blog/${featuredPost.slug}`} class="group mb-12 grid grid-cols-1 md:grid-cols-2 gap-0 overflow-hidden rounded-[4px] transition-all hover:shadow-xl" style="border: 1px solid var(--color-border);">
               <div class="aspect-[16/10] md:aspect-auto overflow-hidden bg-gray-100">
                 {featuredPost.feature_image ? (
                   <img
@@ -189,7 +189,7 @@ const blogJsonLd = {
           {/* Post Grid */}
           <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {gridPosts.map((post: any) => (
-              <a href={`/blog/${post.slug}`} class="blog-card group flex flex-col overflow-hidden rounded-[12px] transition-all hover:shadow-lg" style="border: 1px solid var(--color-border);">
+              <a href={`/blog/${post.slug}`} class="blog-card group flex flex-col overflow-hidden rounded-[4px] transition-all hover:shadow-lg" style="border: 1px solid var(--color-border);">
                 {post.feature_image ? (
                   <div class="aspect-[16/10] w-full overflow-hidden bg-gray-100">
                     <img
@@ -236,7 +236,7 @@ const blogJsonLd = {
 
           {/* Newsletter CTA — between content and pagination */}
           {page === 1 && (
-            <div class="mt-16 rounded-[12px] overflow-hidden" style="background-color: var(--color-heading);">
+            <div class="mt-16 rounded-[4px] overflow-hidden" style="background-color: var(--color-heading);">
               <div class="px-8 py-12 md:px-12 md:py-14 text-center">
                 <h3 style="color: white; margin-bottom: 8px;">
                   Get a Free Roof Inspection

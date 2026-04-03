@@ -7,7 +7,7 @@ interface Props {
 }
 const { extraFaqs } = Astro.props;
 
-const faqs = [
+const baseFaqs = [
   {
     question: 'How does pricing work — any hidden fees?',
     answer:
@@ -34,6 +34,9 @@ const faqs = [
       'Hamilton Exteriors provides industry-leading warranties on every project. For roofing, we offer up to a 50-year manufacturer shingle warranty combined with a 35-year labor warranty — one of the longest in the Bay Area. Our GAF and Owens Corning certifications qualify your roof for enhanced manufacturer warranties that cover both materials and workmanship. For James Hardie siding, you receive a 30-year non-prorated product warranty plus our 10-year labor warranty. Window installations carry the manufacturer\'s lifetime warranty on glass seals and frames. Every Hamilton Exteriors project comes with a written warranty document that clearly states what is covered, for how long, and how to file a claim. We stand behind our work — CSLB License #1082377.',
   },
 ];
+
+// Merge base FAQs with page-specific extra FAQs (city/service pages pass these in)
+const faqs = [...baseFaqs, ...(extraFaqs || [])];
 ---
 
 <section class="w-full" style="background-color: var(--color-white);">

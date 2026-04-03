@@ -73,6 +73,90 @@ function buildVars(
   };
 }
 
+// ── Local FAQ Content ──────────────────────────────────────────────────────
+// Genuinely location-specific FAQs referencing real building codes, climate
+// factors, fire zones, and permit requirements per county.
+
+function getCountyLocalFaqs(
+  countySlug: string,
+  city: string,
+  county: string,
+): Array<{ question: string; answer: string }> {
+  const faqsByCounty: Record<string, Array<{ question: string; answer: string }>> = {
+    'alameda': [
+      {
+        question: `Do ${city} homes need seismic upgrades when replacing a roof?`,
+        answer: `Many older homes in ${city} and Alameda County were built before modern seismic codes. While a roof replacement alone doesn't trigger a seismic retrofit requirement, it's the ideal time to reinforce roof-to-wall connections — especially for homes near the Hayward Fault. Hamilton Exteriors uses Simpson Strong-Tie hurricane clips on every roof we install, which improves earthquake resistance and meets California's latest building standards at no extra cost.`,
+      },
+      {
+        question: `Are there fire-hardening requirements for roofing in ${city}?`,
+        answer: `Yes. Parts of ${city} and the East Bay Hills fall within Cal Fire's Very High Fire Hazard Severity Zones (VHFHSZ). Homes in these zones must use Class A fire-rated roofing materials — which includes the asphalt, metal, and tile options Hamilton Exteriors installs. If your property is in a designated fire zone, we also ensure compliant ember-resistant vents and remove combustible material within 5 feet of the roofline as part of our standard installation process.`,
+      },
+    ],
+    'contra-costa': [
+      {
+        question: `What roofing materials work best for ${city}'s hot summers?`,
+        answer: `Contra Costa County's inland climate pushes summer temperatures above 100°F in cities like ${city}, which accelerates shingle aging. We recommend cool-roof-rated asphalt shingles (like Owens Corning Duration COOL) that reflect solar heat and meet California's Title 24 energy standards. Metal roofing is another excellent choice — it reflects up to 70% of solar radiant heat and can reduce cooling costs by 20-40%. Hamilton Exteriors helps you choose the right material for ${city}'s specific microclimate.`,
+      },
+      {
+        question: `Does ${city} require permits for roof replacements or siding projects?`,
+        answer: `Yes. Contra Costa County requires building permits for roof replacements, siding installations, and window changes. ${city} processes these through the county building department. Hamilton Exteriors handles all permit applications, inspections, and final sign-offs as part of every project — you never have to visit city hall. Typical permit turnaround in ${county} County is 5-10 business days for standard residential work.`,
+      },
+    ],
+    'marin': [
+      {
+        question: `Does ${city} have design review requirements for exterior work?`,
+        answer: `Marin County communities including ${city} often have architectural review or design guidelines that apply to exterior changes — especially in historic districts and hillside zones. Some projects require approval from the Marin County Community Development Agency or local design review boards before permits are issued. Hamilton Exteriors is experienced with Marin's review process and helps homeowners select materials and colors that meet local aesthetic guidelines while achieving their design vision.`,
+      },
+      {
+        question: `How does the coastal climate in ${city} affect siding and roofing choices?`,
+        answer: `${city}'s proximity to the coast means higher moisture, salt air exposure, and persistent fog — all of which can shorten the life of standard materials. We recommend James Hardie fiber cement siding for Marin homes because it's engineered for coastal climates and resists moisture, rot, and salt damage for 30+ years. For roofing, we use enhanced underlayment and corrosion-resistant fasteners on every ${city} project to account for the marine environment.`,
+      },
+    ],
+    'napa': [
+      {
+        question: `What are the fire-hardening requirements for homes in ${city}?`,
+        answer: `After the devastating 2017 Atlas and Tubbs fires and the 2020 Glass Fire, Napa County adopted strict fire-hardening rules for the Wildland-Urban Interface (WUI). Homes in ${city}'s fire zones must use Class A fire-rated roofing, ember-resistant vents, non-combustible siding within 6 feet of grade, and tempered or dual-pane windows. Hamilton Exteriors is experienced with Napa County's fire rebuild and hardening requirements — we ensure every material selection and installation detail meets current Cal Fire and local codes.`,
+      },
+      {
+        question: `Do wine country aesthetics affect what materials are available in ${city}?`,
+        answer: `Napa Valley's distinctive character does influence exterior choices, but not through formal restrictions for most residential projects. ${city} homeowners often choose materials that complement wine country architecture — earth-toned James Hardie siding, natural stone accents, and architectural shingles in weathered-wood or slate tones. Hamilton Exteriors offers a full range of colors and textures that blend with ${city}'s aesthetic. For properties in or near vineyard zones, we can advise on any county-specific overlay requirements.`,
+      },
+    ],
+    'santa-clara': [
+      {
+        question: `What are ${city}'s ADU permit requirements?`,
+        answer: `Santa Clara County is one of California's most ADU-friendly regions. ${city} follows state ADU law (AB 68/SB 13) allowing detached ADUs up to 1,200 sq ft, junior ADUs up to 500 sq ft, and garage conversions on most single-family lots — often without additional parking requirements. ${city} has also adopted streamlined ADU permits with reduced fees. Hamilton Exteriors handles the full ADU process: design, engineering, permit applications, and construction. Most ADU permits in ${city} are approved within 60 days.`,
+      },
+      {
+        question: `Does ${city} require Title 24 energy compliance for roof and window replacements?`,
+        answer: `Yes. California's Title 24 energy standards apply to all roof and window replacements in ${city} and throughout Santa Clara County. For roofing, this means cool-roof-rated materials are required on low-slope roofs and recommended on steep-slope roofs to reduce heat gain. For windows, replacements must meet U-factor and SHGC ratings for Climate Zone 4 (which covers most of ${county} County). Hamilton Exteriors ensures every project meets or exceeds Title 24 requirements — we handle the energy calculations and compliance documentation.`,
+      },
+    ],
+  };
+
+  return faqsByCounty[countySlug] || [
+    {
+      question: `Is Hamilton Exteriors licensed to work in ${county} County?`,
+      answer: `Yes. Hamilton Exteriors is fully licensed, bonded, and insured to work throughout ${county} County, including ${city} and all surrounding communities. We carry California CSLB License #1082377, general liability coverage, and workers' compensation insurance.`,
+    },
+  ];
+}
+
+/**
+ * Generate one city-specific FAQ using unique local context from the seed data.
+ */
+function getCityLocalFaq(seed: CitySeed): { question: string; answer: string } {
+  const { city, county, medianHomePrice, keyFeature, neighborhoods } = seed;
+  const n0 = neighborhoods[0];
+  const n1 = neighborhoods[Math.min(1, neighborhoods.length - 1)];
+
+  return {
+    question: `Why do ${city} homeowners choose Hamilton Exteriors?`,
+    answer: `${city} is ${keyFeature}, and homes here — from ${n0} to ${n1} — deserve contractors who understand the area. With median home values at ${medianHomePrice}, exterior work is a significant investment. Hamilton Exteriors has completed projects across ${city} and ${county} County, and we bring local knowledge of ${county} County building codes, permit processes, and climate-specific material requirements to every job. Our CSLB license (#1082377), manufacturer certifications, and 50-year warranty give ${city} homeowners confidence in the long-term value of their investment.`,
+  };
+}
+
 // ── 1. General City Page ────────────────────────────────────────────────────
 
 const SERVICE_DEFS = [
@@ -181,28 +265,17 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
     };
   });
 
-  // FAQs
+  // FAQs — combine city-specific questions with county-level local knowledge
+  const countyLocalFaqs = getCountyLocalFaqs(countySlug, city, county);
+  const cityLocalFaq = getCityLocalFaq(seed);
+
   const faqs = [
-    {
-      question: `What services does Hamilton Exteriors offer in ${city}?`,
-      answer: `Hamilton Exteriors is a full-service design-build contractor in ${city}, ${county} County. We specialize in roofing, siding, windows, ADUs, home additions, and custom homes. Every project includes architecture, engineering, permitting, and construction — all managed by one team.`,
-    },
     {
       question: `How much does a home renovation cost in ${city}?`,
       answer: `Costs vary by project scope. Roof replacements in ${city} start around $8,000, siding from $8,000, and window replacements from $400 per window. ADUs range from $150,000 to $350,000, and custom homes from $350 to $600 per square foot. With median home values at ${seed.medianHomePrice}, these improvements are strong investments. We provide free estimates for every project.`,
     },
-    {
-      question: `Is Hamilton Exteriors licensed to work in ${county} County?`,
-      answer: `Yes. Hamilton Exteriors is fully licensed, bonded, and insured to work throughout ${county} County, including ${city} and all surrounding communities. We carry a California CSLB license, general liability coverage, and workers' compensation insurance.`,
-    },
-    {
-      question: `Does Hamilton Exteriors offer financing in ${city}?`,
-      answer: `Yes. We offer flexible financing for ${city} homeowners — $0 down payment with affordable monthly installments. Get pre-qualified during your free consultation. Most homeowners are approved in minutes.`,
-    },
-    {
-      question: `How do I get started with Hamilton Exteriors in ${city}?`,
-      answer: `Getting started is simple. Call us or fill out the form above for a free consultation. We'll discuss your project, visit your property for measurements and assessment, and provide a detailed written estimate — typically within 48 hours. No pressure, no obligation.`,
-    },
+    cityLocalFaq,
+    ...countyLocalFaqs,
   ];
 
   // Nearby cities — same county, excluding self
