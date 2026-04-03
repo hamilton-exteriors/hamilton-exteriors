@@ -214,22 +214,33 @@ try {
     </section>
 
     {/* Feature Image */}
-    {post.feature_image && (
-      <div class="w-full" style="background-color: var(--color-cream);">
-        <div class="mx-auto max-w-[1000px]">
-          <img
-            src={post.feature_image}
-            alt={post.title}
-            class="w-full h-auto"
-            style="max-height: 500px; object-fit: cover;"
-            loading="eager"
-            fetchpriority="high"
-            width="1000"
-            height="500"
-          />
+    {post.feature_image && (() => {
+      const filename = post.feature_image.split('/').pop() || '';
+      const isUnsplash = filename.includes('unsplash');
+      const isPexels = filename.includes('pexels');
+      const credit = isUnsplash ? 'Unsplash' : isPexels ? 'Pexels' : '';
+      return (
+        <div class="w-full" style="background-color: var(--color-cream);">
+          <div class="mx-auto max-w-[1000px]">
+            <img
+              src={post.feature_image}
+              alt={post.title}
+              class="w-full h-auto"
+              style="max-height: 500px; object-fit: cover;"
+              loading="eager"
+              fetchpriority="high"
+              width="1000"
+              height="500"
+            />
+            {credit && (
+              <p style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted); text-align: right; padding: 6px 16px 0;">
+                Photo via {credit}
+              </p>
+            )}
+          </div>
         </div>
-      </div>
-    )}
+      );
+    })()}
 
     {/* Content */}
     <section class="w-full bg-white" style="padding: 60px 0 40px;">

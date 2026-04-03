@@ -68,5 +68,35 @@
     "attribution": "Photo by Raze Solar on Unsplash",
     "filename": "3-unsplash-Scaj0T40nFI.jpg",
     "usedInSection": "Permit Timing"
+  },
+  {
+    "id": "YEsHJ62YGVM",
+    "source": "unsplash",
+    "photographer": "Compagnons",
+    "photographerUrl": "https://unsplash.com/@sigmund",
+    "license": "Unsplash License",
+    "attribution": "Photo by Compagnons on Unsplash",
+    "filename": "1-unsplash-YEsHJ62YGVM.jpg",
+    "usedInSection": "The Best Months: May Through October"
+  },
+  {
+    "id": "3W7b-0KKd7g",
+    "source": "unsplash",
+    "photographer": "Jone Bart",
+    "photographerUrl": "https://unsplash.com/@jo_ne",
+    "license": "Unsplash License",
+    "attribution": "Photo by Jone Bart on Unsplash",
+    "filename": "2-unsplash-3W7b-0KKd7g.jpg",
+    "usedInSection": "The Busy Season Tradeoff"
+  },
+  {
+    "id": "3fuyuCKx2iA",
+    "source": "unsplash",
+    "photographer": "Raze Solar",
+    "photographerUrl": "https://unsplash.com/@razesolar",
+    "license": "Unsplash License",
+    "attribution": "Photo by Raze Solar on Unsplash",
+    "filename": "3-unsplash-3fuyuCKx2iA.jpg",
+    "usedInSection": "Permit Timing"
   }
 ]

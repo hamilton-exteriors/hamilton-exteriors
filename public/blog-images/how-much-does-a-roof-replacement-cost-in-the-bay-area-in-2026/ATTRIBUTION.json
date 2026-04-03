@@ -108,5 +108,45 @@
     "attribution": "Photo by Markus Winkler on Pexels",
     "filename": "4-pexels-13548818.jpeg",
     "usedInSection": "Material Comparison at a Glance"
+  },
+  {
+    "id": "9u5r1XbtMJg",
+    "source": "unsplash",
+    "photographer": "Hal Gatewood",
+    "photographerUrl": "https://unsplash.com/@halacious",
+    "license": "Unsplash License",
+    "attribution": "Photo by Hal Gatewood on Unsplash",
+    "filename": "1-unsplash-9u5r1XbtMJg.jpg",
+    "usedInSection": "Average Roof Replacement Costs in the Bay Area"
+  },
+  {
+    "id": "3fuyuCKx2iA",
+    "source": "unsplash",
+    "photographer": "Raze Solar",
+    "photographerUrl": "https://unsplash.com/@razesolar",
+    "license": "Unsplash License",
+    "attribution": "Photo by Raze Solar on Unsplash",
+    "filename": "2-unsplash-3fuyuCKx2iA.jpg",
+    "usedInSection": "What Drives the Price of a Roof Replacement"
+  },
+  {
+    "id": "ns2Ai6cWTv0",
+    "source": "unsplash",
+    "photographer": "Michael Kahn",
+    "photographerUrl": "https://unsplash.com/@mklibrary",
+    "license": "Unsplash License",
+    "attribution": "Photo by Michael Kahn on Unsplash",
+    "filename": "3-unsplash-ns2Ai6cWTv0.jpg",
+    "usedInSection": "Bay Area Specific Factors That Affect Roofing Costs"
+  },
+  {
+    "id": "33404248",
+    "source": "pexels",
+    "photographer": "Ryan  Stephens",
+    "photographerUrl": "https://www.pexels.com/@rstephens",
+    "license": "Pexels License",
+    "attribution": "Photo by Ryan  Stephens on Pexels",
+    "filename": "4-pexels-33404248.jpeg",
+    "usedInSection": "Material Comparison at a Glance"
   }
 ]

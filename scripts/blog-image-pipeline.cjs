@@ -166,33 +166,51 @@ function detectTopic(title, headings) {
 function generateSearchTerms(title, headings, topic) {
   const sections = [];
 
-  // Modifiers based on detected topic
-  const topicModifiers = {
-    roofing: ['roofing', 'roof replacement', 'shingles', 'roof repair'],
-    siding: ['siding installation', 'James Hardie', 'fiber cement siding', 'home exterior'],
-    'windows-doors': ['window installation', 'exterior door', 'home improvement'],
-    painting: ['exterior painting', 'house painting', 'paint crew'],
-    'general-exteriors': ['home exterior', 'home improvement', 'construction crew'],
+  // Specific search overrides for common section types
+  // These produce much better results than appending "roofing" to everything
+  const specificTerms = {
+    'missing.*shingle': ['missing roof shingles residential', 'blown off shingles house', 'damaged roof missing shingles'],
+    'curling.*shingle|cracking.*shingle|buckling': ['curling roof shingles close up', 'cracked shingles residential roof', 'buckling shingles damage'],
+    'granule.*loss|granule.*gutter': ['shingle granule loss close up', 'roof granules in gutter', 'worn asphalt shingles bald spots'],
+    'daylight.*roof|light.*through.*roof': ['daylight through roof boards attic', 'light gaps roof decking', 'roof decking holes from inside'],
+    'sagging.*roof|sag.*deck|sag.*ridge': ['sagging roof line house', 'dipped ridge line residential', 'sagging roof deck exterior'],
+    'moss|algae|mold.*roof': ['moss growing on roof shingles', 'algae stains on residential roof', 'green moss roof tiles house'],
+    'roof.*20.*year|age.*roof|old.*roof': ['aging residential roof shingles', 'old worn out roof house', '20 year old asphalt roof'],
+    'energy.*bill|rising.*cost': ['home energy efficiency roof', 'residential roof insulation', 'attic heat loss roof'],
+    'cost.*roof|price.*roof|replacement.*cost': ['roof replacement crew residential', 'roofers installing shingles house', 'roof tear off residential neighborhood'],
+    'material.*comparison|compare.*material': ['asphalt shingles vs metal roof', 'roofing material samples close up', 'different roof types residential'],
+    'permit|building.*permit': ['roofing crew working residential', 'roof installation suburban house', 'residential construction permit'],
+    'financing|payment': ['new roof residential home', 'completed roof replacement house', 'beautiful new shingle roof home'],
+    'repair.*replace|when.*replace': ['damaged roof needing replacement', 'roof repair vs replacement', 'old damaged roof residential'],
+    'best.*time|season|month': ['roofers working sunny day', 'roof installation clear weather', 'roofing crew summer residential'],
   };
 
-  const localModifiers = ['Bay Area', 'California home', 'residential'];
-  const modifiers = topicModifiers[topic] || topicModifiers['general-exteriors'];
-
   for (const heading of headings) {
-    const terms = [];
     const headingText = heading.text
-      .replace(/^\d+\.\s*/, '') // strip leading numbers
-      .replace(/bonus:\s*/i, '');
+      .replace(/^\d+\.\s*/, '')
+      .replace(/bonus:\s*/i, '')
+      .trim();
 
-    // Primary: heading + topic modifier
-    terms.push(`${headingText} ${modifiers[0]}`);
+    const terms = [];
+    const headingLower = headingText.toLowerCase();
 
-    // Secondary: heading + local modifier
-    terms.push(`${headingText} ${localModifiers[0]}`);
+    // Check for specific term overrides first
+    let matched = false;
+    for (const [pattern, searchTerms] of Object.entries(specificTerms)) {
+      if (new RegExp(pattern, 'i').test(headingLower)) {
+        terms.push(...searchTerms);
+        matched = true;
+        break;
+      }
+    }
 
-    // Tertiary: just the heading cleaned up for broader results
-    if (headingText.split(' ').length >= 3) {
-      terms.push(headingText);
+    // Fallback: heading + residential qualifier
+    if (!matched) {
+      terms.push(`${headingText} residential house`);
+      terms.push(`${headingText} home exterior`);
+      if (headingText.split(' ').length >= 3) {
+        terms.push(headingText);
+      }
     }
 
     sections.push({ heading: heading.text, terms });

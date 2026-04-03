@@ -118,5 +118,45 @@
     "attribution": "Photo by Serinus on Pexels",
     "filename": "2-pexels-4015870.jpeg",
     "usedInSection": "2. Curling, Cracking, or Buckling Shingles"
+  },
+  {
+    "id": "e1c7i7hmef0",
+    "source": "unsplash",
+    "photographer": "Matt Richmond",
+    "photographerUrl": "https://unsplash.com/@mattrichmo",
+    "license": "Unsplash License",
+    "attribution": "Photo by Matt Richmond on Unsplash",
+    "filename": "1-unsplash-e1c7i7hmef0.jpg",
+    "usedInSection": "1. Missing or Blown-Off Shingles"
+  },
+  {
+    "id": "ENkkQL3zsrk",
+    "source": "unsplash",
+    "photographer": "Volodymyr Kobozov",
+    "photographerUrl": "https://unsplash.com/@volodymyrkobozov",
+    "license": "Unsplash License",
+    "attribution": "Photo by Volodymyr Kobozov on Unsplash",
+    "filename": "2-unsplash-ENkkQL3zsrk.jpg",
+    "usedInSection": "2. Curling, Cracking, or Buckling Shingles"
+  },
+  {
+    "id": "8783456",
+    "source": "pexels",
+    "photographer": "Adam B.",
+    "photographerUrl": "https://www.pexels.com/@adam-b-1620746",
+    "license": "Pexels License",
+    "attribution": "Photo by Adam B. on Pexels",
+    "filename": "4-pexels-8783456.jpeg",
+    "usedInSection": "4. Daylight Visible Through Roof Boards"
+  },
+  {
+    "id": "yoA1GNDmC70",
+    "source": "unsplash",
+    "photographer": "Jerry Wei",
+    "photographerUrl": "https://unsplash.com/@findway_jerry",
+    "license": "Unsplash License",
+    "attribution": "Photo by Jerry Wei on Unsplash",
+    "filename": "5-unsplash-yoA1GNDmC70.jpg",
+    "usedInSection": "5. Sagging Roof Deck or Ridge Line"
   }
 ]
