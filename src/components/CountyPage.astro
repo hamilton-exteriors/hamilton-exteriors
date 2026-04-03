@@ -50,7 +50,7 @@ const serviceSchema = {
   'areaServed': {
     '@type': 'County',
     'name': data.county,
-    'sameAs': `https://en.wikipedia.org/wiki/${data.county.replace(/ /g, '_')}_County,_California`,
+    'sameAs': `https://en.wikipedia.org/wiki/${data.county.replace(/ County$/, '').replace(/ /g, '_')}_County,_California`,
     'containedInPlace': { '@type': 'State', 'name': 'California' },
   },
 };

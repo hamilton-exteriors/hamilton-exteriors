@@ -27,6 +27,8 @@ const proximity = getCityProximity(data.slug);
 
 // Seed data uses short county slugs ("alameda"), URLs use full slugs ("alameda-county-ca")
 const countyUrlSlug = data.countySlug.endsWith('-county-ca') ? data.countySlug : `${data.countySlug}-county-ca`;
+// Seed data uses short city slugs ("oakland"), URLs use full slugs ("oakland-ca")
+const cityUrlSlug = data.slug.endsWith('-ca') ? data.slug : `${data.slug}-ca`;
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -35,7 +37,7 @@ const breadcrumbSchema = {
     { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://hamilton-exteriors.com/' },
     { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': 'https://hamilton-exteriors.com/service-areas' },
     { '@type': 'ListItem', 'position': 3, 'name': `${data.county} County`, 'item': `https://hamilton-exteriors.com/service-areas/${countyUrlSlug}` },
-    { '@type': 'ListItem', 'position': 4, 'name': `${data.city}, ${data.state}`, 'item': `https://hamilton-exteriors.com/service-areas/${countyUrlSlug}/${data.slug}` },
+    { '@type': 'ListItem', 'position': 4, 'name': `${data.city}, ${data.state}`, 'item': `https://hamilton-exteriors.com/service-areas/${countyUrlSlug}/${cityUrlSlug}` },
   ],
 };
 ---
