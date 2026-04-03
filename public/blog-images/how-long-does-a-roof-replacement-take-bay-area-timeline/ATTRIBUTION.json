@@ -1,0 +1,52 @@
+[
+  {
+    "id": "VZJ1BnsMTb4",
+    "source": "unsplash",
+    "photographer": "Kellen Riggin",
+    "photographerUrl": "https://unsplash.com/@kalaniparker",
+    "license": "Unsplash License",
+    "attribution": "Photo by Kellen Riggin on Unsplash",
+    "filename": "1-unsplash-VZJ1BnsMTb4.jpg",
+    "usedInSection": "The Short Answer"
+  },
+  {
+    "id": "5TpEd8uTtsU",
+    "source": "unsplash",
+    "photographer": "TROY ALLEN",
+    "photographerUrl": "https://unsplash.com/@tisfortroy",
+    "license": "Unsplash License",
+    "attribution": "Photo by TROY ALLEN on Unsplash",
+    "filename": "2-unsplash-5TpEd8uTtsU.jpg",
+    "usedInSection": "Day 2: Decking Repairs and Underlayment"
+  },
+  {
+    "id": "Fvw7bArYMbE",
+    "source": "unsplash",
+    "photographer": "Troy Mortier",
+    "photographerUrl": "https://unsplash.com/@troyscanon",
+    "license": "Unsplash License",
+    "attribution": "Photo by Troy Mortier on Unsplash",
+    "filename": "3-unsplash-Fvw7bArYMbE.jpg",
+    "usedInSection": "Day 5: Cleanup and Final Walk"
+  },
+  {
+    "id": "G2J41LRaKkE",
+    "source": "unsplash",
+    "photographer": "Christer Lässman",
+    "photographerUrl": "https://unsplash.com/@lassman",
+    "license": "Unsplash License",
+    "attribution": "Photo by Christer Lässman on Unsplash",
+    "filename": "4-unsplash-G2J41LRaKkE.jpg",
+    "usedInSection": "The Permit Factor"
+  },
+  {
+    "id": "Yy-nfkEYkkc",
+    "source": "unsplash",
+    "photographer": "Heather Doty",
+    "photographerUrl": "https://unsplash.com/@byheatherdoty",
+    "license": "Unsplash License",
+    "attribution": "Photo by Heather Doty on Unsplash",
+    "filename": "5-unsplash-Yy-nfkEYkkc.jpg",
+    "usedInSection": "From Alexander: Setting Honest Expectations"
+  }
+]

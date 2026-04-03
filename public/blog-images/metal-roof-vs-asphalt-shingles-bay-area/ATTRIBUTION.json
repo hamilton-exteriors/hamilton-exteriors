@@ -1,0 +1,52 @@
+[
+  {
+    "id": "epCzMgVt7jU",
+    "source": "unsplash",
+    "photographer": "Osmany M Leyva Aldana",
+    "photographerUrl": "https://unsplash.com/@ozym",
+    "license": "Unsplash License",
+    "attribution": "Photo by Osmany M Leyva Aldana on Unsplash",
+    "filename": "1-unsplash-epCzMgVt7jU.jpg",
+    "usedInSection": "Cost Comparison"
+  },
+  {
+    "id": "mIlvCv21W1s",
+    "source": "unsplash",
+    "photographer": "Giorgio Trovato",
+    "photographerUrl": "https://unsplash.com/@giorgiotrovato",
+    "license": "Unsplash License",
+    "attribution": "Photo by Giorgio Trovato on Unsplash",
+    "filename": "2-unsplash-mIlvCv21W1s.jpg",
+    "usedInSection": "Fire Resistance: Critical for Bay Area Homes"
+  },
+  {
+    "id": "36486527",
+    "source": "pexels",
+    "photographer": "Brent Singleton",
+    "photographerUrl": "https://www.pexels.com/@brentsingletonphoto",
+    "license": "Pexels License",
+    "attribution": "Photo by Brent Singleton on Pexels",
+    "filename": "3-pexels-36486527.jpeg",
+    "usedInSection": "Coastal Fog and Moisture"
+  },
+  {
+    "id": "18098830",
+    "source": "pexels",
+    "photographer": "SOO CHUL PARK",
+    "photographerUrl": "https://www.pexels.com/@voltfather",
+    "license": "Pexels License",
+    "attribution": "Photo by SOO CHUL PARK on Pexels",
+    "filename": "4-pexels-18098830.jpeg",
+    "usedInSection": "Wind"
+  },
+  {
+    "id": "_XxvXRdacDo",
+    "source": "unsplash",
+    "photographer": "Vivint Solar",
+    "photographerUrl": "https://unsplash.com/@vivintsolar",
+    "license": "Unsplash License",
+    "attribution": "Photo by Vivint Solar on Unsplash",
+    "filename": "5-unsplash-_XxvXRdacDo.jpg",
+    "usedInSection": "Energy Savings"
+  }
+]

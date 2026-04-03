@@ -1,0 +1,52 @@
+[
+  {
+    "id": "7434641",
+    "source": "pexels",
+    "photographer": "Erik Mclean",
+    "photographerUrl": "https://www.pexels.com/@introspectivedsgn",
+    "license": "Pexels License",
+    "attribution": "Photo by Erik Mclean on Pexels",
+    "filename": "1-pexels-7434641.jpeg",
+    "usedInSection": "Typical Costs: $200-$400 Per Square Foot"
+  },
+  {
+    "id": "358636",
+    "source": "pexels",
+    "photographer": "Pixabay",
+    "photographerUrl": "https://www.pexels.com/@pixabay",
+    "license": "Pexels License",
+    "attribution": "Photo by Pixabay on Pexels",
+    "filename": "2-pexels-358636.jpeg",
+    "usedInSection": "Structural Engineering"
+  },
+  {
+    "id": "164558",
+    "source": "pexels",
+    "photographer": "Pixabay",
+    "photographerUrl": "https://www.pexels.com/@pixabay",
+    "license": "Pexels License",
+    "attribution": "Photo by Pixabay on Pexels",
+    "filename": "3-pexels-164558.jpeg",
+    "usedInSection": "New Roof"
+  },
+  {
+    "id": "33923277",
+    "source": "pexels",
+    "photographer": "Sergej",
+    "photographerUrl": "https://www.pexels.com/@strannik-sk",
+    "license": "Pexels License",
+    "attribution": "Photo by Sergej on Pexels",
+    "filename": "4-pexels-33923277.jpeg",
+    "usedInSection": "HVAC Extension"
+  },
+  {
+    "id": "534228",
+    "source": "pexels",
+    "photographer": "Pixabay",
+    "photographerUrl": "https://www.pexels.com/@pixabay",
+    "license": "Pexels License",
+    "attribution": "Photo by Pixabay on Pexels",
+    "filename": "5-pexels-534228.jpeg",
+    "usedInSection": "Construction Timeline"
+  }
+]

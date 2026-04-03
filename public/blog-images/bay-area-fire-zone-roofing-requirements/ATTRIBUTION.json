@@ -1,0 +1,52 @@
+[
+  {
+    "id": "2035398",
+    "source": "pexels",
+    "photographer": "Jill Evans",
+    "photographerUrl": "https://www.pexels.com/@jill",
+    "license": "Pexels License",
+    "attribution": "Photo by Jill Evans on Pexels",
+    "filename": "1-pexels-2035398.jpeg",
+    "usedInSection": "What Are WUI Zones?"
+  },
+  {
+    "id": "17906917",
+    "source": "pexels",
+    "photographer": "Alican Helik",
+    "photographerUrl": "https://www.pexels.com/@alican-helik-362148343",
+    "license": "Pexels License",
+    "attribution": "Photo by Alican Helik on Pexels",
+    "filename": "2-pexels-17906917.jpeg",
+    "usedInSection": "Chapter 7A Roofing Requirements"
+  },
+  {
+    "id": "36486527",
+    "source": "pexels",
+    "photographer": "Brent Singleton",
+    "photographerUrl": "https://www.pexels.com/@brentsingletonphoto",
+    "license": "Pexels License",
+    "attribution": "Photo by Brent Singleton on Pexels",
+    "filename": "3-pexels-36486527.jpeg",
+    "usedInSection": "Asphalt Shingles (Class A)"
+  },
+  {
+    "id": "11606189",
+    "source": "pexels",
+    "photographer": "Sami  Aksu",
+    "photographerUrl": "https://www.pexels.com/@sami-aksu-48867324",
+    "license": "Pexels License",
+    "attribution": "Photo by Sami  Aksu on Pexels",
+    "filename": "4-pexels-11606189.jpeg",
+    "usedInSection": "Concrete and Clay Tile (Class A)"
+  },
+  {
+    "id": "9638873",
+    "source": "pexels",
+    "photographer": "Sarah Dietz",
+    "photographerUrl": "https://www.pexels.com/@sarah-dietz-983041",
+    "license": "Pexels License",
+    "attribution": "Photo by Sarah Dietz on Pexels",
+    "filename": "5-pexels-9638873.png",
+    "usedInSection": "Insurance and Fire Zones"
+  }
+]
