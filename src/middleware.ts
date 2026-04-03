@@ -33,11 +33,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(self)');
   response.headers.set('Content-Security-Policy', [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google.com https://googleads.g.doubleclick.net https://connect.facebook.net https://api.mapbox.com",
+    "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google.com https://googleads.g.doubleclick.net https://connect.facebook.net https://api.mapbox.com https://backoffice-production-99b7.up.railway.app",
     "style-src 'self' 'unsafe-inline'",
     "img-src * data: blob:",
     "font-src 'self'",
-    "connect-src 'self' https://api.mapbox.com https://events.mapbox.com https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://*.google.com https://googleads.g.doubleclick.net https://connect.facebook.net https://*.facebook.com https://*.conversionsapigateway.com https://*.a.run.app https://hamilton-exteriors.com https://hamilton-exteriors-production.up.railway.app",
+    "connect-src 'self' https://api.mapbox.com https://events.mapbox.com https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://*.google.com https://googleads.g.doubleclick.net https://connect.facebook.net https://*.facebook.com https://*.conversionsapigateway.com https://*.a.run.app https://hamilton-exteriors.com https://hamilton-exteriors-production.up.railway.app https://backoffice-production-99b7.up.railway.app",
     "frame-src 'self' https://www.googletagmanager.com https://www.google.com https://td.doubleclick.net https://www.facebook.com",
     "base-uri 'self'",
     "form-action 'self'",
