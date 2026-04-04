@@ -44,6 +44,18 @@ const postImage = rawImage.startsWith('http')
   ? rawImage.replace('https://ghost-production-42337.up.railway.app', siteUrl)
   : `${siteUrl}${rawImage}`;
 
+// Ghost built-in image resizing: /content/images/size/w{width}/year/month/file.ext
+// Returns a resized URL, or the original if it's not a Ghost content image
+function ghostResize(url: string, width: number): string {
+  return url.replace(/\/content\/images\/(?!size\/)/, `/content/images/size/w${width}/`);
+}
+
+// Build srcset string for Ghost images at multiple widths
+function ghostSrcset(url: string, widths: number[]): string {
+  if (!url.includes('/content/images/')) return '';
+  return widths.map(w => `${ghostResize(url, w)} ${w}w`).join(', ');
+}
+
 // Article structured data for SEO
 const authorName = post.primary_author?.name || 'Hamilton Exteriors';
 
@@ -157,6 +169,20 @@ if (tocHeadings.length > 0) {
 processedHtml = processedHtml.replace(/<table([\s>])/gi, '<div class="table-wrap"><table$1');
 processedHtml = processedHtml.replace(/<\/table>/gi, '</table></div>');
 
+// Add decoding="async" and loading="lazy" to Ghost inline images that lack them
+processedHtml = processedHtml.replace(/<img(?![^>]*decoding=)([^>]*?)>/gi, '<img decoding="async"$1>');
+processedHtml = processedHtml.replace(/<img(?![^>]*loading=)([^>]*?)>/gi, '<img loading="lazy"$1>');
+
+// Add srcset with Ghost built-in resizing for responsive inline images
+processedHtml = processedHtml.replace(
+  /<img([^>]*?)src="(https?:\/\/[^"]*\/content\/images\/(?!size\/)[^"]*)"([^>]*?)>/gi,
+  (_match, before, src, after) => {
+    if (before.includes('srcset') || after.includes('srcset')) return _match;
+    const srcset = [400, 750, 1000, 1600].map(w => `${ghostResize(src, w)} ${w}w`).join(', ');
+    return `<img${before}src="${ghostResize(src, 1000)}" srcset="${srcset}" sizes="(max-width: 600px) 400px, (max-width: 800px) 750px, 1000px"${after}>`;
+  }
+);
+
 // Build HowTo schema if post has numbered steps/signs
 if (hasNumberedSteps && tocHeadings.length >= 3) {
   // Extract text between each H2 as the step description
@@ -171,7 +197,13 @@ if (hasNumberedSteps && tocHeadings.length >= 3) {
     let stepText = '';
     if (startIdx > -1) {
       const section = processedHtml.slice(startIdx, endIdx);
-      stepText = section.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 300);
+      stepText = section
+        .replace(/^[^<]*>/, '')           // remove leading partial tag fragment
+        .replace(/<h2[^>]*>.*?<\/h2>/gi, '') // strip H2 tags
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .slice(0, 300);
     }
 
     return {
@@ -209,10 +241,11 @@ if (questionHeadings.length >= 2 && processedHtml) {
     let answerText = '';
     if (startIdx > -1) {
       const section = processedHtml.slice(startIdx, endIdx);
-      // Strip the heading itself, then extract text
+      // Strip the heading itself and any partial tag fragments, then extract plain text
       answerText = section
-        .replace(/<h2[^>]*>.*?<\/h2>/i, '')
-        .replace(/<[^>]+>/g, ' ')
+        .replace(/^[^<]*>/, '')           // remove leading partial tag (id="..." ...>)
+        .replace(/<h2[^>]*>.*?<\/h2>/gi, '') // strip any remaining H2 tags
+        .replace(/<[^>]+>/g, ' ')          // strip all HTML tags
         .replace(/\s+/g, ' ')
         .trim()
         .slice(0, 500);
@@ -357,7 +390,9 @@ try {
         <div class="w-full" style="background-color: var(--color-cream);">
           <div class="mx-auto max-w-[1000px]">
             <img
-              src={post.feature_image}
+              src={ghostResize(post.feature_image, 1000)}
+              srcset={ghostSrcset(post.feature_image, [400, 750, 1000, 1600])}
+              sizes="(max-width: 600px) 400px, (max-width: 1000px) 750px, 1000px"
               alt={post.title}
               class="w-full h-auto"
               style="max-height: 500px; object-fit: cover;"
@@ -365,6 +400,7 @@ try {
               fetchpriority="high"
               width="1000"
               height="500"
+              decoding="async"
             />
             {credit && (
               <p style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted); text-align: right; padding: 6px 16px 0;">
@@ -454,7 +490,7 @@ try {
               <a href={`/blog/${rp.slug}`} class="group flex flex-col overflow-hidden rounded-[4px] bg-white transition-all hover:shadow-lg hover:translate-y-[-2px]" style="border: 1px solid var(--color-border);">
                 {rp.feature_image ? (
                   <div class="aspect-[16/10] w-full overflow-hidden" style="background-color: var(--color-cream);">
-                    <img src={rp.feature_image} alt={rp.title} class="h-full w-full object-cover transition-opacity group-hover:opacity-90" loading="lazy" width="400" height="250" />
+                    <img src={ghostResize(rp.feature_image, 400)} srcset={ghostSrcset(rp.feature_image, [300, 400, 600])} sizes="(max-width: 768px) 100vw, 33vw" alt={rp.title} class="h-full w-full object-cover transition-opacity group-hover:opacity-90" loading="lazy" decoding="async" width="400" height="250" />
                   </div>
                 ) : (
                   <div class="aspect-[16/10] w-full bg-gradient-to-br from-footer to-primary flex items-center justify-center">

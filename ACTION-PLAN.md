@@ -1,188 +1,192 @@
 # Hamilton Exteriors — SEO Action Plan
 
-**Based on:** Full SEO Audit (6 specialist subagents + manual analysis), April 3, 2026
-**Overall Score:** 70/100
+**Based on:** Full SEO Audit (7 specialist subagents), April 4, 2026
+**Overall Score:** 71/100
 **Target Score:** 85+ after completing Critical + High items
 
 ---
 
-## CRITICAL (Fix Immediately)
+## CRITICAL — Fix Immediately (Impact: Score +8-10)
 
-### 1. Point `hamilton-exteriors.com` DNS to Railway
-**Impact:** Unlocks all SEO. Every canonical, schema @id, sitemap URL, and OG tag points to this domain.
-**Current state:** DNS resolves to a Framer site (Server: Framer/154a7c5)
-**Effort:** Low (DNS config at registrar)
-**Files:** None — registrar dashboard
-**Score impact:** Technical +10 pts, Overall +2-3 pts
+### 1. Point hamilton-exteriors.com DNS to Railway
+- **Why:** Canonical domain still serves Framer. Google is indexing the wrong site. All canonical tags, sitemaps, and schema point to hamilton-exteriors.com but that domain shows Framer content.
+- **Fix:** Update DNS A/CNAME records to point to Railway
+- **Effort:** 15 minutes + propagation time
+- **Impact:** Unlocks all SEO value. Nothing else matters until this is done.
 
-### ~~2. Update review schema — fix velocity and consistency~~ ✅ DONE
-**Status:** Review dates updated to Feb-Mar 2026 (within 60 days). reviewCount corrected to 4. "50 reviews" text not found in source files (only rendered HTML snapshots). Google review link added to success page. Remaining: update to Place ID review URL once Place ID is obtained (#5).
+### 2. Remove wrong sameAs links (Angi + HomeAdvisor)
+- **Why:** Both URLs point to "ABR Quality Resources Inc" in Citrus Heights — a different business. This actively poisons the Hamilton Exteriors entity in Google's Knowledge Graph.
+- **File:** `src/layouts/Layout.astro` — sameAs array
+- **Fix:** Remove the two URLs. Add back only when correct Hamilton Exteriors profiles exist.
+- **Effort:** 10 minutes
 
-### 3. Increase pSEO unique content to 50%+
-**Impact:** ~230 pages currently 17-21% unique. Same 5 FAQ answers (600 words) duplicated verbatim everywhere. High risk for Google's "unhelpful content" classifier.
-**Actions:**
-- Write 800-1,000 words of genuinely unique local content per city (neighborhood-specific challenges, real project examples, local architecture, permit processes, climate microdata)
-- Replace generic FAQ answers on pSEO pages with city-specific answers referencing local costs, permit offices, weather, neighborhoods
-- Remove or rewrite generic 2-sentence material descriptions (currently much weaker than service page versions)
-- Vary cost ranges by city (currently $8K-$25K for both $850K Oakland homes and $3.5M Palo Alto homes)
-- Fix Walnut Creek siding page which discusses roofing topics in its local section
-**Effort:** High (content creation across ~230 pages, but can be templated per county/city)
-**Files:** Ghost CMS content for city+service pages, `src/data/service-areas/*.ts`
-**Score impact:** Content +14 pts, Overall +3-4 pts
+### 3. Fix reviewCount schema mismatch
+- **Why:** Schema says `reviewCount: 4` but site claims "50+ Bay Area Homeowners." Google rich results will display 4 reviews.
+- **File:** `src/layouts/Layout.astro` — aggregateRating block
+- **Fix:** Update reviewCount and ratingCount to actual Google review count
+- **Effort:** 5 minutes
 
-### ~~4. Fix /siding page heading hierarchy (12 H1 tags)~~ ✅ DONE
-**Status:** Already fixed — all section components use `<h2>` properly. Only Hero has `<h1>`.
+### 4. Fix homepage meta description
+- **Why:** Currently truncated to "Bay Area" — missing the full description. This is the #1 page and has no working meta description.
+- **File:** Homepage component/layout
+- **Fix:** Write a full 150-160 char meta description
+- **Effort:** 10 minutes
 
-### 5. Replace Google Maps sameAs with Place ID URL
-**Impact:** Correct entity resolution for Google's local algorithm
-**Current:** `https://www.google.com/maps/place/Hamilton+Exteriors,+21634+...` (name search)
-**Target:** `https://www.google.com/maps/place/?q=place_id:ChIJ...` (Place ID)
-**Effort:** Trivial (1 line in Layout.astro, get Place ID from GBP dashboard)
-**Files:** `src/layouts/Layout.astro` line ~163
-**Status:** ⏳ Needs Place ID from GBP dashboard — manual lookup required
+### 5. Restore IndexNow key file
+- **Why:** /indexnow-key.txt returns 404. IndexNow pings are failing silently.
+- **Fix:** Ensure the key file is in /public/ and being served
+- **Effort:** 10 minutes
 
 ---
 
-## HIGH (Fix Within 1 Week)
+## HIGH — Fix Within 1 Week (Impact: Score +5-7)
 
-### ~~6. Rebuild city hub pages as multi-service general pages~~ ✅ DONE
-**Status:** All 29 city hubs in Ghost CMS are already multi-service. Neutral headlines ("{City}'s Top Design-Build & Exteriors Contractor"), all 6 services linked equally, generic badges, neighborhoods, FAQs, nearby cities. The `src/data/service-areas/*.ts` files are unused seed data from before the Ghost migration.
+### 6. Fix HTML artifacts in BlogPosting FAQ schema
+- **Why:** FAQ answer text contains raw HTML (`id="..."` attributes). Non-compliant structured data.
+- **File:** Blog post template (Astro component rendering BlogPosting + FAQPage schema from Ghost content)
+- **Fix:** Strip HTML tags from FAQ answer text before JSON-LD serialization
+- **Effort:** 30 minutes
 
-### ~~7. Add internal links from service pages into pSEO cluster~~ ✅ DONE
-**Status:** Already implemented — ServicePage.astro renders "{Service} Across the Bay Area" grid on main service pages, linking to all 5 counties and 29 cities per service.
+### 7. Use full business entity schema on all page types
+- **Why:** Blog and city pages use a stripped-down business entity (missing sameAs, logo, geo, credentials). Inconsistent entity representation hurts Knowledge Graph confidence.
+- **Fix:** Apply the full RoofingContractor+GeneralContractor block from homepage to all page types
+- **Effort:** 1 hour
 
-### ~~8. Add `author.sameAs` and `inLanguage` to BlogPosting template~~ ✅ DONE
-**Status:** Added `inLanguage: "en-US"` and `author.sameAs` (CSLB + LinkedIn) to BlogPosting schema in `blog/[slug].astro`.
+### 8. Rewrite city hub H1s for keyword targeting
+- **Why:** Current H1 "[City]'s Top Design-Build & Exteriors Contractor" uses low-volume terms. "Roofing contractor [city]" and "roofer [city]" are the high-volume searches.
+- **Fix:** Change to "Roofing, Siding & Exterior Remodeling in [City], CA" or similar keyword-leading format
+- **Effort:** 30 minutes
 
-### ~~9. Implement IndexNow~~ ✅ DONE
-**Status:** Key file at `/public/176391810415c623c205bb23fef07dbf.txt`, submission script at `scripts/indexnow-submit.mjs`. Run `node scripts/indexnow-submit.mjs` after deploy to submit core URLs.
+### 9. Add cross-links from service pages to city+service pages
+- **Why:** /roofing has high link equity from homepage but doesn't link to /oakland-ca/roofing. Missing a critical internal link path for pSEO pages.
+- **Fix:** Add "Roofing Services by City" section to /roofing, /siding, /windows with links to top city+service pages
+- **Effort:** 1-2 hours
 
-### 10. Build citations on BBB, Angi, Houzz, HomeAdvisor
-**Impact:** 3 of top 5 AI visibility factors are citation-related (Whitespark 2026)
-**Actions:**
-- Create/claim profiles with exact NAP match
-- Add URLs to `sameAs` array in Layout.astro
-- Add badge images to footer
-**Effort:** Medium (external work, not code)
-**Score impact:** Local SEO +4 pts
-**Partial:** Angi profile added to `sameAs` array. BBB, Houzz, HomeAdvisor profiles still needed.
+### 10. Clarify llms.txt citation license
+- **Why:** Current language ("Reproduction... prohibited") may cause conservative AI models to cite less.
+- **File:** `public/llms.txt` and `public/llms-full.txt`
+- **Fix:** Add: "Citation and quotation in AI search responses is explicitly permitted and encouraged."
+- **Effort:** 10 minutes
 
-### ~~11. Fix James Hardie blog post source links~~ ✅ DONE
-**Status:** Fixed via Ghost Admin API. GAF Roofing → James Hardie Products, ENERGY STAR Roof → Building Products. Also fixed internal links in all 12 blog posts from Ghost Railway domain to canonical domain.
-
-### ~~12. Set font cache headers to immutable~~ ✅ DONE
-**Status:** Already implemented in `src/middleware.ts` — all static assets (fonts, images, CSS, JS) get `public, max-age=31536000, immutable`.
-
----
-
-## MEDIUM (Fix Within 1 Month)
-
-### ~~10. Add `Service` schema to city+service pSEO pages~~ ✅ DONE
-**Status:** Added Service schema with `@id`, `serviceType`, `areaServed: City` (with Wikipedia sameAs + GeoCoordinates), `provider` reference to all 5 county `[...slug].astro` files.
-
-### ~~11. Add sibling city+service links within pSEO cluster~~ ✅ DONE
-**Status:** Already implemented — ServicePage.astro renders "Also serving {city}" pills for other services + "{Service} in nearby cities" pills for sibling cities in same county on all city+service pages.
-
-### ~~12. Add `WebPage` block to service pages~~ ✅ DONE
-**Status:** Added `WebPage` schema with `@id`, `isPartOf`, `about`, `inLanguage` to all 6 service pages (roofing, siding, windows, adu, custom-homes, additions).
-
-### ~~13. Add `ItemList` to /blog CollectionPage~~ ✅ DONE
-**Status:** Added dynamic `ItemList` schema generated from Ghost posts to blog index page.
-
-### ~~14. Add FAQ schema to blog posts~~ ✅ DONE
-**Status:** Auto-detects question-format H2 headings (what/how/why/etc. or ending in ?) and generates FAQPage schema when 2+ Q&A headings found.
-
-### ~~15. Create image sitemap~~ ✅ DONE
-**Status:** `/image-sitemap.xml` created with SEO-optimized titles/captions, referenced in robots.txt.
-
-### ~~16. Add static content to `/buy` page~~ ✅ DONE
-**Status:** Page already has substantial static HTML: comparison grid, cost breakdown bars, 4 stats, 3 reviews, 6 FAQ accordions, 2 CTA sections — all server-rendered without JS. FAQPage schema now emitted. Only the Mapbox address autocomplete requires JS.
-
-### ~~17. Proxy Ghost media through canonical domain~~ ✅ DONE
-**Status:** Middleware proxies `/content/images/*` to Ghost with immutable cache headers. `ghost.ts` rewrites Ghost domain URLs to canonical domain in all post content and feature images. Blog OG images now reference hamilton-exteriors.com.
-
-### ~~18. Add source attribution to statistical claims~~ ✅ N/A
-**Status:** Service page descriptions already cite sources by name: Asphalt Roofing Manufacturers Association, Metal Roofing Alliance, Oak Ridge National Lab, Tile Roofing Institute, California Energy Commission, Remodeling Magazine Cost vs. Value. Hyperlinks not feasible without template change (descriptions render as text). Blog post attributions are in Ghost CMS.
-
-### ~~19. Expand lean schema block with `address` and city `areaServed`~~ ✅ DONE
-**Status:** Lean org schema now includes full PostalAddress and 5-county areaServed array.
+### 11. Drive Google review velocity
+- **Why:** 4 reviews in schema is well below the competitive threshold for Bay Area contractors. Sterling Sky's 18-day rule: rankings drop if no new review within 18 days.
+- **Fix:** Set up post-project review request flow (SMS/email, 24-48 hours after completion). Target: 15+ reviews in 90 days, then 2+/month.
+- **Effort:** 2-3 hours to set up automation
 
 ---
 
-## LOW (Backlog)
+## MEDIUM — Fix Within 1 Month (Impact: Score +3-5)
 
-### 20. Create YouTube presence
-**Impact:** Very high long-term (0.737 AI citation correlation), but requires content creation
-**Actions:** 5-10 videos: roof time-lapses, before/after, explainers, contractor selection guide
-**Effort:** High (content production, not code)
+### 12. Localize city page FAQs
+- **Why:** All 29 city pages share identical FAQ questions and answers. City-specific FAQs (permit costs, local code requirements, typical project timelines) would increase unique content from 35% to 55%+.
+- **Effort:** 4-6 hours (2-3 unique FAQs per city × 29 cities, can template with city-specific data)
 
-### 21. Create Wikidata entity
-**Impact:** Machine-readable entity graph entry for AI model disambiguation
-**Effort:** Medium (Wikidata editing, not code)
+### 13. Add city-specific testimonials
+- **Why:** Same 4 reviews on every city page. An Oakland homeowner review on the Oakland page increases local trust signals.
+- **Fix:** Source or tag reviews by city, display city-relevant reviews on each city page
+- **Effort:** 2-3 hours
 
-### ~~22. Add canonical handling for blog tag filter URLs~~ ✅ DONE
-**Status:** Already handled — `Astro.url.pathname` strips query params, so canonical for `/blog?tag=roofing` resolves to `/blog`.
+### 14. Create YouTube channel
+- **Why:** YouTube presence has 0.737 correlation with AI citations — the strongest single brand signal. Even 3-5 videos (roof install time-lapse, before/after, "signs you need a new roof") establish the entity.
+- **Fix:** Create channel, upload 3-5 videos, add URL to schema sameAs, llms.txt, and site footer
+- **Effort:** 1-2 days initial
 
-### ~~23. Increase page cache-control for SSG pages~~ ✅ DONE
-**Status:** Updated middleware to `max-age=3600, s-maxage=604800` (1hr browser / 7d CDN). Railway purges on deploy.
+### 15. Add Google Maps embed to homepage
+- **Why:** No Maps embed anywhere on site. Easy GBP reinforcement signal for local SEO.
+- **Fix:** Embed Google Maps iframe near the CTA or service areas section
+- **Effort:** 30 minutes
 
-### ~~24. Verify `--font-oswald` CSS variable maps correctly~~ ✅ DONE
-**Status:** Replaced `"Oswald"` fallback (which could trigger Google Fonts) with `system-ui` in global.css. Now falls back to system font, not external.
+### 16. Audit 174 city+service pages for content quality
+- **Why:** At 174 pages, this is in doorway-page risk territory. If content is template-swapped with only city name changes, Google may apply a thin content penalty.
+- **Fix:** Verify content differentiation. If thin, either build out unique content per page or reduce sitemap to top 30 cities until content is ready.
+- **Effort:** 2-4 hours audit, variable for content creation
 
-### ~~25. Fix 404 page canonical tag~~ ✅ N/A
-**Status:** 404 page already has `noindex` set. Canonical on noindex pages is ignored by crawlers. No fix needed.
+### 17. Add Person schema for Alexander Hamilton Li
+- **Why:** Strengthens E-E-A-T for blog content. Links founder entity to CSLB credentials and business entity.
+- **Fix:** Add standalone Person JSON-LD block on blog posts. Update BlogPosting author to reference `#founder` @id.
+- **Effort:** 1 hour
 
----
+### 18. Fix BBB name discrepancy
+- **Why:** BBB shows "Hamilton Exteriors, Inc" — schema uses "Hamilton Exteriors". Inconsistent entity naming weakens citation signals.
+- **Fix:** Either update BBB to match, or add "Inc" to schema if that's the legal name
+- **Effort:** 15 minutes
 
-## Implementation Roadmap
+### 19. Claim missing directory listings
+- **Why:** Missing from Thumbtack (strongest Home Services citation per 2024 data), Houzz, and Nextdoor.
+- **Fix:** Create/claim profiles on Thumbtack, Houzz, Nextdoor. Add to sameAs once live.
+- **Effort:** 1-2 hours
 
-### Week 1: DNS + Critical Fixes
-- [ ] Point hamilton-exteriors.com DNS to Railway (#1)
-- [ ] Replace Google Maps sameAs with Place ID (#3)
-- [ ] Update review schema with recent reviews (#2)
-- [ ] Fix review count copy inconsistency (#2)
-- [ ] Add author.sameAs + inLanguage to blog template (#6)
-- [ ] Set font cache to immutable (#9)
-
-### Week 2: Internal Linking + Schema
-- [ ] Add service page -> pSEO cluster links (#5)
-- [ ] Add Service schema to city+service pages (#10)
-- [ ] Add WebPage block to service pages (#12)
-- [ ] Implement IndexNow (#7)
-
-### Week 3: Content + Local
-- [ ] Begin city hub page rebuild (#4) — start with top 5 cities
-- [ ] Add sibling city links to pSEO pages (#11)
-- [ ] Add ItemList to blog collection (#13)
-- [ ] Add static content to /buy (#16)
-
-### Week 4: Polish + Off-Site
-- [ ] Build BBB/Angi/Houzz/HomeAdvisor citations (#8)
-- [ ] Create image sitemap (#15)
-- [ ] Add FAQ schema to blog posts (#14)
-- [ ] Add source attribution to stats (#18)
-- [ ] Proxy Ghost media (#17)
-
-### Ongoing
-- [ ] Monthly review schema updates
-- [ ] YouTube content creation plan (#20)
-- [ ] Wikidata entity creation (#21)
+### 20. Add certifications to llms-full.txt
+- **Why:** GAF Certified, CertainTeed ShingleMaster, Owens Corning Preferred, James Hardie Elite, Tesla Powerwall Certified are on the site but missing from llms-full.txt.
+- **File:** `public/llms-full.txt`
+- **Fix:** Add "Certifications & Partnerships" section
+- **Effort:** 15 minutes
 
 ---
 
-## Expected Score After Completion
+## LOW — Backlog (Impact: Score +1-2)
 
-| Category | Current | After Critical+High | After All |
-|----------|---------|---------------------|-----------|
-| Technical SEO | 71 | 83 | 88 |
-| Content Quality | 62 | 78 | 85 |
-| On-Page SEO | 68 | 80 | 85 |
-| Schema | 80 | 86 | 90 |
-| Performance | 82 | 85 | 88 |
-| AI Readiness | 74 | 76 | 82 |
-| Images | 52 | 52 | 68 |
-| **Overall** | **70** | **80** | **86** |
+### 21. Add `alt=""` to decorative checkmark icons
+- **File:** Checkmark icon component
+- **Effort:** 5 minutes
+
+### 22. Remove changefreq and priority from sitemap
+- **Why:** Google ignores both. Adds 30% XML payload for no benefit.
+- **File:** `astro.config.mjs` — serialize function
+- **Effort:** 10 minutes
+
+### 23. Normalize lastmod date format in sitemap
+- **Why:** Non-blog pages emit full ISO 8601 timestamp; blog posts emit date-only. Should be consistent.
+- **File:** `astro.config.mjs` — fallback lastmod
+- **Fix:** Change `new Date().toISOString()` to `new Date().toISOString().split('T')[0]`
+- **Effort:** 5 minutes
+
+### 24. Add WebPage schema to city pages
+- **Fix:** Add WebPage block with isPartOf → #website reference
+- **Effort:** 30 minutes
+
+### 25. Convert 2-3 service page H2s to question format
+- **Why:** Question-phrased H2s match AI extraction patterns better. "How Much Does a Roof Cost in the Bay Area?" > "Roofing Pricing"
+- **Effort:** 30 minutes
+
+### 26. Add SearchAction to WebSite schema
+- **Why:** Enables Google Sitelinks Searchbox (only if blog supports search)
+- **Effort:** 15 minutes
+
+### 27. Add service area map
+- **Fix:** SVG or Google Maps coverage map on /service-areas hub page
+- **Effort:** 1-2 hours
+
+### 28. Build Reddit presence
+- **Why:** Genuine participation in r/BayAreaHomeOwners, r/homeimprovement builds brand signals over 3-6 months
+- **Effort:** Ongoing, 30 min/week
 
 ---
 
-*Generated by Claude Code SEO Audit -- April 3, 2026*
+## Impact Timeline
+
+| Timeframe | Actions | Expected Score |
+|-----------|---------|----------------|
+| This weekend | #1-5 (Critical) | 71 → 78 |
+| Week 1 | #6-11 (High) | 78 → 83 |
+| Month 1 | #12-20 (Medium) | 83 → 88 |
+| Ongoing | #21-28 (Low) + review velocity | 88 → 90+ |
+
+---
+
+## Post-DNS-Cutover Checklist
+
+Once hamilton-exteriors.com points to Railway:
+
+- [ ] Verify sitemap-index.xml → sitemap-0.xml resolves on canonical domain
+- [ ] Verify image-sitemap.xml resolves
+- [ ] Submit sitemap to Google Search Console
+- [ ] Remove Railway URL sitemap entry from robots.txt
+- [ ] Verify all canonical tags resolve correctly
+- [ ] Request Google re-crawl of key pages
+- [ ] Monitor Search Console for indexing errors
+- [ ] Verify llms.txt accessible on canonical domain
+
+---
+
+*Action plan generated April 4, 2026.*
