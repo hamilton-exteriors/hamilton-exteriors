@@ -165,10 +165,6 @@ function getCityLocalFaqs(seed: CitySeed): Array<{ question: string; answer: str
       question: `Does a new roof or siding increase home value in ${city}?`,
       answer: `Yes. With ${city}'s median home value at ${medianHomePrice}, exterior upgrades deliver strong ROI. According to the 2024 Remodeling Magazine Cost vs. Value report, a new roof recoups 60-65% of its cost at resale in the Bay Area, while fiber cement siding (James Hardie) recovers up to 86%. In competitive ${city} neighborhoods like ${n0} and ${n1}, curb appeal directly impacts days on market and final sale price. Hamilton Exteriors helps ${city} homeowners choose materials that maximize both protection and resale value.`,
     },
-    {
-      question: `How do I get a free estimate for exterior work in ${city}?`,
-      answer: `Call us at (650) 977-3351 or fill out the form on this page. A Hamilton Exteriors project manager will visit your ${city} home within 48 hours to inspect the work area, take measurements, and provide a written, itemized estimate on the spot — no pressure, no obligation. We cover all of ${county} County from our Castro Valley office, and most ${city} estimates are scheduled within 1-2 business days.`,
-    },
   ];
 }
 
