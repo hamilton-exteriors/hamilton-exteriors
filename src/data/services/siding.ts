@@ -73,23 +73,23 @@ export const data: ServicePageData = {
           {
             name: 'Vinyl Siding',
             rows: [
-              { product: 'Standard Vinyl', pricePerSq: '~$650', materialCost: '$225' },
-              { product: 'Insulated Vinyl', pricePerSq: '~$850', materialCost: '$350' },
+              { product: 'Standard Vinyl', pricePerSq: '~$975', materialCost: '$325' },
+              { product: 'Insulated Vinyl', pricePerSq: '~$1,275', materialCost: '$475' },
             ],
           },
           {
             name: 'Fiber Cement (James Hardie)',
             rows: [
-              { product: 'HardiePlank Lap Siding', pricePerSq: '~$1,400', materialCost: '$550' },
-              { product: 'HardieShingle Siding', pricePerSq: '~$1,550', materialCost: '$625' },
-              { product: 'HardiePanel Vertical', pricePerSq: '~$1,450', materialCost: '$575' },
+              { product: 'HardiePlank Lap Siding', pricePerSq: '~$2,100', materialCost: '$825' },
+              { product: 'HardieShingle Siding', pricePerSq: '~$2,325', materialCost: '$925' },
+              { product: 'HardiePanel Vertical', pricePerSq: '~$2,175', materialCost: '$850' },
             ],
           },
           {
             name: 'Stucco & Specialty',
             rows: [
-              { product: 'Three-Coat Stucco', pricePerSq: '~$1,300', materialCost: '$450' },
-              { product: 'Exterior Waterproofing', pricePerSq: '~$550', materialCost: '$150' },
+              { product: 'Three-Coat Stucco', pricePerSq: '~$1,950', materialCost: '$675' },
+              { product: 'Exterior Waterproofing', pricePerSq: '~$825', materialCost: '$250' },
             ],
           },
         ],
