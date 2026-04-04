@@ -38,8 +38,11 @@ const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
 const canonicalUrl = `${siteUrl}/blog/${slug}`;
 
 // Ensure og:image is always absolute — social platforms need full URLs
+// Rewrite Ghost Railway domain to canonical domain (proxied via middleware)
 const rawImage = post.feature_image || '/og-default.jpg';
-const postImage = rawImage.startsWith('http') ? rawImage : `${siteUrl}${rawImage}`;
+const postImage = rawImage.startsWith('http')
+  ? rawImage.replace('https://ghost-production-42337.up.railway.app', siteUrl)
+  : `${siteUrl}${rawImage}`;
 
 // Article structured data for SEO
 const authorName = post.primary_author?.name || 'Hamilton Exteriors';

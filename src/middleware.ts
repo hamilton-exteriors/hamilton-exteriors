@@ -14,6 +14,8 @@ const REDIRECTS: Record<string, string> = {
   '/blog/untitled-2': '/blog',
 };
 
+const GHOST_ORIGIN = 'https://ghost-production-42337.up.railway.app';
+
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
 
@@ -21,6 +23,21 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const redirectTo = REDIRECTS[pathname];
   if (redirectTo) {
     return new Response(null, { status: 301, headers: { Location: redirectTo } });
+  }
+
+  // Proxy Ghost media through canonical domain — avoids fragile Railway subdomain in OG tags
+  if (pathname.startsWith('/content/images/')) {
+    const ghostUrl = `${GHOST_ORIGIN}${pathname}`;
+    const upstream = await fetch(ghostUrl, { signal: AbortSignal.timeout(10_000) });
+    if (!upstream.ok) return new Response(null, { status: upstream.status });
+    return new Response(upstream.body, {
+      status: 200,
+      headers: {
+        'Content-Type': upstream.headers.get('Content-Type') || 'image/jpeg',
+        'Cache-Control': 'public, max-age=31536000, immutable',
+        'X-Content-Type-Options': 'nosniff',
+      },
+    });
   }
 
   const response = await next();

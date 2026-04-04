@@ -71,11 +71,10 @@
 - Add badge images to footer
 **Effort:** Medium (external work, not code)
 **Score impact:** Local SEO +4 pts
+**Partial:** Angi profile added to `sameAs` array. BBB, Houzz, HomeAdvisor profiles still needed.
 
-### 11. Fix James Hardie blog post source links
-**Impact:** Blog post "James Hardie Siding" links to GAF roofing sources instead of siding sources — template copy error.
-**Effort:** Trivial (update 2-3 links in Ghost CMS)
-**Files:** Ghost CMS blog editor
+### ~~11. Fix James Hardie blog post source links~~ ✅ DONE
+**Status:** Fixed via Ghost Admin API. GAF Roofing → James Hardie Products, ENERGY STAR Roof → Building Products. Also fixed internal links in all 12 blog posts from Ghost Railway domain to canonical domain.
 
 ### ~~12. Set font cache headers to immutable~~ ✅ DONE
 **Status:** Already implemented in `src/middleware.ts` — all static assets (fonts, images, CSS, JS) get `public, max-age=31536000, immutable`.
@@ -105,9 +104,8 @@
 ### ~~16. Add static content to `/buy` page~~ ✅ DONE
 **Status:** Page already has substantial static HTML: comparison grid, cost breakdown bars, 4 stats, 3 reviews, 6 FAQ accordions, 2 CTA sections — all server-rendered without JS. FAQPage schema now emitted. Only the Mapbox address autocomplete requires JS.
 
-### 17. Proxy Ghost media through canonical domain
-**Impact:** Blog OG images currently reference fragile Ghost Railway subdomain
-**Effort:** Medium (reverse proxy config or Ghost URL setting)
+### ~~17. Proxy Ghost media through canonical domain~~ ✅ DONE
+**Status:** Middleware proxies `/content/images/*` to Ghost with immutable cache headers. `ghost.ts` rewrites Ghost domain URLs to canonical domain in all post content and feature images. Blog OG images now reference hamilton-exteriors.com.
 
 ### ~~18. Add source attribution to statistical claims~~ ✅ N/A
 **Status:** Service page descriptions already cite sources by name: Asphalt Roofing Manufacturers Association, Metal Roofing Alliance, Oak Ridge National Lab, Tile Roofing Institute, California Energy Commission, Remodeling Magazine Cost vs. Value. Hyperlinks not feasible without template change (descriptions render as text). Blog post attributions are in Ghost CMS.

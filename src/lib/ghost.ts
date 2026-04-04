@@ -2,11 +2,22 @@ const GHOST_URL = import.meta.env.PUBLIC_GHOST_URL || '';
 const GHOST_KEY = import.meta.env.PUBLIC_GHOST_CONTENT_API_KEY || '';
 
 /**
- * Images are stored as relative paths (/content/images/...) in Ghost.
- * Ghost prepends its domain when returning HTML, producing correct absolute URLs.
- * No transformation needed — pass through as-is.
+ * Rewrite Ghost Railway domain to canonical domain in image URLs.
+ * Ghost prepends its Railway subdomain to /content/images/ paths.
+ * Our middleware proxies /content/images/* to Ghost, so we rewrite
+ * these URLs to go through the canonical domain instead.
  */
+const GHOST_DOMAIN = 'https://ghost-production-42337.up.railway.app';
+const CANONICAL_DOMAIN = 'https://hamilton-exteriors.com';
+
 function stripGhostDomain(post: any): any {
+  if (!post) return post;
+  if (post.feature_image?.startsWith(GHOST_DOMAIN)) {
+    post.feature_image = post.feature_image.replace(GHOST_DOMAIN, CANONICAL_DOMAIN);
+  }
+  if (post.html) {
+    post.html = post.html.replaceAll(GHOST_DOMAIN + '/content/images/', CANONICAL_DOMAIN + '/content/images/');
+  }
   return post;
 }
 
