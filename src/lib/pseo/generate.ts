@@ -283,7 +283,7 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
   const faqs = [
     {
       question: `How much does a home renovation cost in ${city}?`,
-      answer: `Costs vary by project scope. Roof replacements in ${city} start around $8,000, siding from $8,000, and window replacements from $400 per window. ADUs range from $150,000 to $350,000, and custom homes from $350 to $600 per square foot. With median home values at ${seed.medianHomePrice}, these improvements are strong investments. We provide free estimates for every project.`,
+      answer: `Costs vary based on project scope, materials, and site conditions. In the Bay Area, roof replacements typically run $22,000–$45,000 for a standard home, siding from $18,000–$30,000, and window replacements from $800–$1,500 per window depending on type and frame material. ADUs range from $200,000 to $600,000, and custom homes from $500 to $800+ per square foot. With median home values at ${seed.medianHomePrice} in ${city}, these improvements are strong investments. We provide free, itemized estimates for every project — no hidden fees.`,
     },
     ...cityLocalFaqs,
     ...countyLocalFaqs,

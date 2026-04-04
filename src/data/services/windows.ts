@@ -84,28 +84,28 @@ export const data: ServicePageData = {
           {
             name: 'Standard Windows',
             rows: [
-              { product: 'Single Hung (per window)', pricePerSq: '~$650', materialCost: '$250' },
-              { product: 'Double Hung (per window)', pricePerSq: '~$750', materialCost: '$300' },
-              { product: 'Single Slider (per window)', pricePerSq: '~$600', materialCost: '$225' },
+              { product: 'Single Hung (per window)', pricePerSq: '~$850', materialCost: '$325' },
+              { product: 'Double Hung (per window)', pricePerSq: '~$950', materialCost: '$375' },
+              { product: 'Single Slider (per window)', pricePerSq: '~$800', materialCost: '$300' },
             ],
           },
           {
             name: 'Specialty Windows',
             rows: [
-              { product: 'Casement (per window)', pricePerSq: '~$800', materialCost: '$350' },
-              { product: 'Picture Window (per window)', pricePerSq: '~$700', materialCost: '$275' },
-              { product: 'Bay / Bow Window', pricePerSq: '~$2,500', materialCost: '$1,200' },
+              { product: 'Casement (per window)', pricePerSq: '~$1,050', materialCost: '$425' },
+              { product: 'Picture Window (per window)', pricePerSq: '~$950', materialCost: '$375' },
+              { product: 'Bay / Bow Window', pricePerSq: '~$4,500', materialCost: '$2,000' },
             ],
           },
           {
             name: 'Doors',
             rows: [
-              { product: 'Sliding Glass Door', pricePerSq: '~$2,800', materialCost: '$1,400' },
-              { product: 'French Door (pair)', pricePerSq: '~$3,200', materialCost: '$1,600' },
+              { product: 'Sliding Glass Door', pricePerSq: '~$3,800', materialCost: '$1,800' },
+              { product: 'French Door (pair)', pricePerSq: '~$4,200', materialCost: '$2,000' },
             ],
           },
         ],
-        footnote: 'Prices per unit installed. Includes removal of existing window, new flashing, materials, labor, trim, and cleanup. Energy-efficient Low-E glass standard on all windows. Prices valid as of 2026.',
+        footnote: 'Prices per unit installed, reflecting typical Bay Area costs. Includes removal of existing window, new flashing, materials, labor, trim, and cleanup. Energy-efficient Low-E glass standard on all windows. Actual pricing varies based on window size, frame material, glass options, and installation complexity. Contact us for a free, itemized estimate.',
       },
     },
     { type: 'projects' },

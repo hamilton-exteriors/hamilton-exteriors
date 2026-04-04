@@ -6,7 +6,7 @@
 
 > Last updated: 2026-04-04
 
-> Pricing valid as of Q1 2026
+> Pricing valid as of Q2 2026
 
 ---
 
@@ -41,24 +41,24 @@ Hamilton Exteriors provides complete roof replacement and repair services across
 #### Roofing Pricing (Per Roofing Square = 100 sq ft, installed)
 
 **Standard Tier:**
-- GAF Timberline HDZ: ~$950/sq (materials $350 + labor)
-- CertainTeed Landmark: ~$940/sq (materials $340 + labor)
-- Owens Corning Duration: ~$960/sq (materials $360 + labor)
+- GAF Timberline HDZ: ~$1,100/sq (materials $425 + labor)
+- CertainTeed Landmark: ~$1,075/sq (materials $400 + labor)
+- Owens Corning Duration: ~$1,125/sq (materials $450 + labor)
 
 **Premium Tier:**
-- CertainTeed Landmark PRO: ~$1,000/sq (materials $400 + labor)
-- GAF Timberline AS II: ~$1,050/sq (materials $450 + labor)
-- Owens Corning Duration STORM: ~$1,080/sq (materials $480 + labor)
+- CertainTeed Landmark PRO: ~$1,200/sq (materials $500 + labor)
+- GAF Timberline AS II: ~$1,275/sq (materials $550 + labor)
+- Owens Corning Duration STORM: ~$1,300/sq (materials $575 + labor)
 
 **Designer/Luxury Tier:**
-- GAF Camelot II: ~$1,175/sq (materials $500 + labor)
-- GAF Grand Sequoia: ~$1,330/sq (materials $580 + labor)
-- Owens Corning Berkshire: ~$1,350/sq (materials $600 + labor)
-- CertainTeed Presidential Shake: ~$1,400/sq (materials $650 + labor)
-- CertainTeed Grand Manor: ~$1,525/sq (materials $700 + labor)
-- CertainTeed Carriage House: ~$1,505/sq (materials $680 + labor)
+- GAF Camelot II: ~$1,400/sq (materials $625 + labor)
+- GAF Grand Sequoia: ~$1,575/sq (materials $700 + labor)
+- Owens Corning Berkshire: ~$1,550/sq (materials $700 + labor)
+- CertainTeed Presidential Shake: ~$1,650/sq (materials $750 + labor)
+- CertainTeed Grand Manor: ~$1,800/sq (materials $825 + labor)
+- CertainTeed Carriage House: ~$1,750/sq (materials $800 + labor)
 
-**All roofing prices include:** tear-off, materials, labor, underlayment, starter strip, ridge cap, nails, and full cleanup.
+**All roofing prices include:** tear-off, materials, labor, underlayment, starter strip, ridge cap, nails, and full cleanup. Actual pricing varies based on roof size, pitch, accessibility, number of layers, and local permit requirements. Contact us for a free, itemized estimate.
 
 #### Roofing Timeline
 - Typical complete roof replacement: 3–5 days
@@ -95,18 +95,18 @@ Hamilton Exteriors provides complete roof replacement and repair services across
 #### Window Pricing (per unit, installed)
 
 **Standard Windows:**
-- Single Hung: ~$650 installed (materials ~$250)
-- Double Hung: ~$750 installed (materials ~$300)
-- Single Slider: ~$600 installed (materials ~$225)
+- Single Hung: ~$850 installed (materials ~$325)
+- Double Hung: ~$950 installed (materials ~$375)
+- Single Slider: ~$800 installed (materials ~$300)
 
 **Specialty Windows:**
-- Casement: ~$800 installed (materials ~$350)
-- Picture Window: ~$700 installed (materials ~$275)
-- Bay / Bow Window: ~$2,500 installed (materials ~$1,200)
+- Casement: ~$1,050 installed (materials ~$425)
+- Picture Window: ~$950 installed (materials ~$375)
+- Bay / Bow Window: ~$4,500 installed (materials ~$2,000)
 
 **Doors:**
-- Sliding Glass Door: ~$2,800 installed (materials ~$1,400)
-- French Door (pair): ~$3,200 installed (materials ~$1,600)
+- Sliding Glass Door: ~$3,800 installed (materials ~$1,800)
+- French Door (pair): ~$4,200 installed (materials ~$2,000)
 
 **All window prices include:** removal of existing window, new exterior flashing, materials, labor, interior trim, and cleanup. Energy-efficient Low-E glass standard on all windows. Prices valid as of 2026.
 
@@ -125,10 +125,10 @@ We handle design, permitting, and construction from start to finish.
 
 #### ADU Pricing Context (Bay Area, fully permitted)
 
-- **Detached ADUs:** typically $250,000–$450,000 fully permitted (400–1,200 sq ft). Bay Area homeowners typically see property value increases of $150,000–$300,000 and rental income of $2,000–$3,500/month.
-- **Garage Conversions:** typically $100,000–$200,000 — 30–40% less than new detached construction because the existing foundation, framing, and roof structure remain in place.
-- **Attached ADUs:** typically $150,000–$300,000 depending on scope, existing structural conditions, and finish level.
-- **Junior ADUs (JADUs):** typically $50,000–$120,000 — the most affordable ADU type, created within the existing home footprint with minimal structural changes.
+- **Detached ADUs:** typically $300,000–$600,000 fully permitted (400–1,200 sq ft). Pricing varies based on unit size, site conditions, finishes, and permit requirements. Bay Area homeowners typically see property value increases of $150,000–$300,000 and rental income of $2,000–$3,500/month.
+- **Garage Conversions:** typically $180,000–$280,000 — uses existing foundation and roof structure, reducing cost compared to ground-up construction.
+- **Attached ADUs:** typically $200,000–$400,000 depending on scope, existing structural conditions, and finish level.
+- **Junior ADUs (JADUs):** typically $80,000–$160,000 — the most affordable ADU type, created within the existing home footprint with minimal structural changes.
 
 All ADU pricing includes design, engineering, permits, and construction. Costs vary by jurisdiction, site conditions, and finish selections. Contact us for a project-specific consultation.
 
@@ -265,7 +265,7 @@ A: Every estimate is written and itemized before work starts. The price we quote
 A: Yes. Show us a written estimate from a licensed contractor for the same scope of work and we'll match or beat it. That's our Best Price Guarantee.
 
 **Q: How much does a new roof cost in the Bay Area?**
-A: Roof replacement cost depends on roof size, pitch, and shingle choice. Standard asphalt shingles start around $940 per roofing square (100 sq ft) installed, including tear-off, materials, labor, and cleanup. A typical Bay Area home (20–30 squares) ranges from roughly $18,800 to $45,750 depending on shingle tier. Get an exact price with our free inspection or online roof scan.
+A: Roof replacement cost depends on roof size, pitch, accessibility, number of layers, and shingle choice. Standard asphalt shingles start around $1,075 per roofing square (100 sq ft) installed, including tear-off, materials, labor, and cleanup. A typical Bay Area home (20–30 squares) ranges from roughly $22,000 to $54,000 depending on shingle tier and project complexity. Get an exact price with our free inspection or online roof scan.
 
 **Q: How much does siding cost?**
 A: Siding cost varies by material, home size, and existing condition (e.g., dry rot repair needed). Contact us for a free, itemized estimate.
@@ -368,7 +368,7 @@ Hamilton Exteriors offers an innovative online roof scanning tool at **hamilton-
 
 Hamilton Exteriors is a Bay Area exterior remodeling contractor headquartered in Castro Valley, CA. Key facts:
 - Serves 5 counties and 30+ cities in the San Francisco Bay Area
-- Specializes in roofing ($940–$1,525/sq installed), windows ($600–$3,200/unit installed), siding, ADUs ($100K–$450K), and custom homes
+- Specializes in roofing ($1,075–$1,800/sq installed), windows ($800–$4,500/unit installed), siding, ADUs ($180K–$600K), and custom homes
 - CA Contractor License #1082377, fully licensed, bonded, and insured
 - 50-year shingle warranty + 35-year labor warranty on roofing
 - Best Price Guarantee — beats any written estimate on same scope
