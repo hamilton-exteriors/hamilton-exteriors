@@ -74,11 +74,16 @@ const articleJsonLd = {
   dateModified: post.updated_at || post.published_at,
   url: canonicalUrl,
   ...(actualWordCount && { wordCount: actualWordCount }),
+  inLanguage: 'en-US',
   author: {
     '@type': 'Person',
     name: authorName === 'Hamilton Exteriors' ? 'Alexander Hamilton Li' : authorName,
     jobTitle: 'Architect & General Contractor (CSLB #1082377)',
     url: 'https://hamilton-exteriors.com',
+    sameAs: [
+      'https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377',
+      'https://www.linkedin.com/company/hamilton-exteriors/',
+    ],
     worksFor: {
       '@type': 'Organization',
       '@id': 'https://hamilton-exteriors.com/#business',

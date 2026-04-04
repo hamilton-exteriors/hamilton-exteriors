@@ -111,7 +111,9 @@ export default defineConfig({
       }
 
       // Priority by page type (Bing uses this; Google ignores it)
+      // Normalize homepage URL to include trailing slash (matches canonical)
       if (path === '/') {
+        item.url = item.url.replace(/\/?$/, '/');
         item.priority = 1.0;
         item.changefreq = 'weekly';
       } else if (['/roofing', '/siding', '/windows', '/adu', '/custom-homes', '/additions'].includes(path)) {

@@ -38,11 +38,8 @@
 **Files:** Ghost CMS content for city+service pages, `src/data/service-areas/*.ts`
 **Score impact:** Content +14 pts, Overall +3-4 pts
 
-### 4. Fix /siding page heading hierarchy (12 H1 tags)
-**Impact:** Every section on /siding uses H1 instead of H2. Confuses search engines about page topic.
-**Effort:** Low (change `<h1>` to `<h2>` in siding page/component)
-**Files:** `src/pages/siding.astro` or `src/components/ServicePage.astro`
-**Score impact:** On-Page +2 pts
+### ~~4. Fix /siding page heading hierarchy (12 H1 tags)~~ ✅ DONE
+**Status:** Already fixed — all section components use `<h2>` properly. Only Hero has `<h1>`.
 
 ### 5. Replace Google Maps sameAs with Place ID URL
 **Impact:** Correct entity resolution for Google's local algorithm
@@ -73,14 +70,8 @@
 **Files:** `src/components/ServicePage.astro` or individual service page files
 **Score impact:** On-Page +3 pts
 
-### 8. Add `author.sameAs` and `inLanguage` to BlogPosting template
-**Impact:** E-E-A-T entity resolution for blog author across AI and Google
-**Actions:**
-- Add `"inLanguage": "en-US"` to BlogPosting block
-- Add `"sameAs": ["https://www.cslb.ca.gov/.../LicenseDetail.aspx?LicNum=1082377", "https://www.linkedin.com/company/hamilton-exteriors/"]` to author object
-**Effort:** Low (1 template file)
-**Files:** `src/pages/blog/[slug].astro`
-**Score impact:** Schema +2 pts
+### ~~8. Add `author.sameAs` and `inLanguage` to BlogPosting template~~ ✅ DONE
+**Status:** Added `inLanguage: "en-US"` and `author.sameAs` (CSLB + LinkedIn) to BlogPosting schema in `blog/[slug].astro`.
 
 ### 9. Implement IndexNow
 **Impact:** Instant URL indexing for Bing/Yandex/Naver on every deploy
@@ -105,13 +96,8 @@
 **Effort:** Trivial (update 2-3 links in Ghost CMS)
 **Files:** Ghost CMS blog editor
 
-### 12. Set font cache headers to immutable
-**Impact:** Eliminates unnecessary font re-downloads for returning visitors
-**Current:** `cache-control: public, max-age=604800` (7 days)
-**Target:** `cache-control: public, max-age=31536000, immutable` (1 year)
-**Effort:** Low
-**Files:** `astro.config.mjs` or Railway static config
-**Score impact:** Performance +1 pt
+### ~~12. Set font cache headers to immutable~~ ✅ DONE
+**Status:** Already implemented in `src/middleware.ts` — all static assets (fonts, images, CSS, JS) get `public, max-age=31536000, immutable`.
 
 ---
 
@@ -134,10 +120,8 @@
 **Effort:** Medium
 **Files:** City+service page template
 
-### 12. Add `WebPage` block to service pages
-**Impact:** Rounds out entity graph, required for some Search Console rich result types
-**Effort:** Low
-**Files:** `src/pages/roofing.astro`, `src/pages/siding.astro`, etc.
+### ~~12. Add `WebPage` block to service pages~~ ✅ DONE
+**Status:** Added `WebPage` schema with `@id`, `isPartOf`, `about`, `inLanguage` to all 6 service pages (roofing, siding, windows, adu, custom-homes, additions).
 
 ### 13. Add `ItemList` to /blog CollectionPage
 **Impact:** Helps Google understand article inventory and crawl prioritization
@@ -151,10 +135,8 @@
 **Effort:** Medium
 **Files:** `src/pages/blog/[slug].astro`
 
-### 15. Create image sitemap
-**Impact:** Exposes portfolio photos to Google Gemini and Bing multi-modal indexing
-**Actions:** Generate image sitemap with `image:title` and `image:caption` tags
-**Effort:** Medium
+### ~~15. Create image sitemap~~ ✅ DONE
+**Status:** `/image-sitemap.xml` created with SEO-optimized titles/captions, referenced in robots.txt.
 
 ### 16. Add static content to `/buy` page
 **Impact:** Without JS, page is near-empty. Risk of thin content signal if Google evaluates without rendering.

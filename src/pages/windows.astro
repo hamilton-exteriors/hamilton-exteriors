@@ -12,8 +12,19 @@ const breadcrumbJsonLd = {
     { '@type': 'ListItem', position: 2, name: 'Windows', item: `${siteUrl}/windows` },
   ],
 };
+const webPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${siteUrl}/windows#webpage`,
+  url: `${siteUrl}/windows`,
+  name: data.title,
+  description: data.description,
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  about: { '@id': `${siteUrl}/windows#service` },
+  inLanguage: 'en-US',
+};
 ---
 
-<Layout title={data.title} description={data.description} includeMapbox preloadHero heroImage={data.hero.heroImage} jsonLd={breadcrumbJsonLd}>
+<Layout title={data.title} description={data.description} includeMapbox preloadHero heroImage={data.hero.heroImage} jsonLd={[breadcrumbJsonLd, webPageJsonLd]}>
   <ServicePage data={data} />
 </Layout>
