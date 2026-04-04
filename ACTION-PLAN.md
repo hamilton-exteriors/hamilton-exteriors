@@ -47,6 +47,7 @@
 **Target:** `https://www.google.com/maps/place/?q=place_id:ChIJ...` (Place ID)
 **Effort:** Trivial (1 line in Layout.astro, get Place ID from GBP dashboard)
 **Files:** `src/layouts/Layout.astro` line ~163
+**Status:** ⏳ Needs Place ID from GBP dashboard — manual lookup required
 
 ---
 
@@ -81,6 +82,7 @@
 - Add post-build script to submit changed URLs via IndexNow API
 **Effort:** Medium
 **Score impact:** Technical +2 pts
+**Status:** ⏳ Needs Bing IndexNow key — generate at bing.com/indexnow/getstarted
 
 ### 10. Build citations on BBB, Angi, Houzz, HomeAdvisor
 **Impact:** 3 of top 5 AI visibility factors are citation-related (Whitespark 2026)
@@ -103,14 +105,8 @@
 
 ## MEDIUM (Fix Within 1 Month)
 
-### 10. Add `Service` schema to city+service pSEO pages
-**Impact:** Each of ~170+ pSEO pages currently has no service-level schema of its own
-**Actions:**
-- In `[...slug].astro`, when `pageType === 'cityService'`, inject Service schema
-- Include `serviceType`, `areaServed: { @type: City }`, `provider` reference, service-specific pricing
-**Effort:** Medium
-**Files:** `src/pages/service-areas/[county]/[...slug].astro`
-**Score impact:** Schema +2 pts, Local +2 pts
+### ~~10. Add `Service` schema to city+service pSEO pages~~ ✅ DONE
+**Status:** Added Service schema with `@id`, `serviceType`, `areaServed: City` (with Wikipedia sameAs + GeoCoordinates), `provider` reference to all 5 county `[...slug].astro` files.
 
 ### 11. Add sibling city+service links within pSEO cluster
 **Impact:** Mesh linking distributes equity across geographic service clusters
@@ -123,17 +119,11 @@
 ### ~~12. Add `WebPage` block to service pages~~ ✅ DONE
 **Status:** Added `WebPage` schema with `@id`, `isPartOf`, `about`, `inLanguage` to all 6 service pages (roofing, siding, windows, adu, custom-homes, additions).
 
-### 13. Add `ItemList` to /blog CollectionPage
-**Impact:** Helps Google understand article inventory and crawl prioritization
-**Actions:** Generate dynamically from Ghost content API
-**Effort:** Medium
-**Files:** `src/pages/blog/index.astro`
+### ~~13. Add `ItemList` to /blog CollectionPage~~ ✅ DONE
+**Status:** Added dynamic `ItemList` schema generated from Ghost posts to blog index page.
 
-### 14. Add FAQ schema to blog posts
-**Impact:** AI search engines extract Q&A from blog posts for citations
-**Actions:** Build automatic FAQPage schema extraction from question-format headings in blog template
-**Effort:** Medium
-**Files:** `src/pages/blog/[slug].astro`
+### ~~14. Add FAQ schema to blog posts~~ ✅ DONE
+**Status:** Auto-detects question-format H2 headings (what/how/why/etc. or ending in ?) and generates FAQPage schema when 2+ Q&A headings found.
 
 ### ~~15. Create image sitemap~~ ✅ DONE
 **Status:** `/image-sitemap.xml` created with SEO-optimized titles/captions, referenced in robots.txt.
@@ -143,6 +133,7 @@
 **Actions:** Add value props, process steps, FAQ above the fold in static HTML
 **Effort:** Medium
 **Files:** `src/pages/buy/index.astro`
+**Partial fix:** FAQPage schema now emitted (was built but not included in jsonLd array). Static HTML content still needed.
 
 ### 17. Proxy Ghost media through canonical domain
 **Impact:** Blog OG images currently reference fragile Ghost Railway subdomain
@@ -154,11 +145,8 @@
 **Effort:** Low
 **Files:** `/roofing`, `/siding` service page content, blog posts
 
-### 19. Expand lean schema block with `address` and city `areaServed`
-**Impact:** City pages currently emit only name/url/telephone in schema stub
-**Actions:** Add `address` (PostalAddress) and `areaServed` populated from `geoPlacename`
-**Effort:** Low
-**Files:** `src/layouts/Layout.astro` lines ~267-276
+### ~~19. Expand lean schema block with `address` and city `areaServed`~~ ✅ DONE
+**Status:** Lean org schema now includes full PostalAddress and 5-county areaServed array.
 
 ---
 
@@ -173,22 +161,17 @@
 **Impact:** Machine-readable entity graph entry for AI model disambiguation
 **Effort:** Medium (Wikidata editing, not code)
 
-### 22. Add canonical handling for blog tag filter URLs
-**Impact:** `/blog?tag=roofing` could create duplicate content signals
-**Effort:** Low
+### ~~22. Add canonical handling for blog tag filter URLs~~ ✅ DONE
+**Status:** Already handled — `Astro.url.pathname` strips query params, so canonical for `/blog?tag=roofing` resolves to `/blog`.
 
-### 23. Increase page cache-control for SSG pages
-**Current:** 300s browser / 3600s CDN
-**Target:** 3600s browser / 604800s CDN (Railway purges on deploy)
-**Effort:** Low
+### ~~23. Increase page cache-control for SSG pages~~ ✅ DONE
+**Status:** Updated middleware to `max-age=3600, s-maxage=604800` (1hr browser / 7d CDN). Railway purges on deploy.
 
-### 24. Verify `--font-oswald` CSS variable maps correctly
-**Impact:** Potential Google Fonts loading if CSS variable references external font
-**Effort:** Trivial (inspect only)
+### ~~24. Verify `--font-oswald` CSS variable maps correctly~~ ✅ DONE
+**Status:** Replaced `"Oswald"` fallback (which could trigger Google Fonts) with `system-ui` in global.css. Now falls back to system font, not external.
 
-### 25. Fix 404 page canonical tag
-**Impact:** 404 page self-canonicalizes to non-existent URL (harmless given noindex, but technically incorrect)
-**Effort:** Trivial
+### ~~25. Fix 404 page canonical tag~~ ✅ N/A
+**Status:** 404 page already has `noindex` set. Canonical on noindex pages is ignored by crawlers. No fix needed.
 
 ---
 

@@ -122,6 +122,7 @@ const breadcrumbJsonLd = {
 // Only applies when the post title contains numbered step/sign patterns
 const hasNumberedSteps = /^\d+\s/.test(post.title) || /\d+\s(warning|sign|step|tip|way|thing|reason)/i.test(post.title);
 let howToJsonLd: Record<string, unknown> | null = null;
+let faqJsonLd: Record<string, unknown> | null = null;
 
 // Extract H2 headings for table of contents
 const tocHeadings: { id: string; text: string }[] = [];
@@ -188,6 +189,49 @@ if (hasNumberedSteps && tocHeadings.length >= 3) {
   };
 }
 
+// Build FAQPage schema from question-format H2 headings (AI search engines extract Q&A)
+const questionHeadings = tocHeadings.filter(h =>
+  /^(what|how|why|when|where|who|which|can|do|does|is|are|should|will|could)\b/i.test(h.text) ||
+  h.text.endsWith('?')
+);
+if (questionHeadings.length >= 2 && processedHtml) {
+  const faqEntries = questionHeadings.map((heading, i) => {
+    const startTag = `id="${heading.id}"`;
+    const startIdx = processedHtml.indexOf(startTag);
+    const nextQ = questionHeadings[i + 1];
+    const endIdx = nextQ
+      ? processedHtml.indexOf(`id="${nextQ.id}"`)
+      : processedHtml.length;
+
+    let answerText = '';
+    if (startIdx > -1) {
+      const section = processedHtml.slice(startIdx, endIdx);
+      // Strip the heading itself, then extract text
+      answerText = section
+        .replace(/<h2[^>]*>.*?<\/h2>/i, '')
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .slice(0, 500);
+    }
+
+    return {
+      '@type': 'Question',
+      name: heading.text.replace(/\?$/, '') + '?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answerText || heading.text,
+      },
+    };
+  });
+
+  faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqEntries,
+  };
+}
+
 // Fetch related posts (same primary tag, exclude current)
 let relatedPosts: any[] = [];
 try {
@@ -204,7 +248,7 @@ try {
   description={description}
   image={postImage}
   type="article"
-  jsonLd={shouldNoindex ? undefined : [articleJsonLd, breadcrumbJsonLd, ...(howToJsonLd ? [howToJsonLd] : [])]}
+  jsonLd={shouldNoindex ? undefined : [articleJsonLd, breadcrumbJsonLd, ...(howToJsonLd ? [howToJsonLd] : []), ...(faqJsonLd ? [faqJsonLd] : [])]}
   noindex={shouldNoindex}
 >
   <meta slot="head" property="article:published_time" content={post.published_at} />

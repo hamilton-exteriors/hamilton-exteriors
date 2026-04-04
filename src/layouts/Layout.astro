@@ -271,7 +271,22 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       "@id": "https://hamilton-exteriors.com/#business",
       "name": "Hamilton Exteriors",
       "url": "https://hamilton-exteriors.com",
-      "telephone": "+1-650-977-3351"
+      "telephone": "+1-650-977-3351",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "21634 Redwood Rd Unit F",
+        "addressLocality": "Castro Valley",
+        "addressRegion": "CA",
+        "postalCode": "94546",
+        "addressCountry": "US"
+      },
+      "areaServed": [
+        { "@type": "County", "name": "Alameda County" },
+        { "@type": "County", "name": "Contra Costa County" },
+        { "@type": "County", "name": "Marin County" },
+        { "@type": "County", "name": "Napa County" },
+        { "@type": "County", "name": "Santa Clara County" }
+      ]
     }
     </script>
     )}

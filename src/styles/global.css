@@ -113,7 +113,7 @@ button[type="submit"]:active {
 
   /* Font Families — 3 fonts only: THE BOLD FONT, DM Sans, Satoshi */
   --font-dm-sans: "DM Sans", sans-serif;
-  --font-oswald: "THE BOLD FONT (FREE VERSION)", "Oswald", sans-serif;
+  --font-oswald: "THE BOLD FONT (FREE VERSION)", system-ui, sans-serif;
   --font-satoshi: "Satoshi", sans-serif;
 }
 

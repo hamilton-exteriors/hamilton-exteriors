@@ -66,7 +66,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   if (response.status >= 400) {
     response.headers.set('Cache-Control', 'no-store');
   } else if (contentType.includes('text/html') || !contentType) {
-    response.headers.set('Cache-Control', 'public, max-age=300, s-maxage=3600');
+    response.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=604800');
   }
 
   return response;
