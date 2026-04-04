@@ -45,14 +45,8 @@
 
 ## HIGH (Fix Within 1 Week)
 
-### 6. Rebuild city hub pages as multi-service general pages
-**Impact:** City hubs currently single-service focused (Oakland = ADU). Weakens "contractor [city]" rankings and creates overlap with pSEO service pages.
-**Actions:**
-- Refactor city data files to neutral multi-service hero + pricing grid
-- Each city hub should link equally to all 6 city+service pages
-**Effort:** Medium-High (29 city data files)
-**Files:** `src/data/service-areas/*.ts`
-**Score impact:** Content +3 pts, On-Page +2 pts
+### ~~6. Rebuild city hub pages as multi-service general pages~~ ✅ DONE
+**Status:** All 29 city hubs in Ghost CMS are already multi-service. Neutral headlines ("{City}'s Top Design-Build & Exteriors Contractor"), all 6 services linked equally, generic badges, neighborhoods, FAQs, nearby cities. The `src/data/service-areas/*.ts` files are unused seed data from before the Ghost migration.
 
 ### ~~7. Add internal links from service pages into pSEO cluster~~ ✅ DONE
 **Status:** Already implemented — ServicePage.astro renders "{Service} Across the Bay Area" grid on main service pages, linking to all 5 counties and 29 cities per service.
