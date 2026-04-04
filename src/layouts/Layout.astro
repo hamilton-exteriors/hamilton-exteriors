@@ -23,8 +23,8 @@ interface Props {
 
 const heroSrc = Astro.props.heroImage || heroBg;
 // Only process hero preload images when actually needed — avoids wasted SSR work
-const heroMobilePreload = Astro.props.preloadHero ? await getImage({ src: heroSrc, width: 1080, height: 608, format: 'webp', quality: 90 }) : null;
-const heroDesktopPreload = Astro.props.preloadHero ? await getImage({ src: heroSrc, width: 1920, height: 1080, format: 'webp', quality: 85 }) : null;
+const heroMobilePreload = Astro.props.preloadHero ? await getImage({ src: heroSrc, width: 768, height: 432, format: 'webp', quality: 72 }) : null;
+const heroDesktopPreload = Astro.props.preloadHero ? await getImage({ src: heroSrc, width: 1440, height: 810, format: 'webp', quality: 70 }) : null;
 
 const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs & custom homes. Licensed, bonded, insured. 50-year warranty. $0 down financing. Call (650) 977-3351.';
 const DEFAULT_GEO_PLACENAME = 'Bay Area, California';
