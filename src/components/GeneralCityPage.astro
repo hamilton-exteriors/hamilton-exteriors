@@ -30,6 +30,8 @@ const countyUrlSlug = data.countySlug.endsWith('-county-ca') ? data.countySlug :
 // Seed data uses short city slugs ("oakland"), URLs use full slugs ("oakland-ca")
 const cityUrlSlug = data.slug.endsWith('-ca') ? data.slug : `${data.slug}-ca`;
 
+const pageUrl = `https://hamilton-exteriors.com/service-areas/${countyUrlSlug}/${cityUrlSlug}`;
+
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -37,8 +39,20 @@ const breadcrumbSchema = {
     { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://hamilton-exteriors.com/' },
     { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': 'https://hamilton-exteriors.com/service-areas' },
     { '@type': 'ListItem', 'position': 3, 'name': `${data.county} County`, 'item': `https://hamilton-exteriors.com/service-areas/${countyUrlSlug}` },
-    { '@type': 'ListItem', 'position': 4, 'name': `${data.city}, ${data.state}`, 'item': `https://hamilton-exteriors.com/service-areas/${countyUrlSlug}/${cityUrlSlug}` },
+    { '@type': 'ListItem', 'position': 4, 'name': `${data.city}, ${data.state}`, 'item': pageUrl },
   ],
+};
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${pageUrl}#webpage`,
+  url: pageUrl,
+  name: data.title,
+  description: data.description,
+  isPartOf: { '@id': 'https://hamilton-exteriors.com/#website' },
+  about: { '@id': 'https://hamilton-exteriors.com/#business' },
+  inLanguage: 'en-US',
 };
 ---
 
@@ -55,6 +69,8 @@ const breadcrumbSchema = {
 
 <!-- BreadcrumbList JSON-LD -->
 <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+<!-- WebPage JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
 
 <!-- Hero -->
 <Hero

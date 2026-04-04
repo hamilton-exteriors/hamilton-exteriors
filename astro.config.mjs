@@ -110,35 +110,9 @@ export default defineConfig({
         item.lastmod = new Date().toISOString().split('T')[0];
       }
 
-      // Priority by page type (Bing uses this; Google ignores it)
       // Normalize homepage URL to include trailing slash (matches canonical)
       if (path === '/') {
         item.url = item.url.replace(/\/?$/, '/');
-        item.priority = 1.0;
-        item.changefreq = 'weekly';
-      } else if (['/roofing', '/siding', '/windows', '/adu', '/custom-homes', '/additions'].includes(path)) {
-        item.priority = 0.9;
-        item.changefreq = 'monthly';
-      } else if (path === '/service-areas' || path === '/blog') {
-        item.priority = 0.8;
-        item.changefreq = 'weekly';
-      } else if (path.startsWith('/blog/')) {
-        item.priority = 0.7;
-        item.changefreq = 'monthly';
-      } else if (path.match(/^\/service-areas\/[^/]+-ca$/) || path === '/buy') {
-        // County pages
-        item.priority = 0.7;
-        item.changefreq = 'monthly';
-      } else if (path.match(/^\/service-areas\/[^/]+-ca\/[^/]+-ca$/)) {
-        // City hub pages
-        item.priority = 0.6;
-        item.changefreq = 'monthly';
-      } else if (path.startsWith('/service-areas/')) {
-        // City+service and county+service pages
-        item.priority = 0.5;
-        item.changefreq = 'monthly';
-      } else {
-        item.priority = 0.3;
       }
 
       return item;

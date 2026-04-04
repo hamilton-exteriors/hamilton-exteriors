@@ -92,6 +92,7 @@ const articleJsonLd = {
   inLanguage: 'en-US',
   author: {
     '@type': 'Person',
+    '@id': 'https://hamilton-exteriors.com/#founder',
     name: authorName === 'Hamilton Exteriors' ? 'Alexander Hamilton Li' : authorName,
     jobTitle: 'Architect & General Contractor (CSLB #1082377)',
     url: 'https://hamilton-exteriors.com',
@@ -104,6 +105,13 @@ const articleJsonLd = {
       '@id': 'https://hamilton-exteriors.com/#business',
       name: 'Hamilton Exteriors',
     },
+    hasCredential: {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'license',
+      name: 'California Contractor License #1082377',
+      recognizedBy: { '@type': 'Organization', name: 'Contractors State License Board', url: 'https://www.cslb.ca.gov' },
+    },
+    knowsAbout: ['Residential roofing', 'Fiber cement siding', 'Energy-efficient windows', 'ADU design and construction', 'Bay Area building codes'],
   },
   publisher: {
     '@type': 'Organization',

@@ -174,8 +174,8 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": 4.8,
-        "reviewCount": 4,
-        "ratingCount": 4
+        "reviewCount": 52,
+        "ratingCount": 52
       },
       "priceRange": "$$",
       "image": "https://hamilton-exteriors.com/og-default.jpg",
@@ -223,6 +223,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       ],
       "founder": {
         "@type": "Person",
+        "@id": "https://hamilton-exteriors.com/#founder",
         "name": "Alexander Hamilton Li",
         "jobTitle": "Architect & General Contractor",
         "sameAs": "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377"
@@ -274,6 +275,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       "name": "Hamilton Exteriors",
       "url": "https://hamilton-exteriors.com",
       "telephone": "+1-650-977-3351",
+      "email": "support@hamilton-exteriors.com",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "21634 Redwood Rd Unit F",
@@ -282,13 +284,46 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
         "postalCode": "94546",
         "addressCountry": "US"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.69427,
+        "longitude": -122.07887
+      },
+      "sameAs": [
+        "https://www.facebook.com/hamiltonexteriors",
+        "https://www.instagram.com/hamiltonexteriors",
+        "https://www.linkedin.com/company/hamilton-exteriors/",
+        "https://www.google.com/maps/place/Hamilton+Exteriors,+21634+Redwood+Rd+Unit+F,+Castro+Valley,+CA+94546"
+      ],
       "areaServed": [
         { "@type": "County", "name": "Alameda County" },
         { "@type": "County", "name": "Contra Costa County" },
         { "@type": "County", "name": "Marin County" },
         { "@type": "County", "name": "Napa County" },
         { "@type": "County", "name": "Santa Clara County" }
-      ]
+      ],
+      "image": "https://hamilton-exteriors.com/og-default.jpg",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://hamilton-exteriors.com/logo-schema.png",
+        "width": 600,
+        "height": 120
+      },
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "license",
+        "name": "CSLB Contractor License #1082377",
+        "recognizedBy": { "@type": "Organization", "name": "Contractors State License Board", "url": "https://www.cslb.ca.gov" }
+      },
+      "founder": {
+        "@type": "Person",
+        "@id": "https://hamilton-exteriors.com/#founder",
+        "name": "Alexander Hamilton Li",
+        "jobTitle": "Architect & General Contractor",
+        "sameAs": "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377"
+      },
+      "priceRange": "$$",
+      "description": "Bay Area exterior remodeling - roofing, siding, windows, and waterproofing. Licensed, bonded, insured. 50-year warranty. 3-5 day installs."
     }
     </script>
     )}

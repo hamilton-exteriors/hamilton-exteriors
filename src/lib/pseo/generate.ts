@@ -303,7 +303,7 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
     title: `Roofing, Siding, ADUs & Custom Homes in ${city}, CA | Hamilton Exteriors`,
     description: `${city}'s trusted design-build contractor. Roofing, siding, windows, ADUs & custom homes in ${county} County. Licensed, insured. Free estimates.`,
     hero: {
-      headline: `${city}'s Top  Design-Build &  Exteriors Contractor`,
+      headline: `Roofing, Siding &  Exterior Remodeling  in ${city}`,
       formTitle: 'Get a FREE Estimate',
       formSubtitle:
         "Tell us about your project. We'll call within 5 minutes to discuss next steps.",
@@ -389,7 +389,7 @@ export function generateCountyPage(countyUrlSlug: string): CountyPageSeedData | 
     adjective: COUNTY_ADJECTIVES[shortCounty] || 'Trusted',
     title: `Roofing, Siding & Exteriors in ${displayCounty} County, CA | Hamilton Exteriors`,
     description: `Hamilton Exteriors serves ${displayCounty} County with expert roofing, siding, windows, ADUs & custom homes. Licensed, insured. Free estimates — call (650) 977-3351.`,
-    heroHeadline: `${displayCounty} County's Top  Design-Build &  Exteriors Contractor`,
+    heroHeadline: `Roofing, Siding &  Exterior Remodeling  in ${displayCounty} County`,
     heroFormTitle: 'Get a FREE Estimate',
     proximity: COUNTY_PROXIMITY[shortCounty],
     cities: countyCities.map(c => ({

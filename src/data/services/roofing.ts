@@ -58,7 +58,7 @@ export const data: ServicePageData = {
     {
       type: 'pricing',
       data: {
-        heading: 'Roofing Pricing',
+        heading: 'How Much Does a New Roof Cost in the Bay Area?',
         tiers: [
           {
             name: 'Standard',

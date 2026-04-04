@@ -79,7 +79,7 @@ export const data: ServicePageData = {
     {
       type: 'pricing',
       data: {
-        heading: 'Window Pricing',
+        heading: 'How Much Do New Windows Cost in the Bay Area?',
         tiers: [
           {
             name: 'Standard Windows',

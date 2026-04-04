@@ -68,7 +68,7 @@ export const data: ServicePageData = {
     {
       type: 'pricing',
       data: {
-        heading: 'Siding Pricing',
+        heading: 'How Much Does New Siding Cost in the Bay Area?',
         tiers: [
           {
             name: 'Vinyl Siding',
