@@ -59,10 +59,13 @@
 }
 
 /* ── BackOffice Widget A11y — override #999 text for WCAG AA contrast ── */
-#bo-portfolio .bop-fbtn,
+#bo-portfolio .bop-fbtn:not(.active),
 #bo-portfolio .bop-label,
 #bo-portfolio .bop-pag-label {
   color: #595959 !important;
+}
+#bo-portfolio .bop-fbtn.active {
+  color: #ffffff !important;
 }
 
 /* ── Text Overflow Protection ──────────────────────────────────────── */
