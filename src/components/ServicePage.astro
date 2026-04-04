@@ -75,12 +75,48 @@ const otherServices = isCityServicePage
   : [];
 
 const counties = [
-  { name: 'Alameda County', slug: 'alameda-county-ca' },
-  { name: 'Contra Costa County', slug: 'contra-costa-county-ca' },
-  { name: 'Marin County', slug: 'marin-county-ca' },
-  { name: 'Napa County', slug: 'napa-county-ca' },
-  { name: 'Santa Clara County', slug: 'santa-clara-county-ca' },
+  { name: 'Alameda County', slug: 'alameda-county-ca', cities: [
+    { name: 'Oakland', slug: 'oakland-ca' },
+    { name: 'Berkeley', slug: 'berkeley-ca' },
+    { name: 'Fremont', slug: 'fremont-ca' },
+    { name: 'Hayward', slug: 'hayward-ca' },
+    { name: 'San Leandro', slug: 'san-leandro-ca' },
+  ]},
+  { name: 'Contra Costa County', slug: 'contra-costa-county-ca', cities: [
+    { name: 'Walnut Creek', slug: 'walnut-creek-ca' },
+    { name: 'Concord', slug: 'concord-ca' },
+    { name: 'San Ramon', slug: 'san-ramon-ca' },
+    { name: 'Antioch', slug: 'antioch-ca' },
+    { name: 'Richmond', slug: 'richmond-ca' },
+  ]},
+  { name: 'Marin County', slug: 'marin-county-ca', cities: [
+    { name: 'San Rafael', slug: 'san-rafael-ca' },
+    { name: 'Mill Valley', slug: 'mill-valley-ca' },
+    { name: 'Novato', slug: 'novato-ca' },
+    { name: 'Larkspur', slug: 'larkspur-ca' },
+  ]},
+  { name: 'Napa County', slug: 'napa-county-ca', cities: [
+    { name: 'Napa', slug: 'napa-ca' },
+    { name: 'American Canyon', slug: 'american-canyon-ca' },
+    { name: 'St. Helena', slug: 'st-helena-ca' },
+    { name: 'Calistoga', slug: 'calistoga-ca' },
+    { name: 'Yountville', slug: 'yountville-ca' },
+  ]},
+  { name: 'Santa Clara County', slug: 'santa-clara-county-ca', cities: [
+    { name: 'San Jose', slug: 'san-jose-ca' },
+    { name: 'Palo Alto', slug: 'palo-alto-ca' },
+    { name: 'Mountain View', slug: 'mountain-view-ca' },
+    { name: 'Sunnyvale', slug: 'sunnyvale-ca' },
+    { name: 'Cupertino', slug: 'cupertino-ca' },
+  ]},
 ];
+
+// For pSEO city+service pages: find sibling cities in the same county
+const siblingCityLinks = isCityServicePage
+  ? (counties.find(c => c.slug === countySlugFromPath)?.cities || [])
+      .filter(city => city.slug !== citySlugFromPath)
+      .slice(0, 3)
+  : [];
 
 // Derive serviceType from the page slug
 const serviceSlug = Astro.url.pathname.replace(/\/$/, '').split('/').pop() || '';
@@ -255,12 +291,24 @@ const serviceSchema: Record<string, unknown> = {
               </h2>
               <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {counties.map(c => (
-                  <a href={`/service-areas/${c.slug}/${currentServiceSlug}`} style="display: block; padding: 20px; background: var(--color-white); border: 1px solid var(--color-border); text-decoration: none; transition: opacity 0.2s;" class="hover:opacity-80">
-                    <h3 style="font-size: 1rem; margin-bottom: 4px; color: var(--color-heading);">{c.name}</h3>
-                    <p style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted);">
-                      {SERVICE_SLUG_MAP[currentServiceSlug]} services in {c.name}
-                    </p>
-                  </a>
+                  <div style="padding: 20px; background: var(--color-white); border: 1px solid var(--color-border);">
+                    <a href={`/service-areas/${c.slug}/${currentServiceSlug}`} style="text-decoration: none;">
+                      <h3 style="font-size: 1rem; margin-bottom: 4px; color: var(--color-heading);">{c.name}</h3>
+                    </a>
+                    <ul style="list-style: none; padding: 0; margin: 8px 0 0;">
+                      {c.cities.map(city => (
+                        <li style="margin-bottom: 4px;">
+                          <a
+                            href={`/service-areas/${c.slug}/${city.slug}/${currentServiceSlug}`}
+                            style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-primary); text-decoration: none;"
+                            class="hover:underline"
+                          >
+                            {SERVICE_SLUG_MAP[currentServiceSlug]} in {city.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
                 <a href="/service-areas" style="display: flex; align-items: center; justify-content: center; padding: 20px; background: var(--color-primary); text-decoration: none; transition: opacity 0.2s;" class="hover:opacity-90">
                   <span style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 600; color: white;">View All Service Areas &rarr;</span>
@@ -395,6 +443,23 @@ const serviceSchema: Record<string, unknown> = {
           </a>
         ))}
       </div>
+      {siblingCityLinks.length > 0 && (
+        <>
+          <p class="font-[Satoshi] text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4 mt-6">
+            {SERVICE_SLUG_MAP[currentService] || 'Services'} in nearby cities
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {siblingCityLinks.map(city => (
+              <a
+                href={`/service-areas/${countySlugFromPath}/${city.slug}/${currentService}`}
+                class="rounded-full border border-[var(--color-border)] px-4 py-2 font-[DM_Sans] text-sm text-[var(--color-charcoal)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors"
+              >
+                {city.name}
+              </a>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   </section>
 )}
