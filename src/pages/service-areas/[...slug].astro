@@ -164,25 +164,25 @@ if (pageType === 'cityService' && cityServiceData) {
 ---
 
 {pageType === 'countyService' && countyServiceData && (
-  <Layout title={countyServiceData.title} description={countyServiceData.description} jsonLd={jsonLd} includeMapbox>
+  <Layout title={countyServiceData.title} description={countyServiceData.description} jsonLd={jsonLd} includeMapbox preloadHero>
     <ServicePage data={countyServiceData as any} />
   </Layout>
 )}
 
 {pageType === 'cityService' && cityServiceData && (
-  <Layout title={cityServiceData.title} description={cityServiceData.description} jsonLd={jsonLd} includeMapbox geoPlacename={`${cityServiceData.city}, CA`}>
+  <Layout title={cityServiceData.title} description={cityServiceData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityServiceData.city}, CA`}>
     <ServicePage data={cityServiceData as any} />
   </Layout>
 )}
 
 {pageType === 'city' && cityData && (
-  <Layout title={cityData.title} description={cityData.description} jsonLd={jsonLd} includeMapbox geoPlacename={`${cityData.city || ''}, CA`}>
+  <Layout title={cityData.title} description={cityData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityData.city || ''}, CA`}>
     <GeneralCityPage data={cityData} />
   </Layout>
 )}
 
 {pageType === 'county' && countyData && (
-  <Layout title={countyData.title} description={countyData.description} jsonLd={jsonLd} includeMapbox>
+  <Layout title={countyData.title} description={countyData.description} jsonLd={jsonLd} includeMapbox preloadHero>
     <CountyPage data={countyData} />
   </Layout>
 )}

@@ -181,7 +181,7 @@ const serviceSchema: Record<string, unknown> = {
 />
 
 <div class="mx-auto max-w-7xl px-4 pt-3">
-  <p class="text-xs text-gray-400 font-[Satoshi]">Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
+  <p class="text-xs text-gray-600 font-[Satoshi]">Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
 </div>
 
 {data.sections.map((section) => {
@@ -430,7 +430,7 @@ const serviceSchema: Record<string, unknown> = {
 {isCityServicePage && otherServices.length > 0 && (
   <section class="bg-[var(--color-cream)] py-10 px-4">
     <div class="mx-auto max-w-5xl">
-      <p class="font-[Satoshi] text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">
+      <p class="font-[Satoshi] text-xs font-semibold uppercase tracking-wider text-gray-600 mb-4">
         Also serving {cityOrArea || 'this area'}
       </p>
       <div class="flex flex-wrap gap-2">
@@ -445,7 +445,7 @@ const serviceSchema: Record<string, unknown> = {
       </div>
       {siblingCityLinks.length > 0 && (
         <>
-          <p class="font-[Satoshi] text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4 mt-6">
+          <p class="font-[Satoshi] text-xs font-semibold uppercase tracking-wider text-gray-600 mb-4 mt-6">
             {SERVICE_SLUG_MAP[currentService] || 'Services'} in nearby cities
           </p>
           <div class="flex flex-wrap gap-2">

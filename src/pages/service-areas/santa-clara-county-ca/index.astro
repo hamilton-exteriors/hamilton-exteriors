@@ -4,6 +4,6 @@ import CountyPage from '../../../components/CountyPage.astro';
 import { data } from '../../../data/counties/santa-clara-county-ca';
 ---
 
-<Layout title={data.title} description={data.description} includeMapbox>
+<Layout title={data.title} description={data.description} includeMapbox preloadHero>
   <CountyPage data={data} />
 </Layout>
