@@ -2,12 +2,12 @@ import type { ServicePageData } from '../../lib/service-page-types';
 import { roofingAsphalt, roofingMetal, roofingTile, roofingFlat, heroRoofing } from '../../lib/images';
 
 export const data: ServicePageData = {
-  title: 'Bay Area Roofing | Shingles, Metal & Tile | Hamilton',
+  title: 'Bay Area Roofing | Shingles, Metal & Tile | Hamilton Exteriors',
   description:
     'Top-rated Bay Area roofing contractor. Composite shingles, metal roofs, tile & GAF solar. 50-year warranty. Free inspection — call (650) 977-3351.',
   announcementText: 'Limited Time Get up to $2000 off your Roof Replacement*',
   hero: {
-    headline: 'Bay Area\u2019s  #1 Roofing  Contractor',
+    headline: 'Bay Area\u2019s #1 Roofing Contractor',
     formTitle: 'Get a FREE ROOF INSPECTION',
     formSubtitle:
       "We'll contact you in 3-5 minutes to schedule a FREE roof inspection.",

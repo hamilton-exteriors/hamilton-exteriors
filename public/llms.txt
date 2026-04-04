@@ -158,4 +158,4 @@ Yes. Every project is assigned a personal project manager who handles everything
 
 ## Extended Information
 
-For more detailed information, see: https://hamilton-exteriors.com/llms-full.txt
+For more detailed information, see: https://hamilton-exteriors-production.up.railway.app/llms-full.txt

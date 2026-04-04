@@ -90,8 +90,8 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta name="geo.region" content="US-CA" />
     <meta name="geo.placename" content={geoPlacename} />
 
-    <!-- Canonical — derived from Astro.url.pathname; no prop override needed -->
-    <link rel="canonical" href={canonicalUrl} />
+    <!-- Canonical — derived from Astro.url.pathname; omitted on noindex pages (404, etc.) -->
+    {!noindex && <link rel="canonical" href={canonicalUrl} />}
 
     <!-- AI content declaration for llms.txt discovery -->
     <link rel="ai-content-declaration" href="/llms.txt" type="text/plain" />
@@ -139,7 +139,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       "@id": "https://hamilton-exteriors.com/#business",
       "name": "Hamilton Exteriors",
       "url": "https://hamilton-exteriors.com",
-      "telephone": "+1-650-977-3351",
+      "telephone": "+16509773351",
       "email": "support@hamilton-exteriors.com",
       "address": {
         "@type": "PostalAddress",
@@ -274,7 +274,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       "@id": "https://hamilton-exteriors.com/#business",
       "name": "Hamilton Exteriors",
       "url": "https://hamilton-exteriors.com",
-      "telephone": "+1-650-977-3351",
+      "telephone": "+16509773351",
       "email": "support@hamilton-exteriors.com",
       "address": {
         "@type": "PostalAddress",

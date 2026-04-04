@@ -96,7 +96,7 @@ export default defineConfig({
     ],
     filter: (page) => {
       // Exclude noindex pages from sitemap
-      const exclude = ['/success', '/quote-calculator', '/404', '/privacy-policy', '/privacy-notice-ca', '/terms', '/eeo-policy', '/opt-out', '/buy/scan', '/additions-2', '/additions-3', '/blog/coming-soon', '/blog/untitled'];
+      const exclude = ['/success', '/quote-calculator', '/404', '/privacy-policy', '/privacy-notice-ca', '/terms', '/eeo-policy', '/opt-out', '/additions-2', '/additions-3', '/blog/coming-soon', '/blog/untitled'];
       return !exclude.some(path => page.includes(path));
     },
     serialize: (item) => {
@@ -107,7 +107,20 @@ export default defineConfig({
       if (blogDate) {
         item.lastmod = new Date(blogDate).toISOString().split('T')[0];
       } else {
-        item.lastmod = new Date().toISOString().split('T')[0];
+        // Use stable dates for non-blog pages instead of today's date
+        // (identical lastmod across all URLs trains Google to ignore the signal)
+        const CORE_PAGE_DATES = {
+          '/': '2026-03-30',
+          '/roofing': '2026-03-30',
+          '/siding': '2026-03-30',
+          '/windows': '2026-03-30',
+          '/adu': '2026-03-30',
+          '/custom-homes': '2026-03-30',
+          '/additions': '2026-03-30',
+          '/service-areas': '2026-03-30',
+          '/buy': '2026-03-30',
+        };
+        item.lastmod = CORE_PAGE_DATES[path] || '2026-03-30';
       }
 
       // Normalize homepage URL to include trailing slash (matches canonical)

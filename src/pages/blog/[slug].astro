@@ -24,7 +24,9 @@ if (!post) {
   return Astro.redirect('/blog');
 }
 
-const title = post.meta_title || post.title;
+// Strip duplicate brand suffix that Ghost CMS sometimes appends (e.g. "Title | Hamilton Exteriors | Hamilton Exteriors")
+const rawTitle = post.meta_title || post.title;
+const title = rawTitle.replace(/(\s*\|\s*Hamilton Exteriors){2,}/gi, ' | Hamilton Exteriors');
 const description = post.meta_description || post.custom_excerpt || post.excerpt || '';
 
 // Noindex stub/placeholder posts that shouldn't appear in search results
@@ -250,13 +252,20 @@ if (questionHeadings.length >= 2 && processedHtml) {
     if (startIdx > -1) {
       const section = processedHtml.slice(startIdx, endIdx);
       // Strip the heading itself and any partial tag fragments, then extract plain text
-      answerText = section
+      const rawAnswer = section
         .replace(/^[^<]*>/, '')           // remove leading partial tag (id="..." ...>)
         .replace(/<h2[^>]*>.*?<\/h2>/gi, '') // strip any remaining H2 tags
         .replace(/<[^>]+>/g, ' ')          // strip all HTML tags
         .replace(/\s+/g, ' ')
-        .trim()
-        .slice(0, 500);
+        .trim();
+      // Truncate at sentence boundary to avoid cut-off answers in FAQ schema
+      const truncated = rawAnswer.slice(0, 800);
+      const lastSentenceEnd = Math.max(
+        truncated.lastIndexOf('. '),
+        truncated.lastIndexOf('.\u201D'),
+        truncated.lastIndexOf('.)'),
+      );
+      answerText = lastSentenceEnd > 100 ? truncated.slice(0, lastSentenceEnd + 1) : truncated;
     }
 
     return {
