@@ -50,7 +50,7 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
   getImage({ src: heroImage, width: 1080, height: 608, format: 'webp', quality: 90 }),
   getImage({ src: heroImage, width: 1280, height: 720, format: 'webp', quality: 90 }),
-  getImage({ src: heroImage, width: 2560, height: 1440, format: 'webp', quality: 88 }),
+  getImage({ src: heroImage, width: 1920, height: 1080, format: 'webp', quality: 85 }),
 ]);
 ---
 

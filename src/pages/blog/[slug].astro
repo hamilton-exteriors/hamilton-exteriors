@@ -254,6 +254,7 @@ try {
   jsonLd={shouldNoindex ? undefined : [articleJsonLd, breadcrumbJsonLd, ...(howToJsonLd ? [howToJsonLd] : []), ...(faqJsonLd ? [faqJsonLd] : [])]}
   noindex={shouldNoindex}
 >
+  {postImage && <link slot="head" rel="preload" href={postImage} as="image" fetchpriority="high" />}
   <meta slot="head" property="article:published_time" content={post.published_at} />
   {post.updated_at && <meta slot="head" property="article:modified_time" content={post.updated_at} />}
   {post.primary_tag && <meta slot="head" property="article:section" content={post.primary_tag.name} />}
