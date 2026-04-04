@@ -146,15 +146,30 @@ function getCountyLocalFaqs(
 /**
  * Generate one city-specific FAQ using unique local context from the seed data.
  */
-function getCityLocalFaq(seed: CitySeed): { question: string; answer: string } {
-  const { city, county, medianHomePrice, keyFeature, neighborhoods } = seed;
+function getCityLocalFaqs(seed: CitySeed): Array<{ question: string; answer: string }> {
+  const { city, county, medianHomePrice, keyFeature, neighborhoods, population } = seed;
   const n0 = neighborhoods[0];
   const n1 = neighborhoods[Math.min(1, neighborhoods.length - 1)];
+  const n2 = neighborhoods[Math.min(2, neighborhoods.length - 1)];
 
-  return {
-    question: `Why do ${city} homeowners choose Hamilton Exteriors?`,
-    answer: `${city} is ${keyFeature}, and homes here — from ${n0} to ${n1} — deserve contractors who understand the area. With median home values at ${medianHomePrice}, exterior work is a significant investment. Hamilton Exteriors has completed projects across ${city} and ${county} County, and we bring local knowledge of ${county} County building codes, permit processes, and climate-specific material requirements to every job. Our CSLB license (#1082377), manufacturer certifications, and 50-year warranty give ${city} homeowners confidence in the long-term value of their investment.`,
-  };
+  return [
+    {
+      question: `Why do ${city} homeowners choose Hamilton Exteriors?`,
+      answer: `${city} is ${keyFeature}, and homes here — from ${n0} to ${n1} — deserve contractors who understand the area. With median home values at ${medianHomePrice}, exterior work is a significant investment. Hamilton Exteriors has completed projects across ${city} and ${county} County, and we bring local knowledge of ${county} County building codes, permit processes, and climate-specific material requirements to every job. Our CSLB license (#1082377), manufacturer certifications, and 50-year warranty give ${city} homeowners confidence in the long-term value of their investment.`,
+    },
+    {
+      question: `What neighborhoods in ${city} does Hamilton Exteriors serve?`,
+      answer: `We serve all ${city} neighborhoods including ${neighborhoods.slice(0, 5).join(', ')}, and surrounding areas. With a population of ${population}, ${city} has a wide range of home styles — from Craftsman bungalows in ${n0} to modern builds in ${n2}. Our crews are familiar with the architectural character and HOA requirements in each neighborhood, and we carry materials suited to the local climate and building codes.`,
+    },
+    {
+      question: `Does a new roof or siding increase home value in ${city}?`,
+      answer: `Yes. With ${city}'s median home value at ${medianHomePrice}, exterior upgrades deliver strong ROI. According to the 2024 Remodeling Magazine Cost vs. Value report, a new roof recoups 60-65% of its cost at resale in the Bay Area, while fiber cement siding (James Hardie) recovers up to 86%. In competitive ${city} neighborhoods like ${n0} and ${n1}, curb appeal directly impacts days on market and final sale price. Hamilton Exteriors helps ${city} homeowners choose materials that maximize both protection and resale value.`,
+    },
+    {
+      question: `How do I get a free estimate for exterior work in ${city}?`,
+      answer: `Call us at (650) 977-3351 or fill out the form on this page. A Hamilton Exteriors project manager will visit your ${city} home within 48 hours to inspect the work area, take measurements, and provide a written, itemized estimate on the spot — no pressure, no obligation. We cover all of ${county} County from our Castro Valley office, and most ${city} estimates are scheduled within 1-2 business days.`,
+    },
+  ];
 }
 
 // ── 1. General City Page ────────────────────────────────────────────────────
@@ -267,14 +282,14 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
 
   // FAQs — combine city-specific questions with county-level local knowledge
   const countyLocalFaqs = getCountyLocalFaqs(countySlug, city, county);
-  const cityLocalFaq = getCityLocalFaq(seed);
+  const cityLocalFaqs = getCityLocalFaqs(seed);
 
   const faqs = [
     {
       question: `How much does a home renovation cost in ${city}?`,
       answer: `Costs vary by project scope. Roof replacements in ${city} start around $8,000, siding from $8,000, and window replacements from $400 per window. ADUs range from $150,000 to $350,000, and custom homes from $350 to $600 per square foot. With median home values at ${seed.medianHomePrice}, these improvements are strong investments. We provide free estimates for every project.`,
     },
-    cityLocalFaq,
+    ...cityLocalFaqs,
     ...countyLocalFaqs,
   ];
 
