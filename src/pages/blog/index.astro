@@ -266,6 +266,8 @@ function ghostSrcset(url: string, widths: number[]): string {
                   </p>
                 )}
                 <div class="flex items-center gap-3" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted);">
+                  <span>By <a href="/about/alex-hamilton-li" style="color: var(--color-heading); font-weight: 500; text-decoration: none;">Alex Hamilton Li</a></span>
+                  <span>&middot;</span>
                   <time datetime={featuredPost.published_at}>{formatDate(featuredPost.published_at)}</time>
                   {featuredPost.reading_time > 0 && (
                     <>
@@ -323,6 +325,8 @@ function ghostSrcset(url: string, widths: number[]): string {
                     </p>
                   )}
                   <div class="mt-auto flex items-center gap-3" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted);">
+                    <span>By <a href="/about/alex-hamilton-li" style="color: var(--color-heading); font-weight: 500; text-decoration: none;" onclick="event.stopPropagation();">Alex Hamilton Li</a></span>
+                    <span>&middot;</span>
                     <time datetime={post.published_at}>{formatDate(post.published_at)}</time>
                     {post.reading_time > 0 && (
                       <>

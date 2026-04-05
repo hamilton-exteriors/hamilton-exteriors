@@ -118,4 +118,6 @@ export interface ServicePageData {
   sections: SectionBlock[];
   /** Extra <style> block content (raw CSS string) */
   extraStyles?: string;
+  /** Service-specific FAQs appended after base universal FAQs */
+  localFaqs?: Array<{ question: string; answer: string }>;
 }

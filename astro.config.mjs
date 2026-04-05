@@ -96,7 +96,7 @@ export default defineConfig({
     ],
     filter: (page) => {
       // Exclude noindex pages from sitemap
-      const exclude = ['/success', '/quote-calculator', '/404', '/privacy-policy', '/privacy-notice-ca', '/terms', '/eeo-policy', '/opt-out', '/additions-2', '/additions-3', '/blog/coming-soon', '/blog/untitled'];
+      const exclude = ['/success', '/quote-calculator', '/404', '/privacy-policy', '/privacy-notice-ca', '/terms', '/eeo-policy', '/opt-out', '/additions-2', '/additions-3', '/blog/coming-soon', '/blog/untitled', '/buy/scan'];
       return !exclude.some(path => page.includes(path));
     },
     serialize: (item) => {
@@ -126,6 +126,32 @@ export default defineConfig({
       // Normalize homepage URL to include trailing slash (matches canonical)
       if (path === '/') {
         item.url = item.url.replace(/\/?$/, '/');
+      }
+
+      // Priority: core pages > county > city > city+service > blog
+      if (path === '/') {
+        item.priority = 1.0;
+        item.changefreq = 'weekly';
+      } else if (['/roofing', '/siding', '/windows', '/adu', '/custom-homes', '/additions'].includes(path)) {
+        item.priority = 0.9;
+        item.changefreq = 'monthly';
+      } else if (path === '/service-areas' || path.match(/^\/service-areas\/[^/]+-county-ca$/)) {
+        item.priority = 0.8;
+        item.changefreq = 'monthly';
+      } else if (path.startsWith('/blog/')) {
+        item.priority = 0.7;
+        item.changefreq = 'monthly';
+      } else if (path.match(/^\/service-areas\/[^/]+\/[^/]+$/)) {
+        // City pages or county+service pages
+        item.priority = 0.6;
+        item.changefreq = 'monthly';
+      } else if (path.match(/^\/service-areas\/[^/]+\/[^/]+\/[^/]+$/)) {
+        // City+service leaf pages
+        item.priority = 0.5;
+        item.changefreq = 'monthly';
+      } else {
+        item.priority = 0.5;
+        item.changefreq = 'monthly';
       }
 
       return item;

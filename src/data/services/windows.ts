@@ -115,4 +115,31 @@ export const data: ServicePageData = {
     { type: 'contactUs' },
     { type: 'footer' },
   ],
+  localFaqs: [
+    {
+      question: 'How much do replacement windows cost in the Bay Area?',
+      answer:
+        'Bay Area replacement window costs depend on style and frame material. Standard double-hung vinyl windows run $650 to $950 per unit installed. Premium fiberglass casement windows cost $1,000 to $1,500 per unit. Bay and bow windows range from $2,800 to $4,500 installed. A typical Bay Area home with 15 to 20 windows costs $12,000 to $25,000 for a full replacement. Every Hamilton Exteriors estimate is itemized — window units, trim, flashing, labor, and cleanup listed separately.',
+    },
+    {
+      question: 'How do energy-efficient windows reduce utility bills?',
+      answer:
+        'ENERGY STAR certified windows can save Bay Area homeowners $125 to $465 per year on energy bills (U.S. Department of Energy, 2024). The key spec is the U-factor — lower is better. Hamilton Exteriors installs windows with U-factors as low as 0.25, exceeding California Title 24 requirements by 15 to 20%. Low-E glass coatings reflect infrared heat while letting visible light through, keeping homes cooler in summer and warmer in winter. For fog belt homes in Daly City, Pacifica, and the coast side, argon-filled double-pane glass provides the best balance of insulation and condensation resistance.',
+    },
+    {
+      question: 'How long does a window replacement take?',
+      answer:
+        'Window replacements average 1 to 2 days for a typical Bay Area home with 10 to 15 windows. Each window takes approximately 45 to 90 minutes to remove, prep, install, insulate, flash, and trim. Larger projects (20+ windows or custom sizes) may take 3 days. We install one window at a time and seal each opening before moving to the next, so your home is never left open to the elements.',
+    },
+    {
+      question: 'What window styles work best for Bay Area homes?',
+      answer:
+        'The best window style depends on your home\'s architecture and ventilation needs. Casement windows (hinged, crank-open) provide the best airflow and seal — ideal for Bay Area homes that rely on natural cooling. Double-hung windows are the most versatile and popular in Craftsman and Victorian homes. Sliding windows work well in mid-century modern and Eichler-style homes common in Sunnyvale, Palo Alto, and the South Bay. Bay and bow windows add light and space to living rooms — especially popular in San Francisco Victorians and Marin County homes.',
+    },
+    {
+      question: 'Do replacement windows qualify for energy rebates in California?',
+      answer:
+        'Yes. ENERGY STAR certified windows may qualify for federal tax credits of up to $600 under the Inflation Reduction Act (through 2032). California also offers rebates through utility programs — PG&E and other Bay Area utilities periodically offer incentives for energy-efficient window upgrades. The NFRC (National Fenestration Rating Council) label on each window verifies the U-factor and Solar Heat Gain Coefficient that qualify for these programs. Hamilton Exteriors provides all documentation needed for rebate and tax credit applications.',
+    },
+  ],
 };

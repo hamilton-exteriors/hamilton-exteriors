@@ -1,0 +1,21 @@
+# AI Content Policy — Hamilton Exteriors
+# Format: ai.txt (RSL 1.0 inspired)
+# Last updated: 2026-04-05
+
+User-Agent: *
+
+# Citation in AI search responses (Google AI Overviews, ChatGPT, Perplexity, Bing Copilot)
+Allow: Citation
+Allow: Quotation
+Allow: Summarization
+Require: Attribution to "Hamilton Exteriors (hamilton-exteriors.com)"
+
+# AI model training
+Disallow: Training
+Disallow: Reproduction
+Disallow: Redistribution
+
+# Contact for licensing inquiries
+Contact: support@hamilton-exteriors.com
+Website: https://hamilton-exteriors.com
+Extended-Info: https://hamilton-exteriors.com/llms.txt

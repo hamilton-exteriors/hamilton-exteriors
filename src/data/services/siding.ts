@@ -103,4 +103,31 @@ export const data: ServicePageData = {
     { type: 'contactUs' },
     { type: 'footer' },
   ],
+  localFaqs: [
+    {
+      question: 'How much does siding replacement cost in the Bay Area?',
+      answer:
+        'Bay Area siding costs vary by material. Vinyl siding runs $975 to $1,275 per 100 sq ft installed. James Hardie fiber cement siding — our most popular choice — costs $2,100 to $2,325 per 100 sq ft. Stucco remediation and re-application averages $1,950 per 100 sq ft. A typical 2,000 sq ft Bay Area home costs $12,500 to $28,000 for full siding replacement. Every Hamilton Exteriors estimate is itemized with no hidden fees.',
+    },
+    {
+      question: 'Why is James Hardie fiber cement siding recommended for Bay Area homes?',
+      answer:
+        'James Hardie developed its HZ5 fiber cement formula specifically for coastal and high-humidity climates like the Bay Area. It resists moisture, fog, salt air, and temperature swings that cause wood and vinyl to deteriorate. Fiber cement siding delivers an 86% return on investment at resale (Remodeling Magazine, 2024 Cost vs. Value Report), making it one of the highest-ROI exterior upgrades available. Hamilton Exteriors is a James Hardie Elite Preferred installer — the highest certification level — meaning our crews are factory-trained and your installation carries an extended warranty.',
+    },
+    {
+      question: 'How long does a siding installation take?',
+      answer:
+        'James Hardie fiber cement siding projects generally run 1 to 2 weeks depending on your home\'s square footage, number of stories, and architectural complexity. Vinyl siding is faster — typically 3 to 5 days. Every project includes removal of old siding, inspection and repair of underlying sheathing, installation of a weather-resistant barrier, new siding, and trim and caulking. A dedicated project manager keeps you updated daily.',
+    },
+    {
+      question: 'What is the difference between fiber cement and vinyl siding?',
+      answer:
+        'Fiber cement (James Hardie) is made from cement, sand, and cellulose fibers — it will not melt, warp, or crack in Bay Area temperature swings. It carries a Class A fire rating, resists termites and rot, and can be painted any color. Vinyl siding costs less upfront but has a shorter lifespan (20 to 30 years vs. 50+ for fiber cement), can warp in direct sun, and melts in fire. For Bay Area homes — especially in fire zones or near the coast — fiber cement is the stronger long-term investment.',
+    },
+    {
+      question: 'Can new siding help with water damage prevention?',
+      answer:
+        'Yes. The average water damage insurance claim in the Bay Area is $12,500. Properly installed siding with a weather-resistant barrier (WRB) is your home\'s primary defense against water intrusion. Hamilton Exteriors installs a full WRB system behind every siding project, including flashing around all windows, doors, and penetrations. We inspect the underlying sheathing during removal and repair any existing moisture damage before new siding goes on.',
+    },
+  ],
 };

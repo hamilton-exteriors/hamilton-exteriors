@@ -124,6 +124,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
 
     <!-- AI content declaration for llms.txt discovery -->
     <link rel="ai-content-declaration" href="/llms.txt" type="text/plain" />
+    <link rel="ai-policy" href="/ai.txt" type="text/plain" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -297,68 +298,14 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     }
     </script>
     ) : (
-    <script type="application/ld+json" is:inline>
-    {
+    <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": ["RoofingContractor", "GeneralContractor"],
-      "@id": "https://hamilton-exteriors.com/#business",
-      "name": "Hamilton Exteriors",
-      "url": "https://hamilton-exteriors.com",
-      "telephone": "+16509773351",
-      "email": "support@hamilton-exteriors.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "21634 Redwood Rd Unit F",
-        "addressLocality": "Castro Valley",
-        "addressRegion": "CA",
-        "postalCode": "94546",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 37.69427,
-        "longitude": -122.07887
-      },
-      "sameAs": [
-        "https://www.facebook.com/hamiltonexteriors",
-        "https://www.instagram.com/hamiltonexteriors",
-        "https://www.linkedin.com/company/hamilton-exteriors/",
-        "https://www.google.com/maps/place/Hamilton+Exteriors,+21634+Redwood+Rd+Unit+F,+Castro+Valley,+CA+94546"
-      ],
-      "areaServed": [
-        { "@type": "County", "name": "Alameda County" },
-        { "@type": "County", "name": "Contra Costa County" },
-        { "@type": "County", "name": "Marin County" },
-        { "@type": "County", "name": "Napa County" },
-        { "@type": "County", "name": "Santa Clara County" }
-      ],
-      "image": "https://hamilton-exteriors.com/og-default.jpg",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://hamilton-exteriors.com/logo-schema.png",
-        "width": 600,
-        "height": 120
-      },
-      "hasCredential": {
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "license",
-        "name": "CSLB Contractor License #1082377",
-        "recognizedBy": { "@type": "Organization", "name": "Contractors State License Board", "url": "https://www.cslb.ca.gov" }
-      },
-      "founder": {
-        "@type": "Person",
-        "@id": "https://hamilton-exteriors.com/#founder",
-        "name": "Alexander Hamilton Li",
-        "jobTitle": "Architect & General Contractor",
-        "sameAs": "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377"
-      },
-      "priceRange": "$$",
-      "description": "Bay Area exterior remodeling - roofing, siding, windows, and waterproofing. Licensed, bonded, insured. 50-year warranty. 3-5 day installs."
-    }
-    </script>
+      "@id": "https://hamilton-exteriors.com/#business"
+    })} />
     )}
 
-    <!-- WebSite Schema -->
+    <!-- WebSite Schema — homepage only -->
+    {Astro.url.pathname === '/' && (
     <script type="application/ld+json" is:inline>
     {
       "@context": "https://schema.org",
@@ -370,6 +317,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
       "publisher": { "@id": "https://hamilton-exteriors.com/#business" }
     }
     </script>
+    )}
 
     <!-- Google Tag Manager — deferred until first user interaction to keep LCP/TBT clean -->
     <script is:inline>

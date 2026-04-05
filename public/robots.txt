@@ -40,6 +40,11 @@ User-agent: bingbot
 Allow: /
 Disallow: /api/
 
+# ByteDance / TikTok Search
+User-agent: Bytespider
+Allow: /
+Disallow: /api/
+
 # Default
 User-agent: *
 Allow: /

@@ -96,4 +96,31 @@ export const data: ServicePageData = {
     { type: 'contactUs' },
     { type: 'footer' },
   ],
+  localFaqs: [
+    {
+      question: 'How much does a roof replacement cost in the Bay Area?',
+      answer:
+        'Bay Area roof replacement costs range from $8,000 to $25,000 for most homes, depending on roof size, pitch, material, and access. Composite asphalt shingles run $940 to $1,125 per roofing square (100 sq ft) installed. Premium architectural shingles and designer options range from $1,075 to $1,525 per square. Metal roofing costs $1,200 to $1,800 per square but lasts 40 to 70 years. Every Hamilton Exteriors estimate is itemized with no hidden fees — tear-off, underlayment, flashing, materials, labor, cleanup, and permit costs are all listed separately so you can see exactly where your money goes.',
+    },
+    {
+      question: 'How long does a roof replacement take?',
+      answer:
+        'A standard asphalt shingle roof replacement typically takes 3 to 5 days from start to completion, including tear-off, underlayment, installation, flashing, and cleanup. Metal and tile roofs may take 5 to 7 days due to additional preparation. Every project gets a dedicated project manager who provides a specific timeline during your free inspection and keeps you updated daily.',
+    },
+    {
+      question: 'What is included in a free roof inspection?',
+      answer:
+        'Our free roof inspection covers a full assessment of your existing roof\'s condition. A Hamilton Exteriors project manager will examine shingle wear, granule loss, cracked or missing shingles, flashing around vents and chimneys, gutter condition, signs of water intrusion in the attic, and overall structural integrity. You\'ll receive a written report with photos documenting any issues found, along with a detailed estimate if work is recommended. The inspection typically takes 30 to 45 minutes and there is no obligation to proceed.',
+    },
+    {
+      question: 'What roofing materials do you recommend for Bay Area homes?',
+      answer:
+        'The best roofing material depends on your home\'s architecture, budget, and location. Composite asphalt shingles (GAF Timberline, Owens Corning Duration) are the most popular choice in the Bay Area — they offer excellent value, a 50-year warranty, and Class A fire rating. Metal roofing is ideal for fire-prone areas like the Oakland Hills and Berkeley Hills, reflecting 70% of solar radiant heat (Oak Ridge National Laboratory). Clay and concrete tile roofs are popular on Mediterranean and Spanish-style homes throughout the Peninsula. For homes with solar panels, we offer GAF DecoTech integrated solar roofing.',
+    },
+    {
+      question: 'Do Bay Area homes in fire zones need special roofing?',
+      answer:
+        'Yes. Homes in California Wildland-Urban Interface (WUI) zones — common in the Berkeley Hills, Oakland Hills, parts of Marin, and Napa — must meet Chapter 7A fire-resistant building standards. This requires Class A fire-rated roofing materials, non-combustible vents, and fire-rated underlayment. Hamilton Exteriors specializes in WUI-compliant installations and will verify your property\'s fire zone designation during the free inspection. We handle all required documentation for building department approval.',
+    },
+  ],
 };

@@ -268,7 +268,7 @@ const serviceSchema: Record<string, unknown> = {
   }
 
   if (section.type === 'faq') {
-    return <FAQ extraFaqs={(data as any).localFaqs} />;
+    return <FAQ extraFaqs={data.localFaqs} />;
   }
 
   if (section.type === 'contactUs') {
