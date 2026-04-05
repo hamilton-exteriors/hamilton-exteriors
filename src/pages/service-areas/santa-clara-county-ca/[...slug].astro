@@ -56,9 +56,8 @@ let jsonLd: Record<string, unknown>[] | undefined;
 
 if (pageType === 'cityService' && cityServiceData) {
   const [urlCitySlug, serviceSlug] = segments;
-  const cityProximity = getCityProximity(urlCitySlug);
-  const [cityLng, cityLat] = cityProximity ? cityProximity.split(',').map(Number) : [undefined, undefined];
   const pageUrl = `${siteUrl}/service-areas/${COUNTY_SLUG}/${urlCitySlug}/${serviceSlug}`;
+  // Service schema is emitted by ServicePage.astro component — only BreadcrumbList here
   jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -70,23 +69,6 @@ if (pageType === 'cityService' && cityServiceData) {
         { '@type': 'ListItem', 'position': 4, 'name': `${cityServiceData.city}, ${cityServiceData.state}`, 'item': `${siteUrl}/service-areas/${COUNTY_SLUG}/${urlCitySlug}` },
         { '@type': 'ListItem', 'position': 5, 'name': cityServiceData.serviceName, 'item': pageUrl },
       ],
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      '@id': `${pageUrl}#service`,
-      'name': `${cityServiceData.serviceName} in ${cityServiceData.city}, ${cityServiceData.state}`,
-      'url': pageUrl,
-      'provider': { '@id': `${siteUrl}/#business` },
-      'areaServed': {
-        '@type': 'City',
-        'name': cityServiceData.city,
-        ...(getCityWikipedia(urlCitySlug) && { 'sameAs': getCityWikipedia(urlCitySlug) }),
-        'containedInPlace': { '@type': 'State', 'name': 'California' },
-        ...(cityLat && cityLng && { 'geo': { '@type': 'GeoCoordinates', 'latitude': cityLat, 'longitude': cityLng } }),
-      },
-      'serviceType': cityServiceData.serviceName,
-      'description': cityServiceData.description,
     },
   ];
 } else if (pageType === 'city' && cityData) {

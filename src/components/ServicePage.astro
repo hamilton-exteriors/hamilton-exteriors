@@ -18,6 +18,7 @@ import type { ServicePageData, SectionBlock, StylesSection } from '../lib/servic
 import { resolveImage } from '../lib/image-map';
 import { getCityWikipedia } from '../lib/city-wikipedia';
 import { getCityLocalFacts } from '../lib/city-local-facts';
+import { getCityProximity } from '../lib/city-coordinates';
 
 interface Props {
   data: ServicePageData;
@@ -45,10 +46,12 @@ const cityOrArea = (data as any).city;
 const citySlug = (data as any).citySlug || '';
 const isCountyArea = cityOrArea && /county/i.test(cityOrArea);
 const cityWiki = !isCountyArea && citySlug ? getCityWikipedia(citySlug) : undefined;
+const cityProximity = !isCountyArea && citySlug ? getCityProximity(citySlug) : undefined;
+const [cityLng, cityLat] = cityProximity ? cityProximity.split(',').map(Number) : [undefined, undefined];
 const areaServed = cityOrArea
   ? isCountyArea
     ? { '@type': 'AdministrativeArea', 'name': cityOrArea, 'containedInPlace': { '@type': 'State', 'name': 'California' } }
-    : { '@type': 'City', 'name': cityOrArea, ...(cityWiki && { 'sameAs': cityWiki }), 'containedInPlace': { '@type': 'State', 'name': 'California' } }
+    : { '@type': 'City', 'name': cityOrArea, ...(cityWiki && { 'sameAs': cityWiki }), 'containedInPlace': { '@type': 'State', 'name': 'California' }, ...(cityLat && cityLng && { 'geo': { '@type': 'GeoCoordinates', 'latitude': cityLat, 'longitude': cityLng } }) }
   : [
       { '@type': 'County', 'name': 'Alameda County', 'sameAs': 'https://en.wikipedia.org/wiki/Alameda_County,_California', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
       { '@type': 'County', 'name': 'Contra Costa County', 'sameAs': 'https://en.wikipedia.org/wiki/Contra_Costa_County,_California', 'containedInPlace': { '@type': 'State', 'name': 'California' } },
@@ -183,6 +186,16 @@ const serviceSchema: Record<string, unknown> = {
 <div class="mx-auto max-w-7xl px-4 pt-3">
   <p class="text-xs text-gray-600 font-[Satoshi]">Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
 </div>
+
+{isCityServicePage && cityOrArea && (
+  <div class="mx-auto max-w-3xl px-5 pt-6 pb-2">
+    <p style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.75; color: var(--color-charcoal);">
+      Hamilton Exteriors provides professional {(SERVICE_SLUG_MAP[currentService] || 'exterior').toLowerCase()} services in {cityOrArea}, California.{' '}
+      {localFacts?.housingNote ? `${localFacts.housingNote} ` : ' '}
+      Licensed under CSLB #1082377, we handle all {cityOrArea} building permits and inspections. Call <a href="tel:+16509773351" style="color: var(--color-primary); font-weight: 600;">(650) 977-3351</a> for a free estimate.
+    </p>
+  </div>
+)}
 
 {data.sections.map((section) => {
   if (section.type === 'logoSlider') {
