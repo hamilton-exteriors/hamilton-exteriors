@@ -6,11 +6,11 @@ import node from '@astrojs/node';
 import sitemap from '@astrojs/sitemap';
 
 // Load .env so Ghost vars are available at config time
-const env = loadEnv('production', process.cwd(), 'PUBLIC_');
+const env = loadEnv('production', process.cwd(), '');
 
 // ── Fetch Ghost blog posts for sitemap ──────────────────────
-const GHOST_URL = env.PUBLIC_GHOST_URL || '';
-const GHOST_KEY = env.PUBLIC_GHOST_CONTENT_API_KEY || '';
+const GHOST_URL = env.GHOST_URL || '';
+const GHOST_KEY = env.GHOST_CONTENT_API_KEY || '';
 
 /** @type {{ url: string; lastmod: string }[]} */
 const blogSitemapEntries = [];

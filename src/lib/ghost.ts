@@ -1,22 +1,27 @@
-const GHOST_URL = import.meta.env.PUBLIC_GHOST_URL || '';
-const GHOST_KEY = import.meta.env.PUBLIC_GHOST_CONTENT_API_KEY || '';
+// Ghost config — server-only (no PUBLIC_ prefix = not bundled into client JS)
+const GHOST_URL = import.meta.env.GHOST_URL || '';
+const GHOST_KEY = import.meta.env.GHOST_CONTENT_API_KEY || '';
 
 /**
  * Rewrite Ghost Railway domain to canonical domain in image URLs.
  * Ghost prepends its Railway subdomain to /content/images/ paths.
  * Our middleware proxies /content/images/* to Ghost, so we rewrite
  * these URLs to go through the canonical domain instead.
+ *
+ * Single source of truth for the Ghost origin — import GHOST_ORIGIN
+ * anywhere you need the raw Railway URL (middleware, image sitemap, etc.)
  */
-const GHOST_DOMAIN = 'https://ghost-production-42337.up.railway.app';
+export const GHOST_ORIGIN = import.meta.env.GHOST_URL || '';
 const CANONICAL_DOMAIN = 'https://hamilton-exteriors.com';
 
-function stripGhostDomain(post: any): any {
-  if (!post) return post;
-  if (post.feature_image?.startsWith(GHOST_DOMAIN)) {
-    post.feature_image = post.feature_image.replace(GHOST_DOMAIN, CANONICAL_DOMAIN);
+/** Rewrite Ghost Railway URLs to canonical domain. Exported for reuse. */
+export function stripGhostDomain(post: any): any {
+  if (!post || !GHOST_ORIGIN) return post;
+  if (post.feature_image?.startsWith(GHOST_ORIGIN)) {
+    post.feature_image = post.feature_image.replace(GHOST_ORIGIN, CANONICAL_DOMAIN);
   }
   if (post.html) {
-    post.html = post.html.replaceAll(GHOST_DOMAIN + '/content/images/', CANONICAL_DOMAIN + '/content/images/');
+    post.html = post.html.replaceAll(GHOST_ORIGIN + '/content/images/', CANONICAL_DOMAIN + '/content/images/');
   }
   return post;
 }
@@ -27,12 +32,14 @@ export interface GhostPost {
   title: string;
   html: string;
   excerpt: string;
+  custom_excerpt: string | null;
   feature_image: string | null;
   published_at: string;
   updated_at: string;
   reading_time: number;
   meta_title: string | null;
   meta_description: string | null;
+  primary_author?: { name: string; slug: string } | null;
   tags: { id: string; name: string; slug: string }[];
   primary_tag: { name: string; slug: string } | null;
 }
@@ -46,7 +53,7 @@ export interface GhostPagination {
 
 async function ghostFetch(endpoint: string, params: Record<string, string> = {}) {
   if (!GHOST_URL || !GHOST_KEY) {
-    throw new Error('Ghost CMS not configured. Set PUBLIC_GHOST_URL and PUBLIC_GHOST_CONTENT_API_KEY.');
+    throw new Error('Ghost CMS not configured. Set GHOST_URL and GHOST_CONTENT_API_KEY env vars.');
   }
   const url = new URL(`${GHOST_URL}/ghost/api/content/${endpoint}/`);
   url.searchParams.set('key', GHOST_KEY);

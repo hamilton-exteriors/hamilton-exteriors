@@ -14,7 +14,7 @@ const REDIRECTS: Record<string, string> = {
   '/blog/untitled-2': '/blog',
 };
 
-const GHOST_ORIGIN = 'https://ghost-production-42337.up.railway.app';
+const GHOST_ORIGIN = import.meta.env.GHOST_URL || '';
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;

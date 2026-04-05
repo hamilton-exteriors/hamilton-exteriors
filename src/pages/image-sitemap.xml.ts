@@ -7,10 +7,11 @@ import { serviceSiding, sidingVinyl, sidingFiberCement, sidingWood, sidingStucco
 import { heroWindows } from '../lib/images';
 import { areaOakland, areaSanJose, areaWalnutCreek } from '../lib/images';
 
+import { GHOST_ORIGIN } from '../lib/ghost';
+
 const SITE = 'https://hamilton-exteriors.com';
-const GHOST_URL = import.meta.env.PUBLIC_GHOST_URL || '';
-const GHOST_KEY = import.meta.env.PUBLIC_GHOST_CONTENT_API_KEY || '';
-const GHOST_DOMAIN = 'https://ghost-production-42337.up.railway.app';
+const GHOST_URL = import.meta.env.GHOST_URL || '';
+const GHOST_KEY = import.meta.env.GHOST_CONTENT_API_KEY || '';
 
 // Key pages and their primary images with SEO-optimized captions
 const pageImages: { page: string; images: { src: string; title: string; caption: string }[] }[] = [
@@ -89,8 +90,8 @@ async function fetchBlogImages(): Promise<{ page: string; images: { src: string;
         if (!post.feature_image) continue;
 
         // Rewrite Ghost Railway domain to canonical domain
-        const imgUrl = post.feature_image.startsWith(GHOST_DOMAIN)
-          ? post.feature_image.replace(GHOST_DOMAIN, SITE)
+        const imgUrl = GHOST_ORIGIN && post.feature_image.startsWith(GHOST_ORIGIN)
+          ? post.feature_image.replace(GHOST_ORIGIN, SITE)
           : post.feature_image;
 
         const caption = post.excerpt

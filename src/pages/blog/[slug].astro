@@ -4,7 +4,7 @@ import AnnouncementBar from '../../components/AnnouncementBar.astro';
 import Navbar from '../../components/Navbar.astro';
 import ContactUs from '../../components/ContactUs.astro';
 import Footer from '../../components/Footer.astro';
-import { getPost, getPosts, isGhostConfigured, formatDate } from '../../lib/ghost';
+import { getPost, getPosts, isGhostConfigured, formatDate, GHOST_ORIGIN } from '../../lib/ghost';
 import { Image } from 'astro:assets';
 
 const { slug } = Astro.params;
@@ -43,7 +43,7 @@ const canonicalUrl = `${siteUrl}/blog/${slug}`;
 // Rewrite Ghost Railway domain to canonical domain (proxied via middleware)
 const rawImage = post.feature_image || '/og-default.jpg';
 const postImage = rawImage.startsWith('http')
-  ? rawImage.replace('https://ghost-production-42337.up.railway.app', siteUrl)
+  ? rawImage.replace(GHOST_ORIGIN, siteUrl)
   : `${siteUrl}${rawImage}`;
 
 // Ghost built-in image resizing: /content/images/size/w{width}/year/month/file.ext
@@ -100,7 +100,7 @@ const articleJsonLd = {
     url: 'https://hamilton-exteriors.com/about/alex-hamilton-li',
     sameAs: [
       'https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377',
-      'https://www.linkedin.com/company/hamilton-exteriors/',
+      'https://www.linkedin.com/in/alexanderhamiltonli',
     ],
     worksFor: {
       '@type': 'Organization',
