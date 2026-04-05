@@ -190,6 +190,14 @@ button[type="submit"]:active {
   }
 }
 
+/* ── Below-fold paint deferral — skip layout for off-screen sections ── */
+@layer base {
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
+}
+
 /* ── Text Style Utilities ─────────────────────────────────────────────── */
 @layer utilities {
   /* Body: 1rem (16px) / 1.7 — DM Sans 400 */

@@ -48,9 +48,9 @@ const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 
 // Generate responsive hero image variants from dynamic heroImage prop
 const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
-  getImage({ src: heroImage, width: 768, height: 432, format: 'webp', quality: 72 }),
-  getImage({ src: heroImage, width: 1280, height: 720, format: 'webp', quality: 72 }),
-  getImage({ src: heroImage, width: 1440, height: 810, format: 'webp', quality: 70 }),
+  getImage({ src: heroImage, width: 768, height: 432, format: 'webp', quality: 60 }),
+  getImage({ src: heroImage, width: 1280, height: 720, format: 'webp', quality: 60 }),
+  getImage({ src: heroImage, width: 1440, height: 810, format: 'webp', quality: 60 }),
 ]);
 ---
 
