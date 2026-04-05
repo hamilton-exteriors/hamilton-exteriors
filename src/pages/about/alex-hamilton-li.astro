@@ -1,0 +1,167 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AnnouncementBar from '../../components/AnnouncementBar.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactUs from '../../components/ContactUs.astro';
+import { PHONE_DISPLAY, PHONE_HREF } from '../../lib/constants';
+
+const siteUrl = 'https://hamilton-exteriors.com';
+const pageUrl = `${siteUrl}/about/alex-hamilton-li`;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${siteUrl}/#founder`,
+  name: 'Alexander Hamilton Li',
+  jobTitle: 'Architect & General Contractor',
+  url: pageUrl,
+  image: `${siteUrl}/og-default.jpg`,
+  description: 'Founder and owner of Hamilton Exteriors, a licensed Bay Area design-build contractor specializing in roofing, siding, windows, ADUs, and custom homes.',
+  sameAs: [
+    'https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377',
+    'https://www.linkedin.com/company/hamilton-exteriors/',
+  ],
+  worksFor: {
+    '@type': 'Organization',
+    '@id': `${siteUrl}/#business`,
+    name: 'Hamilton Exteriors',
+  },
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'license',
+      name: 'California Contractor License #1082377',
+      recognizedBy: { '@type': 'Organization', name: 'Contractors State License Board', url: 'https://www.cslb.ca.gov' },
+    },
+  ],
+  knowsAbout: [
+    'Residential roofing',
+    'Commercial roofing',
+    'Fiber cement siding',
+    'James Hardie siding installation',
+    'Energy-efficient window replacement',
+    'ADU design and construction',
+    'Custom home building',
+    'Bay Area building codes',
+    'California Title 24 compliance',
+    'WUI fire zone requirements',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Castro Valley',
+    addressRegion: 'CA',
+    postalCode: '94546',
+    addressCountry: 'US',
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: 'About Alex Hamilton Li', item: pageUrl },
+  ],
+};
+---
+
+<Layout
+  title="About Alexander Hamilton Li | Architect & General Contractor | Hamilton Exteriors"
+  description="Meet Alex Hamilton Li, founder of Hamilton Exteriors. Licensed architect and general contractor (CSLB #1082377) serving the Bay Area since 2018. 500+ projects completed."
+  jsonLd={[breadcrumbSchema, personSchema]}
+>
+  <AnnouncementBar />
+  <Navbar />
+
+  <main>
+    <!-- Hero section -->
+    <section style="background-color: var(--color-primary-dark); padding: 80px 0 60px;">
+      <div class="mx-auto max-w-3xl px-5">
+        <p style="font-family: var(--font-dm-sans); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); margin-bottom: 12px;">
+          About the Founder
+        </p>
+        <h1 style="font-family: var(--font-oswald); font-size: clamp(32px, 6vw, 48px); font-weight: 400; line-height: 1.2; color: white; text-transform: uppercase; margin-bottom: 16px;">
+          Alexander Hamilton Li
+        </h1>
+        <p style="font-family: var(--font-dm-sans); font-size: 1.125rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 0;">
+          Architect &amp; General Contractor &bull; CSLB #1082377 &bull; Castro Valley, CA
+        </p>
+      </div>
+    </section>
+
+    <!-- Bio content -->
+    <section style="padding: 60px 0;">
+      <div class="mx-auto max-w-3xl px-5" style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.85; color: var(--color-charcoal);">
+
+        <h2 style="font-size: 1.5rem; margin-bottom: 16px;">Background</h2>
+        <p style="margin-bottom: 24px;">
+          I founded Hamilton Exteriors in 2018 in Castro Valley, California, with a simple idea: Bay Area homeowners deserve a contractor who treats their home like their own. Before starting the company, I worked in architecture and construction management, which gave me a deep understanding of both the design and execution sides of building.
+        </p>
+        <p style="margin-bottom: 24px;">
+          Today, Hamilton Exteriors is a full-service design-build contractor serving homeowners across Alameda, Contra Costa, Marin, Napa, and Santa Clara counties. We have completed more than 500 projects — from single-day roof repairs in Oakland to ground-up custom homes in Palo Alto.
+        </p>
+
+        <h2 style="font-size: 1.5rem; margin-top: 40px; margin-bottom: 16px;">Credentials &amp; Certifications</h2>
+        <ul style="margin-bottom: 24px; padding-left: 24px;">
+          <li style="margin-bottom: 10px;">
+            <strong>CSLB License #1082377</strong> — California Contractors State License Board.
+            <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary);">Verify on CSLB.ca.gov</a>
+          </li>
+          <li style="margin-bottom: 10px;"><strong>GAF Certified Contractor</strong> — Factory-certified roofing installer, qualifying homeowners for enhanced manufacturer warranties.</li>
+          <li style="margin-bottom: 10px;"><strong>Owens Corning Preferred Contractor</strong> — Platinum-level certification for roofing excellence.</li>
+          <li style="margin-bottom: 10px;"><strong>CertainTeed ShingleMaster</strong> — Advanced certification in shingle roofing systems.</li>
+          <li style="margin-bottom: 10px;"><strong>James Hardie Elite Preferred Contractor</strong> — Certified installer of James Hardie fiber cement siding.</li>
+          <li style="margin-bottom: 10px;"><strong>Licensed, Bonded &amp; Insured</strong> — General liability and workers' compensation coverage on every project.</li>
+        </ul>
+
+        <h2 style="font-size: 1.5rem; margin-top: 40px; margin-bottom: 16px;">What I Do at Hamilton Exteriors</h2>
+        <p style="margin-bottom: 24px;">
+          I oversee every project from the initial inspection through final walkthrough. My background in architecture means I think about how materials, design, and craftsmanship come together — not just whether the shingles are nailed straight. Every estimate I write is itemized with no hidden fees, and every project gets a dedicated project manager who reports to me directly.
+        </p>
+        <p style="margin-bottom: 24px;">
+          Our services include roofing (asphalt, metal, tile, and flat), James Hardie fiber cement siding, energy-efficient window replacements, ADU construction, home additions, and custom homes. We handle all Bay Area building permits and know the codes for every jurisdiction we serve.
+        </p>
+
+        <h2 style="font-size: 1.5rem; margin-top: 40px; margin-bottom: 16px;">Bay Area Expertise</h2>
+        <p style="margin-bottom: 24px;">
+          The Bay Area has unique building challenges that national contractors often miss. Wildland-Urban Interface fire zones in the Oakland Hills, Berkeley Hills, and Marin require specific fire-rated materials and installation methods. Coastal fog in San Francisco and Pacifica accelerates roof wear differently than the inland heat of Walnut Creek and San Ramon. Older housing stock in Oakland (60% built before 1960) often needs structural reinforcement before new materials go on. I have seen all of it, and our crews know how to handle it.
+        </p>
+
+        <h2 style="font-size: 1.5rem; margin-top: 40px; margin-bottom: 16px;">By the Numbers</h2>
+        <div class="grid grid-cols-2 gap-6 sm:grid-cols-4" style="margin-bottom: 40px;">
+          <div class="text-center" style="padding: 20px; background: var(--color-cream);">
+            <div style="font-family: var(--font-oswald); font-size: 2rem; color: var(--color-primary-dark);">500+</div>
+            <div style="font-size: 0.8125rem; color: var(--color-muted);">Projects Completed</div>
+          </div>
+          <div class="text-center" style="padding: 20px; background: var(--color-cream);">
+            <div style="font-family: var(--font-oswald); font-size: 2rem; color: var(--color-primary-dark);">4.8</div>
+            <div style="font-size: 0.8125rem; color: var(--color-muted);">Google Rating</div>
+          </div>
+          <div class="text-center" style="padding: 20px; background: var(--color-cream);">
+            <div style="font-family: var(--font-oswald); font-size: 2rem; color: var(--color-primary-dark);">2018</div>
+            <div style="font-size: 0.8125rem; color: var(--color-muted);">Founded</div>
+          </div>
+          <div class="text-center" style="padding: 20px; background: var(--color-cream);">
+            <div style="font-family: var(--font-oswald); font-size: 2rem; color: var(--color-primary-dark);">5</div>
+            <div style="font-size: 0.8125rem; color: var(--color-muted);">Counties Served</div>
+          </div>
+        </div>
+
+        <h2 style="font-size: 1.5rem; margin-top: 40px; margin-bottom: 16px;">Get in Touch</h2>
+        <p style="margin-bottom: 8px;">
+          Have a question about your home exterior project? I am happy to talk through it.
+        </p>
+        <p style="margin-bottom: 0;">
+          <strong>Phone:</strong> <a href={PHONE_HREF} style="color: var(--color-primary);">{PHONE_DISPLAY}</a><br />
+          <strong>Email:</strong> <a href="mailto:support@hamilton-exteriors.com" style="color: var(--color-primary);">support@hamilton-exteriors.com</a><br />
+          <strong>Office:</strong> 21634 Redwood Rd Unit F, Castro Valley, CA 94546
+        </p>
+
+      </div>
+    </section>
+  </main>
+
+  <ContactUs />
+  <Footer />
+</Layout>
