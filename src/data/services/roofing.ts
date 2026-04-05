@@ -24,7 +24,7 @@ export const data: ServicePageData = {
     {
       type: 'styles',
       data: {
-        heading: 'Roofing Styles Offered',
+        heading: 'What Roofing Styles Does Hamilton Exteriors Offer?',
         cardVariant: 'roofing',
         items: [
           {

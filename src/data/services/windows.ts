@@ -10,7 +10,7 @@ import {
 } from '../../lib/images';
 
 export const data: ServicePageData = {
-  title: 'Bay Area Windows | Casement, Hung & Sliding | Hamilton',
+  title: 'Bay Area Windows | Casement, Hung & Sliding | Hamilton Exteriors',
   description:
     'Energy-efficient window installation across the Bay Area. Double hung, casement, sliding & bay windows. 50-year warranty. Free quote — (650) 977-3351.',
   hero: {
@@ -31,7 +31,7 @@ export const data: ServicePageData = {
     {
       type: 'styles',
       data: {
-        heading: 'Window Styles Offered',
+        heading: 'What Window Styles Does Hamilton Exteriors Offer?',
         cardVariant: 'windows',
         columns: 3,
         bgClass: 'bg-cream',

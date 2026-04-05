@@ -34,7 +34,7 @@ export const data: ServicePageData = {
     {
       type: 'styles',
       data: {
-        heading: 'Siding Styles Offered',
+        heading: 'What Siding Styles Does Hamilton Exteriors Offer?',
         cardVariant: 'siding',
         items: [
           {
