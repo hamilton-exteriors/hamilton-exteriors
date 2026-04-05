@@ -8,6 +8,9 @@ import { heroWindows } from '../lib/images';
 import { areaOakland, areaSanJose, areaWalnutCreek } from '../lib/images';
 
 const SITE = 'https://hamilton-exteriors.com';
+const GHOST_URL = import.meta.env.PUBLIC_GHOST_URL || '';
+const GHOST_KEY = import.meta.env.PUBLIC_GHOST_CONTENT_API_KEY || '';
+const GHOST_DOMAIN = 'https://ghost-production-42337.up.railway.app';
 
 // Key pages and their primary images with SEO-optimized captions
 const pageImages: { page: string; images: { src: string; title: string; caption: string }[] }[] = [
@@ -56,17 +59,82 @@ const pageImages: { page: string; images: { src: string; title: string; caption:
   },
 ];
 
+/**
+ * Fetch blog posts from Ghost CMS and return their feature images.
+ * Automatically picks up new posts — no manual updates needed.
+ */
+async function fetchBlogImages(): Promise<{ page: string; images: { src: string; title: string; caption: string }[] }[]> {
+  if (!GHOST_URL || !GHOST_KEY) return [];
+
+  try {
+    const entries: { page: string; images: { src: string; title: string; caption: string }[] }[] = [];
+    let page = 1;
+    let more = true;
+
+    while (more) {
+      const url = new URL(`${GHOST_URL}/ghost/api/content/posts/`);
+      url.searchParams.set('key', GHOST_KEY);
+      url.searchParams.set('limit', '100');
+      url.searchParams.set('page', String(page));
+      url.searchParams.set('fields', 'slug,title,feature_image,excerpt');
+      url.searchParams.set('filter', 'tag:-hash-service-area-city+tag:-hash-service-area-county+tag:-hash-service-area-city-service');
+
+      const res = await fetch(url.toString(), { signal: AbortSignal.timeout(10_000) });
+      if (!res.ok) break;
+
+      const data = await res.json();
+      const posts = data?.posts ?? [];
+
+      for (const post of posts) {
+        if (!post.feature_image) continue;
+
+        // Rewrite Ghost Railway domain to canonical domain
+        const imgUrl = post.feature_image.startsWith(GHOST_DOMAIN)
+          ? post.feature_image.replace(GHOST_DOMAIN, SITE)
+          : post.feature_image;
+
+        const caption = post.excerpt
+          ? post.excerpt.slice(0, 200).replace(/\s+/g, ' ').trim()
+          : post.title;
+
+        entries.push({
+          page: `/blog/${post.slug}`,
+          images: [{
+            src: imgUrl.startsWith(SITE) ? imgUrl.replace(SITE, '') : imgUrl,
+            title: post.title,
+            caption,
+          }],
+        });
+      }
+
+      more = posts.length === 100;
+      page++;
+    }
+
+    return entries;
+  } catch (e) {
+    console.warn('[image-sitemap] Could not fetch Ghost posts:', (e as Error).message);
+    return [];
+  }
+}
+
 export const GET: APIRoute = async () => {
+  // Fetch blog images from Ghost CMS (auto-updates when posts are added)
+  const blogImages = await fetchBlogImages();
+  const allPages = [...pageImages, ...blogImages];
+
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';
   xml += '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n';
 
-  for (const entry of pageImages) {
+  for (const entry of allPages) {
     xml += '  <url>\n';
     xml += `    <loc>${SITE}${entry.page}</loc>\n`;
     for (const img of entry.images) {
+      // Use absolute URL: if src starts with http, use as-is; otherwise prepend SITE
+      const imgLoc = img.src.startsWith('http') ? img.src : `${SITE}${img.src}`;
       xml += '    <image:image>\n';
-      xml += `      <image:loc>${SITE}${img.src}</image:loc>\n`;
+      xml += `      <image:loc>${escapeXml(imgLoc)}</image:loc>\n`;
       xml += `      <image:title>${escapeXml(img.title)}</image:title>\n`;
       xml += `      <image:caption>${escapeXml(img.caption)}</image:caption>\n`;
       xml += '    </image:image>\n';
@@ -80,7 +148,7 @@ export const GET: APIRoute = async () => {
     status: 200,
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, max-age=86400',
+      'Cache-Control': 'public, max-age=3600, s-maxage=86400',
     },
   });
 };

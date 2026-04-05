@@ -39,7 +39,7 @@ const DEFAULT_GEO_PLACENAME = 'Bay Area, California';
 const FULL_ORG_PATHS = new Set(['/', '/roofing', '/siding', '/windows', '/adu', '/custom-homes', '/additions', '/service-areas', '/buy']);
 
 const {
-  title = "Bay Area's Top Design-Build & Exteriors Contractor | Hamilton Exteriors",
+  title = "Bay Area Design-Build & Exteriors Contractor | Hamilton Exteriors",
   description: rawDescription,
   image,
   type = 'website',
@@ -70,7 +70,8 @@ function buildDescription(raw: string | undefined, geo: string): string {
 const description = buildDescription(rawDescription, geoPlacename);
 
 const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
-const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+// Canonical must match sitemap URLs — trailingSlash: 'never' means no trailing slashes
+const canonicalUrl = (siteUrl + Astro.url.pathname).replace(/\/$/, '') || siteUrl;
 
 // Resolve OG image: explicit prop > auto-generated from hero > default fallback
 const ogImageUrl = image || (heroOgImage ? siteUrl + heroOgImage.src : siteUrl + '/og-default.jpg');
@@ -187,7 +188,8 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
       },
       "openingHoursSpecification": [
         { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "00:00", "closes": "00:00" }
       ],
       "hasMap": "https://maps.google.com/?cid=3578771346418026097",
       "sameAs": [
@@ -208,7 +210,9 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
         "@type": "AggregateRating",
         "ratingValue": 4.8,
         "reviewCount": 52,
-        "ratingCount": 52
+        "ratingCount": 52,
+        "bestRating": 5,
+        "worstRating": 1
       },
       "priceRange": "$$",
       "image": {
@@ -310,7 +314,11 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     ) : (
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@id": "https://hamilton-exteriors.com/#business"
+      "@type": ["RoofingContractor", "GeneralContractor"],
+      "@id": "https://hamilton-exteriors.com/#business",
+      "name": "Hamilton Exteriors",
+      "url": "https://hamilton-exteriors.com",
+      "telephone": "+16509773351"
     })} />
     )}
 
@@ -324,7 +332,15 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
       "url": "https://hamilton-exteriors.com",
       "name": "Hamilton Exteriors",
       "inLanguage": "en-US",
-      "publisher": { "@id": "https://hamilton-exteriors.com/#business" }
+      "publisher": { "@id": "https://hamilton-exteriors.com/#business" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://hamilton-exteriors.com/blog?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
     )}

@@ -81,6 +81,9 @@ export default defineConfig({
   output: 'server',
   adapter: node({ mode: 'standalone' }),
   integrations: [sitemap({
+    customSitemaps: [
+      'https://hamilton-exteriors.com/image-sitemap.xml',
+    ],
     customPages: [
       // Top-level service pages not auto-discovered by SSR
       'https://hamilton-exteriors.com/siding',
@@ -110,49 +113,23 @@ export default defineConfig({
         // Use stable dates for non-blog pages instead of today's date
         // (identical lastmod across all URLs trains Google to ignore the signal)
         const CORE_PAGE_DATES = {
-          '/': '2026-03-30',
-          '/roofing': '2026-03-30',
+          '/': '2026-04-05',
+          '/roofing': '2026-04-05',
           '/siding': '2026-03-30',
           '/windows': '2026-03-30',
           '/adu': '2026-03-30',
           '/custom-homes': '2026-03-30',
           '/additions': '2026-03-30',
           '/service-areas': '2026-03-30',
-          '/buy': '2026-03-30',
+          '/buy': '2026-03-15',
+          '/about/alex-hamilton-li': '2026-04-05',
         };
         item.lastmod = CORE_PAGE_DATES[path] || '2026-03-30';
       }
 
-      // Normalize homepage URL to include trailing slash (matches canonical)
-      if (path === '/') {
-        item.url = item.url.replace(/\/?$/, '/');
-      }
-
-      // Priority: core pages > county > city > city+service > blog
-      if (path === '/') {
-        item.priority = 1.0;
-        item.changefreq = 'weekly';
-      } else if (['/roofing', '/siding', '/windows', '/adu', '/custom-homes', '/additions'].includes(path)) {
-        item.priority = 0.9;
-        item.changefreq = 'monthly';
-      } else if (path === '/service-areas' || path.match(/^\/service-areas\/[^/]+-county-ca$/)) {
-        item.priority = 0.8;
-        item.changefreq = 'monthly';
-      } else if (path.startsWith('/blog/')) {
-        item.priority = 0.7;
-        item.changefreq = 'monthly';
-      } else if (path.match(/^\/service-areas\/[^/]+\/[^/]+$/)) {
-        // City pages or county+service pages
-        item.priority = 0.6;
-        item.changefreq = 'monthly';
-      } else if (path.match(/^\/service-areas\/[^/]+\/[^/]+\/[^/]+$/)) {
-        // City+service leaf pages
-        item.priority = 0.5;
-        item.changefreq = 'monthly';
-      } else {
-        item.priority = 0.5;
-        item.changefreq = 'monthly';
-      }
+      // Google ignores changefreq and priority — omit them to keep sitemap clean
+      delete item.changefreq;
+      delete item.priority;
 
       return item;
     },

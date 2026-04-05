@@ -67,6 +67,29 @@ const isMainServicePage = !cityOrArea && Object.keys(SERVICE_SLUG_MAP).includes(
 const currentServiceSlug = pathname.replace('/', '');
 const localFacts = citySlug ? getCityLocalFacts(citySlug) : undefined;
 
+// Related blog articles by service — strengthens topical clusters
+const RELATED_BLOG_POSTS: Record<string, Array<{ href: string; title: string }>> = {
+  roofing: [
+    { href: '/blog/how-much-does-a-roof-replacement-cost-in-the-bay-area-in-2026', title: 'How Much Does a Roof Replacement Cost in the Bay Area in 2026?' },
+    { href: '/blog/metal-roof-vs-asphalt-shingles-bay-area', title: 'Metal Roof vs. Asphalt Shingles: Which Is Right for Bay Area Homes?' },
+    { href: '/blog/7-warning-signs-you-need-a-new-roof-before-it-is-too-late', title: '7 Warning Signs You Need a New Roof' },
+    { href: '/blog/bay-area-fire-zone-roofing-requirements', title: 'Bay Area Fire Zone Roofing Requirements' },
+  ],
+  siding: [
+    { href: '/blog/james-hardie-siding-bay-area', title: 'James Hardie Siding: The Bay Area Homeowner\'s Guide' },
+  ],
+  windows: [
+    { href: '/blog/window-replacement-cost-bay-area-2026', title: 'Window Replacement Cost in the Bay Area (2026)' },
+  ],
+  adu: [
+    { href: '/blog/adu-cost-bay-area-2026', title: 'ADU Cost in the Bay Area (2026): Complete Guide' },
+  ],
+  additions: [
+    { href: '/blog/second-story-addition-cost-bay-area', title: 'Second Story Addition Cost in the Bay Area' },
+  ],
+};
+const relatedPosts = RELATED_BLOG_POSTS[serviceSlug] || [];
+
 // Build cross-service links for city+service pages
 const pathParts = pathname.split('/').filter(Boolean); // e.g., ['service-areas', 'alameda-county-ca', 'oakland-ca', 'roofing']
 const isCityServicePage = pathParts.length === 4 && pathParts[0] === 'service-areas';
@@ -283,7 +306,27 @@ const serviceSchema: Record<string, unknown> = {
   }
 
   if (section.type === 'faq') {
-    return <FAQ extraFaqs={data.localFaqs} />;
+    return (
+      <>
+        <FAQ extraFaqs={data.localFaqs} />
+        {relatedPosts.length > 0 && (
+          <section class="w-full" style="padding: 48px 0 0;">
+            <div class="mx-auto max-w-[800px] px-5">
+              <h2 style="font-size: 1.25rem; margin-bottom: 20px;">Related Articles</h2>
+              <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                {relatedPosts.map((post) => (
+                  <li>
+                    <a href={post.href} style="font-family: var(--font-dm-sans); font-size: 1rem; color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px;">
+                      {post.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
+      </>
+    );
   }
 
   if (section.type === 'contactUs') {
