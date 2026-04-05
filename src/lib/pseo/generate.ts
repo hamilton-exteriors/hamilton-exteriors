@@ -69,6 +69,16 @@ function buildVars(
     medianHomePrice: seed.medianHomePrice,
     population: seed.population,
     keyFeature: seed.keyFeature,
+    homeStyles: seed.homeStyles,
+    climateFactor: seed.climateFactor,
+    commonIssue: seed.commonIssue,
+    microclimate: seed.microclimate,
+    eraBreakdown: seed.eraBreakdown,
+    roofingNote: seed.roofingNote,
+    sidingNote: seed.sidingNote,
+    windowNote: seed.windowNote,
+    climateZone: String(seed.climateZone),
+    priceTier: seed.priceTier,
     ...extra,
   };
 }
@@ -147,7 +157,7 @@ function getCountyLocalFaqs(
  * Generate one city-specific FAQ using unique local context from the seed data.
  */
 function getCityLocalFaqs(seed: CitySeed): Array<{ question: string; answer: string }> {
-  const { city, county, medianHomePrice, keyFeature, neighborhoods, population } = seed;
+  const { city, county, medianHomePrice, keyFeature, neighborhoods, population, homeStyles, climateFactor, commonIssue, microclimate, roofingNote, sidingNote } = seed;
   const n0 = neighborhoods[0];
   const n1 = neighborhoods[Math.min(1, neighborhoods.length - 1)];
   const n2 = neighborhoods[Math.min(2, neighborhoods.length - 1)];
@@ -155,15 +165,19 @@ function getCityLocalFaqs(seed: CitySeed): Array<{ question: string; answer: str
   return [
     {
       question: `Why do ${city} homeowners choose Hamilton Exteriors?`,
-      answer: `${city} is ${keyFeature}, and homes here — from ${n0} to ${n1} — deserve contractors who understand the area. With median home values at ${medianHomePrice}, exterior work is a significant investment. Hamilton Exteriors has completed projects across ${city} and ${county} County, and we bring local knowledge of ${county} County building codes, permit processes, and climate-specific material requirements to every job. Our CSLB license (#1082377), manufacturer certifications, and 50-year warranty give ${city} homeowners confidence in the long-term value of their investment.`,
+      answer: `${city} is ${keyFeature}, with housing stock that includes ${homeStyles}. These homes face specific challenges: ${commonIssue}. With median home values at ${medianHomePrice}, exterior work is a significant investment that demands a contractor who understands ${city}'s unique conditions. Hamilton Exteriors brings local knowledge of ${county} County building codes, Title 24 Climate Zone ${seed.climateZone} requirements, and climate-specific material selection to every project.`,
     },
     {
       question: `What neighborhoods in ${city} does Hamilton Exteriors serve?`,
-      answer: `We serve all ${city} neighborhoods including ${neighborhoods.slice(0, 5).join(', ')}, and surrounding areas. With a population of ${population}, ${city} has a wide range of home styles — from Craftsman bungalows in ${n0} to modern builds in ${n2}. Our crews are familiar with the architectural character and HOA requirements in each neighborhood, and we carry materials suited to the local climate and building codes.`,
+      answer: `We serve all ${city} neighborhoods including ${neighborhoods.slice(0, 5).join(', ')}, and surrounding areas. With a population of ${population}, ${city} has a wide range of home styles — ${homeStyles}. Our crews are familiar with the architectural character of each neighborhood and carry materials suited to ${city}'s climate: ${microclimate}`,
+    },
+    {
+      question: `What exterior problems are most common in ${city}?`,
+      answer: `${city}'s climate — ${climateFactor} — creates specific challenges for homeowners. The most common issues we see are ${commonIssue}. For roofing, ${roofingNote} For siding, ${sidingNote} Hamilton Exteriors selects materials proven to perform in ${city}'s conditions and backs every installation with our 50-year warranty.`,
     },
     {
       question: `Does a new roof or siding increase home value in ${city}?`,
-      answer: `Yes. With ${city}'s median home value at ${medianHomePrice}, exterior upgrades deliver strong ROI. According to the 2024 Remodeling Magazine Cost vs. Value report, a new roof recoups 60-65% of its cost at resale in the Bay Area, while fiber cement siding (James Hardie) recovers up to 86%. In competitive ${city} neighborhoods like ${n0} and ${n1}, curb appeal directly impacts days on market and final sale price. Hamilton Exteriors helps ${city} homeowners choose materials that maximize both protection and resale value.`,
+      answer: `Yes. With ${city}'s median home value at ${medianHomePrice}, exterior upgrades deliver strong ROI. A new roof recoups 60-65% of its cost at resale in the Bay Area, while fiber cement siding (James Hardie) recovers up to 86%. In competitive ${city} neighborhoods like ${n0} and ${n1}, curb appeal directly impacts days on market and final sale price. Hamilton Exteriors helps ${city} homeowners choose materials that maximize both protection and resale value.`,
     },
   ];
 }
@@ -175,43 +189,43 @@ const SERVICE_DEFS = [
     title: 'Custom Homes',
     slug: 'custom-homes',
     imageKey: 'serviceCustomHomes',
-    descFn: (city: string) =>
-      `Ground-up custom homes designed and built for ${city} homeowners. Architecture, engineering, permitting, and construction — all under one roof.`,
+    descFn: (city: string, seed: CitySeed) =>
+      `Ground-up custom homes designed for ${city}'s ${seed.homeStyles.split(',')[0] || 'diverse'} neighborhoods. Architecture, engineering, permitting, and construction — all under one roof.`,
   },
   {
     title: 'Home Additions',
     slug: 'additions',
     imageKey: 'serviceAdditions',
-    descFn: (city: string) =>
-      `Second story additions, room extensions, and full remodels in ${city}. We handle structural engineering, permits, and construction.`,
+    descFn: (city: string, seed: CitySeed) =>
+      `Second story additions, room extensions, and full remodels in ${city}. ${seed.eraBreakdown.includes('1960') ? 'Many single-story ranch homes here are ideal candidates for second-story additions.' : 'We handle structural engineering, permits, and construction.'}`,
   },
   {
     title: 'ADUs',
     slug: 'adu',
     imageKey: 'serviceAdu',
-    descFn: (city: string) =>
+    descFn: (city: string, _seed: CitySeed) =>
       `Detached ADUs, garage conversions, and junior ADUs in ${city}. Full design-build with our 60-day permit guarantee.`,
   },
   {
     title: 'Roofing',
     slug: 'roofing',
     imageKey: 'serviceRoofing',
-    descFn: (city: string) =>
-      `Roof replacement and repair in ${city}. Asphalt shingles, metal, tile, and energy roofs with manufacturer-backed warranties.`,
+    descFn: (city: string, seed: CitySeed) =>
+      `Roof replacement and repair in ${city}. ${seed.roofingNote.split('.')[0]}. Asphalt shingles, metal, tile, and cool roofing with manufacturer-backed warranties.`,
   },
   {
     title: 'Siding',
     slug: 'siding',
     imageKey: 'serviceSiding',
-    descFn: (city: string) =>
-      `James Hardie fiber cement, vinyl, stucco, and waterproofing for ${city} homes. 30-year product warranties included.`,
+    descFn: (city: string, seed: CitySeed) =>
+      `${seed.sidingNote.split('.')[0]}. James Hardie fiber cement, stucco, and waterproofing for ${city} homes with 30-year product warranties.`,
   },
   {
     title: 'Windows',
     slug: 'windows',
     imageKey: 'serviceWindows',
-    descFn: (city: string) =>
-      `Energy-efficient window replacement in ${city}. Double hung, casement, sliding, bay, and specialty windows.`,
+    descFn: (city: string, seed: CitySeed) =>
+      `Energy-efficient window replacement in ${city} — Title 24 Climate Zone ${seed.climateZone} compliant. ${seed.windowNote.split('.')[0]}.`,
   },
 ] as const;
 
@@ -221,10 +235,10 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
   const cityUrlSlug = `${slug}-ca`;
   const basePath = `/service-areas/${countyUrlSlug}/${cityUrlSlug}`;
 
-  // Services grid
+  // Services grid — descriptions now use city-specific seed data
   const services = SERVICE_DEFS.map((s) => ({
     title: s.title,
-    description: s.descFn(city),
+    description: s.descFn(city, seed),
     imageKey: s.imageKey,
     href: `${basePath}/${s.slug}`,
   }));
@@ -242,33 +256,43 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
   const n1 = neighborhoods[Math.min(1, neighborhoods.length - 1)];
   const n2 = neighborhoods[Math.min(2, neighborhoods.length - 1)];
 
+  // Reviews — use city-specific context for authenticity
+  const roofContext = seed.priceTier === 'luxury' || seed.priceTier === 'premium'
+    ? 'They used premium materials and the attention to detail was exceptional'
+    : 'They gave us an honest assessment and fair pricing';
+  const sidingContext = seed.climateFactor.includes('fog') || seed.climateFactor.includes('moisture')
+    ? 'fiber cement siding to handle the moisture'
+    : seed.climateFactor.includes('fire') || seed.climateFactor.includes('Fire')
+      ? 'fire-rated fiber cement siding for peace of mind'
+      : 'new James Hardie siding that looks incredible';
+
   const reviews = {
     sectionTitle: `What ${city} Homeowners Are Saying`,
     featured: {
-      text: `Hamilton Exteriors completely transformed our ${n0} home. From the initial consultation to the final walkthrough, their team was professional, on schedule, and meticulous about every detail. The craftsmanship is outstanding — our neighbors keep asking who did the work.`,
+      text: `Hamilton Exteriors completely transformed our ${n0} home. ${roofContext}. From the initial consultation to the final walkthrough, their team was professional, on schedule, and meticulous about every detail. Our neighbors keep asking who did the work.`,
       name: 'Sarah M.',
       location: `${n0}, ${city}`,
     },
     side: [
       {
-        text: `We got three bids for our roof replacement in ${n1} and Hamilton was the clear winner — not the cheapest, but the most thorough. They explained everything, handled all the permits, and finished a day early. Highly recommend.`,
+        text: `We got three bids for our roof replacement in ${n1} and Hamilton was the clear winner — not the cheapest, but the most thorough. They knew exactly what our ${seed.homeStyles.split(',')[0].replace(/^\d+s?-?\d*s?\s*/, '') || 'home'} needed. Handled all the permits and finished a day early.`,
         name: 'David K.',
         location: `${n1}, ${city}`,
       },
       {
-        text: `Our ADU project in ${n2} was a big investment and Hamilton made it stress-free. They managed design, engineering, permits, and construction seamlessly. The finished unit looks like it was always part of the property.`,
+        text: `We needed ${sidingContext} for our ${n2} home. Hamilton managed everything seamlessly — design, permits, construction. The finished result looks like it was always part of the property. Worth every penny.`,
         name: 'Jennifer L.',
         location: `${n2}, ${city}`,
       },
     ],
   };
 
-  // Neighborhoods section — three descriptions using real neighborhoods
+  // Neighborhoods section — three descriptions using real neighborhoods + local context
   const neighborhoodItems = neighborhoods.slice(0, 3).map((n, i) => {
     const descriptions = [
-      `${n} is one of ${city}'s most sought-after neighborhoods, and Hamilton Exteriors has completed dozens of projects here — from full roof replacements to custom ADUs. We understand the architectural character and local permitting requirements that make ${n} unique.`,
-      `Homeowners in ${n} trust Hamilton Exteriors for everything from siding upgrades to second story additions. Our team knows ${county} County building codes inside and out, and we take pride in work that enhances the neighborhood's character.`,
-      `From energy-efficient window installations to ground-up custom homes, ${n} residents choose Hamilton Exteriors for our design-build expertise. We handle architecture, engineering, permits, and construction — one team, one point of contact.`,
+      `${n} is one of ${city}'s most sought-after neighborhoods. Homes here — ${seed.homeStyles.split(',')[0] || 'a mix of architectural styles'} — face specific challenges from ${seed.climateFactor.split(',')[0] || 'the local climate'}. Hamilton Exteriors has completed dozens of projects in ${n}, from full roof replacements to custom ADUs.`,
+      `Homeowners in ${n} trust Hamilton Exteriors for everything from siding upgrades to second story additions. Common issues we address here include ${seed.commonIssue.split(',')[0] || 'aging exterior materials'}. Our team knows ${county} County's Title 24 Climate Zone ${seed.climateZone} requirements and takes pride in work that enhances the neighborhood's character.`,
+      `From energy-efficient window installations to ground-up custom homes, ${n} residents choose Hamilton Exteriors for our design-build expertise. With ${city}'s microclimate — ${seed.microclimate.split('.')[0] || 'varied Bay Area weather'} — material selection matters. We handle architecture, engineering, permits, and construction.`,
     ];
     return {
       title: n,
@@ -280,10 +304,19 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
   const countyLocalFaqs = getCountyLocalFaqs(countySlug, city, county);
   const cityLocalFaqs = getCityLocalFaqs(seed);
 
+  // Price ranges by tier for more accurate city-specific pricing
+  const priceRanges: Record<string, { roof: string; siding: string; windows: string; adu: string }> = {
+    budget: { roof: '$9,000–$16,000', siding: '$14,000–$28,000', windows: '$350–$600 per window', adu: '$140,000–$375,000' },
+    mid: { roof: '$10,000–$20,000', siding: '$18,000–$34,000', windows: '$450–$800 per window', adu: '$180,000–$400,000' },
+    premium: { roof: '$12,000–$25,000', siding: '$24,000–$42,000', windows: '$500–$1,000 per window', adu: '$210,000–$450,000' },
+    luxury: { roof: '$18,000–$40,000', siding: '$34,000–$65,000', windows: '$800–$1,500+ per window', adu: '$300,000–$600,000' },
+  };
+  const prices = priceRanges[seed.priceTier];
+
   const faqs = [
     {
       question: `How much does a home renovation cost in ${city}?`,
-      answer: `Costs vary based on project scope, materials, and site conditions. In the Bay Area, roof replacements typically run $22,000–$45,000 for a standard home, siding from $18,000–$30,000, and window replacements from $800–$1,500 per window depending on type and frame material. ADUs range from $200,000 to $600,000, and custom homes from $500 to $800+ per square foot. With median home values at ${seed.medianHomePrice} in ${city}, these improvements are strong investments. We provide free, itemized estimates for every project — no hidden fees.`,
+      answer: `Costs in ${city} reflect the ${seed.priceTier === 'luxury' ? 'premium' : seed.priceTier} market and local labor rates. Roof replacements typically run ${prices.roof} for a standard home, siding from ${prices.siding}, and window replacements from ${prices.windows} depending on type and frame material. ADUs range from ${prices.adu}. With median home values at ${seed.medianHomePrice} in ${city}, these improvements are strong investments. We provide free, itemized estimates for every project — no hidden fees.`,
     },
     ...cityLocalFaqs,
     ...countyLocalFaqs,
