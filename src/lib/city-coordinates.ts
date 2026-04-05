@@ -9,12 +9,22 @@ const CITY_COORDINATES: Record<string, [number, number]> = {
   'fremont': [-121.9886, 37.5485],
   'hayward': [-122.0808, 37.6688],
   'san-leandro': [-122.1560, 37.7249],
+  'dublin': [-121.9358, 37.7159],
+  'pleasanton': [-121.8747, 37.6604],
+  'livermore': [-121.7680, 37.6819],
+  'union-city': [-122.0439, 37.5934],
+  'alameda': [-122.2416, 37.7652],
   // Contra Costa County
   'antioch': [-121.8058, 38.0049],
   'concord': [-122.0311, 37.9780],
   'richmond': [-122.3477, 37.9358],
   'san-ramon': [-121.9780, 37.7799],
   'walnut-creek': [-122.0652, 37.9101],
+  'lafayette': [-122.1180, 37.8858],
+  'orinda': [-122.1797, 37.8771],
+  'danville': [-121.9999, 37.8216],
+  'brentwood': [-121.6961, 37.9318],
+  'pittsburg': [-121.8847, 38.0280],
   // Marin County
   'larkspur': [-122.5353, 37.9341],
   'mill-valley': [-122.5416, 37.9060],
@@ -37,6 +47,12 @@ const CITY_COORDINATES: Record<string, [number, number]> = {
   'los-gatos': [-121.9624, 37.2358],
   'campbell': [-121.9500, 37.2872],
   'milpitas': [-121.8996, 37.4323],
+  // San Mateo County
+  'redwood-city': [-122.2363, 37.4852],
+  'san-mateo': [-122.3255, 37.5630],
+  'burlingame': [-122.3477, 37.5841],
+  'daly-city': [-122.4702, 37.6879],
+  'south-san-francisco': [-122.4153, 37.6547],
 };
 
 /** Bay Area bounding box for Mapbox: west,south,east,north */
