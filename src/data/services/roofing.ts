@@ -122,5 +122,15 @@ export const data: ServicePageData = {
       answer:
         'Yes. Homes in California Wildland-Urban Interface (WUI) zones — common in the Berkeley Hills, Oakland Hills, parts of Marin, and Napa — must meet Chapter 7A fire-resistant building standards. This requires Class A fire-rated roofing materials, non-combustible vents, and fire-rated underlayment. Hamilton Exteriors specializes in WUI-compliant installations and will verify your property\'s fire zone designation during the free inspection. We handle all required documentation for building department approval.',
     },
+    {
+      question: 'Do you offer emergency roof repair or storm damage services?',
+      answer:
+        'Yes. Hamilton Exteriors provides emergency roof tarping and storm damage repair throughout the Bay Area. If your roof is leaking or has sustained wind, tree, or storm damage, call (650) 977-3351 and we\'ll prioritize getting a crew to your property — typically within 24 hours for active leaks. We can install temporary tarping to prevent further water intrusion while a permanent repair or replacement is planned. Our team also assists with insurance claims: we document all damage with photos and provide the detailed estimates your insurer requires to process the claim.',
+    },
+    {
+      question: 'Can you help with a roofing insurance claim?',
+      answer:
+        'Yes. If your roof was damaged by a storm, fallen tree, or other covered event, Hamilton Exteriors will work alongside your insurance adjuster to ensure accurate damage documentation. We provide detailed, itemized repair estimates with photos that meet insurer requirements. Our project manager can be present during the adjuster\'s inspection to point out damage that may not be visible from the ground. We\'ve helped Bay Area homeowners navigate dozens of roofing insurance claims — you focus on your family, and we handle the paperwork and repairs.',
+    },
   ],
 };

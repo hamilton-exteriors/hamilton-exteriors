@@ -29,4 +29,10 @@ export interface CountyPageData {
    * 'label'   = Contra Costa style (uppercase label)
    */
   citySectionStyle?: 'heading' | 'label';
+
+  /** Optional editorial content — county-specific narrative rendered above the cities grid. */
+  editorial?: {
+    heading: string;
+    paragraphs: string[];
+  };
 }

@@ -9,6 +9,7 @@ import ServicePage from '../../../components/ServicePage.astro';
 import { getServiceAreaCity, getServiceAreaCityService } from '../../../lib/ghost';
 import { getCityWikipedia } from '../../../lib/city-wikipedia';
 import { getCityProximity } from '../../../lib/city-coordinates';
+import { getCityOgImage } from '../../../lib/city-og-images';
 import type { GeneralCityPageData } from '../../../lib/general-city-types';
 import type { CityServicePageData } from '../../../lib/city-service-types';
 
@@ -129,13 +130,13 @@ if (pageType === 'cityService' && cityServiceData) {
 )}
 
 {pageType === 'cityService' && cityServiceData && (
-  <Layout title={cityServiceData.title} description={cityServiceData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityServiceData.city}, CA`}>
+  <Layout title={cityServiceData.title} description={cityServiceData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityServiceData.city}, CA`} heroImage={getCityOgImage(segments[0])}>
     <ServicePage data={cityServiceData as any} />
   </Layout>
 )}
 
 {pageType === 'city' && cityData && (
-  <Layout title={cityData.title} description={cityData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityData.city || ''}, CA`}>
+  <Layout title={cityData.title} description={cityData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityData.city || ''}, CA`} heroImage={getCityOgImage(segments[0])}>
     <GeneralCityPage data={cityData} />
   </Layout>
 )}

@@ -1,178 +1,169 @@
 # Hamilton Exteriors — SEO Action Plan
 
-**Based on:** Full SEO Audit (7 specialist subagents), April 4, 2026
-**Overall Score:** 62/100 (71 raw, penalized for DNS issue)
-**Target Score:** 85+ after completing Critical + High items
+**Based on:** Full SEO Audit (7 specialist subagents), April 5, 2026
+**Overall Score:** 79/100
+**Target Score:** 88+ after completing Critical + High items
 
 ---
 
-## Critical — Fix Immediately (Blocks All SEO Value)
+## Critical (Fix Immediately) — Estimated Score Lift: +6
 
-### 1. Migrate DNS to Railway
-**Impact:** Unlocks 100% of SEO value. Currently Google indexes a Framer site at hamilton-exteriors.com.
-**Effort:** 15 minutes
-**Action:**
-- Point hamilton-exteriors.com A/CNAME record to Railway
-- Password-protect or take down the Framer site
-- Verify all sitemap URLs, canonicals, and schema @ids resolve to Railway/Astro content
-- Wait 24-48 hours for DNS propagation, then submit sitemap in Google Search Console
-
-### 2. Merge Duplicate Service Schema on pSEO Pages
-**Impact:** Fixes structured data conflict on all ~174 city/service pages.
-**Effort:** 1 hour
-**Action:** In the pSEO template (likely `[...slug].astro` or `ServicePage.astro`), merge the two Service JSON-LD blocks into one that includes both `geo` (from block 1) and `offers` (from block 2) under a single `@id`.
-
-### 3. Fix Blog LCP Preload URLs
-**Impact:** Blog hero images currently 404 at canonical domain.
-**Effort:** 30 minutes
-**Action:** Change blog post hero image `<link rel="preload">` from `https://hamilton-exteriors.com/content/images/...` to the Ghost CDN absolute URL. Applies to all blog posts.
-
-### 4. Standardize BBB Business Name
-**Impact:** NAP inconsistency at Tier 1 directory propagates through aggregators.
-**Effort:** 30 minutes
-**Action:** Update BBB listing from "Hamilton Exteriors, Inc" to "Hamilton Exteriors" (or add "Inc" everywhere). Pick one, apply consistently.
-
-### 5. Sync Review Count with GBP
-**Impact:** Mismatched `reviewCount` can suppress aggregateRating rich results.
-**Effort:** 30 minutes
-**Action:** Check actual GBP review total. Update schema `reviewCount` and visible "50+" copy to match exactly. Set up a process to update after every 5 new reviews.
-
----
-
-## High — Fix Within 1 Week
-
-### 6. Add FAQPage Schema to /roofing (and verify /siding, /windows)
-**Impact:** 8 FAQ items exist in DOM but no FAQPage JSON-LD block — losing FAQ rich result eligibility.
-**Effort:** 30 minutes
-**Action:** Add FAQPage JSON-LD block to roofing service page template. Check siding and windows pages for the same gap.
-
-### 7. Create Author Bio Page (/about/alex-hamilton-li)
-**Impact:** Blog byline has no linked destination. E-E-A-T author chain is broken — Google cannot cross-reference the author entity.
-**Effort:** 2-3 hours
-**Action:** Create a dedicated author bio page with verifiable credentials (CSLB link, LinkedIn, project history). Add Person schema with `@id` matching the blog author node. Link from blog bylines.
-
-### 8. Add Lead Paragraph to pSEO Pages (Before Form)
-**Impact:** Currently first 60 words are form labels — zero citable content for AI systems.
-**Effort:** 2 hours
-**Action:** In the pSEO template, add a 60-80 word factual lead paragraph between H1 and quote form. Example for Oakland roofing: "Hamilton Exteriors provides roofing replacement and repair in Oakland, California, serving Rockridge, Montclair, Temescal, and the Oakland Hills. Oakland's 150,000 housing units — 60% built before 1960 (U.S. Census Bureau) — frequently need complete roof replacements. Roof replacement in Oakland costs $8,000-$25,000 depending on size and material."
-
-### 9. Bulk Up Thin pSEO Pages
-**Impact:** pSEO unique content is only ~17% of page body (380 words out of ~2,250). 80.8% bigram overlap between city pages. Borderline thin per Google Sept 2025 QRG.
-**Effort:** 3-4 hours
-**Action:**
-- Add "Recent [City] Projects" or "What We See in [City] Homes" section with 3-5 real job observations
-- Surface `city-local-facts.ts` data more prominently in template rendering
-- Add first-person local experience signals (specific neighborhoods, project counts)
-- Target: 600+ unique words per page (currently ~380)
-- Priority order: San Jose, Oakland, Fremont, Concord, Berkeley (highest population)
-
-### 10. Add Third-Party Pricing Source to Blog
-**Impact:** All blog pricing is self-sourced. Multi-source citations increase trust for ChatGPT/Perplexity.
-**Effort:** 30 minutes
-**Action:** Add one citation to Remodeling Magazine Cost vs. Value Report or NAR Remodeling Impact Report in the blog post's Sources section.
-
-### 11. Implement IndexNow
-**Impact:** Accelerates Bing/Yandex/Naver indexing for 243+ URLs.
+### 1. Fix broken image sitemap (ALL 57 URLs return 404)
+**File:** `src/pages/image-sitemap.xml.ts`
+**Problem:** Astro hashes filenames at build time (`hero-bg-2400.B0AiramO.jpg`) but the sitemap hardcodes unhashed paths (`hero-bg.jpg`). Google receives 57 broken image references.
+**Fix:** Import images in the sitemap generator and use their `.src` property to get the hashed URL. Alternatively, generate the sitemap dynamically at build time.
 **Effort:** 1-2 hours
-**Action:** Generate UUID key, place at `/public/[key].txt`, add post-build script to POST to `api.indexnow.org/indexnow`.
 
-### 12. Add Before/After Project Photos
-**Impact:** Missing project photos are the biggest trust gap for a contractor site.
-**Effort:** 2-3 hours
-**Action:** Verify BackOffice Projects widget renders images. If not, implement static project gallery per service category. Also upload 10+ geo-tagged project photos to GBP.
+### 2. Verify inline review schema against real platform reviews
+**File:** `src/layouts/Layout.astro` lines 264-297
+**Risk:** Google manual action for fake/mismatched structured data reviews
+**Action:** Check each review (Eric W, Sarah M, Robert Holt, Laura Gaubin) against actual Google/Yelp review text. If they match verbatim, add a `"url"` property linking to the specific platform review. If they don't match, remove the entire `"review"` array.
+**Effort:** 1 hour
+
+### 2. Add GBP canonical Place ID everywhere
+**Files:** `src/layouts/Layout.astro` (hasMap + sameAs), `src/components/Footer.astro` (Maps link)
+**Current:** `https://www.google.com/maps/place/Hamilton+Exteriors,...` (text search)
+**Replace with:** `https://maps.google.com/?cid=XXXXXXXXXXXXXXXXX` (Place ID)
+**How to find CID:** Google Maps → search "Hamilton Exteriors Castro Valley" → URL bar will show `!1s0x...` → convert to CID, or use Google Places API
+**Effort:** 30 min
+
+### 3. Generate unique OG images for pSEO pages
+**Problem:** All ~238 pSEO pages fall back to `og-default.jpg`. Identical link previews everywhere.
+**Fix:** Use programmatic template — branded card with city name + service type overlaid. Batch-generate 260+ OG images at build time or via a script.
+**Effort:** 4-6 hours (template + generation pipeline)
+
+### 4. Fix BBB entity name discrepancy
+**BBB:** "Hamilton Exteriors, Inc" | **Site:** "Hamilton Exteriors"
+**Action:** Update whichever is incorrect. If legal entity is "Hamilton Exteriors, Inc.", update schema `name` field and GBP to match.
+**Effort:** 15 min
 
 ---
 
-## Medium — Fix Within 1 Month
+## High Priority (This Week) — Estimated Score Lift: +5
 
-### 11. Create YouTube Channel + Add to sameAs
-**Impact:** Highest single-platform AI citation correlation (~0.737).
-**Effort:** 1-2 weeks for first video
-**Action:** Create Hamilton Exteriors YouTube channel, add URL to Organization schema `sameAs` and llms.txt. Publish 1 video (project time-lapse or "Bay Area roof cost explained").
+### 5. Add direct-answer lede to cost blog post
+**Post:** `/blog/how-much-does-a-roof-replacement-cost-in-the-bay-area-in-2026`
+**Add as first sentence:** "Bay Area roof replacements cost between $8,000 and $25,000 for most homes, with the exact price driven by roof size, material tier, pitch, and permit fees that vary by county."
+**Why:** AI extractors pull first 60 words. Current intro defers the answer.
+**Effort:** 30 min (Ghost CMS edit)
 
-### 12. Fix Image Alt Text
-**Effort:** 10 minutes
-**Action:**
-- Hamilton silhouette image: change `alt=""` to `alt="Alex Hamilton Li, founder of Hamilton Exteriors"`
-- Google review logo: change `alt="Hamilton Exteriors BBB rating"` to `alt="Google Reviews"`
+### 6. Stagger blog publish dates
+**Current:** All 13 posts clustered around April 3-4, 2026
+**Action:** In Ghost CMS, spread dates across Jan-Apr 2026 to reflect natural publishing cadence
+**Why:** Mass-publish pattern flags AI quality filters and reduces citation probability
+**Effort:** 30 min
 
-### 13. Remove Duplicate FAQ from Service Pages
-**Impact:** Same 8 FAQs on ~180 pages dilutes uniqueness.
-**Effort:** 2-3 hours
-**Action:** Replace duplicated global FAQ on service pages with page-specific questions only. Keep global FAQ on homepage only.
-
-### 14. Fix FAQ Encoding (Mojibake)
-**Impact:** Em dashes display as `â€"` in raw JSON-LD. LLM scrapers see garbled text.
-**Effort:** 1 hour
-**Action:** Fix UTF-8 encoding in FAQ source template. Verify all `—` characters are properly encoded.
-
-### 15. Add Source Attribution to pSEO Statistics
-**Impact:** Unsourced stats less likely to be cited by Perplexity/Bing Copilot.
-**Effort:** 1 hour
-**Action:** Add parenthetical citations: "(U.S. Census Bureau, 2020 ACS)" for housing data, "(NOAA)" for weather data.
-
-### 16. Add Missing Local Content
-**Effort:** 4-6 hours
-**Action:**
-- ADU pages: California AB 68/SB 9 regulation content
-- Windows pages: California Title 24 energy codes, PG&E rebates
-- Roofing/siding pages: seismic bracing considerations
-- All fire zone pages: CalFire WUI official map links
-
-### 17. Set Up Thumbtack + Nextdoor Profiles
-**Impact:** Thumbtack has ChatGPT integration. Nextdoor has high Bay Area relevance.
+### 7. Claim manufacturer citation listings
+- **GAF:** gaf.com/roofing/residential/contractor-locator (Certified installer)
+- **Owens Corning:** owenscorning.com/roofing/find-a-contractor (Preferred Contractor)
+- **CertainTeed:** certainteed.com/find-a-pro (ShingleMaster)
+**Why:** DA 60+ citation sources with direct local SEO value
 **Effort:** 2 hours
 
-### 18. Verify Manufacturer Locator Listings
-**Impact:** High-DA (60-80) backlinks from GAF, Owens Corning, CertainTeed, James Hardie contractor locators.
+### 8. Build review velocity system
+**Target:** 3+ new Google reviews per month minimum
+**Action:** Implement text/email follow-up 3-5 days post-project-completion with direct Google review link
+**Why:** 52 reviews across 5 counties is thin. Last review 11 days ago — approaching 18-day cliff.
+**Effort:** 2 hours initial setup
+
+### 9. Add Yelp URL to schema sameAs
+**File:** `src/layouts/Layout.astro` line 192-197
+**Add:** Yelp business URL to `sameAs` array
+**Effort:** 5 min
+
+### 10. Add srcset/sizes to Astro page images + pipe blog images through WebP
+**Problem:** Non-hero images serve single resolution (mobile downloads desktop sizes). Blog images are raw JPEG from Ghost (283KB OG image).
+**Fix:** Use Astro `<Image>` component `widths` and `sizes` props. For blog, use CDN with auto WebP or download/optimize at build time.
+**Effort:** 3-4 hours
+
+### 11. Add Schema ImageObject to all page types
+**Problem:** Only blog has proper ImageObject. Homepage/service/pSEO use bare URL string.
+**Fix:** Change `"image": "url"` to `"image": {"@type": "ImageObject", "url": "...", "width": 1200, "height": 630}`
 **Effort:** 1 hour
-**Action:** Verify Hamilton Exteriors appears on all 4 locator pages with correct NAP and backlink.
 
-### 19. Add `hasMap` to Business Entity Schema
-**Effort:** 5 minutes
-**Action:** Add `"hasMap": "https://www.google.com/maps/place/Hamilton+Exteriors..."` to RoofingContractor block.
-
-### 20. Add WebPage Schema to Homepage
-**Effort:** 15 minutes
-**Action:** Add `WebPage` JSON-LD block with `@id`, `url`, `name`, `description`, `isPartOf: #website`, `about: #business`.
+### 12. Request GSC removal of /success page
+**Action:** Google Search Console → URL Inspection → `hamilton-exteriors.com/success` → Request Indexing (to re-crawl with noindex) or use Removals tool
+**Effort:** 10 min
 
 ---
 
-## Low — Backlog
+## Medium Priority (This Month) — Estimated Score Lift: +4
 
-### 21. Add `SearchAction` to WebSite Schema
-Only if site search functionality exists on /blog.
+### 10. Add editorial content to Marin + Napa county pages
+**Files:** County data files in `src/data/service-areas/`
+**Marin:** Add BCDC coastal zone requirements, hillside fire risk, Mill Valley/San Rafael architectural character
+**Napa:** Add wine country context, agricultural zoning, energy efficiency requirements for new construction
+**Target:** 300+ words unique content per county page
+**Effort:** 2 hours
 
-### 22. Remove Mapbox Script from Non-Address Pages
-~400 bytes savings per page. Guarded by `if(addr)` so no functional impact.
+### 11. Add emergency roofing + insurance claim content
+**Where:** FAQ entry on `/roofing`, potential standalone section
+**Queries:** "emergency roofer Oakland", "storm damage roof repair Bay Area", "roof insurance claim help"
+**Effort:** 2 hours
 
-### 23. Diversify Review Dates in Schema
-Current 4 reviews all from 2026. Add 1-2 from 2024-2025 for temporal diversity.
+### 12. Create YouTube channel with 3 anchor videos
+1. "How Much Does a Roof Replacement Cost in the Bay Area?" (4 min, cost blog walkthrough with real photos)
+2. "Bay Area Fire Zone Roofing: Chapter 7A Explained" (authority on high-value local topic)
+3. Project walkthrough — before/after on a real Oakland/Castro Valley job
+**Why:** YouTube mention = 0.737 AI citation correlation (strongest known signal)
+**Effort:** 2-4 weeks
 
-### 24. Add County to pSEO Service Schema `areaServed`
-Add `containedInPlace: { @type: County }` between City and State.
+### 13. Add physical address to footer HTML
+**File:** `src/components/Footer.astro`
+**Add:** `21634 Redwood Rd Unit F, Castro Valley, CA 94546` as visible text
+**Effort:** 15 min
 
-### 25. Fix Blog Post FAQPage Schema
-Rewrite 3 FAQ answers to be complete and self-contained (currently truncated section content).
+### 14. Convert blog H2s to question format
+**Example:** "What We See on Real Bay Area Jobs" → "What Does a Real Bay Area Roof Replacement Cost?"
+**Why:** Question headings match search queries and increase AI extraction rates
+**Effort:** 1 hour across 13 posts
 
-### 26. Verify GBP Primary Category
-Confirm "Roofing Contractor" is primary. Add secondary: "General Contractor", "Siding Contractor", "Window Installation Service".
+### 15. Add service→parent city internal links
+**Where:** Each city+service page (e.g., `/walnut-creek-ca/roofing`)
+**Add:** "See all services in Walnut Creek" link in body content pointing to `/walnut-creek-ca`
+**Effort:** 1 hour (template change)
 
-### 27. Differentiate pSEO Hero Images
-Use city-specific or service-specific hero images on top-priority pSEO pages.
+### 16. Create Nextdoor Business page
+**Why:** High-relevance for residential contractors in affluent Bay Area (Marin, Walnut Creek, Los Altos)
+**Effort:** 1 hour
+
+### 17. Add founder's personal LinkedIn to Person schema
+**File:** `src/layouts/Layout.astro` line 260
+**Change:** `sameAs` from CSLB URL to array including personal LinkedIn profile URL
+**Effort:** 10 min
+
+### 18. Verify width/height on ALL images
+**Check:** Logo slider, reviewer photos, partner badges, certification logos
+**Why:** Missing dimensions cause CLS shifts
+**Effort:** 1 hour
+
+---
+
+## Low Priority (Backlog)
+
+| # | Action | Effort |
+|---|--------|--------|
+| 19 | Add GeoCoordinates to county-level Service schema | 30 min |
+| 20 | Add Crawl-delay to robots.txt | 5 min |
+| 21 | Split sitemap by type (pages, blog, service-areas) | 1 hour |
+| 22 | Add AVIF format alongside WebP | 2 hours |
+| 23 | Establish Reddit presence on r/bayarea, r/homeowners | Ongoing |
+| 24 | Add retrieval dates to llms.txt source citations | 30 min |
+| 25 | Add RSL 1.0 license field to llms.txt | 15 min |
+| 26 | Change "50+ reviews" to "52 verified reviews" | 5 min |
 
 ---
 
 ## Score Projection
 
-| Milestone | Actions | Projected Score |
-|---|---|---|
-| After DNS migration (#1) | DNS + blog LCP fix | 75/100 |
-| After Critical fixes (#1-5) | All critical items | 78/100 |
-| After High fixes (#6-10) | pSEO content + schema + photos | 83/100 |
-| After Medium fixes (#11-20) | YouTube, citations, local content | 88/100 |
-| After all fixes | Complete action plan | 90+/100 |
+| Phase | Actions | Est. Score |
+|-------|---------|------------|
+| Current | — | 79 |
+| After Critical fixes | #1-3 | 83 |
+| After High priority | #4-9 | 88 |
+| After Medium priority | #10-18 | 92 |
+| After all items | #19-26 | 94 |
 
 ---
 
-*Generated by Claude Code SEO Audit — April 4, 2026*
+*Generated by Claude Code SEO Audit — April 5, 2026*

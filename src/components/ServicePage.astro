@@ -443,6 +443,12 @@ const serviceSchema: Record<string, unknown> = {
 {isCityServicePage && otherServices.length > 0 && (
   <section class="bg-[var(--color-cream)] py-10 px-4">
     <div class="mx-auto max-w-5xl">
+      <a
+        href={`/service-areas/${countySlugFromPath}/${citySlugFromPath}`}
+        class="inline-block mb-5 font-[DM_Sans] text-sm font-medium text-[var(--color-primary)] underline underline-offset-2 hover:opacity-80 transition-opacity"
+      >
+        &larr; All services in {cityOrArea}
+      </a>
       <p class="font-[Satoshi] text-xs font-semibold uppercase tracking-wider text-gray-600 mb-4">
         Also serving {cityOrArea || 'this area'}
       </p>

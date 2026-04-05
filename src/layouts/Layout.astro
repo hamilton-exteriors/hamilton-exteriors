@@ -124,6 +124,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
 
     <!-- AI content declaration for llms.txt discovery -->
     <link rel="ai-content-declaration" href="/llms.txt" type="text/plain" />
+    <link rel="llms" href="/llms.txt" type="text/plain" />
     <link rel="ai-policy" href="/ai.txt" type="text/plain" />
 
     <!-- Open Graph -->
@@ -193,6 +194,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
         "https://www.facebook.com/hamiltonexteriors",
         "https://www.instagram.com/hamiltonexteriors",
         "https://www.linkedin.com/company/hamilton-exteriors/",
+        "https://www.yelp.com/biz/hamilton-exteriors-castro-valley",
         "https://www.google.com/maps/place/Hamilton+Exteriors,+21634+Redwood+Rd+Unit+F,+Castro+Valley,+CA+94546"
       ],
       "areaServed": [
@@ -209,7 +211,12 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
         "ratingCount": 52
       },
       "priceRange": "$$",
-      "image": "https://hamilton-exteriors.com/og-default.jpg",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://hamilton-exteriors.com/og-default.jpg",
+        "width": 1200,
+        "height": 630
+      },
       "logo": {
         "@type": "ImageObject",
         "url": "https://hamilton-exteriors.com/logo-schema.png",
@@ -257,7 +264,10 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
         "@id": "https://hamilton-exteriors.com/#founder",
         "name": "Alexander Hamilton Li",
         "jobTitle": "Architect & General Contractor",
-        "sameAs": "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377"
+        "sameAs": [
+          "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377",
+          "https://www.linkedin.com/in/alexanderhamiltonli"
+        ]
       },
       "paymentAccepted": ["Cash", "Check", "ACH Transfer", "Credit Card"],
       "description": "Bay Area exterior remodeling - roofing, siding, windows, and waterproofing. Licensed, bonded, insured. 50-year warranty. 3-5 day installs.",
