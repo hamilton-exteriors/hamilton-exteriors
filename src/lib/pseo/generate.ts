@@ -133,6 +133,16 @@ function getCountyLocalFaqs(
         answer: `Napa Valley's distinctive character does influence exterior choices, but not through formal restrictions for most residential projects. ${city} homeowners often choose materials that complement wine country architecture — earth-toned James Hardie siding, natural stone accents, and architectural shingles in weathered-wood or slate tones. Hamilton Exteriors offers a full range of colors and textures that blend with ${city}'s aesthetic. For properties in or near vineyard zones, we can advise on any county-specific overlay requirements.`,
       },
     ],
+    'san-mateo': [
+      {
+        question: `How does the Peninsula climate affect roofing and siding in ${city}?`,
+        answer: `${city} and San Mateo County sit between the Pacific fog belt and the warmer inland Peninsula. Homes in western and elevated neighborhoods experience persistent fog, moisture, and salt air that accelerate wood rot and metal corrosion. Eastern and lower-elevation homes see more sun and heat. Hamilton Exteriors selects materials based on your home's specific microclimate — fiber cement siding resists coastal moisture, while cool-roof-rated shingles manage heat on sun-exposed slopes. We use corrosion-resistant fasteners on all Bay-adjacent projects.`,
+      },
+      {
+        question: `Does ${city} require permits for exterior renovations?`,
+        answer: `Yes. San Mateo County and the city of ${city} require building permits for roof replacements, siding installations, and window changes. Some ${city} neighborhoods have additional design review requirements for exterior changes — particularly in older residential areas with historic character. Hamilton Exteriors handles all permit applications, plan submissions, and inspections as part of every project. Typical permit turnaround in ${city} is 2-3 weeks for standard residential work.`,
+      },
+    ],
     'santa-clara': [
       {
         question: `What are ${city}'s ADU permit requirements?`,
@@ -322,13 +332,32 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
     ...countyLocalFaqs,
   ];
 
-  // Nearby cities — same county, excluding self
-  const nearbyCities = CITY_SEEDS.filter(
+  // Nearby cities — same county first, then adjacent counties for cross-county linking
+  const ADJACENT_COUNTIES: Record<string, string[]> = {
+    'alameda': ['contra-costa', 'santa-clara'],
+    'contra-costa': ['alameda', 'marin', 'napa'],
+    'marin': ['contra-costa', 'napa'],
+    'napa': ['contra-costa', 'marin'],
+    'santa-clara': ['alameda'],
+    'san-mateo': ['alameda', 'santa-clara'],
+  };
+
+  const sameCountyCities = CITY_SEEDS.filter(
     (c) => c.countySlug === countySlug && c.slug !== slug,
   ).map((c) => ({
     name: c.city,
-    href: `/service-areas/${c.countySlug}/${c.slug}`,
+    href: `/service-areas/${c.countySlug}-county-ca/${c.slug}-ca`,
   }));
+
+  const adjacentCountySlugs = ADJACENT_COUNTIES[countySlug] || [];
+  const crossCountyCities = CITY_SEEDS.filter(
+    (c) => adjacentCountySlugs.includes(c.countySlug),
+  ).slice(0, 3).map((c) => ({
+    name: c.city,
+    href: `/service-areas/${c.countySlug}-county-ca/${c.slug}-ca`,
+  }));
+
+  const nearbyCities = [...sameCountyCities, ...crossCountyCities];
 
   // Stats
   const stats = [
@@ -388,6 +417,7 @@ const COUNTY_ADJECTIVES: Record<string, string> = {
   'marin': 'Premium',
   'napa': 'Expert',
   'santa-clara': 'Top-Rated',
+  'san-mateo': 'Peninsula\'s',
 };
 
 const COUNTY_PROXIMITY: Record<string, string> = {
@@ -396,6 +426,7 @@ const COUNTY_PROXIMITY: Record<string, string> = {
   'marin': '-122.53,37.95',
   'napa': '-122.30,38.30',
   'santa-clara': '-121.89,37.34',
+  'san-mateo': '-122.33,37.55',
 };
 
 const COUNTY_SECTION_STYLES: Record<string, 'heading' | 'label'> = {
@@ -404,6 +435,7 @@ const COUNTY_SECTION_STYLES: Record<string, 'heading' | 'label'> = {
   'marin': 'heading',
   'napa': 'heading',
   'santa-clara': 'heading',
+  'san-mateo': 'heading',
 };
 
 /**
@@ -588,6 +620,7 @@ const COUNTY_SLUG_MAP: Record<string, string> = {
   'marin-county-ca': 'marin',
   'napa-county-ca': 'napa',
   'santa-clara-county-ca': 'santa-clara',
+  'san-mateo-county-ca': 'san-mateo',
 };
 
 const COUNTY_NAME_MAP: Record<string, string> = {
@@ -596,6 +629,7 @@ const COUNTY_NAME_MAP: Record<string, string> = {
   'marin-county-ca': 'Marin County',
   'napa-county-ca': 'Napa County',
   'santa-clara-county-ca': 'Santa Clara County',
+  'san-mateo-county-ca': 'San Mateo County',
 };
 
 /**
@@ -613,7 +647,7 @@ export function generateCountyServicePage(
   const countyCities = CITY_SEEDS.filter(c => c.countySlug === shortCounty);
   if (countyCities.length === 0) return null;
 
-  // Use the first city's seed for neighborhood data and interpolation
+  // Aggregate data across all cities in the county for differentiation
   const primarySeed = countyCities[0];
   const {
     serviceSlug,
@@ -630,22 +664,28 @@ export function generateCountyServicePage(
     stylesItems,
   } = template;
 
-  // Build vars using county name instead of city
+  const displayCounty = countyName.replace(' County', '');
+  const cityList = countyCities.map(c => c.city).join(', ');
+
+  // Aggregate county-level stats instead of using a single city's data
+  const prices = countyCities.map(c => parseInt(c.medianHomePrice.replace(/[$,]/g, ''), 10)).filter(Boolean);
+  const avgPrice = prices.length ? `$${Math.round(prices.reduce((a, b) => a + b, 0) / prices.length).toLocaleString()}` : primarySeed.medianHomePrice;
+  const totalPop = countyCities.reduce((sum, c) => sum + parseInt(c.population.replace(/,/g, ''), 10), 0);
+
+  // Build vars using county-level aggregated data
   const vars: Record<string, string> = {
     city: countyName,
-    county: countyName.replace(' County', ''),
-    neighborhood: primarySeed.neighborhoods[0],
-    medianHomePrice: primarySeed.medianHomePrice,
-    population: primarySeed.population,
-    keyFeature: primarySeed.keyFeature,
+    county: displayCounty,
+    neighborhood: cityList,
+    medianHomePrice: avgPrice,
+    population: totalPop.toLocaleString(),
+    keyFeature: `home to ${cityList}`,
     serviceName,
   };
 
   const title = interpolate(titlePattern, vars);
   const description = interpolate(descriptionPattern, vars);
   const heroHeadline = interpolate(heroHeadlinePattern, vars);
-
-  const cityList = countyCities.map(c => c.city).join(', ');
 
   const hero: HeroProps = {
     headline: heroHeadline,
@@ -660,14 +700,25 @@ export function generateCountyServicePage(
     ],
   };
 
-  // FAQs scoped to county
-  const localFaqs = faqTemplates.map((faq, i) => {
-    const faqVars = { ...vars, neighborhood: primarySeed.neighborhoods[i % primarySeed.neighborhoods.length] };
-    return {
-      question: interpolate(faq.questionPattern, faqVars),
-      answer: interpolate(faq.answerPattern, faqVars),
-    };
-  });
+  // County-specific FAQs — reference multiple cities instead of one city's neighborhoods
+  const countyFaqs = getCountyLocalFaqs(shortCounty, displayCounty, displayCounty);
+  const localFaqs = [
+    // County-wide pricing FAQ using aggregated data
+    {
+      question: `How much does ${serviceName.toLowerCase()} cost in ${displayCounty} County?`,
+      answer: `${serviceName} costs in ${displayCounty} County vary by city — from ${countyCities[0].city} to ${countyCities[countyCities.length - 1].city}. With median home values averaging ${avgPrice} across the county, we see a range of project scopes. Hamilton Exteriors provides free, itemized estimates for every ${displayCounty} County project with no hidden fees.`,
+    },
+    // Template FAQs with county-level vars
+    ...faqTemplates.slice(1).map((faq, i) => {
+      const faqVars = { ...vars, neighborhood: countyCities[i % countyCities.length].city };
+      return {
+        question: interpolate(faq.questionPattern, faqVars),
+        answer: interpolate(faq.answerPattern, faqVars),
+      };
+    }),
+    // County-level regulatory FAQs
+    ...countyFaqs,
+  ];
 
   const stylesSection: SectionBlock = {
     type: 'styles',
@@ -714,7 +765,7 @@ export function generateCountyServicePage(
     hero,
     sections,
     localFaqs,
-    neighborhoods: primarySeed.neighborhoods,
+    neighborhoods: countyCities.flatMap(c => c.neighborhoods.slice(0, 2)),
     nearbyCityServices,
   };
 }

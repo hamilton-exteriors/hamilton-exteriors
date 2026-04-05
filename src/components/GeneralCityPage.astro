@@ -54,6 +54,24 @@ const webPageSchema = {
   about: { '@id': 'https://hamilton-exteriors.com/#business' },
   inLanguage: 'en-US',
 };
+
+// Review schema for city-specific testimonials
+const allReviews = [
+  data.reviews.featured,
+  ...data.reviews.side,
+];
+const reviewSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://hamilton-exteriors.com/#business',
+  name: 'Hamilton Exteriors',
+  review: allReviews.map((r) => ({
+    '@type': 'Review',
+    author: { '@type': 'Person', name: r.name },
+    reviewRating: { '@type': 'Rating', ratingValue: 5, bestRating: 5, worstRating: 1 },
+    reviewBody: r.text,
+  })),
+};
 ---
 
 <AnnouncementBar />
@@ -71,6 +89,8 @@ const webPageSchema = {
 <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 <!-- WebPage JSON-LD -->
 <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+<!-- Review JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
 
 <!-- Hero -->
 <Hero
