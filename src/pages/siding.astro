@@ -12,6 +12,30 @@ const breadcrumbJsonLd = {
     { '@type': 'ListItem', position: 2, name: 'Siding', item: `${siteUrl}/siding` },
   ],
 };
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${siteUrl}/siding#service`,
+  name: 'Siding',
+  description: 'James Hardie fiber cement, vinyl, stucco, and waterproofing for Bay Area homes. 30-year product warranties, expert installation, licensed and insured.',
+  url: `${siteUrl}/siding`,
+  serviceType: ['Fiber Cement Siding', 'Vinyl Siding', 'Stucco', 'Waterproofing'],
+  provider: { '@type': 'GeneralContractor', '@id': `${siteUrl}/#business` },
+  areaServed: [
+    { '@type': 'County', name: 'Alameda County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'County', name: 'Contra Costa County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'County', name: 'Marin County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'County', name: 'Napa County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'County', name: 'Santa Clara County', containedInPlace: { '@type': 'State', name: 'California' } },
+  ],
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'USD',
+    lowPrice: '8000',
+    highPrice: '30000',
+    description: 'Siding replacement cost depends on home size and material choice',
+  },
+};
 const webPageJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
@@ -25,6 +49,6 @@ const webPageJsonLd = {
 };
 ---
 
-<Layout title={data.title} description={data.description} includeMapbox preloadHero heroImage={data.hero.heroImage} jsonLd={[breadcrumbJsonLd, webPageJsonLd]}>
+<Layout title={data.title} description={data.description} includeMapbox preloadHero heroImage={data.hero.heroImage} jsonLd={[breadcrumbJsonLd, webPageJsonLd, serviceJsonLd]}>
   <ServicePage data={data} />
 </Layout>

@@ -27,7 +27,13 @@ if (!post) {
 // Strip duplicate brand suffix that Ghost CMS sometimes appends (e.g. "Title | Hamilton Exteriors | Hamilton Exteriors")
 const rawTitle = post.meta_title || post.title;
 const title = rawTitle.replace(/(\s*\|\s*Hamilton Exteriors){2,}/gi, ' | Hamilton Exteriors');
-const description = post.meta_description || post.custom_excerpt || post.excerpt || '';
+const rawDesc = post.meta_description || post.custom_excerpt || post.excerpt || '';
+// Sanitize Unicode replacement characters — em-dashes and en-dashes from Ghost
+// sometimes arrive as U+FFFD after encoding round-trips
+const description = rawDesc
+  .replace(/\ufffd/g, '\u2014')   // replacement char → em-dash (most common source)
+  .replace(/\u00e2\u0080\u0093/g, '\u2013')  // mojibake en-dash
+  .replace(/\u00e2\u0080\u0094/g, '\u2014'); // mojibake em-dash
 
 // Noindex stub/placeholder posts that shouldn't appear in search results
 const NOINDEX_SLUGS = ['untitled', 'coming-soon'];
