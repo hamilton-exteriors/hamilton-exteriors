@@ -14,6 +14,7 @@ export const data: ServicePageData = {
       "We'll contact you in 3-5 minutes to discuss your project.",
     ctaText: 'Call Now - We Answer Fast',
     heroImage: serviceAdditions,
+    heroAlt: 'Home addition and second-story expansion in the Bay Area',
     serviceType: 'Addition',
     // serviceOptions removed — service is known from page context, form is 2 steps
   },

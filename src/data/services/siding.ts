@@ -15,6 +15,7 @@ export const data: ServicePageData = {
     serviceType: 'Siding',
     // serviceOptions removed — service is known from page context, form is 2 steps
     heroImage: serviceSiding,
+    heroAlt: 'James Hardie fiber cement siding installation on a Bay Area home',
   },
   sections: [
     { type: 'logoSlider' },

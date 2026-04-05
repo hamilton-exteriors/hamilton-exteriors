@@ -13,6 +13,7 @@ export const data: ServicePageData = {
       "Tell us about your dream home. We'll call within 5 minutes to discuss your project.",
     ctaText: 'Call Now - We Answer Fast',
     heroImage: serviceCustomHomesFull,
+    heroAlt: 'Custom home build in progress by Hamilton Exteriors in the Bay Area',
     serviceType: 'Custom Home',
     badges: [
       'Licensed Bonded & Insured',

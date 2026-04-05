@@ -20,6 +20,7 @@ export const data: ServicePageData = {
       "We'll contact you in 3-5 minutes to schedule a FREE Window inspection.",
     ctaText: 'Call Now (650) 977-3351',
     heroImage: heroWindows,
+    heroAlt: 'Energy-efficient window replacement on a Bay Area home by Hamilton Exteriors',
     serviceType: 'Windows',
     // serviceOptions removed — service is known from page context, form is 2 steps
   },

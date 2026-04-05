@@ -111,6 +111,11 @@ const counties = [
     { name: 'Mountain View', slug: 'mountain-view-ca' },
     { name: 'Sunnyvale', slug: 'sunnyvale-ca' },
     { name: 'Cupertino', slug: 'cupertino-ca' },
+    { name: 'Santa Clara', slug: 'santa-clara-ca' },
+    { name: 'Saratoga', slug: 'saratoga-ca' },
+    { name: 'Los Gatos', slug: 'los-gatos-ca' },
+    { name: 'Campbell', slug: 'campbell-ca' },
+    { name: 'Milpitas', slug: 'milpitas-ca' },
   ]},
 ];
 
@@ -157,6 +162,7 @@ const serviceSchema: Record<string, unknown> = {
   ...(pricing && {
     'offers': {
       '@type': 'AggregateOffer',
+      'offerCount': 6,
       'lowPrice': pricing.low,
       'highPrice': pricing.high,
       'priceCurrency': pricing.currency,
@@ -164,6 +170,14 @@ const serviceSchema: Record<string, unknown> = {
       'availability': 'https://schema.org/InStock',
     },
   }),
+  'aggregateRating': {
+    '@type': 'AggregateRating',
+    'ratingValue': 4.8,
+    'reviewCount': 52,
+    'ratingCount': 52,
+    'bestRating': 5,
+    'worstRating': 1,
+  },
 };
 ---
 
@@ -178,6 +192,7 @@ const serviceSchema: Record<string, unknown> = {
   ctaText={data.hero.ctaText}
   ctaHref={data.hero.ctaHref}
   heroImage={data.hero.heroImage}
+  heroAlt={data.hero.heroAlt}
   badges={data.hero.badges}
   serviceType={data.hero.serviceType}
   serviceOptions={data.hero.serviceOptions}

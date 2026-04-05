@@ -17,6 +17,7 @@ interface Props {
   ctaText?: string;
   ctaHref?: string;
   heroImage?: ImageMetadata;
+  heroAlt?: string;
   serviceType?: string;
   serviceOptions?: string[];
   proximity?: string; // "lng,lat" for Mapbox city bias
@@ -37,6 +38,7 @@ const {
   ctaText = 'Call Us - We Answer Fast',
   ctaHref = 'tel:+16509773351',
   heroImage = heroBg,
+  heroAlt = 'Hamilton Exteriors — Bay Area roofing, siding, and exterior remodeling',
   serviceType,
   serviceOptions,
   proximity,
@@ -63,7 +65,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
       <source srcset={heroDesktop.src} type="image/webp" width="1440" height="810" />
       <img
         src={heroDesktop.src}
-        alt="Hamilton Exteriors — Bay Area roofing, siding, and exterior remodeling"
+        alt={heroAlt}
         width="1440"
         height="810"
         class="hero-bg-img h-full w-full object-cover"

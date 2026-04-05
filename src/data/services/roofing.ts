@@ -15,6 +15,7 @@ export const data: ServicePageData = {
     serviceType: 'Roofing',
     // serviceOptions removed — service is known from page context, form is 2 steps
     heroImage: heroRoofing,
+    heroAlt: 'Roof replacement in progress on a Bay Area home by Hamilton Exteriors',
   },
   sections: [
     { type: 'logoSlider' },

@@ -14,6 +14,7 @@ export const data: ServicePageData = {
       "We'll contact you in 3-5 minutes to discuss your ADU project.",
     ctaText: 'Call Now - We Answer Fast',
     heroImage: aduHero,
+    heroAlt: 'Accessory dwelling unit under construction in the Bay Area',
     serviceType: 'ADU',
     badges: [
       'Licensed Bonded & Insured',
