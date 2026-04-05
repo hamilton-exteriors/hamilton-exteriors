@@ -73,11 +73,30 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Self-hosted font preloads — critical fonts to avoid LCP flash -->
-    <link rel="preload" href="/fonts/the-bold-font.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- ── Resource hints — must be first in <head> for maximum effectiveness ── -->
+    <!-- GTM: always needed (deferred via interaction, but DNS/TCP warmup is free) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <!-- Google Tag Manager secondary domain (loads analytics.js etc.) -->
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <!-- BackOffice portfolio widget — loaded on every page with a Projects section -->
+    <link rel="preconnect" href="https://backoffice-production-99b7.up.railway.app" />
+    <link rel="dns-prefetch" href="https://backoffice-production-99b7.up.railway.app" />
+    <!-- CompanyCam image CDN — portfolio project photos -->
+    <link rel="dns-prefetch" href="https://img.companycam.com" />
+    <link rel="dns-prefetch" href="https://companycam.imgix.net" />
+    <!-- Mapbox: only warm up when the page actually uses the autofill component -->
+    {includeMapbox && <link rel="preconnect" href="https://api.mapbox.com" crossorigin />}
+    {includeMapbox && <link rel="dns-prefetch" href="https://api.mapbox.com" />}
+
+    <!-- ── Self-hosted font preloads — critical fonts, must load before first paint ── -->
+    <!-- Preload weight-700 first: all headings (h1–h5) use THE BOLD FONT at weight 700 -->
+    <link rel="preload" href="/fonts/the-bold-font-700.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- DM Sans: body text, rendered before hero paints -->
     <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    {/* Preload hero/LCP image — mobile gets 768px, desktop gets 1920px */}
+    {/* Preload hero/LCP image — mobile gets 768px, desktop gets 1440px */}
     {heroMobilePreload && <link rel="preload" href={heroMobilePreload.src} as="image" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />}
     {heroDesktopPreload && <link rel="preload" href={heroDesktopPreload.src} as="image" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />}
     <slot name="head" />
@@ -379,10 +398,6 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
         })();
       </script>
     )}
-
-    <!-- preconnect for third-party domains -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://api.mapbox.com" crossorigin />
 
   </head>
   <body class="overflow-x-hidden">
