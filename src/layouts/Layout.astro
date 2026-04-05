@@ -26,6 +26,12 @@ const heroSrc = Astro.props.heroImage || heroBg;
 const heroMobilePreload = Astro.props.preloadHero ? await getImage({ src: heroSrc, width: 768, height: 432, format: 'webp', quality: 72 }) : null;
 const heroDesktopPreload = Astro.props.preloadHero ? await getImage({ src: heroSrc, width: 1440, height: 810, format: 'webp', quality: 70 }) : null;
 
+// Auto-generate page-specific OG image from heroImage when no explicit image prop is set.
+// Produces a 1200x630 JPEG (maximum social-media compatibility) at build time.
+const heroOgImage = !Astro.props.image && Astro.props.heroImage
+  ? await getImage({ src: heroSrc, width: 1200, height: 630, format: 'jpg', quality: 80 })
+  : null;
+
 const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs & custom homes. Licensed, bonded, insured. 50-year warranty. $0 down financing. Call (650) 977-3351.';
 const DEFAULT_GEO_PLACENAME = 'Bay Area, California';
 
@@ -65,6 +71,10 @@ const description = buildDescription(rawDescription, geoPlacename);
 
 const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+
+// Resolve OG image: explicit prop > auto-generated from hero > default fallback
+const ogImageUrl = image || (heroOgImage ? siteUrl + heroOgImage.src : siteUrl + '/og-default.jpg');
+const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/jpeg');
 ---
 
 <!doctype html>
@@ -120,10 +130,10 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta property="og:description" content={description} />
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={image || `${siteUrl}/og-default.jpg`} />
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:type" content={ogImageType} />
     <meta property="og:site_name" content="Hamilton Exteriors" />
     <meta property="og:locale" content="en_US" />
 
@@ -131,7 +141,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image || `${siteUrl}/og-default.jpg`} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     {jsonLd && !Array.isArray(jsonLd) && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

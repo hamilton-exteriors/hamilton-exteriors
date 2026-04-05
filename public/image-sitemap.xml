@@ -8,30 +8,37 @@
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/hero-bg.jpg</image:loc>
       <image:title>Hamilton Exteriors — Bay Area roofing and exterior contractor</image:title>
+      <image:caption>Hamilton Exteriors — Bay Area roofing and exterior contractor</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/service-roofing.png</image:loc>
       <image:title>Professional roofing services in the Bay Area</image:title>
+      <image:caption>Professional roofing services in the Bay Area</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/service-siding.png</image:loc>
       <image:title>Siding installation and replacement services</image:title>
+      <image:caption>Siding installation and replacement services</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/service-windows.png</image:loc>
       <image:title>Window installation and replacement services</image:title>
+      <image:caption>Window installation and replacement services</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/service-additions.png</image:loc>
       <image:title>Home addition construction services</image:title>
+      <image:caption>Home addition construction services</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/financing-house.jpeg</image:loc>
       <image:title>Flexible financing options for home exterior projects</image:title>
+      <image:caption>Flexible financing options for home exterior projects</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/cta-assistant.jpg</image:loc>
       <image:title>Get a free estimate from Hamilton Exteriors</image:title>
+      <image:caption>Get a free estimate from Hamilton Exteriors</image:caption>
     </image:image>
   </url>
 
@@ -41,22 +48,27 @@
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/hero-roofing.png</image:loc>
       <image:title>Hamilton Exteriors roofing services in the Bay Area</image:title>
+      <image:caption>Hamilton Exteriors roofing services in the Bay Area</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/roofing-asphalt.png</image:loc>
       <image:title>Asphalt shingle roofing installation</image:title>
+      <image:caption>Asphalt shingle roofing installation</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/roofing-metal.png</image:loc>
       <image:title>Metal roofing installation and replacement</image:title>
+      <image:caption>Metal roofing installation and replacement</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/roofing-tile.png</image:loc>
       <image:title>Tile roofing installation and repair</image:title>
+      <image:caption>Tile roofing installation and repair</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/roofing-flat.png</image:loc>
       <image:title>Flat roofing systems for Bay Area homes</image:title>
+      <image:caption>Flat roofing systems for Bay Area homes</image:caption>
     </image:image>
   </url>
 
@@ -66,18 +78,22 @@
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/siding-vinyl.png</image:loc>
       <image:title>Vinyl siding installation for Bay Area homes</image:title>
+      <image:caption>Vinyl siding installation for Bay Area homes</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/siding-fiber-cement.png</image:loc>
       <image:title>Fiber cement siding installation</image:title>
+      <image:caption>Fiber cement siding installation</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/siding-wood.png</image:loc>
       <image:title>Wood siding installation and replacement</image:title>
+      <image:caption>Wood siding installation and replacement</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/siding-stucco.png</image:loc>
       <image:title>Stucco siding installation and repair</image:title>
+      <image:caption>Stucco siding installation and repair</image:caption>
     </image:image>
   </url>
 
@@ -87,30 +103,37 @@
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/hero-windows.png</image:loc>
       <image:title>Window replacement and installation services</image:title>
+      <image:caption>Window replacement and installation services</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/window-double-hung.png</image:loc>
       <image:title>Double-hung window installation</image:title>
+      <image:caption>Double-hung window installation</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/window-casement.png</image:loc>
       <image:title>Casement window installation</image:title>
+      <image:caption>Casement window installation</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/window-sliding.png</image:loc>
       <image:title>Sliding window installation</image:title>
+      <image:caption>Sliding window installation</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/window-bay.png</image:loc>
       <image:title>Bay window installation</image:title>
+      <image:caption>Bay window installation</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/window-picture.png</image:loc>
       <image:title>Picture window installation</image:title>
+      <image:caption>Picture window installation</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/window-garden.png</image:loc>
       <image:title>Garden window installation</image:title>
+      <image:caption>Garden window installation</image:caption>
     </image:image>
   </url>
 
@@ -120,6 +143,7 @@
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/adu-hero.jpeg</image:loc>
       <image:title>Accessory dwelling unit construction in the Bay Area</image:title>
+      <image:caption>Accessory dwelling unit construction in the Bay Area</image:caption>
     </image:image>
   </url>
 
@@ -129,14 +153,17 @@
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/service-custom-homes.jpg</image:loc>
       <image:title>Custom home building in the Bay Area</image:title>
+      <image:caption>Custom home building in the Bay Area</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/design-engineering.jpg</image:loc>
       <image:title>Custom home design and engineering services</image:title>
+      <image:caption>Custom home design and engineering services</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/design-planning.jpg</image:loc>
       <image:title>Custom home planning and architecture</image:title>
+      <image:caption>Custom home planning and architecture</image:caption>
     </image:image>
   </url>
 
@@ -146,6 +173,7 @@
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/service-additions.jpg</image:loc>
       <image:title>Home addition construction in the Bay Area</image:title>
+      <image:caption>Home addition construction in the Bay Area</image:caption>
     </image:image>
   </url>
 
@@ -155,118 +183,147 @@
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-oakland.jpg</image:loc>
       <image:title>Roofing and exterior services in Oakland, CA</image:title>
+      <image:caption>Roofing and exterior services in Oakland, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-berkeley.jpg</image:loc>
       <image:title>Roofing and exterior services in Berkeley, CA</image:title>
+      <image:caption>Roofing and exterior services in Berkeley, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-walnut-creek.jpg</image:loc>
       <image:title>Roofing and exterior services in Walnut Creek, CA</image:title>
+      <image:caption>Roofing and exterior services in Walnut Creek, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-san-jose.jpg</image:loc>
       <image:title>Roofing and exterior services in San Jose, CA</image:title>
+      <image:caption>Roofing and exterior services in San Jose, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-concord.jpg</image:loc>
       <image:title>Roofing and exterior services in Concord, CA</image:title>
+      <image:caption>Roofing and exterior services in Concord, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-san-ramon.jpg</image:loc>
       <image:title>Roofing and exterior services in San Ramon, CA</image:title>
+      <image:caption>Roofing and exterior services in San Ramon, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-fremont.jpg</image:loc>
       <image:title>Roofing and exterior services in Fremont, CA</image:title>
+      <image:caption>Roofing and exterior services in Fremont, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-hayward.jpg</image:loc>
       <image:title>Roofing and exterior services in Hayward, CA</image:title>
+      <image:caption>Roofing and exterior services in Hayward, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-palo-alto.jpg</image:loc>
       <image:title>Roofing and exterior services in Palo Alto, CA</image:title>
+      <image:caption>Roofing and exterior services in Palo Alto, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-napa.jpg</image:loc>
       <image:title>Roofing and exterior services in Napa, CA</image:title>
+      <image:caption>Roofing and exterior services in Napa, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-san-rafael.jpg</image:loc>
       <image:title>Roofing and exterior services in San Rafael, CA</image:title>
+      <image:caption>Roofing and exterior services in San Rafael, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-richmond.jpg</image:loc>
       <image:title>Roofing and exterior services in Richmond, CA</image:title>
+      <image:caption>Roofing and exterior services in Richmond, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-sunnyvale.jpg</image:loc>
       <image:title>Roofing and exterior services in Sunnyvale, CA</image:title>
+      <image:caption>Roofing and exterior services in Sunnyvale, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-mountain-view.jpg</image:loc>
       <image:title>Roofing and exterior services in Mountain View, CA</image:title>
+      <image:caption>Roofing and exterior services in Mountain View, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-santa-clara.jpg</image:loc>
       <image:title>Roofing and exterior services in Santa Clara, CA</image:title>
+      <image:caption>Roofing and exterior services in Santa Clara, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-milpitas.jpg</image:loc>
       <image:title>Roofing and exterior services in Milpitas, CA</image:title>
+      <image:caption>Roofing and exterior services in Milpitas, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-campbell.jpg</image:loc>
       <image:title>Roofing and exterior services in Campbell, CA</image:title>
+      <image:caption>Roofing and exterior services in Campbell, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-cupertino.jpg</image:loc>
       <image:title>Roofing and exterior services in Cupertino, CA</image:title>
+      <image:caption>Roofing and exterior services in Cupertino, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-los-gatos.jpg</image:loc>
       <image:title>Roofing and exterior services in Los Gatos, CA</image:title>
+      <image:caption>Roofing and exterior services in Los Gatos, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-saratoga.jpg</image:loc>
       <image:title>Roofing and exterior services in Saratoga, CA</image:title>
+      <image:caption>Roofing and exterior services in Saratoga, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-san-leandro.jpg</image:loc>
       <image:title>Roofing and exterior services in San Leandro, CA</image:title>
+      <image:caption>Roofing and exterior services in San Leandro, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-antioch.jpg</image:loc>
       <image:title>Roofing and exterior services in Antioch, CA</image:title>
+      <image:caption>Roofing and exterior services in Antioch, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-mill-valley.jpg</image:loc>
       <image:title>Roofing and exterior services in Mill Valley, CA</image:title>
+      <image:caption>Roofing and exterior services in Mill Valley, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-larkspur.jpg</image:loc>
       <image:title>Roofing and exterior services in Larkspur, CA</image:title>
+      <image:caption>Roofing and exterior services in Larkspur, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-novato.jpg</image:loc>
       <image:title>Roofing and exterior services in Novato, CA</image:title>
+      <image:caption>Roofing and exterior services in Novato, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-yountville.jpg</image:loc>
       <image:title>Roofing and exterior services in Yountville, CA</image:title>
+      <image:caption>Roofing and exterior services in Yountville, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-st-helena.jpg</image:loc>
       <image:title>Roofing and exterior services in St. Helena, CA</image:title>
+      <image:caption>Roofing and exterior services in St. Helena, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-calistoga.jpg</image:loc>
       <image:title>Roofing and exterior services in Calistoga, CA</image:title>
+      <image:caption>Roofing and exterior services in Calistoga, CA</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamilton-exteriors.com/_astro/area-american-canyon.jpg</image:loc>
       <image:title>Roofing and exterior services in American Canyon, CA</image:title>
+      <image:caption>Roofing and exterior services in American Canyon, CA</image:caption>
     </image:image>
   </url>
 
