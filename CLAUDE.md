@@ -9,7 +9,9 @@ If items exist, remind the user and offer to work through them first.
 
 ## Project
 
-- **Stack:** Astro 6.1 + Tailwind v4, static site
+- **Stack:** Astro 6.1 + Tailwind v4, SSR on Railway
+- **CMS:** Ghost (headless) — blog posts + service area page data
+- **Package manager:** bun only — never npm. Railway uses `bun install --frozen-lockfile`.
 - **Backend:** `roof-scan/backend/` — Express + TypeScript, Google Solar API pipeline
 - **Branch:** `main` only (Railway deploys from main)
 - **Repo:** `hamilton-exteriors/hamilton-exteriors` on GitHub
