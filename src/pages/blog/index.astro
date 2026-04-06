@@ -201,7 +201,7 @@ function ghostSrcset(url: string, widths: number[]): string {
     </nav>
   )}
 
-  <section class="w-full bg-white" style="padding: 56px 0 80px;">
+  <section class="w-full" style="padding: 56px 0 80px; background-color: var(--color-cream);">
     <div class="mx-auto max-w-[1200px] px-5">
       {error ? (
         <div class="rounded-[4px] border-2 border-dashed p-12 text-center" style="border-color: var(--color-border);">
@@ -225,7 +225,7 @@ function ghostSrcset(url: string, widths: number[]): string {
         <>
           {/* Featured Post (first post, full width, only on page 1 without tag filter) */}
           {featuredPost && (
-            <a href={`/blog/${featuredPost.slug}`} class="featured-card group mb-12 grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden rounded-lg transition-all hover:shadow-xl" style="box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);" data-search-title={featuredPost.title.toLowerCase()} data-search-excerpt={(featuredPost.excerpt || '').toLowerCase()}>
+            <a href={`/blog/${featuredPost.slug}`} class="featured-card group mb-12 grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden rounded-lg transition-all hover:shadow-xl bg-white" style="border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 8px rgba(0,0,0,0.06);" data-search-title={featuredPost.title.toLowerCase()} data-search-excerpt={(featuredPost.excerpt || '').toLowerCase()}>
               <div class="aspect-[16/10] lg:aspect-auto overflow-hidden bg-gray-100">
                 {featuredPost.feature_image ? (
                   <img
@@ -286,7 +286,7 @@ function ghostSrcset(url: string, widths: number[]): string {
           {/* Post Grid */}
           <div class="blog-grid grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
             {gridPosts.map((post: any) => (
-              <a href={`/blog/${post.slug}`} class="blog-card group flex flex-col overflow-hidden rounded-lg transition-all hover:shadow-lg" style="box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);" data-search-title={post.title.toLowerCase()} data-search-excerpt={(post.excerpt || '').toLowerCase()}>
+              <a href={`/blog/${post.slug}`} class="blog-card group flex flex-col overflow-hidden rounded-lg transition-all hover:shadow-lg bg-white" style="border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 8px rgba(0,0,0,0.06);" data-search-title={post.title.toLowerCase()} data-search-excerpt={(post.excerpt || '').toLowerCase()}>
                 {post.feature_image ? (
                   <div class="aspect-[16/10] w-full overflow-hidden bg-gray-100">
                     <img
@@ -675,11 +675,12 @@ function ghostSrcset(url: string, widths: number[]): string {
 
   /* ── Blog Cards ─────────────────────────────────────────────── */
   .blog-card {
-    transition: opacity 0.15s ease, box-shadow 0.2s ease;
+    transition: opacity 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
   .blog-card:hover {
-    opacity: 0.92;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.10), 0 0 0 1px rgba(37,99,70,0.12);
+    opacity: 0.95;
+    border-color: rgba(37,99,70,0.2) !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
   }
 
   .featured-card {
