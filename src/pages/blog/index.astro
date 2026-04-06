@@ -108,6 +108,13 @@ function ghostSrcset(url: string, widths: number[]): string {
           ? `${pagination.total} article${pagination.total !== 1 ? 's' : ''} about ${activeTag.name.toLowerCase()}`
           : 'Expert insights on roofing, siding, ADUs, and home improvement across the Bay Area.'}
       </p>
+      <div class="trust-bar">
+        <span>Written by licensed contractors</span>
+        <span class="trust-bar__dot">&middot;</span>
+        <span>CSLB #1082377</span>
+        <span class="trust-bar__dot">&middot;</span>
+        <span>500+ projects completed</span>
+      </div>
       <div class="search-wrap">
         <svg class="search-wrap__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
@@ -158,15 +165,6 @@ function ghostSrcset(url: string, widths: number[]): string {
       </div>
     </nav>
   )}
-
-  <!-- ═══ TRUST BAR ═══ -->
-  <div class="trust-bar">
-    <span>Written by licensed contractors</span>
-    <span class="trust-bar__dot">&middot;</span>
-    <span>CSLB #1082377</span>
-    <span class="trust-bar__dot">&middot;</span>
-    <span>500+ projects completed</span>
-  </div>
 
   <!-- ═══ CONTENT ═══ -->
   <section class="blog-content">
@@ -391,7 +389,7 @@ function ghostSrcset(url: string, widths: number[]): string {
 
   .filter-panel { display: flex; flex-direction: column; gap: 0; }
   .filter-row {
-    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
     padding: 10px 0;
     border-bottom: 1px solid var(--color-border);
   }
@@ -434,20 +432,18 @@ function ghostSrcset(url: string, widths: number[]): string {
     .filter-bar__toggle { display: none; }
   }
 
-  /* ── Trust Bar ────────────────────────────────────────────────── */
+  /* ── Trust Bar (inside hero) ──────────────────────────────────── */
   .trust-bar {
-    background: var(--color-cream);
-    padding: 10px 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 8px;
+    margin-bottom: 14px;
     font-family: var(--font-satoshi);
     font-size: 0.6875rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--color-muted);
+    color: rgba(255,255,255,0.45);
   }
   .trust-bar__dot { opacity: 0.4; }
   @media (max-width: 639px) {
