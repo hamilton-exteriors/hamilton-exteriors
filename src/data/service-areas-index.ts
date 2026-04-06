@@ -1,5 +1,5 @@
 import type { ImageMetadata } from 'astro';
-import { areaOakland, areaFremont, areaNapa, areaSanJose, areaMillValley } from '../lib/images';
+import { areaOakland, areaFremont, areaNapa, areaSanJose, areaMillValley, areaRedwoodCity } from '../lib/images';
 
 import { data as alameda } from './counties/alameda-county-ca';
 import { data as contraCosta } from './counties/contra-costa-county-ca';
@@ -27,7 +27,7 @@ const countyCardImages: Record<string, ImageMetadata> = {
   'napa-county-ca': areaNapa,
   'santa-clara-county-ca': areaSanJose,
   'marin-county-ca': areaMillValley,
-  'san-mateo-county-ca': areaOakland,
+  'san-mateo-county-ca': areaRedwoodCity,
 };
 
 /* ── County list (derived from data files) ────────────────────── */

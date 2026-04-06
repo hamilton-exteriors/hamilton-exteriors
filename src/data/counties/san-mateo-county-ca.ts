@@ -1,5 +1,5 @@
 import type { CountyPageData } from '../../lib/county-page-types';
-import { areaOakland } from '../../lib/images';
+import { areaRedwoodCity, areaSanMateo, areaBurlingame, areaDalyCity, areaSouthSanFrancisco } from '../../lib/images';
 
 export const data: CountyPageData = {
   county: 'San Mateo County',
@@ -13,11 +13,11 @@ export const data: CountyPageData = {
   proximity: '-122.33,37.55',
 
   cities: [
-    { name: 'Redwood City', slug: '/service-areas/san-mateo-county-ca/redwood-city-ca', image: areaOakland },
-    { name: 'San Mateo', slug: '/service-areas/san-mateo-county-ca/san-mateo-ca', image: areaOakland },
-    { name: 'Burlingame', slug: '/service-areas/san-mateo-county-ca/burlingame-ca', image: areaOakland },
-    { name: 'Daly City', slug: '/service-areas/san-mateo-county-ca/daly-city-ca', image: areaOakland },
-    { name: 'South San Francisco', slug: '/service-areas/san-mateo-county-ca/south-san-francisco-ca', image: areaOakland },
+    { name: 'Redwood City', slug: '/service-areas/san-mateo-county-ca/redwood-city-ca', image: areaRedwoodCity },
+    { name: 'San Mateo', slug: '/service-areas/san-mateo-county-ca/san-mateo-ca', image: areaSanMateo },
+    { name: 'Burlingame', slug: '/service-areas/san-mateo-county-ca/burlingame-ca', image: areaBurlingame },
+    { name: 'Daly City', slug: '/service-areas/san-mateo-county-ca/daly-city-ca', image: areaDalyCity },
+    { name: 'South San Francisco', slug: '/service-areas/san-mateo-county-ca/south-san-francisco-ca', image: areaSouthSanFrancisco },
   ],
   citySectionStyle: 'heading',
 };

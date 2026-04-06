@@ -1,5 +1,5 @@
 import type { CountyPageData } from '../../lib/county-page-types';
-import { areaAntioch, areaConcord, areaWalnutCreek, areaSanRamon, areaRichmond } from '../../lib/images';
+import { areaAntioch, areaConcord, areaWalnutCreek, areaSanRamon, areaRichmond, areaLafayette, areaOrinda, areaDanville, areaBrentwood, areaPittsburg } from '../../lib/images';
 
 export const data: CountyPageData = {
   county: 'Contra Costa County',
@@ -18,11 +18,11 @@ export const data: CountyPageData = {
     { name: 'Concord', slug: '/service-areas/contra-costa-county-ca/concord-ca', image: areaConcord },
     { name: 'San Ramon', slug: '/service-areas/contra-costa-county-ca/san-ramon-ca', image: areaSanRamon },
     { name: 'Richmond', slug: '/service-areas/contra-costa-county-ca/richmond-ca', image: areaRichmond },
-    { name: 'Lafayette', slug: '/service-areas/contra-costa-county-ca/lafayette-ca', image: areaWalnutCreek },
-    { name: 'Orinda', slug: '/service-areas/contra-costa-county-ca/orinda-ca', image: areaWalnutCreek },
-    { name: 'Danville', slug: '/service-areas/contra-costa-county-ca/danville-ca', image: areaSanRamon },
-    { name: 'Brentwood', slug: '/service-areas/contra-costa-county-ca/brentwood-ca', image: areaAntioch },
-    { name: 'Pittsburg', slug: '/service-areas/contra-costa-county-ca/pittsburg-ca', image: areaAntioch },
+    { name: 'Lafayette', slug: '/service-areas/contra-costa-county-ca/lafayette-ca', image: areaLafayette },
+    { name: 'Orinda', slug: '/service-areas/contra-costa-county-ca/orinda-ca', image: areaOrinda },
+    { name: 'Danville', slug: '/service-areas/contra-costa-county-ca/danville-ca', image: areaDanville },
+    { name: 'Brentwood', slug: '/service-areas/contra-costa-county-ca/brentwood-ca', image: areaBrentwood },
+    { name: 'Pittsburg', slug: '/service-areas/contra-costa-county-ca/pittsburg-ca', image: areaPittsburg },
   ],
   citySectionStyle: 'label',
 };

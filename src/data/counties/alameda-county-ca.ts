@@ -1,5 +1,5 @@
 import type { CountyPageData } from '../../lib/county-page-types';
-import { areaOakland, areaFremont, areaHayward, areaBerkeley, areaSanLeandro } from '../../lib/images';
+import { areaOakland, areaFremont, areaHayward, areaBerkeley, areaSanLeandro, areaDublin, areaPleasanton, areaLivermore, areaUnionCity, areaAlameda } from '../../lib/images';
 
 export const data: CountyPageData = {
   county: 'Alameda County',
@@ -18,11 +18,11 @@ export const data: CountyPageData = {
     { name: 'Hayward', slug: '/service-areas/alameda-county-ca/hayward-ca', image: areaHayward },
     { name: 'Berkeley', slug: '/service-areas/alameda-county-ca/berkeley-ca', image: areaBerkeley },
     { name: 'San Leandro', slug: '/service-areas/alameda-county-ca/san-leandro-ca', image: areaSanLeandro },
-    { name: 'Dublin', slug: '/service-areas/alameda-county-ca/dublin-ca', image: areaFremont },
-    { name: 'Pleasanton', slug: '/service-areas/alameda-county-ca/pleasanton-ca', image: areaFremont },
-    { name: 'Livermore', slug: '/service-areas/alameda-county-ca/livermore-ca', image: areaFremont },
-    { name: 'Union City', slug: '/service-areas/alameda-county-ca/union-city-ca', image: areaHayward },
-    { name: 'Alameda', slug: '/service-areas/alameda-county-ca/alameda-ca', image: areaOakland },
+    { name: 'Dublin', slug: '/service-areas/alameda-county-ca/dublin-ca', image: areaDublin },
+    { name: 'Pleasanton', slug: '/service-areas/alameda-county-ca/pleasanton-ca', image: areaPleasanton },
+    { name: 'Livermore', slug: '/service-areas/alameda-county-ca/livermore-ca', image: areaLivermore },
+    { name: 'Union City', slug: '/service-areas/alameda-county-ca/union-city-ca', image: areaUnionCity },
+    { name: 'Alameda', slug: '/service-areas/alameda-county-ca/alameda-ca', image: areaAlameda },
   ],
   citySectionStyle: 'heading',
 };

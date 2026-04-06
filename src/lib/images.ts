@@ -110,3 +110,24 @@ export { default as areaCalistoga } from '../assets/images/area-calistoga.jpg';
 export { default as areaStHelena } from '../assets/images/area-st-helena.jpg';
 export { default as areaYountville } from '../assets/images/area-yountville.jpg';
 export { default as areaAmericanCanyon } from '../assets/images/area-american-canyon.jpg';
+
+// Alameda County (new cities)
+export { default as areaDublin } from '../assets/images/area-dublin.jpg';
+export { default as areaPleasanton } from '../assets/images/area-pleasanton.jpg';
+export { default as areaLivermore } from '../assets/images/area-livermore.jpg';
+export { default as areaUnionCity } from '../assets/images/area-union-city.jpg';
+export { default as areaAlameda } from '../assets/images/area-alameda.jpg';
+
+// Contra Costa County (new cities)
+export { default as areaLafayette } from '../assets/images/area-lafayette.jpg';
+export { default as areaOrinda } from '../assets/images/area-orinda.jpg';
+export { default as areaDanville } from '../assets/images/area-danville.jpg';
+export { default as areaBrentwood } from '../assets/images/area-brentwood.jpg';
+export { default as areaPittsburg } from '../assets/images/area-pittsburg.jpg';
+
+// San Mateo County
+export { default as areaRedwoodCity } from '../assets/images/area-redwood-city.jpg';
+export { default as areaSanMateo } from '../assets/images/area-san-mateo.jpg';
+export { default as areaBurlingame } from '../assets/images/area-burlingame.jpg';
+export { default as areaDalyCity } from '../assets/images/area-daly-city.jpg';
+export { default as areaSouthSanFrancisco } from '../assets/images/area-south-san-francisco.jpg';
