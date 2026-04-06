@@ -133,7 +133,7 @@ function ghostSrcset(url: string, widths: number[]): string {
 
   {/* Tag Filter */}
   {tags.length > 0 && (
-    <nav aria-label="Filter by topic" class="filter-bar w-full bg-white sticky top-0 z-40" style="border-bottom: 1px solid var(--color-border);">
+    <nav aria-label="Filter by topic" class="filter-bar w-full bg-white sticky top-0 z-40" style="box-shadow: 0 1px 0 rgba(0,0,0,0.06);">
       <div class="mx-auto max-w-[1200px] px-5 py-4">
         {/* Mobile: dropdown toggle */}
         <button
@@ -675,19 +675,24 @@ function ghostSrcset(url: string, widths: number[]): string {
 
   /* ── Blog Cards ─────────────────────────────────────────────── */
   .blog-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: opacity 0.15s ease, box-shadow 0.2s ease;
   }
   .blog-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--color-primary) !important;
+    opacity: 0.92;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10), 0 0 0 1px rgba(37,99,70,0.12);
   }
 
-  /* ── Tablet: single-column stacked cards with constrained width (768-1023px) ── */
+  .featured-card {
+    transition: opacity 0.15s ease, box-shadow 0.2s ease;
+  }
+  .featured-card:hover {
+    opacity: 0.95;
+  }
+
+  /* ── Tablet: 2-column grid ── */
   @media (min-width: 768px) and (max-width: 1023px) {
     .blog-grid {
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      grid-template-columns: repeat(2, 1fr) !important;
     }
   }
 </style>
