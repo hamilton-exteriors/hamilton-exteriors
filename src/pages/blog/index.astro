@@ -201,10 +201,12 @@ function ghostSrcset(url: string, widths: number[]): string {
                 <h2 class="card__title card__title--featured group-hover:text-[var(--color-primary)]">{featuredPost.title}</h2>
                 {featuredPost.excerpt && <p class="card__excerpt card__excerpt--featured">{featuredPost.excerpt}</p>}
                 <div class="card__meta">
-                  <span>By <strong style="color: var(--color-heading);">Alex Hamilton Li</strong>, Architect & GC</span>
+                  <span style="color: var(--color-yellow);">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  <span>4.8 rated</span>
+                  <span>&middot;</span>
+                  <span>By <strong style="color: var(--color-heading);">Alex Hamilton Li</strong></span>
                   <span>&middot;</span>
                   <time datetime={featuredPost.published_at}>{formatDate(featuredPost.published_at)}</time>
-                  {featuredPost.reading_time > 0 && <><span>&middot;</span><span>{featuredPost.reading_time} min read</span></>}
                 </div>
                 <span class="card__cta">Read Article &rarr;</span>
               </div>
@@ -257,7 +259,7 @@ function ghostSrcset(url: string, widths: number[]): string {
           {/* ── CTA ── */}
           {page === 1 && (
             <div class="blog-cta">
-              <h3 style="color: white; margin-bottom: 8px;">Get a Free Roof Inspection</h3>
+              <h3 style="margin-bottom: 8px;"><span style="color: white;">Get a Free</span> <span style="color: var(--color-yellow);">Roof Inspection</span></h3>
               <p class="blog-cta__text">Bay Area homeowners — find out the true condition of your roof with a no-obligation inspection from our certified team.</p>
               <div class="blog-cta__buttons">
                 <a href="/buy" class="blog-cta__btn blog-cta__btn--primary">Scan Your Roof Online</a>
@@ -405,7 +407,7 @@ function ghostSrcset(url: string, widths: number[]): string {
     transition: background 0.15s, border-color 0.15s; white-space: nowrap;
   }
   .chip:hover { background: #e8e5dd; border-color: var(--color-border); }
-  .chip--active { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+  .chip--active { background: var(--color-heading); color: #fff; border-color: var(--color-heading); }
   .chip--active .chip__count { background: rgba(255,255,255,0.2); color: rgba(255,255,255,0.9); }
   .chip__count {
     font-size: 0.6875rem; font-weight: 600;
@@ -528,7 +530,7 @@ function ghostSrcset(url: string, widths: number[]): string {
   }
 
   .card__body {
-    padding: 20px;
+    padding: 16px 20px 20px;
     display: flex; flex-direction: column; flex: 1;
   }
   .card__body--featured {
@@ -555,9 +557,10 @@ function ghostSrcset(url: string, widths: number[]): string {
   }
 
   .card__title {
-    font-size: 1.125rem;
+    font-size: 1.1875rem;
     font-weight: 700;
     margin-bottom: 8px;
+    line-height: 1.3;
     transition: color 0.15s;
     display: -webkit-box;
     -webkit-line-clamp: 3;
