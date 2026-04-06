@@ -67,6 +67,9 @@ const isMainServicePage = !cityOrArea && Object.keys(SERVICE_SLUG_MAP).includes(
 const currentServiceSlug = pathname.replace('/', '');
 const localFacts = citySlug ? getCityLocalFacts(citySlug) : undefined;
 
+// Derive serviceSlug early — needed by RELATED_BLOG_POSTS below
+const serviceSlug = Astro.url.pathname.replace(/\/$/, '').split('/').pop() || '';
+
 // Related blog articles by service — strengthens topical clusters
 const RELATED_BLOG_POSTS: Record<string, Array<{ href: string; title: string }>> = {
   roofing: [
@@ -165,8 +168,7 @@ const siblingCityLinks = isCityServicePage
       .slice(0, 3)
   : [];
 
-// Derive serviceType from the page slug
-const serviceSlug = Astro.url.pathname.replace(/\/$/, '').split('/').pop() || '';
+// Derive serviceType from the page slug (serviceSlug declared above near RELATED_BLOG_POSTS)
 const SERVICE_TYPE_MAP: Record<string, string> = {
   roofing: 'Roofing',
   siding: 'Siding',
@@ -206,14 +208,12 @@ const serviceSchema: Record<string, unknown> = {
       'highPrice': pricing.high,
       'priceCurrency': pricing.currency,
       'unitText': pricing.unit,
-      'availability': 'https://schema.org/InStock',
     },
   }),
   'aggregateRating': {
     '@type': 'AggregateRating',
     'ratingValue': 4.8,
     'reviewCount': 52,
-    'ratingCount': 52,
     'bestRating': 5,
     'worstRating': 1,
   },
@@ -253,7 +253,16 @@ const serviceSchema: Record<string, unknown> = {
 
 {data.sections.map((section) => {
   if (section.type === 'logoSlider') {
-    return <LogoSlider />;
+    return (
+      <>
+        <LogoSlider />
+        <div class="mx-auto max-w-7xl px-4 py-2 text-center">
+          <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted);">
+            Reviewed by <a href="/about/alex-hamilton-li" style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;">Alexander Hamilton Li</a>, Architect &amp; General Contractor · <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377" target="_blank" rel="noopener noreferrer" style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;">CSLB #1082377</a> · Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+          </p>
+        </div>
+      </>
+    );
   }
 
   if (section.type === 'reviews') {
