@@ -225,9 +225,36 @@ const serviceSchema: Record<string, unknown> = {
   }),
 };
 
+// BreadcrumbList for service pages
+const breadcrumbItems: Array<Record<string, unknown>> = [
+  { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://hamilton-exteriors.com/' },
+];
+
+if (isCityServicePage) {
+  // City+service: Home → Service Areas → County → City → Service
+  breadcrumbItems.push(
+    { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': 'https://hamilton-exteriors.com/service-areas' },
+    { '@type': 'ListItem', 'position': 3, 'name': `${counties.find(c => c.slug === countySlugFromPath)?.name || countySlugFromPath}`, 'item': `https://hamilton-exteriors.com/service-areas/${countySlugFromPath}` },
+    { '@type': 'ListItem', 'position': 4, 'name': cityOrArea, 'item': `https://hamilton-exteriors.com/service-areas/${countySlugFromPath}/${citySlugFromPath}` },
+    { '@type': 'ListItem', 'position': 5, 'name': SERVICE_SLUG_MAP[currentService] || serviceType, 'item': `https://hamilton-exteriors.com${pathname}` },
+  );
+} else if (isMainServicePage) {
+  // Main service: Home → Service
+  breadcrumbItems.push(
+    { '@type': 'ListItem', 'position': 2, 'name': SERVICE_SLUG_MAP[currentServiceSlug] || serviceType, 'item': `https://hamilton-exteriors.com${pathname}` },
+  );
+}
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': breadcrumbItems,
+};
+
 // HowTo rich results removed by Google Sept 2023 — schema omitted
 ---
 
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
 {data.announcementText ? <AnnouncementBar text={data.announcementText} /> : <AnnouncementBar />}
