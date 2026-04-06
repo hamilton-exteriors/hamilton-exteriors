@@ -201,6 +201,13 @@ const serviceSchema: Record<string, unknown> = {
   'areaServed': areaServed,
   'description': data.description,
   'dateModified': new Date().toISOString().split('T')[0],
+  'author': {
+    '@type': 'Person',
+    '@id': 'https://hamilton-exteriors.com/#founder',
+    'name': 'Alexander Hamilton Li',
+    'jobTitle': 'Architect & General Contractor (CSLB #1082377)',
+    'url': 'https://hamilton-exteriors.com/about/alex-hamilton-li',
+  },
   ...(pricing && {
     'offers': {
       '@type': 'AggregateOffer',

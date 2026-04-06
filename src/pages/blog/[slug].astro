@@ -217,6 +217,7 @@ if (questionHeadings.length >= 2 && processedHtml) {
       // Strip the heading itself and any partial tag fragments, then extract plain text
       const rawAnswer = section
         .replace(/^[^<]*>/, '')           // remove leading partial tag (id="..." ...>)
+        .replace(/^[\s\S]*?<\/h2>/i, '')  // strip heading text + closing </h2> tag
         .replace(/<h2[^>]*>.*?<\/h2>/gi, '') // strip any remaining H2 tags
         .replace(/<[^>]+>/g, ' ')          // strip all HTML tags
         .replace(/\s+/g, ' ')
