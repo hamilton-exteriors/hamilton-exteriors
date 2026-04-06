@@ -389,8 +389,13 @@ function ghostSrcset(url: string, widths: number[]): string {
   .filter-bar__chevron { width: 16px; height: 16px; transition: transform 0.2s; }
   [aria-expanded="true"] .filter-bar__chevron { transform: rotate(180deg); }
 
-  .filter-panel { display: flex; flex-direction: column; gap: 8px; }
-  .filter-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .filter-panel { display: flex; flex-direction: column; gap: 0; }
+  .filter-row {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .filter-row:last-child { border-bottom: none; }
   .filter-row__label {
     font-family: var(--font-satoshi); font-size: 0.75rem;
     font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
@@ -427,6 +432,14 @@ function ghostSrcset(url: string, widths: number[]): string {
   }
   @media (min-width: 1024px) {
     .filter-bar__toggle { display: none; }
+    .filter-panel { flex-direction: row; align-items: center; gap: 0; }
+    .filter-row {
+      padding: 0 16px;
+      border-bottom: none;
+      border-right: 1px solid var(--color-border);
+    }
+    .filter-row:first-child { padding-left: 0; }
+    .filter-row:last-child { border-right: none; }
   }
 
   /* ── Trust Bar ────────────────────────────────────────────────── */
