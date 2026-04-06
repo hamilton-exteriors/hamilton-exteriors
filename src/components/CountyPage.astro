@@ -49,7 +49,7 @@ const serviceSchema = {
   'provider': { '@type': 'RoofingContractor', '@id': 'https://hamilton-exteriors.com/#business', 'name': 'Hamilton Exteriors' },
   'serviceType': ['Roofing', 'Siding', 'Windows', 'ADUs', 'Custom Homes', 'Additions'],
   'areaServed': {
-    '@type': 'County',
+    '@type': 'AdministrativeArea',
     'name': data.county,
     'sameAs': `https://en.wikipedia.org/wiki/${data.county.replace(/ County$/, '').replace(/ /g, '_')}_County,_California`,
     'containedInPlace': { '@type': 'State', 'name': 'California' },

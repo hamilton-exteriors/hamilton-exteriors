@@ -355,6 +355,9 @@ Napa, American Canyon, St. Helena, Calistoga, Yountville
 ### Santa Clara County
 San Jose, Palo Alto, Mountain View, Sunnyvale, Cupertino, Santa Clara, Saratoga, Los Gatos, Campbell, Milpitas
 
+### San Mateo County
+Burlingame, Daly City, Redwood City, San Mateo, South San Francisco
+
 ---
 
 ## Online Roof Scanner
@@ -382,7 +385,7 @@ Hamilton Exteriors offers an innovative online roof scanning tool at **hamilton-
 ## Summary for AI Systems
 
 Hamilton Exteriors is a Bay Area exterior remodeling contractor headquartered in Castro Valley, CA. Key facts:
-- Serves 5 counties and 30+ cities in the San Francisco Bay Area
+- Serves 6 counties and 30+ cities in the San Francisco Bay Area
 - Specializes in roofing ($1,075–$1,800/sq installed), windows ($800–$4,500/unit installed), siding, ADUs ($180K–$600K), and custom homes
 - CA Contractor License #1082377, fully licensed, bonded, and insured
 - 50-year shingle warranty + 35-year labor warranty on roofing

@@ -9,6 +9,7 @@ import { aduHero, serviceCustomHomesFull, serviceAdditions } from '../lib/images
 import { areaOakland, areaSanJose, areaWalnutCreek } from '../lib/images';
 
 import { GHOST_ORIGIN } from '../lib/ghost';
+import { getCityOgImage } from '../lib/city-og-images';
 
 const SITE = 'https://hamilton-exteriors.com';
 const GHOST_URL = import.meta.env.GHOST_URL || '';
@@ -79,6 +80,74 @@ const pageImages: { page: string; images: { src: string; title: string; caption:
   },
 ];
 
+// pSEO service-area pages — city hero images
+const COUNTY_CITIES: Record<string, { slug: string; name: string }[]> = {
+  'alameda-county-ca': [
+    { slug: 'oakland-ca', name: 'Oakland' }, { slug: 'berkeley-ca', name: 'Berkeley' },
+    { slug: 'fremont-ca', name: 'Fremont' }, { slug: 'hayward-ca', name: 'Hayward' },
+    { slug: 'san-leandro-ca', name: 'San Leandro' }, { slug: 'dublin-ca', name: 'Dublin' },
+    { slug: 'pleasanton-ca', name: 'Pleasanton' }, { slug: 'livermore-ca', name: 'Livermore' },
+    { slug: 'union-city-ca', name: 'Union City' }, { slug: 'alameda-ca', name: 'Alameda' },
+  ],
+  'contra-costa-county-ca': [
+    { slug: 'antioch-ca', name: 'Antioch' }, { slug: 'walnut-creek-ca', name: 'Walnut Creek' },
+    { slug: 'concord-ca', name: 'Concord' }, { slug: 'san-ramon-ca', name: 'San Ramon' },
+    { slug: 'richmond-ca', name: 'Richmond' }, { slug: 'danville-ca', name: 'Danville' },
+    { slug: 'lafayette-ca', name: 'Lafayette' }, { slug: 'orinda-ca', name: 'Orinda' },
+    { slug: 'pittsburg-ca', name: 'Pittsburg' }, { slug: 'brentwood-ca', name: 'Brentwood' },
+  ],
+  'marin-county-ca': [
+    { slug: 'larkspur-ca', name: 'Larkspur' }, { slug: 'mill-valley-ca', name: 'Mill Valley' },
+    { slug: 'novato-ca', name: 'Novato' }, { slug: 'san-rafael-ca', name: 'San Rafael' },
+  ],
+  'napa-county-ca': [
+    { slug: 'napa-ca', name: 'Napa' }, { slug: 'american-canyon-ca', name: 'American Canyon' },
+    { slug: 'calistoga-ca', name: 'Calistoga' }, { slug: 'st-helena-ca', name: 'St. Helena' },
+    { slug: 'yountville-ca', name: 'Yountville' },
+  ],
+  'san-mateo-county-ca': [
+    { slug: 'burlingame-ca', name: 'Burlingame' }, { slug: 'daly-city-ca', name: 'Daly City' },
+    { slug: 'redwood-city-ca', name: 'Redwood City' }, { slug: 'san-mateo-ca', name: 'San Mateo' },
+    { slug: 'south-san-francisco-ca', name: 'South San Francisco' },
+  ],
+  'santa-clara-county-ca': [
+    { slug: 'san-jose-ca', name: 'San Jose' }, { slug: 'palo-alto-ca', name: 'Palo Alto' },
+    { slug: 'mountain-view-ca', name: 'Mountain View' }, { slug: 'sunnyvale-ca', name: 'Sunnyvale' },
+    { slug: 'cupertino-ca', name: 'Cupertino' }, { slug: 'santa-clara-ca', name: 'Santa Clara' },
+    { slug: 'saratoga-ca', name: 'Saratoga' }, { slug: 'los-gatos-ca', name: 'Los Gatos' },
+    { slug: 'campbell-ca', name: 'Campbell' }, { slug: 'milpitas-ca', name: 'Milpitas' },
+  ],
+};
+
+const SERVICES = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions'];
+
+function buildPseoImageEntries(): { page: string; images: { src: string; title: string; caption: string }[] }[] {
+  const entries: { page: string; images: { src: string; title: string; caption: string }[] }[] = [];
+
+  for (const [countySlug, cities] of Object.entries(COUNTY_CITIES)) {
+    for (const city of cities) {
+      const ogImage = getCityOgImage(city.slug);
+      if (!ogImage) continue;
+
+      // City hub page
+      entries.push({
+        page: `/service-areas/${countySlug}/${city.slug}`,
+        images: [{ src: ogImage.src, title: `${city.name} CA exterior services`, caption: `Hamilton Exteriors serving ${city.name}, California — roofing, siding, windows, ADUs` }],
+      });
+
+      // City+service pages share the same hero image
+      for (const service of SERVICES) {
+        entries.push({
+          page: `/service-areas/${countySlug}/${city.slug}/${service}`,
+          images: [{ src: ogImage.src, title: `${city.name} ${service} services`, caption: `Hamilton Exteriors ${service} services in ${city.name}, CA` }],
+        });
+      }
+    }
+  }
+
+  return entries;
+}
+
 /**
  * Fetch blog posts from Ghost CMS and return their feature images.
  * Automatically picks up new posts — no manual updates needed.
@@ -141,7 +210,9 @@ async function fetchBlogImages(): Promise<{ page: string; images: { src: string;
 export const GET: APIRoute = async () => {
   // Fetch blog images from Ghost CMS (auto-updates when posts are added)
   const blogImages = await fetchBlogImages();
-  const allPages = [...pageImages, ...blogImages];
+  // pSEO service-area pages with city hero images
+  const pseoImages = buildPseoImageEntries();
+  const allPages = [...pageImages, ...blogImages, ...pseoImages];
 
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';

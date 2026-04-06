@@ -22,6 +22,14 @@ import { getCityProximity } from '../../lib/city-coordinates';
 import { getCityWikipedia } from '../../lib/city-wikipedia';
 import { getCityOgImage } from '../../lib/city-og-images';
 
+/** Convert getCityProximity "lng,lat" to geo.position "lat;lng" meta tag format */
+function toGeoPosition(citySlug: string): string | undefined {
+  const proximity = getCityProximity(citySlug);
+  if (!proximity) return undefined;
+  const [lng, lat] = proximity.split(',');
+  return `${lat};${lng}`;
+}
+
 const slug = Astro.params.slug;
 if (!slug) return Astro.redirect('/service-areas');
 
@@ -216,13 +224,13 @@ if (pageType === 'cityService' && cityServiceData) {
 )}
 
 {pageType === 'cityService' && cityServiceData && (
-  <Layout title={cityServiceData.title} description={cityServiceData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityServiceData.city}, CA`} heroImage={getCityOgImage(segments[1])}>
+  <Layout title={cityServiceData.title} description={cityServiceData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityServiceData.city}, CA`} geoPosition={toGeoPosition(segments[1])} heroImage={getCityOgImage(segments[1])}>
     <ServicePage data={cityServiceData as any} />
   </Layout>
 )}
 
 {pageType === 'city' && cityData && (
-  <Layout title={cityData.title} description={cityData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityData.city || ''}, CA`} heroImage={getCityOgImage(segments[1])}>
+  <Layout title={cityData.title} description={cityData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityData.city || ''}, CA`} geoPosition={toGeoPosition(segments[1])} heroImage={getCityOgImage(segments[1])}>
     <GeneralCityPage data={cityData} />
   </Layout>
 )}
