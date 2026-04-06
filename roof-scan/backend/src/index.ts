@@ -10,7 +10,10 @@ import { computeMeasurements, computeMaterials, computeBid } from './services/me
 import type { RoofScanResponse, RoofSegment } from './types.js';
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ['https://hamilton-exteriors.com', 'https://hamilton-exteriors-production.up.railway.app', 'http://localhost:4321', 'http://localhost:3333'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+}));
 app.use(express.json());
 
 const PORT = Number(process.env.PORT) || 3001;
