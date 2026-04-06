@@ -87,7 +87,7 @@ const reviews = [
                   class="font-dm-sans text-[0.8125rem] font-normal leading-[1.4] tracking-[-0.02em]"
                   style="color: var(--color-muted);"
                 >
-                  {review.time}
+                  {new Date(review.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                 </p>
               </div>
             </div>

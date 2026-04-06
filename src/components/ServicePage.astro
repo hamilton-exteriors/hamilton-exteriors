@@ -218,9 +218,47 @@ const serviceSchema: Record<string, unknown> = {
     'worstRating': 1,
   },
 };
+
+// HowTo schema for main service pages — helps AI snippet eligibility
+const HOWTO_SCHEMAS: Record<string, Record<string, unknown>> = {
+  roofing: {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to Get a Roof Replacement in the Bay Area',
+    description: 'The complete process for replacing your roof with Hamilton Exteriors, from free inspection to final walkthrough.',
+    totalTime: 'P7D',
+    estimatedCost: { '@type': 'MonetaryAmount', currency: 'USD', value: '15000-35000' },
+    step: [
+      { '@type': 'HowToStep', position: 1, name: 'Schedule a Free Inspection', text: 'Call (650) 977-3351 or fill out our online form. A project manager visits your property to assess the roof condition, take measurements, and identify any structural issues.' },
+      { '@type': 'HowToStep', position: 2, name: 'Receive Your Detailed Estimate', text: 'Within 48 hours, you receive a written estimate with material options, labor costs, permit fees, and financing terms — no hidden fees.' },
+      { '@type': 'HowToStep', position: 3, name: 'Choose Materials and Sign Contract', text: 'Select from GAF, Owens Corning, or CertainTeed shingle lines. We walk you through warranty tiers and color options. Sign the contract with $0 down.' },
+      { '@type': 'HowToStep', position: 4, name: 'Permit and Scheduling', text: 'Hamilton Exteriors pulls all required building permits and schedules your installation date. We coordinate directly with your city building department.' },
+      { '@type': 'HowToStep', position: 5, name: 'Roof Installation', text: 'Our factory-trained crew completes the full tear-off, inspection, and new roof installation. Most residential roofs are completed in 1-3 days.' },
+      { '@type': 'HowToStep', position: 6, name: 'Final Inspection and Warranty', text: 'We schedule the city building inspection, walk you through the completed work, and activate your manufacturer warranty — up to 50 years of coverage.' },
+    ],
+  },
+  siding: {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to Get New Siding Installed in the Bay Area',
+    description: 'The complete process for replacing your home siding with Hamilton Exteriors, from consultation to final inspection.',
+    totalTime: 'P10D',
+    estimatedCost: { '@type': 'MonetaryAmount', currency: 'USD', value: '15000-45000' },
+    step: [
+      { '@type': 'HowToStep', position: 1, name: 'Schedule a Free Consultation', text: 'Call (650) 977-3351 or request an estimate online. A project manager inspects your exterior, checks for dry rot or moisture damage, and takes measurements.' },
+      { '@type': 'HowToStep', position: 2, name: 'Receive Your Estimate', text: 'Within 48 hours, you receive a detailed proposal with material options (James Hardie fiber cement, LP SmartSide, or vinyl), color selections, and total project cost.' },
+      { '@type': 'HowToStep', position: 3, name: 'Material Selection and Contract', text: 'Choose your siding material, profile, and color. As a James Hardie Elite Preferred installer, we offer the full ColorPlus line. Sign with $0 down financing available.' },
+      { '@type': 'HowToStep', position: 4, name: 'Permits and Prep', text: 'We pull all necessary permits and prep the jobsite. Any dry rot or sheathing damage is repaired before new siding goes up.' },
+      { '@type': 'HowToStep', position: 5, name: 'Siding Installation', text: 'Our trained crew installs your new siding with proper flashing, trim, and weatherproofing. Most homes are completed in 5-10 days depending on size.' },
+      { '@type': 'HowToStep', position: 6, name: 'Inspection and Warranty', text: 'Final city inspection, walkthrough with your project manager, and warranty activation. James Hardie products carry a 30-year non-prorated warranty.' },
+    ],
+  },
+};
+const howToSchema = HOWTO_SCHEMAS[serviceSlug];
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+{howToSchema && <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />}
 
 {data.announcementText ? <AnnouncementBar text={data.announcementText} /> : <AnnouncementBar />}
 <Navbar />
