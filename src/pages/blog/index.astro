@@ -138,7 +138,7 @@ function ghostSrcset(url: string, widths: number[]): string {
         {/* Mobile: dropdown toggle */}
         <button
           id="filter-toggle"
-          class="md:hidden w-full flex items-center justify-between py-2 px-1"
+          class="lg:hidden w-full flex items-center justify-between py-2 px-1"
           style="font-family: var(--font-dm-sans); font-size: 0.9375rem; font-weight: 600; color: var(--color-heading);"
           aria-expanded="false"
           aria-controls="filter-panel"
@@ -225,13 +225,13 @@ function ghostSrcset(url: string, widths: number[]): string {
         <>
           {/* Featured Post (first post, full width, only on page 1 without tag filter) */}
           {featuredPost && (
-            <a href={`/blog/${featuredPost.slug}`} class="featured-card group mb-12 grid grid-cols-1 md:grid-cols-2 gap-0 overflow-hidden rounded-[4px] transition-all hover:shadow-xl" style="border: 1px solid var(--color-border);" data-search-title={featuredPost.title.toLowerCase()} data-search-excerpt={(featuredPost.excerpt || '').toLowerCase()}>
-              <div class="aspect-[16/10] md:aspect-auto overflow-hidden bg-gray-100">
+            <a href={`/blog/${featuredPost.slug}`} class="featured-card group mb-12 grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden rounded-lg transition-all hover:shadow-xl" style="box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);" data-search-title={featuredPost.title.toLowerCase()} data-search-excerpt={(featuredPost.excerpt || '').toLowerCase()}>
+              <div class="aspect-[16/10] lg:aspect-auto overflow-hidden bg-gray-100">
                 {featuredPost.feature_image ? (
                   <img
                     src={ghostResize(featuredPost.feature_image, 600)}
                     srcset={ghostSrcset(featuredPost.feature_image, [400, 600, 900])}
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 1023px) 100vw, 50vw"
                     alt={featuredPost.title}
                     class="h-full w-full object-cover transition-opacity group-hover:opacity-90"
                     loading="eager"
@@ -246,7 +246,7 @@ function ghostSrcset(url: string, widths: number[]): string {
                   </div>
                 )}
               </div>
-              <div class="flex flex-col justify-center p-5 md:p-10">
+              <div class="flex flex-col justify-center p-5 lg:p-10">
                 <div class="flex items-center gap-2 flex-wrap" style="margin-bottom: 12px;">
                   <span style="font-family: var(--font-satoshi); font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-primary);">
                     Latest
@@ -284,15 +284,15 @@ function ghostSrcset(url: string, widths: number[]): string {
           )}
 
           {/* Post Grid */}
-          <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div class="blog-grid grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
             {gridPosts.map((post: any) => (
-              <a href={`/blog/${post.slug}`} class="blog-card group flex flex-col overflow-hidden rounded-[4px] transition-all hover:shadow-lg" style="border: 1px solid var(--color-border);" data-search-title={post.title.toLowerCase()} data-search-excerpt={(post.excerpt || '').toLowerCase()}>
+              <a href={`/blog/${post.slug}`} class="blog-card group flex flex-col overflow-hidden rounded-lg transition-all hover:shadow-lg" style="box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);" data-search-title={post.title.toLowerCase()} data-search-excerpt={(post.excerpt || '').toLowerCase()}>
                 {post.feature_image ? (
                   <div class="aspect-[16/10] w-full overflow-hidden bg-gray-100">
                     <img
                       src={ghostResize(post.feature_image, 400)}
                       srcset={ghostSrcset(post.feature_image, [300, 400, 600])}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 50vw, 33vw"
                       alt={post.title}
                       class="h-full w-full object-cover transition-opacity group-hover:opacity-90"
                       loading="lazy"
@@ -498,8 +498,8 @@ function ghostSrcset(url: string, widths: number[]): string {
     color: var(--color-muted);
   }
 
-  /* Mobile: collapsible filter panel */
-  @media (max-width: 767px) {
+  /* Mobile + Tablet: collapsible filter panel */
+  @media (max-width: 1023px) {
     .filter-panel {
       max-height: 0;
       overflow: hidden;
@@ -539,7 +539,7 @@ function ghostSrcset(url: string, widths: number[]): string {
   }
 
   /* Desktop: always visible, horizontal layout */
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     #filter-toggle {
       display: none;
     }
@@ -680,6 +680,15 @@ function ghostSrcset(url: string, widths: number[]): string {
   .blog-card:hover {
     transform: translateY(-2px);
     border-color: var(--color-primary) !important;
+  }
+
+  /* ── Tablet: single-column stacked cards with constrained width (768-1023px) ── */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .blog-grid {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 </style>
 
