@@ -162,32 +162,8 @@ function imgAlt(project: Project, index: number): string {
   </div>
 </section>
 
-{/* ImageGallery schema for each project — visible to crawlers */}
-{projects.length > 0 && projects.map((project) => (
-  <script type="application/ld+json" set:html={JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'ImageGallery',
-    name: project.title,
-    description: [project.service_type, project.city, project.products_used].filter(Boolean).join(' — '),
-    about: {
-      '@type': 'Service',
-      name: project.service_type || 'Exterior Remodeling',
-      provider: { '@id': 'https://hamilton-exteriors.com/#business' },
-    },
-    image: project.photos.slice(0, 8).map((photo, i) => ({
-      '@type': 'ImageObject',
-      url: photo.url,
-      name: imgAlt(project, i),
-      contentUrl: photo.url,
-    })),
-    ...(project.completed_at && { dateCreated: project.completed_at }),
-    ...(project.city && { contentLocation: {
-      '@type': 'Place',
-      name: project.city,
-      address: { '@type': 'PostalAddress', addressLocality: project.city, addressRegion: 'CA' },
-    }}),
-  })} />
-))}
+{/* ImageGallery schema removed — not a Google-supported rich result type (April 2026).
+   Project photos are still visible in CompanyCam image URLs in the page HTML. */}
 
 <style>
   /* SSR grid responsive — matches widget layout */

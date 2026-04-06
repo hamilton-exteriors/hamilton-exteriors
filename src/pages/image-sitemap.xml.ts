@@ -5,6 +5,7 @@ import { heroBg, logoCert1, logoPartner1, logoGaf, logoPartner2 } from '../lib/i
 import { heroRoofing, roofingAsphalt, roofingMetal, roofingTile } from '../lib/images';
 import { serviceSiding, sidingVinyl, sidingFiberCement, sidingWood, sidingStucco } from '../lib/images';
 import { heroWindows } from '../lib/images';
+import { aduHero, serviceCustomHomesFull, serviceAdditions } from '../lib/images';
 import { areaOakland, areaSanJose, areaWalnutCreek } from '../lib/images';
 
 import { GHOST_ORIGIN } from '../lib/ghost';
@@ -48,6 +49,24 @@ const pageImages: { page: string; images: { src: string; title: string; caption:
     page: '/windows',
     images: [
       { src: heroWindows.src, title: 'Bay Area window replacement', caption: 'Window replacement and installation by Hamilton Exteriors' },
+    ],
+  },
+  {
+    page: '/adu',
+    images: [
+      { src: aduHero.src, title: 'Bay Area ADU construction', caption: 'Accessory dwelling unit design and construction by Hamilton Exteriors' },
+    ],
+  },
+  {
+    page: '/custom-homes',
+    images: [
+      { src: serviceCustomHomesFull.src, title: 'Bay Area custom home construction', caption: 'Ground-up custom home building by Hamilton Exteriors in the Bay Area' },
+    ],
+  },
+  {
+    page: '/additions',
+    images: [
+      { src: serviceAdditions.src, title: 'Bay Area home additions', caption: 'Room additions and second story additions by Hamilton Exteriors' },
     ],
   },
   {

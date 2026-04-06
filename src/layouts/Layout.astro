@@ -119,6 +119,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     <meta name="publisher" content="Hamilton Exteriors" />
     <meta name="geo.region" content="US-CA" />
     <meta name="geo.placename" content={geoPlacename} />
+    <meta name="geo.position" content="37.69427;-122.07887" />
 
     <!-- Canonical — derived from Astro.url.pathname; omitted on noindex pages (404, etc.) -->
     {!noindex && <link rel="canonical" href={canonicalUrl} />}
@@ -142,6 +143,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@hamiltonexteriors" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
@@ -190,6 +192,13 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
         { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
         { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
       ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+16509773351",
+        "contactType": "customer service",
+        "areaServed": "US",
+        "availableLanguage": "English"
+      },
       "hasMap": "https://maps.google.com/?cid=3578771346418026097",
       "sameAs": [
         "https://www.facebook.com/hamiltonexteriors",
@@ -238,26 +247,46 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
           { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/additions#service", "name": "Additions", "url": "https://hamilton-exteriors.com/additions" } }
         ]
       },
-      "hasCredential": {
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "license",
-        "name": "CSLB Contractor License #1082377",
-        "recognizedBy": { "@type": "Organization", "name": "Contractors State License Board", "url": "https://www.cslb.ca.gov" }
-      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "license",
+          "name": "CSLB Contractor License #1082377",
+          "recognizedBy": { "@type": "Organization", "name": "Contractors State License Board", "url": "https://www.cslb.ca.gov" }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "certification",
+          "name": "Tesla Powerwall Certified Installer"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "certification",
+          "name": "GAF Certified Installer"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "certification",
+          "name": "Owens Corning Preferred Contractor"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "certification",
+          "name": "James Hardie Elite Preferred Installer"
+        }
+      ],
       "additionalType": [
         "https://en.wikipedia.org/wiki/Roofing",
         "https://en.wikipedia.org/wiki/Siding",
         "https://en.wikipedia.org/wiki/General_contractor"
       ],
       "knowsAbout": [
-        "Roof replacement",
-        "Asphalt shingle roofing",
-        "Metal roofing",
-        "Tile roofing",
-        "James Hardie siding",
-        "Fiber cement siding",
-        "Energy-efficient windows",
-        "ADU construction",
+        { "@type": "Thing", "name": "Roof replacement", "sameAs": "https://en.wikipedia.org/wiki/Domestic_roof_construction" },
+        { "@type": "Thing", "name": "Asphalt shingle roofing", "sameAs": "https://en.wikipedia.org/wiki/Asphalt_shingle" },
+        { "@type": "Thing", "name": "Metal roofing", "sameAs": "https://en.wikipedia.org/wiki/Metal_roof" },
+        { "@type": "Thing", "name": "Fiber cement siding", "sameAs": "https://en.wikipedia.org/wiki/Fibre_cement" },
+        { "@type": "Thing", "name": "Energy-efficient windows", "sameAs": "https://en.wikipedia.org/wiki/Energy-efficient_window" },
+        { "@type": "Thing", "name": "Accessory dwelling unit", "sameAs": "https://en.wikipedia.org/wiki/Accessory_dwelling_unit" },
         "Custom home building",
         "Bay Area building codes",
         "California contractor licensing"

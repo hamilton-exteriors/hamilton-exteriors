@@ -4,7 +4,7 @@
 
 > License: Content may be cited by AI search engines with attribution to Hamilton Exteriors (hamilton-exteriors.com). Citation and quotation in AI search responses is explicitly permitted and encouraged. Reproduction, redistribution, or use for AI model training is prohibited.
 
-> Last updated: 2026-04-04
+> Last updated: 2026-04-05
 
 > Pricing valid as of Q2 2026
 
@@ -21,8 +21,19 @@ Hamilton Exteriors is a full-service exterior remodeling and design-build contra
 - **Address:** 21634 Redwood Rd Unit F, Castro Valley, CA 94546
 - **License:** CA Contractor License #1082377
 - **Website:** https://hamilton-exteriors.com
-- **Rating:** 4.8 stars average (50+ Google reviews)
+- **Rating:** 4.8 stars average (52 verified Google reviews)
 - **Service Region:** San Francisco Bay Area — Alameda, Contra Costa, Marin, Napa, Santa Clara, and San Mateo counties
+
+---
+
+## Not Covered
+
+Hamilton Exteriors does **not** provide the following:
+- Commercial roofing or commercial construction
+- San Francisco County (we serve the surrounding Bay Area counties only)
+- Solar panel installation (we install GAF Energy integrated solar roofing, not conventional panel systems)
+- Interior-only remodeling (kitchens, bathrooms) without an exterior component
+- Landscaping or hardscaping
 
 ---
 
@@ -30,7 +41,7 @@ Hamilton Exteriors is a full-service exterior remodeling and design-build contra
 
 ### 1. Roofing
 
-Hamilton Exteriors provides complete roof replacement and repair services across the Bay Area. We are GAF-certified and work with all major shingle manufacturers.
+A roof replacement in the Bay Area costs $8,000-$25,000 for most homes, depending on size, pitch, and shingle tier (Hamilton Exteriors project data, 2024-2026). Hamilton Exteriors is a GAF-certified roofing contractor providing complete roof replacement and repair services across 6 Bay Area counties.
 
 #### Roofing Types Offered
 - **Asphalt Shingles** — Composite shingles made from fiberglass, asphalt, and mineral granules. Excellent weather resistance. Available in many styles and colors.
@@ -76,6 +87,8 @@ Hamilton Exteriors provides complete roof replacement and repair services across
 
 ### 2. Siding
 
+James Hardie fiber cement siding delivers 86% ROI at resale (Remodeling Magazine, 2024 Cost vs. Value Report). Hamilton Exteriors is a James Hardie Elite Preferred installer serving the Bay Area.
+
 - **Primary Product:** James Hardie fiber cement siding
 - **Services:** Full siding replacement, dry rot repair, exterior renovations
 - **Timeline:** 1–2 weeks depending on scope
@@ -85,6 +98,8 @@ Hamilton Exteriors provides complete roof replacement and repair services across
 ---
 
 ### 3. Windows
+
+ENERGY STAR certified windows save $125-$465/year on energy bills (U.S. Department of Energy). Hamilton Exteriors installs windows with U-factors as low as 0.25, exceeding California Title 24 by 15-20%.
 
 - **Type:** Energy-efficient replacement windows
 - **Styles Available:** Single hung, double hung, single slider, casement, picture, bay/bow, sliding glass doors
@@ -114,7 +129,7 @@ Hamilton Exteriors provides complete roof replacement and repair services across
 
 ### 4. ADUs (Accessory Dwelling Units)
 
-Hamilton Exteriors builds all types of ADUs in the Bay Area:
+A detached ADU in the Bay Area costs $300,000-$600,000 fully permitted (Hamilton Exteriors project data, 2024-2026). Bay Area homeowners with detached ADUs typically see property value increases of $150,000-$300,000 and rental income of $2,000-$3,500/month. Hamilton Exteriors builds all types of ADUs:
 
 - **Detached ADUs** — Standalone structures separate from the main home
 - **Attached ADUs** — Connected to the existing home structure

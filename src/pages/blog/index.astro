@@ -6,6 +6,7 @@ import ContactUs from '../../components/ContactUs.astro';
 import Footer from '../../components/Footer.astro';
 import { getPosts, getTags, isGhostConfigured, formatDate, type GhostPost, type GhostPagination, type GhostTag } from '../../lib/ghost';
 import { PHONE_DISPLAY, PHONE_HREF } from '../../lib/constants';
+import { heroBg } from '../../lib/images';
 
 const tagParam = Astro.url.searchParams.get('tag') || undefined;
 const tag = tagParam ? tagParam.replace(/[^a-zA-Z0-9_-]/g, '') : undefined;
@@ -93,7 +94,7 @@ function ghostSrcset(url: string, widths: number[]): string {
 }
 ---
 
-<Layout title={pageTitle} description={pageDesc} jsonLd={blogSchemas}>
+<Layout title={pageTitle} description={pageDesc} jsonLd={blogSchemas} heroImage={heroBg}>
   <AnnouncementBar />
   <Navbar />
 
