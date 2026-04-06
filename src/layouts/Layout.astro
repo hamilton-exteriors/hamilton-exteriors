@@ -429,29 +429,5 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
       });
     </script>
 
-    <!-- Sticky mobile CTA bar — shows after scrolling past the hero form -->
-    <div id="mobile-cta-bar" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:999; background:var(--color-primary-dark); padding:12px 16px; box-shadow:0 -2px 12px rgba(0,0,0,0.15);" aria-label="Quick contact actions">
-      <div style="display:flex; gap:10px; max-width:480px; margin:0 auto;">
-        <a href="tel:+16509773351" style="flex:1; display:flex; align-items:center; justify-content:center; gap:6px; background:var(--color-white); color:var(--color-primary-dark); font-family:var(--font-dm-sans); font-size:0.875rem; font-weight:600; padding:12px 0; border-radius:4px; text-decoration:none; min-height:44px;">
-          Call Now
-        </a>
-        <a href="#contact" id="mobile-cta-quote" style="flex:1; display:flex; align-items:center; justify-content:center; gap:6px; background:var(--color-yellow); color:var(--color-charcoal); font-family:var(--font-dm-sans); font-size:0.875rem; font-weight:700; padding:12px 0; border-radius:4px; text-decoration:none; min-height:44px;">
-          Free Quote
-        </a>
-      </div>
-    </div>
-    <script>
-      // Show sticky CTA only on mobile after scrolling past the hero section
-      if (window.matchMedia('(max-width: 768px)').matches) {
-        const bar = document.getElementById('mobile-cta-bar');
-        const hero = document.querySelector('.hero-form, [data-hero-form], form');
-        if (bar && hero) {
-          const observer = new IntersectionObserver(([entry]) => {
-            bar.style.display = entry.isIntersecting ? 'none' : 'block';
-          }, { threshold: 0 });
-          observer.observe(hero);
-        }
-      }
-    </script>
   </body>
 </html>
