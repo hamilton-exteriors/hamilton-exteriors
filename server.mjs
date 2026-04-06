@@ -20,6 +20,7 @@ const COMPRESSIBLE = /^text\/|\/json|\/javascript|\/xml|\/svg\+xml|\/html/i;
 const MIN_SIZE = 1024;
 
 const STATIC_CACHE_RULES = [
+  { pattern: /^\/_astro\//i, value: 'public, max-age=31536000, immutable' },
   { pattern: /^\/fonts\//i, value: 'public, max-age=604800' },
   { pattern: /^\/images\//i, value: 'public, max-age=86400' },
   { pattern: /^\/favicon/i, value: 'public, max-age=604800' },
