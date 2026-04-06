@@ -472,6 +472,7 @@ const breadcrumbSchema = {
           height={853}
           style="width: 100%; height: 100%; object-fit: cover; display: block;"
           loading="lazy"
+          decoding="async"
         />
       </section>
     );
@@ -535,6 +536,7 @@ const breadcrumbSchema = {
                         height={cols === 3 ? 362 : 292}
                         style={`width: 100%; height: auto; aspect-ratio: 566 / ${cols === 3 ? 362 : 292}; object-fit: cover; display: block;`}
                         loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   )}
