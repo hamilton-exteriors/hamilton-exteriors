@@ -192,7 +192,7 @@ function ghostSrcset(url: string, widths: number[]): string {
                 <h2 class="card__title card__title--featured group-hover:text-[var(--color-primary)]">{featuredPost.title}</h2>
                 {featuredPost.excerpt && <p class="card__excerpt card__excerpt--featured">{featuredPost.excerpt}</p>}
                 <div class="card__meta">
-                  <span>By Alex Hamilton Li</span>
+                  <span>By <strong style="color: var(--color-heading);">Alex Hamilton Li</strong>, Architect & GC</span>
                   <span>&middot;</span>
                   <time datetime={featuredPost.published_at}>{formatDate(featuredPost.published_at)}</time>
                   {featuredPost.reading_time > 0 && <><span>&middot;</span><span>{featuredPost.reading_time} min read</span></>}
@@ -608,7 +608,7 @@ function ghostSrcset(url: string, widths: number[]): string {
   @media (min-width: 640px) { .blog-cta__buttons { flex-direction: row; } }
   .blog-cta__btn {
     display: inline-block; border-radius: 999px;
-    padding: 14px 28px; font-family: var(--font-oswald);
+    padding: 16px 32px; font-family: var(--font-oswald);
     font-size: 0.875rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.04em; text-decoration: none;
     transition: opacity 0.15s;
