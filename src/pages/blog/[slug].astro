@@ -65,7 +65,11 @@ function ghostSrcset(url: string, widths: number[]): string {
 }
 
 // Article structured data for SEO
-const authorName = post.primary_author?.name || 'Hamilton Exteriors';
+// Map Ghost admin user names to the real author for display + schema
+const rawAuthorName = post.primary_author?.name || 'Hamilton Exteriors';
+const authorName = ['Hamilton Admin', 'Hamilton Exteriors', 'hamilton'].includes(rawAuthorName)
+  ? 'Alexander Hamilton Li'
+  : rawAuthorName;
 
 // Calculate actual word count from HTML content (not estimate)
 const actualWordCount = post.html
@@ -98,7 +102,7 @@ const articleJsonLd = {
   author: {
     '@type': 'Person',
     '@id': 'https://hamilton-exteriors.com/#founder',
-    name: authorName === 'Hamilton Exteriors' ? 'Alexander Hamilton Li' : authorName,
+    name: authorName,
     jobTitle: 'Architect & General Contractor (CSLB #1082377)',
     url: 'https://hamilton-exteriors.com/about/alex-hamilton-li',
     sameAs: [
