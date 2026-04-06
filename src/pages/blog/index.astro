@@ -284,7 +284,7 @@ function ghostSrcset(url: string, widths: number[]): string {
           )}
 
           {/* Post Grid */}
-          <div class="blog-grid grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
+          <div class="blog-grid grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
             {gridPosts.map((post: any) => (
               <a href={`/blog/${post.slug}`} class="blog-card group flex flex-col overflow-hidden rounded-lg transition-all hover:shadow-lg bg-white" style="border: 1px solid var(--color-border); box-shadow: 0 2px 12px rgba(0,0,0,0.10);" data-search-title={post.title.toLowerCase()} data-search-excerpt={(post.excerpt || '').toLowerCase()}>
                 {post.feature_image ? (
@@ -679,20 +679,18 @@ function ghostSrcset(url: string, widths: number[]): string {
   }
 
   /* ── Blog Cards ─────────────────────────────────────────────── */
-  .blog-card {
-    transition: opacity 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  }
-  .blog-card:hover {
-    opacity: 0.95;
-    border-color: rgba(37,99,70,0.2) !important;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-  }
-
+  .blog-card,
   .featured-card {
+    background: #fff;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08) !important;
     transition: opacity 0.15s ease, box-shadow 0.2s ease;
   }
+  .blog-card:hover,
   .featured-card:hover {
     opacity: 0.95;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12) !important;
   }
 
   /* ── Tablet: 2-column grid ── */
