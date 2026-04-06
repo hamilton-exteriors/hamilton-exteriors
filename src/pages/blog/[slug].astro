@@ -300,6 +300,46 @@ try {
     relatedPosts = result.posts.filter((p: any) => p.slug !== slug).slice(0, 3);
   }
 } catch { /* no related posts on error */ }
+
+// Related Services — internal links based on post tags
+const SERVICE_LINKS: Record<string, { href: string; label: string }[]> = {
+  'roofing': [
+    { href: '/roofing', label: 'Roofing Services' },
+    { href: '/service-areas', label: 'Service Areas' },
+  ],
+  'siding': [
+    { href: '/siding', label: 'Siding Services' },
+    { href: '/service-areas', label: 'Service Areas' },
+  ],
+  'windows-doors': [
+    { href: '/windows', label: 'Window Services' },
+    { href: '/service-areas', label: 'Service Areas' },
+  ],
+  'adu-additions': [
+    { href: '/adu', label: 'ADU Construction' },
+    { href: '/additions', label: 'Home Additions' },
+    { href: '/service-areas', label: 'Service Areas' },
+  ],
+};
+
+const DEFAULT_SERVICE_LINKS = [
+  { href: '/roofing', label: 'Roofing Services' },
+  { href: '/service-areas', label: 'Service Areas' },
+];
+
+const tagSlugs = post.tags?.map((t: any) => t.slug) || [];
+const matchedLinksMap = new Map<string, { href: string; label: string }>();
+for (const tagSlug of tagSlugs) {
+  const links = SERVICE_LINKS[tagSlug];
+  if (links) {
+    for (const link of links) {
+      matchedLinksMap.set(link.href, link);
+    }
+  }
+}
+const serviceLinks = matchedLinksMap.size > 0
+  ? Array.from(matchedLinksMap.values())
+  : DEFAULT_SERVICE_LINKS;
 ---
 
 <Layout
@@ -544,6 +584,26 @@ try {
       </section>
     )}
   </article>
+
+  {/* Related Services — internal links to service & city pages */}
+  <section class="w-full bg-white" style="padding: 40px 0;">
+    <div class="mx-auto max-w-[800px] px-5">
+      <p style="font-family: var(--font-satoshi); font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 16px;">
+        Explore Our Services
+      </p>
+      <div class="flex flex-wrap gap-2">
+        {serviceLinks.map((link) => (
+          <a
+            href={link.href}
+            style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 500; color: var(--color-primary); background: var(--color-cream); border: 1px solid var(--color-border); padding: 8px 16px; border-radius: 100px; text-decoration: none;"
+            class="hover:opacity-80 transition-opacity"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <ContactUs />
   <Footer />

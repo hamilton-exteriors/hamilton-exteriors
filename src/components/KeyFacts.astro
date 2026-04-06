@@ -1,0 +1,50 @@
+---
+interface Props {
+  title?: string;
+  facts: Array<{
+    stat: string;
+    claim: string;
+    source?: string;
+    sourceUrl?: string;
+  }>;
+}
+
+const { title = 'Key Facts', facts } = Astro.props;
+---
+
+<aside
+  role="complementary"
+  aria-label={title}
+  style="background-color: var(--color-cream); border-left: 4px solid var(--color-primary); padding: 24px 28px; margin: 32px 0; max-width: 800px;"
+>
+  <p style="font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-primary); margin: 0 0 16px 0;">
+    {title}
+  </p>
+
+  <dl style="margin: 0;">
+    {facts.map((fact, i) => (
+      <div style={`padding: 12px 0;${i < facts.length - 1 ? ' border-bottom: 1px solid var(--color-border);' : ''}`}>
+        <dt style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.5; color: var(--color-heading); margin: 0;">
+          <strong>{fact.stat}</strong>
+          {' '}&mdash; {fact.claim}
+        </dt>
+        {fact.source && (
+          <dd style="font-family: var(--font-dm-sans); font-size: 0.8125rem; line-height: 1.4; color: var(--color-muted); margin: 4px 0 0 0;">
+            {fact.sourceUrl ? (
+              <a
+                href={fact.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;"
+              >
+                {fact.source}
+              </a>
+            ) : (
+              fact.source
+            )}
+          </dd>
+        )}
+      </div>
+    ))}
+  </dl>
+</aside>
