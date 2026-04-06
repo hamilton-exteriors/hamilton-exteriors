@@ -12,6 +12,8 @@ const REDIRECTS: Record<string, string> = {
   '/sitemap.xml': '/sitemap-index.xml',
   '/privacy': '/privacy-policy',
   '/blog/untitled-2': '/blog',
+  '/additions-2': '/additions',
+  '/additions-3': '/additions',
 };
 
 const GHOST_ORIGIN = import.meta.env.GHOST_URL || '';

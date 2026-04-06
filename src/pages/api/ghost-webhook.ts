@@ -52,6 +52,28 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     console.log('[ghost-webhook] Redeploy triggered successfully');
+
+    // Notify IndexNow (Bing, Yandex, Naver) about updated content
+    try {
+      const body = await request.clone().json().catch(() => null);
+      const slug = body?.post?.current?.slug;
+      const urls = slug
+        ? [`https://hamilton-exteriors.com/blog/${slug}`]
+        : ['https://hamilton-exteriors.com/blog'];
+      await fetch('https://api.indexnow.org/indexnow', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          host: 'hamilton-exteriors.com',
+          key: '524a5da56e0e45ef9f726d847b63daf4',
+          keyLocation: 'https://hamilton-exteriors.com/524a5da56e0e45ef9f726d847b63daf4.txt',
+          urlList: urls,
+        }),
+        signal: AbortSignal.timeout(5_000),
+      }).then(r => console.log(`[ghost-webhook] IndexNow: ${r.status}`))
+        .catch(e => console.warn('[ghost-webhook] IndexNow failed:', e));
+    } catch { /* non-blocking */ }
+
     return new Response('OK', { status: 200 });
   } catch (err) {
     console.error('[ghost-webhook] Error:', err);
