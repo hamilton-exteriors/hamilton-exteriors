@@ -225,8 +225,8 @@ function ghostSrcset(url: string, widths: number[]): string {
         <>
           {/* Featured Post (first post, full width, only on page 1 without tag filter) */}
           {featuredPost && (
-            <a href={`/blog/${featuredPost.slug}`} class="featured-card group mb-12 grid grid-cols-1 lg:grid-cols-[55%_45%] gap-0 overflow-hidden rounded-lg transition-all hover:shadow-xl bg-white" style="border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 8px rgba(0,0,0,0.06);" data-search-title={featuredPost.title.toLowerCase()} data-search-excerpt={(featuredPost.excerpt || '').toLowerCase()}>
-              <div class="aspect-[4/3] md:aspect-[16/10] lg:aspect-auto overflow-hidden bg-gray-100">
+            <a href={`/blog/${featuredPost.slug}`} class="featured-card group mb-12 grid grid-cols-1 lg:grid-cols-[55%_45%] gap-0 overflow-hidden rounded-lg transition-all hover:shadow-xl bg-white" style="border: 1px solid var(--color-border); box-shadow: 0 2px 12px rgba(0,0,0,0.10);" data-search-title={featuredPost.title.toLowerCase()} data-search-excerpt={(featuredPost.excerpt || '').toLowerCase()}>
+              <div class="aspect-[4/3] md:aspect-[16/10] lg:aspect-auto overflow-hidden bg-[#e8e5df]">
                 {featuredPost.feature_image ? (
                   <img
                     src={ghostResize(featuredPost.feature_image, 600)}
@@ -252,7 +252,7 @@ function ghostSrcset(url: string, widths: number[]): string {
                     Latest
                   </span>
                   {featuredPost.tags?.filter((t: any) => t.slug !== 'blog-post').slice(0, 2).map((t: any) => (
-                    <span style="font-family: var(--font-satoshi); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-heading); background: var(--color-cream); padding: 3px 10px; border-radius: 4px;">
+                    <span style="font-family: var(--font-satoshi); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-heading); background: rgba(0,0,0,0.05); padding: 3px 10px; border-radius: 4px;">
                       {humanTag(t)}
                     </span>
                   ))}
@@ -286,9 +286,9 @@ function ghostSrcset(url: string, widths: number[]): string {
           {/* Post Grid */}
           <div class="blog-grid grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
             {gridPosts.map((post: any) => (
-              <a href={`/blog/${post.slug}`} class="blog-card group flex flex-col overflow-hidden rounded-lg transition-all hover:shadow-lg bg-white" style="border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 8px rgba(0,0,0,0.06);" data-search-title={post.title.toLowerCase()} data-search-excerpt={(post.excerpt || '').toLowerCase()}>
+              <a href={`/blog/${post.slug}`} class="blog-card group flex flex-col overflow-hidden rounded-lg transition-all hover:shadow-lg bg-white" style="border: 1px solid var(--color-border); box-shadow: 0 2px 12px rgba(0,0,0,0.10);" data-search-title={post.title.toLowerCase()} data-search-excerpt={(post.excerpt || '').toLowerCase()}>
                 {post.feature_image ? (
-                  <div class="aspect-[4/3] sm:aspect-[16/10] w-full overflow-hidden bg-gray-100">
+                  <div class="aspect-[4/3] sm:aspect-[16/10] w-full overflow-hidden bg-[#e8e5df]">
                     <img
                       src={ghostResize(post.feature_image, 400)}
                       srcset={ghostSrcset(post.feature_image, [300, 400, 600])}
