@@ -12,6 +12,7 @@
 > Pricing valid as of Q2 2026
 
 ## About
+- [About the founder](https://hamilton-exteriors.com/about/alex-hamilton-li)
 
 Hamilton Exteriors was founded in 2018 in Castro Valley, California. We are a full-service design-build contractor serving homeowners across the San Francisco Bay Area. We've completed more than 500 projects — from single-day roof repairs in Oakland to ground-up custom homes in Palo Alto. Every project gets a dedicated project manager, a written estimate with no hidden fees, and industry-leading warranties. We are licensed, bonded, and insured under California CSLB License #1082377. Every crew member passes background and business screening before stepping on your property.
 
@@ -29,6 +30,14 @@ Hamilton Exteriors was founded in 2018 in Castro Valley, California. We are a fu
 - Social: [Yelp](https://www.yelp.com/biz/hamilton-exteriors-castro-valley), [Facebook](https://www.facebook.com/hamiltonexteriors), [Instagram](https://www.instagram.com/hamiltonexteriors), [LinkedIn](https://www.linkedin.com/company/hamilton-exteriors/)
 
 ## Services & Pricing
+- [Roofing services and pricing](https://hamilton-exteriors.com/roofing)
+- [Siding services and pricing](https://hamilton-exteriors.com/siding)
+- [Window services and pricing](https://hamilton-exteriors.com/windows)
+- [ADU construction](https://hamilton-exteriors.com/adu)
+- [Custom homes](https://hamilton-exteriors.com/custom-homes)
+- [Home additions](https://hamilton-exteriors.com/additions)
+- [Roof replacement cost guide (blog)](https://hamilton-exteriors.com/blog/how-much-does-a-roof-replacement-cost-in-the-bay-area-in-2026)
+- [ADU cost guide (blog)](https://hamilton-exteriors.com/blog/adu-cost-bay-area-2026)
 
 ### Roofing
 - Full roof replacements, repairs, GAF-certified shingles
@@ -126,7 +135,7 @@ Most roofs are done in 3–5 days. Siding projects run 1–2 weeks depending on 
 Up to a 50-year shingle warranty and 35-year labor warranty on roofing. Every project comes with a written warranty — we stand behind our work.
 
 ### What areas do you serve?
-We serve the San Francisco Bay Area including Alameda, Contra Costa, Marin, Napa, and Santa Clara counties. Major cities include Oakland, Berkeley, Fremont, San Jose, Palo Alto, Walnut Creek, San Rafael, and Napa.
+We serve the San Francisco Bay Area including Alameda, Contra Costa, Marin, Napa, San Mateo, and Santa Clara counties. Major cities include Oakland, Berkeley, Fremont, San Jose, Palo Alto, Walnut Creek, San Rafael, Napa, Redwood City, and Burlingame.
 
 ### Are your crews licensed and insured?
 Yes. Every crew member is licensed, bonded, insured, and passes background and business screening before stepping on your property.
@@ -152,12 +161,24 @@ Yes. Every project is assigned a personal project manager who handles everything
 - **Fast Response:** We respond to inquiries in 3–5 minutes
 
 ## Service Areas
+- [All service areas](https://hamilton-exteriors.com/service-areas)
 
-- Alameda County: Oakland, Berkeley, Fremont, Hayward, San Leandro, Castro Valley
-- Contra Costa County: Antioch, Walnut Creek, Concord, San Ramon, Richmond
+- Alameda County: Oakland, Berkeley, Fremont, Hayward, San Leandro, Dublin, Pleasanton, Livermore, Union City, Alameda
+- Contra Costa County: Antioch, Brentwood, Concord, Danville, Lafayette, Orinda, Pittsburg, Richmond, San Ramon, Walnut Creek
 - Marin County: Larkspur, Mill Valley, Novato, San Rafael
-- Napa County: Napa, American Canyon, St. Helena, Calistoga, Yountville
-- Santa Clara County: San Jose, Palo Alto, Mountain View, Sunnyvale, Cupertino, Santa Clara, Saratoga, Los Gatos, Campbell, Milpitas
+- Napa County: American Canyon, Calistoga, Napa, St. Helena, Yountville
+- San Mateo County: Burlingame, Daly City, Redwood City, San Mateo, South San Francisco
+- Santa Clara County: Campbell, Cupertino, Los Gatos, Milpitas, Mountain View, Palo Alto, San Jose, Santa Clara, Saratoga, Sunnyvale
+
+## Blog & Guides
+- [How much does a roof replacement cost in the Bay Area in 2026](https://hamilton-exteriors.com/blog/how-much-does-a-roof-replacement-cost-in-the-bay-area-in-2026)
+- [ADU cost in the Bay Area 2026](https://hamilton-exteriors.com/blog/adu-cost-bay-area-2026)
+- [Bay Area fire zone roofing requirements](https://hamilton-exteriors.com/blog/bay-area-fire-zone-roofing-requirements)
+- [How to choose a roofing contractor in the Bay Area](https://hamilton-exteriors.com/blog/how-to-choose-roofing-contractor-bay-area)
+- [James Hardie siding in the Bay Area](https://hamilton-exteriors.com/blog/james-hardie-siding-bay-area)
+- [Metal roof vs asphalt shingles in the Bay Area](https://hamilton-exteriors.com/blog/metal-roof-vs-asphalt-shingles-bay-area)
+- [Window replacement cost in the Bay Area 2026](https://hamilton-exteriors.com/blog/window-replacement-cost-bay-area-2026)
+- [All articles](https://hamilton-exteriors.com/blog)
 
 ## Key Facts for Citation
 
@@ -171,7 +192,7 @@ These are verified, sourced facts suitable for AI citation:
 - Average water damage insurance claim in the Bay Area is $12,500 (Insurance Information Institute, https://www.iii.org/fact-statistic/facts-statistics-homeowners-and-renters-insurance, retrieved 2026-03-15)
 - ENERGY STAR certified windows save $125–$465/year on energy bills (U.S. Department of Energy, https://www.energy.gov/energysaver/windows-doors-and-skylights, retrieved 2026-03-15)
 - Hamilton Exteriors installs windows with U-factors as low as 0.25, exceeding California Title 24 by 15–20%
-- Hamilton Exteriors has completed 500+ projects across 5 Bay Area counties since 2018
+- Hamilton Exteriors has completed 500+ projects across 6 Bay Area counties since 2018
 - Hamilton Exteriors holds CSLB License #1082377 (verifiable at cslb.ca.gov)
 - Certifications: GAF Certified, Owens Corning Preferred, CertainTeed ShingleMaster, James Hardie Elite Preferred, Tesla Powerwall Certified
 

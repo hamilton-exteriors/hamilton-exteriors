@@ -7,35 +7,11 @@ const siteUrl = 'https://hamilton-exteriors.com';
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
+  '@id': `${siteUrl}/additions#breadcrumb`,
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
     { '@type': 'ListItem', position: 2, name: 'Additions', item: `${siteUrl}/additions` },
   ],
-};
-const serviceJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  '@id': `${siteUrl}/additions#service`,
-  name: 'Home Additions',
-  description: 'Bay Area home additions, second stories, room extensions, and full remodels. Design, structural engineering, permits, and construction under one roof.',
-  url: `${siteUrl}/additions`,
-  serviceType: ['Second Story Addition', 'Room Addition', 'Home Remodel', 'Home Extension'],
-  provider: { '@type': 'GeneralContractor', '@id': `${siteUrl}/#business` },
-  areaServed: [
-    { '@type': 'County', name: 'Alameda County', containedInPlace: { '@type': 'State', name: 'California' } },
-    { '@type': 'County', name: 'Contra Costa County', containedInPlace: { '@type': 'State', name: 'California' } },
-    { '@type': 'County', name: 'Marin County', containedInPlace: { '@type': 'State', name: 'California' } },
-    { '@type': 'County', name: 'Napa County', containedInPlace: { '@type': 'State', name: 'California' } },
-    { '@type': 'County', name: 'Santa Clara County', containedInPlace: { '@type': 'State', name: 'California' } },
-  ],
-  offers: {
-    '@type': 'AggregateOffer',
-    priceCurrency: 'USD',
-    lowPrice: '200',
-    highPrice: '500',
-    unitText: 'per square foot',
-    description: 'Home addition cost depends on scope, finishes, and structural requirements',
-  },
 };
 const webPageJsonLd = {
   '@context': 'https://schema.org',
@@ -50,6 +26,6 @@ const webPageJsonLd = {
 };
 ---
 
-<Layout title={data.title} description={data.description} includeMapbox preloadHero heroImage={data.hero.heroImage} jsonLd={[breadcrumbJsonLd, webPageJsonLd, serviceJsonLd]}>
+<Layout title={data.title} description={data.description} includeMapbox preloadHero heroImage={data.hero.heroImage} jsonLd={[breadcrumbJsonLd, webPageJsonLd]}>
   <ServicePage data={data} />
 </Layout>

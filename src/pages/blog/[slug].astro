@@ -85,14 +85,15 @@ const articleSection = rawSection && !/^[a-z0-9_-]+$/.test(rawSection) ? rawSect
 const articleJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
+  '@id': `${canonicalUrl}#article`,
+  name: post.title,
   headline: post.title,
   description,
-  image: [{
-    '@type': 'ImageObject',
-    url: postImage,
-    width: 1200,
-    height: 630,
-  }],
+  image: [
+    { '@type': 'ImageObject', url: postImage, width: 1200, height: 630 },
+    { '@type': 'ImageObject', url: postImage, width: 1200, height: 900 },
+    { '@type': 'ImageObject', url: postImage, width: 1200, height: 1200 },
+  ],
   datePublished: post.published_at,
   dateModified: post.updated_at || post.published_at,
   url: canonicalUrl,
@@ -149,10 +150,7 @@ const breadcrumbJsonLd = {
   ],
 };
 
-// Build HowTo schema from numbered H2 headings (e.g., "7 Warning Signs" post)
-// Only applies when the post title contains numbered step/sign patterns
-const hasNumberedSteps = /^\d+\s/.test(post.title) || /\d+\s(warning|sign|step|tip|way|thing|reason)/i.test(post.title);
-let howToJsonLd: Record<string, unknown> | null = null;
+// HowTo rich results removed by Google Sept 2023 — schema omitted
 let faqJsonLd: Record<string, unknown> | null = null;
 
 // Extract H2 headings for table of contents
@@ -198,47 +196,6 @@ processedHtml = processedHtml.replace(
     return `<img${before}src="${ghostResize(src, 1000)}" srcset="${srcset}" sizes="(max-width: 600px) 400px, (max-width: 800px) 750px, 1000px"${after}>`;
   }
 );
-
-// Build HowTo schema if post has numbered steps/signs
-if (hasNumberedSteps && tocHeadings.length >= 3) {
-  // Extract text between each H2 as the step description
-  const steps = tocHeadings.map((heading, i) => {
-    const startTag = `id="${heading.id}"`;
-    const startIdx = processedHtml.indexOf(startTag);
-    const nextHeading = tocHeadings[i + 1];
-    const endIdx = nextHeading
-      ? processedHtml.indexOf(`id="${nextHeading.id}"`)
-      : processedHtml.length;
-
-    let stepText = '';
-    if (startIdx > -1) {
-      const section = processedHtml.slice(startIdx, endIdx);
-      stepText = section
-        .replace(/^[^<]*>/, '')           // remove leading partial tag fragment
-        .replace(/<h2[^>]*>.*?<\/h2>/gi, '') // strip H2 tags
-        .replace(/<[^>]+>/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim()
-        .slice(0, 300);
-    }
-
-    return {
-      '@type': 'HowToStep',
-      name: heading.text,
-      url: `${canonicalUrl}#${heading.id}`,
-      text: stepText || heading.text,
-    };
-  });
-
-  howToJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: post.title,
-    description,
-    image: postImage,
-    step: steps,
-  };
-}
 
 // Build FAQPage schema from question-format H2 headings (AI search engines extract Q&A)
 const questionHeadings = tocHeadings.filter(h =>
@@ -347,7 +304,7 @@ const serviceLinks = matchedLinksMap.size > 0
   description={description}
   image={postImage}
   type="article"
-  jsonLd={shouldNoindex ? undefined : [articleJsonLd, breadcrumbJsonLd, ...(howToJsonLd ? [howToJsonLd] : []), ...(faqJsonLd ? [faqJsonLd] : [])]}
+  jsonLd={shouldNoindex ? undefined : [articleJsonLd, breadcrumbJsonLd, ...(faqJsonLd ? [faqJsonLd] : [])]}
   noindex={shouldNoindex}
 >
   {post.feature_image?.includes('/content/images/') ? (

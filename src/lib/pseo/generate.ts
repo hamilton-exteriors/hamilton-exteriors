@@ -587,7 +587,7 @@ export function generateCityServicePage(
     (c) => c.countySlug === countySlug && c.slug !== citySlug,
   ).map((c) => ({
     name: `${serviceName} in ${c.city}`,
-    href: `/service-areas/${c.countySlug}/${c.slug}/${serviceSlug}`,
+    href: `/service-areas/${c.countySlug}-county-ca/${c.slug}-ca/${serviceSlug}`,
   }));
 
   return {
@@ -749,7 +749,7 @@ export function generateCountyServicePage(
   // Link to same service in each city
   const nearbyCityServices = countyCities.map(c => ({
     name: `${serviceName} in ${c.city}`,
-    href: `/service-areas/${countySlug}/${c.slug}-ca/${serviceSlug}`,
+    href: `/service-areas/${countySlug}-county-ca/${c.slug}-ca/${serviceSlug}`,
   }));
 
   return {

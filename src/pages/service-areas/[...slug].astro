@@ -25,6 +25,25 @@ import { getCityOgImage } from '../../lib/city-og-images';
 const slug = Astro.params.slug;
 if (!slug) return Astro.redirect('/service-areas');
 
+// Redirect legacy short slugs (e.g., /alameda/berkeley) to canonical form (/alameda-county-ca/berkeley-ca)
+const rawSegments = slug.split('/');
+const COUNTY_SHORT_TO_FULL: Record<string, string> = {
+  alameda: 'alameda-county-ca',
+  'contra-costa': 'contra-costa-county-ca',
+  marin: 'marin-county-ca',
+  napa: 'napa-county-ca',
+  'san-mateo': 'san-mateo-county-ca',
+  'santa-clara': 'santa-clara-county-ca',
+};
+if (rawSegments[0] && COUNTY_SHORT_TO_FULL[rawSegments[0]]) {
+  const fixedSegments = [COUNTY_SHORT_TO_FULL[rawSegments[0]], ...rawSegments.slice(1)];
+  // Append -ca to city slugs that are missing it
+  if (fixedSegments[1] && !fixedSegments[1].endsWith('-ca') && !['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions'].includes(fixedSegments[1])) {
+    fixedSegments[1] = `${fixedSegments[1]}-ca`;
+  }
+  return Astro.redirect(`/service-areas/${fixedSegments.join('/')}`, 301);
+}
+
 const segments = slug.split('/');
 
 const SERVICE_SLUGS = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions'];
@@ -111,7 +130,7 @@ if (pageType === 'cityService' && cityServiceData) {
         'name': cityName,
         ...(getCityWikipedia(urlCitySlug) && { 'sameAs': getCityWikipedia(urlCitySlug) }),
         'containedInPlace': {
-          '@type': 'AdministrativeArea',
+          '@type': 'County',
           'name': `${urlCountySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())} County`,
           'sameAs': `https://en.wikipedia.org/wiki/${urlCountySlug.replace(/-ca$/, '').replace(/-/g, '_').replace(/\b\w/g, (c: string) => c.toUpperCase())}_County,_California`,
           'containedInPlace': { '@type': 'State', 'name': 'California' },
@@ -167,7 +186,7 @@ if (pageType === 'cityService' && cityServiceData) {
       'name': `Roofing and Exterior Services in ${countyName} County, CA`,
       'url': `${siteUrl}/service-areas/${urlCountySlug}`,
       'provider': { '@id': `${siteUrl}/#business` },
-      'areaServed': { '@type': 'AdministrativeArea', 'name': `${countyName} County`, 'sameAs': `https://en.wikipedia.org/wiki/${countyName.replace(/ /g, '_')}_County,_California`, 'containedInPlace': { '@type': 'State', 'name': 'California' } },
+      'areaServed': { '@type': 'County', 'name': `${countyName} County`, 'sameAs': `https://en.wikipedia.org/wiki/${countyName.replace(/ /g, '_')}_County,_California`, 'containedInPlace': { '@type': 'State', 'name': 'California' } },
       'serviceType': ['Roofing', 'Siding', 'Windows', 'ADUs', 'Custom Homes', 'Additions'],
       'description': countyData.description || `Hamilton Exteriors serves ${countyName} County with professional roofing, siding, windows, ADUs, and custom homes. CSLB #1082377.`,
       'offers': {

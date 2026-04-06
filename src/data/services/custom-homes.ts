@@ -69,4 +69,31 @@ export const data: ServicePageData = {
     { type: 'contactUs' },
     { type: 'footer' },
   ],
+  localFaqs: [
+    {
+      question: 'How much does it cost to build a custom home in the Bay Area?',
+      answer:
+        'Bay Area custom home construction costs $350 to $800 per square foot depending on finishes, site conditions, and architectural complexity. A 2,500 sq ft custom home typically costs $900,000 to $2,000,000 including design, engineering, permits, and construction. Lot preparation, grading, and utility connections add $50,000 to $200,000 depending on the site. Hamilton Exteriors provides detailed, itemized estimates at every stage.',
+    },
+    {
+      question: 'How long does it take to build a custom home?',
+      answer:
+        'Custom home construction in the Bay Area takes 12 to 18 months from permit approval. The design and permitting phase adds 4 to 8 months depending on architectural complexity and local plan review timelines. Total timeline from initial consultation to move-in is typically 18 to 24 months. Your dedicated project manager provides weekly progress updates and a real-time schedule.',
+    },
+    {
+      question: 'What is the design-build process?',
+      answer:
+        'Design-build means one company handles architecture, engineering, permitting, and construction under a single contract. This eliminates the coordination gaps between separate architects, engineers, and builders that cause delays and cost overruns. Hamilton Exteriors\u2019 in-house architect designs your home while our construction team provides real-time cost feedback — so the design stays within budget from day one.',
+    },
+    {
+      question: 'Do I need an architect to build a custom home in California?',
+      answer:
+        'California law requires a licensed architect or engineer to design residential structures over two stories or exceeding certain size thresholds. Even for single-story homes, architectural plans are required for building permits. Hamilton Exteriors\u2019 founder Alexander Hamilton Li is a licensed architect (CSLB #1082377), so design and construction are handled in-house — no separate architect needed.',
+    },
+    {
+      question: 'Can I build a custom home on a hillside lot in the Bay Area?',
+      answer:
+        'Yes, but hillside construction requires specialized engineering for foundations, retaining walls, drainage, and seismic bracing. Bay Area hillside lots in the Oakland Hills, Marin headlands, and Los Gatos mountains often require geotechnical reports, soil testing, and engineered pier-and-grade-beam foundations. Hamilton Exteriors has experience with hillside construction across Alameda, Contra Costa, and Marin counties.',
+    },
+  ],
 };

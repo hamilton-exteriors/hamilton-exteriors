@@ -64,4 +64,31 @@ export const data: ServicePageData = {
     { type: 'contactUs' },
     { type: 'footer' },
   ],
+  localFaqs: [
+    {
+      question: 'How much does a home addition cost in the Bay Area?',
+      answer:
+        'Bay Area home additions typically cost $200 to $500 per square foot depending on scope and finishes. A 400 sq ft second-story addition runs $150,000 to $250,000 including structural engineering, permits, and construction. Room additions on the ground floor are generally $120,000 to $200,000. Kitchen and living extensions that require foundation work start at $175,000. Every Hamilton Exteriors estimate is itemized with no hidden fees.',
+    },
+    {
+      question: 'Do I need a permit for a home addition in the Bay Area?',
+      answer:
+        'Yes. All home additions in the Bay Area require building permits from your local jurisdiction. This includes structural, electrical, plumbing, and mechanical permits. Hamilton Exteriors handles the entire permitting process — we prepare architectural drawings, submit plans, schedule inspections, and coordinate with your city building department. Permit timelines vary: 4 to 8 weeks for most East Bay cities, 6 to 12 weeks in San Francisco and parts of the Peninsula.',
+    },
+    {
+      question: 'How long does a home addition take to build?',
+      answer:
+        'Most Bay Area home additions complete in 12 to 20 weeks from permit approval. Second-story additions take 16 to 24 weeks due to the structural complexity of roof removal, floor framing, and re-roofing. Room extensions on an existing foundation complete faster at 10 to 14 weeks. Your project manager provides a detailed schedule at contract signing and weekly progress updates throughout construction.',
+    },
+    {
+      question: 'Can I add a second story to my Bay Area home?',
+      answer:
+        'Most single-story Bay Area homes can support a second-story addition with proper structural engineering. Our structural engineers assess your existing foundation, framing, and soil conditions to determine if reinforcement is needed. Common upgrades include foundation bolting, cripple wall bracing, and moment frame installation to meet current California seismic standards. Second-story additions are especially popular in neighborhoods where lot sizes limit ground-floor expansion.',
+    },
+    {
+      question: 'Will a home addition increase my property value?',
+      answer:
+        'Yes. According to Remodeling Magazine\u2019s 2024 Cost vs. Value report, well-executed home additions in the Pacific West region recoup 50 to 70% of their cost at resale. In the Bay Area\u2019s high-value market, additions that add bedrooms, bathrooms, or living space often return even more. A 500 sq ft second-story master suite can add $200,000 or more to a Bay Area home\u2019s value depending on the neighborhood.',
+    },
+  ],
 };
