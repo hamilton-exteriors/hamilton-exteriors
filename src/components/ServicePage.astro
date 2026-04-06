@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { PHONE_DISPLAY } from '../lib/constants';
 import AnnouncementBar from './AnnouncementBar.astro';
 import Navbar from './Navbar.astro';
 import Hero from './Hero.astro';
@@ -569,3 +570,65 @@ const serviceSchema: Record<string, unknown> = {
 )}
 
 {data.extraStyles && <style set:html={data.extraStyles} />}
+
+<!-- Sticky CTA — appears after scrolling past hero form -->
+<a href="#quote" id="sticky-cta" class="sticky-cta" aria-label="Get your free estimate">
+  <span class="sticky-cta__text">Get Free Estimate</span>
+  <span class="sticky-cta__phone">{PHONE_DISPLAY}</span>
+</a>
+
+<style>
+  .sticky-cta {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 90;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: var(--color-yellow);
+    color: var(--color-heading);
+    font-family: var(--font-oswald);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transition: opacity 0.15s;
+  }
+  .sticky-cta.visible { display: flex; }
+  .sticky-cta:hover { opacity: 0.9; }
+  .sticky-cta__phone {
+    font-family: var(--font-dm-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    opacity: 0.7;
+  }
+  @media (max-width: 639px) {
+    .sticky-cta {
+      bottom: 0; right: 0; left: 0;
+      border-radius: 0;
+      justify-content: center;
+      padding: 16px 20px;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.15);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sticky-cta { transition: none; }
+  }
+</style>
+
+<script>
+  const stickyCta = document.getElementById('sticky-cta');
+  const heroForm = document.getElementById('hero-form');
+  if (stickyCta && heroForm) {
+    const observer = new IntersectionObserver(
+      ([entry]) => { stickyCta.classList.toggle('visible', !entry.isIntersecting); },
+      { threshold: 0 }
+    );
+    observer.observe(heroForm);
+  }
+</script>

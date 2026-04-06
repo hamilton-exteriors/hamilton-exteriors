@@ -235,8 +235,8 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
                   id="consent-checkbox"
                   name="consent"
                   required
-                  class="mt-0.5 h-4 w-4 shrink-0"
-                  style="border-radius: 4px; accent-color: var(--color-primary);"
+                  class="mt-0.5 h-5 w-5 shrink-0"
+                  style="border-radius: 4px; accent-color: var(--color-primary); min-width: 20px; min-height: 20px;"
                 />
                 <label for="consent-checkbox" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; line-height: 1.5; color: var(--color-muted); cursor: pointer;">
                   I agree to the <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Terms</a> & <a href="/privacy-policy" class="underline" target="_blank" rel="noopener">Privacy Policy</a>. Msg & data rates may apply.
@@ -483,9 +483,9 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     .hero-stars svg { width: 20px; height: 20px; }
   }
 
-  /* Calibrated scrim: 25% uniform to boost contrast without killing image */
+  /* Scrim: ensures white text contrast on all hero images including light ones */
   .hero-scrim {
-    background: rgba(0, 0, 0, 0.18);
+    background: rgba(0, 0, 0, 0.30);
   }
 
   .text-fit > :not([aria-hidden]) > * {
