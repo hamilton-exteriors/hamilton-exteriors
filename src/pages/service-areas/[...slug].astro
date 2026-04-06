@@ -19,6 +19,8 @@ import type { GeneralCityPageData } from '../../lib/general-city-types';
 import type { CountyPageData } from '../../lib/county-page-types';
 import type { CityServicePageData } from '../../lib/city-service-types';
 import { getCityProximity } from '../../lib/city-coordinates';
+import { getCityWikipedia } from '../../lib/city-wikipedia';
+import { getCityOgImage } from '../../lib/city-og-images';
 
 const slug = Astro.params.slug;
 if (!slug) return Astro.redirect('/service-areas');
@@ -107,6 +109,7 @@ if (pageType === 'cityService' && cityServiceData) {
       'areaServed': {
         '@type': 'City',
         'name': cityName,
+        ...(getCityWikipedia(urlCitySlug) && { 'sameAs': getCityWikipedia(urlCitySlug) }),
         'containedInPlace': { '@type': 'State', 'name': 'California' },
         ...(cityLat && cityLng && { 'geo': { '@type': 'GeoCoordinates', 'latitude': cityLat, 'longitude': cityLng } }),
       },
@@ -207,13 +210,13 @@ if (pageType === 'cityService' && cityServiceData) {
 )}
 
 {pageType === 'cityService' && cityServiceData && (
-  <Layout title={cityServiceData.title} description={cityServiceData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityServiceData.city}, CA`}>
+  <Layout title={cityServiceData.title} description={cityServiceData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityServiceData.city}, CA`} heroImage={getCityOgImage(segments[1])}>
     <ServicePage data={cityServiceData as any} />
   </Layout>
 )}
 
 {pageType === 'city' && cityData && (
-  <Layout title={cityData.title} description={cityData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityData.city || ''}, CA`}>
+  <Layout title={cityData.title} description={cityData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityData.city || ''}, CA`} heroImage={getCityOgImage(segments[1])}>
     <GeneralCityPage data={cityData} />
   </Layout>
 )}

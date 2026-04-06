@@ -1,0 +1,9 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CountyPage from '../../../components/CountyPage.astro';
+import { data } from '../../../data/counties/san-mateo-county-ca';
+---
+
+<Layout title={data.title} description={data.description} includeMapbox preloadHero>
+  <CountyPage data={data} />
+</Layout>
