@@ -70,20 +70,18 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Intercept the response to apply Brotli
+  // Intercept the response to apply Brotli.
+  // Astro's static file handler may never call writeHead explicitly (it relies
+  // on Node's implicit header flush during write), so we buffer everything and
+  // flush in end() using headArgs if available, or status 200 as default.
   const originalWrite = res.write.bind(res);
   const originalEnd = res.end.bind(res);
   const originalWriteHead2 = res.writeHead.bind(res);
   const chunks = [];
   let headArgs = null;
-  let shouldCompress = false;
 
   res.writeHead = function (statusCode, ...args) {
     headArgs = [statusCode, ...args];
-    const contentType = res.getHeader('content-type') || '';
-    const contentEncoding = res.getHeader('content-encoding');
-    shouldCompress = !contentEncoding && COMPRESSIBLE.test(contentType);
-    // Defer writeHead until end() so we can set content-encoding + remove content-length
     return res;
   };
 
@@ -95,22 +93,26 @@ const server = http.createServer((req, res) => {
   res.end = function (chunk) {
     if (chunk) chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
     const body = Buffer.concat(chunks);
+    const contentType = res.getHeader('content-type') || '';
+    const contentEncoding = res.getHeader('content-encoding');
+    const shouldCompress = !contentEncoding && COMPRESSIBLE.test(contentType) && body.length >= MIN_SIZE;
 
-    if (shouldCompress && body.length >= MIN_SIZE) {
+    if (shouldCompress) {
       res.removeHeader('content-length');
       res.setHeader('content-encoding', 'br');
       res.setHeader('vary', 'Accept-Encoding');
-      originalWriteHead2(...headArgs);
+      originalWriteHead2(...(headArgs || [200]));
 
       const br = createBrotliCompress({
         params: {
-          [constants.BROTLI_PARAM_QUALITY]: 4, // fast compression for dynamic responses
+          [constants.BROTLI_PARAM_QUALITY]: 4,
         },
       });
-      br.pipe(res);
+      br.on('data', (c) => originalWrite(c));
+      br.on('end', () => originalEnd());
       br.end(body);
     } else {
-      if (headArgs) originalWriteHead2(...headArgs);
+      originalWriteHead2(...(headArgs || [200]));
       originalEnd(body);
     }
   };
