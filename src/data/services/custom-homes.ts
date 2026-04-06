@@ -31,7 +31,7 @@ export const data: ServicePageData = {
     {
       type: 'styles',
       data: {
-        heading: 'Custom Home Services',
+        heading: 'What Custom Home Services Does Hamilton Exteriors Offer?',
         cardVariant: 'roofing',
         items: [
           {

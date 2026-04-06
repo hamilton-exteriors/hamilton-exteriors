@@ -65,7 +65,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
           'Absolutely. Hamilton Exteriors is fully licensed, bonded, and insured to perform roofing work throughout {county} County, including {city} and surrounding neighborhoods. We carry a California CSLB license and comprehensive liability coverage.',
       },
     ],
-    stylesHeading: 'Roofing Styles Offered',
+    stylesHeading: 'What Roofing Styles Are Available?',
     stylesItems: [
       {
         title: 'Asphalt Shingles',
@@ -134,7 +134,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
           'Yes, we offer $0 down financing for siding projects in {city}. Get pre-qualified during your free inspection — most homeowners pay between $150-$300/month.',
       },
     ],
-    stylesHeading: 'Siding Styles Offered',
+    stylesHeading: 'What Siding Options Are Available?',
     stylesItems: [
       {
         title: 'Vinyl Siding',
@@ -203,7 +203,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
           'Yes, we install bay, bow, picture, garden, and specialty windows throughout {city} and {county} County. Bay windows are especially popular in neighborhoods like {neighborhood} where they maximize natural light and views.',
       },
     ],
-    stylesHeading: 'Window Styles Offered',
+    stylesHeading: 'What Window Styles Are Available?',
     stylesItems: [
       {
         title: 'Single Hung',
@@ -284,7 +284,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
           'In {city}, you can build detached ADUs (up to 1,200 sq ft), garage conversions, attached additions, and junior ADUs (up to 500 sq ft). Many homeowners in {neighborhood} are choosing detached ADUs for rental income or multi-generational living.',
       },
     ],
-    stylesHeading: 'ADU Services Offered',
+    stylesHeading: 'What ADU Services Are Available?',
     stylesItems: [
       {
         title: 'Detached ADUs',
@@ -353,7 +353,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
           'Yes. Many lots in {city} and {county} County are on slopes. We have extensive experience with hillside construction, including retaining walls, custom foundations, and grading. Our engineers evaluate every lot for feasibility.',
       },
     ],
-    stylesHeading: 'Custom Home Services',
+    stylesHeading: 'What Custom Home Services Are Available?',
     stylesItems: [
       {
         title: 'Ground-Up Construction',
@@ -422,7 +422,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
           'In most cases, yes. We phase construction to minimize disruption. For second story additions, there may be a brief period where certain rooms are inaccessible. We create a detailed plan before starting so you know exactly what to expect.',
       },
     ],
-    stylesHeading: 'What We Build',
+    stylesHeading: 'What Types of Home Additions Are Available?',
     stylesItems: [
       {
         title: 'Second Story Additions',

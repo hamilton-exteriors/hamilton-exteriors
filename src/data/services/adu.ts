@@ -32,7 +32,7 @@ export const data: ServicePageData = {
     {
       type: 'styles',
       data: {
-        heading: 'ADU Services Offered',
+        heading: 'What ADU Services Does Hamilton Exteriors Offer?',
         cardVariant: 'roofing',
         items: [
           {

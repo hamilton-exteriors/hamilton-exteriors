@@ -26,7 +26,7 @@ export const data: ServicePageData = {
     {
       type: 'styles',
       data: {
-        heading: 'What We Build',
+        heading: 'What Types of Home Additions Does Hamilton Exteriors Build?',
         cardVariant: 'roofing',
         items: [
           {
