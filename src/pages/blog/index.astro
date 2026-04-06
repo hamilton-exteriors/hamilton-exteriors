@@ -49,6 +49,15 @@ const pageDesc = activeTag
 
 const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: 'Ground Up', item: `${siteUrl}/blog` },
+  ],
+};
+
 const blogJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
@@ -57,13 +66,6 @@ const blogJsonLd = {
   description: pageDesc,
   url: `${siteUrl}/blog`,
   isPartOf: { '@id': 'https://hamilton-exteriors.com/#website' },
-  breadcrumb: {
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
-      { '@type': 'ListItem', position: 2, name: 'Ground Up', item: `${siteUrl}/blog` },
-    ],
-  },
   publisher: {
     '@type': 'Organization',
     '@id': 'https://hamilton-exteriors.com/#business',
@@ -83,7 +85,7 @@ const itemListJsonLd = posts.length > 0 ? {
   })),
 } : null;
 
-const blogSchemas = [blogJsonLd, ...(itemListJsonLd ? [itemListJsonLd] : [])];
+const blogSchemas = [breadcrumbJsonLd, blogJsonLd, ...(itemListJsonLd ? [itemListJsonLd] : [])];
 
 function ghostResize(url: string, width: number): string {
   return url.replace(/\/content\/images\/(?!size\/)/, `/content/images/size/w${width}/`);

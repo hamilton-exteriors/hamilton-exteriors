@@ -1,153 +1,79 @@
-# Hamilton Exteriors -- SEO Action Plan
+# Hamilton Exteriors — SEO Action Plan
 
-**Generated:** April 5, 2026 | **Current Score:** 80/100 | **Target:** 90/100
-
----
-
-## Critical -- Fix Immediately
-
-### 1. Add security headers to `server.mjs`
-**Impact:** Technical SEO +10 | **Effort:** 30 min | **File:** `server.mjs`
-
-Add HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy, and CSP to the `res.writeHead` intercept. Railway does not inject these.
-
-### 2. Audit pSEO content for thin/duplicate risk
-**Impact:** Content +8 | **Effort:** 2-4 hours | **Requires:** Ghost CMS admin access
-
-Pull 5 random city pairs (e.g., Oakland vs Hayward roofing, Berkeley vs Fremont siding). Diff body content. If >60% overlap, invest in unique local paragraphs per city: permit office name/URL, neighborhood housing stock data, one real project reference per city.
-
-### 3. Address review velocity cliff
-**Impact:** Local SEO +10 | **Effort:** Ongoing
-
-If no new Google reviews since January 2026, implement post-project review request sequence via SMS/email. Target: 2-3 new reviews per month minimum. Add "Leave a Review" link in footer pointing to Google review URL.
+**Generated:** April 6, 2026 (v3) | **Current Score:** 79/100 | **Target:** 90/100
 
 ---
 
-## High -- Fix Within 1 Week
+## Critical (Fix Immediately)
 
-### 4. Fix homepage and blog index OG images
-**Impact:** Images +5, Social CTR | **Effort:** 10 min
-**Files:** `src/pages/index.astro` (line 20), `src/pages/blog/index.astro` (line 96)
+- [ ] **#1 Launch review velocity campaign** — 74 days past 18-day Sterling Sky cliff. Text/email every job from last 60 days. Target: 8-10 reviews in 30 days, then 2-4/month minimum. *Action: Off-site*
+- [ ] **#2 Replace templated city page reviews** — Same 3 reviewers (Sarah M., David K., Jennifer L.) across 47 cities = manual action risk. Use real anonymized reviews or remove per-city reviews. *File: GeneralCityPage.astro*
+- [x] **#3 Add SpeakableSpecification** — Most direct Google AI Overview signal, completely absent. Add `cssSelector`-based specification to blog posts and service pages. *Files: blog/[slug].astro, ServicePage.astro*
+- [x] **#4 ~~Add schema to /buy page~~ — SKIPPED: /buy is a noindexed marketing landing page, not an SEO target.**
+- [x] **#5 Fix or remove SearchAction** — `/blog?q=` has no handler. Remove `potentialAction` block. *File: Layout.astro*
 
-Pass `heroImage` prop to Layout on both pages. Currently falls back to generic `og-default.jpg`.
+## High (This Week)
 
-### 5. Add `publisher` to BlogPosting schema
-**Impact:** Schema +3 | **Effort:** 30 min | **File:** Blog post layout/template
+- [ ] **#6 Verify GBP primary category** — Must be "Roofing Contractor" (#1 local ranking factor). Check GBP console. *Action: Off-site*
+- [x] **#7 Fix dateModified to static** — `new Date()` on SSR inflates freshness. Add `lastModified` to service data. *File: ServicePage.astro*
+- [ ] **#8 Fix /llms-full.txt 502 + create ai.txt** — Extended AI content unreachable. `<link rel="ai-policy">` points to nonexistent file = 404 on every page. *Files: public/llms-full.txt, public/ai.txt or Layout.astro*
+- [ ] **#9 Claim BuildZoom + Houzz** — BuildZoom auto-generates from CSLB #1082377. Houzz needs CompanyCam photos. Both rank page 1. *Action: Off-site*
+- [x] **#10 Fix datePublished null guard** — `post.published_at || post.updated_at || new Date().toISOString()` *File: blog/[slug].astro*
+- [x] **#11 Fix areaServed "US" → "CA"** — Bay Area SAB claiming entire US. *File: Layout.astro*
+- [x] **#12 Fix BlogPosting image dimensions** — Same URL, false dimensions. Use Ghost resize API or single ImageObject. *File: blog/[slug].astro*
+- [x] **#13 Standardize NAP** — "Hamilton Exteriors" everywhere (not "Inc."). *Files: Footer.astro + llms.txt + off-site*
+- [x] **#14 Add AggregateRating + Review.datePublished to city hubs** — Missing from LocalBusiness blocks. *File: GeneralCityPage.astro*
 
-Add `"publisher": {"@type": "Organization", "name": "Hamilton Exteriors", "logo": {"@type": "ImageObject", "url": "..."}}` to all BlogPosting JSON-LD blocks. Required for Article rich results.
+## Medium (This Month)
 
-### 6. Merge duplicate @type blocks in schema
-**Impact:** Schema +2 | **Effort:** 1 hour
+- [ ] **#15 Rewrite service page H2s as questions** — "Our Advantage" → "Why Do Bay Area Homeowners Choose Hamilton Exteriors?" *Files: Service components*
+- [ ] **#16 Inline source attribution in blog posts** — Stats need in-sentence sources. *Action: Copy edit*
+- [ ] **#17 Create YouTube channel + 5 project walkthroughs** — Highest brand signal correlation (~0.737). *Action: Off-site*
+- [ ] **#18 Replace Person.image with real headshot** — *File: about/alex-hamilton-li.astro*
+- [ ] **#19 Add Google Maps embed** — No iframe ties website to GBP. *File: Homepage component*
+- [ ] **#20 Increase city hub unique content to 40%+** — County-specific FAQs (6 sets). *Files: City page data*
+- [ ] **#21 Add blog → city internal links** — Blog posts should link to city+service pages. *Action: Content edit*
+- [ ] **#22 Verify manufacturer locator listings** — GAF, OC, Hardie "Find a Contractor" pages = free authority links. *Action: Off-site*
+- [ ] **#23 Start Reddit presence** — r/bayarea, r/homeimprovement, r/roofing. *Action: Off-site*
+- [ ] **#24 Pursue BBB accreditation** — $600-900/year, trust badge for $15k+ decisions. *Action: Off-site*
+- [ ] **#25 Activate weekly GBP Posts** — Project photos, seasonal tips. *Action: Off-site*
+- [x] **#26 Fix GeoCoordinates on county pages** — Verified: lat/lng order is correct (lng,lat format in data → assigned correctly). Added @id to county Service schema. *File: CountyPage.astro*
+- [ ] **#27 Trim FAQ answers > 180 words** — AI extraction window is 134-167 words. *File: FAQ.astro*
+- [x] **#28 Add RSS feed URL to llms.txt** — One line addition. *File: public/llms.txt*
 
-Collapse separate RoofingContractor + GeneralContractor + LocalBusiness blocks into single block: `"@type": ["RoofingContractor", "GeneralContractor"]`. LocalBusiness is inherited.
+## Low (Backlog)
 
-### 7. Add `dateModified` to blog posts
-**Impact:** Content +2, GEO +2 | **Effort:** 30 min
-
-Add `dateModified` to BlogPosting schema and a visible "Last updated" line in article headers. Critical for pricing/permit content that changes annually.
-
-### 8. Fix TTFB on cold-start pSEO pages
-**Impact:** Performance +3 | **Effort:** 1-2 hours
-
-Enable Railway "Always On" service setting, or add Cloudflare CDN caching on pSEO routes. 7 pages currently exceed 600ms TTFB (worst: 1,592ms).
-
-### 9. Add named author attribution to service/pSEO pages
-**Impact:** Content E-E-A-T +3 | **Effort:** 1 hour
-
-Add brief author block with "Alexander Hamilton Li, CSLB #1082377" linking to `/about/alex-hamilton-li` on all service and pSEO pages. Currently only blog posts have author bylines.
-
----
-
-## Medium -- Fix Within 1 Month
-
-### 10. Add service pricing `priceCurrency` to schema
-**Impact:** Schema +2 | **Effort:** 1 hour
-
-Wrap pricing in proper `Offer` or `PriceSpecification` block with `priceCurrency: "USD"` and `unitCode`.
-
-### 11. Add missing pages to image sitemap
-**Impact:** Images +1 | **Effort:** 10 min | **File:** `src/pages/image-sitemap.xml.ts`
-
-Add `/adu`, `/custom-homes`, `/additions`, and `/blog` to `pageImages` array.
-
-### 12. Scope pSEO schema `areaServed` to specific city
-**Impact:** Local SEO +3, Schema +2 | **Effort:** 2 hours
-
-Change pSEO page `areaServed` from 6-county block to `{"@type": "City", "name": "Oakland", "sameAs": "..."}`. Move `aggregateRating` off Service schema to org entity only.
-
-### 13. Create `Person` schema for Alexander Hamilton Li
-**Impact:** Schema +2, E-E-A-T +3 | **Effort:** 1 hour | **File:** `/about/alex-hamilton-li`
-
-Add `ProfilePage` + `Person` schema with `hasCredential` (CSLB), `sameAs` (LinkedIn, CSLB URL), and `knowsAbout` linked entities.
-
-### 14. Mirror blog key passages into llms-full.txt
-**Impact:** GEO +3 | **Effort:** 1 hour
-
-Add `## Blog Key Passages` section with 2-4 self-contained paragraphs from each major guide (roof cost, ADU cost, fire zone, window cost).
-
-### 15. Rewrite llms-full.txt section openers to answer-first
-**Impact:** GEO +2 | **Effort:** 30 min
-
-Change brand statements to direct answers. Example: "A roof replacement in the Bay Area costs $8,000-$25,000 for most homes..." as the first sentence under roofing.
-
-### 16. Claim Tier 1 citations
-**Impact:** Local SEO +5 | **Effort:** 3-4 hours
-
-Create/claim profiles on: BBB, Angi/HomeAdvisor, Houzz, Nextdoor. Claim manufacturer dealer locator listings (GAF Find a Contractor, James Hardie Elite Preferred, Owens Corning dealer page). Add URLs to schema `sameAs`.
-
-### 17. Add Google Maps embed
-**Impact:** Local SEO +2 | **Effort:** 30 min
-
-Add Maps iframe to footer or contact section showing Castro Valley office location.
-
-### 18. Clean up IndexNow keys
-**Impact:** Technical +1 | **Effort:** 15 min
-
-Confirm active key for Bing/Yandex/Naver. Delete 3 unused key files from `/public/`. Wire up programmatic pings on sitemap `lastmod` updates.
+- [x] **#29** Fix additionalType Wikipedia → sameAs *(Layout.astro)*
+- [x] **#30** Extract BreadcrumbList from CollectionPage *(blog/index.astro)*
+- [ ] **#31** Implement IndexNow *(New endpoint)*
+- [ ] **#32** WebP/AVIF blog image optimization *(Image pipeline)*
+- [ ] **#33** Create portfolio/gallery page *(New page)*
+- [ ] **#34** Verify @hamiltonexteriors Twitter handle *(Off-site)*
+- [ ] **#35** Normalize knowsAbout schema *(Layout.astro)*
+- [ ] **#36** Add articleBody to BlogPosting *(blog/[slug].astro)*
+- [ ] **#37** Remove duplicate Service schema from CountyPage *(CountyPage.astro)*
+- [ ] **#38** Fix county WebPage.about relative → absolute URL *(CountyPage.astro)*
+- [ ] **#39** Pursue third-party press mention (SFGate, East Bay Times) *(Off-site)*
+- [ ] **#40** Create city-specific blog posts for top 5 markets *(New content)*
 
 ---
 
-## Low -- Backlog
-
-### 19. Fix llms.txt review count discrepancy
-Standardize to "52" across both files. Add Google Business Profile review URL.
-
-### 20. Replace ImageGallery with ImageObject arrays
-ImageGallery is not a Google-supported rich result type.
-
-### 21. Add `hasCredential` for Tesla Powerwall certification
-Rare differentiator in Bay Area solar/roofing market.
-
-### 22. Remove Oswald font reference from `/service-areas`
-Not in 3-font design system. Line 58 of `service-areas/index.astro`.
-
-### 23. Delete draft pages `additions-2.astro` and `additions-3.astro`
-noindex but still deployable routes.
-
-### 24. Add `twitter:site` handle to meta tags
-
-### 25. Create YouTube channel (3-5 videos)
-Highest correlation with AI citation (~0.737). Suggested: "Bay Area roof replacement cost 2026", "How to choose a roofing contractor", "James Hardie vs vinyl siding explained".
-
-### 26. Add `geo.position` meta tag
-Format: `<meta name="geo.position" content="37.69427;-122.07887" />` in Layout.astro.
-
-### 27. Replace `knowsAbout` string values with `sameAs` URI references
-
-### 28. Add emergency service language
-Competitors use "24/7 emergency" for storm-damage queries. Even a FAQ entry would help.
+**Estimated score after Critical + High fixes: 88/100**
+**Estimated score after all code fixes: 91/100**
+**Estimated score after all fixes including off-site: 94/100**
 
 ---
 
-## Score Projection
+## Score Breakdown (v3)
 
-| Action Group | Score Impact |
-|-------------|-------------|
-| Critical (1-3) | +6-8 pts |
-| High (4-9) | +5-7 pts |
-| Medium (10-18) | +4-6 pts |
-| **Projected after Critical + High** | **~90/100** |
-
----
-
-*Generated April 5, 2026. Re-audit recommended after completing Critical + High items.*
+| Category | Weight | Score | Weighted |
+|----------|--------|-------|----------|
+| Technical SEO | 20% | 88/100 | 17.6 |
+| Content Quality | 20% | 75/100 | 15.0 |
+| On-Page SEO | 15% | 85/100 | 12.8 |
+| Schema / Structured Data | 10% | 71/100 | 7.1 |
+| Performance (CWV) | 10% | 92/100 | 9.2 |
+| AI Search Readiness (GEO) | 10% | 74/100 | 7.4 |
+| Local SEO | 10% | 67/100 | 6.7 |
+| Images | 5% | 70/100 | 3.5 |
+| **Total** | | | **79.3** |

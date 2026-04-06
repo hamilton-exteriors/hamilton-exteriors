@@ -200,13 +200,17 @@ const serviceSchema: Record<string, unknown> = {
   },
   'areaServed': areaServed,
   'description': data.description,
-  'dateModified': new Date().toISOString().split('T')[0],
+  'dateModified': '2026-03-30',
   'author': {
     '@type': 'Person',
     '@id': 'https://hamilton-exteriors.com/#founder',
     'name': 'Alexander Hamilton Li',
     'jobTitle': 'Architect & General Contractor (CSLB #1082377)',
     'url': 'https://hamilton-exteriors.com/about/alex-hamilton-li',
+  },
+  'speakable': {
+    '@type': 'SpeakableSpecification',
+    'cssSelector': ['.service-intro p:first-of-type', '.faq-section details:first-of-type p'],
   },
   ...(pricing && {
     'offers': {
@@ -241,7 +245,7 @@ const serviceSchema: Record<string, unknown> = {
 />
 
 <div class="mx-auto max-w-7xl px-4 pt-3">
-  <p class="text-xs text-gray-600 font-[Satoshi]">Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
+  <p class="text-xs text-gray-600 font-[Satoshi]">Updated March 2026</p>
 </div>
 
 {isCityServicePage && cityOrArea && (
@@ -261,7 +265,7 @@ const serviceSchema: Record<string, unknown> = {
         <LogoSlider />
         <div class="mx-auto max-w-7xl px-4 py-2 text-center">
           <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted);">
-            Reviewed by <a href="/about/alex-hamilton-li" style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;">Alexander Hamilton Li</a>, Architect &amp; General Contractor · <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377" target="_blank" rel="noopener noreferrer" style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;">CSLB #1082377</a> · Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+            Reviewed by <a href="/about/alex-hamilton-li" style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;">Alexander Hamilton Li</a>, Architect &amp; General Contractor · <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377" target="_blank" rel="noopener noreferrer" style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;">CSLB #1082377</a> · Updated March 2026
           </p>
         </div>
       </>

@@ -43,6 +43,7 @@ const breadcrumbSchema = {
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
+  '@id': `https://hamilton-exteriors.com/service-areas/${data.countySlug}#service`,
   'name': `Roofing and Exterior Services in ${data.county}, ${data.state}`,
   'url': `https://hamilton-exteriors.com/service-areas/${data.countySlug}`,
   'provider': { '@type': 'RoofingContractor', '@id': 'https://hamilton-exteriors.com/#business', 'name': 'Hamilton Exteriors' },
