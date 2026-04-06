@@ -31,13 +31,11 @@ if (isGhostConfigured()) {
 
 const featuredPost = !tag && page === 1 && posts.length > 0 ? posts[0] : null;
 
-/** Convert Ghost tag to human-readable name (already handled by getTags, but needed for post cards) */
 function humanTag(tag: any): string {
   if (!tag) return '';
   return (tag.name || '').replace(/[-_]/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
 }
 
-// Group tags by type for the filter UI
 const topicTags = tags.filter(t => ['roofing', 'siding', 'windows-doors', 'adu-additions', 'painting'].includes(t.slug));
 const typeTags = tags.filter(t => ['cost-guide', 'cost-guide-2', 'comparison', 'hiring-tips', 'maintenance', 'warranty', 'timeline', 'warning-signs', 'seasonal', 'fire-safety', 'regulations', 'materials'].includes(t.slug));
 
@@ -50,7 +48,6 @@ const pageDesc = activeTag
 
 const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
 
-// CollectionPage JSON-LD
 const blogJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
@@ -74,7 +71,6 @@ const blogJsonLd = {
   },
 };
 
-// ItemList schema — helps Google understand article inventory and crawl prioritization
 const itemListJsonLd = posts.length > 0 ? {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
@@ -88,10 +84,6 @@ const itemListJsonLd = posts.length > 0 ? {
 
 const blogSchemas = [blogJsonLd, ...(itemListJsonLd ? [itemListJsonLd] : [])];
 
-// Canonical without query params to avoid duplicate content from tag/page filters
-const canonicalUrl = `${siteUrl}/blog`;
-
-// Ghost built-in image resizing: /content/images/size/w{width}/year/month/file.ext
 function ghostResize(url: string, width: number): string {
   return url.replace(/\/content\/images\/(?!size\/)/, `/content/images/size/w${width}/`);
 }
@@ -105,92 +97,58 @@ function ghostSrcset(url: string, widths: number[]): string {
   <AnnouncementBar />
   <Navbar />
 
-  <section class="w-full" style="background-color: var(--color-heading); padding: 36px 0 28px;">
-    <div class="mx-auto max-w-[1200px] px-5">
-      <h1 class="blog-hero-title" style="color: white; margin-bottom: 8px;">
+  <!-- ═══ HERO ═══ -->
+  <section class="blog-hero">
+    <div class="blog-hero__inner">
+      <h1 class="blog-hero__title">
         {activeTag ? activeTag.name : 'Ground Up: Bay Area Roofing & Home Tips'}
       </h1>
-      <p class="hidden sm:block" style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.6); max-width: 480px; margin-bottom: 16px;">
+      <p class="blog-hero__sub">
         {activeTag
           ? `${pagination.total} article${pagination.total !== 1 ? 's' : ''} about ${activeTag.name.toLowerCase()}`
           : 'Expert insights on roofing, siding, ADUs, and home improvement across the Bay Area.'}
       </p>
       <div class="search-wrap">
-        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="search-wrap__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
         </svg>
-        <input
-          type="search"
-          id="blog-search"
-          placeholder="Search articles — try &quot;roof cost&quot; or &quot;fire zone&quot;..."
-          autocomplete="off"
-          class="search-input"
-        />
+        <input type="search" id="blog-search" placeholder='Search articles — try "roof cost" or "fire zone"...' autocomplete="off" class="search-wrap__input" />
         <div id="search-dropdown" class="search-dropdown" role="listbox" aria-label="Search suggestions"></div>
       </div>
     </div>
   </section>
 
-  {/* Tag Filter */}
+  <!-- ═══ FILTER BAR ═══ -->
   {tags.length > 0 && (
-    <nav aria-label="Filter by topic" class="filter-bar w-full bg-white" style="border-bottom: 1px solid var(--color-border);">
-      <div class="mx-auto max-w-[1200px] px-5 py-4">
-        {/* Mobile: dropdown toggle */}
-        <button
-          id="filter-toggle"
-          class="lg:hidden w-full flex items-center justify-between py-2 px-1"
-          style="font-family: var(--font-dm-sans); font-size: 0.9375rem; font-weight: 600; color: var(--color-heading);"
-          aria-expanded="false"
-          aria-controls="filter-panel"
-        >
+    <nav aria-label="Filter by topic" class="filter-bar">
+      <div class="filter-bar__inner">
+        <button id="filter-toggle" class="filter-bar__toggle lg:hidden" aria-expanded="false" aria-controls="filter-panel">
           <span>{activeTag ? `Filtering: ${activeTag.name}` : 'Filter by Topic'}</span>
-          <svg class="filter-chevron w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
+          <svg class="filter-bar__chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
         </button>
-
-        {/* Filter content — always visible on desktop, toggle on mobile */}
         <div id="filter-panel" class="filter-panel">
-          {/* All Posts pill */}
           <div class="filter-row">
-            <a
-              href="/blog"
-              class:list={['filter-chip', !tag && 'active']}
-            >
-              All Posts
-            </a>
+            <a href="/blog" class:list={['chip', !tag && 'chip--active']}>All Posts</a>
           </div>
-
-          {/* Topic tags */}
           {topicTags.length > 0 && (
             <div class="filter-row">
-              <span class="filter-label">Topic</span>
-              <div class="filter-chips">
+              <span class="filter-row__label">Topic</span>
+              <div class="filter-row__chips">
                 {topicTags.map((t: any) => (
-                  <a
-                    href={tag === t.slug ? '/blog' : `/blog?tag=${t.slug}`}
-                    class:list={['filter-chip', tag === t.slug && 'active']}
-                  >
-                    {t.name}
-                    <span class="filter-count">{t.count}</span>
+                  <a href={tag === t.slug ? '/blog' : `/blog?tag=${t.slug}`} class:list={['chip', tag === t.slug && 'chip--active']}>
+                    {t.name}<span class="chip__count">{t.count}</span>
                   </a>
                 ))}
               </div>
             </div>
           )}
-
-          {/* Type tags */}
           {typeTags.length > 0 && (
             <div class="filter-row">
-              <span class="filter-label">Type</span>
-              <div class="filter-chips">
+              <span class="filter-row__label">Type</span>
+              <div class="filter-row__chips">
                 {typeTags.map((t: any) => (
-                  <a
-                    href={tag === t.slug ? '/blog' : `/blog?tag=${t.slug}`}
-                    class:list={['filter-chip', tag === t.slug && 'active']}
-                  >
-                    {t.name}
-                    <span class="filter-count">{t.count}</span>
+                  <a href={tag === t.slug ? '/blog' : `/blog?tag=${t.slug}`} class:list={['chip', tag === t.slug && 'chip--active']}>
+                    {t.name}<span class="chip__count">{t.count}</span>
                   </a>
                 ))}
               </div>
@@ -201,207 +159,102 @@ function ghostSrcset(url: string, widths: number[]): string {
     </nav>
   )}
 
-  <section class="w-full" style="padding: 56px 0 80px; background-color: var(--color-cream);">
-    <div class="mx-auto max-w-[1200px] px-5">
+  <!-- ═══ CONTENT ═══ -->
+  <section class="blog-content">
+    <div class="blog-content__inner">
       {error ? (
-        <div class="rounded-[4px] border-2 border-dashed p-12 text-center" style="border-color: var(--color-border);">
-          <p style="font-family: var(--font-dm-sans); font-size: 16px; color: var(--color-muted);">{error}</p>
-        </div>
+        <div class="blog-empty"><p>{error}</p></div>
       ) : posts.length === 0 ? (
-        <div class="rounded-[4px] border-2 border-dashed p-12 text-center" style="border-color: var(--color-border);">
-          <p style="font-family: var(--font-dm-sans); font-size: 18px; color: var(--color-heading); font-weight: 600; margin-bottom: 8px;">
-            {tag ? `No posts tagged "${activeTag?.name || tag}"` : 'No posts yet'}
-          </p>
-          <p style="font-family: var(--font-dm-sans); font-size: 16px; color: var(--color-muted); margin-bottom: 20px;">
-            {tag ? 'Try a different category or browse all posts.' : 'Check back soon for expert insights on ADU construction and home improvement.'}
-          </p>
-          {tag && (
-            <a href="/blog" style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-primary); text-decoration: underline;">
-              View all posts
-            </a>
-          )}
+        <div class="blog-empty">
+          <p class="blog-empty__title">{tag ? `No posts tagged "${activeTag?.name || tag}"` : 'No posts yet'}</p>
+          <p>{tag ? 'Try a different category or browse all posts.' : 'Check back soon for expert insights.'}</p>
+          {tag && <a href="/blog" class="blog-empty__link">View all posts</a>}
         </div>
       ) : (
         <>
-          {/* Featured Post (first post, full width, only on page 1 without tag filter) */}
+          {/* ── Featured Card ── */}
           {featuredPost && (
-            <a href={`/blog/${featuredPost.slug}`} class="featured-card group mb-12 grid grid-cols-1 lg:grid-cols-[55%_45%] gap-0 overflow-hidden rounded-lg transition-all hover:shadow-xl bg-white" style="border: 1px solid var(--color-border); box-shadow: 0 2px 12px rgba(0,0,0,0.10);" data-search-title={featuredPost.title.toLowerCase()} data-search-excerpt={(featuredPost.excerpt || '').toLowerCase()}>
-              <div class="aspect-[4/3] md:aspect-[16/10] lg:aspect-auto overflow-hidden bg-[#e8e5df]">
+            <a href={`/blog/${featuredPost.slug}`} class="card card--featured group" data-search-title={featuredPost.title.toLowerCase()} data-search-excerpt={(featuredPost.excerpt || '').toLowerCase()}>
+              <div class="card__img card__img--featured">
                 {featuredPost.feature_image ? (
-                  <img
-                    src={ghostResize(featuredPost.feature_image, 600)}
-                    srcset={ghostSrcset(featuredPost.feature_image, [400, 600, 900])}
-                    sizes="(max-width: 1023px) 100vw, 50vw"
-                    alt={featuredPost.title}
-                    class="h-full w-full object-cover transition-opacity group-hover:opacity-90"
-                    loading="eager"
-                    fetchpriority="high"
-                    decoding="async"
-                    width="600"
-                    height="375"
-                  />
+                  <img src={ghostResize(featuredPost.feature_image, 600)} srcset={ghostSrcset(featuredPost.feature_image, [400, 600, 900])} sizes="(max-width: 1023px) 100vw, 55vw" alt={featuredPost.title} class="card__photo" loading="eager" fetchpriority="high" decoding="async" width="600" height="375" />
                 ) : (
-                  <div class="h-full w-full bg-gradient-to-br from-footer to-primary flex items-center justify-center min-h-[200px]">
-                    <span style="font-family: var(--font-oswald); font-size: 32px; color: rgba(255,255,255,0.2); text-transform: uppercase;">Hamilton</span>
-                  </div>
+                  <div class="card__placeholder"><span>Hamilton</span></div>
                 )}
               </div>
-              <div class="flex flex-col justify-center p-5 lg:p-10">
-                <div class="flex items-center gap-2 flex-wrap" style="margin-bottom: 12px;">
-                  <span style="font-family: var(--font-satoshi); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-primary); background: var(--color-yellow); padding: 4px 12px; border-radius: 4px;">
-                    Latest
-                  </span>
+              <div class="card__body card__body--featured">
+                <div class="card__tags">
+                  <span class="card__badge">Latest</span>
                   {featuredPost.tags?.filter((t: any) => t.slug !== 'blog-post').slice(0, 2).map((t: any) => (
-                    <span style="font-family: var(--font-satoshi); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-heading); background: rgba(0,0,0,0.05); padding: 3px 10px; border-radius: 4px;">
-                      {humanTag(t)}
-                    </span>
+                    <span class="card__tag">{humanTag(t)}</span>
                   ))}
                 </div>
-                <h2 style="font-size: clamp(24px, 3.5vw, 36px); color: var(--color-heading); margin-bottom: 12px;" class="group-hover:text-primary transition-colors">
-                  {featuredPost.title}
-                </h2>
-                {featuredPost.excerpt && (
-                  <p style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: var(--color-muted); margin-bottom: 16px;" class="line-clamp-3">
-                    {featuredPost.excerpt}
-                  </p>
-                )}
-                <div class="flex items-center gap-3" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted);">
-                  <span>By <a href="/about/alex-hamilton-li" style="color: var(--color-heading); font-weight: 500; text-decoration: none;">Alex Hamilton Li</a></span>
+                <h2 class="card__title card__title--featured group-hover:text-[var(--color-primary)]">{featuredPost.title}</h2>
+                {featuredPost.excerpt && <p class="card__excerpt card__excerpt--featured">{featuredPost.excerpt}</p>}
+                <div class="card__meta">
+                  <span>By Alex Hamilton Li</span>
                   <span>&middot;</span>
                   <time datetime={featuredPost.published_at}>{formatDate(featuredPost.published_at)}</time>
-                  {featuredPost.reading_time > 0 && (
-                    <>
-                      <span>&middot;</span>
-                      <span>{featuredPost.reading_time} min read</span>
-                    </>
-                  )}
+                  {featuredPost.reading_time > 0 && <><span>&middot;</span><span>{featuredPost.reading_time} min read</span></>}
                 </div>
-                <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-primary); margin-top: 20px; display: inline-flex; align-items: center; gap: 6px; text-decoration: underline; text-underline-offset: 3px;" class="group-hover:gap-3 transition-all">
-                  Read Article <span>&rarr;</span>
-                </span>
+                <span class="card__cta">Read Article &rarr;</span>
               </div>
             </a>
           )}
 
-          {/* Post Grid */}
-          <div class="blog-grid grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          {/* ── Post Grid ── */}
+          <div class="grid-posts">
             {gridPosts.map((post: any) => (
-              <a href={`/blog/${post.slug}`} class="blog-card group flex flex-col overflow-hidden rounded-lg transition-all hover:shadow-lg bg-white" style="border: 1px solid var(--color-border); box-shadow: 0 2px 12px rgba(0,0,0,0.10);" data-search-title={post.title.toLowerCase()} data-search-excerpt={(post.excerpt || '').toLowerCase()}>
-                {post.feature_image ? (
-                  <div class="aspect-[4/3] sm:aspect-[16/10] w-full overflow-hidden bg-[#e8e5df]">
-                    <img
-                      src={ghostResize(post.feature_image, 400)}
-                      srcset={ghostSrcset(post.feature_image, [300, 400, 600])}
-                      sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 50vw, 33vw"
-                      alt={post.title}
-                      class="h-full w-full object-cover transition-opacity group-hover:opacity-90"
-                      loading="lazy"
-                      decoding="async"
-                      width="400"
-                      height="250"
-                    />
-                  </div>
-                ) : (
-                  <div class="aspect-[16/10] w-full bg-gradient-to-br from-footer to-primary flex items-center justify-center">
-                    <span style="font-family: var(--font-oswald); font-size: 24px; color: rgba(255,255,255,0.3); text-transform: uppercase;">Hamilton</span>
-                  </div>
-                )}
-                <div class="flex flex-1 flex-col p-5">
+              <a href={`/blog/${post.slug}`} class="card group" data-search-title={post.title.toLowerCase()} data-search-excerpt={(post.excerpt || '').toLowerCase()}>
+                <div class="card__img">
+                  {post.feature_image ? (
+                    <img src={ghostResize(post.feature_image, 400)} srcset={ghostSrcset(post.feature_image, [300, 400, 600])} sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw" alt={post.title} class="card__photo" loading="lazy" decoding="async" width="400" height="250" />
+                  ) : (
+                    <div class="card__placeholder"><span>Hamilton</span></div>
+                  )}
+                </div>
+                <div class="card__body">
                   {post.tags?.filter((t: any) => t.slug !== 'blog-post').length > 0 && (
-                    <div class="flex items-center gap-1.5 flex-wrap" style="margin-bottom: 8px;">
+                    <div class="card__tags card__tags--sm">
                       {post.tags.filter((t: any) => t.slug !== 'blog-post').slice(0, 2).map((t: any) => (
-                        <span style="font-family: var(--font-satoshi); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted);">
-                          {humanTag(t)}
-                        </span>
+                        <span class="card__tag">{humanTag(t)}</span>
                       ))}
                     </div>
                   )}
-                  <h3 style="font-size: 1.125rem; margin-bottom: 8px;" class="group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h3>
-                  {post.excerpt && (
-                    <p style="font-family: var(--font-dm-sans); font-size: 0.9375rem; line-height: 1.6; color: var(--color-muted); margin-bottom: 12px;" class="line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                  )}
-                  <div class="mt-auto flex items-center gap-3" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted);">
-                    <span>By <a href="/about/alex-hamilton-li" style="color: var(--color-heading); font-weight: 500; text-decoration: none;" onclick="event.stopPropagation();">Alex Hamilton Li</a></span>
-                    <span>&middot;</span>
+                  <h3 class="card__title group-hover:text-[var(--color-primary)]">{post.title}</h3>
+                  {post.excerpt && <p class="card__excerpt">{post.excerpt}</p>}
+                  <div class="card__meta">
                     <time datetime={post.published_at}>{formatDate(post.published_at)}</time>
-                    {post.reading_time > 0 && (
-                      <>
-                        <span>&middot;</span>
-                        <span>{post.reading_time} min read</span>
-                      </>
-                    )}
+                    {post.reading_time > 0 && <><span>&middot;</span><span>{post.reading_time} min</span></>}
                   </div>
                 </div>
               </a>
             ))}
           </div>
 
-          {/* No search results message */}
           <div class="search-no-results" id="search-no-results">
-            <p style="font-size: 18px; font-weight: 600; color: var(--color-heading); margin-bottom: 8px;">No articles match your search</p>
-            <p style="font-size: 15px;">Try different keywords or <a href="/blog" style="color: var(--color-primary); font-weight: 600; text-decoration: underline;">browse all posts</a>.</p>
+            <p style="font-weight: 600; margin-bottom: 8px;">No articles match your search</p>
+            <p>Try different keywords or <a href="/blog" style="color: var(--color-primary); font-weight: 600; text-decoration: underline;">browse all posts</a>.</p>
           </div>
 
-          {/* Newsletter CTA — between content and pagination */}
+          {/* ── CTA ── */}
           {page === 1 && (
-            <div class="mt-16 rounded-[4px] overflow-hidden" style="background-color: var(--color-heading);">
-              <div class="px-8 py-12 md:px-12 md:py-14 text-center">
-                <h3 style="color: white; margin-bottom: 8px;">
-                  Get a Free Roof Inspection
-                </h3>
-                <p style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.65); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
-                  Bay Area homeowners — find out the true condition of your roof with a no-obligation inspection from our certified team.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                  <a
-                    href="/buy"
-                    class="inline-block rounded-full px-8 py-3.5 font-bold uppercase text-sm tracking-wide"
-                    style="background-color: var(--color-yellow); color: var(--color-footer); font-family: var(--font-oswald);"
-                  >
-                    Scan Your Roof Online
-                  </a>
-                  <a
-                    href={PHONE_HREF}
-                    class="inline-block rounded-full px-8 py-3.5 font-bold uppercase text-sm tracking-wide border-2 border-white/30 text-white hover:bg-white/10 transition-colors"
-                    style="font-family: var(--font-oswald);"
-                  >
-                    Call {PHONE_DISPLAY}
-                  </a>
-                </div>
+            <div class="blog-cta">
+              <h3 style="color: white; margin-bottom: 8px;">Get a Free Roof Inspection</h3>
+              <p class="blog-cta__text">Bay Area homeowners — find out the true condition of your roof with a no-obligation inspection from our certified team.</p>
+              <div class="blog-cta__buttons">
+                <a href="/buy" class="blog-cta__btn blog-cta__btn--primary">Scan Your Roof Online</a>
+                <a href={PHONE_HREF} class="blog-cta__btn blog-cta__btn--secondary">Call {PHONE_DISPLAY}</a>
               </div>
             </div>
           )}
 
-          {/* Pagination */}
+          {/* ── Pagination ── */}
           {pagination.pages > 1 && (
-            <div class="mt-12 flex items-center justify-center gap-3">
-              {pagination.page > 1 && (
-                <a
-                  href={`/blog?page=${pagination.page - 1}${tag ? `&tag=${tag}` : ''}`}
-                  rel="prev"
-                  class="rounded-[8px] px-5 py-2.5 text-sm font-medium inline-flex items-center gap-2 transition-colors hover:bg-cream"
-                  style="font-family: var(--font-dm-sans); border: 1px solid var(--color-border); color: var(--color-heading);"
-                >
-                  &larr; Previous
-                </a>
-              )}
-              <span style="font-family: var(--font-dm-sans); font-size: 0.875rem; color: var(--color-muted);">
-                Page {pagination.page} of {pagination.pages}
-              </span>
-              {pagination.page < pagination.pages && (
-                <a
-                  href={`/blog?page=${pagination.page + 1}${tag ? `&tag=${tag}` : ''}`}
-                  rel="next"
-                  class="rounded-[8px] px-5 py-2.5 text-sm font-medium inline-flex items-center gap-2 transition-colors hover:bg-cream"
-                  style="font-family: var(--font-dm-sans); border: 1px solid var(--color-border); color: var(--color-heading);"
-                >
-                  Next &rarr;
-                </a>
-              )}
+            <div class="blog-pagination">
+              {pagination.page > 1 && <a href={`/blog?page=${pagination.page - 1}${tag ? `&tag=${tag}` : ''}`} rel="prev" class="blog-pagination__btn">&larr; Previous</a>}
+              <span class="blog-pagination__label">Page {pagination.page} of {pagination.pages}</span>
+              {pagination.page < pagination.pages && <a href={`/blog?page=${pagination.page + 1}${tag ? `&tag=${tag}` : ''}`} rel="next" class="blog-pagination__btn">Next &rarr;</a>}
             </div>
           )}
         </>
@@ -412,292 +265,373 @@ function ghostSrcset(url: string, widths: number[]): string {
   <ContactUs />
   <Footer />
 
-  {/* All posts data for search autocomplete */}
   <script is:inline define:vars={{ allPosts: posts.map((p: any) => ({
-    slug: p.slug,
-    title: p.title,
-    excerpt: (p.excerpt || '').slice(0, 120),
-    image: p.feature_image || null,
-    tags: (p.tags || []).filter((t: any) => t.slug !== 'blog-post').map((t: any) => t.name),
+    slug: p.slug, title: p.title, excerpt: (p.excerpt || '').slice(0, 120),
+    image: p.feature_image || null, tags: (p.tags || []).filter((t: any) => t.slug !== 'blog-post').map((t: any) => t.name),
   })) }}>
     window.__blogPosts = allPosts;
   </script>
 </Layout>
 
 <style>
-  /* ── Blog Hero ──────────────────────────────────────────────── */
-  .blog-hero-title {
-    font-size: clamp(28px, 6vw, 52px);
-  }
+  /* ════════════════════════════════════════════════════════════════
+     BLOG INDEX — rebuilt from scratch
+     ════════════════════════════════════════════════════════════════ */
 
-  /* ── Filter Bar ─────────────────────────────────────────────── */
-  .filter-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  /* ── Hero ─────────────────────────────────────────────────────── */
+  .blog-hero {
+    background-color: var(--color-heading);
+    padding: 32px 0 24px;
   }
-
-  .filter-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
+  .blog-hero__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
-
-  .filter-label {
-    font-family: var(--font-satoshi);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-muted);
-    min-width: 44px;
-    flex-shrink: 0;
-  }
-
-  .filter-chips {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-
-  .filter-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-family: var(--font-dm-sans);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--color-heading);
-    background: var(--color-cream);
-    white-space: nowrap;
-    transition: all 0.15s ease;
-    text-decoration: none;
-    border: 1px solid transparent;
-  }
-
-  .filter-chip:hover {
-    background: #e8e5dd;
-    border-color: var(--color-border);
-  }
-
-  .filter-chip.active {
-    background: #245945;
+  .blog-hero__title {
     color: #fff;
-    border-color: #245945;
+    font-size: clamp(26px, 5.5vw, 48px);
+    margin-bottom: 6px;
   }
-
-  .filter-chip.active .filter-count {
-    background: rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.9);
+  .blog-hero__sub {
+    font-family: var(--font-dm-sans);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.55);
+    max-width: 460px;
+    margin-bottom: 14px;
   }
-
-  .filter-count {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    padding: 1px 6px;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.06);
-    color: var(--color-muted);
-  }
-
-  /* Mobile + Tablet: collapsible filter panel */
-  @media (max-width: 1023px) {
-    .filter-panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, opacity 0.2s ease;
-      opacity: 0;
-    }
-
-    .filter-panel.open {
-      max-height: 400px;
-      opacity: 1;
-      padding-top: 12px;
-    }
-
-    .filter-chevron {
-      transition: transform 0.2s ease;
-    }
-
-    .filter-panel.open ~ #filter-toggle .filter-chevron,
-    [aria-expanded="true"] .filter-chevron {
-      transform: rotate(180deg);
-    }
-
-    .filter-label {
-      width: 100%;
-      margin-bottom: 2px;
-    }
-
-    .filter-row {
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    .filter-row:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-  }
-
-  /* Desktop: always visible, horizontal layout */
-  @media (min-width: 1024px) {
-    #filter-toggle {
-      display: none;
-    }
-
-    .filter-panel {
-      gap: 8px;
-    }
-
-    .filter-row {
-      gap: 10px;
-    }
+  @media (max-width: 639px) {
+    .blog-hero__sub { display: none; }
   }
 
   /* ── Search ──────────────────────────────────────────────────── */
-  .search-wrap {
-    position: relative;
-    width: 100%;
+  .search-wrap { position: relative; }
+  .search-wrap__icon {
+    position: absolute; left: 16px; top: 50%;
+    transform: translateY(-50%); pointer-events: none; z-index: 1;
   }
-
-  .search-icon {
-    position: absolute;
-    left: 18px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    z-index: 1;
+  .search-wrap__input {
+    width: 100%; padding: 14px 18px 14px 48px;
+    border-radius: 10px; border: 2px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.07); color: #fff;
+    font-family: var(--font-dm-sans); font-size: 0.9375rem;
+    outline: none; transition: border-color 0.15s, background 0.15s;
   }
-
-  .search-input {
-    width: 100%;
-    padding: 16px 20px 16px 50px;
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.08);
-    color: #fff;
-    font-family: var(--font-dm-sans);
-    font-size: 1rem;
-    outline: none;
-    transition: all 0.15s ease;
-  }
-
-  .search-input::placeholder {
-    color: rgba(255, 255, 255, 0.35);
-  }
-
-  .search-input:focus {
+  .search-wrap__input::placeholder { color: rgba(255,255,255,0.3); }
+  .search-wrap__input:focus {
     border-color: var(--color-yellow);
-    background: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 0 0 4px rgba(255, 222, 33, 0.15);
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 0 0 3px rgba(255,222,33,0.12);
+  }
+  .search-wrap__input::-webkit-search-cancel-button {
+    -webkit-appearance: none; appearance: none;
+    width: 16px; height: 16px; cursor: pointer; opacity: 0.4;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='4' y1='4' x2='12' y2='12'/%3E%3Cline x1='12' y1='4' x2='4' y2='12'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .search-wrap__input::-webkit-search-cancel-button:hover { opacity: 1; }
+
+  .search-dropdown {
+    display: none; position: absolute; top: calc(100% + 4px);
+    left: 0; right: 0; background: #1c1c1c;
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 50;
+    max-height: 360px; overflow-y: auto;
+  }
+  .search-dropdown.open { display: block; }
+  .search-dropdown a {
+    display: block; padding: 12px 18px; text-decoration: none;
+    font-family: var(--font-dm-sans); font-size: 0.9375rem; color: white;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .search-dropdown a:last-child { border-bottom: none; }
+  .search-dropdown a:hover, .search-dropdown a.highlighted { background: rgba(255,255,255,0.08); }
+  .search-dropdown .no-match {
+    padding: 16px 18px; font-family: var(--font-dm-sans);
+    font-size: 0.875rem; color: rgba(255,255,255,0.4); text-align: center;
   }
 
-  /* Native clear button (type="search") — make it white */
-  .search-input::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='4' y1='4' x2='12' y2='12'/%3E%3Cline x1='12' y1='4' x2='4' y2='12'/%3E%3C/svg%3E") center / contain no-repeat;
-    cursor: pointer;
-    opacity: 0.5;
+  /* ── Filter Bar ──────────────────────────────────────────────── */
+  .filter-bar {
+    background: #fff;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .filter-bar__inner {
+    max-width: 1200px; margin: 0 auto; padding: 12px 20px;
+  }
+  .filter-bar__toggle {
+    width: 100%; display: flex; align-items: center;
+    justify-content: space-between; padding: 8px 0;
+    font-family: var(--font-dm-sans); font-size: 0.9375rem;
+    font-weight: 600; color: var(--color-heading);
+    background: none; border: none; cursor: pointer;
+  }
+  .filter-bar__chevron { width: 16px; height: 16px; transition: transform 0.2s; }
+  [aria-expanded="true"] .filter-bar__chevron { transform: rotate(180deg); }
+
+  .filter-panel { display: flex; flex-direction: column; gap: 8px; }
+  .filter-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .filter-row__label {
+    font-family: var(--font-satoshi); font-size: 0.75rem;
+    font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--color-muted); min-width: 44px; flex-shrink: 0;
+  }
+  .filter-row__chips { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 8px 14px; border-radius: 6px;
+    font-family: var(--font-dm-sans); font-size: 0.8125rem; font-weight: 500;
+    color: var(--color-heading); background: var(--color-cream);
+    text-decoration: none; border: 1px solid transparent;
+    transition: background 0.15s, border-color 0.15s; white-space: nowrap;
+  }
+  .chip:hover { background: #e8e5dd; border-color: var(--color-border); }
+  .chip--active { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+  .chip--active .chip__count { background: rgba(255,255,255,0.2); color: rgba(255,255,255,0.9); }
+  .chip__count {
+    font-size: 0.6875rem; font-weight: 600;
+    padding: 1px 6px; border-radius: 10px;
+    background: rgba(0,0,0,0.06); color: var(--color-muted);
+  }
+
+  @media (max-width: 1023px) {
+    .filter-panel {
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.2s ease;
+    }
+    .filter-panel.open { max-height: 400px; opacity: 1; padding-top: 10px; }
+    .filter-row__label { width: 100%; margin-bottom: 2px; }
+    .filter-row { padding-bottom: 8px; border-bottom: 1px solid var(--color-border); }
+    .filter-row:last-child { border-bottom: none; padding-bottom: 0; }
+  }
+  @media (min-width: 1024px) {
+    .filter-bar__toggle { display: none; }
+  }
+
+  /* ── Content Section ─────────────────────────────────────────── */
+  .blog-content {
+    background: var(--color-cream);
+    padding: 40px 0 80px;
+  }
+  .blog-content__inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 20px;
+  }
+
+  /* ── Cards (the whole point) ─────────────────────────────────── */
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.15s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    opacity: 0.95;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+  }
+
+  .card--featured {
+    margin-bottom: 40px;
+  }
+  @media (min-width: 1024px) {
+    .card--featured {
+      flex-direction: row;
+    }
+    .card--featured .card__img--featured {
+      width: 55%;
+      flex-shrink: 0;
+    }
+    .card--featured .card__body--featured {
+      width: 45%;
+    }
+  }
+
+  .card__img {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: #e8e5df;
+  }
+  .card__img--featured {
+    aspect-ratio: 4/3;
+  }
+  @media (min-width: 768px) {
+    .card__img--featured { aspect-ratio: 16/10; }
+  }
+  @media (min-width: 1024px) {
+    .card__img--featured { aspect-ratio: auto; min-height: 100%; }
+  }
+
+  .card__photo {
+    width: 100%; height: 100%;
+    object-fit: cover;
     transition: opacity 0.15s;
   }
-  .search-input::-webkit-search-cancel-button:hover {
-    opacity: 1;
+  .card:hover .card__photo { opacity: 0.92; }
+
+  .card__placeholder {
+    width: 100%; height: 100%; min-height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--color-heading), var(--color-primary));
+  }
+  .card__placeholder span {
+    font-family: var(--font-oswald); font-size: 28px;
+    color: rgba(255,255,255,0.15); text-transform: uppercase;
   }
 
-  /* ── Dropdown ────────────────────────────────────────────────── */
-  .search-dropdown {
-    display: none;
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 0;
-    right: 0;
-    background: #1c1c1c;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    z-index: 50;
-    overflow: hidden;
-    max-height: 360px;
-    overflow-y: auto;
+  .card__body {
+    padding: 20px;
+    display: flex; flex-direction: column; flex: 1;
+  }
+  .card__body--featured {
+    padding: 24px;
+    justify-content: center;
+  }
+  @media (min-width: 1024px) {
+    .card__body--featured { padding: 32px 40px; }
   }
 
-  .search-dropdown.open {
-    display: block;
-  }
+  .card__tags { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .card__tags--sm { margin-bottom: 6px; }
 
-  .search-dropdown a {
-    display: block;
-    padding: 12px 18px;
-    text-decoration: none;
-    font-family: var(--font-dm-sans);
-    font-size: 0.9375rem;
-    color: white;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    transition: background 0.15s;
+  .card__badge {
+    font-family: var(--font-satoshi); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--color-primary); background: var(--color-yellow);
+    padding: 3px 10px; border-radius: 4px;
   }
-
-  .search-dropdown a:last-child {
-    border-bottom: none;
-  }
-
-  .search-dropdown a:hover,
-  .search-dropdown a.highlighted {
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .search-dropdown .no-match {
-    padding: 16px 18px;
-    font-family: var(--font-dm-sans);
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.45);
-    text-align: center;
-  }
-
-  /* Hide card when search doesn't match */
-  .blog-card.search-hidden,
-  .featured-card.search-hidden {
-    display: none !important;
-  }
-
-  .search-no-results {
-    display: none;
-    text-align: center;
-    padding: 48px 20px;
-    font-family: var(--font-dm-sans);
+  .card__tag {
+    font-family: var(--font-satoshi); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--color-muted);
   }
 
-  .search-no-results.visible {
-    display: block;
+  .card__title {
+    font-size: 1.125rem;
+    margin-bottom: 8px;
+    transition: color 0.15s;
+  }
+  .card__title--featured {
+    font-size: clamp(22px, 3vw, 32px);
+    margin-bottom: 12px;
   }
 
-  /* ── Blog Cards ─────────────────────────────────────────────── */
-  .blog-card,
-  .featured-card {
-    background: #fff;
-    border: 1px solid var(--color-border) !important;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08) !important;
-    transition: opacity 0.15s ease, box-shadow 0.2s ease;
+  .card__excerpt {
+    font-family: var(--font-dm-sans);
+    font-size: 0.9375rem; line-height: 1.6;
+    color: var(--color-muted);
+    margin-bottom: 12px;
+    display: -webkit-box; -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; overflow: hidden;
   }
-  .blog-card:hover,
-  .featured-card:hover {
-    opacity: 0.95;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12) !important;
+  .card__excerpt--featured {
+    font-size: 1rem; line-height: 1.65;
+    margin-bottom: 16px;
   }
 
-  /* ── Tablet: 2-column grid ── */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .blog-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
+  .card__meta {
+    font-family: var(--font-dm-sans); font-size: 0.8125rem;
+    color: var(--color-muted);
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+    margin-top: auto;
+  }
+
+  .card__cta {
+    font-family: var(--font-dm-sans); font-size: 0.875rem;
+    font-weight: 600; color: var(--color-primary);
+    margin-top: 16px;
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+
+  /* ── Post Grid ───────────────────────────────────────────────── */
+  .grid-posts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 640px) {
+    .grid-posts { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1280px) {
+    .grid-posts { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ── Search hide ─────────────────────────────────────────────── */
+  .card.search-hidden { display: none !important; }
+  .search-no-results {
+    display: none; text-align: center; padding: 48px 20px;
+    font-family: var(--font-dm-sans); color: var(--color-muted);
+  }
+  .search-no-results.visible { display: block; }
+
+  /* ── Empty state ─────────────────────────────────────────────── */
+  .blog-empty {
+    border: 2px dashed var(--color-border); border-radius: 8px;
+    padding: 48px 24px; text-align: center;
+    font-family: var(--font-dm-sans); color: var(--color-muted);
+  }
+  .blog-empty__title {
+    font-size: 1.125rem; font-weight: 600;
+    color: var(--color-heading); margin-bottom: 8px;
+  }
+  .blog-empty__link {
+    display: inline-block; margin-top: 16px;
+    font-size: 0.875rem; font-weight: 600;
+    color: var(--color-primary); text-decoration: underline;
+  }
+
+  /* ── CTA Block ───────────────────────────────────────────────── */
+  .blog-cta {
+    margin-top: 56px; border-radius: 8px; overflow: hidden;
+    background: var(--color-heading);
+    padding: 40px 28px; text-align: center;
+  }
+  @media (min-width: 768px) { .blog-cta { padding: 48px 40px; } }
+  .blog-cta__text {
+    font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.65;
+    color: rgba(255,255,255,0.6); max-width: 500px;
+    margin: 0 auto 24px;
+  }
+  .blog-cta__buttons {
+    display: flex; flex-direction: column; gap: 10px;
+    justify-content: center; align-items: center;
+  }
+  @media (min-width: 640px) { .blog-cta__buttons { flex-direction: row; } }
+  .blog-cta__btn {
+    display: inline-block; border-radius: 999px;
+    padding: 14px 28px; font-family: var(--font-oswald);
+    font-size: 0.875rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.04em; text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .blog-cta__btn:hover { opacity: 0.9; }
+  .blog-cta__btn--primary { background: var(--color-yellow); color: var(--color-heading); }
+  .blog-cta__btn--secondary { border: 2px solid rgba(255,255,255,0.25); color: #fff; }
+
+  /* ── Pagination ──────────────────────────────────────────────── */
+  .blog-pagination {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; margin-top: 48px;
+  }
+  .blog-pagination__btn {
+    font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 500;
+    padding: 10px 20px; border: 1px solid var(--color-border);
+    border-radius: 8px; color: var(--color-heading);
+    text-decoration: none; transition: background 0.15s;
+  }
+  .blog-pagination__btn:hover { background: var(--color-cream); }
+  .blog-pagination__label {
+    font-family: var(--font-dm-sans); font-size: 0.875rem; color: var(--color-muted);
+  }
+
+  /* ── Reduced motion ──────────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .card, .chip, .search-wrap__input, .filter-panel { transition: none !important; }
   }
 </style>
 
@@ -710,8 +644,7 @@ function ghostSrcset(url: string, widths: number[]): string {
       const open = panel.classList.toggle('open');
       toggle.setAttribute('aria-expanded', String(open));
     });
-    // Only auto-open on mobile if a specific tag is active (not "All Posts")
-    const activeChip = panel.querySelector('.filter-chip.active');
+    const activeChip = panel.querySelector('.chip--active');
     const isTagFilter = activeChip && !activeChip.getAttribute('href')?.endsWith('/blog');
     if (isTagFilter) {
       panel.classList.add('open');
@@ -719,10 +652,10 @@ function ghostSrcset(url: string, widths: number[]): string {
     }
   }
 
-  // Blog search with autocomplete dropdown
+  // Blog search
   const searchInput = document.getElementById('blog-search') as HTMLInputElement;
   const dropdown = document.getElementById('search-dropdown');
-  const cards = document.querySelectorAll('.blog-card, .featured-card');
+  const cards = document.querySelectorAll('.card');
   const noResults = document.getElementById('search-no-results');
   const posts = (window as any).__blogPosts || [];
 
@@ -734,52 +667,37 @@ function ghostSrcset(url: string, widths: number[]): string {
       if (!query) {
         dropdown!.classList.remove('open');
         dropdown!.innerHTML = '';
-        // Show all cards
         cards.forEach(c => (c as HTMLElement).classList.remove('search-hidden'));
         noResults?.classList.remove('visible');
         return;
       }
-
       const q = query.toLowerCase();
       const matches = posts.filter((p: any) =>
-        p.title.toLowerCase().includes(q) ||
-        (p.excerpt || '').toLowerCase().includes(q) ||
+        p.title.toLowerCase().includes(q) || (p.excerpt || '').toLowerCase().includes(q) ||
         p.tags.some((t: string) => t.toLowerCase().includes(q))
       ).slice(0, 6);
 
-      if (matches.length === 0) {
-        dropdown!.innerHTML = '<div class="no-match">No results</div>';
-        dropdown!.classList.add('open');
-      } else {
-        dropdown!.innerHTML = matches.map((p: any, i: number) =>
-          `<a href="/blog/${p.slug}" role="option" data-idx="${i}">${highlight(p.title, query)}</a>`
-        ).join('');
-        dropdown!.classList.add('open');
-      }
+      dropdown!.innerHTML = matches.length === 0
+        ? '<div class="no-match">No results</div>'
+        : matches.map((p: any, i: number) => `<a href="/blog/${p.slug}" role="option" data-idx="${i}">${hl(p.title, query)}</a>`).join('');
+      dropdown!.classList.add('open');
 
-      // Also filter the grid cards
       let visible = 0;
       cards.forEach(c => {
         const el = c as HTMLElement;
-        const title = el.dataset.searchTitle || '';
-        const excerpt = el.dataset.searchExcerpt || '';
-        if (title.includes(q) || excerpt.includes(q)) {
-          el.classList.remove('search-hidden');
-          visible++;
-        } else {
-          el.classList.add('search-hidden');
-        }
+        const t = el.dataset.searchTitle || '';
+        const e = el.dataset.searchExcerpt || '';
+        if (t.includes(q) || e.includes(q)) { el.classList.remove('search-hidden'); visible++; }
+        else { el.classList.add('search-hidden'); }
       });
       noResults?.classList.toggle('visible', visible === 0 && matches.length === 0);
-
       highlightIdx = -1;
     }
 
-    function highlight(text: string, query: string): string {
-      if (!query) return text;
-      const idx = text.toLowerCase().indexOf(query.toLowerCase());
-      if (idx === -1) return text;
-      return text.slice(0, idx) + '<mark style="background:var(--color-yellow);color:#1A1A1A;padding:0 2px;border-radius:2px">' + text.slice(idx, idx + query.length) + '</mark>' + text.slice(idx + query.length);
+    function hl(text: string, q: string): string {
+      const i = text.toLowerCase().indexOf(q.toLowerCase());
+      if (i === -1) return text;
+      return text.slice(0, i) + '<mark style="background:var(--color-yellow);color:#1A1A1A;padding:0 2px;border-radius:2px">' + text.slice(i, i + q.length) + '</mark>' + text.slice(i + q.length);
     }
 
     searchInput.addEventListener('input', () => {
@@ -787,38 +705,17 @@ function ghostSrcset(url: string, widths: number[]): string {
       debounce = setTimeout(() => renderDropdown(searchInput.value.trim()), 120);
     });
 
-    // Keyboard navigation
     searchInput.addEventListener('keydown', (e) => {
       const items = dropdown!.querySelectorAll('a[role="option"]');
       if (!items.length) return;
-
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        highlightIdx = Math.min(highlightIdx + 1, items.length - 1);
-        items.forEach((el, i) => el.classList.toggle('highlighted', i === highlightIdx));
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        highlightIdx = Math.max(highlightIdx - 1, 0);
-        items.forEach((el, i) => el.classList.toggle('highlighted', i === highlightIdx));
-      } else if (e.key === 'Enter' && highlightIdx >= 0) {
-        e.preventDefault();
-        (items[highlightIdx] as HTMLAnchorElement).click();
-      } else if (e.key === 'Escape') {
-        dropdown!.classList.remove('open');
-        searchInput.blur();
-      }
+      if (e.key === 'ArrowDown') { e.preventDefault(); highlightIdx = Math.min(highlightIdx + 1, items.length - 1); items.forEach((el, i) => el.classList.toggle('highlighted', i === highlightIdx)); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); highlightIdx = Math.max(highlightIdx - 1, 0); items.forEach((el, i) => el.classList.toggle('highlighted', i === highlightIdx)); }
+      else if (e.key === 'Enter' && highlightIdx >= 0) { e.preventDefault(); (items[highlightIdx] as HTMLAnchorElement).click(); }
+      else if (e.key === 'Escape') { dropdown!.classList.remove('open'); searchInput.blur(); }
     });
 
-    // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
-      if (!(e.target as Element).closest('.search-wrap')) {
-        dropdown!.classList.remove('open');
-      }
-    });
-
-    // Reopen on focus if there's a query
-    searchInput.addEventListener('focus', () => {
-      if (searchInput.value.trim()) renderDropdown(searchInput.value.trim());
+      if (!(e.target as HTMLElement).closest('.search-wrap')) dropdown!.classList.remove('open');
     });
   }
 </script>
