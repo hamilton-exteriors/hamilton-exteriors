@@ -105,12 +105,12 @@ function ghostSrcset(url: string, widths: number[]): string {
   <AnnouncementBar />
   <Navbar />
 
-  <section class="w-full" style="background-color: var(--color-heading); padding: 56px 0 40px;">
+  <section class="w-full" style="background-color: var(--color-heading); padding: 36px 0 28px;">
     <div class="mx-auto max-w-[1200px] px-5">
-      <h1 style="color: white; margin-bottom: 12px;">
+      <h1 class="blog-hero-title" style="color: white; margin-bottom: 8px;">
         {activeTag ? activeTag.name : 'Ground Up: Bay Area Roofing & Home Tips'}
       </h1>
-      <p style="font-family: var(--font-dm-sans); font-size: 1.0625rem; line-height: 1.7; color: rgba(255,255,255,0.65); max-width: 540px; margin-bottom: 24px;">
+      <p class="hidden sm:block" style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.6); max-width: 480px; margin-bottom: 16px;">
         {activeTag
           ? `${pagination.total} article${pagination.total !== 1 ? 's' : ''} about ${activeTag.name.toLowerCase()}`
           : 'Expert insights on roofing, siding, ADUs, and home improvement across the Bay Area.'}
@@ -133,7 +133,7 @@ function ghostSrcset(url: string, widths: number[]): string {
 
   {/* Tag Filter */}
   {tags.length > 0 && (
-    <nav aria-label="Filter by topic" class="filter-bar w-full bg-white sticky z-40" style="top: var(--navbar-height, 56px); box-shadow: 0 1px 0 rgba(0,0,0,0.06);">
+    <nav aria-label="Filter by topic" class="filter-bar w-full bg-white" style="box-shadow: 0 1px 0 rgba(0,0,0,0.06);">
       <div class="mx-auto max-w-[1200px] px-5 py-4">
         {/* Mobile: dropdown toggle */}
         <button
@@ -225,7 +225,7 @@ function ghostSrcset(url: string, widths: number[]): string {
         <>
           {/* Featured Post (first post, full width, only on page 1 without tag filter) */}
           {featuredPost && (
-            <a href={`/blog/${featuredPost.slug}`} class="featured-card group mb-12 grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden rounded-lg transition-all hover:shadow-xl bg-white" style="border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 8px rgba(0,0,0,0.06);" data-search-title={featuredPost.title.toLowerCase()} data-search-excerpt={(featuredPost.excerpt || '').toLowerCase()}>
+            <a href={`/blog/${featuredPost.slug}`} class="featured-card group mb-12 grid grid-cols-1 lg:grid-cols-[55%_45%] gap-0 overflow-hidden rounded-lg transition-all hover:shadow-xl bg-white" style="border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 8px rgba(0,0,0,0.06);" data-search-title={featuredPost.title.toLowerCase()} data-search-excerpt={(featuredPost.excerpt || '').toLowerCase()}>
               <div class="aspect-[4/3] md:aspect-[16/10] lg:aspect-auto overflow-hidden bg-gray-100">
                 {featuredPost.feature_image ? (
                   <img
@@ -248,7 +248,7 @@ function ghostSrcset(url: string, widths: number[]): string {
               </div>
               <div class="flex flex-col justify-center p-5 lg:p-10">
                 <div class="flex items-center gap-2 flex-wrap" style="margin-bottom: 12px;">
-                  <span style="font-family: var(--font-satoshi); font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-primary);">
+                  <span style="font-family: var(--font-satoshi); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-primary); background: var(--color-yellow); padding: 4px 12px; border-radius: 4px;">
                     Latest
                   </span>
                   {featuredPost.tags?.filter((t: any) => t.slug !== 'blog-post').slice(0, 2).map((t: any) => (
@@ -257,7 +257,7 @@ function ghostSrcset(url: string, widths: number[]): string {
                     </span>
                   ))}
                 </div>
-                <h2 style="font-size: clamp(22px, 3vw, 32px); color: var(--color-heading); margin-bottom: 12px;" class="group-hover:text-primary transition-colors">
+                <h2 style="font-size: clamp(24px, 3.5vw, 36px); color: var(--color-heading); margin-bottom: 12px;" class="group-hover:text-primary transition-colors">
                   {featuredPost.title}
                 </h2>
                 {featuredPost.excerpt && (
@@ -310,7 +310,7 @@ function ghostSrcset(url: string, widths: number[]): string {
                   {post.tags?.filter((t: any) => t.slug !== 'blog-post').length > 0 && (
                     <div class="flex items-center gap-1.5 flex-wrap" style="margin-bottom: 8px;">
                       {post.tags.filter((t: any) => t.slug !== 'blog-post').slice(0, 2).map((t: any) => (
-                        <span style="font-family: var(--font-satoshi); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary);">
+                        <span style="font-family: var(--font-satoshi); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted);">
                           {humanTag(t)}
                         </span>
                       ))}
@@ -425,6 +425,11 @@ function ghostSrcset(url: string, widths: number[]): string {
 </Layout>
 
 <style>
+  /* ── Blog Hero ──────────────────────────────────────────────── */
+  .blog-hero-title {
+    font-size: clamp(28px, 6vw, 52px);
+  }
+
   /* ── Filter Bar ─────────────────────────────────────────────── */
   .filter-panel {
     display: flex;
@@ -707,7 +712,10 @@ function ghostSrcset(url: string, widths: number[]): string {
       const open = panel.classList.toggle('open');
       toggle.setAttribute('aria-expanded', String(open));
     });
-    if (panel.querySelector('.filter-chip.active')) {
+    // Only auto-open on mobile if a specific tag is active (not "All Posts")
+    const activeChip = panel.querySelector('.filter-chip.active');
+    const isTagFilter = activeChip && !activeChip.getAttribute('href')?.endsWith('/blog');
+    if (isTagFilter) {
       panel.classList.add('open');
       toggle.setAttribute('aria-expanded', 'true');
     }
