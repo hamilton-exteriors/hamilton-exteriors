@@ -171,8 +171,8 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     <script type="application/ld+json" is:inline>
     {
       "@context": "https://schema.org",
-      "@type": "RoofingContractor",
-      "additionalType": "https://schema.org/GeneralContractor",
+      "@type": "GeneralContractor",
+      "additionalType": "https://schema.org/RoofingContractor",
       "@id": "https://hamilton-exteriors.com/#business",
       "name": "Hamilton Exteriors",
       "url": "https://hamilton-exteriors.com",
@@ -193,7 +193,8 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
       },
       "openingHoursSpecification": [
         { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "00:00", "closes": "00:00" }
       ],
       "contactPoint": {
         "@type": "ContactPoint",
@@ -228,9 +229,10 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
       "priceRange": "$$",
       "image": {
         "@type": "ImageObject",
-        "url": "https://hamilton-exteriors.com/logo-schema.png",
-        "width": 600,
-        "height": 120
+        "url": "https://hamilton-exteriors.com/og-default.jpg",
+        "width": 1200,
+        "height": 630,
+        "caption": "Hamilton Exteriors — Bay Area Design-Build & Exteriors Contractor"
       },
       "logo": {
         "@type": "ImageObject",
@@ -265,7 +267,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
         {
           "@type": "EducationalOccupationalCredential",
           "credentialCategory": "certification",
-          "name": "GAF Certified Installer"
+          "name": "GAF Master Elite Contractor"
         },
         {
           "@type": "EducationalOccupationalCredential",
@@ -285,9 +287,9 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
         { "@type": "Thing", "name": "Fiber cement siding", "sameAs": "https://en.wikipedia.org/wiki/Fibre_cement" },
         { "@type": "Thing", "name": "Energy-efficient windows", "sameAs": "https://en.wikipedia.org/wiki/Energy-efficient_window" },
         { "@type": "Thing", "name": "Accessory dwelling unit", "sameAs": "https://en.wikipedia.org/wiki/Accessory_dwelling_unit" },
-        "Custom home building",
-        "Bay Area building codes",
-        "California contractor licensing"
+        { "@type": "Thing", "name": "Custom home building", "sameAs": "https://en.wikipedia.org/wiki/Custom_home" },
+        { "@type": "Thing", "name": "Bay Area building codes" },
+        { "@type": "Thing", "name": "California contractor licensing", "sameAs": "https://en.wikipedia.org/wiki/Contractors_State_License_Board" }
       ],
       "founder": {
         "@type": "Person",
@@ -308,7 +310,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
           "author": { "@type": "Person", "name": "Eric W" },
           "reviewRating": { "@type": "Rating", "ratingValue": 5, "bestRating": 5, "worstRating": 1 },
           "reviewBody": "Hamilton Exteriors did an amazing job on my roof. The team was professional, and the quality of work was top-notch. Highly recommend!",
-          "itemReviewed": { "@type": "RoofingContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
+          "itemReviewed": { "@type": "GeneralContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
         },
         {
           "@type": "Review",
@@ -316,7 +318,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
           "author": { "@type": "Person", "name": "Sarah M" },
           "reviewRating": { "@type": "Rating", "ratingValue": 5, "bestRating": 5, "worstRating": 1 },
           "reviewBody": "The team at Hamilton Exteriors was respectful, on time, and did excellent work. They made sure to communicate with us throughout the entire process, ensuring we were informed every step of the way. Our new siding looks beautiful, and the quality of the materials they used is top-notch. The crew worked efficiently and left our property clean and tidy. We couldn't be happier with the final result and would highly recommend Hamilton Exteriors for any home improvement needs!",
-          "itemReviewed": { "@type": "RoofingContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
+          "itemReviewed": { "@type": "GeneralContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
         },
         {
           "@type": "Review",
@@ -324,7 +326,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
           "author": { "@type": "Person", "name": "Robert Holt" },
           "reviewRating": { "@type": "Rating", "ratingValue": 5, "bestRating": 5, "worstRating": 1 },
           "reviewBody": "We'd been putting off replacing the windows in our home for years, but we finally decided it was time. From the very first consultation with Hamilton Exteriors, we knew we'd made the right choice. The team was not only knowledgeable but genuinely listened to our concerns about energy efficiency and design. When the windows were installed, we were amazed at how much brighter and more comfortable our home felt. It's been a few months now, and we've already noticed a drop in our energy bills. It's like we're living in a new house, and we couldn't be happier with the transformation!",
-          "itemReviewed": { "@type": "RoofingContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
+          "itemReviewed": { "@type": "GeneralContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
         },
         {
           "@type": "Review",
@@ -332,7 +334,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
           "author": { "@type": "Person", "name": "Laura Gaubin" },
           "reviewRating": { "@type": "Rating", "ratingValue": 5, "bestRating": 5, "worstRating": 1 },
           "reviewBody": "Hamilton Exteriors repaired extensive dry rot damage on our home's exterior. Their attention to detail and commitment to quality were evident throughout the project. The crew was polite, professional, and ensured the site was clean before leaving each day. Our home looks better than ever, and we have peace of mind knowing the repairs were done correctly. We highly recommend their services.",
-          "itemReviewed": { "@type": "RoofingContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
+          "itemReviewed": { "@type": "GeneralContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
         }
       ]
     }
@@ -340,8 +342,8 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     ) : (
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "RoofingContractor",
-      "additionalType": "https://schema.org/GeneralContractor",
+      "@type": "GeneralContractor",
+      "additionalType": "https://schema.org/RoofingContractor",
       "@id": "https://hamilton-exteriors.com/#business"
     })} />
     )}

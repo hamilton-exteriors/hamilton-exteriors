@@ -23,7 +23,7 @@ const pageImages: { page: string; images: { src: string; title: string; caption:
       { src: heroBg.src, title: 'Hamilton Exteriors Bay Area contractor', caption: 'Bay Area roofing, siding, and exterior remodeling by Hamilton Exteriors' },
       { src: logoCert1.src, title: 'Owens Corning Preferred Contractor certification', caption: 'Hamilton Exteriors is an Owens Corning Preferred Contractor' },
       { src: logoPartner1.src, title: 'CertainTeed ShingleMaster certification', caption: 'CertainTeed ShingleMaster certified installer' },
-      { src: logoGaf.src, title: 'GAF Certified Installer', caption: 'GAF Certified Installer for residential roofing' },
+      { src: logoGaf.src, title: 'GAF Master Elite Contractor', caption: 'GAF Master Elite Contractor for residential roofing' },
       { src: logoPartner2.src, title: 'James Hardie Elite Preferred installer', caption: 'James Hardie Elite Preferred siding installer in the Bay Area' },
     ],
   },

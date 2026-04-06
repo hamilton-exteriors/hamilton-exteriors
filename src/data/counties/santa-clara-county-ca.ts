@@ -25,4 +25,14 @@ export const data: CountyPageData = {
     { name: 'Milpitas', slug: '/service-areas/santa-clara-county-ca/milpitas-ca', image: areaMilpitas },
   ],
   citySectionStyle: 'heading',
+
+  editorial: {
+    heading: 'Building in Santa Clara County: What Homeowners Need to Know',
+    paragraphs: [
+      'Santa Clara County is the Bay Area\u2019s largest county by population, spanning the tech corridors of Mountain View and Sunnyvale, the historic neighborhoods of San Jose, and the upscale hillside communities of Saratoga and Los Gatos. With <strong>median home values exceeding $1.6 million</strong> countywide, homeowners expect premium materials and craftsmanship that protect their investment for decades.',
+      'The western foothills — including portions of Los Gatos, Saratoga, and the Monte Sereno area — fall within <strong>Wildland-Urban Interface (WUI) fire zones</strong>. The Santa Clara County Fire Department requires Class A fire-rated roofing, ember-resistant vents, and non-combustible exterior materials within defensible space zones. The 2020 SCU Lightning Complex fires reinforced these requirements, and Hamilton Exteriors maintains current certification in all WUI-compliant installation methods.',
+      'Permit processes across Santa Clara County are generally efficient. San Jose\u2019s Department of Planning, Building and Code Enforcement offers express over-the-counter permits for straightforward roof replacements. Palo Alto\u2019s Architectural Review Board may require design review for exterior changes on homes in designated historic districts, including Professorville and Crescent Park. Mountain View and Sunnyvale both support streamlined permitting for energy-efficiency upgrades including window replacements and cool-roof installations. ADU permits in San Jose benefit from the city\u2019s adopted pre-approved plans, cutting approval time significantly.',
+      'Santa Clara County\u2019s climate is warmer and sunnier than the coastal Bay Area, with inland cities like San Jose averaging 300+ days of sunshine annually. This UV exposure accelerates fading on field-painted siding — we recommend <strong>James Hardie ColorPlus factory-finished fiber cement</strong> for its 15-year color warranty and superior UV resistance. For roofing, tile remains popular on the county\u2019s many Mediterranean and Spanish Colonial homes, particularly in Palo Alto and Los Gatos. Hamilton Exteriors has completed projects across the county — from tile roof restorations on Palo Alto Eichlers to full exterior renovations in the Cambrian neighborhood of San Jose and ADU construction in Campbell and Milpitas.',
+    ],
+  },
 };

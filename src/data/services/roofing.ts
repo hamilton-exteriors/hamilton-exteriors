@@ -7,7 +7,7 @@ export const data: ServicePageData = {
     'Top-rated Bay Area roofing contractor. Composite shingles, metal roofs, tile & GAF solar. 50-year warranty. Free inspection — call (650) 977-3351.',
   announcementText: 'Limited Time Get up to $2000 off your Roof Replacement*',
   hero: {
-    headline: 'Bay Area\u2019s #1 Roofing Contractor',
+    headline: 'Bay Area\u2019s Top-Rated Roofing Contractor',
     formTitle: 'Get a FREE ROOF INSPECTION',
     formSubtitle:
       "We'll contact you in 3-5 minutes to schedule a FREE roof inspection.",
@@ -49,7 +49,7 @@ export const data: ServicePageData = {
           {
             title: 'Energy Roofs',
             description:
-              'The GAF Energy Roof System integrates solar-generating shingles directly into the roofing surface, eliminating the need for rack-mounted panels while producing clean electricity. Each GAF Timberline Solar shingle generates power through embedded photovoltaic cells bonded to standard roofing material, creating a seamless appearance that passes most HOA reviews. The system qualifies for the 30% Federal Investment Tax Credit under the Inflation Reduction Act and California\u2019s Self-Generation Incentive Program. According to the California Energy Commission, Bay Area homes with solar roofing systems can offset 80\u201395% of annual electricity consumption. We are a GAF Certified installer trained to integrate Energy Roof Systems with battery storage solutions including Tesla Powerwall and Enphase IQ. The combined roof-and-solar approach eliminates the need for two separate contractor projects, reducing total installed cost by 15\u201320% compared to a traditional re-roof plus retrofit panel installation.',
+              'The GAF Energy Roof System integrates solar-generating shingles directly into the roofing surface, eliminating the need for rack-mounted panels while producing clean electricity. Each GAF Timberline Solar shingle generates power through embedded photovoltaic cells bonded to standard roofing material, creating a seamless appearance that passes most HOA reviews. The system qualifies for the 30% Federal Investment Tax Credit under the Inflation Reduction Act and California\u2019s Self-Generation Incentive Program. According to the California Energy Commission, Bay Area homes with solar roofing systems can offset 80\u201395% of annual electricity consumption. We are a GAF Master Elite contractor trained to integrate Energy Roof Systems with battery storage solutions including Tesla Powerwall and Enphase IQ. The combined roof-and-solar approach eliminates the need for two separate contractor projects, reducing total installed cost by 15\u201320% compared to a traditional re-roof plus retrofit panel installation.',
             image: roofingFlat,
           },
         ],

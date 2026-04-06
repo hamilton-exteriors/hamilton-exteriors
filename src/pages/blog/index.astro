@@ -45,7 +45,7 @@ const activeTag = tags.find((t: any) => t.slug === tag);
 const pageTitle = activeTag ? `${activeTag.name} — Ground Up | Hamilton Exteriors` : 'Ground Up — Roofing & Home Tips | Hamilton Exteriors';
 const pageDesc = activeTag
   ? `Articles about ${activeTag.name.toLowerCase()} from Hamilton Exteriors — Bay Area's trusted contractor.`
-  : 'Ground Up is the Hamilton Exteriors blog. Expert insights on roofing, siding, ADUs, and home improvement across the Bay Area.';
+  : 'Ground Up is the Hamilton Exteriors blog. Bay Area roofing costs, siding guides, ADU planning, and home improvement tips from a licensed contractor (CSLB #1082377).';
 
 const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
 
@@ -66,6 +66,8 @@ const blogJsonLd = {
   description: pageDesc,
   url: `${siteUrl}/blog`,
   isPartOf: { '@id': 'https://hamilton-exteriors.com/#website' },
+  mainEntity: { '@id': 'https://hamilton-exteriors.com/blog#itemlist' },
+  dateModified: new Date().toISOString().split('T')[0],
   publisher: {
     '@type': 'Organization',
     '@id': 'https://hamilton-exteriors.com/#business',
@@ -77,6 +79,7 @@ const blogJsonLd = {
 const itemListJsonLd = posts.length > 0 ? {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
+  '@id': 'https://hamilton-exteriors.com/blog#itemlist',
   itemListElement: posts.map((p: GhostPost, i: number) => ({
     '@type': 'ListItem',
     position: i + 1,
