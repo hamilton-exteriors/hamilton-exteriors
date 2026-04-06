@@ -1,13 +1,15 @@
 /**
  * Custom server wrapper for the Astro Node standalone adapter.
  *
- *  1. Brotli compression for text assets (HTML, CSS, JS, SVG, JSON)
- *  2. Cache-Control for /fonts/ (1 week) and /images/ (1 day)
+ *  1. Cache-Control for static assets
+ *  2. Security headers
  *  3. www → apex 301 redirect
+ *
+ * Note: Brotli/gzip compression is handled by Railway's CDN edge,
+ * so we don't compress here.
  */
 
 import http from 'node:http';
-import { createBrotliCompress, constants } from 'node:zlib';
 
 process.env.ASTRO_NODE_AUTOSTART = 'disabled';
 
@@ -15,9 +17,6 @@ const { handler } = await import('./dist/server/entry.mjs');
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 8080;
 const HOST = process.env.HOST ?? '0.0.0.0';
-
-const COMPRESSIBLE = /^text\/|\/json|\/javascript|\/xml|\/svg\+xml|\/html/i;
-const MIN_SIZE = 1024;
 
 const STATIC_CACHE_RULES = [
   { pattern: /^\/_astro\//i, value: 'public, max-age=31536000, immutable' },
@@ -52,7 +51,6 @@ const server = http.createServer((req, res) => {
   }
 
   const pathname = (req.url || '').split('?')[0];
-  const acceptsBr = (req.headers['accept-encoding'] || '').includes('br');
 
   // Cache-Control for static assets
   const rule = STATIC_CACHE_RULES.find(r => r.pattern.test(pathname));
@@ -64,59 +62,6 @@ const server = http.createServer((req, res) => {
       return originalWriteHead(statusCode, ...args);
     };
   }
-
-  // If client doesn't accept Brotli, skip compression
-  if (!acceptsBr) {
-    handler(req, res);
-    return;
-  }
-
-  // Intercept the response to apply Brotli.
-  // Astro's static file handler may never call writeHead explicitly (it relies
-  // on Node's implicit header flush during write), so we buffer everything and
-  // flush in end() using headArgs if available, or status 200 as default.
-  const originalWrite = res.write.bind(res);
-  const originalEnd = res.end.bind(res);
-  const originalWriteHead2 = res.writeHead.bind(res);
-  const chunks = [];
-  let headArgs = null;
-
-  res.writeHead = function (statusCode, ...args) {
-    headArgs = [statusCode, ...args];
-    return res;
-  };
-
-  res.write = function (chunk) {
-    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
-    return true;
-  };
-
-  res.end = function (chunk) {
-    if (chunk) chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
-    const body = Buffer.concat(chunks);
-    const contentType = res.getHeader('content-type') || '';
-    const contentEncoding = res.getHeader('content-encoding');
-    const shouldCompress = !contentEncoding && COMPRESSIBLE.test(contentType) && body.length >= MIN_SIZE;
-
-    if (shouldCompress) {
-      res.removeHeader('content-length');
-      res.setHeader('content-encoding', 'br');
-      res.setHeader('vary', 'Accept-Encoding');
-      originalWriteHead2(...(headArgs || [200]));
-
-      const br = createBrotliCompress({
-        params: {
-          [constants.BROTLI_PARAM_QUALITY]: 4,
-        },
-      });
-      br.on('data', (c) => originalWrite(c));
-      br.on('end', () => originalEnd());
-      br.end(body);
-    } else {
-      originalWriteHead2(...(headArgs || [200]));
-      originalEnd(body);
-    }
-  };
 
   handler(req, res);
 });
