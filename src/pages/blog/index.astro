@@ -281,7 +281,7 @@ function ghostSrcset(url: string, widths: number[]): string {
   /* ── Hero ─────────────────────────────────────────────────────── */
   .blog-hero {
     background-color: var(--color-heading);
-    padding: 32px 0 24px;
+    padding: 40px 0 28px;
   }
   .blog-hero__inner {
     max-width: 1200px;
@@ -290,18 +290,19 @@ function ghostSrcset(url: string, widths: number[]): string {
   }
   .blog-hero__title {
     color: #fff;
-    font-size: clamp(26px, 5.5vw, 48px);
-    margin-bottom: 6px;
+    font-size: clamp(32px, 6vw, 56px);
+    margin-bottom: 8px;
   }
   .blog-hero__sub {
     font-family: var(--font-dm-sans);
-    font-size: 0.9375rem;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.55);
-    max-width: 460px;
-    margin-bottom: 14px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.6);
+    max-width: 480px;
+    margin-bottom: 16px;
   }
   @media (max-width: 639px) {
+    .blog-hero { padding: 28px 0 20px; }
     .blog-hero__sub { display: none; }
   }
 
@@ -313,7 +314,7 @@ function ghostSrcset(url: string, widths: number[]): string {
   }
   .search-wrap__input {
     width: 100%; padding: 14px 18px 14px 48px;
-    border-radius: 10px; border: 2px solid rgba(255,255,255,0.12);
+    border-radius: 4px; border: 2px solid rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.07); color: #fff;
     font-family: var(--font-dm-sans); font-size: 0.9375rem;
     outline: none; transition: border-color 0.15s, background 0.15s;
@@ -334,7 +335,7 @@ function ghostSrcset(url: string, widths: number[]): string {
   .search-dropdown {
     display: none; position: absolute; top: calc(100% + 4px);
     left: 0; right: 0; background: #1c1c1c;
-    border: 1px solid rgba(255,255,255,0.12); border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 4px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 50;
     max-height: 360px; overflow-y: auto;
   }
@@ -380,7 +381,7 @@ function ghostSrcset(url: string, widths: number[]): string {
 
   .chip {
     display: inline-flex; align-items: center; gap: 5px;
-    padding: 8px 14px; border-radius: 6px;
+    padding: 8px 14px; border-radius: 4px;
     font-family: var(--font-dm-sans); font-size: 0.8125rem; font-weight: 500;
     color: var(--color-heading); background: var(--color-cream);
     text-decoration: none; border: 1px solid transparent;
@@ -424,7 +425,7 @@ function ghostSrcset(url: string, widths: number[]): string {
     flex-direction: column;
     background: #fff;
     border: 1px solid var(--color-border);
-    border-radius: 8px;
+    border-radius: 4px;
     overflow: hidden;
     text-decoration: none;
     color: inherit;
@@ -437,10 +438,12 @@ function ghostSrcset(url: string, widths: number[]): string {
 
   .card--featured {
     margin-bottom: 40px;
+    border-left: 4px solid var(--color-yellow);
   }
   @media (min-width: 1024px) {
     .card--featured {
       flex-direction: row;
+      border-left: 5px solid var(--color-yellow);
     }
     .card--featured .card__img--featured {
       width: 55%;
@@ -517,8 +520,9 @@ function ghostSrcset(url: string, widths: number[]): string {
     transition: color 0.15s;
   }
   .card__title--featured {
-    font-size: clamp(22px, 3vw, 32px);
+    font-size: clamp(24px, 3.5vw, 36px);
     margin-bottom: 12px;
+    line-height: 1.15;
   }
 
   .card__excerpt {
@@ -571,7 +575,7 @@ function ghostSrcset(url: string, widths: number[]): string {
 
   /* ── Empty state ─────────────────────────────────────────────── */
   .blog-empty {
-    border: 2px dashed var(--color-border); border-radius: 8px;
+    border: 2px dashed var(--color-border); border-radius: 4px;
     padding: 48px 24px; text-align: center;
     font-family: var(--font-dm-sans); color: var(--color-muted);
   }
@@ -587,7 +591,7 @@ function ghostSrcset(url: string, widths: number[]): string {
 
   /* ── CTA Block ───────────────────────────────────────────────── */
   .blog-cta {
-    margin-top: 56px; border-radius: 8px; overflow: hidden;
+    margin-top: 56px; border-radius: 4px; overflow: hidden;
     background: var(--color-heading);
     padding: 40px 28px; text-align: center;
   }
@@ -621,7 +625,7 @@ function ghostSrcset(url: string, widths: number[]): string {
   .blog-pagination__btn {
     font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 500;
     padding: 10px 20px; border: 1px solid var(--color-border);
-    border-radius: 8px; color: var(--color-heading);
+    border-radius: 4px; color: var(--color-heading);
     text-decoration: none; transition: background 0.15s;
   }
   .blog-pagination__btn:hover { background: var(--color-cream); }
