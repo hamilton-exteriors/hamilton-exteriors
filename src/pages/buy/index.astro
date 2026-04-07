@@ -95,7 +95,7 @@ const faqJsonLd = {
   <Navbar />
 
   <!-- ── HERO — address input drives to /buy/scan ──────────────────── -->
-  <section class="w-full relative" style="background-color: var(--color-footer); padding: 120px 20px 80px; z-index: 2;">
+  <section id="buy-hero" class="w-full relative" style="background-color: var(--color-footer); z-index: 2;">
     <div class="mx-auto text-center relative z-10" style="max-width: 720px;">
       <p class="mb-4" style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-yellow);">No salespeople. No commission. No games.</p>
       <h1 style="font-family: var(--font-oswald); font-size: clamp(40px, 7vw, 72px); line-height: 1.05; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
@@ -104,7 +104,7 @@ const faqJsonLd = {
       <p style="font-family: var(--font-dm-sans); font-size: 18px; line-height: 28px; color: rgba(255,255,255,0.7); max-width: 480px; margin: 0 auto 32px;">
         Enter your address. We'll scan your roof and give you an instant price — no salesperson required.
       </p>
-      <form id="hero-form" class="relative mx-auto" style="max-width: 520px; z-index: 20;" action="/buy/scan">
+      <form id="hero-form" class="relative mx-auto" style="max-width: 520px; z-index: 20; padding: 0 4px;" action="/buy/scan">
         <input
           id="hero-address-input"
           name="address"
@@ -189,7 +189,7 @@ const faqJsonLd = {
           </div>
         </div>
         <!-- Hamilton -->
-        <div class="rounded-[4px]" style="background: var(--color-cream); padding: 32px; border: 2px solid var(--color-primary);">
+        <div class="rounded-[4px]" style="background: var(--color-cream); padding: 32px; border: 3px solid var(--color-primary); box-shadow: 0 0 0 4px rgba(37,99,70,0.10), 0 8px 24px rgba(37,99,70,0.12);">
           <p class="text-label-uppercase text-primary mb-4">Hamilton Exteriors</p>
           <div class="flex flex-col gap-4">
             <div class="flex items-start gap-3">
@@ -231,24 +231,35 @@ const faqJsonLd = {
         </div>
       </div>
       <!-- Stats -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center" style="padding: 40px 0 48px;">
-        <div>
-          <p class="font-oswald text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">0%</p>
-          <p style="font-size: 13px; color: var(--color-muted); margin-top: 4px;">Sales Commission</p>
+      <div class="stats-row rounded-[4px]" style="background: var(--color-cream); border: 1px solid var(--color-border); margin-top: 40px; padding: 36px 24px;">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="font-oswald" style="font-size: clamp(36px, 5vw, 48px); line-height: 1; color: var(--color-primary);">0%</p>
+            <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); margin-top: 6px;">Sales Commission</p>
+          </div>
+          <div>
+            <p class="font-oswald" style="font-size: clamp(36px, 5vw, 48px); line-height: 1; color: var(--color-primary);">$4,200</p>
+            <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); margin-top: 6px;">Avg. Customer Savings</p>
+          </div>
+          <div>
+            <p class="font-oswald" style="font-size: clamp(36px, 5vw, 48px); line-height: 1; color: var(--color-primary);">500+</p>
+            <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); margin-top: 6px;">Roofs Completed</p>
+          </div>
+          <div>
+            <p class="font-oswald" style="font-size: clamp(36px, 5vw, 48px); line-height: 1; color: var(--color-primary);">4.8</p>
+            <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted); margin-top: 6px;">Google Rating</p>
+          </div>
         </div>
-        <div>
-          <p class="font-oswald text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">$4,200</p>
-          <p style="font-size: 13px; color: var(--color-muted); margin-top: 4px;">Avg. Customer Savings</p>
-        </div>
-        <div>
-          <p class="font-oswald text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">500+</p>
-          <p style="font-size: 13px; color: var(--color-muted); margin-top: 4px;">Roofs Completed</p>
-        </div>
-        <div>
-          <p class="font-oswald text-charcoal" style="font-size: clamp(32px, 4vw, 48px); line-height: 1;">4.8</p>
-          <p style="font-size: 13px; color: var(--color-muted); margin-top: 4px;">Google Rating</p>
+        <!-- Trust badges -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mt-6" style="padding-top: 16px; border-top: 1px solid var(--color-border);">
+          <span style="font-family: var(--font-satoshi); font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-primary);">GAF Master Elite Contractor</span>
+          <span style="font-size: 12px; color: var(--color-border);">&bull;</span>
+          <span style="font-family: var(--font-satoshi); font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-muted);">CSLB #1082377</span>
+          <span style="font-size: 12px; color: var(--color-border);">&bull;</span>
+          <span style="font-family: var(--font-satoshi); font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-muted);">Licensed &amp; Insured</span>
         </div>
       </div>
+      <div style="padding-bottom: 48px;"></div>
     </div>
   </section>
 
@@ -288,6 +299,25 @@ const faqJsonLd = {
           <p class="font-semibold text-charcoal" style="font-size: 13px;">James T. <span style="font-weight: 400; color: var(--color-muted);">&middot; Pleasanton</span></p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── MID-PAGE CTA ──────────────────────────────────────────────── -->
+  <section class="w-full" style="background-color: var(--color-primary); padding: 48px 20px;">
+    <div class="mx-auto text-center" style="max-width: 600px;">
+      <p style="font-family: var(--font-oswald); font-size: clamp(22px, 3.5vw, 32px); font-weight: 400; color: white; text-transform: uppercase; line-height: 1.15; margin-bottom: 16px;">
+        Ready to see your price?
+      </p>
+      <p style="font-family: var(--font-dm-sans); font-size: 16px; color: rgba(255,255,255,0.75); margin-bottom: 24px;">
+        Scan your roof in 30 seconds. No email required, no strings attached.
+      </p>
+      <a
+        href="/buy/scan"
+        class="inline-block rounded-[4px] transition-all hover:opacity-90"
+        style="padding: 16px 40px; font-family: var(--font-oswald); font-size: 16px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background-color: var(--color-yellow); color: var(--color-footer); text-decoration: none;"
+      >
+        Scan Your Roof Now
+      </a>
     </div>
   </section>
 
@@ -339,15 +369,15 @@ const faqJsonLd = {
   </section>
 
   <!-- ── FINAL CTA ─────────────────────────────────────────────────── -->
-  <section class="w-full" style="background-color: var(--color-footer); padding: 64px 20px;">
+  <section class="w-full" style="background-color: var(--color-footer); padding: 72px 20px;">
     <div class="mx-auto text-center" style="max-width: 640px;">
-      <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 44px); font-weight: 400; color: white; text-transform: uppercase; line-height: 1.1; margin-bottom: 16px;">
-        Ready to skip the salesman?
+      <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 44px); font-weight: 400; color: white; text-transform: uppercase; line-height: 1.1; margin-bottom: 12px;">
+        Your new roof is 3 clicks away
       </h2>
       <p style="font-family: var(--font-dm-sans); font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 32px;">
-        Enter your address, see your price, and buy your roof in minutes.
+        Enter your address, see your price, and buy your roof in minutes — no salesperson ever.
       </p>
-      <form class="relative mx-auto cta-address-form" style="max-width: 480px;" action="/buy/scan">
+      <form class="relative mx-auto cta-address-form" style="max-width: 480px; padding: 0 4px;" action="/buy/scan">
         <input
           name="address"
           type="text"
@@ -371,9 +401,10 @@ const faqJsonLd = {
           Scan Roof
         </button>
       </form>
-      <p style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 24px;">
-        Or call us at <a href="tel:+16509773351" style="color: rgba(255,255,255,0.7); text-decoration: underline;">(650) 977-3351</a>
-      </p>
+      <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+        <p style="font-family: var(--font-dm-sans); font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 8px;">Prefer to talk to a human?</p>
+        <a href="tel:+16509773351" style="font-family: var(--font-oswald); font-size: clamp(22px, 3vw, 28px); font-weight: 700; color: var(--color-yellow); text-decoration: none; letter-spacing: 0.02em; transition: opacity 0.15s;" class="hover:opacity-80">(650) 977-3351</a>
+      </div>
     </div>
   </section>
 
@@ -381,6 +412,12 @@ const faqJsonLd = {
 </Layout>
 
 <style>
+  /* Hero responsive padding */
+  #buy-hero { padding: 80px 20px 56px; }
+  @media (min-width: 768px) {
+    #buy-hero { padding: 120px 24px 80px; }
+  }
+
   #hero-address-input:focus {
     border-color: rgba(255,255,255,0.4);
     background: rgba(255,255,255,0.12);
@@ -391,13 +428,16 @@ const faqJsonLd = {
   .faq-summary {
     list-style: none;
     cursor: pointer;
-    padding: 18px 48px 18px 20px;
+    min-height: 48px;
+    padding: 16px 48px 16px 20px;
     font-family: var(--font-dm-sans);
     font-size: 17px;
     font-weight: 500;
     color: var(--color-charcoal);
     position: relative;
     user-select: none;
+    display: flex;
+    align-items: center;
   }
   .faq-summary::-webkit-details-marker { display: none; }
   .faq-summary::after {
