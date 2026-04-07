@@ -24,7 +24,10 @@
   var da = $('#display-address'), mb = $('#mobile-price-bar');
 
   // ── Service Area Validation ─────────────────────────────────────────
+  // Scan works across Northern/Central California — Google Solar API has coverage
+  var SERVICE_STATES = ['california', ', ca', ' ca '];
   var SERVICE_CITIES = [
+    // Bay Area
     'oakland','berkeley','alameda','fremont','hayward','san leandro','castro valley',
     'dublin','pleasanton','livermore','union city','newark','emeryville',
     'walnut creek','concord','richmond','antioch','pittsburg','brentwood','san ramon',
@@ -33,12 +36,29 @@
     'san mateo','redwood city','menlo park','burlingame','san carlos','foster city',
     'belmont','half moon bay','pacifica','millbrae','san bruno','east palo alto',
     'san jose','santa clara','sunnyvale','mountain view','palo alto','milpitas',
-    'cupertino','campbell','saratoga','los gatos','gilroy','morgan hill','los altos'
+    'cupertino','campbell','saratoga','los gatos','gilroy','morgan hill','los altos',
+    // Sacramento metro
+    'sacramento','elk grove','roseville','folsom','rancho cordova','citrus heights',
+    'rocklin','davis','woodland','west sacramento','carmichael','fair oaks','orangevale',
+    'lincoln','loomis','granite bay','el dorado hills','placerville','auburn',
+    // Stockton / San Joaquin
+    'stockton','lodi','tracy','manteca','modesto','turlock','merced','lathrop','ripon',
+    // Solano / Napa
+    'vallejo','fairfield','vacaville','benicia','napa','sonoma','petaluma','santa rosa',
+    'san rafael','novato','mill valley','larkspur','calistoga','yountville',
+    'american canyon','st. helena','healdsburg','windsor','sebastopol','rohnert park',
+    // Other NorCal
+    'santa cruz','watsonville','salinas','monterey','fresno','visalia','bakersfield',
+    'chico','redding','eureka','san luis obispo','paso robles'
   ];
 
   function isInServiceArea(addr) {
     if (!addr) return false;
     var lower = addr.toLowerCase();
+    // Check if it's in California at all
+    for (var i = 0; i < SERVICE_STATES.length; i++) {
+      if (lower.indexOf(SERVICE_STATES[i]) !== -1) return true;
+    }
     for (var i = 0; i < SERVICE_CITIES.length; i++) {
       if (lower.indexOf(SERVICE_CITIES[i]) !== -1) return true;
     }
@@ -49,7 +69,7 @@
     goStep(1);
     var errEl = $('#service-area-error');
     if (errEl) {
-      errEl.innerHTML = 'We currently serve the San Francisco Bay Area (Alameda, Contra Costa, Marin, Napa &amp; Santa Clara counties).<br><strong>Please enter a Bay Area address.</strong>';
+      errEl.innerHTML = 'We currently serve California.<br><strong>Please enter a California address.</strong>';
       errEl.classList.remove('hidden');
     }
     ai.value = '';
