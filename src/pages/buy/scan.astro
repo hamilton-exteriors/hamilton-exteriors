@@ -8,15 +8,12 @@ const apiUrl = import.meta.env.PUBLIC_ROOF_SCAN_API || 'http://localhost:3001';
 <Layout title="Your Roof Scan | Hamilton Exteriors" description="See your roof measurements and get an instant price." noindex>
 <Navbar />
 <script is:inline>
-  // Hide step 1 immediately if address is in URL — prevents flash of address input
+  // Hide step 1 immediately if address is in URL — prevents flash of address input.
+  // Uses a removable style tag so goStep(1) can re-show step-1 for errors.
   if (new URLSearchParams(window.location.search).get('address')) {
-    document.addEventListener('DOMContentLoaded', function() {
-      var s1 = document.getElementById('step-1');
-      if (s1) s1.style.display = 'none';
-    });
-    // Inject style to hide step-1 before paint (no document.write)
     var st = document.createElement('style');
-    st.textContent = '#step-1{display:none !important}';
+    st.id = 'hide-step1';
+    st.textContent = '#step-1{display:none}';
     document.head.appendChild(st);
   }
 </script>
@@ -38,6 +35,7 @@ const apiUrl = import.meta.env.PUBLIC_ROOF_SCAN_API || 'http://localhost:3001';
 <button id="scan-btn" type="button" class="absolute top-1/2 right-3 -translate-y-1/2 bg-primary text-white rounded-[4px] flex items-center justify-center transition-opacity hover:opacity-90" style="width:44px;height:44px;" aria-label="Scan roof"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
 <div id="address-dropdown" role="listbox" aria-label="Address suggestions" class="hidden absolute left-0 right-0 top-full mt-1 bg-white rounded-[4px] shadow-lg border z-10 overflow-hidden" style="border-color:var(--color-border);"></div>
 </div>
+<p id="service-area-error" class="hidden text-center mt-4" style="color:#dc2626;font-size:15px;font-family:var(--font-dm-sans);line-height:1.5;"></p>
 <div class="flex items-center justify-center gap-4 mt-6"><a href="/buy" class="text-sm underline" style="color:var(--color-muted);">Back to overview</a></div>
 </div>
 </div>

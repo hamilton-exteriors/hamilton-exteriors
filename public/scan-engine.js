@@ -46,10 +46,14 @@
   }
 
   function showServiceAreaError() {
-    ss.textContent = 'We currently serve the San Francisco Bay Area. Please enter a Bay Area address.';
-    ss.style.color = '#dc2626';
-    ss.classList.remove('hidden');
-    setTimeout(function() { ss.style.color = ''; }, 5000);
+    goStep(1);
+    var errEl = $('#service-area-error');
+    if (errEl) {
+      errEl.innerHTML = 'We currently serve the San Francisco Bay Area (Alameda, Contra Costa, Marin, Napa &amp; Santa Clara counties).<br><strong>Please enter a Bay Area address.</strong>';
+      errEl.classList.remove('hidden');
+    }
+    ai.value = '';
+    ai.focus();
   }
 
   // ── Mapbox Address Autocomplete ──────────────────────────────────────
@@ -331,6 +335,12 @@
 
   function goStep(n) {
     state.step = n;
+    // Remove the pre-paint hiding style if going back to step 1
+    if (n === 1) {
+      var hideStyle = document.getElementById('hide-step1');
+      if (hideStyle) hideStyle.remove();
+      s1.removeAttribute('style');
+    }
     [s1, s2, s3].forEach(function (s, i) { s.classList.toggle('hidden', i + 1 !== n); });
     $$('.step-dot').forEach(function (dot) {
       var s = parseInt(dot.dataset.step);

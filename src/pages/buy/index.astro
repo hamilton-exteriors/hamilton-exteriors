@@ -588,6 +588,9 @@ const faqJsonLd = {
       input.value = (nameEl ? nameEl.textContent : '') + (detailEl ? ', ' + detailEl.textContent : '');
       dropdown.classList.add('hidden');
       toggleClear();
+      // Auto-submit the form after selecting a suggestion
+      var form = input.closest('form');
+      if (form) form.requestSubmit();
     });
 
     document.addEventListener('click', function(e) {
