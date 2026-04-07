@@ -134,6 +134,10 @@ export default defineConfig({
       return item;
     },
   })],
+  build: {
+    // Inline CSS files under 8KB to eliminate render-blocking stylesheets (fixes LCP)
+    inlineStylesheets: 'auto',
+  },
   image: {
     remotePatterns: [
       { protocol: 'https', hostname: 'img.companycam.com' },

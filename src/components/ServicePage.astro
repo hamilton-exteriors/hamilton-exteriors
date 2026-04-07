@@ -254,7 +254,11 @@ const breadcrumbSchema = {
 // HowTo rich results removed by Google Sept 2023 — schema omitted
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+{/* Only emit BreadcrumbList for city/county+service pages — main service pages
+    get their breadcrumb via the parent page's jsonLd prop to avoid duplicates */}
+{!isMainServicePage && (
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+)}
 <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
 {data.announcementText ? <AnnouncementBar text={data.announcementText} /> : <AnnouncementBar />}

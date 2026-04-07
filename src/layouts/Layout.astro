@@ -277,6 +277,11 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
           "@type": "EducationalOccupationalCredential",
           "credentialCategory": "certification",
           "name": "James Hardie Elite Preferred Installer"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "certification",
+          "name": "CertainTeed ShingleMaster"
         }
       ],
       "knowsAbout": [
@@ -347,7 +352,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     })} />
     )}
 
-    <!-- WebSite Schema — homepage only -->
+    <!-- WebSite + WebPage Schema — homepage only -->
     {Astro.url.pathname === '/' && (
     <script type="application/ld+json" is:inline>
     {
@@ -359,6 +364,20 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
       "inLanguage": "en-US",
       "publisher": { "@id": "https://hamilton-exteriors.com/#business" },
       "description": "Bay Area roofing, siding, windows, ADUs & custom homes by Hamilton Exteriors."
+    }
+    </script>
+    )}
+    {Astro.url.pathname === '/' && (
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://hamilton-exteriors.com/#webpage",
+      "url": "https://hamilton-exteriors.com",
+      "name": "Bay Area Design-Build & Exteriors Contractor | Hamilton Exteriors",
+      "isPartOf": { "@id": "https://hamilton-exteriors.com/#website" },
+      "about": { "@id": "https://hamilton-exteriors.com/#business" },
+      "inLanguage": "en-US"
     }
     </script>
     )}

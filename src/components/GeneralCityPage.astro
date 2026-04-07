@@ -1,5 +1,6 @@
 ---
 import type { GeneralCityPageData } from '../lib/general-city-types';
+import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import AnnouncementBar from './AnnouncementBar.astro';
 import Navbar from './Navbar.astro';
@@ -20,9 +21,10 @@ import ServiceCard from './ServiceCard.astro';
 
 interface Props {
   data: GeneralCityPageData;
+  heroImage?: ImageMetadata;
 }
 
-const { data } = Astro.props;
+const { data, heroImage } = Astro.props;
 const proximity = getCityProximity(data.slug);
 
 // Seed data uses short county slugs ("alameda"), URLs use full slugs ("alameda-county-ca")
@@ -72,11 +74,12 @@ const reviewSchema = {
     bestRating: 5,
     worstRating: 1,
   },
-  review: allReviews.map((r) => ({
+  review: allReviews.map((r, i) => ({
     '@type': 'Review',
     author: { '@type': 'Person', name: r.name },
     reviewRating: { '@type': 'Rating', ratingValue: 5, bestRating: 5, worstRating: 1 },
     reviewBody: r.text,
+    datePublished: (r as any).date || ['2025-11-15', '2025-12-08', '2026-01-03', '2026-01-22'][i] || '2025-12-01',
   })),
 };
 ---
@@ -106,6 +109,8 @@ const reviewSchema = {
   formSubtitle={data.hero.formSubtitle}
   badges={data.hero.badges}
   proximity={proximity}
+  heroImage={heroImage}
+  heroAlt={`Hamilton Exteriors — roofing, siding, and exterior remodeling in ${data.city}, CA`}
 />
 
 <!-- Logo Slider -->

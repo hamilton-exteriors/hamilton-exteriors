@@ -139,8 +139,8 @@ if (pageType === 'cityService' && cityServiceData) {
         ...(getCityWikipedia(urlCitySlug) && { 'sameAs': getCityWikipedia(urlCitySlug) }),
         'containedInPlace': {
           '@type': 'County',
-          'name': `${urlCountySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())} County`,
-          'sameAs': `https://en.wikipedia.org/wiki/${urlCountySlug.replace(/-ca$/, '').replace(/-/g, '_').replace(/\b\w/g, (c: string) => c.toUpperCase())}_County,_California`,
+          'name': `${urlCountySlug.replace(/-county-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())} County`,
+          'sameAs': `https://en.wikipedia.org/wiki/${urlCountySlug.replace(/-county-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()).replace(/ /g, '_')}_County,_California`,
           'containedInPlace': { '@type': 'State', 'name': 'California' },
         },
         ...(cityLat && cityLng && { 'geo': { '@type': 'GeoCoordinates', 'latitude': cityLat, 'longitude': cityLng } }),
@@ -231,7 +231,7 @@ if (pageType === 'cityService' && cityServiceData) {
 
 {pageType === 'city' && cityData && (
   <Layout title={cityData.title} description={cityData.description} jsonLd={jsonLd} includeMapbox preloadHero geoPlacename={`${cityData.city || ''}, CA`} geoPosition={toGeoPosition(segments[1])} heroImage={getCityOgImage(segments[1])}>
-    <GeneralCityPage data={cityData} />
+    <GeneralCityPage data={cityData} heroImage={getCityOgImage(segments[1])} />
   </Layout>
 )}
 
