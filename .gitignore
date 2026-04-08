@@ -24,6 +24,11 @@ pnpm-debug.log*
 .idea/
 
 .playwright-mcp/
+
+# Temp audit/debug HTML snapshots
+audit_*.html
+hx_*.html
+tmp_*.html
 *.png
 !src/assets/**/*.png
 !public/**/*.png
