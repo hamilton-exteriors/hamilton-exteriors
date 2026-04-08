@@ -6,7 +6,11 @@ export interface LatLng {
 export interface RoofSegment {
   pitchDegrees: number;
   azimuthDegrees: number;
-  areaMeters2: number;
+  stats: {
+    areaMeters2: number;
+    groundAreaMeters2: number;
+    sunshineQuantiles: number[];
+  };
   center: LatLng;
   boundingBox: { sw: LatLng; ne: LatLng };
   planeHeightAtCenterMeters: number;

@@ -53,7 +53,7 @@ export function extractFacetPolygons(
 
 function createFacet(segId: number, seg: RoofSegment, polygon: [number, number][]): Facet {
   const pitchRad = seg.pitchDegrees * Math.PI / 180;
-  const trueAreaM2 = seg.areaMeters2 / Math.cos(pitchRad);
+  const trueAreaM2 = seg.stats.areaMeters2 / Math.cos(pitchRad);
   const areaSqFt = trueAreaM2 * 10.764;
 
   return {
@@ -63,7 +63,7 @@ function createFacet(segId: number, seg: RoofSegment, polygon: [number, number][
     azimuth: Math.round(seg.azimuthDegrees),
     areaM2: Math.round(trueAreaM2 * 10) / 10,
     areaSq: Math.round(areaSqFt / 100 * 10) / 10,
-    groundAreaM2: seg.areaMeters2,
+    groundAreaM2: seg.stats.areaMeters2,
     polygon,
   };
 }
