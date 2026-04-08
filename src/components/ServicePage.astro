@@ -375,7 +375,7 @@ const breadcrumbSchema = {
   if (section.type === 'localContext') {
     const { data: lc } = section;
     return (
-      <section class="local-context w-full" style="padding: 56px 0 48px; background: var(--color-cream);">
+      <section class="local-context w-full" style="padding: 56px 0 48px; background: var(--color-cream);" aria-label="Local roofing expertise and market context">
         <div class="mx-auto max-w-3xl px-5">
           <SectionLabel>Local Expertise</SectionLabel>
           <h2 style="margin-bottom: 24px;">{lc.heading}</h2>
@@ -385,7 +385,7 @@ const breadcrumbSchema = {
             ))}
           </div>
           <div style="margin-top: 32px;">
-            <a href="#quote" style="display: inline-block; font-family: var(--font-dm-sans); font-size: 0.9375rem; font-weight: 600; color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px;" class="hover:opacity-80 transition-opacity">
+            <a href="#quote" style="display: inline-block; font-family: var(--font-dm-sans); font-size: 0.9375rem; font-weight: 600; color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px;" class="hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 transition-opacity">
               Get a free estimate for your project &rarr;
             </a>
           </div>
@@ -397,20 +397,20 @@ const breadcrumbSchema = {
   if (section.type === 'cityPricing') {
     const { data: cp } = section;
     const tierColorMap = {
-      budget: '#22c55e',
-      mid: '#256346',
-      premium: '#d97706',
-      luxury: '#7c3aed',
+      budget: 'var(--color-tier-budget)',
+      mid: 'var(--color-tier-mid)',
+      premium: 'var(--color-tier-premium)',
+      luxury: 'var(--color-tier-luxury)',
     };
-    const badgeColor = tierColorMap[cp.priceTier as keyof typeof tierColorMap] || '#256346';
+    const badgeColor = tierColorMap[cp.priceTier as keyof typeof tierColorMap] || 'var(--color-tier-mid)';
     const tierBadge = cp.priceTier === 'luxury' ? 'Premium Market' : `${cp.priceTier.charAt(0).toUpperCase() + cp.priceTier.slice(1)} Market`;
     return (
-      <Section bg="dark" padding="md" width="narrow" class="text-center">
-        <span style={`display: inline-block; padding: 5px 16px; border-radius: 9999px; font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-heading); background-color: #FFDE21; margin-bottom: 16px;`}>
+      <Section bg="dark" padding="md" width="narrow" class="text-center" aria-label={`${cp.heading} — pricing information`}>
+        <span style={`display: inline-block; padding: 5px 16px; border-radius: 9999px; font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-heading); background-color: var(--color-yellow); margin-bottom: 16px;`}>
           {tierBadge}
         </span>
         <h2 style="color: white; margin-bottom: 16px;">{cp.heading}</h2>
-        <p style="font-family: var(--font-oswald); font-size: clamp(2.5rem, 6vw, 3.5rem); font-weight: 400; color: #FFDE21; text-transform: uppercase; margin-bottom: 8px; line-height: 1.1;">
+        <p style="font-family: var(--font-oswald); font-size: clamp(2.5rem, 6vw, 3.5rem); font-weight: 400; color: var(--color-yellow); text-transform: uppercase; margin-bottom: 8px; line-height: 1.1; overflow-wrap: break-word;">
           {cp.priceRange}
         </p>
         <p style="font-family: var(--font-dm-sans); font-size: 0.9375rem; color: rgba(255,255,255,0.7); margin-bottom: 24px;">
@@ -419,7 +419,7 @@ const breadcrumbSchema = {
         <p style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: rgba(255,255,255,0.55); max-width: 540px; margin: 0 auto 28px; line-height: 1.6;">
           {cp.footnote}
         </p>
-        <a href="#quote" style="display: inline-block; background: #FFDE21; color: var(--color-heading); font-family: var(--font-dm-sans); font-size: 0.9375rem; font-weight: 700; padding: 14px 36px; border-radius: 4px; text-decoration: none; letter-spacing: 0.01em;" class="hover:opacity-90 transition-opacity">
+        <a href="#quote" style="display: inline-block; background: var(--color-yellow); color: var(--color-heading); font-family: var(--font-dm-sans); font-size: 0.9375rem; font-weight: 700; padding: 16px 36px; border-radius: 4px; text-decoration: none; letter-spacing: 0.01em;" class="hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-yellow)] focus:ring-offset-2 focus:ring-offset-[var(--color-heading)] transition-opacity">
           Get Your Free Estimate
         </a>
       </Section>
@@ -429,13 +429,13 @@ const breadcrumbSchema = {
   if (section.type === 'neighborhoodService') {
     const { data: ns } = section;
     return (
-      <Section bg="white" padding="md">
+      <Section bg="white" padding="md" aria-label={`${ns.heading} — neighborhoods served`}>
         <SectionLabel>Neighborhoods We Serve</SectionLabel>
         <h2 style="margin-bottom: 40px;">{ns.heading}</h2>
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
           {ns.items.map((item) => (
             <div style="padding: 28px; background: var(--color-cream); border-left: 4px solid var(--color-primary); border-radius: 0 4px 4px 0;">
-              <h3 style="font-family: var(--font-oswald); font-size: 1.25rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 12px; color: var(--color-heading);">{item.neighborhood}</h3>
+              <h3 style="font-family: var(--font-oswald); font-size: 1.25rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 12px; color: var(--color-heading); overflow-wrap: break-word;">{item.neighborhood}</h3>
               <p style="font-family: var(--font-dm-sans); font-size: 0.9375rem; line-height: 1.7; color: var(--color-charcoal);">
                 {item.description}
               </p>
@@ -598,8 +598,8 @@ const breadcrumbSchema = {
                 </div>
               );
 
-              return !hasImage(item) && !('image' in item) && (item as any).href ? (
-                <a href={(item as any).href} class="block">{card}</a>
+              return (item as any).href ? (
+                <a href={(item as any).href} class="block text-inherit no-underline hover:opacity-85 transition-opacity" style="text-decoration: none; color: inherit;">{card}</a>
               ) : card;
             })}
           </div>

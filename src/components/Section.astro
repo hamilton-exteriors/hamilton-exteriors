@@ -18,6 +18,7 @@ interface Props {
   class?: string;
   id?: string;
   borderTop?: boolean;
+  'aria-label'?: string;
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   class: className = '',
   id,
   borderTop = false,
+  'aria-label': ariaLabel,
 } = Astro.props;
 
 const bgMap = {
@@ -56,6 +58,7 @@ const widthMap = {
   class={`w-full ${className}`}
   style={`background-color: ${bgMap[bg]}; padding: ${paddingMap[padding]};${borderTop ? ' border-top: 1px solid var(--color-border);' : ''}`}
   {...(id ? { id } : {})}
+  {...(ariaLabel ? { 'aria-label': ariaLabel } : {})}
 >
   {width === 'full' ? (
     <slot />

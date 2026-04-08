@@ -108,6 +108,8 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     <link rel="preload" href="/fonts/the-bold-font-700.woff2" as="font" type="font/woff2" crossorigin />
     <!-- DM Sans: body text, rendered before hero paints -->
     <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Satoshi: labels and badges across all pages -->
+    <link rel="preload" href="/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin />
 
     {/* Preload hero/LCP image — mobile gets 768px, desktop gets 1440px */}
     {heroMobilePreload && <link rel="preload" href={heroMobilePreload.src} as="image" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />}

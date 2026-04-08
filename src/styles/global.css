@@ -121,6 +121,12 @@ button[type="submit"]:active {
   --color-brand-trustpilot: rgb(0, 182, 122); /* #00B67A — Trustpilot */
   --color-brand-yelp: rgb(211, 35, 35);       /* #D32323 — Yelp */
 
+  /* Pricing tier accent colors */
+  --color-tier-budget: rgb(34, 197, 94);   /* #22c55e */
+  --color-tier-mid: var(--color-primary);
+  --color-tier-premium: rgb(217, 119, 6);  /* #d97706 */
+  --color-tier-luxury: rgb(124, 58, 237);  /* #7c3aed */
+
   /* Font Families — 3 fonts only: THE BOLD FONT, DM Sans, Satoshi */
   --font-dm-sans: "DM Sans", sans-serif;
   --font-oswald: "THE BOLD FONT (FREE VERSION)", system-ui, sans-serif;
