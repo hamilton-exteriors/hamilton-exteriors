@@ -22,6 +22,7 @@ export async function downloadAndParseGeoTiff(url) {
     const tiepoint = fd.ModelTiepoint || [0, 0, 0, bbox[0], bbox[3], 0];
     return {
         data: rasters[0],
+        allBands: rasters.length >= 3 ? [rasters[0], rasters[1], rasters[2]] : null,
         width,
         height,
         bounds: {

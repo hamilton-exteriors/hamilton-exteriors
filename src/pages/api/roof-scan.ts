@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import sharp from 'sharp';
 import { geocodeAddress } from '../../../roof-scan/backend/dist/services/geocode.js';
 import { getBuildingInsights, getDataLayers } from '../../../roof-scan/backend/dist/services/solarApi.js';
 import { downloadAndParseGeoTiff } from '../../../roof-scan/backend/dist/services/geotiffParser.js';
@@ -79,6 +80,26 @@ export const POST: APIRoute = async ({ request }) => {
     console.log(`   → ${measurements.totalSquares} squares, $${bid.total} total`);
 
     const imageryDate = insights.imageryDate;
+
+    // Generate satellite image PNG from RGB bands
+    let satelliteImage = '';
+    if (rgb.allBands) {
+      console.log('8. Generating satellite PNG...');
+      const [r, g, b] = rgb.allBands;
+      const rgba = Buffer.alloc(rgb.width * rgb.height * 3);
+      for (let i = 0; i < rgb.width * rgb.height; i++) {
+        rgba[i * 3] = r[i];
+        rgba[i * 3 + 1] = g[i];
+        rgba[i * 3 + 2] = b[i];
+      }
+      const png = await sharp(rgba, { raw: { width: rgb.width, height: rgb.height, channels: 3 } })
+        .resize(400, 400, { fit: 'cover' })
+        .png({ quality: 80 })
+        .toBuffer();
+      satelliteImage = 'data:image/png;base64,' + png.toString('base64');
+      console.log(`   → PNG: ${Math.round(png.length / 1024)}KB`);
+    }
+
     const response = {
       imageryDate: `${imageryDate.year}-${String(imageryDate.month).padStart(2, '0')}`,
       imageryQuality: 'HIGH',
@@ -88,17 +109,11 @@ export const POST: APIRoute = async ({ request }) => {
       measurements,
       materials,
       bid,
+      satelliteImage,
       dsm: {
         width: dsm.width,
         height: dsm.height,
-        data: Array.from(normalizedDsm),
         bounds: dsm.bounds,
-      },
-      rgb: {
-        width: rgb.width,
-        height: rgb.height,
-        data: Array.from(rgb.data as Uint8Array),
-        bounds: rgb.bounds,
       },
       roofGeoJSON,
     };

@@ -278,11 +278,16 @@
         return '<polygon points="' + points + '" fill="' + color + '" stroke="' + stroke + '" stroke-width="2"/>';
       }).join('');
 
-      mapEl.innerHTML = '<div style="width:100%;height:100%;background:#1e2d1e;position:relative;">' +
-        '<div style="position:absolute;inset:0;background:linear-gradient(135deg,#2a3d2a,#1e2d1e 25%,#243424 50%,#1e2d1e 75%,#2a3d2a);"></div>' +
+      // Use satellite image as background if available
+      var bgStyle = result.satelliteImage
+        ? 'background:url(' + result.satelliteImage + ') center/cover no-repeat'
+        : 'background:linear-gradient(135deg,#2a3d2a,#1e2d1e 25%,#243424 50%,#1e2d1e 75%,#2a3d2a)';
+
+      mapEl.innerHTML = '<div style="width:100%;height:100%;position:relative;">' +
+        '<div style="position:absolute;inset:0;' + bgStyle + ';"></div>' +
         '<svg viewBox="0 0 400 400" style="position:absolute;inset:0;width:100%;height:100%;" preserveAspectRatio="xMidYMid meet">' +
         svgPaths +
-        '<text x="200" y="390" text-anchor="middle" fill="white" font-size="11" opacity="0.7">Imagery: ' + result.imageryDate + ' | ' + result.facets.length + ' facets detected</text>' +
+        '<text x="200" y="390" text-anchor="middle" fill="white" font-size="11" opacity="0.8" style="text-shadow:0 1px 3px rgba(0,0,0,0.8)">Imagery: ' + result.imageryDate + ' | ' + result.facets.length + ' facets detected</text>' +
         '</svg></div>';
     } else {
       renderDemoRoofSVG(mapEl);

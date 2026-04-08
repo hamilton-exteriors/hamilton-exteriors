@@ -28,6 +28,7 @@ export async function downloadAndParseGeoTiff(url: string): Promise<GeoTiffData>
 
   return {
     data: rasters[0] as Float32Array | Uint8Array,
+    allBands: rasters.length >= 3 ? [rasters[0], rasters[1], rasters[2]] as [Uint8Array, Uint8Array, Uint8Array] : null,
     width,
     height,
     bounds: {

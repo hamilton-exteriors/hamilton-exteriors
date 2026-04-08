@@ -57,6 +57,7 @@ export interface DataLayers {
 }
 export interface GeoTiffData {
     data: Float32Array | Uint8Array;
+    allBands?: [Uint8Array, Uint8Array, Uint8Array] | null;
     width: number;
     height: number;
     bounds: {
