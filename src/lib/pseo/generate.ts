@@ -307,43 +307,43 @@ const SERVICE_DEFS = [
     title: 'Custom Homes',
     slug: 'custom-homes',
     imageKey: 'serviceCustomHomes',
-    descFn: (city: string, seed: CitySeed) =>
-      `Ground-up custom homes designed for ${city}'s ${seed.homeStyles.split(',')[0] || 'diverse'} neighborhoods. Architecture, engineering, permitting, and construction — all under one roof.`,
+    descFn: (_city: string, _seed: CitySeed) =>
+      `Ground-up design-build. Architecture through move-in.`,
   },
   {
     title: 'Home Additions',
     slug: 'additions',
     imageKey: 'serviceAdditions',
-    descFn: (city: string, seed: CitySeed) =>
-      `Second story additions, room extensions, and full remodels in ${city}. ${seed.eraBreakdown.includes('1960') ? 'Many single-story ranch homes here are ideal candidates for second-story additions.' : 'We handle structural engineering, permits, and construction.'}`,
+    descFn: (_city: string, _seed: CitySeed) =>
+      `Second stories, room extensions, and full remodels.`,
   },
   {
     title: 'ADUs',
     slug: 'adu',
     imageKey: 'serviceAdu',
-    descFn: (city: string, _seed: CitySeed) =>
-      `Detached ADUs, garage conversions, and junior ADUs in ${city}. Full design-build with our 60-day permit guarantee.`,
+    descFn: (_city: string, _seed: CitySeed) =>
+      `Detached ADUs, garage conversions, and junior ADUs.`,
   },
   {
     title: 'Roofing',
     slug: 'roofing',
     imageKey: 'serviceRoofing',
-    descFn: (city: string, seed: CitySeed) =>
-      `Roof replacement and repair in ${city}. ${seed.roofingNote.split('.')[0]}. Asphalt shingles, metal, tile, and cool roofing with manufacturer-backed warranties.`,
+    descFn: (_city: string, _seed: CitySeed) =>
+      `Shingles, metal, tile, and cool roofing. 50-year warranty.`,
   },
   {
     title: 'Siding',
     slug: 'siding',
     imageKey: 'serviceSiding',
-    descFn: (city: string, seed: CitySeed) =>
-      `${seed.sidingNote.split('.')[0]}. James Hardie fiber cement, stucco, and waterproofing for ${city} homes with 30-year product warranties.`,
+    descFn: (_city: string, _seed: CitySeed) =>
+      `James Hardie fiber cement, stucco, and waterproofing.`,
   },
   {
     title: 'Windows',
     slug: 'windows',
     imageKey: 'serviceWindows',
-    descFn: (city: string, seed: CitySeed) =>
-      `Energy-efficient window replacement in ${city} — Title 24 Climate Zone ${seed.climateZone} compliant. ${seed.windowNote.split('.')[0]}.`,
+    descFn: (_city: string, _seed: CitySeed) =>
+      `Energy-efficient replacements. Title 24 compliant.`,
   },
 ] as const;
 

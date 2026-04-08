@@ -1,0 +1,66 @@
+[
+  {
+    "url": "https://hamilton-exteriors-production.up.railway.app/",
+    "output": "/c/Users/admin/hamilton-exteriors/screenshots/audit_homepage_desktop.png",
+    "viewport": "desktop",
+    "success": true,
+    "error": null,
+    "full_page_path": "/c/Users/admin/hamilton-exteriors/screenshots/audit_homepage_desktop_full.png"
+  },
+  {
+    "url": "https://hamilton-exteriors-production.up.railway.app/",
+    "output": "/c/Users/admin/hamilton-exteriors/screenshots/audit_homepage_mobile.png",
+    "viewport": "mobile",
+    "success": true,
+    "error": null,
+    "full_page_path": "/c/Users/admin/hamilton-exteriors/screenshots/audit_homepage_mobile_full.png"
+  },
+  {
+    "url": "https://hamilton-exteriors-production.up.railway.app/roofing",
+    "output": "/c/Users/admin/hamilton-exteriors/screenshots/audit_roofing_desktop.png",
+    "viewport": "desktop",
+    "success": true,
+    "error": null,
+    "full_page_path": "/c/Users/admin/hamilton-exteriors/screenshots/audit_roofing_desktop_full.png"
+  },
+  {
+    "url": "https://hamilton-exteriors-production.up.railway.app/roofing",
+    "output": "/c/Users/admin/hamilton-exteriors/screenshots/audit_roofing_mobile.png",
+    "viewport": "mobile",
+    "success": true,
+    "error": null,
+    "full_page_path": "/c/Users/admin/hamilton-exteriors/screenshots/audit_roofing_mobile_full.png"
+  },
+  {
+    "url": "https://hamilton-exteriors-production.up.railway.app/service-areas/alameda-county-ca/oakland-ca/roofing",
+    "output": "/c/Users/admin/hamilton-exteriors/screenshots/audit_city_oakland_desktop.png",
+    "viewport": "desktop",
+    "success": true,
+    "error": null,
+    "full_page_path": "/c/Users/admin/hamilton-exteriors/screenshots/audit_city_oakland_desktop_full.png"
+  },
+  {
+    "url": "https://hamilton-exteriors-production.up.railway.app/service-areas/alameda-county-ca/oakland-ca/roofing",
+    "output": "/c/Users/admin/hamilton-exteriors/screenshots/audit_city_oakland_mobile.png",
+    "viewport": "mobile",
+    "success": true,
+    "error": null,
+    "full_page_path": "/c/Users/admin/hamilton-exteriors/screenshots/audit_city_oakland_mobile_full.png"
+  },
+  {
+    "url": "https://hamilton-exteriors-production.up.railway.app/buy",
+    "output": "/c/Users/admin/hamilton-exteriors/screenshots/audit_buy_desktop.png",
+    "viewport": "desktop",
+    "success": true,
+    "error": null,
+    "full_page_path": "/c/Users/admin/hamilton-exteriors/screenshots/audit_buy_desktop_full.png"
+  },
+  {
+    "url": "https://hamilton-exteriors-production.up.railway.app/buy",
+    "output": "/c/Users/admin/hamilton-exteriors/screenshots/audit_buy_mobile.png",
+    "viewport": "mobile",
+    "success": true,
+    "error": null,
+    "full_page_path": "/c/Users/admin/hamilton-exteriors/screenshots/audit_buy_mobile_full.png"
+  }
+]

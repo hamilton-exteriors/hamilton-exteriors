@@ -1,0 +1,95 @@
+{
+  "timestamp": "20260402_153852",
+  "results": [
+    {
+      "url": "https://hamilton-exteriors-production.up.railway.app/",
+      "output": "C:\\Users\\admin\\hamilton-exteriors\\screenshots\\va_homepage_desktop_20260402_153852.png",
+      "viewport": "desktop",
+      "success": true,
+      "error": null,
+      "page": "homepage",
+      "path": "/"
+    },
+    {
+      "url": "https://hamilton-exteriors-production.up.railway.app/",
+      "output": "C:\\Users\\admin\\hamilton-exteriors\\screenshots\\va_homepage_mobile_20260402_153852.png",
+      "viewport": "mobile",
+      "success": true,
+      "error": null,
+      "page": "homepage",
+      "path": "/"
+    },
+    {
+      "url": "https://hamilton-exteriors-production.up.railway.app/roofing",
+      "output": "C:\\Users\\admin\\hamilton-exteriors\\screenshots\\va_roofing_desktop_20260402_153852.png",
+      "viewport": "desktop",
+      "success": true,
+      "error": null,
+      "page": "roofing",
+      "path": "/roofing"
+    },
+    {
+      "url": "https://hamilton-exteriors-production.up.railway.app/roofing",
+      "output": "C:\\Users\\admin\\hamilton-exteriors\\screenshots\\va_roofing_mobile_20260402_153852.png",
+      "viewport": "mobile",
+      "success": true,
+      "error": null,
+      "page": "roofing",
+      "path": "/roofing"
+    },
+    {
+      "url": "https://hamilton-exteriors-production.up.railway.app/buy",
+      "output": "C:\\Users\\admin\\hamilton-exteriors\\screenshots\\va_buy_desktop_20260402_153852.png",
+      "viewport": "desktop",
+      "success": true,
+      "error": null,
+      "page": "buy",
+      "path": "/buy"
+    },
+    {
+      "url": "https://hamilton-exteriors-production.up.railway.app/buy",
+      "output": "C:\\Users\\admin\\hamilton-exteriors\\screenshots\\va_buy_mobile_20260402_153852.png",
+      "viewport": "mobile",
+      "success": true,
+      "error": null,
+      "page": "buy",
+      "path": "/buy"
+    },
+    {
+      "url": "https://hamilton-exteriors-production.up.railway.app/blog",
+      "output": "C:\\Users\\admin\\hamilton-exteriors\\screenshots\\va_blog_desktop_20260402_153852.png",
+      "viewport": "desktop",
+      "success": true,
+      "error": null,
+      "page": "blog",
+      "path": "/blog"
+    },
+    {
+      "url": "https://hamilton-exteriors-production.up.railway.app/blog",
+      "output": "C:\\Users\\admin\\hamilton-exteriors\\screenshots\\va_blog_mobile_20260402_153852.png",
+      "viewport": "mobile",
+      "success": true,
+      "error": null,
+      "page": "blog",
+      "path": "/blog"
+    },
+    {
+      "url": "https://hamilton-exteriors-production.up.railway.app/service-areas/alameda-county-ca/oakland-ca/roofing",
+      "output": "C:\\Users\\admin\\hamilton-exteriors\\screenshots\\va_oakland_pseo_desktop_20260402_153852.png",
+      "viewport": "desktop",
+      "success": true,
+      "error": null,
+      "page": "oakland_pseo",
+      "path": "/service-areas/alameda-county-ca/oakland-ca/roofing"
+    },
+    {
+      "url": "https://hamilton-exteriors-production.up.railway.app/service-areas/alameda-county-ca/oakland-ca/roofing",
+      "output": "C:\\Users\\admin\\hamilton-exteriors\\screenshots\\va_oakland_pseo_mobile_20260402_153852.png",
+      "viewport": "mobile",
+      "success": true,
+      "error": null,
+      "page": "oakland_pseo",
+      "path": "/service-areas/alameda-county-ca/oakland-ca/roofing"
+    }
+  ]
+}
