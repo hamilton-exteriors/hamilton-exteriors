@@ -25,10 +25,11 @@ pnpm-debug.log*
 
 .playwright-mcp/
 
-# Temp audit/debug HTML snapshots
-audit_*.html
-hx_*.html
-tmp_*.html
+# Temp audit/debug HTML snapshots (Playwright, Lighthouse, etc.)
+*.html
+!src/**/*.html
+!public/**/*.html
+lighthouse-results/
 *.png
 !src/assets/**/*.png
 !public/**/*.png
