@@ -10,8 +10,8 @@ import Footer from '../components/Footer.astro';
   description="California privacy notice for Hamilton Exteriors. Learn about your rights under the CCPA and how we handle your personal information."
   noindex
 >
-  <AnnouncementBar />
-  <Navbar />
+  <AnnouncementBar slot="header" />
+  <Navbar slot="header" />
 
   <section class="w-full bg-cream py-20">
     <div class="mx-auto max-w-[800px] px-5">
@@ -97,5 +97,5 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
-  <Footer />
+  <Footer slot="footer" />
 </Layout>

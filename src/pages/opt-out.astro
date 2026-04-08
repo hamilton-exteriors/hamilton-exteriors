@@ -10,8 +10,8 @@ import Footer from '../components/Footer.astro';
   description="Opt out of communications from Hamilton Exteriors. Manage your preferences for marketing emails, texts, and other communications."
   noindex
 >
-  <AnnouncementBar />
-  <Navbar />
+  <AnnouncementBar slot="header" />
+  <Navbar slot="header" />
 
   <section class="w-full bg-cream py-20">
     <div class="mx-auto max-w-[800px] px-5">
@@ -85,5 +85,5 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
-  <Footer />
+  <Footer slot="footer" />
 </Layout>

@@ -25,8 +25,8 @@ import { heroBg } from '../lib/images';
   preloadHero
   heroImage={heroBg}
 >
-  <AnnouncementBar />
-  <Navbar />
+  <AnnouncementBar slot="header" />
+  <Navbar slot="header" />
   <Hero formTitle="Get a FREE QUOTE" headline="Bay Area's Top  Design-Build &  Exteriors Contractor" />
   <LogoSlider />
   <Reviews />
@@ -39,6 +39,6 @@ import { heroBg } from '../lib/images';
   <CTA />
   <FAQ />
   <ContactUs />
-  <Footer />
+  <Footer slot="footer" />
 </Layout>
 

@@ -100,8 +100,8 @@ function ghostSrcset(url: string, widths: number[]): string {
 ---
 
 <Layout title={pageTitle} description={pageDesc} jsonLd={blogSchemas} heroImage={heroBg}>
-  <AnnouncementBar />
-  <Navbar />
+  <AnnouncementBar slot="header" />
+  <Navbar slot="header" />
 
   <!-- ═══ HERO ═══ -->
   <section class="blog-hero">
@@ -286,7 +286,7 @@ function ghostSrcset(url: string, widths: number[]): string {
   </section>
 
   <ContactUs />
-  <Footer />
+  <Footer slot="footer" />
 
   <script is:inline define:vars={{ allPosts: posts.map((p: any) => ({
     slug: p.slug, title: p.title, excerpt: (p.excerpt || '').slice(0, 120),
@@ -320,7 +320,7 @@ function ghostSrcset(url: string, widths: number[]): string {
     font-family: var(--font-dm-sans);
     font-size: 1rem;
     line-height: 1.6;
-    color: rgba(255,255,255,0.6);
+    color: var(--color-white-60);
     max-width: 480px;
     margin-bottom: 16px;
   }
@@ -372,7 +372,7 @@ function ghostSrcset(url: string, widths: number[]): string {
   .search-dropdown a:hover, .search-dropdown a.highlighted { background: rgba(255,255,255,0.08); }
   .search-dropdown .no-match {
     padding: 16px 18px; font-family: var(--font-dm-sans);
-    font-size: 0.875rem; color: rgba(255,255,255,0.4); text-align: center;
+    font-size: 0.875rem; color: var(--color-white-45); text-align: center;
   }
 
   /* ── Filter Bar ──────────────────────────────────────────────── */
@@ -417,7 +417,7 @@ function ghostSrcset(url: string, widths: number[]): string {
   }
   .chip:hover { background: #e8e5dd; border-color: var(--color-border); }
   .chip--active { background: var(--color-heading); color: #fff; border-color: var(--color-heading); }
-  .chip--active .chip__count { background: rgba(255,255,255,0.2); color: rgba(255,255,255,0.9); }
+  .chip--active .chip__count { background: rgba(255,255,255,0.2); color: var(--color-white-85); }
   .chip__count {
     font-size: 0.6875rem; font-weight: 600;
     padding: 1px 6px; border-radius: 10px;
@@ -449,7 +449,7 @@ function ghostSrcset(url: string, widths: number[]): string {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
+    color: var(--color-white-45);
   }
   .trust-bar__dot { opacity: 0.4; }
   @media (max-width: 639px) {
@@ -622,7 +622,7 @@ function ghostSrcset(url: string, widths: number[]): string {
     font-family: var(--font-dm-sans);
     font-size: 0.9375rem;
     font-weight: 500;
-    color: rgba(255,255,255,0.85);
+    color: var(--color-white-85);
   }
   .inline-cta__link {
     font-family: var(--font-oswald);
@@ -684,7 +684,7 @@ function ghostSrcset(url: string, widths: number[]): string {
   @media (min-width: 768px) { .blog-cta { padding: 48px 40px; } }
   .blog-cta__text {
     font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.65;
-    color: rgba(255,255,255,0.6); max-width: 500px;
+    color: var(--color-white-60); max-width: 500px;
     margin: 0 auto 24px;
   }
   .blog-cta__buttons {

@@ -70,8 +70,8 @@ const serviceSchema = {
 <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
-<AnnouncementBar />
-<Navbar />
+<AnnouncementBar slot="header" />
+<Navbar slot="header" />
 
 <!-- Breadcrumb -->
 <Breadcrumb items={[
@@ -195,7 +195,7 @@ const serviceSchema = {
 <Difference />
 <FAQ />
 <ContactUs />
-<Footer />
+<Footer slot="footer" />
 
 <style>
   /* ========== CONTRA COSTA LOCATIONS ========== */

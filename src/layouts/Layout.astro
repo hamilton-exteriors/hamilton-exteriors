@@ -424,7 +424,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
 
   </head>
   <body class="overflow-x-hidden">
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[99999] focus:bg-[#256346] focus:text-white focus:px-4 focus:py-2 focus:rounded">Skip to main content</a>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[99999] focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded">Skip to main content</a>
     <!-- Google Tag Manager (noscript) -->
     <noscript>
       <iframe
@@ -435,9 +435,11 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
       ></iframe>
     </noscript>
 
+    <slot name="header" />
     <main id="main-content">
       <slot />
     </main>
+    <slot name="footer" />
 
 
     <script>

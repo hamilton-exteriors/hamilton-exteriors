@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { reviewLogoGoogle, reviewLogoYelp } from '../lib/images';
+import { reviewLogoYelp } from '../lib/images';
 import IconStar from './icons/IconStar.astro';
 /**
  * ReviewLogos – 4 platform rating cards in a horizontal row.
@@ -9,9 +9,9 @@ import IconStar from './icons/IconStar.astro';
 const platforms = [
   {
     name: 'BBB',
-    logo: reviewLogoGoogle,
-    logoWidth: 44,
-    logoHeight: 44,
+    logo: '',
+    logoWidth: 0,
+    logoHeight: 0,
     score: '4.8',
     showStars: true,
     ratingLabel: 'Rated 4.8/5.0',
@@ -66,14 +66,7 @@ const starColor = 'var(--color-primary)';
           <!-- Logo / Icon -->
           <div class="review-card__logo">
             {platform.name === 'BBB' && (
-              <Image
-                src={platform.logo}
-                alt="Hamilton Exteriors Google rating"
-                width={platform.logoWidth}
-                height={platform.logoHeight}
-                style={`width: ${platform.logoWidth}px; height: ${platform.logoHeight}px; object-fit: contain;`}
-                loading="lazy"
-              />
+              <span style="font-family: var(--font-oswald); font-size: 1.25rem; font-weight: 700; color: var(--color-heading); letter-spacing: 0.05em; text-transform: uppercase;">BBB</span>
             )}
             {platform.name === 'Trustpilot' && (
               /* Trustpilot green star icon (36x35 SVG) */

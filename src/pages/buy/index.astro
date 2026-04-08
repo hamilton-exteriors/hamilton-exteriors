@@ -92,7 +92,7 @@ const faqJsonLd = {
   jsonLd={[webAppJsonLd, serviceJsonLd, faqJsonLd]}
   noindex
 >
-  <Navbar />
+  <Navbar slot="header" />
 
   <!-- ── HERO — address input drives to /buy/scan ──────────────────── -->
   <section id="buy-hero" class="w-full relative" style="background-color: var(--color-footer); z-index: 2;">
@@ -101,7 +101,7 @@ const faqJsonLd = {
       <h1 style="font-family: var(--font-oswald); font-size: clamp(40px, 7vw, 72px); line-height: 1.05; font-weight: 400; color: white; text-transform: uppercase; margin-bottom: 16px;">
         Buy Your Roof Online
       </h1>
-      <p style="font-family: var(--font-dm-sans); font-size: 18px; line-height: 28px; color: rgba(255,255,255,0.7); max-width: 480px; margin: 0 auto 32px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 18px; line-height: 28px; color: var(--color-white-70); max-width: 480px; margin: 0 auto 32px;">
         Enter your address. We'll scan your roof and give you an instant price — no salesperson required.
       </p>
       <form id="hero-form" class="relative mx-auto" style="max-width: 520px; z-index: 20; padding: 0 4px;" action="/buy/scan">
@@ -129,7 +129,7 @@ const faqJsonLd = {
         </button>
         <div id="hero-dropdown" class="addr-dropdown hidden absolute left-0 right-0 top-full mt-1 rounded-[4px] shadow-lg overflow-hidden" style="z-index:50;"></div>
       </form>
-      <p style="font-family: var(--font-dm-sans); font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 16px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-white-65); margin-top: 16px;">
         Serving all of California &middot; Bay Area, Sacramento, Stockton & beyond
       </p>
     </div>
@@ -308,7 +308,7 @@ const faqJsonLd = {
       <p style="font-family: var(--font-oswald); font-size: clamp(22px, 3.5vw, 32px); font-weight: 400; color: white; text-transform: uppercase; line-height: 1.15; margin-bottom: 16px;">
         Ready to see your price?
       </p>
-      <p style="font-family: var(--font-dm-sans); font-size: 16px; color: rgba(255,255,255,0.75); margin-bottom: 24px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 16px; color: var(--color-white-75); margin-bottom: 24px;">
         Scan your roof in 30 seconds. No email required, no strings attached.
       </p>
       <a
@@ -374,7 +374,7 @@ const faqJsonLd = {
       <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 44px); font-weight: 400; color: white; text-transform: uppercase; line-height: 1.1; margin-bottom: 12px;">
         Your new roof is 3 clicks away
       </h2>
-      <p style="font-family: var(--font-dm-sans); font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 32px;">
+      <p style="font-family: var(--font-dm-sans); font-size: 17px; color: var(--color-white-70); margin-bottom: 32px;">
         Enter your address, see your price, and buy your roof in minutes — no salesperson ever.
       </p>
       <form class="relative mx-auto cta-address-form" style="max-width: 480px; padding: 0 4px;" action="/buy/scan">
@@ -402,13 +402,13 @@ const faqJsonLd = {
         </button>
       </form>
       <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-        <p style="font-family: var(--font-dm-sans); font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 8px;">Prefer to talk to a human?</p>
+        <p style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-white-60); margin-bottom: 8px;">Prefer to talk to a human?</p>
         <a href="tel:+16509773351" style="font-family: var(--font-oswald); font-size: clamp(22px, 3vw, 28px); font-weight: 700; color: var(--color-yellow); text-decoration: none; letter-spacing: 0.02em; transition: opacity 0.15s;" class="hover:opacity-80">(650) 977-3351</a>
       </div>
     </div>
   </section>
 
-  <Footer />
+  <Footer slot="footer" />
 </Layout>
 
 <style>
@@ -423,7 +423,7 @@ const faqJsonLd = {
     background: rgba(255,255,255,0.12);
   }
   #hero-address-input::placeholder {
-    color: rgba(255,255,255,0.4);
+    color: var(--color-white-45);
   }
   .faq-summary {
     list-style: none;
@@ -493,7 +493,7 @@ const faqJsonLd = {
   }
   :global(.address-suggestion .suggestion-detail) {
     font-size: 13px;
-    color: rgba(255,255,255,0.5);
+    color: var(--color-white-50);
     margin-top: 2px;
   }
   /* Pin icon in suggestions */

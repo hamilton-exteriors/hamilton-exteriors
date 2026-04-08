@@ -193,7 +193,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
           <a href="/service-areas/san-mateo-county-ca/south-san-francisco-ca" class="footer-area-city">South San Francisco</a>
         </div>
       </div>
-      <a href="/service-areas" class="inline-block mt-4" style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: rgba(255,255,255,0.65); text-decoration: underline; text-underline-offset: 2px;">View all service areas &rarr;</a>
+      <a href="/service-areas" class="inline-flex items-center mt-4 min-h-[44px]" style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-white-65); text-decoration: underline; text-underline-offset: 2px;">View all service areas &rarr;</a>
     </div>
   </div>
 
@@ -273,7 +273,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
     font-family: var(--font-dm-sans);
     font-size: 0.875rem;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-white-80);
     text-decoration: none;
     transition: color 0.2s ease-out;
   }
@@ -294,7 +294,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
     transition: border-color 0.2s ease-out;
   }
   .footer-input::placeholder {
-    color: rgba(255, 255, 255, 0.45);
+    color: var(--color-white-45);
   }
   .footer-input:focus {
     border-color: var(--color-yellow);
@@ -307,7 +307,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--color-white-70);
     width: 44px;
     height: 44px;
     border-radius: 0.375rem;
@@ -317,13 +317,15 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
     background-color: rgba(255, 255, 255, 0.1);
   }
   .footer-area-county {
-    display: block;
+    display: flex;
+    align-items: center;
+    min-height: 44px;
     font-family: var(--font-dm-sans);
     font-size: 0.8125rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--color-white-70);
     text-decoration: none;
-    margin-bottom: 6px;
+    margin-bottom: 0;
     transition: color 0.2s ease-out;
   }
   .footer-area-county:hover {
@@ -335,14 +337,14 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
     font-family: var(--font-dm-sans);
     font-size: 0.75rem;
     line-height: 1.9;
-    color: rgba(255, 255, 255, 0.65);
+    color: var(--color-white-65);
     text-decoration: none;
     transition: color 0.2s ease-out;
     min-height: 44px;
     padding-block: 2px;
   }
   .footer-area-city:hover {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-white-80);
   }
   .footer-btn {
     width: 100%;
@@ -357,10 +359,10 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
     letter-spacing: 0.08em;
     color: var(--color-heading);
     cursor: pointer;
-    transition: transform 0.2s ease-out, background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
   }
   .footer-btn:hover {
-    background-color: rgb(240, 208, 20);
+    filter: brightness(0.92);
   }
   footer a:focus-visible,
   footer button:focus-visible {
