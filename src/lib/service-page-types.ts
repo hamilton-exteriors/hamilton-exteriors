@@ -11,6 +11,8 @@ export interface StyleCardWithImage {
   title: string;
   description: string;
   image: ImageMetadata;
+  /** Optional link to a sub-service page */
+  href?: string;
 }
 
 /** A product/style card WITHOUT an image (text-only, like ADU) */

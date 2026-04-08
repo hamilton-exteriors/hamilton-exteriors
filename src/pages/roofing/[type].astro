@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SubServicePage from '../../components/SubServicePage.astro';
+import { SUB_SERVICES } from '../../data/sub-services';
+
+const { type } = Astro.params;
+const data = SUB_SERVICES[`roofing/${type}`];
+if (!data) return Astro.redirect('/roofing', 302);
+---
+
+<Layout title={data.title} description={data.description} heroImage={data.heroImage} preloadHero>
+  <SubServicePage data={data} />
+</Layout>

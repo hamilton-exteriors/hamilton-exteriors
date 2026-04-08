@@ -40,38 +40,38 @@ export const data: ServicePageData = {
           {
             title: 'Single Hung',
             image: windowDoubleHung,
-            description:
-              'Single hung windows are the most common window type in Bay Area homes built before 1990, featuring a fixed upper sash and a movable lower sash that slides vertically for ventilation. Modern single hung replacements from Milgard and Andersen use dual-pane Low-E glass with argon gas fill, achieving U-factors as low as 0.25\u2014exceeding California\u2019s Title 24 energy requirements by 15\u201320%. The fixed upper sash provides better air and water infiltration resistance than double hung designs, while the simpler mechanism keeps installed cost $75\u2013$100 lower per window. Bay Area homeowners replacing original aluminum single hung windows from the 1960s\u201380s typically see a 15\u201325% reduction in heating and cooling costs, according to the Department of Energy\u2019s ENERGY STAR program. We install single hung windows in vinyl, fiberglass, and wood-clad frames with tilt-in sash for easy interior cleaning\u2014no ladder required.',
+            description: 'The most common Bay Area replacement — a fixed top sash and operable bottom sash with tilt-in cleaning. 15\u201325% energy savings over original aluminum frames.',
+            href: '/windows/single-hung',
           },
           {
             title: 'Single Slider',
             image: windowCasement,
-            description:
-              'Single slider windows feature one fixed pane and one horizontally sliding pane, making them ideal for rooms where an outward-opening window is impractical\u2014above kitchen sinks, along walkways, or on ground-floor facades near landscaping. The horizontal operation requires no exterior clearance, which is why Bay Area homes with narrow side yards and zero-lot-line setbacks frequently choose sliders. We install Milgard Trinsic and Andersen 100 Series single sliders with dual-pane Low-E glass, achieving U-factors of 0.27 and qualifying for California utility rebate programs. The contemporary horizontal profile complements mid-century modern, ranch, and Eichler-style homes common throughout the South Bay and Peninsula. Our single slider installations include new exterior aluminum flashing, interior wood or PVC trim, and foam-sealed jambs that eliminate the air leaks responsible for up to 30% of residential energy loss according to the U.S. Department of Energy.',
+            description: 'Slides horizontally with no exterior clearance needed — ideal above kitchen sinks, along walkways, and in Eichler-style homes throughout the Peninsula.',
+            href: '/windows/single-slider',
           },
           {
             title: 'Sliding Glass Doors',
             image: windowSliding,
-            description:
-              'Sliding glass doors transform how Bay Area homeowners connect indoor living spaces with patios, decks, and gardens\u2014essential in a climate where outdoor living extends 9\u201310 months per year. Modern sliding glass doors from Milgard, Andersen, and Marvin feature dual or triple-pane Low-E glass with argon fill, stainless steel or fiberglass rollers rated for 75,000+ cycles, and multi-point locking hardware that meets California forced-entry resistance standards. Standard configurations range from 5 to 12 feet wide, with custom multi-panel options reaching 16+ feet for true indoor-outdoor flow. We install sliding glass doors with proper structural headers, recessed sill pans for waterproofing, and ADA-compliant thresholds where specified. Bay Area homeowners replacing single-pane aluminum sliders from the 1970s\u201380s gain dramatic improvements in noise reduction (STC ratings of 28\u201334), thermal insulation, and security.',
+            description: 'Connect your indoor and outdoor living spaces with modern multi-pane sliders from Milgard, Andersen, and Marvin. Configurations up to 16 feet wide.',
+            href: '/windows/sliding-glass-doors',
           },
           {
             title: 'Picture Windows',
             image: windowBay,
-            description:
-              'Picture windows are large, fixed-pane installations designed to maximize natural light, frame views, and create a focal point in any room. Because they do not open, picture windows achieve the highest energy efficiency ratings of any window type\u2014U-factors as low as 0.20 with triple-pane glass\u2014and provide superior air and water infiltration resistance. In the Bay Area, picture windows are especially popular in hillside homes throughout the Oakland Hills, Marin headlands, and Peninsula foothills where panoramic views of the Bay, the Golden Gate, or Mt. Tamalpais define the property\u2019s character. We install picture windows in sizes up to 8 feet wide and 6 feet tall, using tempered or laminated safety glass where required by California building code (within 18 inches of the floor or adjacent to doors). Our installations include structural framing verification, exterior head flashing, and silicone-sealed perimeter joints that prevent the water intrusion common with Bay Area wind-driven rain.',
+            description: 'Large fixed-pane windows that maximize natural light and frame Bay Area views. The most energy-efficient window type available — sizes up to 8\u00d76 feet.',
+            href: '/windows/picture',
           },
           {
             title: 'Double Hung',
             image: windowPicture,
-            description:
-              'Double hung windows are the classic American window style, featuring two independently operable sashes that slide vertically. The ability to open both top and bottom sashes simultaneously creates a natural convection loop\u2014warm air exits through the top while cooler air enters from the bottom\u2014reducing reliance on mechanical cooling during Bay Area\u2019s mild shoulder seasons. Modern double hung windows from Andersen, Marvin, and Pella include tilt-in sashes for safe interior cleaning, integrated window screens, and cam-action locks that compress weatherstripping for an airtight seal. We install double hung windows in wood, fiberglass, vinyl, and aluminum-clad frames. The traditional double hung profile is architecturally appropriate for Victorian, Craftsman, Colonial Revival, and Edwardian homes found throughout San Francisco, Berkeley, Oakland\u2019s Rockridge, and Alameda\u2019s Gold Coast\u2014neighborhoods where period-accurate window replacements preserve both character and property value.',
+            description: 'The classic American window with two operable sashes. Period-accurate profiles for Victorians, Craftsmans, and Edwardians throughout the Bay Area.',
+            href: '/windows/double-hung',
           },
           {
             title: 'Casement Windows',
             image: windowGarden,
-            description:
-              'Casement windows open outward on side hinges via a crank mechanism, creating a fully unobstructed opening that captures 50\u201390% more airflow than sliding or hung windows according to the American Architectural Manufacturers Association. When closed, the sash compresses against the frame on all four sides, producing the tightest seal of any operable window type\u2014U-factors as low as 0.22 with dual-pane Low-E glass. This superior seal makes casement windows the top choice for Bay Area fog belt homes in Daly City, Pacifica, and the Sunset District where wind-driven moisture penetration is a persistent challenge. We install casement windows from Andersen, Marvin, and Milgard in both traditional and contemporary profiles. The outward-opening design works best on upper floors or facing backyards where the open sash won\u2019t obstruct walkways. Our installations include folding crank hardware for easy operation, multi-point locking systems, and egress-compliant sizing for bedrooms as required by California building code.',
+            description: 'Crank-open windows that capture 50\u201390% more airflow than sliders and seal tighter than any other operable window — perfect for fog belt homes.',
+            href: '/windows/casement',
           },
         ],
       },

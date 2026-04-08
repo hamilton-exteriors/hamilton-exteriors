@@ -31,27 +31,27 @@ export const data: ServicePageData = {
         items: [
           {
             title: 'Second Story Additions',
-            description:
-              'Second story additions are the most space-efficient way to expand a Bay Area home\u2014doubling living area without sacrificing any yard space on lots that average just 5,000\u20137,000 square feet in cities like Oakland, Berkeley, and San Jose. Our structural engineers design reinforced foundations and framing systems that support the additional load while meeting California\u2019s Seismic Design Category D requirements for earthquake resistance. The process begins with a feasibility assessment of your existing foundation, wall framing, and soil conditions to determine whether reinforcement is needed before vertical construction begins. Most second story additions add 800\u20131,500 square feet and include 2\u20133 bedrooms, a bathroom, and often a primary suite with walk-in closet. Construction typically takes 10\u201314 weeks from permit approval. According to Remodeling Magazine\u2019s Cost vs. Value report, second-story additions in the Pacific West return 65\u201375% of construction cost at resale\u2014and in the Bay Area\u2019s competitive housing market, the value recovery is often higher.',
+            description: 'Double your living area without sacrificing any yard space. 800\u20131,500 sq ft of new bedrooms, bathrooms, and primary suites built above your existing home.',
             image: serviceAdditions,
+            href: '/additions/second-story',
           },
           {
             title: 'Room Extensions',
-            description:
-              'Room extensions expand your existing floor plan outward\u2014adding square footage to kitchens, bedrooms, living rooms, or creating entirely new spaces like sunrooms and family rooms. In the Bay Area, where the median home was built before 1970 according to U.S. Census data, room extensions address the most common complaint among homeowners: floor plans designed for a different era that lack open-concept kitchens, primary suites, or home office space. We handle structural engineering for load-bearing wall removal, foundation extensions with proper tie-ins to existing footings, and roofline integration that makes the addition look original to the home. Our finish carpenters match existing trim profiles, window casings, and baseboard details so transitions between old and new construction are invisible. Most room extensions add 200\u2013600 square feet and complete in 8\u201312 weeks from permit approval. We coordinate all trades under a single contract\u2014no juggling separate contractors for framing, electrical, plumbing, and finishes.',
+            description: 'Expand kitchens, bedrooms, and living rooms outward with additions that look original to your home. Most projects complete in 8\u201312 weeks.',
             image: financingHouse,
+            href: '/additions/room-extensions',
           },
           {
             title: 'ADUs & Guest Houses',
-            description:
-              'Accessory dwelling units are the Bay Area\u2019s fastest-growing housing type, with over 4,000 ADU permits issued across the five-county region in 2024 according to the California Department of Housing and Community Development. We build detached backyard ADUs from 400 to 1,200 square feet, convert existing garages into fully finished living spaces, and construct junior ADUs within the footprint of your existing home. Every ADU project includes design, engineering, permit management, and construction under our 60-day permit guarantee. California\u2019s AB 68 and SB 9 legislation eliminated most local barriers to ADU construction, including minimum lot size requirements, owner-occupancy mandates, and parking replacement rules for garage conversions. Bay Area homeowners building ADUs typically add $150,000\u2013$300,000 in property value while generating $2,000\u2013$3,500 per month in rental income\u2014making ADU construction one of the highest-ROI improvements available in the current housing market.',
+            description: 'Detached backyard ADUs, garage conversions, and junior ADUs that add living space and $2,000\u2013$3,500/month in rental income.',
             image: serviceAdu,
+            href: '/additions/adus-guest-houses',
           },
           {
             title: 'Full Remodels',
-            description:
-              'Whole-house remodels transform outdated Bay Area homes into modern living spaces while preserving the character and neighborhood context that make your location valuable. Our gut renovation process begins with selective demolition, followed by structural assessment and reinforcement where needed, updated electrical service (most pre-1980 Bay Area homes need panel upgrades from 100A to 200A), repiped plumbing replacing galvanized or polybutylene supply lines, modern insulation meeting current Title 24 energy standards, and complete interior finishing. We coordinate every trade\u2014demolition, framing, electrical, plumbing, HVAC, insulation, drywall, flooring, cabinetry, and painting\u2014under one construction contract with a single project manager providing weekly updates and transparent change order pricing. According to the National Association of Realtors, a major kitchen remodel alone returns 75% of cost at resale in the Pacific West region. Full remodels typically take 4\u20137 months depending on scope and permit requirements.',
+            description: 'Transform your outdated home into a modern living space while preserving the character that makes your neighborhood special.',
             image: serviceCustomHomes,
+            href: '/additions/full-remodels',
           },
         ],
       },

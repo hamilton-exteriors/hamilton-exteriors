@@ -1,0 +1,214 @@
+---
+/**
+ * SubServicePage — focused landing page for individual service types.
+ * e.g., /roofing/asphalt-shingles, /siding/fiber-cement, /windows/casement
+ *
+ * Simpler than ServicePage — content-focused with clear CTA path.
+ */
+import type { SubServiceData } from '../data/sub-services';
+import { Image } from 'astro:assets';
+import AnnouncementBar from './AnnouncementBar.astro';
+import Navbar from './Navbar.astro';
+import LogoSlider from './LogoSlider.astro';
+import Section from './Section.astro';
+import SectionLabel from './SectionLabel.astro';
+import Reviews from './Reviews.astro';
+import CTA from './CTA.astro';
+import FAQ from './FAQ.astro';
+import ContactUs from './ContactUs.astro';
+import Footer from './Footer.astro';
+import Breadcrumb from './Breadcrumb.astro';
+import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
+import { getSubServicesForParent } from '../data/sub-services';
+
+interface Props {
+  data: SubServiceData;
+}
+
+const { data } = Astro.props;
+
+const siteUrl = 'https://hamilton-exteriors.com';
+const pageUrl = `${siteUrl}/${data.parentService}/${data.typeSlug}`;
+
+// Sibling sub-services for cross-linking
+const siblings = getSubServicesForParent(data.parentService)
+  .filter(s => s.typeSlug !== data.typeSlug);
+
+// Schema
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: data.parentName, item: `${siteUrl}/${data.parentService}` },
+    { '@type': 'ListItem', position: 3, name: data.headline.replace('\n', ' '), item: pageUrl },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${pageUrl}#service`,
+  name: data.title.split('|')[0].trim(),
+  url: pageUrl,
+  description: data.description,
+  provider: { '@id': `${siteUrl}/#business` },
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Alameda County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'AdministrativeArea', name: 'Contra Costa County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'AdministrativeArea', name: 'Marin County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'AdministrativeArea', name: 'Napa County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'AdministrativeArea', name: 'Santa Clara County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'AdministrativeArea', name: 'San Mateo County', containedInPlace: { '@type': 'State', name: 'California' } },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
+<AnnouncementBar />
+<Navbar />
+
+<!-- Breadcrumb -->
+<Breadcrumb items={[
+  { label: 'Home', href: '/' },
+  { label: data.parentName, href: `/${data.parentService}` },
+  { label: data.headline.replace('\n', ' ') },
+]} />
+
+<!-- Hero — image with overlay text -->
+<section class="relative w-full" style="min-height: 420px;">
+  <Image
+    src={data.heroImage}
+    alt={data.heroAlt}
+    width={1440}
+    height={600}
+    style="width: 100%; height: 420px; object-fit: cover; display: block;"
+    loading="eager"
+    decoding="async"
+  />
+  <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(26,26,26,0.85) 0%, rgba(26,26,26,0.4) 100%);">
+    <div class="mx-auto max-w-[1200px] px-5 h-full flex flex-col justify-center">
+      <a
+        href={`/${data.parentService}`}
+        style="font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-yellow); text-decoration: none; margin-bottom: 16px; display: inline-block;"
+        class="hover:opacity-80 transition-opacity"
+      >
+        &larr; All {data.parentName}
+      </a>
+      <h1 style="font-family: var(--font-oswald); font-size: clamp(36px, 6vw, 56px); font-weight: 400; line-height: 1.15; color: white; text-transform: uppercase; white-space: pre-line; max-width: 600px;">
+        {data.headline}
+      </h1>
+      <div style="margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap;">
+        <a
+          href="#quote"
+          style="display: inline-block; background: var(--color-yellow); color: var(--color-heading); font-family: var(--font-dm-sans); font-size: 0.9375rem; font-weight: 700; padding: 14px 32px; text-decoration: none; letter-spacing: 0.01em;"
+          class="hover:opacity-90 transition-opacity"
+        >
+          Get a Free Estimate
+        </a>
+        <a
+          href={PHONE_HREF}
+          style="display: inline-block; border: 2px solid rgba(255,255,255,0.4); color: white; font-family: var(--font-dm-sans); font-size: 0.9375rem; font-weight: 600; padding: 12px 28px; text-decoration: none;"
+          class="hover:opacity-90 transition-opacity"
+        >
+          {PHONE_DISPLAY}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Logo Slider -->
+<LogoSlider />
+
+<!-- Author/date line -->
+<div class="mx-auto max-w-[800px] px-5 pt-6 pb-2">
+  <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted);">
+    Reviewed by <a href="/about/alex-hamilton-li" style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;">Alexander Hamilton Li</a>, Architect &amp; General Contractor · <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377" target="_blank" rel="noopener noreferrer" style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;">CSLB #1082377</a> · Updated April 2026
+  </p>
+</div>
+
+<!-- Main Content -->
+<Section bg="white" padding="lg" width="narrow">
+  <div class="service-intro" style="display: flex; flex-direction: column; gap: 24px;">
+    {data.content.map((paragraph) => (
+      <p style="font-family: var(--font-dm-sans); font-size: 1.0625rem; line-height: 1.8; color: var(--color-charcoal);">
+        {paragraph}
+      </p>
+    ))}
+  </div>
+</Section>
+
+<!-- Key Facts Strip -->
+<Section bg="dark" padding="sm">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+    {data.keyFacts.map((fact) => (
+      <div class="text-center">
+        <div style="font-family: var(--font-oswald); font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 400; color: var(--color-yellow);">
+          {fact.value}
+        </div>
+        <p style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: rgba(255,255,255,0.65);">
+          {fact.label}
+        </p>
+      </div>
+    ))}
+  </div>
+</Section>
+
+<!-- Reviews -->
+<Reviews />
+
+<!-- Inline CTA -->
+<Section bg="cream" padding="md">
+  <div class="text-center">
+    <h2 style="margin-bottom: 16px;">Ready to Get Started?</h2>
+    <p style="font-family: var(--font-dm-sans); font-size: 1rem; color: var(--color-muted); margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto;">
+      Get a free estimate for your {data.headline.replace('\n', ' ').toLowerCase()} project. We respond in minutes, not days.
+    </p>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a
+        href="#quote"
+        style="display: inline-block; background: var(--color-primary); color: white; font-family: var(--font-dm-sans); font-size: 0.9375rem; font-weight: 700; padding: 14px 36px; text-decoration: none;"
+        class="hover:opacity-90 transition-opacity"
+      >
+        Get Your Free Estimate
+      </a>
+      <a
+        href={PHONE_HREF}
+        style="display: inline-block; border: 2px solid var(--color-primary); color: var(--color-primary); font-family: var(--font-dm-sans); font-size: 0.9375rem; font-weight: 600; padding: 12px 32px; text-decoration: none;"
+        class="hover:opacity-90 transition-opacity"
+      >
+        Call {PHONE_DISPLAY}
+      </a>
+    </div>
+  </div>
+</Section>
+
+<!-- FAQ -->
+<FAQ extraFaqs={data.faqs} />
+
+<!-- Cross-links to sibling sub-services -->
+{siblings.length > 0 && (
+  <Section bg="white" padding="md" borderTop>
+    <SectionLabel>More {data.parentName} Services</SectionLabel>
+    <div class="flex flex-wrap gap-3 mt-4">
+      {siblings.map((s) => (
+        <a
+          href={`/${s.parentService}/${s.typeSlug}`}
+          style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 500; color: var(--color-primary); text-decoration: none; padding: 10px 20px; border: 1px solid var(--color-border); border-radius: 4px;"
+          class="hover:opacity-80 transition-opacity"
+        >
+          {s.headline.replace('\n', ' ')}
+        </a>
+      ))}
+    </div>
+  </Section>
+)}
+
+<!-- Contact -->
+<ContactUs />
+
+<!-- Footer -->
+<Footer />

@@ -307,43 +307,43 @@ const SERVICE_DEFS = [
     title: 'Custom Homes',
     slug: 'custom-homes',
     imageKey: 'serviceCustomHomes',
-    descFn: (_city: string, _seed: CitySeed) =>
-      `Ground-up design-build. Architecture through move-in.`,
+    descFn: (city: string, _seed: CitySeed) =>
+      `Ground-up custom home construction tailored to your vision. From foundation to finishing touches, our team manages every detail in ${city}.`,
   },
   {
     title: 'Home Additions',
     slug: 'additions',
     imageKey: 'serviceAdditions',
-    descFn: (_city: string, _seed: CitySeed) =>
-      `Second stories, room extensions, and full remodels.`,
+    descFn: (city: string, _seed: CitySeed) =>
+      `Expand your living space with seamless room additions that match your ${city} home's existing style. We handle permits, design, and construction.`,
   },
   {
     title: 'ADUs',
     slug: 'adu',
     imageKey: 'serviceAdu',
-    descFn: (_city: string, _seed: CitySeed) =>
-      `Detached ADUs, garage conversions, and junior ADUs.`,
+    descFn: (city: string, _seed: CitySeed) =>
+      `Detached ADUs, garage conversions, and junior ADUs that add living space and rental income to your ${city} property.`,
   },
   {
     title: 'Roofing',
     slug: 'roofing',
     imageKey: 'serviceRoofing',
-    descFn: (_city: string, _seed: CitySeed) =>
-      `Shingles, metal, tile, and cool roofing. 50-year warranty.`,
+    descFn: (city: string, _seed: CitySeed) =>
+      `Full roof replacements and repairs in ${city} with GAF-certified shingles and a 50-year warranty. Most jobs done in 3\u20135 days.`,
   },
   {
     title: 'Siding',
     slug: 'siding',
     imageKey: 'serviceSiding',
-    descFn: (_city: string, _seed: CitySeed) =>
-      `James Hardie fiber cement, stucco, and waterproofing.`,
+    descFn: (city: string, _seed: CitySeed) =>
+      `James Hardie fiber cement siding that protects your ${city} home and looks great for decades. We handle dry rot repair, full replacements, and fresh paint.`,
   },
   {
     title: 'Windows',
     slug: 'windows',
     imageKey: 'serviceWindows',
-    descFn: (_city: string, _seed: CitySeed) =>
-      `Energy-efficient replacements. Title 24 compliant.`,
+    descFn: (city: string, _seed: CitySeed) =>
+      `Energy-efficient window replacements that transform your ${city} home's comfort and curb appeal. Professionally installed with a full warranty.`,
   },
 ] as const;
 

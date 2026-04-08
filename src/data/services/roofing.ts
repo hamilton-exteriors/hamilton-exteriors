@@ -30,27 +30,27 @@ export const data: ServicePageData = {
         items: [
           {
             title: 'Asphalt Shingles',
-            description:
-              'Asphalt composite shingles are the most popular roofing material in the United States, covering roughly 75% of residential homes according to the Asphalt Roofing Manufacturers Association. Made from fiberglass mat coated with asphalt and ceramic-coated mineral granules, modern architectural shingles deliver Class A fire resistance and wind ratings up to 130 mph. In the Bay Area, we install GAF Timberline HDZ, CertainTeed Landmark, and Owens Corning Duration — all three manufacturers\u2019 flagship lines. Bay Area homeowners typically choose architectural shingles for their dimensional profile that mimics natural wood shake, strong performance in coastal fog and Pacific storm conditions, and competitive installed cost of $950\u2013$1,400 per roofing square. Our installations include synthetic underlayment, ice-and-water shield at valleys and eaves, and a manufacturer-backed system warranty covering both materials and labor for up to 50 years.',
+            description: 'The most popular choice for Bay Area homes — architectural shingles from GAF, CertainTeed, and Owens Corning with a 50-year system warranty.',
             image: roofingAsphalt,
+            href: '/roofing/asphalt-shingles',
           },
           {
             title: 'Metal Roofs',
-            description:
-              'Standing seam metal roofing is the fastest-growing residential roofing segment in California, with the Metal Roofing Alliance reporting a 25% increase in Bay Area installations since 2021. Metal roofs last 40\u201370 years with virtually zero maintenance — roughly double the lifespan of asphalt shingles. They reflect up to 70% of solar radiant heat according to the Oak Ridge National Laboratory, which can lower cooling costs by 20\u201325% in warmer East Bay and South Bay microclimates. We install 24-gauge steel and aluminum standing seam panels in over 40 color options, including Kynar 500 finishes rated for 30+ years of color retention. Metal roofing is also fully recyclable at end of life, making it one of the most sustainable choices available. For Bay Area homes in Wildland-Urban Interface fire zones, metal\u2019s Class A fire rating offers an additional layer of protection that many insurers reward with premium discounts.',
+            description: 'Standing seam steel and aluminum panels that last 40\u201370 years with virtually zero maintenance. Over 40 color options available.',
             image: roofingMetal,
+            href: '/roofing/metal',
           },
           {
-            title: 'Tile Shingles',
-            description:
-              'Clay and concrete tile roofing has protected Bay Area homes for over a century, with many original tile roofs in neighborhoods like Berkeley\u2019s Claremont and Palo Alto\u2019s Professorville still performing after 80+ years. According to the Tile Roofing Institute, a properly installed tile roof can last 75\u2013100 years. Tile provides natural thermal mass that keeps interiors cool during Bay Area heat events while offering Class A fire resistance critical in WUI-designated zones. We install both traditional barrel clay tiles that complement Mediterranean and Spanish Colonial architecture and modern flat concrete tiles suited to contemporary designs. Our tile installations include a complete waterproof underlayment system, copper or stainless steel flashing, and reinforced battens engineered for the added weight tile requires. Bay Area homeowners choosing tile roofing invest in a material with one of the highest return-on-investment rates for exterior renovations, according to Remodeling Magazine\u2019s annual Cost vs. Value report.',
+            title: 'Tile Roofing',
+            description: 'Clay and concrete tile that protects your home for 75\u2013100 years. Perfect for Mediterranean, Spanish Colonial, and contemporary styles.',
             image: roofingTile,
+            href: '/roofing/tile',
           },
           {
             title: 'Energy Roofs',
-            description:
-              'The GAF Energy Roof System integrates solar-generating shingles directly into the roofing surface, eliminating the need for rack-mounted panels while producing clean electricity. Each GAF Timberline Solar shingle generates power through embedded photovoltaic cells bonded to standard roofing material, creating a seamless appearance that passes most HOA reviews. The system qualifies for the 30% Federal Investment Tax Credit under the Inflation Reduction Act and California\u2019s Self-Generation Incentive Program. According to the California Energy Commission, Bay Area homes with solar roofing systems can offset 80\u201395% of annual electricity consumption. We are a GAF Master Elite contractor trained to integrate Energy Roof Systems with battery storage solutions including Tesla Powerwall and Enphase IQ. The combined roof-and-solar approach eliminates the need for two separate contractor projects, reducing total installed cost by 15\u201320% compared to a traditional re-roof plus retrofit panel installation.',
+            description: 'GAF solar shingles that generate electricity with a seamless look — no rack-mounted panels. Qualifies for the 30% federal tax credit.',
             image: roofingFlat,
+            href: '/roofing/energy',
           },
         ],
       },
