@@ -246,20 +246,10 @@
 
     // If we have GeoJSON facets, render them as colored SVG
     if (result.roofGeoJSON && result.roofGeoJSON.features.length > 0) {
-      // Compute tight bounding box around actual polygons (not full DSM tile)
-      var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
-      result.roofGeoJSON.features.forEach(function (f) {
-        f.geometry.coordinates[0].forEach(function (c) {
-          if (c[0] < minX) minX = c[0];
-          if (c[0] > maxX) maxX = c[0];
-          if (c[1] < minY) minY = c[1];
-          if (c[1] > maxY) maxY = c[1];
-        });
-      });
-      // Add 15% padding around the roof
-      var pw = (maxX - minX) * 0.15 || 1;
-      var ph = (maxY - minY) * 0.15 || 1;
-      minX -= pw; maxX += pw; minY -= ph; maxY += ph;
+      // Use image bounds (cropped around roof) so polygons align with satellite image
+      var ib = result.imageBounds || result.dsm.bounds;
+      var minX = ib.west, maxX = ib.east;
+      var minY = ib.south, maxY = ib.north;
       var w = maxX - minX;
       var h = maxY - minY;
 
@@ -272,10 +262,10 @@
         }).join(' ');
 
         var pitch = f.properties.pitchDegrees;
-        var color = pitch < 15 ? 'rgba(76,175,80,0.3)' : pitch < 30 ? 'rgba(255,193,7,0.3)' : 'rgba(244,67,54,0.3)';
-        var stroke = pitch < 15 ? 'rgb(76,175,80)' : pitch < 30 ? 'rgb(255,193,7)' : 'rgb(244,67,54)';
+        var color = pitch < 15 ? 'rgba(76,175,80,0.15)' : pitch < 30 ? 'rgba(255,222,33,0.2)' : 'rgba(244,67,54,0.2)';
+        var stroke = pitch < 15 ? 'rgb(76,175,80)' : pitch < 30 ? 'rgb(255,222,33)' : 'rgb(244,67,54)';
 
-        return '<polygon points="' + points + '" fill="' + color + '" stroke="' + stroke + '" stroke-width="2"/>';
+        return '<polygon points="' + points + '" fill="' + color + '" stroke="' + stroke + '" stroke-width="3"/>';
       }).join('');
 
       // Use satellite image as background if available

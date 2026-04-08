@@ -18,8 +18,13 @@ export async function downloadAndParseGeoTiff(url) {
     const height = image.getHeight();
     // Extract geotransform metadata for pixel→geo conversion
     const fd = image.fileDirectory;
-    const pixelScale = fd.ModelPixelScale || [0.000001, 0.000001, 0];
-    const tiepoint = fd.ModelTiepoint || [0, 0, 0, bbox[0], bbox[3], 0];
+    // Compute pixel scale from bounding box if GeoTIFF metadata is missing
+    const pixelScale = fd.ModelPixelScale
+        ? fd.ModelPixelScale
+        : [(bbox[2] - bbox[0]) / width, (bbox[3] - bbox[1]) / height, 0];
+    const tiepoint = fd.ModelTiepoint
+        ? fd.ModelTiepoint
+        : [0, 0, 0, bbox[0], bbox[3], 0];
     return {
         data: rasters[0],
         allBands: rasters.length >= 3 ? [rasters[0], rasters[1], rasters[2]] : null,

@@ -81,23 +81,74 @@ export const POST: APIRoute = async ({ request }) => {
 
     const imageryDate = insights.imageryDate;
 
-    // Generate satellite image PNG from RGB bands
+    // Generate cropped satellite image PNG centered on the roof
     let satelliteImage = '';
+    let cropBounds = rgb.bounds; // fallback to full tile
     if (rgb.allBands) {
       console.log('8. Generating satellite PNG...');
-      const [r, g, b] = rgb.allBands;
-      const rgba = Buffer.alloc(rgb.width * rgb.height * 3);
-      for (let i = 0; i < rgb.width * rgb.height; i++) {
-        rgba[i * 3] = r[i];
-        rgba[i * 3 + 1] = g[i];
-        rgba[i * 3 + 2] = b[i];
+      const [rBand, gBand, bBand] = rgb.allBands;
+
+      // Find roof polygon bounding box in geo coordinates
+      let roofMinX = Infinity, roofMaxX = -Infinity, roofMinY = Infinity, roofMaxY = -Infinity;
+      for (const facet of facets) {
+        for (const [px, py] of facet.polygon) {
+          if (px < roofMinX) roofMinX = px;
+          if (px > roofMaxX) roofMaxX = px;
+          if (py < roofMinY) roofMinY = py;
+          if (py > roofMaxY) roofMaxY = py;
+        }
       }
-      const png = await sharp(rgba, { raw: { width: rgb.width, height: rgb.height, channels: 3 } })
-        .resize(400, 400, { fit: 'cover' })
-        .png({ quality: 80 })
-        .toBuffer();
-      satelliteImage = 'data:image/png;base64,' + png.toString('base64');
-      console.log(`   → PNG: ${Math.round(png.length / 1024)}KB`);
+
+      // Add 30% padding around roof and make it square
+      const roofW = roofMaxX - roofMinX;
+      const roofH = roofMaxY - roofMinY;
+      const roofSize = Math.max(roofW, roofH);
+      const pad = roofSize * 0.3;
+      const centerX = (roofMinX + roofMaxX) / 2;
+      const centerY = (roofMinY + roofMaxY) / 2;
+      const halfSize = (roofSize + pad * 2) / 2;
+
+      const cropWest = centerX - halfSize;
+      const cropEast = centerX + halfSize;
+      const cropSouth = centerY - halfSize;
+      const cropNorth = centerY + halfSize;
+
+      // Convert geo bounds to pixel coordinates
+      const tileW = rgb.bounds.east - rgb.bounds.west;
+      const tileH = rgb.bounds.north - rgb.bounds.south;
+      const pxLeft = Math.max(0, Math.round(((cropWest - rgb.bounds.west) / tileW) * rgb.width));
+      const pxRight = Math.min(rgb.width, Math.round(((cropEast - rgb.bounds.west) / tileW) * rgb.width));
+      const pxTop = Math.max(0, Math.round(((rgb.bounds.north - cropNorth) / tileH) * rgb.height));
+      const pxBottom = Math.min(rgb.height, Math.round(((rgb.bounds.north - cropSouth) / tileH) * rgb.height));
+      const cropPxW = pxRight - pxLeft;
+      const cropPxH = pxBottom - pxTop;
+
+      // Build full RGB buffer then crop with sharp
+      const fullRgb = Buffer.alloc(rgb.width * rgb.height * 3);
+      for (let i = 0; i < rgb.width * rgb.height; i++) {
+        fullRgb[i * 3] = rBand[i];
+        fullRgb[i * 3 + 1] = gBand[i];
+        fullRgb[i * 3 + 2] = bBand[i];
+      }
+
+      if (cropPxW > 10 && cropPxH > 10) {
+        const png = await sharp(fullRgb, { raw: { width: rgb.width, height: rgb.height, channels: 3 } })
+          .extract({ left: pxLeft, top: pxTop, width: cropPxW, height: cropPxH })
+          .resize(400, 400, { fit: 'cover' })
+          .png({ quality: 80 })
+          .toBuffer();
+        satelliteImage = 'data:image/png;base64,' + png.toString('base64');
+        cropBounds = { west: cropWest, east: cropEast, south: cropSouth, north: cropNorth };
+        console.log(`   → Cropped PNG: ${Math.round(png.length / 1024)}KB (${cropPxW}x${cropPxH}px)`);
+      } else {
+        // Fallback: full tile
+        const png = await sharp(fullRgb, { raw: { width: rgb.width, height: rgb.height, channels: 3 } })
+          .resize(400, 400, { fit: 'cover' })
+          .png({ quality: 80 })
+          .toBuffer();
+        satelliteImage = 'data:image/png;base64,' + png.toString('base64');
+        console.log(`   → Full tile PNG: ${Math.round(png.length / 1024)}KB`);
+      }
     }
 
     const response = {
@@ -110,6 +161,7 @@ export const POST: APIRoute = async ({ request }) => {
       materials,
       bid,
       satelliteImage,
+      imageBounds: cropBounds,
       dsm: {
         width: dsm.width,
         height: dsm.height,

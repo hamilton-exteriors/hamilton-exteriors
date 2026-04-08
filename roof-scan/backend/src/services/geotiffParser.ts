@@ -23,8 +23,13 @@ export async function downloadAndParseGeoTiff(url: string): Promise<GeoTiffData>
 
   // Extract geotransform metadata for pixel→geo conversion
   const fd = image.fileDirectory;
-  const pixelScale = fd.ModelPixelScale as [number, number, number] || [0.000001, 0.000001, 0];
-  const tiepoint = fd.ModelTiepoint as number[] || [0, 0, 0, bbox[0], bbox[3], 0];
+  // Compute pixel scale from bounding box if GeoTIFF metadata is missing
+  const pixelScale: [number, number, number] = fd.ModelPixelScale
+    ? (fd.ModelPixelScale as [number, number, number])
+    : [(bbox[2] - bbox[0]) / width, (bbox[3] - bbox[1]) / height, 0];
+  const tiepoint: number[] = fd.ModelTiepoint
+    ? (fd.ModelTiepoint as number[])
+    : [0, 0, 0, bbox[0], bbox[3], 0];
 
   return {
     data: rasters[0] as Float32Array | Uint8Array,

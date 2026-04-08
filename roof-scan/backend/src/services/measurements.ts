@@ -13,13 +13,14 @@ export function computeMeasurements(facets: Facet[]): Measurements {
   const totalSquares = totalSqFt / 100;
 
   // Estimate lineal footage from polygon perimeters
+  // Polygon coords are in UTM meters, so use Euclidean distance
   let totalPerimeterM = 0;
   for (const facet of facets) {
     if (facet.polygon.length < 3) continue;
     for (let i = 0; i < facet.polygon.length - 1; i++) {
-      const [lng1, lat1] = facet.polygon[i];
-      const [lng2, lat2] = facet.polygon[i + 1];
-      totalPerimeterM += haversineMeters(lat1, lng1, lat2, lng2);
+      const [x1, y1] = facet.polygon[i];
+      const [x2, y2] = facet.polygon[i + 1];
+      totalPerimeterM += Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
     }
   }
 
