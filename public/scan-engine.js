@@ -246,15 +246,28 @@
 
     // If we have GeoJSON facets, render them as colored SVG
     if (result.roofGeoJSON && result.roofGeoJSON.features.length > 0) {
-      var bounds = result.dsm.bounds;
-      var w = bounds.east - bounds.west;
-      var h = bounds.north - bounds.south;
+      // Compute tight bounding box around actual polygons (not full DSM tile)
+      var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+      result.roofGeoJSON.features.forEach(function (f) {
+        f.geometry.coordinates[0].forEach(function (c) {
+          if (c[0] < minX) minX = c[0];
+          if (c[0] > maxX) maxX = c[0];
+          if (c[1] < minY) minY = c[1];
+          if (c[1] > maxY) maxY = c[1];
+        });
+      });
+      // Add 15% padding around the roof
+      var pw = (maxX - minX) * 0.15 || 1;
+      var ph = (maxY - minY) * 0.15 || 1;
+      minX -= pw; maxX += pw; minY -= ph; maxY += ph;
+      var w = maxX - minX;
+      var h = maxY - minY;
 
       var svgPaths = result.roofGeoJSON.features.map(function (f) {
         var coords = f.geometry.coordinates[0];
         var points = coords.map(function (c) {
-          var x = ((c[0] - bounds.west) / w) * 400;
-          var y = ((bounds.north - c[1]) / h) * 400;
+          var x = ((c[0] - minX) / w) * 400;
+          var y = ((maxY - c[1]) / h) * 400;
           return x + ',' + y;
         }).join(' ');
 
@@ -262,14 +275,14 @@
         var color = pitch < 15 ? 'rgba(76,175,80,0.3)' : pitch < 30 ? 'rgba(255,193,7,0.3)' : 'rgba(244,67,54,0.3)';
         var stroke = pitch < 15 ? 'rgb(76,175,80)' : pitch < 30 ? 'rgb(255,193,7)' : 'rgb(244,67,54)';
 
-        return '<polygon points="' + points + '" fill="' + color + '" stroke="' + stroke + '" stroke-width="1.5"/>';
+        return '<polygon points="' + points + '" fill="' + color + '" stroke="' + stroke + '" stroke-width="2"/>';
       }).join('');
 
       mapEl.innerHTML = '<div style="width:100%;height:100%;background:#1e2d1e;position:relative;">' +
         '<div style="position:absolute;inset:0;background:linear-gradient(135deg,#2a3d2a,#1e2d1e 25%,#243424 50%,#1e2d1e 75%,#2a3d2a);"></div>' +
         '<svg viewBox="0 0 400 400" style="position:absolute;inset:0;width:100%;height:100%;" preserveAspectRatio="xMidYMid meet">' +
         svgPaths +
-        '<text x="200" y="20" text-anchor="middle" fill="white" font-size="11" opacity="0.8">Imagery: ' + result.imageryDate + ' | ' + result.facets.length + ' facets detected</text>' +
+        '<text x="200" y="390" text-anchor="middle" fill="white" font-size="11" opacity="0.7">Imagery: ' + result.imageryDate + ' | ' + result.facets.length + ' facets detected</text>' +
         '</svg></div>';
     } else {
       renderDemoRoofSVG(mapEl);
