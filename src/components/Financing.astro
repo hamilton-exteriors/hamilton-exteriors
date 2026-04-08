@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { financingHouse, financingWorker, iconCheckmarkCircle } from '../lib/images';
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
+import SectionLabel from './SectionLabel.astro';
 
 interface Props {
   scheduleHref?: string;
@@ -28,9 +29,7 @@ const { scheduleHref } = Astro.props;
     <div class="flex w-full flex-col justify-center px-5 py-10 lg:w-1/2 lg:px-[50px] lg:py-[80px]">
       <!-- Title -->
       <div class="mb-[20px]">
-        <p style="font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-primary); margin-bottom: 12px;">
-          $0 Down Available
-        </p>
+        <SectionLabel>$0 Down Available</SectionLabel>
         <h2
           class="font-oswald font-normal uppercase"
           style="font-size: clamp(30px, 5vw, 46px); line-height: 1.15; letter-spacing: 0; margin: 0;"

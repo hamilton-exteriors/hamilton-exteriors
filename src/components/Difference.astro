@@ -1,4 +1,6 @@
 ---
+import SectionLabel from './SectionLabel.astro';
+
 const features = [
   {
     title: 'Best Value Guarantee',
@@ -27,9 +29,7 @@ const features = [
   <div class="mx-auto max-w-[1200px] px-5">
     <!-- Section heading -->
     <div class="mb-8 lg:mb-12">
-      <p style="font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-yellow); margin-bottom: 12px;">
-        Our Advantage
-      </p>
+      <SectionLabel color="yellow">Our Advantage</SectionLabel>
       <h2
         style="font-family: var(--font-oswald); font-size: clamp(32px, 6vw, 52px); line-height: 1.1; font-weight: 400; text-transform: uppercase;"
       >

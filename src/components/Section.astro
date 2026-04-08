@@ -1,0 +1,67 @@
+---
+/**
+ * Reusable section wrapper with background, padding, and container.
+ *
+ * Usage:
+ *   <Section>Default white, lg padding, 1200px width</Section>
+ *   <Section bg="cream" padding="md" width="narrow">Cream, 64px, 800px</Section>
+ *   <Section bg="dark" padding="lg">Dark green, 80px, 1200px</Section>
+ *
+ * Replaces the repeated pattern:
+ *   <section class="w-full" style="background-color: var(...); padding: Xpx 0;">
+ *     <div class="mx-auto max-w-[Xpx] px-5">
+ */
+interface Props {
+  bg?: 'white' | 'cream' | 'dark' | 'charcoal';
+  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  width?: 'narrow' | 'default' | 'wide' | 'full';
+  class?: string;
+  id?: string;
+  borderTop?: boolean;
+}
+
+const {
+  bg = 'white',
+  padding = 'lg',
+  width = 'default',
+  class: className = '',
+  id,
+  borderTop = false,
+} = Astro.props;
+
+const bgMap = {
+  white: 'var(--color-white, #fff)',
+  cream: 'var(--color-cream)',
+  dark: 'var(--color-heading)',
+  charcoal: 'var(--color-charcoal)',
+};
+
+const paddingMap = {
+  none: '0',
+  sm: '40px 0',
+  md: '64px 0',
+  lg: '80px 0',
+  xl: '100px 0',
+};
+
+const widthMap = {
+  narrow: '800px',
+  default: '1200px',
+  wide: '1294px',
+  full: '100%',
+};
+---
+
+<section
+  class={`w-full ${className}`}
+  style={`background-color: ${bgMap[bg]}; padding: ${paddingMap[padding]};${borderTop ? ' border-top: 1px solid var(--color-border);' : ''}`}
+  {...(id ? { id } : {})}
+>
+  {width === 'full' ? (
+    <slot />
+  ) : (
+    <div class="mx-auto px-5" style={`max-width: ${widthMap[width]};`}>
+      <slot />
+    </div>
+  )}
+</section>

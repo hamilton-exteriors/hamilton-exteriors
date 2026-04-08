@@ -1,6 +1,7 @@
 ---
 import { PHONE_DISPLAY, PHONE_HREF, EMAIL, ADDRESS } from '../lib/constants';
 import CTAButton from './CTAButton.astro';
+import SectionLabel from './SectionLabel.astro';
 ---
 
 <section id="contact" class="cv-auto w-full" style="background-color: var(--color-heading);">
@@ -11,9 +12,7 @@ import CTAButton from './CTAButton.astro';
 
       <!-- Left: Phone CTA -->
       <div class="flex flex-col items-start lg:max-w-[560px]">
-        <p style="font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-yellow); margin: 0 0 16px;">
-          Ready to start?
-        </p>
+        <SectionLabel color="yellow">Ready to start?</SectionLabel>
         <a
           href={PHONE_HREF}
           style="font-family: var(--font-oswald); font-size: clamp(48px, 8vw, 72px); font-weight: 400; line-height: 1; text-transform: uppercase; color: var(--color-white); text-decoration: none; margin: 0;"

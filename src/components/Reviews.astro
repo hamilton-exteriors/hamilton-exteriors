@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import { reviewer1, reviewer2, reviewer3, reviewer4 } from '../lib/images';
 import IconGoogle from './icons/IconGoogle.astro';
 import StarRating from './StarRating.astro';
+import SectionLabel from './SectionLabel.astro';
 import CTAButton from './CTAButton.astro';
 
 const reviews = [
@@ -41,9 +42,7 @@ const reviews = [
   <div class="mx-auto max-w-[1294px] px-[15px]">
     <!-- Section Title -->
     <div class="mb-6 lg:mb-8">
-      <p style="font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-primary); text-align: center; margin-bottom: 12px;">
-        Rated 4.8 ★ from 52 Verified Bay Area Homeowners
-      </p>
+      <SectionLabel align="center">Rated 4.8 ★ from 52 Verified Bay Area Homeowners</SectionLabel>
       <h2
         class="text-center font-oswald font-normal uppercase leading-[1.1] tracking-[-0.02em]"
         style="font-size: clamp(30px, 6vw, 48px); color: var(--color-heading);"

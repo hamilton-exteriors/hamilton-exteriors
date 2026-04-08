@@ -13,6 +13,8 @@ import IconPlus from './icons/IconPlus.astro';
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 import { getCityProximity } from '../lib/city-coordinates';
 import Breadcrumb from './Breadcrumb.astro';
+import Section from './Section.astro';
+import SectionLabel from './SectionLabel.astro';
 
 interface Props {
   data: ServiceAreaCity;
@@ -78,10 +80,9 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Reviews Section -->
 {reviews && (
-  <section class="w-full" style="background-color: var(--color-cream); padding: 80px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
-      <!-- Section Label -->
-      <div class="mb-4 flex items-center gap-2">
+  <Section bg="cream" padding="lg">
+    <!-- Section Label -->
+    <div class="mb-4 flex items-center gap-2">
         <StarRating size={18} fill="#FFDE21" />
         <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.05em;">
           On Google Reviews
@@ -124,13 +125,12 @@ const imageMap: Record<string, ImageMetadata> = {
         </div>
       </div>
     </div>
-  </section>
+  </Section>
 )}
 
 <!-- Services / Pricing Cards -->
 {pricingCards && pricingCards.length > 0 && (
-  <section class="w-full" style="background-color: var(--color-white); padding: 80px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
+  <Section bg="white" padding="lg">
       <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-primary-dark); margin-bottom: 12px;">
         {pricingLabel || 'Our Services'}
       </p>
@@ -192,13 +192,12 @@ const imageMap: Record<string, ImageMetadata> = {
         ))}
       </div>
     </div>
-  </section>
+  </Section>
 )}
 
 <!-- Why Build an ADU Stats -->
 {whyBuildStats && (
-  <section class="w-full" style="background-color: var(--color-cream); padding: 64px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
+  <Section bg="cream" padding="md">
       <h2
         class="text-center"
         style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;"
@@ -244,13 +243,12 @@ const imageMap: Record<string, ImageMetadata> = {
         ))}
       </div>
     </div>
-  </section>
+  </Section>
 )}
 
 <!-- Trusted ADU Experts -->
 {trustedExperts && (
-  <section class="w-full" style="background-color: var(--color-heading); padding: 80px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
+  <Section bg="dark" padding="lg">
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
         <div>
           <h2
@@ -304,13 +302,12 @@ const imageMap: Record<string, ImageMetadata> = {
         ))}
       </div>
     </div>
-  </section>
+  </Section>
 )}
 
 <!-- Recent ADU Projects -->
 {projects && projects.length > 0 && (
-  <section class="w-full" style="background-color: var(--color-white); padding: 80px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
+  <Section bg="white" padding="lg">
       <h2
         style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 40px;"
       >
@@ -344,13 +341,12 @@ const imageMap: Record<string, ImageMetadata> = {
         })}
       </div>
     </div>
-  </section>
+  </Section>
 )}
 
 <!-- Regulations Section -->
 {regulations && (
-  <section class="w-full" style="background-color: var(--color-cream); padding: 64px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
+  <Section bg="cream" padding="md">
       <h2
         class="text-center"
         style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;"
@@ -370,14 +366,12 @@ const imageMap: Record<string, ImageMetadata> = {
           </div>
         ))}
       </div>
-    </div>
-  </section>
+  </Section>
 )}
 
 <!-- Neighborhoods Section -->
 {neighborhoods && (
-  <section class="w-full" style="background-color: var(--color-white); padding: 80px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
+  <Section bg="white" padding="lg">
       <h2
         style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;"
       >
@@ -423,13 +417,12 @@ const imageMap: Record<string, ImageMetadata> = {
         ))}
       </div>
     </div>
-  </section>
+  </Section>
 )}
 
 <!-- Mobile: Our Process + Resources -->
 {mobileProcessResources && (
-  <section class="w-full md:hidden" style="background-color: var(--color-heading); padding: 48px 0;">
-    <div class="mx-auto max-w-[1200px] px-5">
+  <Section bg="dark" padding="sm" class="md:hidden">
       <h2 style="font-family: var(--font-oswald); font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--color-white); text-transform: uppercase; margin-bottom: 16px;">
         {mobileProcessResources.processTitle}
       </h2>
@@ -458,7 +451,7 @@ const imageMap: Record<string, ImageMetadata> = {
         ))}
       </div>
     </div>
-  </section>
+  </Section>
 )}
 
 <!-- FAQ Section -->

@@ -88,6 +88,31 @@ export interface PricingSection {
   footnote: string;
 }
 
+/** City+service expert narrative — unique paragraphs per city per service */
+export interface LocalContextSection {
+  heading: string;
+  paragraphs: string[];
+}
+
+/** City-specific pricing scoped to priceTier + service */
+export interface CityPricingSection {
+  heading: string;
+  city: string;
+  priceTier: string;
+  priceRange: string;
+  medianHomePrice: string;
+  footnote: string;
+}
+
+/** Service-specific neighborhood descriptions */
+export interface NeighborhoodServiceSection {
+  heading: string;
+  items: Array<{
+    neighborhood: string;
+    description: string;
+  }>;
+}
+
 export type SectionBlock =
   | { type: 'logoSlider' }
   | { type: 'reviews' }
@@ -101,6 +126,9 @@ export type SectionBlock =
   | { type: 'yellowBar'; text: string; href: string }
   | { type: 'financing' }
   | { type: 'pricing'; data: PricingSection }
+  | { type: 'localContext'; data: LocalContextSection }
+  | { type: 'cityPricing'; data: CityPricingSection }
+  | { type: 'neighborhoodService'; data: NeighborhoodServiceSection }
   | { type: 'faq' }
   | { type: 'contactUs' }
   | { type: 'footer' };

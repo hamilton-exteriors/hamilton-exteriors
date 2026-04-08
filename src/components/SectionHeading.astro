@@ -1,0 +1,45 @@
+---
+import SectionLabel from './SectionLabel.astro';
+
+/**
+ * Section heading with optional Satoshi label above.
+ *
+ * Usage:
+ *   <SectionHeading heading="Why Choose Hamilton?" />
+ *   <SectionHeading label="Our Advantage" heading="Why Choose Hamilton?" />
+ *   <SectionHeading label="Reviews" heading="What Homeowners Say" align="center" labelColor="primary" />
+ */
+interface Props {
+  heading: string;
+  label?: string;
+  labelColor?: 'primary' | 'yellow' | 'white' | 'muted';
+  align?: 'left' | 'center';
+  /** Color for the H2 — defaults to heading (dark green) */
+  headingColor?: 'heading' | 'white' | 'charcoal';
+  class?: string;
+}
+
+const {
+  heading,
+  label,
+  labelColor = 'primary',
+  align = 'left',
+  headingColor = 'heading',
+  class: className = '',
+} = Astro.props;
+
+const headingColorMap = {
+  heading: 'var(--color-heading)',
+  white: 'white',
+  charcoal: 'var(--color-charcoal)',
+};
+---
+
+<div class={className} style={align === 'center' ? 'text-align: center;' : ''}>
+  {label && (
+    <SectionLabel color={labelColor} align={align}>{label}</SectionLabel>
+  )}
+  <h2 style={`color: ${headingColorMap[headingColor]};${label ? '' : ' margin-bottom: 24px;'}`}>
+    {heading}
+  </h2>
+</div>

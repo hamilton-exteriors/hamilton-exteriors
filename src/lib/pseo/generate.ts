@@ -12,7 +12,7 @@
 
 import type { GeneralCityPageData } from '../general-city-types';
 import type { CityServicePageData } from '../city-service-types';
-import type { HeroProps, SectionBlock } from '../service-page-types';
+import type { HeroProps, SectionBlock, LocalContextSection, CityPricingSection, NeighborhoodServiceSection } from '../service-page-types';
 import type { CitySeed } from './city-seed-data';
 import type { ServiceTemplate } from './service-templates';
 import { CITY_SEEDS } from './city-seed-data';
@@ -192,6 +192,114 @@ function getCityLocalFaqs(seed: CitySeed): Array<{ question: string; answer: str
   ];
 }
 
+// ── Shared constants ──────────────────────────────────────────────────────
+
+/** Price ranges by market tier — used by both general city and city+service pages */
+const PRICE_RANGES: Record<string, { roof: string; siding: string; windows: string; adu: string }> = {
+  budget: { roof: '$9,000–$16,000', siding: '$14,000–$28,000', windows: '$350–$600 per window', adu: '$140,000–$375,000' },
+  mid: { roof: '$10,000–$20,000', siding: '$18,000–$34,000', windows: '$450–$800 per window', adu: '$180,000–$400,000' },
+  premium: { roof: '$12,000–$25,000', siding: '$24,000–$42,000', windows: '$500–$1,000 per window', adu: '$210,000–$450,000' },
+  luxury: { roof: '$18,000–$40,000', siding: '$34,000–$65,000', windows: '$800–$1,500+ per window', adu: '$300,000–$600,000' },
+};
+
+/** Map service slug to the price key in PRICE_RANGES */
+const SERVICE_PRICE_KEY: Record<string, 'roof' | 'siding' | 'windows' | 'adu'> = {
+  roofing: 'roof',
+  siding: 'siding',
+  windows: 'windows',
+  adu: 'adu',
+  'custom-homes': 'adu',
+  additions: 'adu',
+};
+
+// ── City+Service content helpers ──────────────────────────────────────────
+
+/**
+ * Get the service-specific note from seed data.
+ * For ADU/custom-homes/additions, compose from multiple fields.
+ */
+function getServiceNote(seed: CitySeed, serviceSlug: string): string {
+  switch (serviceSlug) {
+    case 'roofing':
+      return seed.roofingNote;
+    case 'siding':
+      return seed.sidingNote;
+    case 'windows':
+      return seed.windowNote;
+    case 'adu':
+      return `With ${seed.eraBreakdown.split(',')[0]?.trim() || 'a mix of housing eras'} in ${seed.city}, many properties have room for an ADU alongside the original structure. ${seed.commonIssue.split(',')[0]?.trim() || 'Aging homes'} often make ADU construction the ideal time to address deferred maintenance on the primary residence.`;
+    case 'custom-homes':
+      return `${seed.city}'s housing stock includes ${seed.homeStyles.split(',').slice(0, 2).join(' and ').trim() || 'diverse architectural styles'}. For homeowners who want something purpose-built for ${seed.city}'s climate and lifestyle, a ground-up custom home eliminates the compromises of renovating aging structures.`;
+    case 'additions':
+      return `Many ${seed.city} homes — especially ${seed.homeStyles.split(',')[0]?.trim() || 'older stock'} — were built when families and living patterns were smaller. ${seed.commonIssue.split(',')[0]?.trim() || 'Aging materials'} often surface during addition projects, and we address them as part of the build.`;
+    default:
+      return seed.roofingNote;
+  }
+}
+
+/**
+ * Build 2-3 unique paragraphs for the localContext section.
+ */
+function buildLocalContextParagraphs(
+  seed: CitySeed,
+  serviceSlug: string,
+  serviceName: string,
+): string[] {
+  const note = getServiceNote(seed, serviceSlug);
+  const paragraphs: string[] = [];
+
+  // P1: Service-specific note (directly from seed or composed)
+  paragraphs.push(note);
+
+  // P2: Climate + common issues framed through the service
+  paragraphs.push(
+    `${seed.city}'s climate — ${seed.climateFactor.split(',').slice(0, 2).join(',').trim() || 'Bay Area conditions'} — directly impacts ${serviceName.toLowerCase()} performance and material selection. The most common issues we address in ${seed.city} include ${seed.commonIssue.split(',').slice(0, 2).join(' and ').trim() || 'aging exterior materials'}. Hamilton Exteriors selects materials proven for ${seed.city}'s Title 24 Climate Zone ${seed.climateZone} conditions and backs every installation with our 50-year warranty.`,
+  );
+
+  // P3: Era breakdown + home styles (skip if data is sparse)
+  const eraInfo = seed.eraBreakdown;
+  const styleInfo = seed.homeStyles;
+  if (eraInfo.length > 20 && styleInfo.length > 20) {
+    paragraphs.push(
+      `${seed.city}'s housing stock spans ${eraInfo.split(',').slice(0, 3).join(',').trim()}. Architectural styles range from ${styleInfo.split(',').slice(0, 2).join(' to ').trim()}. Each era and style presents different ${serviceName.toLowerCase()} requirements — from material compatibility to structural considerations. Our crews know what to expect before they arrive on site.`,
+    );
+  }
+
+  return paragraphs;
+}
+
+/**
+ * Build 3 neighborhood items with service-specific descriptions.
+ */
+function buildNeighborhoodServiceItems(
+  seed: CitySeed,
+  serviceSlug: string,
+  serviceName: string,
+): Array<{ neighborhood: string; description: string }> {
+  const items: Array<{ neighborhood: string; description: string }> = [];
+  const note = getServiceNote(seed, serviceSlug);
+  const noteSentences = note.split(/\.\s+/).filter(s => s.length > 10);
+
+  for (let i = 0; i < 3 && i < seed.neighborhoods.length; i++) {
+    const idx = hashCode(`${seed.slug}-${serviceSlug}-nbhd-${i}`) % seed.neighborhoods.length;
+    const n = seed.neighborhoods[idx];
+
+    // Each neighborhood gets a different framing
+    let desc: string;
+    if (i === 0) {
+      desc = `${n} homeowners frequently choose Hamilton Exteriors for ${serviceName.toLowerCase()}. ${noteSentences[0] ? noteSentences[0] + '.' : ''} With ${seed.city}'s ${seed.microclimate.split('.')[0]?.trim() || 'variable climate'}, material selection in ${n} requires local expertise.`;
+    } else if (i === 1) {
+      const styleSnippet = seed.homeStyles.split(',')[Math.min(i, seed.homeStyles.split(',').length - 1)]?.trim() || 'diverse homes';
+      desc = `In ${n}, homes are predominantly ${styleSnippet}. ${noteSentences[Math.min(1, noteSentences.length - 1)] ? noteSentences[Math.min(1, noteSentences.length - 1)] + '.' : ''} Our crews are familiar with ${n}'s architectural character and building requirements.`;
+    } else {
+      desc = `From ${n} to ${seed.neighborhoods[(idx + 2) % seed.neighborhoods.length]}, ${seed.city} homeowners trust Hamilton Exteriors for ${serviceName.toLowerCase()} that stands up to ${seed.climateFactor.split(',')[0]?.trim() || 'local conditions'}. We handle permits, engineering, and installation — you get a single point of contact.`;
+    }
+    items.push({ neighborhood: n, description: desc });
+  }
+
+  return items;
+}
+
 // ── 1. General City Page ────────────────────────────────────────────────────
 
 const SERVICE_DEFS = [
@@ -314,14 +422,7 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
   const countyLocalFaqs = getCountyLocalFaqs(countySlug, city, county);
   const cityLocalFaqs = getCityLocalFaqs(seed);
 
-  // Price ranges by tier for more accurate city-specific pricing
-  const priceRanges: Record<string, { roof: string; siding: string; windows: string; adu: string }> = {
-    budget: { roof: '$9,000–$16,000', siding: '$14,000–$28,000', windows: '$350–$600 per window', adu: '$140,000–$375,000' },
-    mid: { roof: '$10,000–$20,000', siding: '$18,000–$34,000', windows: '$450–$800 per window', adu: '$180,000–$400,000' },
-    premium: { roof: '$12,000–$25,000', siding: '$24,000–$42,000', windows: '$500–$1,000 per window', adu: '$210,000–$450,000' },
-    luxury: { roof: '$18,000–$40,000', siding: '$34,000–$65,000', windows: '$800–$1,500+ per window', adu: '$300,000–$600,000' },
-  };
-  const prices = priceRanges[seed.priceTier];
+  const prices = PRICE_RANGES[seed.priceTier];
 
   const faqs = [
     {
@@ -568,13 +669,52 @@ export function generateCityServicePage(
     },
   };
 
-  // Ordered sections array
+  // ── New unique content sections ──────────────────────────────────────────
+
+  // 1. Local context — city+service expert narrative (150-200 words unique)
+  const localContextSection: SectionBlock = {
+    type: 'localContext',
+    data: {
+      heading: `${serviceName} in ${city}: What Local Homeowners Need to Know`,
+      paragraphs: buildLocalContextParagraphs(seed, serviceSlug, serviceName),
+    } satisfies LocalContextSection,
+  };
+
+  // 2. City pricing — service-specific pricing for this city's market tier
+  const priceKey = SERVICE_PRICE_KEY[serviceSlug] || 'roof';
+  const tierPrices = PRICE_RANGES[seed.priceTier];
+  const tierLabel = seed.priceTier === 'luxury' ? 'premium' : seed.priceTier;
+  const cityPricingSection: SectionBlock = {
+    type: 'cityPricing',
+    data: {
+      heading: `${serviceName} Costs in ${city}`,
+      city,
+      priceTier: seed.priceTier,
+      priceRange: tierPrices[priceKey],
+      medianHomePrice: seed.medianHomePrice,
+      footnote: `Prices reflect ${city}'s ${tierLabel} market and ${county} County labor rates. Actual costs depend on home size, materials, and project complexity. We provide free, itemized estimates with no hidden fees.`,
+    } satisfies CityPricingSection,
+  };
+
+  // 3. Neighborhood service — 3 neighborhoods with service-specific descriptions
+  const neighborhoodServiceSection: SectionBlock = {
+    type: 'neighborhoodService',
+    data: {
+      heading: `${serviceName} Across ${city} Neighborhoods`,
+      items: buildNeighborhoodServiceItems(seed, serviceSlug, serviceName),
+    } satisfies NeighborhoodServiceSection,
+  };
+
+  // Ordered sections array — new unique sections interspersed with shared components
   const sections: SectionBlock[] = [
+    localContextSection,
     { type: 'logoSlider' },
     { type: 'reviews' },
     { type: 'financing' },
+    cityPricingSection,
     { type: 'reviewLogos' },
     stylesSection,
+    neighborhoodServiceSection,
     { type: 'difference' },
     { type: 'projects' },
     { type: 'faq' },

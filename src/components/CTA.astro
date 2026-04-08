@@ -2,6 +2,7 @@
 import { Image, getImage } from 'astro:assets';
 import { financingWorker, iconCheckmarkCircle, ctaAssistant } from '../lib/images';
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
+import SectionLabel from './SectionLabel.astro';
 
 const [ctaMobile, ctaTablet, ctaDesktop] = await Promise.all([
   getImage({ src: ctaAssistant, width: 600, height: 450, format: 'webp', quality: 65 }),
@@ -17,9 +18,7 @@ const [ctaMobile, ctaTablet, ctaDesktop] = await Promise.all([
     <div class="flex w-full flex-col justify-center px-5 py-10 lg:w-1/2 lg:px-10 lg:py-16">
 
       <!-- Heading -->
-      <p style="font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-primary); margin-bottom: 12px;">
-        Ready to Start?
-      </p>
+      <SectionLabel>Ready to Start?</SectionLabel>
       <h2 style="font-family: var(--font-oswald); font-size: clamp(32px, 5vw, 52px); line-height: 1.1; color: var(--color-charcoal); font-weight: 400; text-transform: uppercase; margin: 0;">
         Get Started with <span style="color: var(--color-primary); background: linear-gradient(transparent 60%, rgba(255, 222, 33, 0.35) 60%);">$0 Down*</span>
       </h2>

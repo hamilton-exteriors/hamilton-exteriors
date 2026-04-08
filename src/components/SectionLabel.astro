@@ -1,24 +1,32 @@
 ---
+/**
+ * Satoshi uppercase label used above section headings.
+ * Usage: <SectionLabel>Local Expertise</SectionLabel>
+ *        <SectionLabel color="yellow">Our Advantage</SectionLabel>
+ */
 interface Props {
-  color?: 'primary' | 'muted' | 'white';
+  color?: 'primary' | 'yellow' | 'white' | 'muted';
+  align?: 'left' | 'center';
   class?: string;
 }
 
 const {
   color = 'primary',
+  align = 'left',
   class: className = '',
 } = Astro.props;
 
 const colorMap = {
-  primary: 'var(--color-primary-dark)',
-  muted: 'var(--color-muted)',
+  primary: 'var(--color-primary)',
+  yellow: 'var(--color-yellow)',
   white: 'white',
+  muted: 'var(--color-muted)',
 };
 ---
 
 <p
-  class={`text-label ${className}`}
-  style={`color: ${colorMap[color]}; margin: 0;`}
+  class={className}
+  style={`font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: ${colorMap[color]}; margin: 0 0 12px; ${align === 'center' ? 'text-align: center;' : ''}`}
 >
   <slot />
 </p>

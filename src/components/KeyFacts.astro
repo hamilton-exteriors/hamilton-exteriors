@@ -1,4 +1,6 @@
 ---
+import SectionLabel from './SectionLabel.astro';
+
 interface Props {
   title?: string;
   facts: Array<{
@@ -17,9 +19,7 @@ const { title = 'Key Facts', facts } = Astro.props;
   aria-label={title}
   style="background-color: var(--color-cream); border-left: 4px solid var(--color-primary); padding: 24px 28px; margin: 32px 0; max-width: 800px;"
 >
-  <p style="font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-primary); margin: 0 0 16px 0;">
-    {title}
-  </p>
+  <SectionLabel>{title}</SectionLabel>
 
   <dl style="margin: 0;">
     {facts.map((fact, i) => (
