@@ -1,0 +1,15 @@
+---
+/**
+ * Angi brand icon — the distinctive lowercase "a" letterform.
+ * Extracted from the official Angi wordmark (worldvectorlogo).
+ * Brand color: #FF6153
+ */
+interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 26, class: className = '' } = Astro.props;
+---
+<svg viewBox="3 4 120 215" width={size} height={size} class={className} aria-hidden="true">
+  <path d="m115.6 4.6 27.47 171.23h-28.77l-1.52-11.13c-2.59-19.86-13.08-38.21-30.36-42.28-.6 7.01-3.96 30.77-5.41 36.96 0-.01.01-.03.01-.05-2.63 12.98-8.24 27.16-25.14 32.98a33.499 33.499 0 0 1-10.9 1.81c-9.38 0-18.68-3.87-25.49-11.01-7.54-7.9-11.76-17.54-11.88-29.88-.28-29.52 24.06-55.9 55.41-60.07.3-.04.6-.06.91-.1l14.18-88.46h21zm-60.34 117.52c-12.81 4.54-24.4 16.11-24.26 30.86.05 5.28 1.62 8.41 4.3 11.23 2.08 2.18 5.17 3.07 7.66 2.21 4.18-1.44 6.14-6.44 7.63-14.81zm49.31-19.8-9.21-70.65h-1.02l-8.25 63.31c6.41 1.65 12.63 4.14 18.48 7.34z" fill="#FF6153"/>
+</svg>

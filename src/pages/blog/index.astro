@@ -429,9 +429,11 @@ function ghostSrcset(url: string, widths: number[]): string {
   @media (max-width: 1023px) {
     .filter-panel {
       max-height: 0; overflow: hidden; opacity: 0;
-      transition: max-height 0.3s ease, opacity 0.2s ease;
+      display: grid; grid-template-rows: 0fr; opacity: 0;
+      transition: grid-template-rows 0.3s ease, opacity 0.2s ease;
     }
-    .filter-panel.open { max-height: 400px; opacity: 1; padding-top: 10px; }
+    .filter-panel > * { overflow: hidden; }
+    .filter-panel.open { grid-template-rows: 1fr; opacity: 1; padding-top: 10px; }
     .filter-row__label { width: 100%; margin-bottom: 2px; }
     .filter-row { padding-bottom: 8px; border-bottom: 1px solid var(--color-border); }
     .filter-row:last-child { border-bottom: none; padding-bottom: 0; }
@@ -489,12 +491,12 @@ function ghostSrcset(url: string, widths: number[]): string {
 
   .card--featured {
     margin-bottom: 40px;
-    border-left: 4px solid var(--color-yellow);
+    border-bottom: 3px solid var(--color-yellow);
   }
   @media (min-width: 1024px) {
     .card--featured {
       flex-direction: row;
-      border-left: 5px solid var(--color-yellow);
+      border-bottom: 3px solid var(--color-yellow);
     }
     .card--featured .card__img--featured {
       width: 55%;

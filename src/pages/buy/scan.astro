@@ -52,7 +52,7 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
 <div class="relative min-h-[400px] bg-(--color-heading) lg:flex-1">
 <div id="roof-map" class="absolute inset-0 size-full"></div>
 <div id="scan-loading" class="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[rgba(26,35,50,0.92)]" role="alert" aria-busy="true"><div class="scan-spinner mb-4"></div><p class="text-[15px] font-semibold text-white">Scanning your roof...</p><p class="text-[13px] text-white/50" id="scan-status" aria-live="polite" role="status">Locating property</p></div>
-<div id="roof-legend" class="absolute bottom-4 left-4 z-10 hidden rounded-[4px] bg-black/70 px-3.5 py-2.5 text-[13px] text-white backdrop-blur"><div class="flex items-center gap-2"><span class="inline-block h-[3px] w-3.5 rounded bg-[rgb(196,112,75)]"></span><span>Roof outline</span></div></div>
+<div id="roof-legend" class="absolute bottom-4 left-4 z-10 hidden rounded-[4px] bg-[--color-primary-dark]/80 px-3.5 py-2.5 text-[13px] text-white backdrop-blur"><div class="flex items-center gap-2"><span class="inline-block h-[3px] w-3.5 rounded bg-[rgb(196,112,75)]"></span><span>Roof outline</span></div></div>
 </div>
 <div class="shrink-0 border-l border-border px-6 py-7 lg:w-[340px]">
 <h2 class="mb-5 text-xl text-charcoal">Roof Measurements</h2>
@@ -83,7 +83,7 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
 <!-- Swatch preview tooltip -->
 <div id="swatch-preview" class="pointer-events-none fixed z-50 hidden size-[140px] overflow-hidden rounded-[4px] border border-border shadow-lg">
   <img id="swatch-preview-img" src="" alt="Shingle color preview" class="size-full object-cover" onerror="this.parentElement.parentElement.classList.add('hidden');" />
-  <div id="swatch-preview-name" class="absolute inset-x-0 bottom-0 bg-black/60 p-1 text-center text-[11px] font-semibold text-white"></div>
+  <div id="swatch-preview-name" class="absolute inset-x-0 bottom-0 bg-[--color-primary-dark]/70 p-1 text-center text-[11px] font-semibold text-white"></div>
 </div>
 <!-- Tier: Recommended -->
 <div class="mb-3"><p class="text-label-uppercase mb-2 text-[11px] text-primary">Recommended</p></div>
@@ -183,7 +183,7 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
 </div>
 </section>
 <!-- Purchase / Lead Capture Modal -->
-<div id="purchase-modal" class="fixed inset-0 z-60 hidden bg-black/50 backdrop-blur-xs" role="dialog" aria-modal="true" aria-label="Confirm your purchase">
+<div id="purchase-modal" class="fixed inset-0 z-60 hidden bg-[--color-charcoal]/50 backdrop-blur-xs" role="dialog" aria-modal="true" aria-label="Confirm your purchase">
   <div class="flex min-h-full items-center justify-center p-4">
     <div class="w-full max-w-[480px] rounded-[4px] bg-white px-8 py-9 shadow-xl">
       <h3 class="text-center text-2xl font-semibold text-charcoal">Almost there!</h3>
@@ -250,7 +250,7 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
 </div>
 
 <!-- Error modal for scan failures -->
-<div id="scan-error-modal" class="fixed inset-0 z-60 hidden bg-black/50 backdrop-blur-xs" role="alertdialog" aria-modal="true" aria-label="Scan error">
+<div id="scan-error-modal" class="fixed inset-0 z-60 hidden bg-[--color-charcoal]/50 backdrop-blur-xs" role="alertdialog" aria-modal="true" aria-label="Scan error">
   <div class="flex min-h-full items-center justify-center p-4">
     <div class="w-full max-w-[440px] rounded-[4px] bg-white px-8 py-9 text-center shadow-xl">
       <div class="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-primary">

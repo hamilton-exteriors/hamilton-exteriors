@@ -175,6 +175,26 @@ function imgAlt(project: Project, index: number): string {
   }
 </style>
 
+<!-- Lightbox mobile UX overrides (widget CSS/JS patches) -->
+<style is:global>
+  /* Force lightbox overlay above sticky nav */
+  .bop-lightbox,
+  [class*="lightbox-overlay"],
+  #bo-portfolio ~ div[style*="position: fixed"] {
+    z-index: 9999 !important;
+  }
+  /* Close button: enlarge to 44x44px touch target */
+  .bop-lightbox-close,
+  [class*="lightbox"] button[aria-label*="close" i],
+  [class*="lightbox"] button[aria-label*="Close" i] {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
 <script is:inline define:vars={{ widgetUrl, widgetKey }}>
   // Load the BackOffice portfolio widget — replaces SSR content with interactive version
   (function() {
@@ -184,5 +204,92 @@ function imgAlt(project: Project, index: number): string {
     s.setAttribute('data-target', 'bo-portfolio');
     s.defer = true;
     document.body.appendChild(s);
+
+    // Patch lightbox after widget hydrates: swipe gestures + focus trapping
+    s.addEventListener('load', function() {
+      var observer = new MutationObserver(function(mutations) {
+        for (var i = 0; i < mutations.length; i++) {
+          var nodes = mutations[i].addedNodes;
+          for (var j = 0; j < nodes.length; j++) {
+            var node = nodes[j];
+            if (node.nodeType !== 1) continue;
+            var overlay = node.matches && node.matches('[style*="position: fixed"]') ? node : null;
+            if (!overlay && node.querySelector) overlay = node.querySelector('[style*="position: fixed"]');
+            if (overlay && !overlay._boPatched) patchLightbox(overlay);
+          }
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+
+    function patchLightbox(overlay) {
+      overlay._boPatched = true;
+      overlay.style.zIndex = '9999';
+
+      // Find nav buttons
+      var buttons = overlay.querySelectorAll('button');
+      var prevBtn = null, nextBtn = null, closeBtn = null;
+      buttons.forEach(function(btn) {
+        var label = (btn.getAttribute('aria-label') || '').toLowerCase();
+        var text = btn.textContent || '';
+        if (label.includes('prev') || text.includes('‹') || text.includes('←')) prevBtn = btn;
+        else if (label.includes('next') || text.includes('›') || text.includes('→')) nextBtn = btn;
+        else if (label.includes('close') || text.includes('×') || text.includes('✕')) closeBtn = btn;
+      });
+
+      // Enlarge close button touch target
+      if (closeBtn) {
+        closeBtn.style.minWidth = '44px';
+        closeBtn.style.minHeight = '44px';
+      }
+
+      // Swipe gesture support
+      var startX = 0, startY = 0, tracking = false;
+      overlay.addEventListener('touchstart', function(e) {
+        if (e.touches.length !== 1) return;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        tracking = true;
+      }, { passive: true });
+
+      overlay.addEventListener('touchend', function(e) {
+        if (!tracking) return;
+        tracking = false;
+        var dx = e.changedTouches[0].clientX - startX;
+        var dy = e.changedTouches[0].clientY - startY;
+        var absDx = Math.abs(dx), absDy = Math.abs(dy);
+
+        // Horizontal swipe (>60px, dominant axis)
+        if (absDx > 60 && absDx > absDy * 1.5) {
+          if (dx < 0 && nextBtn) nextBtn.click();
+          else if (dx > 0 && prevBtn) prevBtn.click();
+        }
+        // Vertical swipe down to dismiss (>100px)
+        if (dy > 100 && absDy > absDx * 1.5 && closeBtn) {
+          closeBtn.click();
+        }
+      }, { passive: true });
+
+      // Focus trapping
+      function getFocusable() {
+        return overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      }
+      overlay.addEventListener('keydown', function(e) {
+        if (e.key !== 'Tab') return;
+        var focusable = getFocusable();
+        if (focusable.length === 0) return;
+        var first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      });
+
+      // Auto-focus first button
+      if (closeBtn) closeBtn.focus();
+    }
   })();
 </script>

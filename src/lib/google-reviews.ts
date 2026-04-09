@@ -169,14 +169,70 @@ const MIN_DISPLAY_RATING = 4.8;
 const MIN_TEXT_LENGTH = 20;
 
 /**
+ * Blocked username patterns — filters out inappropriate or spammy reviewer names.
+ * Case-insensitive partial match against author_name.
+ */
+const BLOCKED_USERNAME_PATTERNS = [
+  /naneas/i,       // weed-related
+  /420/i,          // weed-related
+  /blaze/i,        // weed-related
+  /kush/i,         // weed-related
+  /weed/i,         // explicit
+  /stoner/i,       // explicit
+  /dank/i,         // weed-related
+  /high\s*life/i,  // weed-related
+  /xxx/i,          // inappropriate
+  /69\b/i,         // inappropriate
+  /ass\b/i,        // inappropriate
+  /shit/i,         // explicit
+  /fuck/i,         // explicit
+  /damn/i,         // explicit
+  /hell\b/i,       // explicit
+];
+
+function isUsernameAppropriate(name: string): boolean {
+  return !BLOCKED_USERNAME_PATTERNS.some(p => p.test(name));
+}
+
+/** Service keywords for auto-tagging Google reviews */
+const SERVICE_KEYWORDS: Record<string, string[]> = {
+  roofing: ['roof', 'shingle', 'gutter', 'leak', 'roofing'],
+  siding: ['siding', 'exterior', 'paint', 'stucco', 'hardie', 'cladding'],
+  windows: ['window', 'glass', 'pane', 'energy efficient'],
+  adu: ['adu', 'accessory dwelling', 'granny flat', 'in-law', 'backyard unit'],
+  'custom-homes': ['custom home', 'new build', 'new construction', 'dream home', 'ground up'],
+  additions: ['addition', 'expand', 'extension', 'added room', 'extra room'],
+};
+
+/**
+ * Auto-detect service tags from review text via keyword matching.
+ * Always includes 'general'. Returns array of matching service tags.
+ */
+export function detectServiceTags(text: string): string[] {
+  const lower = text.toLowerCase();
+  const tags = ['general'];
+  for (const [service, keywords] of Object.entries(SERVICE_KEYWORDS)) {
+    if (keywords.some(kw => lower.includes(kw))) {
+      tags.push(service);
+    }
+  }
+  return tags;
+}
+
+/**
  * Get reviews filtered and safe for public display.
  * - Only shows 4+ star reviews with meaningful text
+ * - Filters out inappropriate usernames
  * - Aggregate rating never drops below 4.8 on site
  * - Returns at most `limit` reviews (default 5)
  */
 export function getDisplayReviews(data: ReviewData, limit = 5) {
   const filtered = data.reviews
-    .filter(r => r.rating >= MIN_DISPLAY_STARS && r.text.length >= MIN_TEXT_LENGTH)
+    .filter(r =>
+      r.rating >= MIN_DISPLAY_STARS &&
+      r.text.length >= MIN_TEXT_LENGTH &&
+      isUsernameAppropriate(r.author_name)
+    )
     .slice(0, limit);
 
   return {

@@ -30,8 +30,7 @@ const {
   formTitle = 'Get Your Free Quote',
   formAction = '/success',
   formSubtitle = "We'll call you within 3\u20135 minutes to schedule your inspection.",
-  headline = "Bay Area's Architect-Led  Custom Home  & Exteriors Contractor",
-  headlineLines = headline.trim().split(/\s{2,}|\n/),
+  headline = "Bay Area's Architect-Led Custom Home & Exteriors Contractor",
   badges = [
     'In-House Architect & Engineering',
     'Flexible Financing Available',
@@ -643,11 +642,11 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
 
   /* Hero headline: mobile/tablet full-width, desktop narrower column */
   .hero-h1 {
-    font-size: clamp(3rem, 12vw, 4.5rem);
+    font-size: clamp(2.5rem, 9vw, 3.5rem);
   }
   @media (min-width: 1024px) {
     .hero-h1 {
-      font-size: clamp(2.75rem, 3.8vw, 3.5rem);
+      font-size: clamp(2.5rem, 3.4vw, 3.25rem);
     }
   }
 

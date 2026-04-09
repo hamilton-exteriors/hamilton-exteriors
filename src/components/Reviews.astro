@@ -1,10 +1,12 @@
 ---
 import IconGoogle from './icons/IconGoogle.astro';
 import IconYelp from './icons/IconYelp.astro';
+import IconAngi from './icons/IconAngi.astro';
+import IconNextdoor from './icons/IconNextdoor.astro';
 import StarRating from './StarRating.astro';
 import SectionLabel from './SectionLabel.astro';
 import CTAButton from './CTAButton.astro';
-import { getGoogleReviews, getDisplayReviews, GOOGLE_REVIEW_LINK } from '../lib/google-reviews';
+import { getGoogleReviews, getDisplayReviews, detectServiceTags, GOOGLE_REVIEW_LINK } from '../lib/google-reviews';
 import { getCuratedReviews } from '../data/curated-reviews';
 
 interface Props {
@@ -17,12 +19,21 @@ const rawData = await getGoogleReviews();
 const { rating, reviewCount, reviews: allGoogleReviews } = getDisplayReviews(rawData, 5);
 
 // Only use Google reviews that have a profile photo — no-photo cards look broken
+// When a service is specified, prefer reviews whose text mentions that service
 const googleWithPhotos = allGoogleReviews
   .filter(r => r.profile_photo_url)
-  .map(r => ({ ...r, platform: 'google' as const }));
+  .map(r => ({ ...r, platform: 'google' as const, _tags: detectServiceTags(r.text) }));
+
+// Sort: service-relevant reviews first, then general
+const sortedGoogle = service !== 'general'
+  ? [
+      ...googleWithPhotos.filter(r => r._tags.includes(service)),
+      ...googleWithPhotos.filter(r => !r._tags.includes(service)),
+    ]
+  : googleWithPhotos;
 
 // Fill remaining slots with curated reviews (always have quality content)
-const curatedSlots = 4 - Math.min(googleWithPhotos.length, 4);
+const curatedSlots = 4 - Math.min(sortedGoogle.length, 4);
 const curated = getCuratedReviews(service, curatedSlots).map(r => ({
   author_name: r.author_name,
   rating: r.rating,
@@ -34,9 +45,11 @@ const curated = getCuratedReviews(service, curatedSlots).map(r => ({
   platform: r.platform,
 }));
 
-const reviews = [...googleWithPhotos.slice(0, 4), ...curated].slice(0, 4);
+const reviews = [...sortedGoogle.slice(0, 4), ...curated].slice(0, 4);
 
 const YELP_LINK = 'https://www.yelp.com/biz/hamilton-exteriors-castro-valley';
+const ANGI_LINK = 'https://www.angi.com/companylist/us/ca/castro-valley/hamilton-exteriors-reviews-10769498.htm';
+const NEXTDOOR_LINK = 'https://nextdoor.com/pages/hamilton-exteriors-castro-valley-ca/';
 ---
 
 <section id="review" class="px-0 py-12 lg:py-20">
@@ -94,6 +107,14 @@ const YELP_LINK = 'https://www.yelp.com/biz/hamilton-exteriors-castro-valley';
             {review.platform === 'yelp' ? (
               <a href={YELP_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Yelp">
                 <IconYelp size={26} class="shrink-0" />
+              </a>
+            ) : review.platform === 'angi' ? (
+              <a href={ANGI_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Angi">
+                <IconAngi size={26} class="shrink-0" />
+              </a>
+            ) : review.platform === 'nextdoor' ? (
+              <a href={NEXTDOOR_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Nextdoor">
+                <IconNextdoor size={26} class="shrink-0" />
               </a>
             ) : (
               <a href={review.author_url || GOOGLE_REVIEW_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Google">
