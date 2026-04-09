@@ -14,6 +14,7 @@
         "jsonwebtoken": "^9.0.3",
         "sanitize-html": "^2.17.2",
         "sharp": "^0.34.5",
+        "simple-icons": "^16.15.0",
         "tailwindcss": "^4.2.2",
       },
       "devDependencies": {
@@ -981,6 +982,8 @@
     "shiki": ["shiki@4.0.2", "", { "dependencies": { "@shikijs/core": "4.0.2", "@shikijs/engine-javascript": "4.0.2", "@shikijs/engine-oniguruma": "4.0.2", "@shikijs/langs": "4.0.2", "@shikijs/themes": "4.0.2", "@shikijs/types": "4.0.2", "@shikijs/vscode-textmate": "^10.0.2", "@types/hast": "^3.0.4" } }, ""],
 
     "siginfo": ["siginfo@2.0.0", "", {}, "sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g=="],
+
+    "simple-icons": ["simple-icons@16.15.0", "", {}, "sha512-hOyY4Cdvh1D/FJa1Qx4nTvypCT2BoI3jpc4xjxVgwVh1Hmd9mnqBqBTziDytCj2f5UOAXCfdnwODiNv710aqkQ=="],
 
     "sisteransi": ["sisteransi@1.0.5", "", {}, ""],
 
