@@ -5,6 +5,7 @@ import type { ImageMetadata } from 'astro';
 import { heroBg } from '../lib/images';
 import { getGoogleReviews, getDisplayReviews } from '../lib/google-reviews';
 import { CURATED_REVIEWS } from '../data/curated-reviews';
+import { OpenPanelComponent } from '@openpanel/astro';
 
 interface Props {
   title?: string;
@@ -95,10 +96,8 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- ── Resource hints — must be first in <head> for maximum effectiveness ── -->
-    <!-- Plausible Analytics (primary, cookie-free) -->
-    <link rel="dns-prefetch" href="https://plausible.io" />
-    <!-- PostHog (session replay + heatmaps + funnels, free tier 1M events/mo) -->
-    <link rel="dns-prefetch" href="https://us.i.posthog.com" />
+    <!-- OpenPanel Analytics (cookie-free, session replay, funnels, retention) -->
+    <link rel="dns-prefetch" href="https://openpanel.dev" />
     <!-- GTM: always needed (deferred via interaction, but DNS/TCP warmup is free) -->
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
@@ -399,29 +398,13 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     </script>
     )}
 
-    <!-- Plausible Analytics — cookie-free, no consent banner needed, ~1KB -->
-    <script is:inline defer data-domain="hamilton-exteriors.com" src="https://plausible.io/js/script.js"></script>
-    <!-- Expose plausible() for custom events before the script loads -->
-    <script is:inline>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
-
-    <!-- Microsoft Clarity — free heatmaps + session replay, deferred until first interaction -->
-    <script is:inline>
-      (function(){
-        var loaded=false;
-        function loadClarity(){
-          if(loaded)return;loaded=true;
-          (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window,document,"clarity","script","CLARITY_PROJECT_ID");
-        }
-        ['scroll','click','touchstart','keydown'].forEach(function(e){
-          window.addEventListener(e,loadClarity,{once:true,passive:true});
-        });
-        setTimeout(loadClarity,5000);
-      })();
-    </script>
+    <!-- OpenPanel Analytics — cookie-free, session replay, funnels, ~2.3KB -->
+    <OpenPanelComponent
+      clientId="edc36a20-3fa1-49e8-bae6-d0be0abfadec"
+      trackScreenViews={true}
+      trackOutgoingLinks={true}
+      trackAttributes={true}
+    />
 
     <!-- Google Tag Manager — deferred until first user interaction to keep LCP/TBT clean -->
     <script is:inline>
@@ -493,15 +476,6 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
       }
 
 
-      // Scroll reveal — fade+rise sections into view
-      const reveals = document.querySelectorAll('.reveal');
-      if (reveals.length) {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-        reveals.forEach(el => io.observe(el));
-      }
-
       // Scroll #quote links to center the form on screen
       document.querySelectorAll('a[href="#quote"], a[href="/#quote"]').forEach(link => {
         link.addEventListener('click', (e) => {
@@ -519,6 +493,34 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
             }, 600);
           }
         });
+      });
+    </script>
+
+    <!-- Global event tracking: phone clicks + CTA clicks -->
+    <script>
+      // Track all tel: link clicks
+      document.addEventListener('click', (e) => {
+        const link = (e.target as HTMLElement).closest('a[href^="tel:"]') as HTMLAnchorElement;
+        if (link) {
+          window.op?.('track', 'phone_click', {
+            page: window.location.pathname,
+            text: link.textContent?.trim() || '',
+          });
+          window.dataLayer?.push({ event: 'phone_click', page: window.location.pathname });
+        }
+      });
+
+      // Track CTA button clicks (Get Free Quote, Get a Quote, etc.)
+      document.addEventListener('click', (e) => {
+        const el = (e.target as HTMLElement).closest('a[href="#quote"], a[href="/#quote"], a[href="/buy"], a[href="/buy/scan"]') as HTMLAnchorElement;
+        if (el) {
+          window.op?.('track', 'cta_click', {
+            page: window.location.pathname,
+            href: el.getAttribute('href') || '',
+            text: el.textContent?.trim() || '',
+          });
+          window.dataLayer?.push({ event: 'cta_click', page: window.location.pathname });
+        }
       });
     </script>
 
