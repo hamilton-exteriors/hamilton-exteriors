@@ -15,6 +15,7 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 import { getCityProximity } from '../lib/city-coordinates';
 import Reviews from './Reviews.astro';
 import Breadcrumb from './Breadcrumb.astro';
+import { getGoogleReviews, getDisplayReviews } from '../lib/google-reviews';
 import SectionLabel from './SectionLabel.astro';
 import Section from './Section.astro';
 import SectionHeading from './SectionHeading.astro';
@@ -28,6 +29,10 @@ interface Props {
 
 const { data, heroImage } = Astro.props;
 const proximity = getCityProximity(data.slug);
+
+// Fetch live review data so city page schema matches Layout schema
+const _rawReviews = await getGoogleReviews();
+const _cityReviews = getDisplayReviews(_rawReviews);
 
 // Seed data uses short county slugs ("alameda"), URLs use full slugs ("alameda-county-ca")
 const countyUrlSlug = data.countySlug.endsWith('-county-ca') ? data.countySlug : `${data.countySlug}-county-ca`;
@@ -71,8 +76,8 @@ const reviewSchema = {
   name: 'Hamilton Exteriors',
   aggregateRating: {
     '@type': 'AggregateRating',
-    ratingValue: 4.8,
-    reviewCount: 52,
+    ratingValue: _cityReviews.rating,
+    reviewCount: _cityReviews.reviewCount,
     bestRating: 5,
     worstRating: 1,
   },

@@ -1,197 +1,254 @@
 # Hamilton Exteriors — SEO Action Plan
 
-**Generated:** 2026-04-08 (v7 — 7-agent audit) | **Current Score:** 75/100 | **Target:** 90/100
+**Generated:** 2026-04-08 (v8 — 7-agent audit) | **Current Score:** 72/100 | **Target:** 85/100
 
 ---
 
 ## Critical (Fix Immediately)
 
-### 1. Add ~1,584 city+service pages to sitemap
-**Impact:** Technical +4 | **Effort:** Medium (1-2 hours)
-**Category:** Technical SEO
+### 1. Fix review count discrepancy
+**Impact:** Trust, Schema, GEO | **Effort:** 30 min | **Score lift:** +2-3 pts
 
-City+service pages (e.g., `/oakland-ca/roofing`) return 200, have self-referencing canonicals, and are internally linked — but none appear in the sitemap. Google has no lastmod or crawl priority signal for them.
+`llms.txt` says "52 Google reviews", homepage schema says 26, city page schema emits 52. AI systems will generate contradictory citations; Google Rich Results Test will flag the mismatch.
 
-**Fix:** Add a dedicated `sitemap-service-pages.xml` to the sitemap index. Include `<lastmod>` with real per-page dates. OR: if you decide to noindex these pages (see #3 below), skip this and add `noindex` instead.
+**Action:**
+- Determine actual GBP review count
+- Update `public/llms.txt` line 17 to match
+- Update `public/llms-full.txt` to match
+- Fix city page schema source — find where `reviewCount: 52` originates in `ServiceAreaCityPage.astro` and point it to the same live API/fallback as Layout schema
+- All instances must show the same number
 
-### 2. Fix stale internal links in city page template
-**Impact:** Technical +3 | **Effort:** Low (15 minutes)
-**Category:** Technical SEO
-
-City pages emit links in old format `/service-areas/alameda/berkeley` instead of `/service-areas/alameda-county-ca/berkeley-ca`. These 301 redirect to the correct URL, diluting PageRank on every hop.
-
-**Fix:** Search the city page template for the old `/service-areas/alameda/` pattern and replace with `/service-areas/alameda-county-ca/`. Grep for all old county slugs: `alameda`, `contra-costa`, `marin`, `napa`, `santa-clara`, `san-mateo`.
-
-### 3. Decide pSEO page strategy (thin content)
-**Impact:** Content +8, Local +5 | **Effort:** Large (multi-week)
-**Category:** Content Quality
-
-~500+ city+service pages have 60% content overlap with parent city pages. ~75% of city pages (Walnut Creek pattern) lack unique neighborhood content. This is the single largest risk for a doorway page algorithmic action.
-
-**Options:**
-- **A) Consolidate (recommended):** `noindex` city+service pages. Let 29 city pages + 6 county hubs carry the weight. Reduces index from ~2,000 to ~50 high-quality pages.
-- **B) Differentiate:** Add 300+ words of unique local content per city (neighborhoods, permit office, completed projects). Requires effort across 500+ pages.
-- **C) Hybrid:** Keep top-20 highest-traffic city+service pages with unique content, `noindex` the rest.
-
-### 4. Create `/contact` page
-**Impact:** Local +3 | **Effort:** Low (30 minutes)
-**Category:** Local SEO
-
-`/contact` returns 404. Every local SEO crawler expects a contact page with NAP. Critical for a $15K-$80K purchase decision.
-
-**Include:** Full NAP, Google Maps embed (link to GBP CID 3578771346418026097), contact form, hours, CSLB verification link.
-
-### 5. Add `/buy` and `/buy/scan` to sitemap
-**Impact:** Technical +1 | **Effort:** Low (5 minutes)
-**Category:** Technical SEO / Sitemap
-
-Your highest-value conversion pages have no sitemap entry. Add both to sitemap-0.xml with accurate lastmod dates.
+**Files:** `public/llms.txt`, `public/llms-full.txt`, `src/components/ServiceAreaCityPage.astro`, `src/lib/google-reviews.ts`
 
 ---
 
-## High Priority (Fix Within 1 Week)
+### 2. Fix blog index title Unicode corruption
+**Impact:** SERP CTR | **Effort:** 10 min | **Score lift:** +1 pt
 
-### 6. Fix duplicate BreadcrumbList on city+service pages
-**Impact:** Schema +3 | **Effort:** Low (15 minutes)
-**Category:** Schema
+`<title>Ground Up ??? Roofing & Home Tips</title>` — emoji/special character in Ghost CMS title not encoding correctly in Astro SSR output.
 
-Both `ServiceAreaCityPage.astro` and `ServicePage.astro` emit BreadcrumbList blocks. Remove the `ServicePage.astro` breadcrumb when `isCityServicePage` is true.
-
-### 7. Gate FAQPage schema emission
-**Impact:** Schema +3 | **Effort:** Low (30 minutes)
-**Category:** Schema
-
-Google restricted FAQ rich results to government/healthcare in Aug 2023. Remove FAQPage schema from all commercial pages. Add `faqSchema?: boolean` prop to `FAQ.astro`, default `false`. Opt in only on pages where LLM citation value justifies it.
-
-### 8. Add missing alt text to homepage images
-**Impact:** Images +3, On-Page +1 | **Effort:** Low (10 minutes)
-**Category:** Images / Accessibility
-
-- Hero background: `"Bay Area home exterior remodeling project by Hamilton Exteriors"`
-- Mission silhouette: `"Hamilton Exteriors team silhouette representing craftsmanship commitment"`
-
-### 9. Fix image sitemap build hash instability
-**Impact:** Images +3 | **Effort:** Medium (1-2 hours)
-**Category:** Sitemap / Images
-
-192/237 image URLs use Astro content-hashed filenames that change on every deploy. Image sitemap becomes stale after each build.
-
-**Fix:** Either generate image sitemap dynamically from build output, or switch image URLs to stable CDN paths.
-
-### 10. Expand global GeneralContractor schema
-**Impact:** Schema +2 | **Effort:** Low (20 minutes)
-**Category:** Schema
-
-The sitewide business schema stub only has `@context`, `@type`, `@id`. Add `name`, `url`, `telephone`, `address` (PostalAddress), `areaServed`, and `priceRange`.
-
-### 11. Add meta descriptions to county hub + about pages
-**Impact:** On-Page +2 | **Effort:** Low (30 minutes)
-**Category:** On-Page SEO
-
-Pattern: "[County] [services] by Hamilton Exteriors. Licensed GC, 50-year warranty. Free estimates — (650) 977-3351."
-
-### 12. Verify GBP primary category
-**Impact:** Local +5 (if wrong) | **Effort:** Low (5 minutes)
-**Category:** Local SEO
-
-Per Whitespark 2026, wrong primary category is the #1 negative ranking factor. Verify in GBP dashboard that primary = "General Contractor", secondary = "Roofing Contractor".
-
-### 13. Build citation profiles on contractor directories
-**Impact:** Local +3 | **Effort:** Medium (2-3 hours)
-**Category:** Local SEO
-
-- [ ] Angi (formerly Angie's List)
-- [ ] Houzz
-- [ ] Thumbtack
-- [ ] Nextdoor
-- [ ] HomeAdvisor
-- [ ] GAF Contractor Directory
-- [ ] Buildzoom
-
-NAP must match exactly: Hamilton Exteriors, 21634 Redwood Rd Unit F, Castro Valley, CA 94546, (650) 977-3351
-
-### 14. Filter reviews by service type on service pages
-**Impact:** Content +2 | **Effort:** Low (30 minutes)
-**Category:** Content Quality
-
-Roofing page shows siding/window reviews. Add a template filter so each service page shows only reviews relevant to that service.
+**Action:** In Ghost CMS admin, edit the blog section title to remove the special character and use a plain-text separator (dash or pipe).
 
 ---
 
-## Medium Priority (Fix Within 1 Month)
+### 3. Standardize warranty language
+**Impact:** Trustworthiness | **Effort:** 30 min | **Score lift:** +1-2 pts
 
-### 15. Implement IndexNow for Bing/Yandex
-**Effort:** 1 hour | Pushes new/updated URLs instantly instead of waiting for crawl.
+Three conflicting descriptions:
+- Homepage: "50-Year Warranty"
+- Roofing: "50-year manufacturer shingle warranty backed by our own 35-year labor guarantee"
+- Buy FAQ: "25 years to lifetime (depending on material) plus our own 10-year workmanship guarantee"
 
-### 16. Add question-format H2s to homepage
-**Effort:** 30 min | AI systems extract answers more readily from interrogative headings.
-
-### 17. Add self-contained hero summary paragraph
-**Effort:** 45 min | 2-sentence extractable summary below hero headline for AI citation.
-
-### 18. Source all statistics with inline attribution
-**Effort:** 1 hour | "25% increase in metal roof installations" → "per Metal Roofing Alliance 2025 report"
-
-### 19. Standardize phone format in schema
-**Effort:** 10 min | Use E.164 (`+16509773351`) consistently, or same display format everywhere.
-
-### 20. Add `hasMap` and `sameAs` to root schema
-**Effort:** 20 min | Link GBP Maps CID and verified social/directory URLs.
-
-### 21. Add $2000 promo expiration date or terms link
-**Effort:** 10 min | QRG flags vague promotional claims for YMYL.
-
-### 22. Replace CSP `unsafe-inline` with nonce-based approach
-**Effort:** High (4-6 hours) | Astro SSR can inject per-request nonces.
-
-### 23. Expand blog content (target 2 posts/month)
-**Effort:** Ongoing | Priority: comparison posts, cost guides for siding/windows/ADU, seasonal content.
-
-### 24. Pursue BBB accreditation
-**Effort:** 1-2 hours application | Current A- → A+ with accreditation badge.
-
-### 25. Launch review velocity system
-**Effort:** 2-3 hours setup | Post-project email sequence targeting 500+ past clients. Target 1-2 new reviews/week.
+**Action:** Define one canonical warranty statement (e.g., "Manufacturer warranty up to 50 years, backed by our 10-year labor guarantee") and use it everywhere. Create a constant in `src/lib/constants.ts`.
 
 ---
 
-## Low Priority (Backlog)
+### 4. Audit Angi/HomeAdvisor Citrus Heights NAP mismatch
+**Impact:** Local rankings (Tier 1 citation conflict) | **Effort:** 1-2 hours | **Score lift:** +3-4 pts
 
-26. Add HowTo schema to process blog posts (1 hour)
-27. Add LocalBusiness sub-type on pSEO city pages (2 hours)
-28. Use static OG image paths instead of `/_image?` query URLs (1 hour)
-29. Add SearchAction to WebSite schema for Sitelinks Searchbox (20 min)
-30. Remove `additionalType` from lean org reference block in Layout.astro (10 min)
-31. Fix ProfilePage missing `dateCreated`/`dateModified` (10 min)
-32. Use real per-page lastmod dates in sitemap instead of batch timestamps (1 hour)
-33. Add explicit Googlebot stanza to robots.txt (10 min)
-34. Launch YouTube channel with process walkthrough videos (high effort, high long-term value)
-35. Create downloadable resources (maintenance checklist, cost calculator)
-36. Remove unused XML namespaces from sitemap-0.xml (5 min)
+`sameAs` URLs in `Layout.astro` (lines 224-225) link to profiles with `citrus-heights` in the URL path. If those profiles show a Citrus Heights address, this actively suppresses Bay Area local pack rankings.
 
----
+**Action:**
+- Log into HomeAdvisor and Angi
+- Update business address to 21634 Redwood Rd Unit F, Castro Valley, CA 94546
+- If URLs change after address update, update `sameAs` entries in Layout.astro
+- If profiles cannot be corrected, remove them from `sameAs`
 
-## Score Impact Projections
-
-| Action | Category Impact | Cumulative Score |
-|--------|----------------|-----------------|
-| Current baseline | — | 75 |
-| #1-2 Sitemap + link fixes | Technical +5 | 76 |
-| #3 pSEO consolidation | Content +8 | 80 |
-| #4-5 Contact page + /buy sitemap | Local +3, Tech +1 | 81 |
-| #6-7 Schema fixes (BreadcrumbList + FAQ) | Schema +6 | 82 |
-| #8-9 Image alt + sitemap hash fix | Images +6 | 83 |
-| #10-11 Schema stub + meta descriptions | Schema +2, On-Page +2 | 84 |
-| #12-13 GBP verify + citations | Local +5 | 86 |
-| #14-18 Content quality fixes | Content +5, AI +3 | 89 |
-| #22-25 CSP + blog + reviews | Tech +1, Content +2 | **~90** |
+**Files:** `src/layouts/Layout.astro` (lines 224-225)
 
 ---
 
-## Implementation Roadmap
+### 5. Verify GBP primary category
+**Impact:** #1 local ranking factor (Whitespark 2026, score 193) | **Effort:** 5 min | **Score lift:** +3-5 pts if wrong
 
-**This week (days 1-3):** Items #2, #4, #5, #6, #7, #8, #10, #11 — all low-effort fixes
-**This week (days 4-7):** Items #1, #9, #12, #13, #14 — medium-effort fixes
-**Week 2:** Item #3 — pSEO strategy decision and implementation
-**Week 3-4:** Items #15-21, #25 — medium priority
-**Month 2+:** Items #22-36 — content expansion, CSP hardening, backlog
+**Action:** Log into Google Business Profile dashboard. Confirm Primary category = "General Contractor." If currently "Roofing Contractor," change immediately. Add secondary categories: Roofing Contractor, Siding Contractor, Window Installation Service, Home Builder.
+
+---
+
+## High (Complete Within 2 Weeks)
+
+### 6. Add FAQPage schema to /roofing and /buy
+**Impact:** Rich results eligibility, AI citation readiness | **Effort:** 2 hours | **Score lift:** +2 pts
+
+Both pages have substantial FAQ content but no `FAQPage` + `Question`/`Answer` schema. The Buy page FAQ answers are the strongest E-E-A-T content on the site.
+
+**Files:** `src/pages/roofing.astro`, `src/pages/buy/index.astro`
+
+---
+
+### 7. Add `sameAs` to Organization schema
+**Impact:** Entity disambiguation, Knowledge Graph | **Effort:** 1 hour | **Score lift:** +1-2 pts
+
+Add external profile URLs to the Organization schema:
+```json
+"sameAs": [
+  "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377",
+  "https://goo.gl/maps/[GBP-URL]",
+  "https://www.yelp.com/biz/hamilton-exteriors-castro-valley",
+  "https://www.wikidata.org/wiki/Q139044457",
+  "https://www.facebook.com/hamiltonexteriors",
+  "https://www.instagram.com/hamiltonexteriors",
+  "https://www.linkedin.com/company/hamilton-exteriors",
+  "https://www.youtube.com/@HamiltonExteriors"
+]
+```
+
+**Files:** `src/layouts/Layout.astro`
+
+---
+
+### 8. Add founder educational credentials to bio
+**Impact:** Expertise signal | **Effort:** 1 hour | **Score lift:** +1 pt
+
+Missing: architecture degree institution, year licensed, architecture license number (if separate from CSLB GC license). "Worked in architecture and construction management" is unverifiable.
+
+**Files:** `src/pages/about/alex-hamilton-li.astro`, `public/llms.txt`
+
+---
+
+### 9. Build systematic Google review request workflow
+**Impact:** Local pack rankings, review velocity | **Effort:** 4-8 hours (setup) | **Score lift:** +3-5 pts over 90 days
+
+26 reviews over 8 years = 5.2% conversion on 500+ projects. Target: 2-3 new Google reviews per month. The 18-day Sterling Sky cliff means consistent velocity matters more than volume.
+
+**Action:** Create post-project SMS/email automation using `GOOGLE_REVIEW_LINK` (already defined in `google-reviews.ts`). Trigger 48 hours after project close.
+
+---
+
+### 10. Fix OG description truncation
+**Impact:** Social sharing CTR | **Effort:** 30 min | **Score lift:** +0.5 pts
+
+The og:description may be truncated to just "Bay Area" due to encoding issue. Audit the meta component for proper quote escaping.
+
+**Files:** `src/layouts/Layout.astro` (meta tags section)
+
+---
+
+## Medium (Complete Within 30 Days)
+
+### 11. Rewrite service page H2s as questions
+**Impact:** AI Overview trigger rate | **Effort:** 3-4 hours | **Score lift:** +2-3 pts
+
+Convert declarative H2s to query-shaped on /roofing, /siding, /windows, /adu, /custom-homes, /additions:
+- "Our Advantage: Why Choose Hamilton Exteriors?" -> "Why Choose Hamilton Exteriors for Bay Area Roofing?"
+- "Our Latest Projects" -> "What Does a Hamilton Exteriors Roof Replacement Look Like?"
+- "Ready to Start?" -> "How Do I Get a Free Roof Inspection in the Bay Area?"
+
+Follow each H2 with a direct 1-sentence answer within the first 40 words.
+
+---
+
+### 12. Improve readability on service pages
+**Impact:** Content quality, user engagement | **Effort:** 4-6 hours | **Score lift:** +3-4 pts
+
+Target FK Reading Ease 60+ (Grade 8-10). Actions:
+- Shorter sentences (max 20 words average)
+- Active voice
+- Break technical specs into bullet lists instead of dense prose
+- Add subheadings every 150-200 words
+
+**Priority pages:** /roofing (FK 14.7), blog cost guide (FK 31.0)
+
+---
+
+### 13. Enrich Service Areas index page
+**Impact:** Content quality, "[county] contractor" rankings | **Effort:** 2-3 hours | **Score lift:** +1-2 pts
+
+Add 150-200 words per county covering: common project types, code/permit considerations, 1-2 project references. Currently a thin directory of city names.
+
+---
+
+### 14. Claim manufacturer contractor directory listings
+**Impact:** DA 60-80+ citations, local authority | **Effort:** 2-4 hours | **Score lift:** +2-3 pts
+
+Claim and verify with correct NAP on:
+- GAF Master Elite contractor finder
+- Owens Corning contractor locator
+- CertainTeed ShingleMaster directory
+- James Hardie Elite Preferred installer finder
+- Tesla Powerwall certified installer directory
+
+---
+
+### 15. Claim BBB and BuildZoom profiles
+**Impact:** Tier 1 citations | **Effort:** 2 hours | **Score lift:** +1-2 pts
+
+- BBB: Get accredited listing, add URL to `sameAs`
+- BuildZoom: Claim profile (auto-populated from CSLB data), verify NAP
+- Houzz: Create profile with project photos
+
+---
+
+### 16. Add Google Maps embed to city pages
+**Impact:** GBP proximity signal, user trust | **Effort:** 3-4 hours | **Score lift:** +1 pt
+
+City pages use Mapbox for quote form but have no Google Maps embed showing the service area. Add an embedded map showing each city (not the office).
+
+---
+
+### 17. Add source attribution to unanchored statistics
+**Impact:** AI citability, trustworthiness | **Effort:** 2 hours | **Score lift:** +1 pt
+
+- "$4,200 Avg. Customer Savings" on /buy — add "(based on 2025 Bay Area competitor quote comparisons)"
+- "500+ residential projects since 2018" — link to portfolio or GBP
+- "over 80 roof replacements in Alameda County" — cite permit records or GBP reviews
+- "roughly 60% built before 1960" — link to specific ACS data table
+
+---
+
+## Low (Backlog / 60+ Days)
+
+### 18. Start YouTube channel (3-5 videos)
+**Impact:** AI citation frequency (0.737 correlation) | **Effort:** 2-3 weeks
+
+Videos: "How Much Does a New Roof Cost in the Bay Area in 2026", "How the Online Roof Scanner Works", "GAF Master Elite vs Standard Roofer". Titles should match search queries exactly.
+
+### 19. Create Reddit presence
+**Impact:** Bing Copilot + Perplexity community signals | **Effort:** Ongoing
+
+Answer questions in r/bayarea, r/homeimprovement, r/oakland with contractor account.
+
+### 20. Add original project photography
+**Impact:** Experience signal, image search | **Effort:** Ongoing
+
+Replace stock photos on blog posts. Add geo-tagged project photos (e.g., `oakland-hills-gaf-timberline-install.jpg`). Add `image` property to city page schema.
+
+### 21. Create "Fire Zone Roofing Bay Area" standalone service page
+**Impact:** High-intent keyword capture | **Effort:** 3-4 hours
+
+WUI/VHFHSZ content is buried in city pages. Standalone page targeting `[fire zone roofing contractor Bay Area]` creates an internal linking target for 15+ fire-zone-adjacent city pages.
+
+### 22. Create company-level About page
+**Impact:** E-E-A-T entity separation | **Effort:** 2-3 hours
+
+Currently `/about` redirects to founder bio. Create a true company About page (team, founding story, community involvement) at `/about`, keep founder bio at `/about/alex-hamilton-li`.
+
+### 23. Add `speakable` schema to FAQ content
+**Impact:** Voice search, Google Assistant | **Effort:** 1 hour
+
+### 24. Add security headers
+**Impact:** Security trust signals | **Effort:** 2 hours
+
+HSTS, CSP, X-Frame-Options, X-Content-Type-Options via Railway configuration.
+
+### 25. GBP ongoing optimization
+- Post every 14 days
+- Pre-seed 10+ Q&A pairs
+- Add 25+ photos with category albums
+- Connect appointment/booking link
+- Respond to 100% of reviews within 48 hours
+
+---
+
+## Score Projection
+
+| Timeframe | Actions | Projected Score |
+|-----------|---------|-----------------|
+| Week 1 (Critical) | Items 1-5 | 72 -> 78 |
+| Week 2 (High) | Items 6-10 | 78 -> 82 |
+| Month 1 (Medium) | Items 11-17 | 82 -> 87 |
+| Month 2-3 (Low) | Items 18-25 | 87 -> 90+ |
+
+---
+
+*Generated from 7-agent parallel SEO audit, April 8, 2026*
