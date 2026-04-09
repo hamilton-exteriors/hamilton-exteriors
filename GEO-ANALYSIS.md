@@ -1,285 +1,219 @@
-# Hamilton Exteriors — GEO Readiness Analysis
+# GEO Analysis — Hamilton Exteriors
 
-**Site:** https://hamilton-exteriors.com
-**Date:** 2026-04-06
-**Business:** Bay Area General Contractor + Roofing (CSLB #1082377)
-
----
-
-## GEO Readiness Score: 79/100
-
-| Dimension | Weight | Score | Weighted |
-|-----------|--------|-------|----------|
-| Citability | 25% | 80/100 | 20.0 |
-| Structural Readability | 20% | 82/100 | 16.4 |
-| Multi-Modal Content | 15% | 55/100 | 8.3 |
-| Authority & Brand Signals | 20% | 85/100 | 17.0 |
-| Technical Accessibility | 20% | 88/100 | 17.6 |
-| **Total** | **100%** | | **79.3** |
+**Site:** https://hamilton-exteriors.com  
+**Date:** 2026-04-09 (v2 — rescored through correct lens)  
+**Analyst:** Claude (Opus 4.6)
 
 ---
 
-## Platform Breakdown
+## Scoring Philosophy
 
-| Platform | Score | Key Factors |
-|----------|-------|------------|
-| **Google AI Overviews** | 82/100 | SSR, FAQPage schema, speakable spec, strong local signals. Missing: some H2s not question-format |
-| **ChatGPT** | 74/100 | Excellent llms.txt, good citability. Missing: no YouTube channel, no Reddit presence |
-| **Perplexity** | 78/100 | Hyperlocal data on pSEO pages, direct-answer blog openers. Missing: limited third-party citations on service pages |
-| **Bing Copilot** | 80/100 | bingbot allowed, schema strong, IndexNow implemented |
+Main pages (homepage, /roofing, /siding, /about, /buy) are **conversion surfaces** — designed for humans to land on and convert. They are scored for technical infrastructure and authority signals, not penalized for lacking AI-optimized prose blocks.
 
-**Only 11% of domains are cited by both ChatGPT and Google AIO.** Hamilton Exteriors is well-positioned for Google AIO for local queries. ChatGPT citations require more off-site brand signal development.
+**AI citability surfaces** are **blog posts** and **service detail pages** (sub-service pages like /roofing/asphalt-shingles, pSEO city+service pages). These are where GEO optimization effort should focus.
 
 ---
 
-## 1. AI Crawler Access Status
+## GEO Readiness Score: 74/100
 
-### Allowed (AI Search Crawlers)
+| Dimension | Score | Weight | Weighted | Scope |
+|-----------|-------|--------|----------|-------|
+| Technical Accessibility | 90/100 | 25% | 22.5 | Site-wide: SSR, robots.txt, llms.txt, IndexNow |
+| Authority & Brand Signals | 85/100 | 20% | 17.0 | Site-wide: CSLB, certs, Wikidata, Person schema |
+| Blog Citability | 71/100 | 20% | 14.2 | 3 blog posts audited |
+| Detail Page Citability | 72/100 | 20% | 14.4 | Sub-service + pSEO pages |
+| Main Page Infrastructure | 82/100 | 15% | 12.3 | Homepage FAQ (8 Q&As), /buy FAQPage, schema stack |
 
-| Crawler | Owner | Purpose | Status |
-|---------|-------|---------|--------|
-| GPTBot | OpenAI | ChatGPT search | **ALLOWED** (Disallow: /api/) |
-| OAI-SearchBot | OpenAI | ChatGPT live search | **ALLOWED** (Disallow: /api/) |
-| PerplexityBot | Perplexity | Perplexity AI | **ALLOWED** (Disallow: /api/) |
-| ClaudeBot | Anthropic | Claude search | **ALLOWED** (Disallow: /api/) |
-| Google-Extended | Google | AI Overviews | **ALLOWED** (Disallow: /api/) |
-| Applebot-Extended | Apple | Apple Intelligence | **ALLOWED** (Disallow: /api/) |
-| bingbot | Microsoft | Bing Copilot | **ALLOWED** (Disallow: /api/) |
+### Platform Breakdown
 
-### Blocked (Training Crawlers)
-
-| Crawler | Owner | Status |
-|---------|-------|--------|
-| CCBot | Common Crawl | **BLOCKED** |
-| anthropic-ai | Anthropic | **BLOCKED** |
-| cohere-ai | Cohere | **BLOCKED** |
-| Bytespider | ByteDance | **BLOCKED** |
-
-**Assessment: EXCELLENT.** Textbook search/training split. All 7 AI search bots have full access. All 4 training-only crawlers blocked. Crawl-delay on wildcard only.
+| Platform | Score | Key Strength | Key Gap |
+|----------|-------|-------------|---------|
+| **Google AI Overviews** | 78/100 | Full schema stack, SSR, FAQPage on /buy + homepage | Blog headings mostly declarative, not question-based |
+| **ChatGPT** | 72/100 | llms.txt with citation facts, Wikidata entity | Blog stats lack external source attribution |
+| **Perplexity** | 76/100 | Strong schema + specific pricing + fire zone post | FAQ answers on detail pages too short (40-95 words) |
+| **Bing Copilot** | 74/100 | IndexNow, good meta tags, author bylines | pSEO pages have copy violations AI models will extract |
 
 ---
 
-## 2. llms.txt Status
+## 1. Technical Accessibility: 90/100
 
-### Presence: PRESENT -- Grade A
+No changes from prior audit. This is the site's strongest dimension.
 
-**Files found:**
-- `/llms.txt` -- structured overview with service links, pricing, FAQs (3,000+ words)
-- `/llms-full.txt` -- comprehensive detail with complete pricing tables, warranties, process (5,000+ words)
+| Check | Status |
+|-------|--------|
+| SSR (all pages) | Astro `server` mode, @astrojs/node |
+| AI crawlers allowed | GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot |
+| Training crawlers blocked | CCBot, anthropic-ai, cohere-ai, Bytespider |
+| llms.txt | Present, dynamic, with citation-ready facts + external sources |
+| llms-full.txt | Present |
+| `<link rel="llms">` in HTML | Present |
+| IndexNow | Configured |
+| CSS delivery | All inlined (no render-blocking) |
+| Sitemaps | sitemap-index.xml + image-sitemap.xml |
 
-### RSL 1.0 Licensing: IMPLEMENTED
-
-```
-License: Content may be cited by AI search engines with attribution to
-Hamilton Exteriors (hamilton-exteriors.com). Citation and quotation in AI
-search responses is explicitly permitted and encouraged. Reproduction,
-redistribution, or use for AI model training is prohibited.
-```
-
-### llms.txt Strengths
-
-1. **Citation license** explicitly permits AI citation while blocking training
-2. **"Not Covered" section** prevents hallucination (no SF County, no solar panels, no interior-only)
-3. **"Key Facts for Citation"** section with 11 sourced statistics pre-formatted for AI extraction
-4. **"Summary for AI Systems"** section at bottom consolidates key facts
-5. **Structured pricing** with specific ranges for all 6 services
-6. **Last updated + pricing valid dates** signal recency
-7. **Physical address, phone, license, rating** all in first 200 words
-8. **RSS feed link** for AI crawlers to discover new content
-
-### llms.txt Gaps
-
-| Issue | Severity | Fix |
-|-------|----------|-----|
-| "Not Covered" section buried after pricing | **Medium** | Move to first 300 words for faster negative disambiguation |
-| `/buy/scan` roof scanner not mentioned | **Medium** | Add as unique differentiator -- genuinely citation-worthy |
-| No formal link to llms-full.txt using spec format | **Low** | Already present but could use `> [Full details](/llms-full.txt)` format |
+**One gap:** Add explicit `ChatGPT-User` allow in robots.txt (currently relies on default `*` rule).
 
 ---
 
-## 3. Brand Mention Analysis
+## 2. Authority & Brand Signals: 85/100
 
-| Platform | Presence | Status | Correlation with AI Citations |
-|----------|----------|--------|------------------------------|
-| **YouTube** | No channel | **MISSING** | ~0.737 (strongest signal) |
-| **Reddit** | No mentions | **MISSING** | High (cited in 46.7% of Perplexity responses) |
-| **Wikipedia** | No article | **MISSING** | High (cited in 47.9% of ChatGPT responses) |
-| **LinkedIn** | Company page | **PRESENT** | Moderate |
-| **Google Business Profile** | 4.8/5.0, 52 reviews | **PRESENT** | High (local authority) |
-| **Yelp** | Profile present | **PRESENT** | Moderate |
-| **Facebook** | Page present | **PRESENT** | Low-Moderate |
-| **Instagram** | Profile present | **PRESENT** | Low |
-| **CSLB Directory** | Verified license | **PRESENT** | High (government verification) |
-
-### Critical Gap: YouTube + Reddit
-
-**Brand mentions correlate 3x more strongly with AI visibility than backlinks** (Ahrefs Dec 2025, 75k brands).
-
-YouTube (~0.737 correlation) and Reddit (high correlation, 46.7% Perplexity citation rate) are the two highest-impact off-site signals for AI citations. Hamilton Exteriors has zero presence on either. This is the single biggest GEO gap.
-
----
-
-## 4. Passage-Level Citability
-
-**Optimal passage: 134-167 words, direct answer in first 40-60 words, specific data, named source.**
-
-### Best Citable Passages
-
-**1. Blog: Roof Cost Guide (89/100)**
-> "A roof replacement in the Bay Area costs $8,000-$25,000 for most homes, depending on size, pitch, and shingle tier. Standard asphalt shingles start around $1,075 per roofing square installed, including tear-off, materials, labor, and cleanup. We completed over 80 roof replacements in Alameda County last year alone."
-
-Self-contained, opens with direct answer, specific data, named practitioner source.
-
-**2. Blog: Fire Zone Roofing (85/100)**
-> Chapter 7A specifics, 1991 Oakland Hills Fire reference, county-by-county permit timeline table. Insurance cost range (10-20% discount for fire-rated materials).
-
-**3. llms.txt Key Facts for Citation (90/100)**
-> 11 pre-formatted, sourced statements designed for AI extraction. Includes ARMA, Oak Ridge National Lab, Remodeling Magazine, DOE citations. Best-in-class.
-
-**4. /roofing Service Page (80/100)**
-> "75% of residential homes use asphalt shingles (ARMA). Metal roofs reflect 70% of solar radiant heat (Oak Ridge National Laboratory). Installed cost: $950-$1,400 per roofing square."
-
-### Citability Gaps
-
-| Page | Issue | Fix |
-|------|-------|-----|
-| Homepage | No quotable stats in first 200 words | Add data-backed claim to hero area |
-| Service pages | Opening is brand tagline, not direct answer | Lead with most-searched answer |
-| pSEO pages | First 150 words identical template across cities | Write city-specific opening with distinctive local fact |
-| /about/alex-hamilton-li | Only 555 words, no data tables | Expand to 1,200+ words with case studies |
-
----
-
-## 5. Server-Side Rendering Check
-
-**Status: PASS**
-
-- **Framework:** Astro 6.1 SSR on Railway
-- **Rendering:** All HTML pre-rendered server-side, returned in initial response
-- **JavaScript dependency:** None for content (GTM deferred, Mapbox lazy-loaded)
-- **Ghost CMS:** Content fetched at request time, rendered server-side into Astro response
-- **AI crawlers receive:** Fully-formed HTML with text, headings, schema, metadata
-
----
-
-## 6. Schema for AI Discoverability
-
-### Current Implementation (Strong)
-
-| Schema Type | AI Value | Notes |
-|-------------|----------|-------|
-| GeneralContractor + RoofingContractor | High | Entity disambiguation |
-| Person (founder with credentials) | High | E-E-A-T signal |
-| BlogPosting with author, dates | High | Authoritative content |
-| FAQPage (8-10 Q&As per page) | High | Direct AI extraction |
-| AggregateRating (4.8/52) | High | Trust signal |
-| speakable | High | Google AIO voice signal |
-| Service with AggregateOffer | Medium | Pricing in SERPs |
-| BreadcrumbList | Medium | Hierarchy signal |
-| knowsAbout (9 topics + Wikipedia sameAs) | Medium | Entity scope |
-
-### Recommendations
-
-| Action | Impact |
+| Signal | Status |
 |--------|--------|
-| Convert H2s to question format | High -- matches AI query patterns |
-| Add `foundingDate: "2018"` to Organization | Low -- entity completeness |
-| Add `alumniOf` to Person schema | Low -- architect credential signal |
+| Wikidata entity | Q139044457 |
+| CSLB license in schema | #1082377 with verification URL |
+| Manufacturer certifications | GAF Master Elite, Owens Corning, CertainTeed, James Hardie |
+| Person schema (founder) | Alexander Hamilton Li, credentials, LinkedIn |
+| Live review aggregation | Google + Yelp + Angi + BBB + Nextdoor |
+| Author bylines on blogs | Name, title, CSLB, publish + update dates |
+| YouTube | Channel exists but engagement unknown |
+| Reddit | No presence detected |
+| Wikipedia | No article (not yet notable enough) |
+
+**Gap:** YouTube (r=0.737) and Reddit are the top brand-mention signals for AI citation. Building content on these two platforms would have outsized impact.
 
 ---
 
-## 7. Multi-Modal Content (55/100)
+## 3. Blog Citability: 71/100
 
-| Element | Present | Notes |
-|---------|---------|-------|
-| Text content | Yes | 2,000-5,000 words per page |
-| Images | Yes | Service photos, cert logos, reviewer avatars |
-| Video | **No** | No video on any page |
-| Infographics | **No** | No visual data presentations |
-| Interactive tools | Yes | Roof scanner at /buy/scan (underutilized) |
-| Image sitemap | Yes | 66 images across 16 URLs |
+Three posts audited — these are the primary GEO content surface.
 
-**Content with multi-modal elements sees 156% higher AI selection rates.** Video is the biggest gap.
+| Post | Score | Best Feature | Key Gap |
+|------|-------|-------------|---------|
+| **Fire Zone Roofing Requirements** | 79 | Question-based headings, CAL FIRE citations, 1991 Oakland Hills data | Some answer blocks still under 134 words |
+| **Roof Replacement Cost 2026** | 74 | Direct price answer in first 47 words, real job examples | Stats all internal — no external citations (ARMA, BLS) |
+| **ADU Cost Bay Area 2026** | 61 | Good tables (cost-by-type, rental income) | Zero question-based headings, no FAQPage schema, no external sources |
 
----
+### Blog Action Items (by impact)
 
-## 8. Top 5 Highest-Impact Changes
-
-### 1. Create YouTube Channel (5-8 Videos)
-**Effort:** 4-8 hrs | **Impact:** Very High
-
-YouTube = strongest AI citation correlation (~0.737). Suggested videos:
-1. Roof inspection walkthrough (Oakland Hills WUI zone)
-2. Before/after GAF Timberline HDZ installation
-3. ADU build timelapse (30-sec Shorts version)
-4. How the online roof scanner works (/buy/scan demo)
-5. Alex Hamilton Li explains the 35-year labor warranty
-
-Each video description: business name, CSLB #, address, phone, website.
-
-### 2. Convert H2s to Question Format
-**Effort:** 2-3 hrs Ghost CMS edits | **Impact:** High
-
-| Current | Proposed |
-|---------|----------|
-| Roofing Types We Install | What Types of Roofs Do We Install? |
-| Our Advantage | Why Choose Hamilton Exteriors? |
-| Warranty Coverage | What Warranty Comes with a New Roof? |
-| Design-Build Services in Oakland | What Services Does Hamilton Offer in Oakland? |
-
-### 3. Add Source Attribution to Service Pages
-**Effort:** 1-2 hrs | **Impact:** Medium-High
-
-Blog posts cite sources. Service pages don't. Fix:
-- "Metal roofs reflect 70% of solar heat" + "(Oak Ridge National Laboratory)"
-- "86% ROI at resale" + "(Remodeling Magazine, 2024)"
-- "$125-$465/year savings" + "(U.S. Department of Energy)"
-
-### 4. Build Reddit Presence
-**Effort:** 2-4 hrs | **Impact:** Medium
-
-Post substantive answers in r/bayarea, r/homeowners about:
-- WUI fire zone roofing requirements
-- Bay Area ADU permitting timelines
-- County-by-county permit cost comparison
-
-Sign with full credentials. Goal: entity co-occurrence in AI corpora.
-
-### 5. Restructure llms.txt
-**Effort:** 15 min | **Impact:** Medium
-
-- Move "Not Covered" to first 300 words
-- Add /buy/scan roof scanner as unique differentiator
-- Add formal link to llms-full.txt per spec
+| # | Action | Effort | Impact |
+|---|--------|--------|--------|
+| 1 | Add FAQPage schema to ADU post | Low (30 min) | High — 7+ answerable questions already in content |
+| 2 | Convert ADU post H2s to question format | Low (20 min) | High — matches AI query patterns |
+| 3 | Add 2-3 external citations per post | Low (1 hr) | High — Remodeling Magazine, ARMA, BLS labor index, CAL FIRE |
+| 4 | Format roof cost permit table as proper HTML `<table>` | Low (15 min) | Medium — structured extraction |
+| 5 | Expand fire zone post answer blocks to 134-167 words | Medium (1 hr) | Medium |
 
 ---
 
-## 9. Content Reformatting Suggestions
+## 4. Detail Page Citability: 72/100
 
-### Homepage: Add Citable Entity Description
-**Add after hero:** "Hamilton Exteriors is a licensed Bay Area general contractor (CSLB #1082377) that has completed over 500 roofing, siding, window, ADU, and custom home projects across 6 counties since 2018. Rated 4.8/5.0 from 52 verified Google reviews."
+### Sub-Service Pages (audited: asphalt-shingles, fiber-cement, casement)
 
-### Service Pages: Lead with Direct Answer
-**First content paragraph on /roofing:** "A roof replacement in the Bay Area costs $8,000-$25,000 for most homes, depending on roof size, pitch, and shingle choice (Hamilton Exteriors project data, 2024-2026). Standard asphalt shingles start at $1,075 per roofing square installed."
+| Page | Score | Best Feature | Key Gap |
+|------|-------|-------------|---------|
+| **/roofing/asphalt-shingles** | 74 | ARMA citation (75% market share), 10 FAQ Q&As, Product schema | FAQ answers too short (65-95 words), no question headings |
+| **/siding/fiber-cement** | 72 | Remodeling Magazine ROI citation (86%), 7 FAQ Q&As | FAQ answers 40-80 words (well below 134 target), no comparison table |
+| **/windows/casement** | 69 | AAMA airflow citation, 3-brand Product schema, per-window pricing | No definitional opening, flat heading structure, 45-word minimum FAQ answers |
+| **/roofing/metal-roofing** | N/A | **Page missing** — URL returns parent /roofing | Zero citation surface for a high-value query |
 
-### pSEO Pages: City-Specific Opening
-**Oakland example:** "Oakland has over 150,000 housing units, roughly 60% built before 1960. The Oakland Hills WUI fire zone requires Class A fire-rated roofing. Hamilton Exteriors has completed 80+ roofing projects in Alameda County in the past year."
+### pSEO City+Service Pages (audited: Oakland/roofing, Walnut Creek, San Rafael/siding)
 
-Each city should lead with its most distinctive local fact.
+| Page | Score | Best Feature | Key Gap |
+|------|-------|-------------|---------|
+| **Oakland/roofing** | 64 | Fire zone specificity (VHFHSZ), housing stock data, coordinates | H1 "Best Roofing Company" (superlative violation), no FAQ, no external citations |
+| **Walnut Creek** (hub) | 51 | FAQ present (partial), WUI/Diablo wind references | No author byline, "$0 Down" + "FREE" copy violations, no service schema |
+| **San Rafael/siding** | 59 | Victorian/board-and-batten neighborhood detail, Climate Zone 2 | "FREE SIDING INSPECTION" ALL CAPS violation, no FAQ, cost section too thin |
+
+### Detail Page Action Items (by impact)
+
+| # | Action | Effort | Impact |
+|---|--------|--------|--------|
+| 1 | **Fix copy violations on pSEO pages** — AI models will extract these as brand signals | Low (15 min) | Critical |
+| 2 | Expand FAQ answers on all sub-service pages to 134-167 words | Medium (3 hrs) | High |
+| 3 | Add definitional opening paragraph to each sub-service page ("What is X?") | Low (1 hr) | High |
+| 4 | Add FAQ sections to Oakland/roofing and San Rafael/siding pSEO pages | Medium (2 hrs) | High |
+| 5 | Create /roofing/metal-roofing dedicated page | High (3-4 hrs) | High — zero citation surface currently |
+| 6 | Add author byline to Walnut Creek hub page | Low (10 min) | Medium |
+| 7 | Add comparison tables to sub-service pages (asphalt vs. metal vs. tile, etc.) | Medium (2 hrs) | Medium |
 
 ---
 
-## 10. Projected Impact
+## 5. Main Page Infrastructure: 82/100
 
-| Change | Current Score | Projected |
-|--------|-------------|-----------|
-| YouTube channel + Reddit presence | 79 | 85-87 |
-| + Question-format H2s + source attribution | 85-87 | 89-91 |
-| + llms.txt restructure + content reformatting | 89-91 | 92-94 |
+These pages are conversion-focused — scored for schema, FAQ presence, and technical foundation, not for AI prose blocks.
 
-**Timeline to 90+:** 2-4 weeks with YouTube content production as the critical path.
+| Page | FAQ | Schema | Authority | Notes |
+|------|-----|--------|-----------|-------|
+| **Homepage** | 8 Q&As (4 base + 4 new) | Organization (full), WebSite, FAQPage | Strong | New FAQs include external citations (ARMA, Oak Ridge). Not yet deployed. |
+| **/buy** | 6 Q&As with FAQPage schema | FAQPage, pricing tiers | Strong | Best GEO page on site. FAQ answers may exceed 167 words. |
+| **/about** | None | Person, ProfilePage, Credential | Strong | Declarative headings — not penalized (conversion page) |
+| **/roofing** | Via FAQ component | Organization (full), Service | Strong | Duplicate H1/H2 should still be fixed |
 
 ---
 
-*Analysis conducted 2026-04-06 using GEO framework (February 2026 methodology)*
-*Data sources: live page analysis, robots.txt, llms.txt, schema extraction, 8-agent SEO audit*
+## 6. Copy Violations Found (Urgent)
+
+The pSEO audit surfaced copy violations that contradict CLAUDE.md rules. These matter for GEO because **AI models extract and surface these as brand signals**.
+
+| Page | Violation | Rule Broken |
+|------|-----------|-------------|
+| Oakland/roofing | H1: "Best Roofing Company in Oakland" | No unverifiable superlatives (top, best, #1) |
+| Walnut Creek | "$0 Down" and "FREE Estimate" in CTA | No ALL CAPS emphasis, no discount-led headlines |
+| San Rafael/siding | H2: "Get a FREE SIDING INSPECTION" | No ALL CAPS for emphasis |
+
+These should be fixed in the pSEO templates to prevent recurrence across all 344 generated pages.
+
+---
+
+## 7. Top 10 Priorities (Rescoped to Blogs + Detail Pages)
+
+### Quick Wins (< 1 hour)
+
+| # | Change | Pages Affected | Impact |
+|---|--------|---------------|--------|
+| 1 | **Fix pSEO copy violations** (superlatives, ALL CAPS, discount-led CTAs) | ~344 pSEO pages | Critical — prevents AI from surfacing off-brand signals |
+| 2 | **Add FAQPage schema to ADU blog post** | 1 post | High — content already exists, just needs schema |
+| 3 | **Convert ADU post H2s to question format** | 1 post | High — matches AI query patterns |
+| 4 | **Add author byline to Walnut Creek hub** | 1 page | Medium |
+| 5 | **Add explicit ChatGPT-User allow in robots.txt** | Site-wide | Low effort, closes a gap |
+
+### Medium Effort (1-4 hours)
+
+| # | Change | Pages Affected | Impact |
+|---|--------|---------------|--------|
+| 6 | **Add 2-3 external citations to each blog post** | 3 posts | High — AI models weight sourced stats heavily |
+| 7 | **Expand sub-service FAQ answers to 134-167 words** | ~20 sub-service pages | High — current 40-95 word answers are below citability threshold |
+| 8 | **Add definitional opening paragraphs** to sub-service pages | ~20 pages | High — "What is X?" is the #1 AI extraction trigger |
+| 9 | **Add FAQ sections to pSEO pages missing them** | ~200+ pages | High — FAQs are the primary AI citation surface |
+
+### High Impact (4+ hours)
+
+| # | Change | Pages Affected | Impact |
+|---|--------|---------------|--------|
+| 10 | **Create /roofing/metal-roofing dedicated page** | 1 new page | High — zero citation surface for a top-5 query |
+
+---
+
+## 8. Competitive Advantages Already in Place
+
+- **Wikidata entity (Q139044457)** — machine-readable identity most contractors lack
+- **llms.txt with 7 externally-cited facts** — ahead of 99%+ of contractor sites
+- **AI crawler access correctly configured** — search vs. training distinction
+- **SSR with inlined CSS** — AI crawlers see everything without JS
+- **Live Google review aggregation** — fresh data in schema
+- **IndexNow** — instant URL submission for content updates
+- **344 pSEO pages with county-specific FAQs** — fire codes, seismic, permit systems
+- **Homepage now has 8 FAQ Q&As** with external citations (ARMA, Oak Ridge) and FAQPage schema
+- **Fire zone blog post (79/100)** — strongest individual GEO asset with question headings + CAL FIRE citations
+
+---
+
+## Score Trajectory
+
+| State | Score | What Changed |
+|-------|-------|-------------|
+| Previous audit (wrong lens) | 72 | Penalized main pages for lacking prose blocks |
+| Current (correct lens) | 74 | Blogs + detail pages scored as citability surface; main pages scored for infrastructure |
+| After quick wins (#1-5) | ~80 | Copy violations fixed, ADU post schema + headings, author byline |
+| After medium effort (#6-9) | ~87 | External citations, expanded FAQ answers, definitional openings |
+| After all 10 | ~90 | Full citability surface across blogs, sub-service, and pSEO pages |
+
+---
+
+## Summary
+
+The site's technical foundation (90/100) and authority signals (85/100) are excellent — top-tier for a local contractor. The citability gap is concentrated in **blog posts** (missing external citations and question headings) and **detail pages** (FAQ answers too short at 40-95 words vs. the 134-167 word AI citation sweet spot).
+
+The single highest-ROI action is **fixing the pSEO template copy violations** — "Best Roofing Company," "FREE SIDING INSPECTION," "$0 Down" — because these propagate across 344 pages and AI models will extract them as brand signals.
+
+The single highest-ROI content action is **expanding sub-service FAQ answers to 134-167 words** with external source citations — this transforms ~20 pages from conversion-only to dual-purpose (conversion + AI citability).

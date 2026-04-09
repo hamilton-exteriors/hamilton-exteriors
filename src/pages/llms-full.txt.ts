@@ -199,7 +199,7 @@ All ADU pricing includes design, engineering, permits, and construction. Costs v
 - **GAF Master Elite Contractor** \u2014 factory-trained for GAF roofing systems with enhanced warranty eligibility
 - **CertainTeed ShingleMaster** \u2014 certified installer of CertainTeed roofing and siding products
 - **Owens Corning Preferred Contractor** \u2014 recognized for meeting Owens Corning\u2019s standards of excellence
-- **James Hardie Elite Preferred Installer** \u2014 top-tier certified installer of James Hardie fiber cement siding
+- **James Hardie Elite Preferred Installer** \u2014 highest certification level for James Hardie fiber cement siding
 - **Tesla Powerwall Certified Installer** \u2014 authorized to install Tesla Powerwall battery storage systems
 - **CSLB Licensed (#1082377)** \u2014 California Contractors State License Board, active and in good standing
 
@@ -207,7 +207,7 @@ All ADU pricing includes design, engineering, permits, and construction. Costs v
 
 ## The Hamilton Exteriors Difference
 
-### Best Price Guarantee
+### Price Match Guarantee
 We beat any written estimate on the same scope of work. Show us a quote from a licensed contractor and we\u2019ll match or beat it. That\u2019s our guarantee.
 
 ### Factory Trained Installers
@@ -240,7 +240,7 @@ Your project manager helps you choose from top-tier brands:
 Pick the style, color, and tier that fits your home and budget.
 
 ### Step 5: Financing (If Needed)
-$0 down financing available with approved credit. We walk you through all payment options. You only pay for completed, inspected work.
+Financing available with approved credit. We walk you through all payment options. You only pay for completed, inspected work.
 
 ### Step 6: Scheduling & Preparation
 Your project manager coordinates the crew, materials delivery, and timeline. You know exactly when work starts and how long it takes.
@@ -282,7 +282,7 @@ You receive written warranty documentation:
 
 ## Financing Options
 
-- **$0 down** \u2014 No down payment required with approved credit
+- **Low down payment options** \u2014 Financing available with approved credit
 - **Multiple payment options** \u2014 Reviewed during your free estimate appointment
 - **Pay for completed work only** \u2014 You never pay for work that hasn\u2019t been done and inspected
 - **No prepayment penalties** \u2014 Pay off early with no extra charges
@@ -309,10 +309,10 @@ A: Siding cost varies by material, home size, and existing condition (e.g., dry 
 ### Financing & Payment
 
 **Q: How does billing and financing work?**
-A: $0 down financing available with approved credit. You only pay for completed, inspected work. We walk you through all payment options during the estimate.
+A: Financing available with approved credit and low down payment options. You only pay for completed, inspected work. We walk you through all payment options during the estimate.
 
 **Q: Do I need to pay anything upfront?**
-A: No. With approved credit, $0 down payment is required. You only pay for completed, inspected work.
+A: With approved credit, low or no down payment options are available. You only pay for completed, inspected work.
 
 ### Timeline & Process
 
@@ -400,8 +400,8 @@ Hamilton Exteriors is a Bay Area exterior remodeling contractor headquartered in
 - Specializes in roofing ($1,075\u2013$1,800/sq installed), windows ($800\u2013$4,500/unit installed), siding, ADUs ($180K\u2013$600K), and custom homes
 - CA Contractor License #1082377, fully licensed, bonded, and insured
 - 50-year shingle warranty + 35-year labor warranty on roofing
-- Best Price Guarantee \u2014 beats any written estimate on same scope
-- $0 down financing with approved credit
+- Price Match Guarantee \u2014 beats any written estimate on same scope
+- Financing available with approved credit
 - ${rating}-star Google rating with ${reviewCount}+ reviews
 - Factory-trained, background-screened crews
 - Dedicated project manager for every job

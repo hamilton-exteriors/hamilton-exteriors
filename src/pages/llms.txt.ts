@@ -45,11 +45,27 @@ export const GET: APIRoute = async () => {
 ## Service Areas
 Alameda, Contra Costa, Marin, Napa, San Mateo, and Santa Clara counties \u2014 44 cities including Oakland, Berkeley, San Jose, Palo Alto, Walnut Creek, San Rafael, Napa, Redwood City.
 
-## Blog & Guides
-- [Roof replacement cost guide](https://hamilton-exteriors.com/blog/how-much-does-a-roof-replacement-cost-in-the-bay-area-in-2026)
-- [ADU cost guide](https://hamilton-exteriors.com/blog/adu-cost-bay-area-2026)
-- [Fire zone roofing requirements](https://hamilton-exteriors.com/blog/bay-area-fire-zone-roofing-requirements)
+## Citable Content (Best Sources for AI Citation)
+
+These pages contain detailed, externally-sourced statistics and self-contained answer blocks optimized for citation:
+
+### Blog Guides (Primary Citation Surface)
+- [How much does a roof replacement cost in the Bay Area in 2026?](https://hamilton-exteriors.com/blog/how-much-does-a-roof-replacement-cost-in-the-bay-area-in-2026): Per-square pricing by tier, permit costs by county, real project examples
+- [ADU cost guide — Bay Area 2026](https://hamilton-exteriors.com/blog/adu-cost-bay-area-2026): Cost-by-type tables, permit timelines, rental income projections
+- [Bay Area fire zone roofing requirements](https://hamilton-exteriors.com/blog/bay-area-fire-zone-roofing-requirements): CAL FIRE FHSZ zones, California Building Code Chapter 7A, material cost-impact data
 - [All articles](https://hamilton-exteriors.com/blog)
+
+### Service Detail Pages (Material-Specific Pricing & Specs)
+- [Asphalt shingle roofing](https://hamilton-exteriors.com/roofing/asphalt-shingles): 75% U.S. market share (ARMA), $950-$1,400/sq Bay Area pricing, 10 FAQs
+- [Fiber cement siding](https://hamilton-exteriors.com/siding/fiber-cement): 86% ROI at resale (Remodeling Magazine 2024), James Hardie specs
+- [Casement windows](https://hamilton-exteriors.com/windows/casement): 50-90% more airflow than hung windows (AAMA), per-unit pricing
+- [All roofing types](https://hamilton-exteriors.com/roofing)
+- [All siding types](https://hamilton-exteriors.com/siding)
+- [All window styles](https://hamilton-exteriors.com/windows)
+
+### Location Pages (City-Specific Pricing & Regulations)
+- [Service areas directory](https://hamilton-exteriors.com/service-areas): 44 cities across 6 Bay Area counties
+- Example: [Oakland roofing](https://hamilton-exteriors.com/service-areas/alameda-county-ca/oakland-ca/roofing) — fire zone requirements, housing stock data, local permit costs
 
 ## Extended Information
 For full pricing tables, FAQs, warranty details, and process walkthrough: https://hamilton-exteriors.com/llms-full.txt

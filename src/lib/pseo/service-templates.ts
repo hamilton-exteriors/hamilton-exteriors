@@ -57,7 +57,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       {
         questionPattern: 'Does Hamilton Exteriors offer roof financing in {city}?',
         answerPattern:
-          'Yes, we offer flexible financing options for {city} homeowners. $0 down payment with monthly payments that fit your budget. Get pre-qualified during your roof inspection.',
+          'Yes, we offer flexible financing options for {city} homeowners, including low down payment plans with monthly payments that fit your budget. Get pre-qualified during your roof inspection.',
       },
       {
         questionPattern: 'Is Hamilton Exteriors licensed to work in {city}?',
@@ -131,7 +131,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       {
         questionPattern: 'Does Hamilton Exteriors offer siding financing in {city}?',
         answerPattern:
-          'Yes, we offer $0 down financing for siding projects in {city}. Get pre-qualified during your inspection — most homeowners pay between $150-$300/month.',
+          'Yes, we offer financing for siding projects in {city} with approved credit. Get pre-qualified during your inspection — most homeowners pay between $150-$300/month.',
       },
     ],
     stylesHeading: 'What Siding Options Are Available?',

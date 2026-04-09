@@ -25,7 +25,7 @@ export const data: ServicePageData = {
     serviceType: 'Custom Home',
     badges: [
       'Licensed Bonded & Insured',
-      'Start with $0 Down',
+      'Financing Available',
       '50-Year Warranty',
       'Custom Project Timelines',
     ],

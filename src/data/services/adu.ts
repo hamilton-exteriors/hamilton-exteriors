@@ -26,7 +26,7 @@ export const data: ServicePageData = {
     serviceType: 'ADU',
     badges: [
       'Licensed Bonded & Insured',
-      'Start with $0 Down',
+      'Financing Available',
       '50-Year Warranty',
       '8-12 Week Builds',
     ],

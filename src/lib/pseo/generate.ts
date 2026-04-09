@@ -365,7 +365,7 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
   const badges = [
     `Serving ${city} & ${county} County`,
     'Licensed Bonded & Insured',
-    '$0 Down Financing Available',
+    'Financing Available',
     '50-Year Warranty',
   ];
 
