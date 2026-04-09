@@ -435,6 +435,7 @@
       var tierName = card.querySelector('.text-lg') ? card.querySelector('.text-lg').textContent.trim() : card.dataset.tier;
       if (window.op) window.op('track', 'shingle_selected', { tier: card.dataset.tier, name: tierName });
       if (window.dataLayer) window.dataLayer.push({ event: 'shingle_selected', tier: card.dataset.tier });
+      if (typeof fbq === 'function') fbq('track', 'AddToCart', { content_name: tierName, content_ids: [card.dataset.tier], content_type: 'product' });
     });
     card.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
@@ -749,9 +750,27 @@
             window.op('revenue', totalNum, { ref: ref, product: data.product || '', source: 'buy_flow' });
           }
           if (window.dataLayer) window.dataLayer.push({ event: 'purchase_completed', ref: ref, product: data.product || '', total: data.total || '' });
-          // Meta Pixel — client-side Purchase event
+          // Meta Pixel — client-side Purchase event (deduped with server CAPI via eventId)
           var purchaseEventId = 'purchase_' + ref;
           if (typeof fbq === 'function') fbq('track', 'Purchase', { value: totalNum, currency: 'USD', content_ids: [data.product || ''], content_type: 'product' }, { eventID: purchaseEventId });
+          // Server-side CAPI Purchase — deduped with client Pixel via shared eventId
+          var email = data.email || data['pf-email'] || '';
+          if (email) {
+            fetch('/api/track-purchase', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: email,
+                value: totalNum,
+                phone: data.phone || data['pf-phone'] || '',
+                firstName: (data.name || data['pf-name'] || '').split(' ')[0],
+                lastName: (data.name || data['pf-name'] || '').split(' ').slice(1).join(' '),
+                service: data.product || 'roofing',
+                ref: ref,
+                fbc: sessionStorage.getItem('he_fbc') || '',
+              })
+            }).catch(function () {}); // fire-and-forget
+          }
         })
         .catch(function () {
           // Show success anyway but with a note — order is captured client-side

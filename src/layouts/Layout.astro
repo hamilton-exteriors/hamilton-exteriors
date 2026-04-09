@@ -542,6 +542,10 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
             text: link.textContent?.trim() || '',
           });
           window.dataLayer?.push({ event: 'phone_click', page: window.location.pathname });
+          // Meta Pixel — Contact event on phone calls
+          if (typeof fbq === 'function') {
+            fbq('track', 'Contact', { content_name: 'phone_call', content_category: window.location.pathname });
+          }
         }
       });
 
