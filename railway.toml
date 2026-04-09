@@ -1,6 +1,5 @@
 [build]
-builder = "NIXPACKS"
-installCommand = "bun install --frozen-lockfile"
+builder = "RAILPACK"
 buildCommand = "bun run build"
 
 [deploy]
