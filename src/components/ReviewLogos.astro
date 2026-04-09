@@ -53,8 +53,7 @@ const starColor = 'var(--color-primary)';
   <div class="mx-auto max-w-[1200px] px-5">
     <!-- Heading -->
     <p
-      class="text-center font-dm-sans"
-      style="font-size: 1rem; font-weight: 400; line-height: 1.5; color: var(--color-heading);"
+      class="text-center font-dm-sans text-base/normal font-normal text-heading"
     >
       Rated 4.8 Stars by Bay Area Homeowners &ndash; See Why Customers Love Us!
     </p>
@@ -66,7 +65,7 @@ const starColor = 'var(--color-primary)';
           <!-- Logo / Icon -->
           <div class="review-card__logo">
             {platform.name === 'BBB' && (
-              <span style="font-family: var(--font-oswald); font-size: 1.25rem; font-weight: 700; color: var(--color-heading); letter-spacing: 0.05em; text-transform: uppercase;">BBB</span>
+              <span class="font-oswald text-xl font-bold tracking-[0.05em] text-heading uppercase">BBB</span>
             )}
             {platform.name === 'Trustpilot' && (
               /* Trustpilot green star icon (36x35 SVG) */
@@ -89,7 +88,8 @@ const starColor = 'var(--color-primary)';
                 alt="Hamilton Exteriors on Yelp"
                 width={platform.logoWidth}
                 height={platform.logoHeight}
-                style={`width: ${platform.logoWidth}px; height: ${platform.logoHeight}px; object-fit: contain;`}
+                class="object-contain"
+                style={`width: ${platform.logoWidth}px; height: ${platform.logoHeight}px;`}
                 loading="lazy"
               />
             )}

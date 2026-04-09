@@ -39,10 +39,10 @@ const faqs = [...baseFaqs, ...(extraFaqs || [])];
 
     <!-- Heading row: title left, CTA right -->
     <div class="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-      <h2 class="leading-[1.25] m-0 text-[clamp(28px,5vw,40px)]">
+      <h2 class="m-0 text-[clamp(28px,5vw,40px)] leading-tight">
         Frequently Asked Questions
       </h2>
-      <p class="text-sm font-normal leading-normal text-heading m-0 text-left md:text-right md:whitespace-nowrap">
+      <p class="m-0 text-left text-sm/normal font-normal text-heading md:text-right md:whitespace-nowrap">
         Didn't find the answer to your question?{' '}
         <a
           href={PHONE_HREF}
@@ -61,16 +61,16 @@ const faqs = [...baseFaqs, ...(extraFaqs || [])];
             class="group border-b border-border bg-white"
             data-border="true"
           >
-            <summary class="flex cursor-pointer items-center justify-between py-5 list-none [&::-webkit-details-marker]:hidden">
-              <span class="text-base font-normal leading-normal text-charcoal pr-4">
+            <summary class="flex cursor-pointer list-none items-center justify-between py-5 [&::-webkit-details-marker]:hidden">
+              <span class="pr-4 text-base/normal font-normal text-charcoal">
                 {faq.question}
               </span>
-              <span class="relative flex h-6 w-6 shrink-0 items-center justify-center text-charcoal">
+              <span class="relative flex size-6 shrink-0 items-center justify-center text-charcoal">
                 <IconPlus />
               </span>
             </summary>
-            <div class="pb-5 pr-12">
-              <p class="text-base font-normal leading-normal text-muted m-0">
+            <div class="pr-12 pb-5">
+              <p class="m-0 text-base/normal font-normal text-muted">
                 {faq.answer}
               </p>
             </div>

@@ -15,7 +15,7 @@ const {
   fullWidth = false,
 } = Astro.props;
 
-const baseStyles = 'inline-flex items-center justify-center text-center whitespace-nowrap transition-opacity hover:opacity-90 text-button';
+const baseStyles = 'inline-flex items-center justify-center text-center whitespace-nowrap transition-opacity hover:opacity-90 text-button no-underline';
 
 const sizeStyles = {
   sm: 'min-h-[44px] px-5 py-2.5 rounded-full text-[0.8125rem]',
@@ -35,7 +35,6 @@ const widthClass = fullWidth ? 'w-full' : '';
 <a
   href={href}
   class={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${widthClass} ${className}`}
-  style="text-decoration: none;"
 >
   <slot />
 </a>

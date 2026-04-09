@@ -31,11 +31,11 @@ const {
   'aria-label': ariaLabel,
 } = Astro.props;
 
-const bgMap = {
-  white: 'var(--color-white)',
-  cream: 'var(--color-cream)',
-  dark: 'var(--color-heading)',
-  charcoal: 'var(--color-charcoal)',
+const bgClasses = {
+  white: 'bg-white',
+  cream: 'bg-cream',
+  dark: 'bg-heading',
+  charcoal: 'bg-charcoal',
 };
 
 const paddingMap = {
@@ -55,8 +55,8 @@ const widthMap = {
 ---
 
 <section
-  class={`w-full ${className}`}
-  style={`background-color: ${bgMap[bg]}; padding: ${paddingMap[padding]};${borderTop ? ' border-top: 1px solid var(--color-border);' : ''}`}
+  class={`w-full ${bgClasses[bg]} ${className}`}
+  style={`padding: ${paddingMap[padding]};${borderTop ? ' border-top: 1px solid var(--color-border);' : ''}`}
   {...(id ? { id } : {})}
   {...(ariaLabel ? { 'aria-label': ariaLabel } : {})}
 >

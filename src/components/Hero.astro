@@ -346,10 +346,12 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
       heroForm.querySelector(`input[name="${n}"]`) as HTMLInputElement
     );
     let valid = true;
+    const missingFields: string[] = [];
     fields.forEach(f => {
       if (!f?.value?.trim()) {
         f.style.borderColor = 'var(--color-error)';
         valid = false;
+        missingFields.push(f.placeholder || f.name);
       }
     });
     // Basic email check
@@ -357,6 +359,22 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     if (email?.value && !email.value.includes('@')) {
       email.style.borderColor = 'var(--color-error)';
       valid = false;
+      missingFields.push('valid email');
+    }
+    if (!valid) {
+      // Announce validation errors to screen readers
+      let liveEl = heroForm.querySelector('.sr-form-errors') as HTMLElement;
+      if (!liveEl) {
+        liveEl = document.createElement('div');
+        liveEl.className = 'sr-form-errors sr-only';
+        liveEl.setAttribute('aria-live', 'assertive');
+        liveEl.setAttribute('role', 'alert');
+        heroForm.prepend(liveEl);
+      }
+      liveEl.textContent = 'Please fill in: ' + missingFields.join(', ');
+      // Focus the first invalid field
+      const firstInvalid = fields.find(f => !f?.value?.trim());
+      if (firstInvalid) firstInvalid.focus();
     }
     if (valid) {
       savePartialLead(1);

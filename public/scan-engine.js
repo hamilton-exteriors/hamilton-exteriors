@@ -289,7 +289,12 @@
     var mapEl = $('#roof-map');
     renderDemoRoofSVG(mapEl);
 
-    var delay = function (t, ms) { return new Promise(function (r) { setTimeout(function () { ss.textContent = t; r(); }, ms); }); };
+    var delay = function (t, ms) {
+      return new Promise(function (r) {
+        if (prefersReducedMotion) { ss.textContent = t; r(); return; }
+        setTimeout(function () { ss.textContent = t; r(); }, ms);
+      });
+    };
     delay('Locating property', 600)
       .then(function () { return delay('Capturing satellite imagery', 800); })
       .then(function () { return delay('Detecting roof edges', 1000); })
@@ -336,8 +341,11 @@
   }
 
   // ── Shared UI functions ─────────────────────────────────────────────
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   function anim(id, start, end, dur, fmt) {
     var el = document.getElementById(id); if (!el) return;
+    if (prefersReducedMotion) { el.textContent = fmt(end); return; }
     var t0 = performance.now();
     function tick(now) {
       var p = Math.min((now - t0) / dur, 1);
@@ -386,26 +394,62 @@
   }
 
   // ── Step navigation events ──────────────────────────────────────────
-  cb.addEventListener('click', function () { goStep(3); updatePrice(); $('#summary-address').textContent = state.address; });
+  cb.addEventListener('click', function () {
+    goStep(3); updatePrice(); $('#summary-address').textContent = state.address;
+    var s3addr = $('#step3-address'); if (s3addr) s3addr.textContent = state.address;
+  });
   ca.addEventListener('click', function () { sip = false; goStep(1); ai.value = state.address; ai.focus(); });
+
+  // ── Step 3 edit address link ────────────────────────────────────────
+  var s3edit = $('#step3-edit-address');
+  if (s3edit) s3edit.addEventListener('click', function () { sip = false; goStep(1); ai.value = state.address; ai.focus(); });
+
+  // ── Clickable completed step dots for back-navigation ──────────────
+  $$('.step-dot').forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      var target = parseInt(dot.dataset.step);
+      if (target >= state.step) return; // only allow going backward
+      if (target === 1) { sip = false; goStep(1); ai.value = state.address; ai.focus(); }
+      else if (target === 2) { goStep(2); }
+    });
+  });
 
   // ── Material selection ──────────────────────────────────────────────
   $$('.material-card').forEach(function (card) {
+    card.setAttribute('role', 'radio');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-checked', card.classList.contains('selected') ? 'true' : 'false');
     card.addEventListener('click', function () {
-      $$('.material-card').forEach(function (c) { c.classList.remove('selected'); });
+      $$('.material-card').forEach(function (c) { c.classList.remove('selected'); c.setAttribute('aria-checked', 'false'); });
       card.classList.add('selected');
-      card.querySelector('input').checked = true;
+      card.setAttribute('aria-checked', 'true');
+      var inp = card.querySelector('input');
+      if (inp) inp.checked = true;
       state.selectedTier = card.dataset.tier;
       updatePrice();
+    });
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
     });
   });
 
   $$('.color-swatches').forEach(function (c) {
+    c.setAttribute('role', 'radiogroup');
     c.addEventListener('click', function (e) {
       var sw = e.target.closest('.swatch');
       if (!sw) return;
-      c.querySelectorAll('.swatch').forEach(function (s) { s.classList.remove('active'); });
+      c.querySelectorAll('.swatch').forEach(function (s) { s.classList.remove('active'); s.setAttribute('aria-checked', 'false'); });
       sw.classList.add('active');
+      sw.setAttribute('aria-checked', 'true');
+    });
+  });
+
+  $$('.swatch').forEach(function (sw) {
+    sw.setAttribute('role', 'radio');
+    sw.setAttribute('tabindex', '0');
+    sw.setAttribute('aria-checked', sw.classList.contains('active') ? 'true' : 'false');
+    sw.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sw.click(); }
     });
   });
 
@@ -417,7 +461,9 @@
     if (!state.roofData) return;
     var sq = state.roofData.sqft;
     var sc = $('.material-card[data-tier="' + state.selectedTier + '"]');
-    var pricePerSq = parseFloat(sc.querySelector('[data-price-per-sqft]').dataset.pricePerSqft);
+    if (!sc) return;
+    var priceEl = sc.querySelector('[data-price-per-sqft]');
+    var pricePerSq = priceEl ? parseFloat(priceEl.dataset.pricePerSqft) : 9.50;
     // pricePerSq is $/square (100 sqft), e.g. 9.50 = $950/sq
     var numSquares = sq / 100;
     var tm = numSquares * pricePerSq * 100; // total in dollars
@@ -460,8 +506,11 @@
     $('#commission-savings').textContent = '$' + cs.toLocaleString();
 
     $$('.material-card').forEach(function (c) {
-      var p = parseFloat(c.querySelector('[data-price-per-sqft]').dataset.pricePerSqft);
-      c.querySelector('.tier-price').textContent = Math.round(numSquares * p * 100).toLocaleString();
+      var pEl = c.querySelector('[data-price-per-sqft]');
+      var tpEl = c.querySelector('.tier-price');
+      if (!pEl || !tpEl) return;
+      var p = parseFloat(pEl.dataset.pricePerSqft);
+      tpEl.textContent = Math.round(numSquares * p * 100).toLocaleString();
     });
 
     var mt2 = $('#mobile-total-price');
@@ -480,6 +529,16 @@
       group.classList.toggle('collapsed');
       btn.classList.toggle('collapsed');
     });
+  });
+
+  // ── Measurement info tooltips ─────────────────────────────────────
+  $$('.meas-info').forEach(function (btn) {
+    var tip = btn.getAttribute('data-tip');
+    if (!tip) return;
+    var el = document.createElement('span');
+    el.className = 'meas-tip';
+    el.textContent = tip;
+    btn.appendChild(el);
   });
 
   // ── Swatch preview on hover/click ──────────────────────────────────
@@ -514,24 +573,29 @@
   var errorModal = $('#scan-error-modal');
   var errorRetry = $('#error-retry');
 
-  if ($('#purchase-btn')) {
-    $('#purchase-btn').addEventListener('click', function () {
-      if (!state.roofData) return;
-      // Populate hidden fields
-      $('#pf-address').value = state.address;
-      var selectedCard = $('.material-card.selected');
-      $('#pf-product').value = selectedCard ? selectedCard.querySelector('.font-fraunces').textContent : '';
-      var activeSwatch = selectedCard ? selectedCard.querySelector('.swatch.active') : null;
-      $('#pf-color').value = activeSwatch ? activeSwatch.getAttribute('aria-label') : '';
-      $('#pf-total').value = $('#total-price').textContent;
-      $('#pf-sqft').value = state.roofData.sqft;
-      // Summary
-      $('#pf-summary').innerHTML = '<strong>' + state.address + '</strong><br>' +
-        $('#pf-product').value + ' — ' + $('#pf-color').value + '<br>' +
-        'Total: ' + $('#pf-total').value + ' | ' + $('#monthly-price').textContent;
-      purchaseModal.classList.remove('hidden');
-    });
+  function openPurchaseModal() {
+    if (!state.roofData) return;
+    // Populate hidden fields
+    $('#pf-address').value = state.address;
+    var selectedCard = $('.material-card.selected');
+    var tierNameEl = selectedCard ? (selectedCard.querySelector('.font-fraunces') || selectedCard.querySelector('.tier-name') || selectedCard.querySelector('h3')) : null;
+    $('#pf-product').value = tierNameEl ? tierNameEl.textContent : state.selectedTier;
+    var activeSwatch = selectedCard ? selectedCard.querySelector('.swatch.active') : null;
+    $('#pf-color').value = activeSwatch ? activeSwatch.getAttribute('aria-label') : '';
+    $('#pf-total').value = $('#total-price').textContent;
+    $('#pf-sqft').value = state.roofData.sqft;
+    // Summary
+    $('#pf-summary').innerHTML = '<strong>' + state.address + '</strong><br>' +
+      $('#pf-product').value + ' — ' + $('#pf-color').value + '<br>' +
+      'Total: ' + $('#pf-total').value + ' | ' + $('#monthly-price').textContent;
+    purchaseModal.classList.remove('hidden');
+    // Focus the first input in the modal for keyboard users
+    var firstInput = purchaseModal.querySelector('input:not([type="hidden"])');
+    if (firstInput) setTimeout(function () { firstInput.focus(); }, 100);
   }
+
+  if ($('#purchase-btn')) $('#purchase-btn').addEventListener('click', openPurchaseModal);
+  if ($('#mobile-purchase-btn')) $('#mobile-purchase-btn').addEventListener('click', openPurchaseModal);
 
   function closeModal(modal) { if (modal) modal.classList.add('hidden'); }
   if (pfClose) pfClose.addEventListener('click', function () { closeModal(purchaseModal); });
@@ -581,7 +645,10 @@
           } catch (e) {}
         })
         .finally(function () {
-          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Confirm Purchase'; }
+          // Only re-enable if the form is still visible (not after success)
+          if (submitBtn && !purchaseForm.classList.contains('hidden')) {
+            submitBtn.disabled = false; submitBtn.textContent = 'Confirm Purchase';
+          }
         });
     });
   }
@@ -604,6 +671,9 @@
     errorModal.classList.remove('hidden');
     sl.classList.add('hidden');
     sip = false;
+    // Focus the error modal for screen readers and keyboard users
+    var focusTarget = errorModal.querySelector('a, button');
+    if (focusTarget) setTimeout(function () { focusTarget.focus(); }, 100);
   }
 
   // ── Schedule a Call button ──────────────────────────────────────────

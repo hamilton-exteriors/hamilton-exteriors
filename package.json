@@ -10,21 +10,21 @@
     "build": "astro build",
     "start": "node server.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "oxlint src/",
+    "lint:fix": "oxlint src/ --fix",
+    "lint:dead": "knip",
+    "format": "prettier --write src/",
+    "check": "eslint src/ && knip"
   },
   "dependencies": {
     "@astrojs/node": "^10.0.4",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
     "@tailwindcss/vite": "^4.2.2",
-    "@turf/convex": "^7.3.4",
-    "@turf/helpers": "^7.3.4",
     "@types/jsonwebtoken": "^9.0.10",
     "astro": "^6.1.3",
-    "geotiff": "^3.0.5",
     "jsonwebtoken": "^9.0.3",
-    "node-cache": "^5.1.2",
-    "railway": "^2.0.17",
     "sanitize-html": "^2.17.2",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.2"
@@ -32,6 +32,12 @@
   "devDependencies": {
     "@types/sanitize-html": "^2.16.1",
     "dotenv": "^17.4.1",
+    "eslint-plugin-better-tailwindcss": "^4.3.2",
+    "knip": "^6.3.1",
+    "oxlint": "^1.59.0",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "vitest": "^4.1.2"
   }
 }

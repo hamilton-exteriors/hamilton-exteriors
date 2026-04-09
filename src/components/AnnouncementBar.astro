@@ -6,10 +6,9 @@ interface Props {
 const { text = 'Limited Time — Get up to $2000 off Your Project*' } = Astro.props;
 ---
 
-<div class="w-full" style="background-color: var(--color-heading);">
+<div class="w-full bg-heading">
   <p
-    class="text-pretty text-center font-oswald font-bold uppercase text-white"
-    style="padding: 8px 15px; font-size: 0.75rem; line-height: 1.4; letter-spacing: 0.06em;"
+    class="px-[15px] py-2 text-center font-oswald text-xs leading-[1.4] font-bold tracking-[0.06em] text-pretty text-white uppercase"
   >
     {text}
   </p>

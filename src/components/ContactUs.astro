@@ -4,7 +4,7 @@ import CTAButton from './CTAButton.astro';
 import SectionLabel from './SectionLabel.astro';
 ---
 
-<section id="contact" class="cv-auto w-full" style="background-color: var(--color-heading);">
+<section id="contact" class="cv-auto w-full bg-heading">
   <div class="mx-auto max-w-[1170px] px-5 py-16 md:py-20">
 
     <!-- Two-column layout -->
@@ -15,54 +15,53 @@ import SectionLabel from './SectionLabel.astro';
         <SectionLabel color="yellow">Ready to start?</SectionLabel>
         <a
           href={PHONE_HREF}
-          style="font-family: var(--font-oswald); font-size: clamp(48px, 8vw, 72px); font-weight: 400; line-height: 1; text-transform: uppercase; color: var(--color-white); text-decoration: none; margin: 0;"
-          class="transition-opacity hover:opacity-80"
+          class="m-0 font-oswald text-[clamp(48px,8vw,72px)] leading-none font-normal text-white uppercase no-underline transition-opacity hover:opacity-80"
         >
           {PHONE_DISPLAY}
         </a>
-        <p class="mt-4" style="font-family: var(--font-dm-sans); font-size: 1.125rem; line-height: 1.6; color: var(--color-white-80); max-width: 38ch;">
-          Call now — we answer in 3 minutes. Or <a href="#quote" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 3px;">fill out the form above</a> and we'll call you.
+        <p class="mt-4 max-w-[38ch] text-lg leading-[1.6] text-white-80">
+          Call now — we answer in 3 minutes. Or <a href="#quote" class="text-yellow underline underline-offset-[3px]">fill out the form above</a> and we'll call you.
         </p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
-          <CTAButton href="#quote" size="lg" class="w-full sm:w-auto min-w-[220px]">Get Your Free Quote</CTAButton>
-          <CTAButton href={PHONE_HREF} variant="outline" size="lg" class="w-full sm:w-auto min-w-[220px]">Call {PHONE_DISPLAY}</CTAButton>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+          <CTAButton href="#quote" size="lg" class="w-full min-w-[220px] sm:w-auto">Get Your Free Quote</CTAButton>
+          <CTAButton href={PHONE_HREF} variant="outline" size="lg" class="w-full min-w-[220px] sm:w-auto">Call {PHONE_DISPLAY}</CTAButton>
         </div>
       </div>
 
       <!-- Right: Map + Address -->
       <div class="w-full lg:max-w-[480px]">
-        <div style="border-radius: 4px; overflow: hidden;">
+        <div class="overflow-hidden rounded-[4px]">
           <iframe
             src="https://www.google.com/maps?q=21634+Redwood+Rd+Unit+F,+Castro+Valley,+CA+94546&output=embed"
             width="100%"
             height="280"
-            style="border: 0; display: block;"
+            class="block border-0"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             title="Hamilton Exteriors location — 21634 Redwood Rd Unit F, Castro Valley, CA 94546"
             allowfullscreen
           ></iframe>
         </div>
-        <p class="mt-4" style="font-family: var(--font-dm-sans); font-size: 0.875rem; line-height: 1.5; color: var(--color-white-60);">
+        <p class="mt-4 text-sm/normal text-white-70">
           {ADDRESS}
         </p>
-        <p class="mt-2" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; line-height: 1.8; color: var(--color-white-65);">
+        <p class="mt-2 text-[0.8125rem] leading-[1.8] text-white-70">
           Serving
-          <a href="/service-areas/alameda-county-ca/oakland-ca" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">Oakland</a>,
-          <a href="/service-areas/alameda-county-ca/berkeley-ca" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">Berkeley</a>,
-          <a href="/service-areas/alameda-county-ca/fremont-ca" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">Fremont</a>,
-          <a href="/service-areas/santa-clara-county-ca/san-jose-ca" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">San Jose</a>,
-          <a href="/service-areas/santa-clara-county-ca/palo-alto-ca" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">Palo Alto</a>,
-          <a href="/service-areas/contra-costa-county-ca/walnut-creek-ca" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">Walnut Creek</a>,
-          <a href="/service-areas/marin-county-ca/san-rafael-ca" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">San Rafael</a>,
-          <a href="/service-areas/napa-county-ca/napa-ca" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">Napa</a>
+          <a href="/service-areas/alameda-county-ca/oakland-ca" class="text-white-85 underline underline-offset-2">Oakland</a>,
+          <a href="/service-areas/alameda-county-ca/berkeley-ca" class="text-white-85 underline underline-offset-2">Berkeley</a>,
+          <a href="/service-areas/alameda-county-ca/fremont-ca" class="text-white-85 underline underline-offset-2">Fremont</a>,
+          <a href="/service-areas/santa-clara-county-ca/san-jose-ca" class="text-white-85 underline underline-offset-2">San Jose</a>,
+          <a href="/service-areas/santa-clara-county-ca/palo-alto-ca" class="text-white-85 underline underline-offset-2">Palo Alto</a>,
+          <a href="/service-areas/contra-costa-county-ca/walnut-creek-ca" class="text-white-85 underline underline-offset-2">Walnut Creek</a>,
+          <a href="/service-areas/marin-county-ca/san-rafael-ca" class="text-white-85 underline underline-offset-2">San Rafael</a>,
+          <a href="/service-areas/napa-county-ca/napa-ca" class="text-white-85 underline underline-offset-2">Napa</a>
           &amp; more across
-          <a href="/service-areas/alameda-county-ca" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">Alameda</a>,
-          <a href="/service-areas/contra-costa-county-ca" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">Contra Costa</a>,
-          <a href="/service-areas/marin-county-ca" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">Marin</a>,
-          <a href="/service-areas/napa-county-ca" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">Napa</a> &amp;
-          <a href="/service-areas/santa-clara-county-ca" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">Santa Clara</a> counties.
-          <a href="/service-areas" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">All 29 cities &rarr;</a>
+          <a href="/service-areas/alameda-county-ca" class="text-white-85 underline underline-offset-2">Alameda</a>,
+          <a href="/service-areas/contra-costa-county-ca" class="text-white-85 underline underline-offset-2">Contra Costa</a>,
+          <a href="/service-areas/marin-county-ca" class="text-white-85 underline underline-offset-2">Marin</a>,
+          <a href="/service-areas/napa-county-ca" class="text-white-85 underline underline-offset-2">Napa</a> &amp;
+          <a href="/service-areas/santa-clara-county-ca" class="text-white-85 underline underline-offset-2">Santa Clara</a> counties.
+          <a href="/service-areas" class="text-white-85 underline underline-offset-2">All 29 cities &rarr;</a>
         </p>
       </div>
 

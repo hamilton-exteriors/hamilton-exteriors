@@ -204,13 +204,13 @@ function ghostSrcset(url: string, widths: number[]): string {
                     <span class="card__tag">{humanTag(t)}</span>
                   ))}
                 </div>
-                <h2 class="card__title card__title--featured group-hover:text-[var(--color-primary)]">{featuredPost.title}</h2>
+                <h2 class="card__title card__title--featured group-hover:text-(--color-primary)">{featuredPost.title}</h2>
                 {featuredPost.excerpt && <p class="card__excerpt card__excerpt--featured">{featuredPost.excerpt}</p>}
                 <div class="card__meta">
-                  <span style="color: var(--color-yellow);">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  <span class="text-yellow">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                   <span>4.8 rated</span>
                   <span>&middot;</span>
-                  <span>By <strong style="color: var(--color-heading);">Alex Hamilton Li</strong></span>
+                  <span>By <strong class="text-heading">Alex Hamilton Li</strong></span>
                   <span>&middot;</span>
                   <time datetime={featuredPost.published_at}>{formatDate(featuredPost.published_at)}</time>
                 </div>
@@ -246,7 +246,7 @@ function ghostSrcset(url: string, widths: number[]): string {
                       ))}
                     </div>
                   )}
-                  <h3 class="card__title group-hover:text-[var(--color-primary)]">{post.title}</h3>
+                  <h3 class="card__title group-hover:text-(--color-primary)">{post.title}</h3>
                   {post.excerpt && <p class="card__excerpt">{post.excerpt}</p>}
                   <div class="card__meta">
                     <time datetime={post.published_at}>{formatDate(post.published_at)}</time>
@@ -258,14 +258,14 @@ function ghostSrcset(url: string, widths: number[]): string {
           </div>
 
           <div class="search-no-results" id="search-no-results">
-            <p style="font-weight: 600; margin-bottom: 8px;">No articles match your search</p>
-            <p>Try different keywords or <a href="/blog" style="color: var(--color-primary); font-weight: 600; text-decoration: underline;">browse all posts</a>.</p>
+            <p class="mb-2 font-semibold">No articles match your search</p>
+            <p>Try different keywords or <a href="/blog" class="font-semibold text-primary underline">browse all posts</a>.</p>
           </div>
 
           {/* ── CTA ── */}
           {page === 1 && (
             <div class="blog-cta">
-              <h3 style="margin-bottom: 8px;"><span style="color: white;">Get a Free</span> <span style="color: var(--color-yellow);">Roof Inspection</span></h3>
+              <h3 class="mb-2"><span class="text-white">Get a Free</span> <span class="text-yellow">Roof Inspection</span></h3>
               <p class="blog-cta__text">Bay Area homeowners — find out the true condition of your roof with a no-obligation inspection from our certified team.</p>
               <div class="blog-cta__buttons">
                 <a href="/buy" class="blog-cta__btn blog-cta__btn--primary">Scan Your Roof Online</a>

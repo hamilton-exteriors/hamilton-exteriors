@@ -2,6 +2,71 @@
 import { Image } from 'astro:assets';
 import { logoNav } from '../lib/images';
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
+
+const services = [
+  {
+    name: 'Roofing',
+    href: '/roofing',
+    items: [
+      { name: 'Asphalt Shingles', href: '/roofing/asphalt-shingles' },
+      { name: 'Metal', href: '/roofing/metal' },
+      { name: 'Tile', href: '/roofing/tile' },
+      { name: 'Energy Efficient', href: '/roofing/energy' },
+    ],
+  },
+  {
+    name: 'Siding',
+    href: '/siding',
+    items: [
+      { name: 'Vinyl', href: '/siding/vinyl' },
+      { name: 'Fiber Cement', href: '/siding/fiber-cement' },
+      { name: 'Stucco', href: '/siding/stucco' },
+      { name: 'Waterproofing', href: '/siding/waterproofing' },
+    ],
+  },
+  {
+    name: 'Windows',
+    href: '/windows',
+    items: [
+      { name: 'Single-Hung', href: '/windows/single-hung' },
+      { name: 'Double-Hung', href: '/windows/double-hung' },
+      { name: 'Casement', href: '/windows/casement' },
+      { name: 'Sliding Glass Doors', href: '/windows/sliding-glass-doors' },
+      { name: 'Picture', href: '/windows/picture' },
+      { name: 'Single-Slider', href: '/windows/single-slider' },
+    ],
+  },
+  {
+    name: 'ADUs',
+    href: '/adu',
+    items: [
+      { name: 'Detached', href: '/adu/detached' },
+      { name: 'Garage Conversions', href: '/adu/garage-conversions' },
+      { name: 'Design', href: '/adu/design' },
+      { name: 'Permits', href: '/adu/permits' },
+    ],
+  },
+  {
+    name: 'Custom Homes',
+    href: '/custom-homes',
+    items: [
+      { name: 'Ground-Up', href: '/custom-homes/ground-up' },
+      { name: 'Design', href: '/custom-homes/design' },
+      { name: 'Permits', href: '/custom-homes/permits' },
+      { name: 'Additions & Reno', href: '/custom-homes/additions-renovations' },
+    ],
+  },
+  {
+    name: 'Additions',
+    href: '/additions',
+    items: [
+      { name: 'Second Story', href: '/additions/second-story' },
+      { name: 'Room Extensions', href: '/additions/room-extensions' },
+      { name: 'ADUs & Guest Houses', href: '/additions/adus-guest-houses' },
+      { name: 'Full Remodels', href: '/additions/full-remodels' },
+    ],
+  },
+];
 ---
 
 <nav class="navbar sticky top-0 z-50 w-full border-b border-black/6 bg-white" aria-label="Main navigation">
@@ -20,16 +85,77 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
       />
     </a>
 
-    <!-- Nav links (flex-1, centered within available space) -->
-    <div class="hidden flex-1 items-center justify-center pl-[78px] xl:flex">
+    <!-- Desktop nav -->
+    <div class="hidden flex-1 items-center justify-center xl:flex">
       <ul class="m-0 flex list-none items-center gap-7 p-0 text-sm font-medium text-heading">
-        <li><a href="/#about" class="whitespace-nowrap text-inherit no-underline">About Us</a></li>
-        <li><a href="/#financing" class="whitespace-nowrap text-inherit no-underline">Financing</a></li>
-        <li><a href={PHONE_HREF} class="whitespace-nowrap text-inherit no-underline">Call Us</a></li>
-        <li><a href="/#service" class="whitespace-nowrap text-inherit no-underline">Services</a></li>
+        <!-- Services dropdown -->
+        <li class="relative" id="services-dropdown">
+          <button
+            type="button"
+            class="flex items-center gap-1 whitespace-nowrap text-inherit bg-transparent border-none cursor-pointer text-sm font-medium p-0"
+            aria-expanded="false"
+            aria-haspopup="true"
+            id="services-trigger"
+          >
+            Services
+            <svg class="size-3.5 transition-transform duration-200" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <!-- Mega menu -->
+          <div
+            id="services-mega"
+            class="invisible absolute top-full -left-6 z-50 mt-3 w-[680px] origin-top-left scale-95 rounded-xl border border-black/8 bg-white opacity-0 shadow-xl transition-all duration-200"
+            role="menu"
+          >
+            <div class="grid grid-cols-3 gap-0 p-5">
+              {services.map((category) => (
+                <div class="flex flex-col gap-1.5 pb-4">
+                  <a
+                    href={category.href}
+                    class="text-[13px] font-bold tracking-wide text-heading uppercase no-underline transition-opacity hover:opacity-70"
+                    role="menuitem"
+                  >
+                    {category.name}
+                  </a>
+                  <ul class="m-0 flex list-none flex-col gap-0.5 p-0">
+                    {category.items.map((item) => (
+                      <li>
+                        <a
+                          href={item.href}
+                          class="block rounded-md px-2 py-1.5 text-[13px] text-heading/70 no-underline transition-colors hover:bg-black/4 hover:text-heading"
+                          role="menuitem"
+                        >
+                          {item.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <!-- Buy online promo -->
+            <div class="border-t border-black/6 px-5 py-3.5">
+              <a
+                href="/buy"
+                class="flex items-center gap-3 rounded-lg px-3 py-2.5 no-underline transition-colors hover:bg-primary/5"
+                role="menuitem"
+              >
+                <span class="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-base">&#9733;</span>
+                <span class="flex flex-col">
+                  <span class="text-sm font-semibold text-heading">Buy Your Roof Online</span>
+                  <span class="text-xs text-heading/50">Online pricing. No salesperson.</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </li>
+
         <li><a href="/service-areas" class="whitespace-nowrap text-inherit no-underline">Service Areas</a></li>
-        <li><a href="/#review" class="whitespace-nowrap text-inherit no-underline">Reviews</a></li>
-        <li><a href="/blog" class="whitespace-nowrap text-inherit no-underline">Ground Up</a></li>
+        <li><a href="/financing" class="whitespace-nowrap text-inherit no-underline">Financing</a></li>
+        <li><a href="/about" class="whitespace-nowrap text-inherit no-underline">About</a></li>
+        <li><a href="/blog" class="whitespace-nowrap text-inherit no-underline">Blog</a></li>
       </ul>
     </div>
 
@@ -68,14 +194,50 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 
   <!-- Mobile menu -->
   <div id="mobile-menu" class="mobile-menu absolute top-full left-0 z-40 hidden w-full bg-white shadow-lg xl:hidden" role="navigation" aria-label="Mobile navigation">
-    <div class="flex flex-col items-center gap-1 px-5 py-4 font-dm-sans">
-      <a href="/#about" class="flex min-h-[44px] items-center text-sm font-medium text-heading">About Us</a>
-      <a href="/#financing" class="flex min-h-[44px] items-center text-sm font-medium text-heading">Financing</a>
-      <a href={PHONE_HREF} class="flex min-h-[44px] items-center text-sm font-medium text-heading">Call Us</a>
-      <a href="/#service" class="flex min-h-[44px] items-center text-sm font-medium text-heading">Services</a>
+    <div class="flex flex-col items-center gap-0 px-5 py-4 font-dm-sans">
+
+      <!-- Services accordion -->
+      <div class="w-full">
+        <button
+          type="button"
+          class="mobile-accordion-trigger flex min-h-[44px] w-full items-center justify-center gap-1.5 bg-transparent border-none text-sm font-medium text-heading cursor-pointer"
+          aria-expanded="false"
+        >
+          Services
+          <svg class="size-3.5 transition-transform duration-200" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-panel hidden px-2 pb-3">
+          {services.map((category) => (
+            <div class="mb-3">
+              <a href={category.href} class="block px-2 py-1.5 text-[13px] font-bold tracking-wide text-heading uppercase no-underline">
+                {category.name}
+              </a>
+              <div class="flex flex-col">
+                {category.items.map((item) => (
+                  <a href={item.href} class="block rounded-md px-4 py-1.5 text-[13px] text-heading/70 no-underline transition-colors hover:bg-black/4">
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+          <a href="/buy" class="mt-2 flex items-center gap-2.5 rounded-lg px-2 py-2.5 no-underline transition-colors hover:bg-primary/5">
+            <span class="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm">&#9733;</span>
+            <span class="flex flex-col">
+              <span class="text-[13px] font-semibold text-heading">Buy Your Roof Online</span>
+              <span class="text-[11px] text-heading/50">Online pricing. No salesperson.</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
       <a href="/service-areas" class="flex min-h-[44px] items-center text-sm font-medium text-heading">Service Areas</a>
-      <a href="/#review" class="flex min-h-[44px] items-center text-sm font-medium text-heading">Reviews</a>
-      <a href="/blog" class="flex min-h-[44px] items-center text-sm font-medium text-heading">Ground Up</a>
+      <a href="/financing" class="flex min-h-[44px] items-center text-sm font-medium text-heading">Financing</a>
+      <a href="/about" class="flex min-h-[44px] items-center text-sm font-medium text-heading">About</a>
+      <a href="/blog" class="flex min-h-[44px] items-center text-sm font-medium text-heading">Blog</a>
+
       <hr class="w-full border-border" />
       <a href={PHONE_HREF} class="flex min-h-[44px] items-center text-base font-bold text-heading">{PHONE_DISPLAY}</a>
       <a href="/#quote" class="flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-full bg-primary text-center text-sm font-semibold text-white">Get Your Free Inspection</a>
@@ -84,30 +246,31 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 </nav>
 
 <script>
+  // --- Mobile hamburger menu ---
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
   if (toggle && menu) {
     const focusableSelector = 'a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])';
 
     function openMenu() {
-      menu.classList.remove('hidden');
-      toggle.classList.add('open');
-      toggle.setAttribute('aria-expanded', 'true');
+      menu!.classList.remove('hidden');
+      toggle!.classList.add('open');
+      toggle!.setAttribute('aria-expanded', 'true');
       document.addEventListener('keydown', trapFocus);
     }
 
     function closeMenu() {
-      menu.classList.add('hidden');
-      toggle.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
+      menu!.classList.add('hidden');
+      toggle!.classList.remove('open');
+      toggle!.setAttribute('aria-expanded', 'false');
       document.removeEventListener('keydown', trapFocus);
-      toggle.focus();
+      toggle!.focus();
     }
 
     function trapFocus(e: KeyboardEvent) {
       if (e.key === 'Escape') { closeMenu(); return; }
       if (e.key !== 'Tab') return;
-      const focusable = [toggle, ...menu.querySelectorAll(focusableSelector)] as HTMLElement[];
+      const focusable = [toggle!, ...menu!.querySelectorAll(focusableSelector)] as HTMLElement[];
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
@@ -119,6 +282,88 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
     });
     menu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => closeMenu());
+    });
+  }
+
+  // --- Mobile accordion ---
+  document.querySelectorAll('.mobile-accordion-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const panel = btn.nextElementSibling as HTMLElement;
+      const isOpen = !panel.classList.contains('hidden');
+      if (isOpen) {
+        panel.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.querySelector('svg')?.classList.remove('rotate-180');
+      } else {
+        panel.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.querySelector('svg')?.classList.add('rotate-180');
+      }
+    });
+  });
+
+  // --- Desktop mega menu ---
+  const dropdown = document.getElementById('services-dropdown');
+  const trigger = document.getElementById('services-trigger');
+  const mega = document.getElementById('services-mega');
+
+  if (dropdown && trigger && mega) {
+    let closeTimeout: ReturnType<typeof setTimeout>;
+
+    function showMega() {
+      clearTimeout(closeTimeout);
+      mega!.classList.remove('invisible', 'opacity-0', 'scale-95');
+      mega!.classList.add('visible', 'opacity-100', 'scale-100');
+      trigger!.setAttribute('aria-expanded', 'true');
+      trigger!.querySelector('svg')?.classList.add('rotate-180');
+    }
+
+    function hideMega() {
+      closeTimeout = setTimeout(() => {
+        mega!.classList.add('invisible', 'opacity-0', 'scale-95');
+        mega!.classList.remove('visible', 'opacity-100', 'scale-100');
+        trigger!.setAttribute('aria-expanded', 'false');
+        trigger!.querySelector('svg')?.classList.remove('rotate-180');
+      }, 150);
+    }
+
+    dropdown.addEventListener('mouseenter', showMega);
+    dropdown.addEventListener('mouseleave', hideMega);
+
+    // Keyboard support
+    trigger.addEventListener('click', () => {
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      isOpen ? hideMega() : showMega();
+    });
+
+    trigger.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const isOpen = trigger!.getAttribute('aria-expanded') === 'true';
+        isOpen ? hideMega() : showMega();
+      }
+      if (e.key === 'Escape') {
+        hideMega();
+        trigger!.focus();
+      }
+    });
+
+    // Close on Escape from within mega menu
+    mega.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        hideMega();
+        trigger!.focus();
+      }
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e: MouseEvent) => {
+      if (!dropdown.contains(e.target as Node)) {
+        mega.classList.add('invisible', 'opacity-0', 'scale-95');
+        mega.classList.remove('visible', 'opacity-100', 'scale-100');
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.querySelector('svg')?.classList.remove('rotate-180');
+      }
     });
   }
 </script>

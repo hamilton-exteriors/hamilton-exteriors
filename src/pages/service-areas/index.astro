@@ -52,62 +52,60 @@ const breadcrumbJsonLd = {
   <LogoSlider />
 
   <!-- Stats Strip -->
-  <section class="w-full" style="background-color: var(--color-heading); padding: 40px 0;">
-    <div class="mx-auto max-w-[1170px] px-5 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+  <section class="w-full bg-heading py-10">
+    <div class="mx-auto grid max-w-[1170px] grid-cols-2 gap-6 px-5 text-center md:grid-cols-4">
       <div>
-        <p style="font-family: var(--font-oswald); font-size: clamp(32px, 5vw, 48px); font-weight: 400; color: var(--color-yellow); line-height: 1; text-transform: uppercase;">6</p>
-        <p style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-white-65); margin-top: 6px;">Counties Served</p>
+        <p class="font-oswald text-[clamp(32px,5vw,48px)] leading-none font-normal text-yellow uppercase">6</p>
+        <p class="mt-1.5 text-[0.8125rem] text-white-65">Counties Served</p>
       </div>
       <div>
-        <p style="font-family: var(--font-oswald); font-size: clamp(32px, 5vw, 48px); font-weight: 400; color: var(--color-white); line-height: 1; text-transform: uppercase;">500+</p>
-        <p style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-white-65); margin-top: 6px;">Projects Completed</p>
+        <p class="font-oswald text-[clamp(32px,5vw,48px)] leading-none font-normal text-white uppercase">500+</p>
+        <p class="mt-1.5 text-[0.8125rem] text-white-65">Projects Completed</p>
       </div>
       <div>
-        <p style="font-family: var(--font-oswald); font-size: clamp(32px, 5vw, 48px); font-weight: 400; color: var(--color-white); line-height: 1; text-transform: uppercase;">50-Year</p>
-        <p style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-white-65); margin-top: 6px;">Warranty Coverage</p>
+        <p class="font-oswald text-[clamp(32px,5vw,48px)] leading-none font-normal text-white uppercase">50-Year</p>
+        <p class="mt-1.5 text-[0.8125rem] text-white-65">Warranty Coverage</p>
       </div>
       <div>
-        <p style="font-family: var(--font-oswald); font-size: clamp(32px, 5vw, 48px); font-weight: 400; color: var(--color-white); line-height: 1; text-transform: uppercase;">4.8</p>
-        <p style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-white-65); margin-top: 6px;">Google Rating</p>
+        <p class="font-oswald text-[clamp(32px,5vw,48px)] leading-none font-normal text-white uppercase">4.8</p>
+        <p class="mt-1.5 text-[0.8125rem] text-white-65">Google Rating</p>
       </div>
     </div>
   </section>
 
   <!-- Locations Grid -->
-  <section id="service" class="w-full" style="padding: 80px 0;">
+  <section id="service" class="w-full py-20">
     <div class="mx-auto max-w-[1170px] px-5">
-      <p class="text-label" style="color: var(--color-primary); margin: 0 0 12px;">
+      <p class="text-label m-0 mb-3 text-primary">
         Service Areas
       </p>
-      <h2
-        style="font-family: var(--font-oswald); font-size: clamp(28px, 5vw, 44px); line-height: 1.15; font-weight: 400; color: var(--color-heading); text-transform: uppercase; margin: 0 0 12px;"
-      >
+      <h2 class="m-0 mb-3 text-[clamp(28px,5vw,44px)] leading-[1.15]">
         6 Counties. 47 Cities. One Standard.
       </h2>
-      <p style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.7; color: var(--color-muted); max-width: 55ch; margin: 0 0 48px;">
+      <p class="m-0 mb-12 max-w-[55ch] text-base leading-[1.7] text-muted">
         Licensed, bonded, and insured across the Bay Area. Find your county below to see what we're building near you.
       </p>
       <div class="county-grid">
         {counties.map((county) => (
           <a href={county.slug} class="county-card group">
-            <div class="county-card__img relative w-full overflow-hidden" style="border-radius: 4px;">
+            <div class="county-card__img relative w-full overflow-hidden rounded-[4px]">
               <Image
                 src={county.image}
                 alt={`Hamilton Exteriors service area in ${county.name}, California`}
                 width={540}
                 height={312}
-                style="width: 100%; height: auto; aspect-ratio: 540 / 312; object-fit: cover; display: block;"
+                class="block aspect-540/312 h-auto w-full object-cover"
                 loading="lazy"
               />
               <div class="county-card__overlay">
-                <span style="font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: white; display: flex; align-items: center; gap: 6px;">
+                <span class="flex items-center gap-1.5 font-satoshi text-xs font-bold tracking-[0.15em] text-white uppercase">
                   {county.cities.length > 0 ? `View ${county.cities.length} Cities` : 'View Service Area'} <span>&rarr;</span>
                 </span>
               </div>
             </div>
-            <div style="padding: 14px 0 0;">
+            <div class="pt-3.5">
               <h3
-                style="font-size: clamp(1.25rem, 3vw, 1.5rem); margin: 0 0 6px;"
+                class="m-0 mb-1.5 text-[clamp(1.25rem,3vw,1.5rem)]"
               >
                 {county.name}
               </h3>

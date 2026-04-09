@@ -11,17 +11,17 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<nav class="w-full" aria-label="Breadcrumb" style="background-color: var(--color-cream); border-bottom: 1px solid var(--color-border);">
-  <div class="mx-auto flex items-center gap-2 px-5" style="max-width: 1294px; min-height: 44px;">
+<nav class="w-full border-b border-border bg-cream" aria-label="Breadcrumb">
+  <div class="mx-auto flex min-h-[44px] max-w-[1294px] items-center gap-2 overflow-hidden px-5">
     {items.map((item, i) => (
       <>
         {i > 0 && (
-          <span style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted);">/</span>
+          <span class="text-[0.8125rem] text-muted">/</span>
         )}
         {item.href ? (
-          <a href={item.href} style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted); text-decoration: none; padding: 8px 0; display: inline-block;">{item.label}</a>
+          <a href={item.href} class="inline-block min-w-0 truncate py-2 text-[0.8125rem] text-muted no-underline">{item.label}</a>
         ) : (
-          <span aria-current="page" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-heading); font-weight: 600;">{item.label}</span>
+          <span aria-current="page" class="min-w-0 truncate text-[0.8125rem] font-semibold text-heading">{item.label}</span>
         )}
       </>
     ))}

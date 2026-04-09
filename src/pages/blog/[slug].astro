@@ -191,6 +191,9 @@ processedHtml = processedHtml.replace(/<\/table>/gi, '</table></div>');
 processedHtml = processedHtml.replace(/<img(?![^>]*decoding=)([^>]*?)>/gi, '<img decoding="async"$1>');
 processedHtml = processedHtml.replace(/<img(?![^>]*loading=)([^>]*?)>/gi, '<img loading="lazy"$1>');
 
+// Add width/height to Ghost images missing dimensions — prevents CLS
+processedHtml = processedHtml.replace(/<img(?![^>]*(?:width|height)=)([^>]*?)>/gi, '<img width="1000" height="563"$1>');
+
 // Add srcset with Ghost built-in resizing for responsive inline images
 processedHtml = processedHtml.replace(
   /<img([^>]*?)src="(https?:\/\/[^"]*\/content\/images\/(?!size\/)[^"]*)"([^>]*?)>/gi,
@@ -329,36 +332,36 @@ const serviceLinks = matchedLinksMap.size > 0
   <Navbar slot="header" />
 
   <!-- Reading progress bar (sticks below navbar) -->
-  <div id="reading-progress-track" style="position: sticky; top: var(--navbar-height, 56px); z-index: 49; width: 100%; height: 3px; background: rgba(0,0,0,0.06);">
-    <div id="reading-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Reading progress" style="height: 100%; background: var(--color-primary); width: 0%; transition: width 0.15s linear;"></div>
+  <div id="reading-progress-track" class="sticky z-49 h-[3px] w-full bg-black/6" style="top: var(--navbar-height, 56px);">
+    <div id="reading-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Reading progress" class="h-full bg-primary transition-[width] duration-150 ease-linear" style="width: 0%;"></div>
   </div>
 
   <article>
     {/* Hero */}
-    <section class="blog-hero w-full" style="background-color: var(--color-heading);">
+    <section class="blog-hero w-full bg-heading">
       <div class="mx-auto max-w-[800px] px-5">
-        <a href="/blog" style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 600; color: var(--color-primary); text-decoration: none;" class="inline-flex items-center gap-2 mb-4 md:mb-6 hover:text-white transition-colors">
+        <a href="/blog" class="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-primary no-underline transition-colors hover:text-white md:mb-6">
           &larr; Back to Ground Up
         </a>
-        <h1 class="blog-hero-title" style="color: white;">
+        <h1 class="blog-hero-title text-white">
           {post.title}
         </h1>
         {post.tags?.filter((t: any) => !t.slug.startsWith('hash-')).length > 0 && (
-          <div class="flex flex-wrap gap-2 mt-3 mb-1">
+          <div class="mt-3 mb-1 flex flex-wrap gap-2">
             {post.tags.filter((t: any) => !t.slug.startsWith('hash-')).map((tag: any) => {
               const displayName = { blog_post: 'Blog', cost_guide: 'Cost Guide', news: 'News', roofing: 'Roofing', siding: 'Siding', windows: 'Windows', adu: 'ADUs', tips: 'Tips' }[tag.slug] || tag.name.replace(/_/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
               return (
-                <a href={`/blog?tag=${tag.slug}`} style="font-family: var(--font-satoshi); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-white-70); background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 4px; text-decoration: none;" class="hover:opacity-80 transition-opacity">
+                <a href={`/blog?tag=${tag.slug}`} class="rounded-[4px] bg-white/10 px-3 py-1 font-satoshi text-[11px] font-bold tracking-[0.15em] text-white-70 uppercase no-underline transition-opacity hover:opacity-80">
                   {displayName}
                 </a>
               );
             })}
           </div>
         )}
-        <p style="font-family: var(--font-dm-sans); font-size: 0.875rem; color: var(--color-white-65); margin-bottom: 8px;">
-          By <a href="/about/alex-hamilton-li" style="color: var(--color-white-85); text-decoration: underline; text-underline-offset: 2px;">Alexander Hamilton Li</a>, Architect &amp; General Contractor (CSLB #1082377)
+        <p class="mb-2 text-sm text-white-65">
+          By <a href="/about/alex-hamilton-li" class="text-white-85 underline underline-offset-2">Alexander Hamilton Li</a>, Architect &amp; General Contractor (CSLB #1082377)
         </p>
-        <div class="flex items-center gap-4 flex-wrap mb-3 md:mb-0" style="font-family: var(--font-dm-sans); font-size: 0.875rem; color: var(--color-white-65);">
+        <div class="mb-3 flex flex-wrap items-center gap-4 text-sm text-white-65 md:mb-0">
           <time datetime={post.published_at}>{formatDate(post.published_at)}</time>
           {post.updated_at && post.updated_at !== post.published_at && (
             <>
@@ -379,7 +382,7 @@ const serviceLinks = matchedLinksMap.size > 0
             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(canonicalUrl)}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="blog-share-btn hover:!bg-white/25"
+            class="blog-share-btn hover:bg-white/25!"
             aria-label="Share on X"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -388,7 +391,7 @@ const serviceLinks = matchedLinksMap.size > 0
             href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="blog-share-btn hover:!bg-white/25"
+            class="blog-share-btn hover:bg-white/25!"
             aria-label="Share on Facebook"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -397,14 +400,14 @@ const serviceLinks = matchedLinksMap.size > 0
             href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="blog-share-btn hover:!bg-white/25"
+            class="blog-share-btn hover:bg-white/25!"
             aria-label="Share on LinkedIn"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </a>
           <button
             id="copy-link-btn"
-            class="blog-share-btn hover:!bg-white/25"
+            class="blog-share-btn hover:bg-white/25!"
             aria-label="Copy link"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
@@ -420,15 +423,16 @@ const serviceLinks = matchedLinksMap.size > 0
       const isPexels = filename.includes('pexels');
       const credit = isUnsplash ? 'Unsplash' : isPexels ? 'Pexels' : '';
       return (
-        <div class="w-full" style="background-color: var(--color-cream);">
+        <div class="w-full bg-cream">
           <div class="mx-auto max-w-[1000px]">
             <img
               src={ghostResize(post.feature_image, 1000)}
               srcset={ghostSrcset(post.feature_image, [400, 750, 1000, 1600])}
               sizes="(max-width: 600px) 400px, (max-width: 1000px) 750px, 1000px"
               alt={post.feature_image_alt || `Featured image for ${post.title}`}
-              class="w-full h-auto"
-              style="max-height: 500px; object-fit: cover;"
+              width="1000"
+              height="563"
+              class="h-auto max-h-[500px] w-full object-cover"
               loading="eager"
               fetchpriority="high"
               width="1000"
@@ -436,7 +440,7 @@ const serviceLinks = matchedLinksMap.size > 0
               decoding="async"
             />
             {credit && (
-              <p style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted); text-align: right; padding: 6px 16px 0;">
+              <p class="px-4 pt-1.5 text-right text-xs text-muted">
                 Photo via {credit}
               </p>
             )}
@@ -447,14 +451,14 @@ const serviceLinks = matchedLinksMap.size > 0
 
     {/* Table of Contents */}
     {tocHeadings.length >= 3 && (
-      <section class="w-full bg-white" style="padding: 40px 0 0;">
+      <section class="w-full bg-white pt-10">
         <div class="mx-auto max-w-[800px] px-5">
-          <nav aria-label="Table of contents" class="rounded-lg border border-gray-200 bg-[var(--color-cream)] p-5">
-            <p class="mb-3 font-[Satoshi] text-xs font-semibold uppercase tracking-wider text-gray-600">In this article</p>
+          <nav aria-label="Table of contents" class="rounded-lg border border-gray-200 bg-cream p-5">
+            <p class="mb-3 font-[Satoshi] text-xs font-semibold tracking-wider text-gray-600 uppercase">In this article</p>
             <ol class="space-y-1.5">
               {tocHeadings.map((h) => (
                 <li>
-                  <a href={`#${h.id}`} class="font-[DM_Sans] text-sm text-[var(--color-primary)] hover:opacity-70 transition-opacity">{h.text}</a>
+                  <a href={`#${h.id}`} class="font-[DM_Sans] text-sm text-(--color-primary) transition-opacity hover:opacity-70">{h.text}</a>
                 </li>
               ))}
             </ol>
@@ -464,24 +468,23 @@ const serviceLinks = matchedLinksMap.size > 0
     )}
 
     {/* Content */}
-    <section class="w-full bg-white" style="padding: 60px 0 40px;">
+    <section class="w-full bg-white pt-[60px] pb-10">
       <div class="mx-auto max-w-[800px] px-5">
         <div id="article-content" class="ghost-content" set:html={processedHtml} />
       </div>
     </section>
 
     {/* Share bar at bottom of article */}
-    <section class="w-full bg-white" style="padding: 0 0 60px;">
+    <section class="w-full bg-white pb-[60px]">
       <div class="mx-auto max-w-[800px] px-5">
-        <div style="border-top: 1px solid var(--color-border); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-          <p style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 600; color: var(--color-charcoal);">Share this article</p>
+        <div class="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
+          <p class="text-sm font-semibold text-charcoal">Share this article</p>
           <div class="flex items-center gap-2">
             <a
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(canonicalUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
-              style="padding: 8px 16px; border-radius: 4px; background: var(--color-cream); font-family: var(--font-dm-sans); font-size: 0.8125rem; font-weight: 600; color: var(--color-charcoal); text-decoration: none; display: flex; align-items: center; gap: 6px;"
-              class="hover:opacity-80 transition-opacity"
+              class="flex items-center gap-1.5 rounded-[4px] bg-cream px-4 py-2 text-[13px] font-semibold text-charcoal no-underline transition-opacity hover:opacity-80"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="#333"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               Post
@@ -490,8 +493,7 @@ const serviceLinks = matchedLinksMap.size > 0
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
-              style="padding: 8px 16px; border-radius: 4px; background: var(--color-cream); font-family: var(--font-dm-sans); font-size: 0.8125rem; font-weight: 600; color: var(--color-charcoal); text-decoration: none; display: flex; align-items: center; gap: 6px;"
-              class="hover:opacity-80 transition-opacity"
+              class="flex items-center gap-1.5 rounded-[4px] bg-cream px-4 py-2 text-[13px] font-semibold text-charcoal no-underline transition-opacity hover:opacity-80"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               Share
@@ -500,8 +502,7 @@ const serviceLinks = matchedLinksMap.size > 0
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
-              style="padding: 8px 16px; border-radius: 4px; background: var(--color-cream); font-family: var(--font-dm-sans); font-size: 0.8125rem; font-weight: 600; color: var(--color-charcoal); text-decoration: none; display: flex; align-items: center; gap: 6px;"
-              class="hover:opacity-80 transition-opacity"
+              class="flex items-center gap-1.5 rounded-[4px] bg-cream px-4 py-2 text-[13px] font-semibold text-charcoal no-underline transition-opacity hover:opacity-80"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               Share
@@ -513,28 +514,28 @@ const serviceLinks = matchedLinksMap.size > 0
 
     {/* Related Posts */}
     {relatedPosts.length > 0 && (
-      <section class="w-full" style="background: var(--color-cream); padding: 60px 0;">
+      <section class="w-full bg-cream py-[60px]">
         <div class="mx-auto max-w-[1200px] px-5">
-          <h2 style="color: var(--color-heading); margin-bottom: 32px;">
+          <h2 class="mb-8 text-heading">
             Related Articles
           </h2>
           <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
             {relatedPosts.map((rp: any) => (
-              <a href={`/blog/${rp.slug}`} class="group flex flex-col overflow-hidden rounded-[4px] bg-white transition-all hover:shadow-lg hover:translate-y-[-2px]" style="border: 1px solid var(--color-border);">
+              <a href={`/blog/${rp.slug}`} class="group flex flex-col overflow-hidden rounded-[4px] border border-border bg-white transition-all hover:translate-y-[-2px] hover:shadow-lg">
                 {rp.feature_image ? (
-                  <div class="aspect-[16/10] w-full overflow-hidden" style="background-color: var(--color-cream);">
-                    <img src={ghostResize(rp.feature_image, 400)} srcset={ghostSrcset(rp.feature_image, [300, 400, 600])} sizes="(max-width: 768px) 100vw, 33vw" alt={rp.title} class="h-full w-full object-cover transition-opacity group-hover:opacity-90" loading="lazy" decoding="async" width="400" height="250" />
+                  <div class="aspect-16/10 w-full overflow-hidden bg-cream">
+                    <img src={ghostResize(rp.feature_image, 400)} srcset={ghostSrcset(rp.feature_image, [300, 400, 600])} sizes="(max-width: 768px) 100vw, 33vw" alt={rp.title} class="size-full object-cover transition-opacity group-hover:opacity-90" loading="lazy" decoding="async" width="400" height="250" />
                   </div>
                 ) : (
-                  <div class="aspect-[16/10] w-full bg-gradient-to-br from-footer to-primary flex items-center justify-center">
-                    <span style="font-family: var(--font-oswald); font-size: 20px; color: rgba(255,255,255,0.3); text-transform: uppercase;">Hamilton</span>
+                  <div class="flex aspect-16/10 w-full items-center justify-center bg-linear-to-br from-footer to-primary">
+                    <span class="font-oswald text-xl text-white/30 uppercase">Hamilton</span>
                   </div>
                 )}
                 <div class="flex flex-1 flex-col p-4">
-                  <h3 style="font-size: 1rem; color: var(--color-heading);" class="group-hover:text-primary transition-colors">
+                  <h3 class="text-base text-heading transition-colors group-hover:text-primary">
                     {rp.title}
                   </h3>
-                  <div class="mt-auto pt-2" style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted);">
+                  <div class="mt-auto pt-2 text-xs text-muted">
                     <time>{formatDate(rp.published_at)}</time>
                     {rp.reading_time > 0 && <span> &middot; {rp.reading_time} min</span>}
                   </div>
@@ -548,17 +549,16 @@ const serviceLinks = matchedLinksMap.size > 0
   </article>
 
   {/* Related Services — internal links to service & city pages */}
-  <section class="w-full bg-white" style="padding: 40px 0;">
+  <section class="w-full bg-white py-10">
     <div class="mx-auto max-w-[800px] px-5">
-      <p style="font-family: var(--font-satoshi); font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 16px;">
+      <p class="mb-4 font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">
         Explore Our Services
       </p>
       <div class="flex flex-wrap gap-2">
         {serviceLinks.map((link) => (
           <a
             href={link.href}
-            style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 500; color: var(--color-primary); background: var(--color-cream); border: 1px solid var(--color-border); padding: 8px 16px; border-radius: 100px; text-decoration: none;"
-            class="hover:opacity-80 transition-opacity"
+            class="rounded-full border border-border bg-cream px-4 py-2 text-sm font-medium text-primary no-underline transition-opacity hover:opacity-80"
           >
             {link.label}
           </a>

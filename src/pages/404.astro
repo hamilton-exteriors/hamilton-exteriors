@@ -4,35 +4,33 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 ---
 
 <Layout title="Page Not Found | Hamilton Exteriors" description="The page you're looking for doesn't exist." noindex>
-  <main class="min-h-[70vh] flex items-center justify-center px-6">
-    <div class="text-center max-w-lg">
-      <p class="text-[8rem] leading-none font-black" style="font-family: var(--font-oswald); color: var(--color-primary);">
+  <main class="flex min-h-[70vh] items-center justify-center px-6">
+    <div class="max-w-lg text-center">
+      <p class="font-oswald text-[8rem] leading-none font-black text-primary">
         404
       </p>
-      <h1 class="text-2xl font-bold mt-4 mb-3" style="font-family: var(--font-dm-sans); color: var(--color-charcoal);">
+      <h1 class="mt-4 mb-3 text-2xl font-bold text-charcoal">
         Page Not Found
       </h1>
-      <p class="text-base mb-8" style="font-family: var(--font-dm-sans); color: var(--color-muted);">
+      <p class="mb-8 text-base text-muted">
         The page you're looking for doesn't exist or has been moved.
       </p>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <div class="flex flex-col justify-center gap-3 sm:flex-row">
         <a
           href="/"
-          class="inline-block rounded-full px-8 py-3.5 font-bold uppercase text-white text-sm tracking-wide"
-          style="background-color: var(--color-primary); font-family: var(--font-oswald);"
+          class="inline-block rounded-full bg-primary px-8 py-3.5 text-sm font-bold tracking-wide text-white uppercase"
         >
           Back to Home
         </a>
         <a
           href="/buy"
-          class="inline-block rounded-full px-8 py-3.5 font-bold uppercase text-sm tracking-wide border-2"
-          style="border-color: var(--color-primary); color: var(--color-primary); font-family: var(--font-oswald);"
+          class="inline-block rounded-full border-2 border-primary px-8 py-3.5 text-sm font-bold tracking-wide text-primary uppercase"
         >
           Get a Roof Quote
         </a>
       </div>
-      <p class="mt-12 text-sm" style="font-family: var(--font-dm-sans); color: var(--color-light);">
-        Need help? Call us at <a href={PHONE_HREF} class="underline" style="color: var(--color-primary);">{PHONE_DISPLAY}</a>
+      <p class="mt-12 text-sm text-light">
+        Need help? Call us at <a href={PHONE_HREF} class="text-primary underline">{PHONE_DISPLAY}</a>
       </p>
     </div>
   </main>
