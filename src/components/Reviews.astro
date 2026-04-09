@@ -14,12 +14,20 @@ interface Props {
 const { service = 'general' } = Astro.props;
 
 const rawData = await getGoogleReviews();
-const { rating, reviewCount, reviews: googleReviews } = getDisplayReviews(rawData, 2);
+const { rating, reviewCount, reviews: allGoogleReviews } = getDisplayReviews(rawData, 5);
 
-// Blend: 2 live Google reviews (with profile photos) + 2 curated from other platforms
-const curated = getCuratedReviews(service, 2);
+// Prioritize Google reviews that have profile photos — they look best on cards
+const withPhotos = allGoogleReviews.filter(r => r.profile_photo_url);
+const withoutPhotos = allGoogleReviews.filter(r => !r.profile_photo_url);
+const sortedGoogle = [...withPhotos, ...withoutPhotos];
+
+// Fill 4 cards: as many Google-with-photo as possible, then curated to fill remaining slots
+const googleSlots = Math.min(sortedGoogle.length, 4);
+const curatedSlots = 4 - googleSlots;
+const curated = getCuratedReviews(service, curatedSlots);
+
 const reviews = [
-  ...googleReviews.map(r => ({ ...r, platform: 'google' as const })),
+  ...sortedGoogle.slice(0, googleSlots).map(r => ({ ...r, platform: 'google' as const })),
   ...curated.map(r => ({
     author_name: r.author_name,
     rating: r.rating,
