@@ -3,6 +3,9 @@
  * Redirect legacy /services/* URLs to their canonical locations.
  * e.g., /services/roofing → /roofing
  */
-const slug = Astro.params.slug || '';
+const slug = Astro.params.slug;
+if (!slug) {
+  return new Response(null, { status: 404 });
+}
 return Astro.redirect(`/${slug}`, 301);
 ---

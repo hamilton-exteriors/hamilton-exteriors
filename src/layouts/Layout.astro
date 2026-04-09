@@ -93,8 +93,7 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
 
 const fullOrgSchemaObj = fullOrgSchema ? {
   "@context": "https://schema.org",
-  "@type": "GeneralContractor",
-  "additionalType": "https://schema.org/RoofingContractor",
+  "@type": ["GeneralContractor", "RoofingContractor"],
   "@id": "https://hamilton-exteriors.com/#business",
   "name": "Hamilton Exteriors",
   "url": "https://hamilton-exteriors.com",
@@ -149,7 +148,8 @@ const fullOrgSchemaObj = fullOrgSchema ? {
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": _displayReviews?.rating ?? 4.8,
-    "reviewCount": _displayReviews?.reviewCount ?? 26,
+    "reviewCount": (_displayReviews?.reviewCount ?? 26) + CURATED_REVIEWS.length,
+    "ratingCount": (_displayReviews?.reviewCount ?? 26) + CURATED_REVIEWS.length,
     "bestRating": 5,
     "worstRating": 1
   },
@@ -219,7 +219,7 @@ const fullOrgSchemaObj = fullOrgSchema ? {
       "reviewRating": { "@type": "Rating", "ratingValue": r.rating, "bestRating": 5, "worstRating": 1 },
       "reviewBody": r.text,
       "publisher": { "@type": "Organization", "name": "Google" },
-      "itemReviewed": { "@type": "GeneralContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
+      "itemReviewed": { "@type": ["GeneralContractor", "RoofingContractor"], "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
     })),
     ...CURATED_REVIEWS.map((r) => ({
       "@type": "Review",
@@ -228,15 +228,14 @@ const fullOrgSchemaObj = fullOrgSchema ? {
       "reviewRating": { "@type": "Rating", "ratingValue": r.rating, "bestRating": 5, "worstRating": 1 },
       "reviewBody": r.text,
       "publisher": { "@type": "Organization", "name": r.platform === 'yelp' ? 'Yelp' : r.platform === 'angi' ? 'Angi' : r.platform === 'nextdoor' ? 'Nextdoor' : r.platform === 'bbb' ? 'BBB' : r.platform },
-      "itemReviewed": { "@type": "GeneralContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
+      "itemReviewed": { "@type": ["GeneralContractor", "RoofingContractor"], "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
     })),
   ]
 } : null;
 
 const leanOrgSchemaObj = !fullOrgSchema ? {
   "@context": "https://schema.org",
-  "@type": "GeneralContractor",
-  "additionalType": "https://schema.org/RoofingContractor",
+  "@type": ["GeneralContractor", "RoofingContractor"],
   "@id": "https://hamilton-exteriors.com/#business"
 } : null;
 
@@ -251,10 +250,7 @@ const webSiteSchemaObj = Astro.url.pathname === '/' ? {
   "description": "Bay Area roofing, siding, windows, ADUs & custom homes by Hamilton Exteriors.",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://hamilton-exteriors.com/blog?search={search_term_string}"
-    },
+    "target": "https://hamilton-exteriors.com/blog?search={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 } : null;

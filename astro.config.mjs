@@ -58,7 +58,7 @@ if (GHOST_URL && GHOST_KEY) {
     const res = await fetch(tagUrl.toString(), { signal: AbortSignal.timeout(10_000) });
     if (res.ok) {
       const data = await res.json();
-      const hiddenSlugs = new Set(['hash-service-area-city', 'hash-service-area-county', 'hash-service-area-city-service', 'location_page', 'blog-post']);
+      const hiddenSlugs = new Set(['hash-service-area-city', 'hash-service-area-county', 'hash-service-area-city-service', 'location_page', 'location-page', 'blog-post', 'blog_post']);
       for (const t of (data.tags ?? [])) {
         if (t.count?.posts > 0 && !t.slug.startsWith('hash-') && !hiddenSlugs.has(t.slug)) {
           blogTagSlugs.push(t.slug);
@@ -139,9 +139,12 @@ export default defineConfig({
       ...countyServicePages,
     ],
     filter: (page) => {
-      // Exclude noindex pages from sitemap
-      const exclude = ['/success', '/quote-calculator', '/404', '/privacy-policy', '/privacy-notice-ca', '/terms', '/eeo-policy', '/opt-out', '/additions-2', '/additions-3', '/blog/coming-soon', '/blog/untitled', '/buy', '/buy/scan', '/about'];
-      return !exclude.some(path => page.includes(path));
+      // Exclude noindex pages from sitemap (exact pathname match against end of URL)
+      const exclude = ['/success', '/quote-calculator', '/404', '/privacy-policy', '/privacy-notice-ca', '/terms', '/eeo-policy', '/opt-out', '/additions-2', '/additions-3', '/blog/coming-soon', '/blog/untitled', '/buy/scan'];
+      // Exact-match pages (not substring): /about is a redirect, /buy is noindex
+      const exactExclude = ['/about', '/buy'];
+      const pagePath = new URL(page).pathname;
+      return !exclude.some(path => page.includes(path)) && !exactExclude.includes(pagePath);
     },
     serialize: (item) => {
       const path = new URL(item.url).pathname;

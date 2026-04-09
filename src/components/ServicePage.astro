@@ -276,7 +276,9 @@ const jumpLinks = [
 {!isMainServicePage && (
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 )}
-<script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+{!isMainServicePage && (
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+)}
 
 {data.announcementText ? <AnnouncementBar text={data.announcementText} slot="header" /> : <AnnouncementBar slot="header" />}
 <Navbar slot="header" />
