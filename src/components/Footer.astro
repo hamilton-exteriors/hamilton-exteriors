@@ -12,7 +12,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
     <div class="flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
 
       <!-- Column 1: Logo + Info -->
-      <div class="flex flex-col items-center gap-5 lg:items-start lg:max-w-[320px]">
+      <div class="flex flex-col items-center gap-5 lg:max-w-[320px] lg:items-start">
         <Image
           src={logoFooter}
           alt="Hamilton Exteriors"
@@ -21,57 +21,57 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
           class="w-full max-w-[250px]"
           loading="lazy"
         />
-        <p class="text-center text-sm leading-relaxed text-white/70 lg:text-left">
+        <p class="text-center text-sm/relaxed text-white/70 lg:text-left">
           500+ roofing, siding, and construction projects across the Bay Area. Licensed, bonded, and insured.
         </p>
-        <p class="text-center text-xs leading-relaxed text-white/50 lg:text-left">
-          <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/checklicense.aspx?license=1082377" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-white/70 transition-colors">CSLB License #1082377</a> &middot; <a href="https://maps.google.com/?cid=3578771346418026097" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-white/70 transition-colors">Google Business Profile</a>
+        <p class="text-center text-xs/relaxed text-white/50 lg:text-left">
+          <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/checklicense.aspx?license=1082377" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 transition-colors hover:text-white/70">CSLB License #1082377</a> &middot; <a href="https://maps.google.com/?cid=3578771346418026097" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 transition-colors hover:text-white/70">Google Business Profile</a>
         </p>
         <a href={PHONE_HREF} class="font-oswald text-2xl font-bold tracking-wide text-white underline underline-offset-4 lg:text-3xl">
           {PHONE_DISPLAY}
         </a>
-        <address class="not-italic text-center text-xs leading-relaxed text-white/50 lg:text-left">
+        <address class="text-center text-xs/relaxed text-white/50 not-italic lg:text-left">
           21634 Redwood Rd Unit F, Castro Valley, CA 94546
         </address>
       </div>
 
       <!-- Column 2: Services -->
       <div class="flex flex-col items-center gap-4 lg:items-start">
-        <h3 class="font-oswald text-xl font-bold uppercase tracking-[0.06em] text-white">
+        <h3 class="font-oswald text-xl font-bold tracking-[0.06em] text-white uppercase">
           Services
         </h3>
         <nav class="flex flex-col items-center gap-1.5 lg:items-start lg:gap-2">
-          <a href="/roofing" class="footer-link min-h-[44px] flex items-center">Roofing</a>
-          <a href="/siding" class="footer-link min-h-[44px] flex items-center">Siding</a>
-          <a href="/windows" class="footer-link min-h-[44px] flex items-center">Windows</a>
-          <a href="/adu" class="footer-link min-h-[44px] flex items-center">ADUs</a>
-          <a href="/custom-homes" class="footer-link min-h-[44px] flex items-center">Custom Homes</a>
-          <a href="/additions" class="footer-link min-h-[44px] flex items-center">Additions</a>
+          <a href="/roofing" class="footer-link flex min-h-[44px] items-center">Roofing</a>
+          <a href="/siding" class="footer-link flex min-h-[44px] items-center">Siding</a>
+          <a href="/windows" class="footer-link flex min-h-[44px] items-center">Windows</a>
+          <a href="/adu" class="footer-link flex min-h-[44px] items-center">ADUs</a>
+          <a href="/custom-homes" class="footer-link flex min-h-[44px] items-center">Custom Homes</a>
+          <a href="/additions" class="footer-link flex min-h-[44px] items-center">Additions</a>
         </nav>
       </div>
 
       <!-- Column 3: Quick Links -->
       <div class="flex flex-col items-center gap-4 lg:items-start">
-        <h3 class="font-oswald text-xl font-bold uppercase tracking-[0.06em] text-white">
+        <h3 class="font-oswald text-xl font-bold tracking-[0.06em] text-white uppercase">
           Quick Links
         </h3>
         <nav class="flex flex-col items-center gap-1.5 lg:items-start lg:gap-2">
-          <a href="/terms" class="footer-link min-h-[44px] flex items-center">Terms</a>
-          <a href="/privacy-policy" class="footer-link min-h-[44px] flex items-center">Privacy Policy</a>
-          <a href="/privacy-notice-ca" class="footer-link min-h-[44px] flex items-center">Privacy Notice for CA Residents</a>
-          <a href="/eeo-policy" class="footer-link min-h-[44px] flex items-center">EEO Policy</a>
-          <a href="/opt-out" class="footer-link min-h-[44px] flex items-center">Opt Out</a>
-          <a href="/blog" class="footer-link min-h-[44px] flex items-center">Ground Up</a>
-          <a href="/service-areas" class="footer-link min-h-[44px] flex items-center">Service Areas</a>
+          <a href="/terms" class="footer-link flex min-h-[44px] items-center">Terms</a>
+          <a href="/privacy-policy" class="footer-link flex min-h-[44px] items-center">Privacy Policy</a>
+          <a href="/privacy-notice-ca" class="footer-link flex min-h-[44px] items-center">Privacy Notice for CA Residents</a>
+          <a href="/eeo-policy" class="footer-link flex min-h-[44px] items-center">EEO Policy</a>
+          <a href="/opt-out" class="footer-link flex min-h-[44px] items-center">Opt Out</a>
+          <a href="/blog" class="footer-link flex min-h-[44px] items-center">Ground Up</a>
+          <a href="/service-areas" class="footer-link flex min-h-[44px] items-center">Service Areas</a>
         </nav>
       </div>
 
       <!-- Column 4: Newsletter + Reviews -->
-      <div class="flex w-full flex-col items-center gap-5 lg:w-auto lg:items-start lg:max-w-[320px]">
-        <h3 class="font-oswald text-xl font-bold uppercase tracking-[0.06em] text-white">
+      <div class="flex w-full flex-col items-center gap-5 lg:w-auto lg:max-w-[320px] lg:items-start">
+        <h3 class="font-oswald text-xl font-bold tracking-[0.06em] text-white uppercase">
           Newsletter
         </h3>
-        <p class="text-center text-sm leading-relaxed text-white/70 lg:text-left">
+        <p class="text-center text-sm/relaxed text-white/70 lg:text-left">
           Seasonal tips, project updates, and exclusive financing offers.
         </p>
 
@@ -131,8 +131,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
           href="https://maps.google.com/?cid=3578771346418026097"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-block mt-2 text-sm font-medium text-white/60 underline underline-offset-2 transition-colors hover:text-white/80"
-          style="font-family: var(--font-dm-sans);"
+          class="mt-2 inline-block text-sm font-medium text-white/60 underline underline-offset-2 transition-colors hover:text-white/80"
         >
           Leave us a review on Google
         </a>
@@ -143,7 +142,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
   <!-- Service Areas -->
   <div class="mx-auto max-w-[1170px] px-4 lg:px-5">
     <div class="border-t border-white/10 pt-8 pb-4">
-      <h3 class="font-oswald text-sm font-bold uppercase tracking-[0.1em] text-white/60 mb-4">Service Areas</h3>
+      <h3 class="mb-4 font-oswald text-sm font-bold tracking-widest text-white/60 uppercase">Service Areas</h3>
       <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3 md:grid-cols-6">
         <div>
           <a href="/service-areas/alameda-county-ca" class="footer-area-county">Alameda County</a>
@@ -193,8 +192,15 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
           <a href="/service-areas/san-mateo-county-ca/south-san-francisco-ca" class="footer-area-city">South San Francisco</a>
         </div>
       </div>
-      <a href="/service-areas" class="inline-flex items-center mt-4 min-h-[44px]" style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-white-65); text-decoration: underline; text-underline-offset: 2px;">View all service areas &rarr;</a>
+      <a href="/service-areas" class="mt-4 inline-flex min-h-[44px] items-center text-xs text-white-65 underline underline-offset-2">View all service areas &rarr;</a>
     </div>
+  </div>
+
+  <!-- Entity description — citable by AI search, visible to crawlers -->
+  <div class="mx-auto max-w-[1170px] px-4 lg:px-5">
+    <p class="border-t border-white/10 pt-6 pb-2 text-center text-xs/relaxed text-white/40 lg:text-left">
+      Hamilton Exteriors is a licensed California general contractor (CSLB #1082377) serving six Bay Area counties since 2018. We specialize in residential roofing, siding, windows, accessory dwelling units, and custom home construction. Hamilton Exteriors holds GAF Master Elite, Owens Corning Preferred, and CertainTeed ShingleMaster certifications &mdash; designations held by fewer than 2% of Bay Area roofing contractors.
+    </p>
   </div>
 
   <!-- Bottom Row -->
