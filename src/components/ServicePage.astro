@@ -211,7 +211,7 @@ const serviceSchema: Record<string, unknown> = {
   },
   'areaServed': areaServed,
   'description': data.description,
-  'dateModified': '2026-04-06',
+  'dateModified': new Date().toISOString().split('T')[0],
   'speakable': {
     '@type': 'SpeakableSpecification',
     'cssSelector': ['.local-context p:first-of-type', '.service-intro p:first-of-type', '.faq-section details:first-of-type p'],
@@ -255,6 +255,17 @@ const breadcrumbSchema = {
 };
 
 // HowTo rich results removed by Google Sept 2023 — schema omitted
+
+// Jump-link nav — compute links based on which sections exist
+const sectionTypes = new Set(data.sections.map(s => s.type));
+const jumpLinks = [
+  sectionTypes.has('styles') && { href: '#styles', label: 'Styles' },
+  sectionTypes.has('pricing') && { href: '#pricing', label: 'Pricing' },
+  sectionTypes.has('reviews') && { href: '#reviews', label: 'Reviews' },
+  sectionTypes.has('projects') && { href: '#projects', label: 'Projects' },
+  sectionTypes.has('faq') && { href: '#faq', label: 'FAQ' },
+  { href: '#quote', label: 'Get a Quote' },
+].filter(Boolean) as Array<{ href: string; label: string }>;
 ---
 
 {/* Only emit BreadcrumbList for city/county+service pages — main service pages
@@ -280,15 +291,54 @@ const breadcrumbSchema = {
 />
 
 <div class="mx-auto max-w-7xl px-4 pt-3">
-  <p class="text-xs text-gray-600 font-[Satoshi]">Updated March 2026</p>
+  <p class="font-satoshi text-xs text-gray-600">Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
 </div>
+
+{/* Jump-link nav — only shows links to sections that exist on this page */}
+{jumpLinks.length > 2 && (
+  <>
+    <nav class="sticky top-0 z-40 w-full border-b border-border bg-white/95 backdrop-blur-sm" aria-label="Page sections">
+      <div class="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-4 py-0 no-scrollbar">
+        {jumpLinks.map(link => (
+          <a
+            href={link.href}
+            class="jump-link shrink-0 px-3 py-2.5 font-satoshi text-[0.8125rem] font-medium text-charcoal no-underline transition-all hover:text-primary"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </nav>
+    <script is:inline>
+      // Highlight active jump-link as user scrolls
+      document.addEventListener('DOMContentLoaded', () => {
+        const links = document.querySelectorAll('.jump-link');
+        const ids = Array.from(links).map(a => (a.getAttribute('href') || '').replace('#', '')).filter(Boolean);
+        const targets = ids.map(id => document.getElementById(id)).filter(Boolean);
+        if (!targets.length) return;
+        const io = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            const id = entry.target.id || (entry.target.querySelector('[id]') || {}).id;
+            if (!id) continue;
+            const link = document.querySelector('.jump-link[href="#' + id + '"]');
+            if (entry.isIntersecting) {
+              links.forEach(l => { l.classList.remove('text-primary', 'border-b-2', 'border-primary'); });
+              if (link) { link.classList.add('text-primary', 'border-b-2', 'border-primary'); }
+            }
+          }
+        }, { rootMargin: '-60px 0px -70% 0px' });
+        targets.forEach(t => io.observe(t));
+      });
+    </script>
+  </>
+)}
 
 {isCityServicePage && cityOrArea && (
   <div class="mx-auto max-w-3xl px-5 pt-6 pb-2">
-    <p style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.75; color: var(--color-charcoal);">
+    <p class="text-base leading-[1.75] text-charcoal">
       Hamilton Exteriors provides professional {(SERVICE_SLUG_MAP[currentService] || 'exterior').toLowerCase()} services in {cityOrArea}, California.{' '}
       {localFacts?.housingNote ? `${localFacts.housingNote} ` : ' '}
-      Licensed under CSLB #1082377, we handle all {cityOrArea} building permits and inspections. Call <a href="tel:+16509773351" style="color: var(--color-primary); font-weight: 600;">(650) 977-3351</a> for a free estimate.
+      Licensed under CSLB #1082377, we handle all {cityOrArea} building permits and inspections. Call <a href="tel:+16509773351" class="font-semibold text-primary">(650) 977-3351</a> for a free estimate.
     </p>
   </div>
 )}
@@ -299,8 +349,8 @@ const breadcrumbSchema = {
       <>
         <LogoSlider />
         <div class="mx-auto max-w-7xl px-4 py-2 text-center">
-          <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted);">
-            Reviewed by <a href="/about/alex-hamilton-li" style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;">Alexander Hamilton Li</a>, Architect &amp; General Contractor · <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377" target="_blank" rel="noopener noreferrer" style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;">CSLB #1082377</a> · Updated March 2026
+          <p class="text-[13px] text-muted">
+            Reviewed by <a href="/about/alex-hamilton-li" class="text-muted underline underline-offset-2">Alexander Hamilton Li</a>, Architect &amp; General Contractor · <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377" target="_blank" rel="noopener noreferrer" class="text-muted underline underline-offset-2">CSLB #1082377</a> · Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
           </p>
         </div>
       </>
@@ -308,7 +358,7 @@ const breadcrumbSchema = {
   }
 
   if (section.type === 'reviews') {
-    return <Reviews />;
+    return <div id="reviews"><Reviews /></div>;
   }
 
   if (section.type === 'cta') {
@@ -324,7 +374,7 @@ const breadcrumbSchema = {
   }
 
   if (section.type === 'projects') {
-    return <Projects showFilters={false} />;
+    return <div id="projects"><Projects showFilters={false} /></div>;
   }
 
   if (section.type === 'financing') {
@@ -334,30 +384,36 @@ const breadcrumbSchema = {
   if (section.type === 'pricing') {
     const { data: p } = section;
     return (
-      <section class="w-full" style="background-color: var(--color-cream); padding: 80px 0;">
+      <section id="pricing" class="w-full bg-cream py-20">
         <div class="mx-auto max-w-[1000px] px-5">
-          <h2 style="margin-bottom: 8px;">{p.heading}</h2>
-          <p style="font-family: var(--font-dm-sans); font-size: 0.875rem; color: var(--color-muted); margin-bottom: 40px;">All prices are per roofing square (100 sq ft), fully installed.</p>
+          <h2 class="mb-2">{p.heading}</h2>
+          <p class="mb-10 text-sm text-muted">All prices are per roofing square (100 sq ft), fully installed.</p>
           <div class="overflow-x-auto">
-            <table style="width: 100%; border-collapse: collapse; font-family: var(--font-dm-sans); font-size: 0.9375rem;">
+            <table class="w-full border-collapse text-[0.9375rem]">
               <thead>
-                <tr style="border-bottom: 2px solid var(--color-primary);">
-                  <th style="text-align: left; padding: 12px 16px; font-weight: 600; color: var(--color-heading);">Product</th>
-                  <th style="text-align: right; padding: 12px 16px; font-weight: 600; color: var(--color-heading);">Price / sq</th>
-                  <th style="text-align: right; padding: 12px 16px; font-weight: 600; color: var(--color-heading);">Materials</th>
+                <tr class="border-b-2 border-primary">
+                  <th class="px-4 py-3 text-left font-semibold text-heading">Product</th>
+                  <th class="px-4 py-3 text-right font-semibold text-heading">
+                    Installed Price / sq
+                    <span class="block text-[0.6875rem] font-normal text-muted">Total cost per 100 sq ft</span>
+                  </th>
+                  <th class="px-4 py-3 text-right font-semibold text-heading">
+                    Material Cost
+                    <span class="block text-[0.6875rem] font-normal text-muted">Included in installed price</span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {p.tiers.map((tier) => (
                   <>
-                    <tr style="background-color: rgba(37, 99, 70, 0.08);">
-                      <td colspan="3" style="padding: 10px 16px; font-family: var(--font-oswald); font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-primary);">{tier.name}</td>
+                    <tr class="bg-[rgba(37,99,70,0.08)]">
+                      <td colspan="3" class="px-4 py-2.5 font-oswald text-[0.8125rem] font-bold tracking-[0.08em] text-primary uppercase">{tier.name}</td>
                     </tr>
                     {tier.rows.map((row) => (
-                      <tr style="border-bottom: 1px solid var(--color-border);">
-                        <td style="padding: 12px 16px; color: var(--color-charcoal);">{row.product}</td>
-                        <td style="padding: 12px 16px; text-align: right; font-weight: 600; color: var(--color-heading);">{row.pricePerSq}</td>
-                        <td style="padding: 12px 16px; text-align: right; color: var(--color-muted);">{row.materialCost}</td>
+                      <tr class="border-b border-border">
+                        <td class="px-4 py-3 text-charcoal">{row.product}</td>
+                        <td class="px-4 py-3 text-right font-semibold text-heading">{row.pricePerSq}</td>
+                        <td class="px-4 py-3 text-right text-muted">{row.materialCost}</td>
                       </tr>
                     ))}
                   </>
@@ -365,8 +421,8 @@ const breadcrumbSchema = {
               </tbody>
             </table>
           </div>
-          <p style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-muted); margin-top: 16px;">{p.footnote}</p>
-          <p style="font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-muted); margin-top: 8px; font-style: italic;">Prices reflect Hamilton Exteriors installed pricing as of Q1 2026, Castro Valley, CA. All prices include tear-off, materials, labor, and cleanup.</p>
+          <p class="mt-4 text-[0.8125rem] text-muted">{p.footnote}</p>
+          <p class="mt-2 text-xs text-muted italic">Prices reflect Hamilton Exteriors installed pricing as of {`Q${Math.ceil((new Date().getMonth() + 1) / 3)} ${new Date().getFullYear()}`}, Castro Valley, CA. All prices include tear-off, materials, labor, and cleanup.</p>
         </div>
       </section>
     );
@@ -375,18 +431,18 @@ const breadcrumbSchema = {
   if (section.type === 'localContext') {
     const { data: lc } = section;
     return (
-      <section class="local-context w-full" style="padding: 56px 0 48px; background: var(--color-cream);" aria-label="Local roofing expertise and market context">
+      <section class="local-context w-full bg-cream pt-14 pb-12" aria-label="Local roofing expertise and market context">
         <div class="mx-auto max-w-3xl px-5">
           <SectionLabel>Local Expertise</SectionLabel>
-          <h2 style="margin-bottom: 24px;">{lc.heading}</h2>
-          <div class="border-l-4 border-[var(--color-primary)] pl-4 md:pl-6" style="display: flex; flex-direction: column; gap: 20px;">
+          <h2 class="mb-6">{lc.heading}</h2>
+          <div class="flex flex-col gap-5">
             {lc.paragraphs.map((p) => (
-              <p style="font-family: var(--font-dm-sans); font-size: 1.0625rem; line-height: 1.8; color: var(--color-charcoal);">{p}</p>
+              <p class="text-[1.0625rem] leading-[1.8] text-charcoal">{p}</p>
             ))}
           </div>
-          <div style="margin-top: 32px;">
-            <a href="#quote" style="display: inline-block; font-family: var(--font-dm-sans); font-size: 0.9375rem; font-weight: 600; color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px;" class="hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 transition-opacity">
-              Get a free estimate for your project &rarr;
+          <div class="mt-8">
+            <a href="#quote" class="inline-block rounded-full bg-yellow px-8 py-3.5 font-oswald text-base font-bold tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:outline-none">
+              Get a Free Estimate
             </a>
           </div>
         </div>
@@ -396,30 +452,23 @@ const breadcrumbSchema = {
 
   if (section.type === 'cityPricing') {
     const { data: cp } = section;
-    const tierColorMap = {
-      budget: 'var(--color-tier-budget)',
-      mid: 'var(--color-tier-mid)',
-      premium: 'var(--color-tier-premium)',
-      luxury: 'var(--color-tier-luxury)',
-    };
-    const badgeColor = tierColorMap[cp.priceTier as keyof typeof tierColorMap] || 'var(--color-tier-mid)';
     const tierBadge = cp.priceTier === 'luxury' ? 'Premium Market' : `${cp.priceTier.charAt(0).toUpperCase() + cp.priceTier.slice(1)} Market`;
     return (
       <Section bg="dark" padding="md" width="narrow" class="text-center" aria-label={`${cp.heading} — pricing information`}>
-        <span style={`display: inline-block; padding: 5px 16px; border-radius: 9999px; font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-heading); background-color: var(--color-yellow); margin-bottom: 16px;`}>
+        <span class="mb-4 inline-block rounded-full bg-yellow px-4 py-[5px] font-satoshi text-xs font-semibold tracking-[0.06em] text-heading uppercase">
           {tierBadge}
         </span>
-        <h2 style="color: white; margin-bottom: 16px;">{cp.heading}</h2>
-        <p style="font-family: var(--font-oswald); font-size: clamp(2.5rem, 6vw, 3.5rem); font-weight: 400; color: var(--color-yellow); text-transform: uppercase; margin-bottom: 8px; line-height: 1.1; overflow-wrap: break-word;">
+        <h2 class="mb-4 text-white">{cp.heading}</h2>
+        <p class="mb-2 font-oswald text-[clamp(2.5rem,6vw,3.5rem)] leading-[1.1] font-normal wrap-break-word text-yellow uppercase">
           {cp.priceRange}
         </p>
-        <p style="font-family: var(--font-dm-sans); font-size: 0.9375rem; color: var(--color-white-70); margin-bottom: 24px;">
+        <p class="mb-6 text-[0.9375rem] text-white-70">
           Median home value in {cp.city}: {cp.medianHomePrice}
         </p>
-        <p style="font-family: var(--font-dm-sans); font-size: 0.8125rem; color: var(--color-white-50); max-width: 540px; margin: 0 auto 28px; line-height: 1.6;">
+        <p class="mx-auto mb-7 max-w-[540px] text-[0.8125rem] leading-[1.6] text-white-50">
           {cp.footnote}
         </p>
-        <a href="#quote" style="display: inline-block; background: var(--color-yellow); color: var(--color-heading); font-family: var(--font-dm-sans); font-size: 0.9375rem; font-weight: 700; padding: 16px 36px; border-radius: 4px; text-decoration: none; letter-spacing: 0.01em;" class="hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-yellow)] focus:ring-offset-2 focus:ring-offset-[var(--color-heading)] transition-opacity">
+        <a href="#quote" class="inline-block rounded-full bg-yellow px-9 py-4 font-oswald text-base font-bold tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:ring-offset-(--color-heading) focus:outline-none">
           Get Your Free Estimate
         </a>
       </Section>
@@ -431,12 +480,12 @@ const breadcrumbSchema = {
     return (
       <Section bg="white" padding="md" aria-label={`${ns.heading} — neighborhoods served`}>
         <SectionLabel>Neighborhoods We Serve</SectionLabel>
-        <h2 style="margin-bottom: 40px;">{ns.heading}</h2>
+        <h2 class="mb-10">{ns.heading}</h2>
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
           {ns.items.map((item) => (
-            <div style="padding: 28px; background: var(--color-cream); border-left: 4px solid var(--color-primary); border-radius: 0 4px 4px 0;">
-              <h3 style="font-family: var(--font-oswald); font-size: 1.25rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 12px; color: var(--color-heading); overflow-wrap: break-word;">{item.neighborhood}</h3>
-              <p style="font-family: var(--font-dm-sans); font-size: 0.9375rem; line-height: 1.7; color: var(--color-charcoal);">
+            <div class="rounded-[4px] bg-cream p-7">
+              <h3 class="mb-3 text-xl tracking-[0.02em] wrap-break-word">{item.neighborhood}</h3>
+              <p class="text-[0.9375rem] leading-[1.7] text-charcoal">
                 {item.description}
               </p>
             </div>
@@ -449,23 +498,22 @@ const breadcrumbSchema = {
   if (section.type === 'faq') {
     return (
       <>
-        <FAQ extraFaqs={data.localFaqs} />
+        <div id="faq"><FAQ extraFaqs={data.localFaqs} /></div>
         {relatedPosts.length > 0 && (
-          <section class="w-full" style="padding: 56px 0 0;">
+          <section class="w-full pt-14">
             <div class="mx-auto max-w-[1000px] px-5">
               <SectionLabel class="mb-3">Learn More</SectionLabel>
-              <h2 style="margin-bottom: 32px;">Related Articles</h2>
+              <h2 class="mb-8">Related Articles</h2>
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {relatedPosts.slice(0, 4).map((post) => (
                   <a
                     href={post.href}
-                    style="display: block; padding: 20px 24px; background: var(--color-cream); border-left: 3px solid var(--color-primary); text-decoration: none; transition: opacity 0.2s;"
-                    class="hover:opacity-85"
+                    class="block rounded-[4px] bg-cream px-6 py-5 no-underline transition-opacity hover:opacity-85"
                   >
-                    <span style="font-family: var(--font-dm-sans); font-size: 0.9375rem; font-weight: 600; color: var(--color-heading); line-height: 1.4; display: block;">
+                    <span class="block text-[0.9375rem] leading-[1.4] font-semibold text-heading">
                       {post.title}
                     </span>
-                    <span style="font-family: var(--font-satoshi); font-size: 0.75rem; font-weight: 500; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 8px; display: block;">
+                    <span class="mt-2 block font-satoshi text-xs font-medium tracking-[0.06em] text-primary uppercase">
                       Read article &rarr;
                     </span>
                   </a>
@@ -482,12 +530,12 @@ const breadcrumbSchema = {
     return (
       <>
         {localFacts && (
-          <section class="w-full" style="background-color: var(--color-cream); padding: 60px 0;">
+          <section class="w-full bg-cream py-[60px]">
             <div class="mx-auto max-w-[800px] px-5">
-              <h2 style="margin-bottom: 24px;">
+              <h2 class="mb-6">
                 {SERVICE_SLUG_MAP[currentServiceSlug] || 'Our Services'} in {cityOrArea}, California
               </h2>
-              <div style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.75; color: var(--color-charcoal);" class="flex flex-col gap-4">
+              <div class="flex flex-col gap-4 text-base leading-[1.75] text-charcoal">
                 <p>{localFacts.housingNote}</p>
                 <p>{localFacts.permitNote}</p>
                 {localFacts.weatherNote && <p>{localFacts.weatherNote}</p>}
@@ -506,8 +554,8 @@ const breadcrumbSchema = {
 
   if (section.type === 'yellowBar') {
     return (
-      <div class="w-full text-center" style="background-color: var(--color-yellow); padding: 14px 0;">
-        <a href={section.href} style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 600; color: var(--color-heading); text-decoration: none;">{section.text} &rarr;</a>
+      <div class="w-full bg-yellow py-3.5 text-center">
+        <a href={section.href} class="text-sm font-semibold text-heading no-underline">{section.text} &rarr;</a>
       </div>
     );
   }
@@ -521,7 +569,7 @@ const breadcrumbSchema = {
           alt={banner.alt}
           width={1280}
           height={853}
-          style="width: 100%; height: 100%; object-fit: cover; display: block;"
+          class="block size-full object-cover"
           loading="lazy"
           decoding="async"
         />
@@ -531,15 +579,13 @@ const breadcrumbSchema = {
 
   if (section.type === 'stats') {
     const { data: stats } = section;
-    const padding = stats.desktopOnly ? '60px 0' : '48px 0';
-    const gridBreakpoint = stats.desktopOnly ? 'lg' : 'md';
     return (
-      <section class={`w-full ${stats.desktopOnly ? 'hidden lg:block' : ''}`} style={`background-color: var(--color-cream); padding: ${padding};`}>
-        <div class={`mx-auto max-w-[1200px] px-5 grid grid-cols-1 ${gridBreakpoint === 'lg' ? `lg:grid-cols-${stats.items.length}` : `md:grid-cols-${stats.items.length} md:gap-8`} gap-${gridBreakpoint === 'lg' ? '8' : '4'}`}>
+      <section class={`w-full bg-cream ${stats.desktopOnly ? 'hidden lg:block' : ''}`} style="padding: 48px 0;">
+        <div class={`mx-auto grid max-w-[1200px] grid-cols-2 gap-6 px-5 md:grid-cols-${stats.items.length}`}>
           {stats.items.map((stat) => (
-            <div class="text-center">
-              <div style="font-family: var(--font-oswald); font-size: 3rem; font-weight: 400; color: var(--color-primary-dark); margin-bottom: 8px;">{stat.value}</div>
-              <p style="font-family: var(--font-dm-sans); font-size: 0.875rem; color: var(--color-muted);">{stat.label}</p>
+            <div class="flex flex-col">
+              <span class="font-oswald text-[clamp(1.5rem,3.5vw,2rem)] leading-[1.2] font-normal text-primary">{stat.value}</span>
+              <span class="mt-1 text-sm text-muted">{stat.label}</span>
             </div>
           ))}
         </div>
@@ -555,23 +601,22 @@ const breadcrumbSchema = {
       : 'grid grid-cols-1 gap-5 sm:grid-cols-2';
 
     return (
-      <section class="w-full" style="padding: 79px 0;">
-        <div class="mx-auto" style="max-width: 1182px; padding: 0 15px;">
+      <section id="styles" class="w-full py-[79px]">
+        <div class="mx-auto max-w-[1182px] px-[15px]">
           <h2
-            class="mb-6 text-center"
-            style="margin-bottom: 0;"
+            class="mb-0 text-center"
           >
             {styles.heading}
           </h2>
-          <div class={gridClass} style="margin-top: 20px;">
+          <div class={`${gridClass} mt-5`}>
             {styles.items.map((item, i) => {
               const titleEl = (
-                <h3 style="font-size: 1.125rem; margin-bottom: 6px;">
+                <h3 class="mb-1.5 text-lg">
                   {item.title}
                 </h3>
               );
               const descEl = (
-                <p style="font-size: 0.875rem; line-height: 1.5; color: var(--color-muted);">
+                <p class="text-sm/normal text-muted">
                   {item.description}
                 </p>
               );
@@ -585,13 +630,14 @@ const breadcrumbSchema = {
                         alt={`${item.title} by Hamilton Exteriors in the Bay Area`}
                         width={566}
                         height={cols === 3 ? 362 : 292}
-                        style={`width: 100%; height: auto; aspect-ratio: 566 / ${cols === 3 ? 362 : 292}; object-fit: cover; display: block;`}
+                        class="block h-auto w-full object-cover"
+                        style={`aspect-ratio: 566 / ${cols === 3 ? 362 : 292};`}
                         loading="lazy"
                         decoding="async"
                       />
                     </div>
                   )}
-                  <div style="padding-top: 16px;">
+                  <div class="pt-4">
                     {titleEl}
                     {descEl}
                   </div>
@@ -599,7 +645,7 @@ const breadcrumbSchema = {
               );
 
               return (item as any).href ? (
-                <a href={(item as any).href} class="block text-inherit no-underline hover:opacity-85 transition-opacity" style="text-decoration: none; color: inherit;">{card}</a>
+                <a href={(item as any).href} class="block text-inherit no-underline transition-opacity hover:opacity-85">{card}</a>
               ) : card;
             })}
           </div>
@@ -612,22 +658,22 @@ const breadcrumbSchema = {
 })}
 
 {isCityServicePage && otherServices.length > 0 && (
-  <section class="bg-[var(--color-cream)] py-10 px-4">
+  <section class="bg-cream px-4 py-10">
     <div class="mx-auto max-w-5xl">
       <a
         href={`/service-areas/${countySlugFromPath}/${citySlugFromPath}`}
-        class="inline-block mb-5 font-[DM_Sans] text-sm font-medium text-[var(--color-primary)] underline underline-offset-2 hover:opacity-80 transition-opacity"
+        class="mb-5 inline-block font-dm-sans text-sm font-medium text-primary underline underline-offset-2 transition-opacity hover:opacity-80"
       >
         &larr; All services in {cityOrArea}
       </a>
-      <p class="font-[Satoshi] text-xs font-semibold uppercase tracking-wider text-gray-600 mb-4">
+      <p class="mb-4 font-satoshi text-xs font-semibold tracking-wider text-gray-600 uppercase">
         Also serving {cityOrArea || 'this area'}
       </p>
       <div class="flex flex-wrap gap-2">
         {otherServices.map(([slug, label]) => (
           <a
             href={`/service-areas/${countySlugFromPath}/${citySlugFromPath}/${slug}`}
-            class="rounded-full border border-[var(--color-primary)] px-4 py-2 font-[DM_Sans] text-sm text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-colors"
+            class="rounded-full border border-primary px-4 py-2 font-dm-sans text-sm text-primary transition-colors hover:bg-primary hover:text-white"
           >
             {label} in {cityOrArea}
           </a>
@@ -635,14 +681,14 @@ const breadcrumbSchema = {
       </div>
       {siblingCityLinks.length > 0 && (
         <>
-          <p class="font-[Satoshi] text-xs font-semibold uppercase tracking-wider text-gray-600 mb-4 mt-6">
+          <p class="mt-6 mb-4 font-satoshi text-xs font-semibold tracking-wider text-gray-600 uppercase">
             {SERVICE_SLUG_MAP[currentService] || 'Services'} in nearby cities
           </p>
           <div class="flex flex-wrap gap-2">
             {siblingCityLinks.map(city => (
               <a
                 href={`/service-areas/${countySlugFromPath}/${city.slug}/${currentService}`}
-                class="rounded-full border border-[var(--color-border)] px-4 py-2 font-[DM_Sans] text-sm text-[var(--color-charcoal)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors"
+                class="rounded-full border border-border px-4 py-2 font-dm-sans text-sm text-charcoal transition-colors hover:border-primary hover:text-primary"
               >
                 {city.name}
               </a>

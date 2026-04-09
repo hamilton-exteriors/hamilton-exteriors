@@ -4,10 +4,9 @@ import { logoNav } from '../lib/images';
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 ---
 
-<nav class="navbar w-full bg-white sticky top-0 z-50" aria-label="Main navigation" style="border-bottom: 1px solid rgba(0,0,0,0.06);">
+<nav class="navbar sticky top-0 z-50 w-full border-b border-black/6 bg-white" aria-label="Main navigation">
   <div
-    class="navbar-inner mx-auto flex items-center justify-between"
-    style="max-width: 1329px; padding: 12px 16px; gap: 16px;"
+    class="navbar-inner mx-auto flex max-w-[1329px] items-center justify-between gap-4 px-4 py-3"
   >
     <!-- Logo -->
     <a href="/" class="shrink-0" aria-label="Hamilton Exteriors — home">
@@ -17,28 +16,27 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
         width={469}
         height={194}
         loading="eager"
-        class="h-auto object-contain w-[143px] lg:w-[168px]"
+        class="h-auto w-[143px] object-contain lg:w-[168px]"
       />
     </a>
 
     <!-- Nav links (flex-1, centered within available space) -->
-    <div class="hidden xl:flex items-center justify-center" style="flex: 1 0 0px; padding-left: 78px;">
-      <ul style="display: flex; align-items: center; font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 500; color: var(--color-heading); list-style: none; margin: 0; padding: 0; gap: 28px;">
-        <li><a href="/#about" style="text-decoration: none; color: inherit; white-space: nowrap;">About Us</a></li>
-        <li><a href="/#financing" style="text-decoration: none; color: inherit; white-space: nowrap;">Financing</a></li>
-        <li><a href={PHONE_HREF} style="text-decoration: none; color: inherit; white-space: nowrap;">Call Us</a></li>
-        <li><a href="/#service" style="text-decoration: none; color: inherit; white-space: nowrap;">Services</a></li>
-        <li><a href="/service-areas" style="text-decoration: none; color: inherit; white-space: nowrap;">Service Areas</a></li>
-        <li><a href="/#review" style="text-decoration: none; color: inherit; white-space: nowrap;">Reviews</a></li>
-        <li><a href="/blog" style="text-decoration: none; color: inherit; white-space: nowrap;">Ground Up</a></li>
+    <div class="hidden flex-1 items-center justify-center pl-[78px] xl:flex">
+      <ul class="m-0 flex list-none items-center gap-7 p-0 text-sm font-medium text-heading">
+        <li><a href="/#about" class="whitespace-nowrap text-inherit no-underline">About Us</a></li>
+        <li><a href="/#financing" class="whitespace-nowrap text-inherit no-underline">Financing</a></li>
+        <li><a href={PHONE_HREF} class="whitespace-nowrap text-inherit no-underline">Call Us</a></li>
+        <li><a href="/#service" class="whitespace-nowrap text-inherit no-underline">Services</a></li>
+        <li><a href="/service-areas" class="whitespace-nowrap text-inherit no-underline">Service Areas</a></li>
+        <li><a href="/#review" class="whitespace-nowrap text-inherit no-underline">Reviews</a></li>
+        <li><a href="/blog" class="whitespace-nowrap text-inherit no-underline">Ground Up</a></li>
       </ul>
     </div>
 
     <!-- Phone -->
     <a
       href={PHONE_HREF}
-      class="hidden xl:flex shrink-0 hover:opacity-70 transition-opacity whitespace-nowrap"
-      style="font-family: var(--font-dm-sans); font-size: 1rem; font-weight: 700; color: var(--color-heading);"
+      class="hidden shrink-0 text-base font-bold whitespace-nowrap text-heading transition-opacity hover:opacity-70 xl:flex"
     >
       {PHONE_DISPLAY}
     </a>
@@ -46,43 +44,41 @@ import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
     <!-- CTA -->
     <a
       href="/#quote"
-      class="hidden xl:flex shrink-0 text-center text-white transition-opacity hover:opacity-90 whitespace-nowrap"
-      style="font-family: var(--font-dm-sans); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.02em; line-height: 1.5; background-color: var(--color-primary); border-radius: 4px; padding: 12px 28px;"
+      class="hidden shrink-0 rounded-full bg-primary px-7 py-3 text-center text-[13px] leading-normal font-semibold tracking-[0.02em] whitespace-nowrap text-white transition-opacity hover:opacity-90 xl:flex"
     >
       Get Your Free Inspection
     </a>
 
     <!-- Mobile/Tablet -->
-    <div class="flex xl:hidden items-center gap-3 ml-auto">
-      <a href={PHONE_HREF} class="whitespace-nowrap min-h-[44px] flex items-center" style="font-family: var(--font-dm-sans); font-size: 0.8125rem; font-weight: 700; color: var(--color-heading);">{PHONE_DISPLAY}</a>
+    <div class="ml-auto flex items-center gap-3 xl:hidden">
+      <a href={PHONE_HREF} class="flex min-h-[44px] items-center text-[13px] font-bold whitespace-nowrap text-heading">{PHONE_DISPLAY}</a>
       <a
         href="/#quote"
-        class="hidden md:flex shrink-0 text-center text-white transition-opacity hover:opacity-90 whitespace-nowrap"
-        style="font-family: var(--font-dm-sans); font-size: 0.75rem; font-weight: 600; background-color: var(--color-primary); border-radius: 6px; padding: 10px 20px;"
+        class="hidden shrink-0 rounded-full bg-primary px-5 py-2.5 text-center text-xs font-semibold whitespace-nowrap text-white transition-opacity hover:opacity-90 md:flex"
       >
         Free Quote
       </a>
     </div>
-    <button id="menu-toggle" class="xl:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] z-50" aria-label="Toggle navigation menu" aria-expanded="false">
-      <span class="hamburger-line block w-6 h-[2px] rounded transition-all duration-300" style="background-color: var(--color-heading);"></span>
-      <span class="hamburger-line block w-6 h-[2px] rounded transition-all duration-300" style="background-color: var(--color-heading);"></span>
-      <span class="hamburger-line block w-6 h-[2px] rounded transition-all duration-300" style="background-color: var(--color-heading);"></span>
+    <button id="menu-toggle" class="z-50 flex size-10 flex-col items-center justify-center gap-[5px] xl:hidden" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span class="hamburger-line block h-[2px] w-6 rounded bg-heading transition-all duration-300"></span>
+      <span class="hamburger-line block h-[2px] w-6 rounded bg-heading transition-all duration-300"></span>
+      <span class="hamburger-line block h-[2px] w-6 rounded bg-heading transition-all duration-300"></span>
     </button>
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="mobile-menu xl:hidden hidden absolute top-full left-0 w-full bg-white shadow-lg z-40" role="navigation" aria-label="Mobile navigation">
-    <div class="flex flex-col items-center gap-1 px-5 py-4" style="font-family: var(--font-dm-sans);">
-      <a href="/#about" class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">About Us</a>
-      <a href="/#financing" class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">Financing</a>
-      <a href={PHONE_HREF} class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">Call Us</a>
-      <a href="/#service" class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">Services</a>
-      <a href="/service-areas" class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">Service Areas</a>
-      <a href="/#review" class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">Reviews</a>
-      <a href="/blog" class="min-h-[44px] flex items-center text-[0.875rem] font-medium" style="color: var(--color-heading);">Ground Up</a>
-      <hr class="w-full" style="border-color: var(--color-border);" />
-      <a href={PHONE_HREF} class="min-h-[44px] flex items-center text-[1rem] font-bold" style="color: var(--color-heading);">{PHONE_DISPLAY}</a>
-      <a href="/#quote" class="w-full max-w-xs min-h-[48px] flex items-center justify-center text-center text-white" style="font-size: 0.875rem; font-weight: 600; background-color: var(--color-primary); border-radius: 4px;">Get Your Free Inspection</a>
+  <div id="mobile-menu" class="mobile-menu absolute top-full left-0 z-40 hidden w-full bg-white shadow-lg xl:hidden" role="navigation" aria-label="Mobile navigation">
+    <div class="flex flex-col items-center gap-1 px-5 py-4 font-dm-sans">
+      <a href="/#about" class="flex min-h-[44px] items-center text-sm font-medium text-heading">About Us</a>
+      <a href="/#financing" class="flex min-h-[44px] items-center text-sm font-medium text-heading">Financing</a>
+      <a href={PHONE_HREF} class="flex min-h-[44px] items-center text-sm font-medium text-heading">Call Us</a>
+      <a href="/#service" class="flex min-h-[44px] items-center text-sm font-medium text-heading">Services</a>
+      <a href="/service-areas" class="flex min-h-[44px] items-center text-sm font-medium text-heading">Service Areas</a>
+      <a href="/#review" class="flex min-h-[44px] items-center text-sm font-medium text-heading">Reviews</a>
+      <a href="/blog" class="flex min-h-[44px] items-center text-sm font-medium text-heading">Ground Up</a>
+      <hr class="w-full border-border" />
+      <a href={PHONE_HREF} class="flex min-h-[44px] items-center text-base font-bold text-heading">{PHONE_DISPLAY}</a>
+      <a href="/#quote" class="flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-full bg-primary text-center text-sm font-semibold text-white">Get Your Free Inspection</a>
     </div>
   </div>
 </nav>

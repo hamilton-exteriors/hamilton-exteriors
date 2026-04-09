@@ -67,14 +67,14 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Logo Slider + License -->
 <LogoSlider />
-<div class="w-full text-center" style="background-color: var(--color-white); padding: 16px 0;">
-  <p style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); letter-spacing: 0.02em;">
+<div class="w-full text-center bg-white py-4">
+  <p class="text-xs text-muted tracking-[0.02em]">
     CA Contractor License #1082377
   </p>
 </div>
 <div class="mx-auto max-w-7xl px-4 py-2 text-center">
-  <p style="font-family: var(--font-dm-sans); font-size: 13px; color: var(--color-muted);">
-    Reviewed by <a href="/about/alex-hamilton-li" style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;">Alexander Hamilton Li</a>, Architect &amp; General Contractor · <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377" target="_blank" rel="noopener noreferrer" style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;">CSLB #1082377</a> · Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+  <p class="text-[13px] text-muted">
+    Reviewed by <a href="/about/alex-hamilton-li" class="text-muted underline underline-offset-[2px]">Alexander Hamilton Li</a>, Architect &amp; General Contractor · <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377" target="_blank" rel="noopener noreferrer" class="text-muted underline underline-offset-[2px]">CSLB #1082377</a> · Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
   </p>
 </div>
 
@@ -84,41 +84,41 @@ const imageMap: Record<string, ImageMetadata> = {
     <!-- Section Label -->
     <div class="mb-4 flex items-center gap-2">
         <StarRating size={18} fill="#FFDE21" />
-        <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.05em;">
+        <span class="text-sm font-semibold text-muted uppercase tracking-[0.05em]">
           On Google Reviews
         </span>
       </div>
 
       <h2
-        style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 40px;"
+        class="text-[40px] leading-[50px] mb-10"
       >
         {reviews.sectionTitle}
       </h2>
 
       <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <!-- Featured review -->
-        <div class="lg:col-span-2 p-8" style="background-color: var(--color-heading);">
+        <div class="lg:col-span-2 p-8 bg-heading">
           <StarRating size={20} fill="#FFDE21" class="mb-4" />
-          <p style="font-family: var(--font-dm-sans); font-size: 18px; line-height: 30px; color: var(--color-white-85); margin-bottom: 24px;">
+          <p class="text-lg leading-[30px] text-white-85 mb-6">
             "{reviews.featured.text}"
           </p>
           <div>
-            <p style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 600; color: var(--color-white); margin-bottom: 2px;">{reviews.featured.name}</p>
-            <p style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-white-80);">{reviews.featured.location}</p>
+            <p class="text-base font-semibold text-white mb-0.5">{reviews.featured.name}</p>
+            <p class="text-sm text-white-80">{reviews.featured.location}</p>
           </div>
         </div>
 
         <!-- Side reviews -->
         <div class="flex flex-col gap-6">
           {reviews.side.map((review) => (
-            <div class="p-6" style="background-color: var(--color-white);">
+            <div class="p-6 bg-white">
               <StarRating size={16} fill="#FFDE21" class="mb-3" />
-              <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 24px; color: var(--color-muted); margin-bottom: 16px;">
+              <p class="text-sm leading-[24px] text-muted mb-4">
                 "{review.text}"
               </p>
               <div>
-                <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-heading);">{review.name}</p>
-                <p style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted);">{review.location}</p>
+                <p class="text-sm font-semibold text-heading">{review.name}</p>
+                <p class="text-xs text-muted">{review.location}</p>
               </div>
             </div>
           ))}
@@ -131,11 +131,11 @@ const imageMap: Record<string, ImageMetadata> = {
 <!-- Services / Pricing Cards -->
 {pricingCards && pricingCards.length > 0 && (
   <Section bg="white" padding="lg">
-      <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-primary-dark); margin-bottom: 12px;">
+      <p class="text-sm font-semibold uppercase tracking-[0.08em] text-primary-dark mb-3">
         {pricingLabel || 'Our Services'}
       </p>
       <h2
-        style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 48px;"
+        class="text-[40px] leading-[50px] mb-12"
       >
         {pricingTitle || `ADU Services Built for ${city} Homeowners`}
       </h2>
@@ -143,48 +143,48 @@ const imageMap: Record<string, ImageMetadata> = {
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {pricingCards.map((card) => (
           card.highlighted ? (
-            <div class="pricing-card relative flex flex-col p-6" style="background-color: var(--color-heading);">
+            <div class="pricing-card relative flex flex-col p-6 bg-heading">
               {card.badge && (
                 <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1" style={`background-color: ${card.badgeColor === 'yellow' ? 'var(--color-yellow)' : 'var(--color-primary-dark)'};`}>
-                  <span style={`font-family: var(--font-satoshi); font-size: 12px; font-weight: 700; text-transform: uppercase; color: ${card.badgeColor === 'yellow' ? 'var(--color-heading)' : 'var(--color-white)'}; letter-spacing: 0.05em;`}>{card.badge}</span>
+                  <span class="font-satoshi text-xs font-bold uppercase tracking-[0.05em]" style={`color: ${card.badgeColor === 'yellow' ? 'var(--color-heading)' : 'var(--color-white)'};`}>{card.badge}</span>
                 </div>
               )}
-              <h3 style={`font-family: var(--font-oswald); font-size: 20px; font-weight: 700; color: var(--color-white); margin-bottom: 4px;${card.badge ? ' margin-top: 8px;' : ''}`}>{card.title}</h3>
-              <p style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-white-80); margin-bottom: 16px;">{card.subtitle}</p>
-              <p style="font-family: var(--font-oswald); font-size: 28px; font-weight: 700; color: var(--color-yellow); margin-bottom: 4px;">{card.price}</p>
-              <p style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-white-80); margin-bottom: 20px;">{card.sqft}</p>
+              <h3 class={`text-xl font-bold text-white mb-1${card.badge ? ' mt-2' : ''}`}>{card.title}</h3>
+              <p class="text-sm text-white-80 mb-4">{card.subtitle}</p>
+              <p class="font-oswald text-[28px] font-bold text-yellow mb-1">{card.price}</p>
+              <p class="text-xs text-white-80 mb-5">{card.sqft}</p>
               <ul class="flex flex-col gap-2 mt-auto">
                 {card.features.map(item => (
                   <li class="flex items-start gap-2">
                     <IconCheck size={16} stroke="#FFDE21" class="h-[16px] w-[16px] shrink-0 mt-1" />
-                    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-white-85); line-height: 20px;">{item}</span>
+                    <span class="text-xs text-white-85 leading-5">{item}</span>
                   </li>
                 ))}
               </ul>
-              <a href="#contact" class="mt-6 block w-full rounded-[4px] py-3 text-center transition-opacity hover:opacity-90" style="background-color: var(--color-yellow); font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-heading);">
+              <a href="#contact" class="mt-6 block w-full rounded-full py-3 text-center transition-opacity hover:opacity-90 bg-yellow text-sm font-semibold text-heading">
                 Get a Quote
               </a>
             </div>
           ) : (
-            <div class={`pricing-card flex flex-col p-6 ${card.badge ? 'relative' : ''}`} style="background-color: var(--color-white);">
+            <div class={`pricing-card flex flex-col p-6 bg-white ${card.badge ? 'relative' : ''}`}>
               {card.badge && (
                 <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1" style={`background-color: ${card.badgeColor === 'yellow' ? 'var(--color-yellow)' : 'var(--color-primary-dark)'};`}>
-                  <span style={`font-family: var(--font-satoshi); font-size: 12px; font-weight: 700; text-transform: uppercase; color: ${card.badgeColor === 'yellow' ? 'var(--color-heading)' : 'var(--color-white)'}; letter-spacing: 0.05em;`}>{card.badge}</span>
+                  <span class="font-satoshi text-xs font-bold uppercase tracking-[0.05em]" style={`color: ${card.badgeColor === 'yellow' ? 'var(--color-heading)' : 'var(--color-white)'};`}>{card.badge}</span>
                 </div>
               )}
-              <h3 style={`font-family: var(--font-oswald); font-size: 20px; font-weight: 700; color: var(--color-heading); margin-bottom: 4px;${card.badge ? ' margin-top: 8px;' : ''}`}>{card.title}</h3>
-              <p style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-muted); margin-bottom: 16px;">{card.subtitle}</p>
-              <p style="font-family: var(--font-oswald); font-size: 28px; font-weight: 700; color: var(--color-heading); margin-bottom: 4px;">{card.price}</p>
-              <p style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); margin-bottom: 20px;">{card.sqft}</p>
+              <h3 class={`text-xl font-bold text-heading mb-1${card.badge ? ' mt-2' : ''}`}>{card.title}</h3>
+              <p class="text-sm text-muted mb-4">{card.subtitle}</p>
+              <p class="font-oswald text-[28px] font-bold text-heading mb-1">{card.price}</p>
+              <p class="text-xs text-muted mb-5">{card.sqft}</p>
               <ul class="flex flex-col gap-2 mt-auto">
                 {card.features.map(item => (
                   <li class="flex items-start gap-2">
                     <IconCheck size={16} stroke="var(--color-primary)" class="h-[16px] w-[16px] shrink-0 mt-1" />
-                    <span style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); line-height: 20px;">{item}</span>
+                    <span class="text-xs text-muted leading-5">{item}</span>
                   </li>
                 ))}
               </ul>
-              <a href="#contact" class="mt-6 block w-full rounded-[4px] py-3 text-center transition-opacity hover:opacity-90" style="background-color: var(--color-primary-dark); font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-white);">
+              <a href="#contact" class="mt-6 block w-full rounded-full py-3 text-center transition-opacity hover:opacity-90 bg-primary text-sm font-semibold text-white">
                 Get a Quote
               </a>
             </div>
@@ -199,19 +199,18 @@ const imageMap: Record<string, ImageMetadata> = {
 {whyBuildStats && (
   <Section bg="cream" padding="md">
       <h2
-        class="text-center"
-        style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;"
+        class="text-center text-[40px] leading-[50px] mb-4"
       >
         {whyBuildStats.title}
       </h2>
-      <p class="text-center mx-auto" style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: var(--color-muted); max-width: 640px; margin-bottom: 48px;">
+      <p class="text-center mx-auto text-base leading-[26px] text-muted max-w-[640px] mb-12">
         {whyBuildStats.subtitle}
       </p>
 
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         {whyBuildStats.stats.map((stat) => (
-          <div class="p-8 text-center" style="background-color: var(--color-white);">
-            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full" style="background-color: rgba(37, 99, 70, 0.1);">
+          <div class="p-8 text-center bg-white">
+            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[rgba(37,99,70,0.1)]">
               {stat.icon === 'dollar' && (
                 <svg class="h-8 w-8" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="12" y1="1" x2="12" y2="23"></line>
@@ -234,9 +233,9 @@ const imageMap: Record<string, ImageMetadata> = {
                 </svg>
               )}
             </div>
-            <p style="font-family: var(--font-oswald); font-size: 36px; font-weight: 700; color: var(--color-heading); margin-bottom: 4px;">{stat.value}</p>
-            <p style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 600; color: var(--color-heading); margin-bottom: 8px;">{stat.label}</p>
-            <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 22px; color: var(--color-muted);">
+            <p class="font-oswald text-[36px] font-bold text-heading mb-1">{stat.value}</p>
+            <p class="text-base font-semibold text-heading mb-2">{stat.label}</p>
+            <p class="text-sm leading-[22px] text-muted">
               {stat.description}
             </p>
           </div>
@@ -252,28 +251,27 @@ const imageMap: Record<string, ImageMetadata> = {
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
         <div>
           <h2
-            style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-white); text-transform: uppercase; margin-bottom: 20px;"
+            class="text-[40px] leading-[50px] text-white mb-5"
           >
             {trustedExperts.title}
           </h2>
           {trustedExperts.paragraphs.map((p, i) => (
-            <p style={`font-family: var(--font-dm-sans); font-size: 16px; line-height: 30px; color: var(--color-white-80); margin-bottom: ${i === trustedExperts.paragraphs.length - 1 ? '32' : '24'}px;`}>
+            <p class={`text-base leading-[30px] text-white-80 ${i === trustedExperts.paragraphs.length - 1 ? 'mb-8' : 'mb-6'}`}>
               {p}
             </p>
           ))}
           <a
             href={trustedExperts.ctaHref}
-            class="inline-block transition-opacity hover:opacity-90"
-            style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; line-height: 24px; background-color: var(--color-yellow); color: var(--color-heading); border-radius: 4px; padding: 12px 28px;"
+            class="inline-block transition-opacity hover:opacity-90 text-sm font-semibold leading-[24px] bg-yellow text-heading rounded-full py-3 px-7"
           >
             {trustedExperts.ctaText}
           </a>
         </div>
         <div class="grid grid-cols-2 gap-6">
           {trustedExperts.stats.map((stat) => (
-            <div class="p-6 text-center" style="background-color: rgba(255,255,255,0.08);">
-              <p style="font-family: var(--font-oswald); font-size: 42px; font-weight: 700; color: var(--color-yellow);">{stat.value}</p>
-              <p style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-white-80);">{stat.label}</p>
+            <div class="p-6 text-center bg-white/[0.08]">
+              <p class="font-oswald text-[42px] font-bold text-yellow">{stat.value}</p>
+              <p class="text-sm text-white-80">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -284,20 +282,20 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Our Process (desktop) -->
 {processSection && (
-  <section class="hidden lg:block w-full" style="background-color: var(--color-white); padding: 80px 0;">
+  <section class="hidden lg:block w-full bg-white py-20">
     <div class="mx-auto max-w-[1200px] px-5">
-      <p style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 12px;">HOW IT WORKS</p>
+      <p class="text-xs font-semibold tracking-[2px] uppercase text-primary-dark mb-3">HOW IT WORKS</p>
       <h2
-        style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 48px;"
+        class="text-[40px] leading-[50px] mb-12"
       >
         {processSection.title}
       </h2>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
         {processSection.steps.map((step, i) => (
           <div>
-            <div style="width: 48px; height: 48px; border-radius: 50%; background-color: var(--color-primary-dark); color: var(--color-white); display: flex; align-items: center; justify-content: center; font-family: var(--font-oswald); font-size: 20px; font-weight: 700; margin-bottom: 16px;">{i + 1}</div>
-            <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-heading); margin-bottom: 8px;">{step.title}</h3>
-            <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 24px; color: var(--color-muted);">{step.description}</p>
+            <div class="w-12 h-12 rounded-full bg-primary-dark text-white flex items-center justify-center font-oswald text-xl font-bold mb-4">{i + 1}</div>
+            <h3 class="text-lg font-bold mb-2">{step.title}</h3>
+            <p class="text-sm leading-[24px] text-muted">{step.description}</p>
           </div>
         ))}
       </div>
@@ -309,7 +307,7 @@ const imageMap: Record<string, ImageMetadata> = {
 {projects && projects.length > 0 && (
   <Section bg="white" padding="lg">
       <h2
-        style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 40px;"
+        class="text-[40px] leading-[50px] mb-10"
       >
         {projectsTitle || `Recent ADU Projects in ${city}`}
       </h2>
@@ -318,8 +316,8 @@ const imageMap: Record<string, ImageMetadata> = {
         {projects.map((project) => {
           const img = imageMap[project.imageKey] || serviceRoofing;
           return (
-            <div class="group overflow-hidden" style="border: 1px solid var(--color-border);">
-              <div class="relative w-full overflow-hidden" style="aspect-ratio: 4/3;">
+            <div class="group overflow-hidden border border-border">
+              <div class="relative w-full overflow-hidden aspect-[4/3]">
                 <Image
                   src={img}
                   alt={project.title}
@@ -328,13 +326,13 @@ const imageMap: Record<string, ImageMetadata> = {
                   class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-85"
                   loading="lazy"
                 />
-                <div class="absolute bottom-3 left-3 rounded-full px-3 py-1" style="background-color: rgba(13, 43, 29, 0.85);">
-                  <span style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; color: var(--color-white);">{project.sqft}</span>
+                <div class="absolute bottom-3 left-3 rounded-full px-3 py-1 bg-[rgba(13,43,29,0.85)]">
+                  <span class="text-xs font-semibold text-white">{project.sqft}</span>
                 </div>
               </div>
               <div class="p-5">
-                <h3 style="font-family: var(--font-oswald); font-size: 16px; font-weight: 700; color: var(--color-heading); margin-bottom: 4px;">{project.title}</h3>
-                <p style="font-family: var(--font-dm-sans); font-size: 14px; color: var(--color-muted);">{project.location}</p>
+                <h3 class="text-base font-bold mb-1">{project.title}</h3>
+                <p class="text-sm text-muted">{project.location}</p>
               </div>
             </div>
           );
@@ -348,21 +346,20 @@ const imageMap: Record<string, ImageMetadata> = {
 {regulations && (
   <Section bg="cream" padding="md">
       <h2
-        class="text-center"
-        style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;"
+        class="text-center text-[40px] leading-[50px] mb-4"
       >
         {regulations.title}
       </h2>
-      <p class="text-center mx-auto" style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: var(--color-muted); max-width: 640px; margin-bottom: 48px;">
+      <p class="text-center mx-auto text-base leading-[26px] text-muted max-w-[640px] mb-12">
         {regulations.subtitle}
       </p>
 
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {regulations.items.map((item) => (
-          <div class="p-6 text-center" style="background-color: var(--color-white);">
-            <p style="font-family: var(--font-oswald); font-size: 42px; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 8px;">{item.value}</p>
-            <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-heading); margin-bottom: 4px;">{item.label}</p>
-            <p style="font-family: var(--font-dm-sans); font-size: 12px; color: var(--color-muted); line-height: 20px;">{item.description}</p>
+          <div class="p-6 text-center bg-white">
+            <p class="font-oswald text-[42px] font-bold text-primary-dark mb-2">{item.value}</p>
+            <p class="text-sm font-semibold text-heading mb-1">{item.label}</p>
+            <p class="text-xs text-muted leading-5">{item.description}</p>
           </div>
         ))}
       </div>
@@ -373,18 +370,18 @@ const imageMap: Record<string, ImageMetadata> = {
 {neighborhoods && (
   <Section bg="white" padding="lg">
       <h2
-        style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin-bottom: 16px;"
+        class="text-[40px] leading-[50px] mb-4"
       >
         {neighborhoods.title}
       </h2>
-      <p style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: var(--color-muted); margin-bottom: 40px; max-width: 640px;">
+      <p class="text-base leading-[26px] text-muted mb-10 max-w-[640px]">
         {neighborhoods.subtitle}
       </p>
 
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
         {neighborhoods.items.map((hood) => (
-          <div class="p-8" style="background-color: var(--color-cream);">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full" style="background-color: rgba(37, 99, 70, 0.1);">
+          <div class="p-8 bg-cream">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(37,99,70,0.1)]">
               {hood.icon === 'home' && (
                 <svg class="h-6 w-6" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -409,8 +406,8 @@ const imageMap: Record<string, ImageMetadata> = {
                 </svg>
               )}
             </div>
-            <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-heading); margin-bottom: 8px;">{hood.title}</h3>
-            <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 24px; color: var(--color-muted);">
+            <h3 class="text-lg font-bold mb-2">{hood.title}</h3>
+            <p class="text-sm leading-[24px] text-muted">
               {hood.description}
             </p>
           </div>
@@ -423,28 +420,28 @@ const imageMap: Record<string, ImageMetadata> = {
 <!-- Mobile: Our Process + Resources -->
 {mobileProcessResources && (
   <Section bg="dark" padding="sm" class="md:hidden">
-      <h2 style="font-family: var(--font-oswald); font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--color-white); text-transform: uppercase; margin-bottom: 16px;">
+      <h2 class="text-[28px] leading-[1.2] text-white mb-4">
         {mobileProcessResources.processTitle}
       </h2>
-      <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 24px; color: var(--color-white-80); margin-bottom: 24px;">
+      <p class="text-sm leading-[24px] text-white-80 mb-6">
         {mobileProcessResources.processSummary}
       </p>
-      <h2 style="font-family: var(--font-oswald); font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--color-white); text-transform: uppercase; margin-bottom: 16px; margin-top: 32px;">
+      <h2 class="text-[28px] leading-[1.2] text-white mb-4 mt-8">
         {mobileProcessResources.resourcesTitle}
       </h2>
       <div class="grid grid-cols-1 gap-4">
         {mobileProcessResources.nearbyLinks.map((link) => (
-          <a href={link.href} class="p-5 block" style="background-color: rgba(255, 255, 255, 0.05);">
-            <h3 style="font-family: var(--font-oswald); font-size: 16px; font-weight: 700; color: var(--color-white); margin-bottom: 4px;">{link.title}</h3>
-            <span style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; color: var(--color-primary-dark);">Learn More &rarr;</span>
+          <a href={link.href} class="p-5 block bg-white/[0.05]">
+            <h3 class="text-base font-bold text-white mb-1">{link.title}</h3>
+            <span class="text-xs font-semibold text-primary-dark">Learn More &rarr;</span>
           </a>
         ))}
       </div>
       <div class="mt-6 grid grid-cols-1 gap-4">
         {mobileProcessResources.infoCards.map((card) => (
-          <div class="p-5" style="background-color: rgba(255, 255, 255, 0.05);">
-            <h3 style="font-family: var(--font-oswald); font-size: 16px; font-weight: 700; color: var(--color-white); margin-bottom: 8px;">{card.title}</h3>
-            <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 22px; color: var(--color-white-80);">
+          <div class="p-5 bg-white/[0.05]">
+            <h3 class="text-base font-bold text-white mb-2">{card.title}</h3>
+            <p class="text-sm leading-[22px] text-white-80">
               {card.description}
             </p>
           </div>
@@ -456,36 +453,35 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- FAQ Section -->
 {faqs && faqs.length > 0 && (
-  <section class="w-full" style="background-color: var(--color-cream); padding: 0;">
-    <div class="mx-auto" style="max-width: 1170px; padding: 80px 15px;">
-      <div class="flex flex-col items-start justify-between md:flex-row md:items-center" style="gap: 16px; margin-bottom: 40px;">
-        <h2 style="font-family: var(--font-oswald); font-size: 40px; font-weight: 400; line-height: 50px; letter-spacing: 0px; color: var(--color-heading); text-transform: uppercase; margin: 0;">
+  <section class="w-full bg-cream">
+    <div class="mx-auto max-w-[1170px] py-20 px-[15px]">
+      <div class="flex flex-col items-start justify-between md:flex-row md:items-center gap-4 mb-10">
+        <h2 class="text-[40px] leading-[50px] m-0">
           {faqTitle || `Common Questions About ${city} ADUs`}
         </h2>
-        <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 400; line-height: 150%; color: var(--color-heading); text-align: right; margin: 0;" class="whitespace-normal md:whitespace-nowrap">
+        <p class="text-sm font-normal leading-[150%] text-heading text-right m-0 whitespace-normal md:whitespace-nowrap">
           Have more questions?{' '}
-          <a href={PHONE_HREF} style="font-weight: 600; color: var(--color-heading); text-decoration: none;">
+          <a href={PHONE_HREF} class="font-semibold text-heading no-underline">
             Call {PHONE_DISPLAY}
           </a>
         </p>
       </div>
 
-      <div class="mx-auto" style="max-width: 100%;">
+      <div class="mx-auto max-w-full">
         {faqs.map((faq) => (
           <details
-            class="group"
-            style="border-bottom: 1px solid var(--color-border); background-color: transparent;"
+            class="group border-b border-border bg-transparent"
           >
-            <summary class="flex cursor-pointer items-center justify-between list-none [&::-webkit-details-marker]:hidden" style="padding: 20px 0;">
-              <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 400; line-height: 24px; color: var(--color-charcoal); padding-right: 16px;">
+            <summary class="flex cursor-pointer items-center justify-between list-none [&::-webkit-details-marker]:hidden py-5">
+              <span class="text-sm font-normal leading-[24px] text-charcoal pr-4">
                 {faq.question}
               </span>
-              <span class="relative flex shrink-0 items-center justify-center" style="width: 24px; height: 24px; color: var(--color-charcoal);">
+              <span class="relative flex shrink-0 items-center justify-center w-6 h-6 text-charcoal">
                 <IconPlus />
               </span>
             </summary>
-            <div style="padding-bottom: 20px; padding-right: 48px;">
-              <p style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 400; line-height: 24px; color: var(--color-charcoal); opacity: 0.7; margin: 0;">
+            <div class="pb-5 pr-12">
+              <p class="text-sm font-normal leading-[24px] text-charcoal opacity-70 m-0">
                 {faq.answer}
               </p>
             </div>
@@ -498,40 +494,40 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- Contact / CTA Section — links back to hero form -->
 {contact && (
-  <section id="contact" class="w-full" style="background-color: var(--color-heading); padding: 80px 0;">
-    <div class="mx-auto flex flex-col md:flex-row items-center" style="max-width: 1170px; padding: 0 15px; gap: 42px;">
+  <section id="contact" class="w-full bg-heading py-20">
+    <div class="mx-auto flex flex-col md:flex-row items-center max-w-[1170px] px-[15px] gap-[42px]">
 
       <!-- Left Column — Contact Info -->
       <div class="flex w-full flex-col md:w-1/2">
-        <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 40px); font-weight: 400; line-height: 1.2; color: var(--color-white); text-transform: uppercase; margin: 0 0 16px;">
+        <h2 class="text-[clamp(28px,4vw,40px)] leading-[1.2] text-white m-0 mb-4">
           {contact.title}
         </h2>
-        <p style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: var(--color-white-80); margin-bottom: 32px;">
+        <p class="text-base leading-[26px] text-white-80 mb-8">
           {contact.subtitle}
         </p>
 
-        <div class="flex flex-col" style="gap: 16px; margin-bottom: 32px;">
-          <div class="flex items-center" style="gap: 10px;">
-            <div class="shrink-0" style="width: 17px; height: 17px;">
-              <Image src={iconContactPhone} alt="" width={17} height={17} style="display: block; width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1);" />
+        <div class="flex flex-col gap-4 mb-8">
+          <div class="flex items-center gap-2.5">
+            <div class="shrink-0 w-[17px] h-[17px]">
+              <Image src={iconContactPhone} alt="" width={17} height={17} class="block w-full h-full object-contain" style="filter: brightness(0) invert(1);" />
             </div>
-            <a href={PHONE_HREF} style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 600; line-height: 24px; color: var(--color-white); text-decoration: none;">
+            <a href={PHONE_HREF} class="text-base font-semibold leading-[24px] text-white no-underline">
               {PHONE_DISPLAY}
             </a>
           </div>
-          <div class="flex items-center" style="gap: 10px;">
-            <div class="shrink-0" style="width: 16px; height: 13px;">
-              <Image src={iconContactEmail} alt="" width={16} height={13} style="display: block; width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1);" />
+          <div class="flex items-center gap-2.5">
+            <div class="shrink-0 w-4 h-[13px]">
+              <Image src={iconContactEmail} alt="" width={16} height={13} class="block w-full h-full object-contain" style="filter: brightness(0) invert(1);" />
             </div>
-            <a href="mailto:support@hamilton-exteriors.com" style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 600; line-height: 24px; color: var(--color-white); text-decoration: none;">
+            <a href="mailto:support@hamilton-exteriors.com" class="text-base font-semibold leading-[24px] text-white no-underline">
               support@hamilton-exteriors.com
             </a>
           </div>
-          <div class="flex items-start" style="gap: 10px;">
-            <div class="shrink-0" style="width: 12px; height: 18px; margin-top: 3px;">
-              <Image src={iconContactClock} alt="" width={12} height={18} style="display: block; width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1);" />
+          <div class="flex items-start gap-2.5">
+            <div class="shrink-0 w-3 h-[18px] mt-[3px]">
+              <Image src={iconContactClock} alt="" width={12} height={18} class="block w-full h-full object-contain" style="filter: brightness(0) invert(1);" />
             </div>
-            <span style="font-family: var(--font-dm-sans); font-size: 16px; font-weight: 600; line-height: 24px; color: var(--color-white);">
+            <span class="text-base font-semibold leading-[24px] text-white">
               21634 Redwood Rd Unit F, Castro Valley, CA 94546
             </span>
           </div>
@@ -539,26 +535,24 @@ const imageMap: Record<string, ImageMetadata> = {
       </div>
 
       <!-- Right Column — CTA to hero form -->
-      <div class="flex w-full flex-col items-center md:w-1/2 text-center" style="padding: 0;">
+      <div class="flex w-full flex-col items-center md:w-1/2 text-center p-0">
         <div>
-          <p style="font-family: var(--font-oswald); font-size: clamp(28px, 4vw, 40px); font-weight: 400; color: var(--color-white); text-transform: uppercase; line-height: 1.15; margin-bottom: 16px;">
+          <p class="font-oswald text-[clamp(28px,4vw,40px)] font-normal text-white uppercase leading-[1.15] mb-4">
             Ready to Start?
           </p>
-          <p style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: var(--color-white-80); margin-bottom: 32px;">
+          <p class="text-base leading-[26px] text-white-80 mb-8">
             Fill out the form above or call us — we respond within 5 minutes.
           </p>
-          <div class="flex flex-col gap-3 w-full" style="max-width: 320px;">
+          <div class="flex flex-col gap-3 w-full max-w-[320px]">
             <a
               href="#quote"
-              class="block w-full text-center py-4 transition-opacity hover:opacity-90"
-              style="background-color: var(--color-yellow); color: var(--color-heading); font-family: var(--font-oswald); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; text-decoration: none;"
+              class="block w-full rounded-full text-center py-4 transition-opacity hover:opacity-90 bg-yellow text-heading font-oswald text-base font-bold uppercase tracking-[0.04em] no-underline"
             >
               Get Your Free Consultation
             </a>
             <a
               href={PHONE_HREF}
-              class="block w-full text-center py-4 transition-opacity hover:opacity-90"
-              style="border: 2px solid rgba(255,255,255,0.3); color: var(--color-white); font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; text-decoration: none;"
+              class="block w-full rounded-full text-center py-4 transition-opacity hover:opacity-90 border-2 border-white/30 text-white text-sm font-semibold no-underline"
             >
               Call {PHONE_DISPLAY}
             </a>
@@ -571,25 +565,25 @@ const imageMap: Record<string, ImageMetadata> = {
 
 <!-- More Resources (desktop) -->
 {resources && (
-  <section class="hidden lg:block w-full" style="background-color: var(--color-heading); padding: 80px 0;">
+  <section class="hidden lg:block w-full bg-heading py-20">
     <div class="mx-auto max-w-[1200px] px-5">
-      <p style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-green-light); margin-bottom: 12px;">RELATED RESOURCES</p>
+      <p class="text-xs font-semibold tracking-[2px] uppercase text-green-light mb-3">RELATED RESOURCES</p>
       <h2
-        style="font-family: var(--font-oswald); font-size: 40px; line-height: 50px; font-weight: 400; letter-spacing: 0px; color: var(--color-white); text-transform: uppercase; margin-bottom: 16px;"
+        class="text-[40px] leading-[50px] text-white mb-4"
       >
         {resources.title}
       </h2>
-      <p style="font-family: var(--font-dm-sans); font-size: 16px; line-height: 26px; color: var(--color-white-80); margin-bottom: 48px; max-width: 640px;">
+      <p class="text-base leading-[26px] text-white-80 mb-12 max-w-[640px]">
         {resources.subtitle}
       </p>
 
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3 mb-12">
         {resources.nearbyLinks.map((link) => (
-          <a href={link.href} class="p-6 block" style="background-color: rgba(255, 255, 255, 0.05);">
-            <p style="font-family: var(--font-dm-sans); font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-green-light); margin-bottom: 8px;">NEARBY CITY</p>
-            <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-white); margin-bottom: 8px;">{link.title}</h3>
-            <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 22px; color: var(--color-white-80); margin-bottom: 12px;">{link.description}</p>
-            <span style="font-family: var(--font-dm-sans); font-size: 14px; font-weight: 600; color: var(--color-green-light);">Learn More &rarr;</span>
+          <a href={link.href} class="p-6 block bg-white/[0.05]">
+            <p class="text-xs font-semibold tracking-[1.5px] uppercase text-green-light mb-2">NEARBY CITY</p>
+            <h3 class="text-lg font-bold text-white mb-2">{link.title}</h3>
+            <p class="text-sm leading-[22px] text-white-80 mb-3">{link.description}</p>
+            <span class="text-sm font-semibold text-green-light">Learn More &rarr;</span>
           </a>
         ))}
       </div>
@@ -597,9 +591,9 @@ const imageMap: Record<string, ImageMetadata> = {
       {resources.infoCards && resources.infoCards.length > 0 && (
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           {resources.infoCards.map((card) => (
-            <div class="p-8" style="background-color: rgba(255, 255, 255, 0.05);">
-              <h3 style="font-family: var(--font-oswald); font-size: 18px; font-weight: 700; color: var(--color-white); margin-bottom: 12px;">{card.title}</h3>
-              <p style="font-family: var(--font-dm-sans); font-size: 14px; line-height: 24px; color: var(--color-white-80);">
+            <div class="p-8 bg-white/[0.05]">
+              <h3 class="text-lg font-bold text-white mb-3">{card.title}</h3>
+              <p class="text-sm leading-[24px] text-white-80">
                 {card.description}
               </p>
             </div>

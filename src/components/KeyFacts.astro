@@ -17,25 +17,25 @@ const { title = 'Key Facts', facts } = Astro.props;
 <aside
   role="complementary"
   aria-label={title}
-  style="background-color: var(--color-cream); border-left: 4px solid var(--color-primary); padding: 24px 28px; margin: 32px 0; max-width: 800px;"
+  class="my-8 max-w-[800px] rounded-[4px] bg-cream px-7 py-6"
 >
   <SectionLabel>{title}</SectionLabel>
 
-  <dl style="margin: 0;">
+  <dl class="m-0">
     {facts.map((fact, i) => (
-      <div style={`padding: 12px 0;${i < facts.length - 1 ? ' border-bottom: 1px solid var(--color-border);' : ''}`}>
-        <dt style="font-family: var(--font-dm-sans); font-size: 1rem; line-height: 1.5; color: var(--color-heading); margin: 0;">
+      <div class={`py-3 ${i < facts.length - 1 ? 'border-b border-border' : ''}`}>
+        <dt class="m-0 text-base/normal text-heading">
           <strong>{fact.stat}</strong>
           {' '}&mdash; {fact.claim}
         </dt>
         {fact.source && (
-          <dd style="font-family: var(--font-dm-sans); font-size: 0.8125rem; line-height: 1.4; color: var(--color-muted); margin: 4px 0 0 0;">
+          <dd class="mt-1 mb-0 ml-0 text-[0.8125rem] leading-[1.4] text-muted">
             {fact.sourceUrl ? (
               <a
                 href={fact.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                style="color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px;"
+                class="text-muted underline underline-offset-2"
               >
                 {fact.source}
               </a>
