@@ -523,6 +523,13 @@
 
     var mt2 = $('#mobile-total-price');
     if (mt2) mt2.textContent = '$' + tot.toLocaleString();
+    // Update mobile product name
+    var mpn = document.getElementById('mobile-product-name');
+    if (mpn) {
+      var sc = $('.material-card.selected');
+      var nameEl = sc ? (sc.querySelector('.text-lg.font-semibold') || sc.querySelector('h3')) : null;
+      mpn.textContent = nameEl ? nameEl.textContent.trim() : '';
+    }
   }
 
   // ── Tier group collapse/expand ───────────────────────────────────────
@@ -581,21 +588,115 @@
   var errorModal = $('#scan-error-modal');
   var errorRetry = $('#error-retry');
 
+  // ── Purchase form: phone auto-format ────────────────────────────────
+  var pfPhoneInput = $('#pf-phone');
+  function pfFormatPhone(value) {
+    var raw = value.replace(/\D/g, '');
+    if (raw.length === 11 && raw.charAt(0) === '1') raw = raw.slice(1);
+    raw = raw.slice(0, 10);
+    if (raw.length === 0) return '';
+    if (raw.length <= 3) return '(' + raw;
+    if (raw.length <= 6) return '(' + raw.slice(0, 3) + ') ' + raw.slice(3);
+    return '(' + raw.slice(0, 3) + ') ' + raw.slice(3, 6) + '-' + raw.slice(6);
+  }
+  if (pfPhoneInput) {
+    pfPhoneInput.addEventListener('input', function () {
+      pfPhoneInput.value = pfFormatPhone(pfPhoneInput.value);
+    });
+  }
+
+  // ── Purchase form: inline validation helpers ──────────────────────
+  function pfShowError(input, errorId, msg) {
+    input.setAttribute('aria-invalid', 'true');
+    var errEl = document.getElementById(errorId);
+    if (errEl) { errEl.textContent = msg; errEl.classList.remove('hidden'); }
+  }
+  function pfClearError(input, errorId) {
+    input.removeAttribute('aria-invalid');
+    var errEl = document.getElementById(errorId);
+    if (errEl) { errEl.textContent = ''; errEl.classList.add('hidden'); }
+  }
+
+  var pfValidations = {
+    name: { id: 'pf-name', errorId: 'pf-name-error', validate: function (v) { return v.trim().length < 2 ? 'Full name is required' : null; } },
+    email: { id: 'pf-email', errorId: 'pf-email-error', validate: function (v) { if (!v.trim()) return 'Email is required'; return (!v.includes('@') || !v.includes('.')) ? 'Enter a valid email address' : null; } },
+    phone: { id: 'pf-phone', errorId: 'pf-phone-error', validate: function (v) { var digits = v.replace(/\D/g, ''); if (digits.length === 0) return 'Phone number is required'; return digits.length < 10 ? 'Enter a 10-digit phone number' : null; } }
+  };
+
+  // Attach blur validation + input clearing to each field
+  Object.keys(pfValidations).forEach(function (key) {
+    var cfg = pfValidations[key];
+    var el = document.getElementById(cfg.id);
+    if (!el) return;
+    el.addEventListener('blur', function () {
+      var err = cfg.validate(el.value);
+      if (err) pfShowError(el, cfg.errorId, err);
+    });
+    el.addEventListener('input', function () {
+      pfClearError(el, cfg.errorId);
+    });
+  });
+
+  // Validate all purchase form fields; returns true if valid
+  function pfValidateAll() {
+    var allValid = true;
+    var firstInvalid = null;
+    var errorMessages = [];
+    Object.keys(pfValidations).forEach(function (key) {
+      var cfg = pfValidations[key];
+      var el = document.getElementById(cfg.id);
+      if (!el) return;
+      var err = cfg.validate(el.value);
+      if (err) {
+        pfShowError(el, cfg.errorId, err);
+        if (!firstInvalid) firstInvalid = el;
+        errorMessages.push(err);
+        allValid = false;
+      } else {
+        pfClearError(el, cfg.errorId);
+      }
+    });
+    // Announce to screen readers
+    var liveEl = document.getElementById('pf-form-errors');
+    if (liveEl) liveEl.textContent = allValid ? '' : 'Please fix: ' + errorMessages.join('. ');
+    if (firstInvalid) firstInvalid.focus();
+    return allValid;
+  }
+
+  function getSelectedProductName() {
+    var selectedCard = $('.material-card.selected');
+    if (!selectedCard) return state.selectedTier || '';
+    // Try the product name element (text-lg font-semibold)
+    var nameEl = selectedCard.querySelector('.text-lg.font-semibold') || selectedCard.querySelector('.font-fraunces') || selectedCard.querySelector('.tier-name') || selectedCard.querySelector('h3');
+    return nameEl ? nameEl.textContent.trim() : state.selectedTier;
+  }
+
   function openPurchaseModal() {
     if (!state.roofData) return;
+    // Clear any previous validation errors
+    Object.keys(pfValidations).forEach(function (key) {
+      var cfg = pfValidations[key];
+      var el = document.getElementById(cfg.id);
+      if (el) pfClearError(el, cfg.errorId);
+    });
     // Populate hidden fields
     $('#pf-address').value = state.address;
+    var productName = getSelectedProductName();
+    $('#pf-product').value = productName;
     var selectedCard = $('.material-card.selected');
-    var tierNameEl = selectedCard ? (selectedCard.querySelector('.font-fraunces') || selectedCard.querySelector('.tier-name') || selectedCard.querySelector('h3')) : null;
-    $('#pf-product').value = tierNameEl ? tierNameEl.textContent : state.selectedTier;
     var activeSwatch = selectedCard ? selectedCard.querySelector('.swatch.active') : null;
     $('#pf-color').value = activeSwatch ? activeSwatch.getAttribute('aria-label') : '';
     $('#pf-total').value = $('#total-price').textContent;
     $('#pf-sqft').value = state.roofData.sqft;
-    // Summary
-    $('#pf-summary').innerHTML = '<strong>' + state.address + '</strong><br>' +
-      $('#pf-product').value + ' — ' + $('#pf-color').value + '<br>' +
-      'Total: ' + $('#pf-total').value + ' | ' + $('#monthly-price').textContent;
+    // Populate structured summary
+    var saEl = document.getElementById('pf-summary-address');
+    var spEl = document.getElementById('pf-summary-product');
+    var stEl = document.getElementById('pf-summary-total');
+    var smEl = document.getElementById('pf-summary-monthly');
+    if (saEl) saEl.textContent = state.address;
+    if (spEl) spEl.textContent = productName + ' \u2014 ' + ($('#pf-color').value || 'Default');
+    if (stEl) stEl.textContent = $('#pf-total').value;
+    if (smEl) smEl.textContent = 'or ' + $('#monthly-price').textContent + ' for 60 months';
     purchaseModal.classList.remove('hidden');
     // Focus the first input in the modal for keyboard users
     var firstInput = purchaseModal.querySelector('input:not([type="hidden"])');
@@ -621,6 +722,8 @@
     purchaseForm.addEventListener('submit', function (e) {
       e.preventDefault();
       if (submitBtn && submitBtn.disabled) return; // prevent double submit
+      // Validate before proceeding
+      if (!pfValidateAll()) return;
       var data = Object.fromEntries(new FormData(purchaseForm));
       var ref = 'HE-' + Date.now().toString(36).toUpperCase();
       data.ref = ref;

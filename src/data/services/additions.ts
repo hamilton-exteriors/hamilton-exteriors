@@ -6,7 +6,7 @@ export const data: ServicePageData = {
     'Home Additions & Construction in the Bay Area | Hamilton Exteriors',
   description:
     'Bay Area home additions, second stories & ADUs. Design, permits & construction under one roof. 50-year warranty. Call (650) 977-3351.',
-  announcementText: 'Now Booking Summer 2026 Additions — Free Design Consultation',
+  announcementText: 'Now Booking Summer 2026 Additions — Schedule Your Consultation',
   definition: 'A home addition expands an existing residence by adding new living space — either outward (room extension), upward (second story), or as a detached unit (ADU). Bay Area home additions typically cost $200 to $500 per square foot and require building permits from the local jurisdiction.',
   expertQuotes: [
     {
@@ -16,7 +16,7 @@ export const data: ServicePageData = {
     },
   ],
   hero: {
-    headline: "Bay Area's Best Home Addition Builder",
+    headline: "Bay Area Home Additions —  Second Story to Ground Floor",
     formTitle: 'Get Your Free Consultation',
     formSubtitle:
       "We'll reach out within 3\u20135 minutes to discuss your project.",
@@ -94,7 +94,7 @@ export const data: ServicePageData = {
     {
       question: 'How much does a home addition cost in the Bay Area?',
       answer:
-        'Bay Area home additions typically cost $200 to $500 per square foot depending on scope and finishes. A 400 sq ft second-story addition runs $150,000 to $250,000 including structural engineering, permits, and construction. Room additions on the ground floor are generally $120,000 to $200,000. Kitchen and living extensions that require foundation work start at $175,000. Every Hamilton Exteriors estimate is itemized with no hidden fees.',
+        'Bay Area home additions typically cost $200 to $500 per square foot depending on scope and finishes. A 400 sq ft second-story addition runs $150,000 to $250,000 including structural engineering, permits, and construction. Room additions on the ground floor are generally $120,000 to $200,000. Kitchen and living extensions that require foundation work start at $175,000. Every Hamilton Exteriors estimate is fully itemized — every cost spelled out.',
     },
     {
       question: 'Do I need a permit for a home addition in the Bay Area?',

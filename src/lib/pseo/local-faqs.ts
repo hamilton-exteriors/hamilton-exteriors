@@ -75,7 +75,7 @@ export function getCountyLocalFaqs(
       },
       {
         question: `Why are exterior renovations more expensive in Marin County?`,
-        answer: `Marin County exterior projects typically cost 10–20% more than East Bay equivalents for three reasons. First, Marin's narrow roads, hillside lots, and limited staging areas increase labor time — deliveries to homes in ${city}'s canyons or hillsides require smaller trucks and more manual material handling. Second, the design review process adds 2–4 weeks to the permit timeline. Third, Marin's stringent environmental protections (creek setbacks, heritage tree ordinances, grading restrictions) sometimes require engineered solutions. Hamilton Exteriors provides fully itemized estimates so you can see exactly where costs come from — no surprises.`,
+        answer: `Marin County exterior projects typically cost 10–20% more than East Bay equivalents for three reasons. First, Marin's narrow roads, hillside lots, and limited staging areas increase labor time — deliveries to homes in ${city}'s canyons or hillsides require smaller trucks and more manual material handling. Second, the design review process adds 2–4 weeks to the permit timeline. Third, Marin's stringent environmental protections (creek setbacks, heritage tree ordinances, grading restrictions) sometimes require engineered solutions. Hamilton Exteriors provides fully itemized estimates so you can see exactly where every dollar goes.`,
       },
     ],
     'napa': [

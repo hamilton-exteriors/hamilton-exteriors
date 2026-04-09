@@ -6,7 +6,7 @@ export const data: ServicePageData = {
     'Room Additions & Second Stories in the Bay Area | Hamilton Exteriors',
   description:
     'Hamilton Exteriors builds room additions, second stories, and kitchen extensions across the Bay Area. Design, structural engineering, permits, and construction.',
-  announcementText: 'Now Booking Summer 2026 Room Additions — Free Design Consultation',
+  announcementText: 'Now Booking Summer 2026 Room Additions — Schedule Your Consultation',
   hero: {
     headline: 'Room Additions  & Second  Stories',
     formTitle: 'Get Your Free Consultation',

@@ -427,7 +427,7 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
   const faqs = [
     {
       question: `How much does a home renovation cost in ${city}?`,
-      answer: `Costs in ${city} reflect the ${seed.priceTier === 'luxury' ? 'premium' : seed.priceTier} market and local labor rates. Roof replacements typically run ${prices.roof} for a standard home, siding from ${prices.siding}, and window replacements from ${prices.windows} depending on type and frame material. ADUs range from ${prices.adu}. With median home values at ${seed.medianHomePrice} in ${city}, these improvements are strong investments. We provide free, itemized estimates for every project — no hidden fees.`,
+      answer: `Costs in ${city} reflect the ${seed.priceTier === 'luxury' ? 'premium' : seed.priceTier} market and local labor rates. Roof replacements typically run ${prices.roof} for a standard home, siding from ${prices.siding}, and window replacements from ${prices.windows} depending on type and frame material. ADUs range from ${prices.adu}. With median home values at ${seed.medianHomePrice} in ${city}, these improvements are strong investments. We provide free, fully itemized estimates for every project — every cost spelled out.`,
     },
     ...cityLocalFaqs,
     ...countyLocalFaqs,
@@ -486,7 +486,7 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
     services,
     reviews,
     neighborhoods: {
-      title: `Serving ${city}'s Best Neighborhoods`,
+      title: `Neighborhoods We Serve in ${city}`,
       subtitle: `Hamilton Exteriors has completed projects across ${city} — from ${neighborhoods[0]} to ${neighborhoods[neighborhoods.length - 1]}. Here are some of the communities we serve.`,
       items: neighborhoodItems,
     },
@@ -517,7 +517,7 @@ const COUNTY_ADJECTIVES: Record<string, string> = {
   'contra-costa': 'Experienced',
   'marin': 'Premium',
   'napa': 'Expert',
-  'santa-clara': 'Top-Rated',
+  'santa-clara': 'Established',
   'san-mateo': 'Peninsula\'s',
 };
 
@@ -692,7 +692,7 @@ export function generateCityServicePage(
       priceTier: seed.priceTier,
       priceRange: tierPrices[priceKey],
       medianHomePrice: seed.medianHomePrice,
-      footnote: `Prices reflect ${city}'s ${tierLabel} market and ${county} County labor rates. Actual costs depend on home size, materials, and project complexity. We provide free, itemized estimates with no hidden fees.`,
+      footnote: `Prices reflect ${city}'s ${tierLabel} market and ${county} County labor rates. Actual costs depend on home size, materials, and project complexity. We provide free, fully itemized estimates — every cost spelled out.`,
     } satisfies CityPricingSection,
   };
 
@@ -846,7 +846,7 @@ export function generateCountyServicePage(
     // County-wide pricing FAQ using aggregated data
     {
       question: `How much does ${serviceName.toLowerCase()} cost in ${displayCounty} County?`,
-      answer: `${serviceName} costs in ${displayCounty} County vary by city — from ${countyCities[0].city} to ${countyCities[countyCities.length - 1].city}. With median home values averaging ${avgPrice} across the county, we see a range of project scopes. Hamilton Exteriors provides free, itemized estimates for every ${displayCounty} County project with no hidden fees.`,
+      answer: `${serviceName} costs in ${displayCounty} County vary by city — from ${countyCities[0].city} to ${countyCities[countyCities.length - 1].city}. With median home values averaging ${avgPrice} across the county, we see a range of project scopes. Hamilton Exteriors provides free, fully itemized estimates for every ${displayCounty} County project — every cost spelled out.`,
     },
     // Template FAQs with county-level vars
     ...faqTemplates.slice(1).map((faq, i) => {

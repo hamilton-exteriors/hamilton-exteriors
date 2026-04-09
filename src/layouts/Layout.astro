@@ -38,7 +38,7 @@ const heroOgImage = !Astro.props.image && Astro.props.heroImage
   ? await getImage({ src: heroSrc, width: 1200, height: 630, format: 'jpg', quality: 80 })
   : null;
 
-const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs & custom homes. Licensed, bonded, insured. 50-year warranty. $0 down financing. Call (650) 977-3351.';
+const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs & custom homes. Architect-led, CSLB #1082377. 50-year warranty. Free estimate: (650) 977-3351.';
 const DEFAULT_GEO_PLACENAME = 'Bay Area, California';
 
 // Pages that should carry the full Organization schema (ratings, reviews, catalog)
@@ -302,6 +302,8 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
     <link rel="preload" href="/fonts/the-bold-font-700.woff2" as="font" type="font/woff2" crossorigin />
     <!-- DM Sans: body text, rendered before hero paints -->
     <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Hamilton Display 400: preloaded — used in nav/body text above the fold -->
+    <link rel="preload" href="/fonts/the-bold-font.woff2" as="font" type="font/woff2" crossorigin />
     <!-- Satoshi: preloaded — used in LogoSlider/ReviewLogos in the hero critical chain -->
     <link rel="preload" href="/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin />
 

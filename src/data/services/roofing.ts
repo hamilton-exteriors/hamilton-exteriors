@@ -4,8 +4,8 @@ import { roofingAsphalt, roofingMetal, roofingTile, roofingFlat, heroRoofing } f
 export const data: ServicePageData = {
   title: 'Bay Area Roofing | Shingles, Metal & Tile | Hamilton Exteriors',
   description:
-    'Top-rated Bay Area roofing contractor. Composite shingles, metal roofs, tile & GAF solar. 50-year warranty. Free inspection — call (650) 977-3351.',
-  announcementText: 'Now Booking Summer 2026 Roof Replacements — Schedule Your Free Inspection',
+    'Architect-led Bay Area roofing contractor. Composite shingles, metal roofs, tile & GAF solar. 50-year warranty. CSLB #1082377 — call (650) 977-3351.',
+  announcementText: 'Now Booking Summer 2026 Roof Replacements — Schedule Your Inspection',
   definition: 'A roof replacement is the complete removal and reinstallation of a home\'s roofing system — including shingles, underlayment, flashing, and ventilation. In the Bay Area, roof replacements typically cost $15,000 to $100,000 depending on size, materials, and complexity, and take 3 to 7 days to complete.',
   expertQuotes: [
     {
@@ -20,10 +20,10 @@ export const data: ServicePageData = {
     },
   ],
   hero: {
-    headline: 'Bay Area\u2019s Top-Rated Roofing Contractor',
+    headline: "Bay Area's Architect-Led  Roofing Contractors",
     formTitle: 'Get Your Free Roof Inspection',
     formSubtitle:
-      "We'll reach out within 3\u20135 minutes to schedule your free inspection.",
+      "We'll reach out within 3\u20135 minutes to schedule your inspection.",
     ctaText: 'Call Now - We Answer Fast',
     serviceType: 'Roofing',
     // serviceOptions removed — service is known from page context, form is 2 steps
@@ -100,7 +100,7 @@ export const data: ServicePageData = {
             ],
           },
         ],
-        footnote: 'Prices per roofing square (100 sq ft) and reflect typical Bay Area installed costs including tear-off, materials, labor, underlayment, and cleanup. Actual pricing varies based on roof size, pitch, accessibility, number of layers, and local permit requirements. Contact us for a free, itemized estimate.',
+        footnote: 'Prices per roofing square (100 sq ft) and reflect typical Bay Area installed costs including tear-off, materials, labor, underlayment, and cleanup. Actual pricing varies based on roof size, pitch, accessibility, number of layers, and local permit requirements. Contact us for an itemized estimate.',
       },
     },
     {
@@ -132,17 +132,17 @@ export const data: ServicePageData = {
     {
       question: 'How much does a roof replacement cost in the Bay Area?',
       answer:
-        'Bay Area roof replacement costs start around $15,000 and can exceed $100,000 for large or complex projects with premium materials. Composite asphalt shingles run $940 to $1,125 per roofing square (100 sq ft) installed. Premium architectural shingles and designer options range from $1,075 to $1,525 per square. Metal roofing costs $1,200 to $1,800 per square but lasts 40 to 70 years. Every Hamilton Exteriors estimate is itemized with no hidden fees — tear-off, underlayment, flashing, materials, labor, cleanup, and permit costs are all listed separately so you can see exactly where your money goes.',
+        'Bay Area roof replacement costs start around $15,000 and can exceed $100,000 for large or complex projects with premium materials. Composite asphalt shingles run $940 to $1,125 per roofing square (100 sq ft) installed. Premium architectural shingles and designer options range from $1,075 to $1,525 per square. Metal roofing costs $1,200 to $1,800 per square but lasts 40 to 70 years. Every Hamilton Exteriors estimate is fully itemized — tear-off, underlayment, flashing, materials, labor, cleanup, and permit costs are all listed separately so you can see exactly where your money goes.',
     },
     {
       question: 'How long does a roof replacement take?',
       answer:
-        'A standard asphalt shingle roof replacement typically takes 3 to 5 days from start to completion, including tear-off, underlayment, installation, flashing, and cleanup. Metal and tile roofs may take 5 to 7 days due to additional preparation. Every project gets a dedicated project manager who provides a specific timeline during your free inspection and keeps you updated daily.',
+        'A standard asphalt shingle roof replacement typically takes 3 to 5 days from start to completion, including tear-off, underlayment, installation, flashing, and cleanup. Metal and tile roofs may take 5 to 7 days due to additional preparation. Every project gets a dedicated project manager who provides a specific timeline during your inspection and keeps you updated daily.',
     },
     {
       question: 'What is included in a free roof inspection?',
       answer:
-        'Our free roof inspection covers a full assessment of your existing roof\'s condition. A Hamilton Exteriors project manager will examine shingle wear, granule loss, cracked or missing shingles, flashing around vents and chimneys, gutter condition, signs of water intrusion in the attic, and overall structural integrity. You\'ll receive a written report with photos documenting any issues found, along with a detailed estimate if work is recommended. The inspection typically takes 30 to 45 minutes and there is no obligation to proceed.',
+        'Our complimentary roof inspection covers a full assessment of your existing roof\'s condition. A Hamilton Exteriors project manager will examine shingle wear, granule loss, cracked or missing shingles, flashing around vents and chimneys, gutter condition, signs of water intrusion in the attic, and overall structural integrity. You\'ll receive a written report with photos documenting any issues found, along with a detailed estimate if work is recommended. The inspection typically takes 30 to 45 minutes and you\u2019re welcome to take your time deciding.',
     },
     {
       question: 'What roofing materials do you recommend for Bay Area homes?',
@@ -152,7 +152,7 @@ export const data: ServicePageData = {
     {
       question: 'Do Bay Area homes in fire zones need special roofing?',
       answer:
-        'Yes. Homes in California Wildland-Urban Interface (WUI) zones — common in the Berkeley Hills, Oakland Hills, parts of Marin, and Napa — must meet Chapter 7A fire-resistant building standards. This requires Class A fire-rated roofing materials, non-combustible vents, and fire-rated underlayment. Hamilton Exteriors specializes in WUI-compliant installations and will verify your property\'s fire zone designation during the free inspection. We handle all required documentation for building department approval.',
+        'Yes. Homes in California Wildland-Urban Interface (WUI) zones — common in the Berkeley Hills, Oakland Hills, parts of Marin, and Napa — must meet Chapter 7A fire-resistant building standards. This requires Class A fire-rated roofing materials, non-combustible vents, and fire-rated underlayment. Hamilton Exteriors specializes in WUI-compliant installations and will verify your property\'s fire zone designation during your inspection. We handle all required documentation for building department approval.',
     },
     {
       question: 'Do you offer emergency roof repair or storm damage services?',

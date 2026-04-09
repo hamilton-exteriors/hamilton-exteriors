@@ -6,7 +6,7 @@ export const data: ServicePageData = {
     'ADU Builder in the San Francisco Bay Area | Design & Construction Experts | Hamilton Exteriors',
   description:
     'Hamilton Exteriors is a full-service ADU builder in the Bay Area. Design, architecture, engineering, permitting, and construction — all under one roof.',
-  announcementText: 'Now Booking Summer 2026 ADU Projects — Free Design Consultation',
+  announcementText: 'Now Booking Summer 2026 ADU Projects — Schedule Your Consultation',
   definition: 'An accessory dwelling unit (ADU) is a secondary housing unit built on a single-family residential lot — either as a detached backyard structure, attached addition, or garage conversion. California state law (AB 68, SB 9) streamlines ADU permitting, and Bay Area ADUs typically cost $80,000 to $350,000 while adding $150,000 to $300,000 in property value.',
   expertQuotes: [
     {
@@ -16,7 +16,7 @@ export const data: ServicePageData = {
     },
   ],
   hero: {
-    headline: "Bay Area's Best ADU Builder",
+    headline: "Bay Area ADU Builders —  Design Through Occupancy",
     formTitle: 'Get Your Free ADU Consultation',
     formSubtitle:
       "We'll reach out within 3\u20135 minutes to discuss your ADU project.",
@@ -101,7 +101,7 @@ export const data: ServicePageData = {
     {
       question: 'How much does it cost to build an ADU in the Bay Area?',
       answer:
-        'Bay Area ADU costs range from $150,000 to $350,000 for a detached unit and $100,000 to $200,000 for a garage conversion. Junior ADUs (JADUs under 500 sq ft) start around $80,000. Key cost factors include foundation type, utility connections, finishes, and local permit fees. Hamilton Exteriors provides itemized estimates with no hidden costs.',
+        'Bay Area ADU costs range from $150,000 to $350,000 for a detached unit and $100,000 to $200,000 for a garage conversion. Junior ADUs (JADUs under 500 sq ft) start around $80,000. Key cost factors include foundation type, utility connections, finishes, and local permit fees. Hamilton Exteriors provides fully itemized estimates — every cost spelled out.',
     },
     {
       question: 'Do I need a permit to build an ADU in California?',
@@ -116,7 +116,7 @@ export const data: ServicePageData = {
     {
       question: 'Can I build an ADU on my property?',
       answer:
-        'Under California law, most single-family residential lots can accommodate at least one ADU. Since January 2020, cities cannot impose minimum lot size requirements for ADUs under 800 sq ft. Setback requirements have been reduced to 4 feet for rear and side yards. Hamilton Exteriors evaluates your lot for utility access, setbacks, and local overlay zones during our free consultation.',
+        'Under California law, most single-family residential lots can accommodate at least one ADU. Since January 2020, cities cannot impose minimum lot size requirements for ADUs under 800 sq ft. Setback requirements have been reduced to 4 feet for rear and side yards. Hamilton Exteriors evaluates your lot for utility access, setbacks, and local overlay zones during your initial consultation.',
     },
     {
       question: 'Can I rent out my ADU?',

@@ -54,7 +54,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   // Security headers
   response.headers.set('X-Content-Type-Options', 'nosniff');
-  response.headers.set('X-Frame-Options', 'SAMEORIGIN');
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(self), payment=(), browsing-topics=()');
@@ -104,6 +103,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
   if (response.status >= 400) {
     response.headers.set('Cache-Control', 'no-store');
   } else if (contentType.includes('text/html') || !contentType) {
+    // Ensure charset is in the Content-Type header for HTML responses
+    if (contentType.includes('text/html') && !contentType.includes('charset')) {
+      response.headers.set('Content-Type', 'text/html; charset=utf-8');
+    }
     response.headers.set('Cache-Control', 'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400');
   }
 

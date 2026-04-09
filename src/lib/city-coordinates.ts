@@ -68,3 +68,12 @@ export function getCityProximity(citySlug: string): string | undefined {
   const coords = CITY_COORDINATES[normalized];
   return coords ? `${coords[0]},${coords[1]}` : undefined;
 }
+
+/**
+ * Get raw [longitude, latitude] coordinates for a city slug.
+ * Accepts slugs with or without -ca suffix.
+ */
+export function getCityCoordinates(citySlug: string): [number, number] | undefined {
+  const normalized = citySlug.replace(/-ca$/, '');
+  return CITY_COORDINATES[normalized];
+}

@@ -230,7 +230,7 @@ Call (650) 977-3351 or fill out the form on our website. We respond in 3\u20135 
 A Hamilton Exteriors expert visits your property to assess the work needed. For roofing, we also offer an online satellite roof scan at hamilton-exteriors.com/buy/scan that measures your roof and provides instant pricing.
 
 ### Step 3: Written Estimate
-You receive a detailed, itemized written estimate. Every line item is spelled out \u2014 materials, labor, tear-off, disposal, permits. The price we quote is the price you pay. No hidden fees, no surprises, no add-ons.
+You receive a detailed, itemized written estimate. Every line item is spelled out \u2014 materials, labor, tear-off, disposal, permits. The price we quote is the price you pay. Every cost is itemized upfront.
 
 ### Step 4: Material Selection
 Your project manager helps you choose from top-tier brands:
@@ -295,7 +295,7 @@ You receive written warranty documentation:
 ### Pricing & Costs
 
 **Q: How does pricing work \u2014 any hidden fees?**
-A: Every estimate is written and itemized before work starts. The price we quote is the price you pay \u2014 no surprises, no add-ons. Our estimates break down materials, labor, tear-off, disposal, permits, and warranty costs.
+A: Every estimate is written and itemized before work starts. The price we quote is the price you pay \u2014 every cost itemized upfront. Our estimates break down materials, labor, tear-off, disposal, permits, and warranty costs.
 
 **Q: Will you beat a competitor\u2019s quote?**
 A: Yes. Show us a written estimate from a licensed contractor for the same scope of work and we\u2019ll match or beat it. That\u2019s our Best Price Guarantee.

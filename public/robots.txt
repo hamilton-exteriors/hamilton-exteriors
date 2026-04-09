@@ -35,11 +35,6 @@ Disallow: /
 User-agent: cohere-ai
 Disallow: /
 
-# Bing / Copilot
-User-agent: bingbot
-Allow: /
-Disallow: /api/
-
 # ByteDance / TikTok — Block (no citation benefit, IP scraping risk)
 User-agent: Bytespider
 Disallow: /

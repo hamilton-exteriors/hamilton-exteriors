@@ -19,15 +19,14 @@ const HOST = process.env.HOST ?? '0.0.0.0';
 
 const STATIC_CACHE_RULES = [
   { pattern: /^\/_astro\//i, value: 'public, max-age=31536000, immutable' },
-  { pattern: /^\/fonts\//i, value: 'public, max-age=604800' },
+  { pattern: /^\/fonts\//i, value: 'public, max-age=31536000, immutable' },
   { pattern: /^\/images\//i, value: 'public, max-age=86400' },
   { pattern: /^\/favicon/i, value: 'public, max-age=604800' },
 ];
 
 const SECURITY_HEADERS = {
-  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+  'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
   'X-Content-Type-Options': 'nosniff',
-  'X-Frame-Options': 'SAMEORIGIN',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'Permissions-Policy': 'camera=(), microphone=(), geolocation=(self)',
   'Content-Security-Policy': "frame-ancestors 'self'",

@@ -4,8 +4,8 @@ import { sidingVinyl, sidingFiberCement, sidingWood, sidingStucco, serviceSiding
 export const data: ServicePageData = {
   title: 'Bay Area Siding | James Hardie & Vinyl | Hamilton Exteriors',
   description:
-    'James Hardie Elite Preferred installer serving the Bay Area. Fiber cement, vinyl, stucco, and waterproofing. 50-year warranty, $0 down financing. Free estimate.',
-  announcementText: 'Now Booking Summer 2026 Siding Projects — Schedule Your Free Inspection',
+    'James Hardie Elite Preferred installer serving the Bay Area. Fiber cement, vinyl, stucco, and waterproofing. 50-year warranty, $0 down financing. CSLB #1082377.',
+  announcementText: 'Now Booking Summer 2026 Siding Projects — Schedule Your Inspection',
   definition: 'Siding replacement is the process of removing and reinstalling the exterior cladding that protects a home from moisture, wind, and temperature. Common materials include vinyl, James Hardie fiber cement, and stucco. James Hardie fiber cement delivers an 86% return on investment at resale according to Remodeling Magazine\u2019s 2024 Cost vs. Value Report.',
   expertQuotes: [
     {
@@ -20,10 +20,10 @@ export const data: ServicePageData = {
     },
   ],
   hero: {
-    headline: "Bay Area's  Best Siding  Installers",
+    headline: "Bay Area's James Hardie  Elite Preferred  Siding Installers",
     formTitle: 'Get Your Free Siding Inspection',
     formSubtitle:
-      "We'll reach out within 3\u20135 minutes to schedule your free inspection.",
+      "We'll reach out within 3\u20135 minutes to schedule your inspection.",
     ctaText: 'Call Now - We Answer Fast',
     serviceType: 'Siding',
     // serviceOptions removed — service is known from page context, form is 2 steps
@@ -107,7 +107,7 @@ export const data: ServicePageData = {
             ],
           },
         ],
-        footnote: 'Prices per 100 sq ft (one square) installed, reflecting typical Bay Area costs. Includes removal of existing siding, new weather barrier, materials, labor, trim, and cleanup. Actual pricing varies based on home size, stories, architectural details, and access. Contact us for a free, itemized estimate.',
+        footnote: 'Prices per 100 sq ft (one square) installed, reflecting typical Bay Area costs. Includes removal of existing siding, new weather barrier, materials, labor, trim, and cleanup. Actual pricing varies based on home size, stories, architectural details, and access. Contact us for an itemized estimate.',
       },
     },
     {
@@ -138,7 +138,7 @@ export const data: ServicePageData = {
     {
       question: 'How much does siding replacement cost in the Bay Area?',
       answer:
-        'Bay Area siding costs vary by material. Vinyl siding runs $975 to $1,275 per 100 sq ft installed. James Hardie fiber cement siding — our most popular choice — costs $2,100 to $2,325 per 100 sq ft. Stucco remediation and re-application averages $1,950 per 100 sq ft. A typical 2,000 sq ft Bay Area home costs $12,500 to $28,000 for full siding replacement. Every Hamilton Exteriors estimate is itemized with no hidden fees.',
+        'Bay Area siding costs vary by material. Vinyl siding runs $975 to $1,275 per 100 sq ft installed. James Hardie fiber cement siding — our most popular choice — costs $2,100 to $2,325 per 100 sq ft. Stucco remediation and re-application averages $1,950 per 100 sq ft. A typical 2,000 sq ft Bay Area home costs $12,500 to $28,000 for full siding replacement. Every Hamilton Exteriors estimate is fully itemized — every cost spelled out.',
     },
     {
       question: 'Why is James Hardie fiber cement siding recommended for Bay Area homes?',

@@ -5,7 +5,7 @@ export const data: ServicePageData = {
   title: 'Custom Home Builder in the Bay Area | Hamilton Exteriors',
   description:
     'Full-service custom home builder in the Bay Area. Design, architecture, engineering, permits & construction — all under one roof.',
-  announcementText: 'Now Booking Summer 2026 Custom Homes — Free Design Consultation',
+  announcementText: 'Now Booking Summer 2026 Custom Homes — Schedule Your Consultation',
   definition: 'Custom home construction is the process of designing and building a new residence from the ground up, tailored to the homeowner\u2019s specifications. In the Bay Area, custom homes cost $350 to $800 per square foot including design, architecture, engineering, permits, and construction.',
   expertQuotes: [
     {
@@ -15,7 +15,7 @@ export const data: ServicePageData = {
     },
   ],
   hero: {
-    headline: "Bay Area's Best Custom Home Builder",
+    headline: "Bay Area Custom Home Builders —  Architect-Led, CSLB #1082377",
     formTitle: 'Get Your Free Consultation',
     formSubtitle:
       "Tell us about your dream home. We'll call within 5 minutes to discuss your project.",

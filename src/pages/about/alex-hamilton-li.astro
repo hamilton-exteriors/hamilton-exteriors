@@ -83,79 +83,123 @@ const breadcrumbSchema = {
 
   <main>
     <!-- Hero section -->
-    <section class="bg-primary-dark py-20 pb-[60px]">
-      <div class="mx-auto max-w-3xl px-5">
-        <p class="mb-3 text-[13px] tracking-widest text-white-60 uppercase">
-          About the Founder
-        </p>
-        <h1 class="mb-4 text-[clamp(32px,6vw,48px)] leading-[1.2] text-white">
-          Alexander Hamilton Li
-        </h1>
-        <p class="mb-0 text-lg leading-[1.6] text-white-85">
-          Architect &amp; General Contractor &bull; CSLB #1082377 &bull; Castro Valley, CA
-        </p>
+    <section class="bg-primary-dark py-16 pb-[60px]">
+      <div class="mx-auto max-w-4xl px-5">
+        <div class="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-12">
+          <div class="shrink-0">
+            <img
+              src="/images/alex-hamilton-li.jpg"
+              alt="Alex Hamilton Li, founder of Hamilton Exteriors"
+              width="280"
+              height="280"
+              class="h-[220px] w-[220px] rounded-lg object-cover shadow-lg md:h-[280px] md:w-[280px]"
+              loading="eager"
+            />
+          </div>
+          <div class="text-center md:text-left">
+            <p class="mb-3 text-[13px] tracking-widest text-white-60 uppercase">
+              About the Founder
+            </p>
+            <h1 class="mb-4 text-[clamp(32px,6vw,48px)] leading-[1.2] text-white">
+              Alexander Hamilton Li
+            </h1>
+            <p class="mb-0 text-lg leading-[1.6] text-white-85">
+              Architect &amp; General Contractor &bull; CSLB #1082377 &bull; Castro Valley, CA
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Bio content -->
+    <!-- Background + Stats -->
     <section class="py-[60px]">
       <div class="mx-auto max-w-3xl px-5 text-base leading-[1.85] text-charcoal">
 
         <h2 class="mb-4 text-2xl">Background</h2>
         <p class="mb-6">
-          I founded Hamilton Exteriors in 2018 in Castro Valley, California, with a simple idea: Bay Area homeowners deserve a contractor who treats their home like their own. Before starting the company, I worked in architecture and construction management, which gave me a deep understanding of both the design and execution sides of building.
+          I founded Hamilton Exteriors in 2018 in Castro Valley, California, with a simple idea: Bay Area homeowners deserve a contractor who brings an architect's eye to every project. Before starting the company, I worked in architecture and construction management, which gave me a deep understanding of both the design and execution sides of building.
         </p>
-        <p class="mb-6">
+        <p class="mb-8">
           Today, Hamilton Exteriors is a full-service design-build contractor serving homeowners across Alameda, Contra Costa, Marin, Napa, San Mateo, and Santa Clara counties. We have completed more than 500 projects — from single-day roof repairs in Oakland to ground-up custom homes in Palo Alto.
         </p>
 
-        <h2 class="mt-10 mb-4 text-2xl">Credentials &amp; Certifications</h2>
-        <ul class="mb-6 pl-6">
-          <li class="mb-2.5">
-            <strong>CSLB License #1082377</strong> — California Contractors State License Board.
-            <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377" target="_blank" rel="noopener noreferrer" class="text-primary">Verify on CSLB.ca.gov</a>
-          </li>
-          <li class="mb-2.5"><strong>GAF Master Elite Contractor</strong> — Only 2% of roofers in the country qualify. Factory-certified installer with enhanced manufacturer warranty eligibility.</li>
-          <li class="mb-2.5"><strong>Owens Corning Preferred Contractor</strong> — Platinum-level certification for roofing excellence.</li>
-          <li class="mb-2.5"><strong>CertainTeed ShingleMaster</strong> — Advanced certification in shingle roofing systems.</li>
-          <li class="mb-2.5"><strong>James Hardie Elite Preferred Contractor</strong> — Certified installer of James Hardie fiber cement siding.</li>
-          <li class="mb-2.5"><strong>Licensed, Bonded &amp; Insured</strong> — General liability and workers' compensation coverage on every project.</li>
-        </ul>
+        <!-- Stats grid — moved up to break the text wall early -->
+        <div class="mb-6 grid grid-cols-2 gap-5 sm:grid-cols-4">
+          <div class="rounded-lg bg-cream p-5 text-center">
+            <div class="font-oswald text-[2rem] text-primary-dark">500+</div>
+            <div class="font-satoshi text-[13px] text-muted">Projects Completed</div>
+          </div>
+          <div class="rounded-lg bg-cream p-5 text-center">
+            <div class="font-oswald text-[2rem] text-primary-dark">4.8</div>
+            <div class="font-satoshi text-[13px] text-muted">Google Rating</div>
+          </div>
+          <div class="rounded-lg bg-cream p-5 text-center">
+            <div class="font-oswald text-[2rem] text-primary-dark">2018</div>
+            <div class="font-satoshi text-[13px] text-muted">Founded</div>
+          </div>
+          <div class="rounded-lg bg-cream p-5 text-center">
+            <div class="font-oswald text-[2rem] text-primary-dark">6</div>
+            <div class="font-satoshi text-[13px] text-muted">Counties Served</div>
+          </div>
+        </div>
 
-        <h2 class="mt-10 mb-4 text-2xl">What I Do at Hamilton Exteriors</h2>
+      </div>
+    </section>
+
+    <!-- Credentials — cream background for visual contrast -->
+    <section class="bg-cream py-[60px]">
+      <div class="mx-auto max-w-3xl px-5 text-base leading-[1.85] text-charcoal">
+
+        <h2 class="mb-4 text-2xl">Credentials &amp; Certifications</h2>
+        <div class="rounded-lg border border-charcoal/10 bg-white p-6 shadow-sm">
+          <ul class="mb-0 space-y-3 pl-6">
+            <li>
+              <strong>CSLB License #1082377</strong> — California Contractors State License Board.
+              <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377" target="_blank" rel="noopener noreferrer" class="text-primary">Verify on CSLB.ca.gov</a>
+            </li>
+            <li><strong>GAF Master Elite Contractor</strong> — Only 2% of roofers in the country qualify. Factory-certified installer with enhanced manufacturer warranty eligibility.</li>
+            <li><strong>Owens Corning Preferred Contractor</strong> — Platinum-level certification for roofing excellence.</li>
+            <li><strong>CertainTeed ShingleMaster</strong> — Advanced certification in shingle roofing systems.</li>
+            <li><strong>James Hardie Elite Preferred Contractor</strong> — Certified installer of James Hardie fiber cement siding.</li>
+            <li><strong>Licensed, Bonded &amp; Insured</strong> — General liability and workers' compensation coverage on every project.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- What I Do -->
+    <section class="py-[60px]">
+      <div class="mx-auto max-w-3xl px-5 text-base leading-[1.85] text-charcoal">
+
+        <h2 class="mb-4 text-2xl">What I Do at Hamilton Exteriors</h2>
         <p class="mb-6">
-          I oversee every project from the initial inspection through final walkthrough. My background in architecture means I think about how materials, design, and craftsmanship come together — not just whether the shingles are nailed straight. Every estimate I write is itemized with no hidden fees, and every project gets a dedicated project manager who reports to me directly.
+          I oversee every project from the initial inspection through final walkthrough. My background in architecture means I think about how materials, design, and craftsmanship come together — not just whether the shingles are nailed straight. Every estimate I write is fully itemized line by line, and every project gets a dedicated project manager who reports to me directly.
         </p>
         <p class="mb-6">
           Our services include roofing (asphalt, metal, tile, and flat), James Hardie fiber cement siding, energy-efficient window replacements, ADU construction, home additions, and custom homes. We handle all Bay Area building permits and know the codes for every jurisdiction we serve.
         </p>
 
-        <h2 class="mt-10 mb-4 text-2xl">Bay Area Expertise</h2>
+      </div>
+    </section>
+
+    <!-- Bay Area Expertise — cream background -->
+    <section class="bg-cream py-[60px]">
+      <div class="mx-auto max-w-3xl px-5 text-base leading-[1.85] text-charcoal">
+
+        <h2 class="mb-4 text-2xl">Bay Area Expertise</h2>
         <p class="mb-6">
           The Bay Area has unique building challenges that national contractors often miss. Wildland-Urban Interface fire zones in the Oakland Hills, Berkeley Hills, and Marin require specific fire-rated materials and installation methods. Coastal fog in San Francisco and Pacifica accelerates roof wear differently than the inland heat of Walnut Creek and San Ramon. Older housing stock in Oakland — roughly 60% built before 1960, according to the U.S. Census Bureau American Community Survey — often needs structural reinforcement before new materials go on. I have seen all of it, and our crews know how to handle it.
         </p>
 
-        <h2 class="mt-10 mb-4 text-2xl">By the Numbers</h2>
-        <div class="mb-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
-          <div class="bg-cream p-5 text-center">
-            <div class="font-oswald text-[2rem] text-primary-dark">500+</div>
-            <div class="text-[13px] text-muted">Projects Completed</div>
-          </div>
-          <div class="bg-cream p-5 text-center">
-            <div class="font-oswald text-[2rem] text-primary-dark">4.8</div>
-            <div class="text-[13px] text-muted">Google Rating</div>
-          </div>
-          <div class="bg-cream p-5 text-center">
-            <div class="font-oswald text-[2rem] text-primary-dark">2018</div>
-            <div class="text-[13px] text-muted">Founded</div>
-          </div>
-          <div class="bg-cream p-5 text-center">
-            <div class="font-oswald text-[2rem] text-primary-dark">6</div>
-            <div class="text-[13px] text-muted">Counties Served</div>
-          </div>
-        </div>
+      </div>
+    </section>
 
-        <h2 class="mt-10 mb-4 text-2xl">Get in Touch</h2>
+    <!-- Get in Touch -->
+    <section class="py-[60px]">
+      <div class="mx-auto max-w-3xl px-5 text-base leading-[1.85] text-charcoal">
+
+        <h2 class="mb-4 text-2xl">Get in Touch</h2>
         <p class="mb-2">
           Have a question about your home exterior project? I am happy to talk through it.
         </p>

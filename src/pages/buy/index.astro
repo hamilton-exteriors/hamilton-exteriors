@@ -11,7 +11,7 @@ const webAppJsonLd = {
   name: 'Hamilton Exteriors Online Roof Scanner',
   url: 'https://hamilton-exteriors.com/buy',
   applicationCategory: 'BusinessApplication',
-  description: 'Scan your roof with satellite imagery and get an instant price for a new roof — no salesperson required.',
+  description: 'Scan your roof with satellite imagery and get an instant price for a new roof — buy direct, online in minutes.',
   offers: {
     '@type': 'Offer',
     price: '0',
@@ -25,7 +25,7 @@ const serviceJsonLd = {
   '@type': 'Service',
   '@id': 'https://hamilton-exteriors.com/buy#service',
   name: 'Online Roof Replacement',
-  description: 'Buy a roof replacement online with satellite imagery pricing. No salespeople, no commission. GAF Master Elite certified installation with manufacturer warranty.',
+  description: 'Buy a roof replacement online with satellite imagery pricing. Architect-led, direct pricing. GAF Master Elite certified installation with manufacturer warranty.',
   provider: { '@type': 'GeneralContractor', '@id': 'https://hamilton-exteriors.com/#business', name: 'Hamilton Exteriors' },
   areaServed: [
     { '@type': 'AdministrativeArea', name: 'Alameda County' },
@@ -75,7 +75,7 @@ const faqJsonLd = {
     {
       '@type': 'Question',
       name: 'What if the on-site inspection finds something different?',
-      acceptedAnswer: { '@type': 'Answer', text: 'We\'ll update your quote with an itemized explanation of what changed and why. You approve any changes before we proceed. No surprises.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'We\'ll update your quote with an itemized explanation of what changed and why. You approve any changes before we proceed. You\'ll see every line item before we move forward.' },
     },
     {
       '@type': 'Question',
@@ -88,7 +88,7 @@ const faqJsonLd = {
 
 <Layout
   title="Buy Your Roof Online | Hamilton Exteriors"
-  description="Skip the salesman. Enter your address, see your roof, get an instant price. Buy your new roof online from Hamilton Exteriors."
+  description="Enter your address, see your roof, get an instant price. Buy your new roof online — direct from Hamilton Exteriors."
   jsonLd={[webAppJsonLd, serviceJsonLd, faqJsonLd]}
   noindex
 >
@@ -97,12 +97,12 @@ const faqJsonLd = {
   <!-- ── HERO — address input drives to /buy/scan ──────────────────── -->
   <section id="buy-hero" class="relative z-2 w-full bg-footer">
     <div class="relative z-10 mx-auto max-w-[720px] text-center">
-      <p class="mb-4 text-sm font-semibold tracking-[2px] text-yellow uppercase">No salespeople. No commission. No games.</p>
+      <p class="mb-4 text-sm font-semibold tracking-[2px] text-yellow uppercase">Architect-led. Transparent pricing. Online in minutes.</p>
       <h1 class="mb-4 text-[clamp(40px,7vw,72px)] leading-[1.05] text-white">
         Buy Your Roof Online
       </h1>
       <p class="mx-auto mb-8 max-w-[480px] text-lg leading-[28px] text-white-70">
-        Enter your address. We'll scan your roof and give you an instant price — no salesperson required.
+        Enter your address. We'll scan your roof and give you an instant price — buy direct, online in minutes.
       </p>
       <form id="hero-form" class="relative z-20 mx-auto max-w-[520px] px-1" action="/buy/scan">
         <input
@@ -194,14 +194,14 @@ const faqJsonLd = {
               <span class="text-xl leading-[1.4] text-primary">&#10003;</span>
               <div>
                 <p class="text-[15px] font-semibold text-charcoal">0% sales commission</p>
-                <p class="text-[13px] text-muted">Buy online. No salesperson, no markup, no games.</p>
+                <p class="text-[13px] text-muted">Buy online. Direct pricing, transparent markup, straight talk.</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
               <span class="text-xl leading-[1.4] text-primary">&#10003;</span>
               <div>
                 <p class="text-[15px] font-semibold text-charcoal">Transparent, instant pricing</p>
-                <p class="text-[13px] text-muted">See every line item. Materials, labor, permits — no hidden fees.</p>
+                <p class="text-[13px] text-muted">See every line item. Materials, labor, permits — every cost itemized upfront.</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
@@ -307,7 +307,7 @@ const faqJsonLd = {
         Ready to see your price?
       </p>
       <p class="mb-6 text-base text-white-75">
-        Scan your roof in 30 seconds. No email required, no strings attached.
+        Scan your roof in 30 seconds. Just your address — results in seconds.
       </p>
       <a
         href="/buy/scan"
@@ -352,7 +352,7 @@ const faqJsonLd = {
         <details class="faq-item rounded-[4px] border border-border bg-cream">
           <summary class="faq-summary">What if the on-site inspection finds something different?</summary>
           <div class="faq-answer">
-            <p>We'll update your quote with an itemized explanation of what changed and why. You approve any changes before we proceed. No surprises.</p>
+            <p>We'll update your quote with an itemized explanation of what changed and why. You approve any changes before we proceed. You'll see every line item before we move forward.</p>
           </div>
         </details>
         <details class="faq-item rounded-[4px] border border-border bg-cream">
@@ -372,7 +372,7 @@ const faqJsonLd = {
         Your new roof is 3 clicks away
       </h2>
       <p class="mb-8 text-[17px] text-white-70">
-        Enter your address, see your price, and buy your roof in minutes — no salesperson ever.
+        Enter your address, see your price, and buy your roof in minutes — direct from our team.
       </p>
       <form class="cta-address-form relative mx-auto max-w-[480px] px-1" action="/buy/scan">
         <input

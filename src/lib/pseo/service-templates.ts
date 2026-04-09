@@ -29,20 +29,20 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
   {
     serviceSlug: 'roofing',
     serviceName: 'Roofing',
-    heroHeadlinePattern: 'Best Roofing Company in {city}',
+    heroHeadlinePattern: 'Architect-Led Roofing in {city}',
     heroFormTitle: 'Get Your Free Roof Inspection',
     heroFormSubtitle:
-      "We'll contact you in 3-5 minutes to schedule your free inspection.",
+      "We'll contact you in 3-5 minutes to schedule your inspection.",
     serviceType: 'Roofing',
     heroImageKey: 'heroRoofing',
     titlePattern: 'Reliable Roofing in {city}, CA | Hamilton Exteriors',
     descriptionPattern:
-      'Hamilton Exteriors provides top-rated roofing services in {city}, {county} County, CA. Composite shingles, metal roofs, tile, and solar. Call Now!',
+      'Hamilton Exteriors provides architect-led roofing services in {city}, {county} County, CA. Composite shingles, metal roofs, tile, and solar. CSLB #1082377.',
     faqTemplates: [
       {
         questionPattern: 'How much does a new roof cost in {city}?',
         answerPattern:
-          'Roof replacement in {city} starts around $15,000 and can exceed $100,000 depending on size, pitch, material, and complexity. With median home prices at {medianHomePrice} in {city}, a new roof is one of the best investments you can make. We provide free inspections with exact pricing.',
+          'Roof replacement in {city} starts around $15,000 and can exceed $100,000 depending on size, pitch, material, and complexity. With median home prices at {medianHomePrice} in {city}, a new roof is one of the best investments you can make. We provide inspections with exact pricing.',
       },
       {
         questionPattern: 'What roofing materials work best for {city} homes?',
@@ -57,7 +57,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       {
         questionPattern: 'Does Hamilton Exteriors offer roof financing in {city}?',
         answerPattern:
-          'Yes, we offer flexible financing options for {city} homeowners. $0 down payment with monthly payments that fit your budget. Get pre-qualified during your free roof inspection.',
+          'Yes, we offer flexible financing options for {city} homeowners. $0 down payment with monthly payments that fit your budget. Get pre-qualified during your roof inspection.',
       },
       {
         questionPattern: 'Is Hamilton Exteriors licensed to work in {city}?',
@@ -98,20 +98,20 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
   {
     serviceSlug: 'siding',
     serviceName: 'Siding',
-    heroHeadlinePattern: 'Best Siding Company in {city}',
+    heroHeadlinePattern: 'James Hardie Elite Preferred Siding in {city}',
     heroFormTitle: 'Get Your Free Siding Inspection',
     heroFormSubtitle:
-      "We'll contact you in 3-5 minutes to schedule your free inspection.",
+      "We'll contact you in 3-5 minutes to schedule your inspection.",
     serviceType: 'Siding',
     heroImageKey: 'serviceSiding',
     titlePattern: 'Durable Siding in {city}, CA | Hamilton Exteriors',
     descriptionPattern:
-      'Hamilton Exteriors provides top-rated siding services in {city}, {county} County. Vinyl, fiber cement, James Hardie, stucco, and waterproofing.',
+      'Hamilton Exteriors — James Hardie Elite Preferred siding installer in {city}, {county} County. Fiber cement, vinyl, stucco, and waterproofing. CSLB #1082377.',
     faqTemplates: [
       {
         questionPattern: 'How much does siding replacement cost in {city}?',
         answerPattern:
-          'Siding replacement in {city} typically ranges from $8,000 to $30,000 depending on your home size and material choice. James Hardie fiber cement is our most popular option for {county} County homes. We offer free inspections with detailed estimates.',
+          'Siding replacement in {city} typically ranges from $8,000 to $30,000 depending on your home size and material choice. James Hardie fiber cement is our most popular option for {county} County homes. We provide inspections with detailed estimates.',
       },
       {
         questionPattern: 'What siding material is best for {city} weather?',
@@ -131,7 +131,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       {
         questionPattern: 'Does Hamilton Exteriors offer siding financing in {city}?',
         answerPattern:
-          'Yes, we offer $0 down financing for siding projects in {city}. Get pre-qualified during your free inspection — most homeowners pay between $150-$300/month.',
+          'Yes, we offer $0 down financing for siding projects in {city}. Get pre-qualified during your inspection — most homeowners pay between $150-$300/month.',
       },
     ],
     stylesHeading: 'What Siding Options Are Available?',
@@ -167,20 +167,20 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
   {
     serviceSlug: 'windows',
     serviceName: 'Windows',
-    heroHeadlinePattern: 'Best Window Company in {city}',
+    heroHeadlinePattern: 'Energy-Efficient Window Installation in {city}',
     heroFormTitle: 'Get Your Free Window Quote',
     heroFormSubtitle:
-      "We'll contact you in 3-5 minutes to schedule your free inspection.",
+      "We'll contact you in 3-5 minutes to schedule your inspection.",
     serviceType: 'Windows',
     heroImageKey: 'heroWindows',
     titlePattern: 'Energy-Efficient Windows in {city}, CA | Hamilton Exteriors',
     descriptionPattern:
-      'Hamilton Exteriors provides top-rated window installation in {city}, {county} County. Single hung, double hung, sliding, casement, and more. Free quotes!',
+      'Hamilton Exteriors provides energy-efficient window installation in {city}, {county} County. Single hung, double hung, sliding, casement, and more. CSLB #1082377.',
     faqTemplates: [
       {
         questionPattern: 'How much do replacement windows cost in {city}?',
         answerPattern:
-          'Replacement windows in {city} typically cost $400-$1,200 per window depending on size, style, and glass options. With {county} County energy rebates, many {city} homeowners save on the total cost. We provide free in-home quotes.',
+          'Replacement windows in {city} typically cost $400-$1,200 per window depending on size, style, and glass options. With {county} County energy rebates, many {city} homeowners save on the total cost. We provide in-home quotes with detailed pricing.',
       },
       {
         questionPattern: 'What window style is best for {city} homes?',
@@ -248,7 +248,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
   {
     serviceSlug: 'adu',
     serviceName: 'ADU',
-    heroHeadlinePattern: 'Best ADU Builder in {city}',
+    heroHeadlinePattern: 'ADU Builders in {city} — Design Through Occupancy',
     heroFormTitle: 'Get Your Free ADU Consultation',
     heroFormSubtitle:
       "We'll contact you in 3-5 minutes to discuss your ADU project.",
@@ -261,12 +261,12 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       {
         questionPattern: 'How much does an ADU cost in {city}?',
         answerPattern:
-          'ADU costs in {city} typically range from $150,000 to $350,000 depending on size, finishes, and whether it\'s a new build or garage conversion. With median home prices at {medianHomePrice}, an ADU can add significant value. We provide free consultations with detailed estimates.',
+          'ADU costs in {city} typically range from $150,000 to $350,000 depending on size, finishes, and whether it\'s a new build or garage conversion. With median home prices at {medianHomePrice}, an ADU can add significant value. We provide consultations with detailed estimates.',
       },
       {
         questionPattern: 'Can I build an ADU on my property in {city}?',
         answerPattern:
-          'California\'s ADU laws make it possible to build on most residential lots in {city}. {county} County has streamlined the permitting process. We evaluate your property\'s potential during our free consultation, including setbacks, utility access, and local zoning.',
+          'California\'s ADU laws make it possible to build on most residential lots in {city}. {county} County has streamlined the permitting process. We evaluate your property\'s potential during your initial consultation, including setbacks, utility access, and local zoning.',
       },
       {
         questionPattern: 'How long does it take to build an ADU in {city}?',
@@ -317,7 +317,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
   {
     serviceSlug: 'custom-homes',
     serviceName: 'Custom Homes',
-    heroHeadlinePattern: 'Best Custom Home Builder in {city}',
+    heroHeadlinePattern: 'Custom Home Builders in {city} — Architect-Led',
     heroFormTitle: 'Get Your Free Consultation',
     heroFormSubtitle:
       "Tell us about your dream home. We'll call within 5 minutes to discuss your project.",
@@ -330,7 +330,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       {
         questionPattern: 'How much does it cost to build a custom home in {city}?',
         answerPattern:
-          'Custom home construction in {city} typically costs $350-$600 per square foot depending on finishes, complexity, and lot conditions. With land values at {medianHomePrice} in {city}, a custom build can be more cost-effective than buying. We provide detailed estimates during your free consultation.',
+          'Custom home construction in {city} typically costs $350-$600 per square foot depending on finishes, complexity, and lot conditions. With land values at {medianHomePrice} in {city}, a custom build can be more cost-effective than buying. We provide detailed estimates during your initial consultation.',
       },
       {
         questionPattern: 'How long does it take to build a custom home in {city}?',
@@ -386,7 +386,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
   {
     serviceSlug: 'additions',
     serviceName: 'Home Additions',
-    heroHeadlinePattern: 'Best Home Addition Builder in {city}',
+    heroHeadlinePattern: 'Home Additions in {city} — Second Story to Ground Floor',
     heroFormTitle: 'Get Your Free Consultation',
     heroFormSubtitle:
       "We'll contact you in 3-5 minutes to discuss your project.",
@@ -399,12 +399,12 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       {
         questionPattern: 'How much does a home addition cost in {city}?',
         answerPattern:
-          'Home additions in {city} typically cost $200-$500 per square foot depending on scope and finishes. A second story addition usually runs $250,000-$500,000. With median home prices at {medianHomePrice} in {city}, adding space is often more economical than moving. Free consultations available.',
+          'Home additions in {city} typically cost $200-$500 per square foot depending on scope and finishes. A second story addition usually runs $250,000-$500,000. With median home prices at {medianHomePrice} in {city}, adding space is often more economical than moving. Consultations available.',
       },
       {
         questionPattern: 'Can I add a second story to my home in {city}?',
         answerPattern:
-          'Most single-story homes in {city} can support a second story addition with proper structural engineering. We evaluate your foundation, framing, and local zoning during our free consultation. Many homes in {neighborhood} have successfully added second stories.',
+          'Most single-story homes in {city} can support a second story addition with proper structural engineering. We evaluate your foundation, framing, and local zoning during your initial consultation. Many homes in {neighborhood} have successfully added second stories.',
       },
       {
         questionPattern: 'How long does a home addition take in {city}?',

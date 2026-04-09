@@ -12,7 +12,7 @@ import {
 export const data: ServicePageData = {
   title: 'Bay Area Windows | Casement, Hung & Sliding | Hamilton Exteriors',
   description:
-    'Energy-efficient window installation across the Bay Area. Double hung, casement, sliding & bay windows. 50-year warranty. Free quote — (650) 977-3351.',
+    'Energy-efficient window installation across the Bay Area. Double hung, casement, sliding & bay windows. 50-year warranty. CSLB #1082377 — (650) 977-3351.',
   definition: 'Window replacement involves removing old or failing windows and installing new energy-efficient units with modern Low-E glass, improved seals, and better insulation. ENERGY STAR-certified replacement windows save homeowners $125 to $465 per year on energy bills according to the U.S. Department of Energy.',
   expertQuotes: [
     {
@@ -22,10 +22,10 @@ export const data: ServicePageData = {
     },
   ],
   hero: {
-    headline: 'Best Window  Company in  the Bay Area',
+    headline: 'Energy-Efficient  Window Installation  for Bay Area Homes',
     formTitle: 'Get Your Free Window Quote',
     formSubtitle:
-      "We'll reach out within 3\u20135 minutes to schedule your free inspection.",
+      "We'll reach out within 3\u20135 minutes to schedule your consultation.",
     ctaText: 'Call Now (650) 977-3351',
     heroImage: heroWindows,
     heroAlt: 'Energy-efficient window replacement on a Bay Area home by Hamilton Exteriors',
@@ -114,7 +114,7 @@ export const data: ServicePageData = {
             ],
           },
         ],
-        footnote: 'Prices per unit installed, reflecting typical Bay Area costs. Includes removal of existing window, new flashing, materials, labor, trim, and cleanup. Energy-efficient Low-E glass standard on all windows. Actual pricing varies based on window size, frame material, glass options, and installation complexity. Contact us for a free, itemized estimate.',
+        footnote: 'Prices per unit installed, reflecting typical Bay Area costs. Includes removal of existing window, new flashing, materials, labor, trim, and cleanup. Energy-efficient Low-E glass standard on all windows. Actual pricing varies based on window size, frame material, glass options, and installation complexity. Contact us for an itemized estimate.',
       },
     },
     {

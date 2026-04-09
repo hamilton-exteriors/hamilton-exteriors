@@ -337,7 +337,7 @@ const jumpLinks = [
     <p class="text-base leading-[1.75] text-charcoal">
       Hamilton Exteriors provides professional {(SERVICE_SLUG_MAP[currentService] || 'exterior').toLowerCase()} services in {cityOrArea}, California.{' '}
       {localFacts?.housingNote ? `${localFacts.housingNote} ` : ' '}
-      Licensed under CSLB #1082377, we handle all {cityOrArea} building permits and inspections. Call <a href="tel:+16509773351" class="font-semibold text-primary">(650) 977-3351</a> for a free estimate.
+      Licensed under CSLB #1082377, we handle all {cityOrArea} building permits and inspections. Call <a href="tel:+16509773351" class="font-semibold text-primary">(650) 977-3351</a> for an estimate.
     </p>
   </div>
 )}
@@ -393,15 +393,23 @@ const jumpLinks = [
       <section id="pricing" class="w-full bg-cream py-20">
         <div class="mx-auto max-w-[1000px] px-5">
           <h2 class="mb-2">{p.heading}</h2>
-          <p class="mb-10 text-sm text-muted">All prices are per roofing square (100 sq ft), fully installed.</p>
+          <p class="mb-10 text-sm text-muted">{
+            ['roofing', 'siding'].includes(serviceSlug)
+              ? 'All prices are per roofing square (100 sq ft), fully installed.'
+              : serviceSlug === 'windows'
+                ? 'All prices are per window, fully installed.'
+                : ['adu', 'custom-homes', 'additions'].includes(serviceSlug)
+                  ? 'Prices shown are estimated project ranges.'
+                  : 'All prices are fully installed.'
+          }</p>
           <div class="overflow-x-auto">
             <table class="w-full border-collapse text-[0.9375rem]">
               <thead>
                 <tr class="border-b-2 border-primary">
                   <th class="px-4 py-3 text-left font-semibold text-heading">Product</th>
                   <th class="px-4 py-3 text-right font-semibold text-heading">
-                    Installed Price / sq
-                    <span class="block text-[0.6875rem] font-normal text-muted">Total cost per 100 sq ft</span>
+                    {['roofing', 'siding'].includes(serviceSlug) ? 'Installed Price / sq' : serviceSlug === 'windows' ? 'Installed Price / unit' : 'Price Range'}
+                    <span class="block text-[0.6875rem] font-normal text-muted">{['roofing', 'siding'].includes(serviceSlug) ? 'Total cost per 100 sq ft' : serviceSlug === 'windows' ? 'Per window, fully installed' : 'Estimated project cost'}</span>
                   </th>
                   <th class="px-4 py-3 text-right font-semibold text-heading">
                     Material Cost
@@ -482,7 +490,7 @@ const jumpLinks = [
           </div>
           <div class="mt-8">
             <a href="#quote" class="inline-block rounded-full bg-yellow px-8 py-3.5 font-oswald text-base font-bold tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:outline-none">
-              Get Your Free Quote
+              Get Your Quote
             </a>
           </div>
         </div>
@@ -509,7 +517,7 @@ const jumpLinks = [
           {cp.footnote}
         </p>
         <a href="#quote" class="inline-block rounded-full bg-yellow px-9 py-4 font-oswald text-base font-bold tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:ring-offset-(--color-heading) focus:outline-none">
-          Get Your Free Estimate
+          Get Your Estimate
         </a>
       </Section>
     );

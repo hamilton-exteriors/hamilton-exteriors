@@ -435,8 +435,6 @@ const serviceLinks = matchedLinksMap.size > 0
               class="h-auto max-h-[500px] w-full object-cover"
               loading="eager"
               fetchpriority="high"
-              width="1000"
-              height="500"
               decoding="async"
             />
             {credit && (
@@ -454,11 +452,11 @@ const serviceLinks = matchedLinksMap.size > 0
       <section class="w-full bg-white pt-10">
         <div class="mx-auto max-w-[800px] px-5">
           <nav aria-label="Table of contents" class="rounded-lg border border-gray-200 bg-cream p-5">
-            <p class="mb-3 font-[Satoshi] text-xs font-semibold tracking-wider text-gray-600 uppercase">In this article</p>
+            <p class="mb-3 font-satoshi text-xs font-semibold tracking-wider text-gray-600 uppercase">In this article</p>
             <ol class="space-y-1.5">
               {tocHeadings.map((h) => (
                 <li>
-                  <a href={`#${h.id}`} class="font-[DM_Sans] text-sm text-(--color-primary) transition-opacity hover:opacity-70">{h.text}</a>
+                  <a href={`#${h.id}`} class="font-dm-sans text-sm text-(--color-primary) transition-opacity hover:opacity-70">{h.text}</a>
                 </li>
               ))}
             </ol>
@@ -521,7 +519,7 @@ const serviceLinks = matchedLinksMap.size > 0
           </h2>
           <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
             {relatedPosts.map((rp: any) => (
-              <a href={`/blog/${rp.slug}`} class="group flex flex-col overflow-hidden rounded-[4px] border border-border bg-white transition-all hover:translate-y-[-2px] hover:shadow-lg">
+              <a href={`/blog/${rp.slug}`} class="group flex flex-col overflow-hidden rounded-[4px] border border-border bg-white transition-all hover:opacity-95">
                 {rp.feature_image ? (
                   <div class="aspect-16/10 w-full overflow-hidden bg-cream">
                     <img src={ghostResize(rp.feature_image, 400)} srcset={ghostSrcset(rp.feature_image, [300, 400, 600])} sizes="(max-width: 768px) 100vw, 33vw" alt={rp.title} class="size-full object-cover transition-opacity group-hover:opacity-90" loading="lazy" decoding="async" width="400" height="250" />
@@ -693,13 +691,6 @@ const serviceLinks = matchedLinksMap.size > 0
     max-width: 100%;
     height: auto;
     margin: 32px 0;
-  }
-  .ghost-content blockquote {
-    border-left: 4px solid var(--color-primary);
-    padding-left: 20px;
-    margin: 32px 0;
-    font-style: italic;
-    color: var(--color-muted);
   }
   .ghost-content ul, .ghost-content ol {
     margin: 0 0 24px;
