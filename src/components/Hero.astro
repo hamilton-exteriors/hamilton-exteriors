@@ -562,6 +562,13 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
       const leadName = formData.get('fullName') as string || '';
       const leadEmail = formData.get('email') as string || '';
       const leadPhone = formData.get('phone') as string || '';
+      // Build UTM props from sessionStorage for client-side attribution
+      const utmProps: Record<string, string> = {};
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(k => {
+        const v = sessionStorage.getItem('he_' + k);
+        if (v) utmProps[k] = v;
+      });
+
       if ((window as any).op) {
         (window as any).op('identify', {
           profileId: leadEmail,
@@ -573,11 +580,13 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
             address: formData.get('address') as string || '',
             service: formData.get('service') as string || 'general',
             source: 'hero_form',
+            ...utmProps,
           },
         });
         (window as any).op('track', 'lead_form_submitted', {
           service: formData.get('service') || 'general',
           source: 'hero_form',
+          ...utmProps,
         });
       }
       if ((window as any).dataLayer) {
@@ -585,6 +594,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
           event: 'lead_form_submitted',
           service: formData.get('service') || 'general',
           source: 'hero_form',
+          ...utmProps,
         });
       }
 

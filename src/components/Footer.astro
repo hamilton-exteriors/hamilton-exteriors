@@ -275,6 +275,10 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
         }
         window.op?.('track', 'newsletter_subscribed', { source: 'footer' });
         window.dataLayer?.push({ event: 'newsletter_subscribed', source: 'footer' });
+        // Meta Pixel — client-side Lead event for newsletter signup
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', { content_name: 'newsletter', content_category: 'footer' }, { eventID: 'newsletter_' + Date.now() });
+        }
         msg.textContent = 'You\'re in! Watch your inbox.';
         msg.style.color = 'var(--color-green-light)';
         form.reset();

@@ -744,7 +744,20 @@
           pfSuccess.classList.remove('hidden');
           // Analytics: purchase completed
           var totalNum = parseFloat(String(data.total || '0').replace(/[^0-9.]/g, '')) || 0;
+          var buyerEmail = data.email || '';
+          var buyerName = data.name || '';
           if (window.op) {
+            // Identify the buyer so revenue is attributed to their profile
+            if (buyerEmail) {
+              window.op('identify', {
+                profileId: buyerEmail,
+                email: buyerEmail,
+                firstName: buyerName.split(' ')[0] || '',
+                lastName: buyerName.split(' ').slice(1).join(' ') || '',
+                phone: data.phone || '',
+                properties: { address: state.address || '', source: 'buy_flow' }
+              });
+            }
             window.op('track', 'purchase_completed', { ref: ref, product: data.product || '', total: data.total || '', address: data.address || '' });
             // OpenPanel revenue tracking — ties purchase value to the user profile
             window.op('revenue', totalNum, { ref: ref, product: data.product || '', source: 'buy_flow' });
