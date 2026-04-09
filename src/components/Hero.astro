@@ -30,7 +30,7 @@ const {
   formTitle = 'Get Your Free Quote',
   formAction = '/success',
   formSubtitle = "We'll call you within 3\u20135 minutes to schedule your inspection.",
-  headline = "Bay Area's Architect-Led  Design-Build &  Exteriors Firm",
+  headline = "Bay Area's Architect-Led  Custom Home  & Exteriors Contractor",
   headlineLines = headline.trim().split(/\s{2,}|\n/),
   badges = [
     'In-House Architect & Engineering',
@@ -554,6 +554,14 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
           service: formData.get('service') || 'general',
           source: 'hero_form',
         });
+      }
+
+      // Meta Pixel — client-side Lead event (deduped with server CAPI via eventId)
+      if (typeof fbq === 'function' && data?.eventId) {
+        fbq('track', 'Lead', {
+          content_name: formData.get('service') || 'general',
+          currency: 'USD',
+        }, { eventID: data.eventId });
       }
 
       // Success — show confirmation

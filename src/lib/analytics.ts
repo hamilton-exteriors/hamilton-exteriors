@@ -66,6 +66,28 @@ export async function trackServerEvent(
  * across concurrent SSR requests, so calling op.identify() on it would
  * bleed profileId between visitors.
  */
+/**
+ * Track revenue server-side in OpenPanel.
+ * Call after a purchase or closed deal to attribute revenue to a profile.
+ */
+export async function trackRevenue(
+  amount: number,
+  props?: EventProps,
+) {
+  if (!import.meta.env.OPENPANEL_CLIENT_SECRET) return;
+
+  try {
+    const isolated = new OpenPanel({
+      clientId: import.meta.env.OPENPANEL_CLIENT_ID || 'edc36a20-3fa1-49e8-bae6-d0be0abfadec',
+      clientSecret: import.meta.env.OPENPANEL_CLIENT_SECRET || '',
+    });
+
+    await isolated.revenue(amount, props || {});
+  } catch (e) {
+    console.error('[analytics] revenue tracking failed:', e);
+  }
+}
+
 export async function identifyProfile(profile: {
   email: string;
   firstName?: string;

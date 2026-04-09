@@ -742,8 +742,16 @@
           $('#pf-ref').textContent = ref;
           pfSuccess.classList.remove('hidden');
           // Analytics: purchase completed
-          if (window.op) window.op('track', 'purchase_completed', { ref: ref, product: data.product || '', total: data.total || '', address: data.address || '' });
+          var totalNum = parseFloat(String(data.total || '0').replace(/[^0-9.]/g, '')) || 0;
+          if (window.op) {
+            window.op('track', 'purchase_completed', { ref: ref, product: data.product || '', total: data.total || '', address: data.address || '' });
+            // OpenPanel revenue tracking — ties purchase value to the user profile
+            window.op('revenue', totalNum, { ref: ref, product: data.product || '', source: 'buy_flow' });
+          }
           if (window.dataLayer) window.dataLayer.push({ event: 'purchase_completed', ref: ref, product: data.product || '', total: data.total || '' });
+          // Meta Pixel — client-side Purchase event
+          var purchaseEventId = 'purchase_' + ref;
+          if (typeof fbq === 'function') fbq('track', 'Purchase', { value: totalNum, currency: 'USD', content_ids: [data.product || ''], content_type: 'product' }, { eventID: purchaseEventId });
         })
         .catch(function () {
           // Show success anyway but with a note — order is captured client-side

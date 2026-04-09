@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { sendToBackOffice } from '../../../lib/backoffice';
 import { identifyProfile } from '../../../lib/analytics';
+import { sendMetaEvent, getMetaCookies } from '../../../lib/meta-capi';
 
 /**
  * POST /api/leads/partial — Progressive lead capture.
@@ -70,6 +71,29 @@ export const POST: APIRoute = async ({ request }) => {
         ...(body.address && { address: String(body.address) }),
         ...(body.service && { service: String(body.service) }),
         source: 'partial_form',
+      },
+    });
+
+    // Meta CAPI — fire Contact event on partial lead (deduped via eventId from client)
+    const eventId = String(body.eventId || crypto.randomUUID());
+    const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '';
+    const userAgent = request.headers.get('user-agent') || '';
+    const { fbc, fbp } = getMetaCookies(request);
+    const pageUrl = String(body.page_url || request.headers.get('referer') || 'https://hamilton-exteriors.com');
+
+    sendMetaEvent({
+      eventName: 'Contact',
+      eventId,
+      eventSourceUrl: pageUrl,
+      userData: {
+        email,
+        ...(phone && { phone }),
+        firstName: first,
+        lastName: rest.join(' '),
+        clientIp,
+        userAgent,
+        fbc,
+        fbp,
       },
     });
   }

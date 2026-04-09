@@ -3,6 +3,7 @@ import { z } from 'astro/zod';
 import { isInServiceArea, SERVICE_AREA_ERROR } from '../lib/service-area';
 import { sendToBackOffice } from '../lib/backoffice';
 import { trackServerEvent, identifyProfile } from '../lib/analytics';
+import { sendMetaEvent, getMetaCookies } from '../lib/meta-capi';
 
 export const server = {
   submitLead: defineAction({
@@ -19,7 +20,7 @@ export const server = {
         errorMap: () => ({ message: 'You must agree to the terms' }),
       }),
     }),
-    handler: async (input) => {
+    handler: async (input, context) => {
       if (!(await isInServiceArea(input.address))) {
         throw new ActionError({ code: 'BAD_REQUEST', message: SERVICE_AREA_ERROR });
       }
@@ -65,7 +66,36 @@ export const server = {
         source: 'hero_form',
       });
 
-      return { success: true, name: input.fullName };
+      // Meta CAPI — server-side Lead event (deduped with client-side Pixel via eventId)
+      const eventId = crypto.randomUUID();
+      const request = context.request;
+      const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '';
+      const userAgent = request.headers.get('user-agent') || '';
+      const { fbc, fbp } = getMetaCookies(request);
+      const pageUrl = request.headers.get('referer') || 'https://hamilton-exteriors.com';
+
+      sendMetaEvent({
+        eventName: 'Lead',
+        eventId,
+        eventSourceUrl: pageUrl,
+        userData: {
+          email: input.email,
+          phone: input.phone,
+          firstName,
+          lastName: lastParts.join(' '),
+          clientIp,
+          userAgent,
+          fbc,
+          fbp,
+        },
+        customData: {
+          currency: 'USD',
+          contentType: 'service',
+          contentIds: [input.service || 'general'],
+        },
+      });
+
+      return { success: true, name: input.fullName, eventId };
     },
   }),
 };

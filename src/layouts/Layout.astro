@@ -36,6 +36,8 @@ const clientIp = Astro.request.headers.get('x-forwarded-for')?.split(',')[0]?.tr
   || '';
 const isExcludedIp = EXCLUDED_IPS.has(clientIp);
 
+const metaPixelId = import.meta.env.META_PIXEL_ID || '';
+
 const heroSrc = Astro.props.heroImage || heroBg;
 // Only process hero preload images when actually needed — avoids wasted SSR work
 const heroMobilePreload = Astro.props.preloadHero ? await getImage({ src: heroSrc, width: 768, height: 432, format: 'webp', quality: 72 }) : null;
@@ -298,6 +300,8 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <!-- Google Tag Manager secondary domain (loads analytics.js etc.) -->
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <!-- Meta Pixel (Facebook) -->
+    <link rel="dns-prefetch" href="https://connect.facebook.net" />
     <!-- BackOffice portfolio widget — loaded on every page with a Projects section -->
     <link rel="preconnect" href="https://backoffice-production-99b7.up.railway.app" />
     <link rel="dns-prefetch" href="https://backoffice-production-99b7.up.railway.app" />
@@ -393,6 +397,25 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
           trackAttributes={true}
         />
 
+        {/* Meta Pixel — fires PageView on every page, Lead/Purchase via event helpers */}
+        {metaPixelId && (
+          <>
+            <script is:inline define:vars={{ metaPixelId }}>
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', metaPixelId);
+              fbq('track', 'PageView');
+            </script>
+            <noscript><img height="1" width="1" style="display:none" src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`} /></noscript>
+          </>
+        )}
+
         {/* Google Tag Manager — deferred until first user interaction to keep LCP/TBT clean */}
         <script is:inline>
           (function(){
@@ -487,6 +510,17 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
 
     <!-- Global event tracking: phone clicks + CTA clicks -->
     <script>
+      // Meta Pixel — ViewContent on service pages, InitiateCheckout on /buy/scan
+      if (typeof fbq === 'function') {
+        const path = window.location.pathname;
+        if (['/roofing', '/siding', '/windows', '/adu', '/custom-homes', '/additions'].some(p => path.startsWith(p))) {
+          fbq('track', 'ViewContent', { content_name: path });
+        }
+        if (path === '/buy/scan') {
+          fbq('track', 'InitiateCheckout');
+        }
+      }
+
       // Track all tel: link clicks
       document.addEventListener('click', (e) => {
         const link = (e.target as HTMLElement).closest('a[href^="tel:"]') as HTMLAnchorElement;
