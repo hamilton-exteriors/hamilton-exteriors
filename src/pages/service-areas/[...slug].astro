@@ -106,6 +106,10 @@ let jsonLd: Record<string, unknown>[] | undefined;
 
 if (pageType === 'cityService' && cityServiceData) {
   const [urlCountySlug, urlCitySlug] = segments;
+  const csProximity = getCityProximity(urlCitySlug);
+  const [csLng, csLat] = csProximity ? csProximity.split(',').map(Number) : [undefined, undefined];
+  const csWiki = getCityWikipedia(urlCitySlug);
+  const pageUrl = `${siteUrl}/service-areas/${urlCountySlug}/${urlCitySlug}/${segments[2]}`;
   jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -115,8 +119,25 @@ if (pageType === 'cityService' && cityServiceData) {
         { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
         { '@type': 'ListItem', 'position': 3, 'name': `${cityServiceData.county} County`, 'item': `${siteUrl}/service-areas/${urlCountySlug}` },
         { '@type': 'ListItem', 'position': 4, 'name': `${cityServiceData.city}, ${cityServiceData.state}`, 'item': `${siteUrl}/service-areas/${urlCountySlug}/${urlCitySlug}` },
-        { '@type': 'ListItem', 'position': 5, 'name': cityServiceData.serviceName, 'item': `${siteUrl}/service-areas/${urlCountySlug}/${urlCitySlug}/${segments[2]}` },
+        { '@type': 'ListItem', 'position': 5, 'name': cityServiceData.serviceName, 'item': pageUrl },
       ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': `${pageUrl}#service`,
+      'name': `${cityServiceData.serviceName} in ${cityServiceData.city}, ${cityServiceData.state}`,
+      'url': pageUrl,
+      'serviceType': cityServiceData.serviceName,
+      'provider': { '@type': 'GeneralContractor', '@id': 'https://hamilton-exteriors.com/#business' },
+      'areaServed': {
+        '@type': 'City',
+        'name': cityServiceData.city,
+        ...(csWiki && { 'sameAs': csWiki }),
+        'containedInPlace': { '@type': 'State', 'name': 'California' },
+        ...(csLat && csLng && { 'geo': { '@type': 'GeoCoordinates', 'latitude': csLat, 'longitude': csLng } }),
+      },
+      'dateModified': new Date().toISOString().split('T')[0],
     },
   ];
 } else if (pageType === 'city' && cityData) {
