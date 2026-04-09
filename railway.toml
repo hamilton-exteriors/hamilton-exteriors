@@ -1,0 +1,9 @@
+[build]
+builder = "NIXPACKS"
+buildCommand = "bun install --frozen-lockfile && bun run build"
+
+[deploy]
+startCommand = "node server.mjs"
+
+[service]
+watchPatterns = ["src/**", "public/**", "astro.config.mjs", "package.json", "bun.lock", "server.mjs", "tsconfig.json", "tailwind.config.*"]
