@@ -67,7 +67,7 @@ const YELP_LINK = 'https://www.yelp.com/biz/hamilton-exteriors-castro-valley';
             <div class="flex items-center gap-[10px]">
               {review.profile_photo_url ? (
                 <img
-                  src={review.profile_photo_url}
+                  src={review.profile_photo_url.replace(/=s\d+/, '=s72')}
                   alt={`${review.author_name}, Hamilton Exteriors customer`}
                   width="36"
                   height="36"

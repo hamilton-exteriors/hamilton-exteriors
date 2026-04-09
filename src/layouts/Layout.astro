@@ -84,8 +84,9 @@ const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
 // Canonical must match sitemap URLs — trailingSlash: 'never' means no trailing slashes
 const canonicalUrl = Astro.props.canonical || (siteUrl + Astro.url.pathname).replace(/\/$/, '') || siteUrl;
 
-// Resolve OG image: explicit prop > auto-generated from hero > default fallback
-const ogImageUrl = image || (heroOgImage ? siteUrl + heroOgImage.src : siteUrl + '/og-default.jpg');
+// Resolve OG image: explicit prop > page-specific hero > stable default
+// Homepage uses /og-default.jpg (hash-stable) instead of a build-hashed hero artifact
+const ogImageUrl = image || (heroOgImage && Astro.props.heroImage ? siteUrl + heroOgImage.src : siteUrl + '/og-default.jpg');
 const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/jpeg');
 
 // ── Build structured data objects in frontmatter so Astro evaluates all expressions ──

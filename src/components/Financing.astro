@@ -18,8 +18,8 @@ const { scheduleHref } = Astro.props;
       <Image
         src={financingHouse}
         alt="Bay Area home with financing options available through Hamilton Exteriors"
-        width={700}
-        height={600}
+        widths={[420, 700]}
+        sizes="(max-width: 1023px) 420px, 700px"
         class="absolute inset-0 size-full object-cover object-center"
         loading="lazy"
         decoding="async"
