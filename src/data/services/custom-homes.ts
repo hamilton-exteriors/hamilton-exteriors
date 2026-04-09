@@ -7,6 +7,13 @@ export const data: ServicePageData = {
     'Full-service custom home builder in the Bay Area. Design, architecture, engineering, permits & construction — all under one roof.',
   announcementText: 'Limited Time: Free Design Consultation for Custom Home Projects*',
   definition: 'Custom home construction is the process of designing and building a new residence from the ground up, tailored to the homeowner\u2019s specifications. In the Bay Area, custom homes cost $350 to $800 per square foot including design, architecture, engineering, permits, and construction.',
+  expertQuotes: [
+    {
+      quote: 'The biggest cost driver in Bay Area custom homes is site preparation — hillside lots in the Oakland Hills or Marin headlands can add $100,000 to $200,000 in foundation engineering alone. Design-build under one contract eliminates the coordination gaps between separate architects, engineers, and builders that cause 80% of budget overruns.',
+      author: 'Alexander Hamilton Li',
+      credentials: 'Architect & General Contractor, CSLB #1082377',
+    },
+  ],
   hero: {
     headline: "Bay Area's Best Custom Home Builder",
     formTitle: 'Get a FREE Consultation',
@@ -63,6 +70,24 @@ export const data: ServicePageData = {
       },
     },
     { type: 'difference' },
+    {
+      type: 'comparison',
+      data: {
+        heading: 'Custom Home Build Comparison: Ground-Up vs. Major Addition vs. Whole-House Remodel',
+        columns: ['Ground-Up Construction', 'Major Addition', 'Whole-House Remodel'],
+        rows: [
+          { feature: 'Cost per sq ft', values: ['$350–$800', '$200–$500', '$150–$400'] },
+          { feature: 'Typical project cost', values: ['$900K–$2M+', '$150K–$500K', '$225K–$600K'] },
+          { feature: 'Timeline', values: ['12–18 months (build)', '10–24 weeks', '4–7 months'] },
+          { feature: 'Design flexibility', values: ['Complete (layout, style, systems)', 'Moderate (within existing footprint)', 'Limited (existing structure)'] },
+          { feature: 'Permits', values: ['Full building + planning', 'Building permit', 'Building permit'] },
+          { feature: 'Living on-site during work', values: ['No', 'Usually yes', 'Often no (gut phase)'] },
+          { feature: 'Energy efficiency', values: ['Exceeds Title 24 (new build)', 'New section meets Title 24', 'Upgraded to current code'] },
+          { feature: 'Best for', values: ['Full custom vision, vacant lots', 'More space, keep location', 'Modernize without rebuilding'] },
+        ],
+        source: 'National Association of Home Builders, Remodeling Magazine 2024 Cost vs. Value Report, Hamilton Exteriors project data 2024–2026',
+      },
+    },
     { type: 'projects' },
     { type: 'faq' },
     { type: 'yellowBar', text: 'Schedule a FREE Consultation', href: '#contact' },

@@ -8,6 +8,13 @@ export const data: ServicePageData = {
     'Bay Area home additions, second stories & ADUs. Design, permits & construction under one roof. 50-year warranty. Call (650) 977-3351.',
   announcementText: 'Limited Time: Free Design Consultation for Your Addition Project*',
   definition: 'A home addition expands an existing residence by adding new living space — either outward (room extension), upward (second story), or as a detached unit (ADU). Bay Area home additions typically cost $200 to $500 per square foot and require building permits from the local jurisdiction.',
+  expertQuotes: [
+    {
+      quote: 'Second-story additions are the fastest-growing project type in the Bay Area because lot sizes average just 5,000 to 7,000 square feet — there is nowhere to go but up. Our structural engineers assess every existing foundation before we quote, because 60% of pre-1970 Bay Area homes need some reinforcement before adding a second floor.',
+      author: 'Alexander Hamilton Li',
+      credentials: 'Architect & General Contractor, CSLB #1082377',
+    },
+  ],
   hero: {
     headline: "Bay Area's Best Home Addition Builder",
     formTitle: 'Get a FREE Consultation',
@@ -58,6 +65,24 @@ export const data: ServicePageData = {
       },
     },
     { type: 'difference' },
+    {
+      type: 'comparison',
+      data: {
+        heading: 'Home Addition Comparison: Second Story vs. Room Extension vs. ADU vs. Full Remodel',
+        columns: ['Second Story', 'Room Extension', 'ADU / Guest House', 'Full Remodel'],
+        rows: [
+          { feature: 'Cost per sq ft', values: ['$200–$400', '$175–$350', '$150–$350', '$150–$400'] },
+          { feature: 'Typical size', values: ['800–1,500 sq ft', '200–600 sq ft', '400–1,200 sq ft', 'Entire home'] },
+          { feature: 'Build time', values: ['16–24 weeks', '8–12 weeks', '4–6 months', '4–7 months'] },
+          { feature: 'Yard space used', values: ['None', 'Some', 'Backyard footprint', 'None'] },
+          { feature: 'Structural work', values: ['Foundation + framing', 'Foundation extension', 'New foundation', 'Assessment + reinforcement'] },
+          { feature: 'Permits required', values: ['Full building permit', 'Building permit', 'ADU permit (streamlined)', 'Building permit'] },
+          { feature: 'Resale ROI', values: ['65–75% (Remodeling Mag.)', '50–65%', '$150K–$300K value add', '75% (kitchen-focused)'] },
+          { feature: 'Best for', values: ['Maximizing space, no yard loss', 'Targeted room expansion', 'Rental income, multigenerational', 'Outdated homes, full refresh'] },
+        ],
+        source: 'Remodeling Magazine 2024 Cost vs. Value Report (Pacific West), California Department of Housing and Community Development, Hamilton Exteriors project data 2024–2026',
+      },
+    },
     { type: 'projects' },
     { type: 'faq' },
     { type: 'yellowBar', text: 'Schedule a FREE Consultation', href: '#contact' },

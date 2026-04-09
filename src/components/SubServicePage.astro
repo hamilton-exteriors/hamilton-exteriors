@@ -62,10 +62,63 @@ const serviceSchema = {
     { '@type': 'AdministrativeArea', name: 'San Mateo County', containedInPlace: { '@type': 'State', name: 'California' } },
   ],
 };
+
+// Product schema for material/product sub-service pages (roofing materials, siding, windows)
+// Maps parentService/typeSlug → Product schema data
+const PRODUCT_SCHEMA_MAP: Record<string, { name: string; brand?: string; category: string; lowPrice: number; highPrice: number; unit: string; description: string }> = {
+  'roofing/asphalt-shingles': { name: 'Asphalt Shingle Roofing', brand: 'GAF, CertainTeed, Owens Corning', category: 'Roofing Materials', lowPrice: 950, highPrice: 1400, unit: 'per roofing square (100 sq ft)', description: 'Architectural asphalt composite shingle roof installation with Class A fire rating and 50-year system warranty.' },
+  'roofing/metal': { name: 'Standing Seam Metal Roofing', category: 'Roofing Materials', lowPrice: 1200, highPrice: 1800, unit: 'per roofing square (100 sq ft)', description: 'Standing seam metal roof installation in steel or aluminum with 40–70 year lifespan and 70% solar heat reflection.' },
+  'roofing/tile': { name: 'Clay & Concrete Tile Roofing', category: 'Roofing Materials', lowPrice: 1400, highPrice: 2500, unit: 'per roofing square (100 sq ft)', description: 'Clay and concrete tile roof installation with 75–100 year lifespan and Class A fire resistance.' },
+  'roofing/energy': { name: 'GAF Energy Roof System', brand: 'GAF', category: 'Solar Roofing', lowPrice: 1800, highPrice: 2800, unit: 'per roofing square (100 sq ft)', description: 'Integrated solar shingle roofing system with 30% federal tax credit and 80–95% energy offset.' },
+  'siding/vinyl': { name: 'Vinyl Siding', brand: 'CertainTeed, Ply Gem', category: 'Siding Materials', lowPrice: 450, highPrice: 600, unit: 'per square (100 sq ft)', description: 'Premium insulated vinyl siding with 60+ color options and lifetime owner warranty.' },
+  'siding/fiber-cement': { name: 'James Hardie Fiber Cement Siding', brand: 'James Hardie', category: 'Siding Materials', lowPrice: 800, highPrice: 1200, unit: 'per square (100 sq ft)', description: 'HZ5 fiber cement siding with ColorPlus factory finish, Class A fire resistance, and 86% resale ROI.' },
+  'siding/stucco': { name: 'Three-Coat Stucco Siding', category: 'Siding Materials', lowPrice: 800, highPrice: 1100, unit: 'per square (100 sq ft)', description: 'Traditional three-coat stucco exterior with one-hour fire rating and 50–80 year lifespan.' },
+  'windows/single-hung': { name: 'Single Hung Windows', brand: 'Milgard, Andersen', category: 'Replacement Windows', lowPrice: 600, highPrice: 1200, unit: 'per window installed', description: 'Single hung replacement windows with dual-pane Low-E glass, U-factor 0.25, and tilt-in cleaning.' },
+  'windows/single-slider': { name: 'Single Slider Windows', brand: 'Milgard, Andersen', category: 'Replacement Windows', lowPrice: 600, highPrice: 1100, unit: 'per window installed', description: 'Horizontal single slider windows with Low-E glass, no exterior clearance required.' },
+  'windows/sliding-glass-doors': { name: 'Sliding Glass Doors', brand: 'Milgard, Andersen, Marvin', category: 'Patio Doors', lowPrice: 1500, highPrice: 12000, unit: 'per door installed', description: 'Multi-pane sliding glass doors from 5–16 ft wide with multi-point locking and ADA-compliant options.' },
+  'windows/picture': { name: 'Picture Windows', category: 'Replacement Windows', lowPrice: 800, highPrice: 2500, unit: 'per window installed', description: 'Large fixed-pane picture windows with U-factor 0.20 (triple-pane) and sizes up to 8×6 ft.' },
+  'windows/double-hung': { name: 'Double Hung Windows', brand: 'Andersen, Marvin, Pella', category: 'Replacement Windows', lowPrice: 700, highPrice: 1500, unit: 'per window installed', description: 'Classic double hung windows with two operable sashes, tilt-in cleaning, and period-accurate profiles.' },
+  'windows/casement': { name: 'Casement Windows', brand: 'Andersen, Marvin, Milgard', category: 'Replacement Windows', lowPrice: 800, highPrice: 1500, unit: 'per window installed', description: 'Crank-open casement windows with 50–90% more airflow, U-factor 0.22, and tightest seal of any operable window.' },
+};
+
+const productKey = `${data.parentService}/${data.typeSlug}`;
+const productData = PRODUCT_SCHEMA_MAP[productKey];
+
+const productSchema = productData ? {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  '@id': `${pageUrl}#product`,
+  'name': productData.name,
+  'description': productData.description,
+  'url': pageUrl,
+  'category': productData.category,
+  ...(productData.brand && {
+    'brand': productData.brand.includes(',')
+      ? productData.brand.split(', ').map(b => ({ '@type': 'Brand', 'name': b }))
+      : { '@type': 'Brand', 'name': productData.brand },
+  }),
+  'manufacturer': productData.brand && !productData.brand.includes(',')
+    ? { '@type': 'Organization', 'name': productData.brand }
+    : undefined,
+  'offers': {
+    '@type': 'AggregateOffer',
+    'lowPrice': productData.lowPrice,
+    'highPrice': productData.highPrice,
+    'priceCurrency': 'USD',
+    'unitText': productData.unit,
+    'availability': 'https://schema.org/InStock',
+    'seller': { '@id': `${siteUrl}/#business` },
+    'areaServed': { '@type': 'State', 'name': 'California' },
+    'priceValidUntil': `${new Date().getFullYear()}-12-31`,
+  },
+} : null;
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+{productSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+)}
 
 <AnnouncementBar slot="header" />
 <Navbar slot="header" />
@@ -78,7 +131,7 @@ const serviceSchema = {
 ]} />
 
 <!-- Hero — image with overlay text -->
-<section class="relative min-h-[420px] w-full">
+<section class="relative min-h-[420px] w-full" aria-label={`${data.headline.replace('\n', ' ')} hero`}>
   <Image
     src={data.heroImage}
     alt={data.heroAlt}
@@ -92,7 +145,7 @@ const serviceSchema = {
     <div class="mx-auto flex h-full max-w-[1200px] flex-col justify-center px-5">
       <a
         href={`/${data.parentService}`}
-        class="mb-4 inline-block font-satoshi text-xs font-semibold tracking-[0.12em] text-yellow uppercase no-underline transition-opacity hover:opacity-80"
+        class="mb-4 inline-block font-satoshi text-xs font-semibold tracking-[0.12em] text-yellow uppercase no-underline transition-opacity hover:opacity-80 focus-visible:ring-2 focus-visible:ring-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal focus-visible:outline-none rounded-sm"
       >
         &larr; All {data.parentName}
       </a>
@@ -102,13 +155,13 @@ const serviceSchema = {
       <div class="mt-7 flex flex-wrap gap-3">
         <a
           href="#quote"
-          class="inline-block rounded-full bg-yellow px-8 py-3.5 font-oswald text-base font-bold tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90"
+          class="inline-block rounded-full bg-yellow px-8 py-3.5 font-oswald text-base font-bold tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal focus-visible:outline-none"
         >
           Get a Free Estimate
         </a>
         <a
           href={PHONE_HREF}
-          class="inline-block rounded-full border-2 border-white/40 px-7 py-3 text-[0.9375rem] font-semibold text-white no-underline transition-opacity hover:opacity-90"
+          class="inline-block rounded-full border-2 border-white/40 px-7 py-3 text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal focus-visible:outline-none"
         >
           {PHONE_DISPLAY}
         </a>

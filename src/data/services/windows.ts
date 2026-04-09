@@ -117,6 +117,23 @@ export const data: ServicePageData = {
         footnote: 'Prices per unit installed, reflecting typical Bay Area costs. Includes removal of existing window, new flashing, materials, labor, trim, and cleanup. Energy-efficient Low-E glass standard on all windows. Actual pricing varies based on window size, frame material, glass options, and installation complexity. Contact us for a free, itemized estimate.',
       },
     },
+    {
+      type: 'comparison',
+      data: {
+        heading: 'Window Style Comparison: Single Hung vs. Double Hung vs. Casement vs. Slider',
+        columns: ['Single Hung', 'Double Hung', 'Casement', 'Slider', 'Picture'],
+        rows: [
+          { feature: 'Cost per window (installed)', values: ['$600–$1,200', '$700–$1,500', '$800–$1,500', '$600–$1,100', '$800–$2,500'] },
+          { feature: 'Airflow', values: ['Bottom sash only', 'Both sashes (convection)', '50–90% more (AAMA)', 'Half the opening', 'None (fixed)'] },
+          { feature: 'Energy efficiency (U-factor)', values: ['0.25', '0.27', '0.22', '0.27', '0.20 (triple)'] },
+          { feature: 'Seal tightness', values: ['Good', 'Good', 'Best (4-side compression)', 'Fair', 'Best (no moving parts)'] },
+          { feature: 'Cleaning', values: ['Tilt-in sash', 'Tilt-in both sashes', 'Crank open (interior)', 'Removable sash', 'Interior only'] },
+          { feature: 'Exterior clearance needed', values: ['No', 'No', 'Yes (outward swing)', 'No', 'No'] },
+          { feature: 'Best for', values: ['Most Bay Area homes', 'Victorians, Craftsmans', 'Fog belt, upper floors', 'Eichlers, kitchens', 'Views, hillside homes'] },
+        ],
+        source: 'American Architectural Manufacturers Association (AAMA), U.S. Department of Energy ENERGY STAR program, Hamilton Exteriors project data 2024–2026',
+      },
+    },
     { type: 'projects' },
     { type: 'faq' },
     { type: 'yellowBar', text: 'Schedule a FREE Inspection', href: '#contact' },
