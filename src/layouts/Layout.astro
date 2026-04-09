@@ -27,6 +27,15 @@ interface Props {
   canonical?: string;
 }
 
+// IPs to exclude from analytics (dev + owner — avoid polluting OpenPanel/GTM data)
+const EXCLUDED_IPS = new Set([
+  '172.59.128.225',  // dev machine
+]);
+const clientIp = Astro.request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+  || Astro.request.headers.get('cf-connecting-ip')
+  || '';
+const isExcludedIp = EXCLUDED_IPS.has(clientIp);
+
 const heroSrc = Astro.props.heroImage || heroBg;
 // Only process hero preload images when actually needed — avoids wasted SSR work
 const heroMobilePreload = Astro.props.preloadHero ? await getImage({ src: heroSrc, width: 768, height: 432, format: 'webp', quality: 45 }) : null;
@@ -373,32 +382,37 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
     {webSiteSchemaObj && <script type="application/ld+json" set:html={JSON.stringify(webSiteSchemaObj)} />}
     {webPageSchemaObj && <script type="application/ld+json" set:html={JSON.stringify(webPageSchemaObj)} />}
 
-    <!-- OpenPanel Analytics — cookie-free, session replay, funnels, ~2.3KB -->
-    <OpenPanelComponent
-      clientId="edc36a20-3fa1-49e8-bae6-d0be0abfadec"
-      trackScreenViews={true}
-      trackOutgoingLinks={true}
-      trackAttributes={true}
-    />
+    {/* Analytics excluded for dev/owner IPs to keep data clean */}
+    {!isExcludedIp && (
+      <>
+        {/* OpenPanel Analytics — cookie-free, session replay, funnels, ~2.3KB */}
+        <OpenPanelComponent
+          clientId="edc36a20-3fa1-49e8-bae6-d0be0abfadec"
+          trackScreenViews={true}
+          trackOutgoingLinks={true}
+          trackAttributes={true}
+        />
 
-    <!-- Google Tag Manager — deferred until first user interaction to keep LCP/TBT clean -->
-    <script is:inline>
-      (function(){
-        var loaded=false;
-        function loadGTM(){
-          if(loaded)return;loaded=true;
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-MTRC8MMK');
-        }
-        ['scroll','click','touchstart','keydown'].forEach(function(e){
-          window.addEventListener(e,loadGTM,{once:true,passive:true});
-        });
-        setTimeout(loadGTM,5000);
-      })();
-    </script>
+        {/* Google Tag Manager — deferred until first user interaction to keep LCP/TBT clean */}
+        <script is:inline>
+          (function(){
+            var loaded=false;
+            function loadGTM(){
+              if(loaded)return;loaded=true;
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-MTRC8MMK');
+            }
+            ['scroll','click','touchstart','keydown'].forEach(function(e){
+              window.addEventListener(e,loadGTM,{once:true,passive:true});
+            });
+            setTimeout(loadGTM,5000);
+          })();
+        </script>
+      </>
+    )}
 
     <!-- Mapbox Address Autofill — lazy-loaded on first interaction to avoid 1.5MB initial JS -->
     {includeMapbox && (
