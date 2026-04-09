@@ -6,6 +6,7 @@ import { heroRoofing, roofingAsphalt, roofingMetal, roofingTile } from '../lib/i
 import { serviceSiding, sidingVinyl, sidingFiberCement, sidingWood, sidingStucco } from '../lib/images';
 import { heroWindows } from '../lib/images';
 import { aduHero, serviceCustomHomesFull, serviceAdditions } from '../lib/images';
+import { SUB_SERVICE_IMAGES } from '../data/sub-services';
 import { areaOakland, areaSanJose, areaWalnutCreek } from '../lib/images';
 
 import { GHOST_ORIGIN } from '../lib/ghost';
@@ -79,6 +80,12 @@ const pageImages: { page: string; images: { src: string; title: string; caption:
     ],
   },
 ];
+
+// Sub-service pages — hero images from the static registry
+const subServiceImageEntries = Object.entries(SUB_SERVICE_IMAGES).map(([key, img]) => ({
+  page: `/${key}`,
+  images: [{ src: img.heroImage.src, title: img.heroAlt, caption: img.heroAlt }],
+}));
 
 // pSEO service-area pages — city hero images
 const COUNTY_CITIES: Record<string, { slug: string; name: string }[]> = {
@@ -166,7 +173,7 @@ async function fetchBlogImages(): Promise<{ page: string; images: { src: string;
       url.searchParams.set('limit', '100');
       url.searchParams.set('page', String(page));
       url.searchParams.set('fields', 'slug,title,feature_image,excerpt');
-      url.searchParams.set('filter', 'tag:-hash-service-area-city+tag:-hash-service-area-county+tag:-hash-service-area-city-service');
+      url.searchParams.set('filter', 'tag:-hash-service-area-city+tag:-hash-service-area-county+tag:-hash-service-area-city-service+tag:-hash-hash-sub-service');
 
       const res = await fetch(url.toString(), { signal: AbortSignal.timeout(10_000) });
       if (!res.ok) break;
@@ -212,7 +219,7 @@ export const GET: APIRoute = async () => {
   const blogImages = await fetchBlogImages();
   // pSEO service-area pages with city hero images
   const pseoImages = buildPseoImageEntries();
-  const allPages = [...pageImages, ...blogImages, ...pseoImages];
+  const allPages = [...pageImages, ...subServiceImageEntries, ...blogImages, ...pseoImages];
 
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';

@@ -250,8 +250,15 @@ const webSiteSchemaObj = Astro.url.pathname === '/' ? {
   "description": "Bay Area roofing, siding, windows, ADUs & custom homes by Hamilton Exteriors.",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://hamilton-exteriors.com/blog?search={search_term_string}",
-    "query-input": "required name=search_term_string"
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://hamilton-exteriors.com/blog?search={search_term_string}"
+    },
+    "query-input": {
+      "@type": "PropertyValueSpecification",
+      "valueRequired": true,
+      "valueName": "search_term_string"
+    }
   }
 } : null;
 
