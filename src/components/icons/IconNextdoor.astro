@@ -1,11 +1,14 @@
 ---
-import { siNextdoor } from 'simple-icons';
+/**
+ * Nextdoor house icon — the recognizable green house silhouette.
+ * Brand color: #8ED500
+ */
 interface Props {
   size?: number;
   class?: string;
 }
 const { size = 26, class: className = '' } = Astro.props;
 ---
-<svg viewBox="0 0 24 24" width={size} height={size} class={className} aria-hidden="true">
-  <path fill={`#${siNextdoor.hex}`} d={siNextdoor.path} />
+<svg viewBox="0 0 24 24" width={size} height={size} class={className} aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#8ED500" d="M23.993 9.816L12 2.473l-4.12 2.524V2.473H4.124v4.819L.004 9.816l1.961 3.202 2.16-1.315v9.826h15.749v-9.826l2.159 1.315 1.96-3.202"/>
 </svg>
