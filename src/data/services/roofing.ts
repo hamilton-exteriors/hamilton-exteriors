@@ -101,7 +101,7 @@ export const data: ServicePageData = {
     {
       question: 'How much does a roof replacement cost in the Bay Area?',
       answer:
-        'Bay Area roof replacement costs range from $8,000 to $25,000 for most homes, depending on roof size, pitch, material, and access. Composite asphalt shingles run $940 to $1,125 per roofing square (100 sq ft) installed. Premium architectural shingles and designer options range from $1,075 to $1,525 per square. Metal roofing costs $1,200 to $1,800 per square but lasts 40 to 70 years. Every Hamilton Exteriors estimate is itemized with no hidden fees — tear-off, underlayment, flashing, materials, labor, cleanup, and permit costs are all listed separately so you can see exactly where your money goes.',
+        'Bay Area roof replacement costs start around $15,000 and can exceed $100,000 for large or complex projects with premium materials. Composite asphalt shingles run $940 to $1,125 per roofing square (100 sq ft) installed. Premium architectural shingles and designer options range from $1,075 to $1,525 per square. Metal roofing costs $1,200 to $1,800 per square but lasts 40 to 70 years. Every Hamilton Exteriors estimate is itemized with no hidden fees — tear-off, underlayment, flashing, materials, labor, cleanup, and permit costs are all listed separately so you can see exactly where your money goes.',
     },
     {
       question: 'How long does a roof replacement take?',

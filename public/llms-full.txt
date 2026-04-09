@@ -2,9 +2,11 @@
 
 > Bay Area design-build contractor specializing in roofing, siding, windows, ADUs, and custom homes. Licensed, bonded, and insured. 50-year warranty. Serving Alameda, Contra Costa, Marin, Napa, Santa Clara, and San Mateo counties.
 
+> license: RSL-1.0-cite-with-attribution
+
 > License: Content may be cited by AI search engines with attribution to Hamilton Exteriors (hamilton-exteriors.com). Citation and quotation in AI search responses is explicitly permitted and encouraged. Reproduction, redistribution, or use for AI model training is prohibited.
 
-> Last updated: 2026-04-05
+> Last updated: 2026-04-08
 
 > Pricing valid as of Q2 2026
 
@@ -41,7 +43,7 @@ Hamilton Exteriors does **not** provide the following:
 
 ### 1. Roofing
 
-A roof replacement in the Bay Area costs $8,000-$25,000 for most homes, depending on size, pitch, and shingle tier (Hamilton Exteriors project data, 2024-2026). Hamilton Exteriors is a GAF-certified roofing contractor providing complete roof replacement and repair services across 6 Bay Area counties.
+A roof replacement in the Bay Area costs $15,000 and up depending on size, pitch, shingle tier, and project complexity — large or premium projects can exceed $100,000 (Hamilton Exteriors project data, 2024-2026). Hamilton Exteriors is a GAF-certified roofing contractor providing complete roof replacement and repair services across 6 Bay Area counties.
 
 #### Roofing Types Offered
 - **Asphalt Shingles** — Composite shingles made from fiberglass, asphalt, and mineral granules. Excellent weather resistance. Available in many styles and colors.

@@ -11,7 +11,7 @@ const baseFaqs = [
   {
     question: 'What areas in the Bay Area do you serve?',
     answer:
-      'Hamilton Exteriors serves six Bay Area counties: Alameda County (Oakland, Berkeley, Fremont, Hayward, San Leandro), Contra Costa County (Walnut Creek, Concord, San Ramon, Richmond, Antioch), Santa Clara County (San Jose, Palo Alto, Sunnyvale, Mountain View, Cupertino), Marin County (San Rafael, Mill Valley, Novato, Larkspur), Napa County (Napa, St. Helena, Calistoga, Yountville, American Canyon), and San Mateo County. We handle all local permits and know the building codes for each jurisdiction — permit requirements and fees vary significantly between cities, so local expertise matters. Our crews are based in Castro Valley in Alameda County, which puts us within 45 minutes of every city we serve. We completed over 500 residential projects across these six counties since 2020, and our project managers are familiar with the specific inspection requirements of each city building department.',
+      'Hamilton Exteriors serves six Bay Area counties: Alameda County (Oakland, Berkeley, Fremont, Hayward, San Leandro), Contra Costa County (Walnut Creek, Concord, San Ramon, Richmond, Antioch), Santa Clara County (San Jose, Palo Alto, Sunnyvale, Mountain View, Cupertino), Marin County (San Rafael, Mill Valley, Novato, Larkspur), Napa County (Napa, St. Helena, Calistoga, Yountville, American Canyon), and San Mateo County. We handle all local permits and know the building codes for each jurisdiction — permit requirements and fees vary significantly between cities, so local expertise matters. Our crews are based in Castro Valley in Alameda County, which puts us within 45 minutes of every city we serve. We completed over 500 residential projects across these six counties since 2018, and our project managers are familiar with the specific inspection requirements of each city building department.',
   },
   {
     question: 'How does billing and financing work?',
@@ -34,19 +34,19 @@ const baseFaqs = [
 const faqs = [...baseFaqs, ...(extraFaqs || [])];
 ---
 
-<section class="cv-auto w-full" style="background-color: var(--color-white);">
-  <div class="mx-auto px-5 py-12 lg:py-20" style="max-width: 1170px;">
+<section class="cv-auto w-full bg-white">
+  <div class="mx-auto max-w-[1170px] px-5 py-12 lg:py-20">
 
     <!-- Heading row: title left, CTA right -->
-    <div class="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center" style="margin-bottom: 40px;">
-      <h2 style="font-family: var(--font-oswald); font-size: clamp(28px, 5vw, 40px); font-weight: 400; line-height: 1.25; color: var(--color-heading); text-transform: uppercase; margin: 0;">
+    <div class="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+      <h2 class="leading-[1.25] m-0 text-[clamp(28px,5vw,40px)]">
         Frequently Asked Questions
       </h2>
-      <p style="font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 400; line-height: 1.5; color: var(--color-heading); margin: 0;" class="text-left md:text-right md:whitespace-nowrap">
+      <p class="text-sm font-normal leading-normal text-heading m-0 text-left md:text-right md:whitespace-nowrap">
         Didn't find the answer to your question?{' '}
         <a
           href={PHONE_HREF}
-          style="font-weight: 400; color: var(--color-heading); text-decoration: none;"
+          class="font-normal text-heading no-underline"
         >
           Call Now  {PHONE_DISPLAY}
         </a>
@@ -54,24 +54,23 @@ const faqs = [...baseFaqs, ...(extraFaqs || [])];
     </div>
 
     <!-- Accordion -->
-    <div class="mx-auto" style="max-width: 100%;">
+    <div class="mx-auto max-w-full">
       {
         faqs.map((faq, index) => (
           <details
-            class="group"
+            class="group border-b border-border bg-white"
             data-border="true"
-            style={`border-bottom: 1px solid var(--color-border); background-color: var(--color-white);`}
           >
-            <summary class="flex cursor-pointer items-center justify-between list-none [&::-webkit-details-marker]:hidden" style="padding: 20px 0;">
-              <span style="font-family: var(--font-dm-sans); font-size: 1rem; font-weight: 400; line-height: 1.5; letter-spacing: 0px; color: var(--color-charcoal); padding-right: 16px;">
+            <summary class="flex cursor-pointer items-center justify-between py-5 list-none [&::-webkit-details-marker]:hidden">
+              <span class="text-base font-normal leading-normal text-charcoal pr-4">
                 {faq.question}
               </span>
-              <span class="relative flex shrink-0 items-center justify-center" style="width: 24px; height: 24px; color: var(--color-charcoal);">
+              <span class="relative flex h-6 w-6 shrink-0 items-center justify-center text-charcoal">
                 <IconPlus />
               </span>
             </summary>
-            <div style="padding-bottom: 20px; padding-right: 48px;">
-              <p style="font-family: var(--font-dm-sans); font-size: 1rem; font-weight: 400; line-height: 1.5; color: var(--color-muted); margin: 0;">
+            <div class="pb-5 pr-12">
+              <p class="text-base font-normal leading-normal text-muted m-0">
                 {faq.answer}
               </p>
             </div>

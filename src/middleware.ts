@@ -57,6 +57,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(self), payment=(), browsing-topics=()');
+  response.headers.set('Link', '</llms.txt>; rel="ai-content-declaration", </llms-full.txt>; rel="llms-full"');
 
   // CSP with nonce + strict-dynamic:
   // - 'nonce-xxx': trusts inline scripts with this nonce

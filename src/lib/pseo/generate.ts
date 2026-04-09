@@ -196,9 +196,9 @@ function getCityLocalFaqs(seed: CitySeed): Array<{ question: string; answer: str
 
 /** Price ranges by market tier — used by both general city and city+service pages */
 const PRICE_RANGES: Record<string, { roof: string; siding: string; windows: string; adu: string }> = {
-  budget: { roof: '$9,000–$16,000', siding: '$14,000–$28,000', windows: '$350–$600 per window', adu: '$140,000–$375,000' },
-  mid: { roof: '$10,000–$20,000', siding: '$18,000–$34,000', windows: '$450–$800 per window', adu: '$180,000–$400,000' },
-  premium: { roof: '$12,000–$25,000', siding: '$24,000–$42,000', windows: '$500–$1,000 per window', adu: '$210,000–$450,000' },
+  budget: { roof: '$15,000–$22,000', siding: '$14,000–$28,000', windows: '$350–$600 per window', adu: '$140,000–$375,000' },
+  mid: { roof: '$18,000–$30,000', siding: '$18,000–$34,000', windows: '$450–$800 per window', adu: '$180,000–$400,000' },
+  premium: { roof: '$18,000–$45,000', siding: '$24,000–$42,000', windows: '$500–$1,000 per window', adu: '$210,000–$450,000' },
   luxury: { roof: '$18,000–$40,000', siding: '$34,000–$65,000', windows: '$800–$1,500+ per window', adu: '$300,000–$600,000' },
 };
 

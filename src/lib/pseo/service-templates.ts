@@ -42,7 +42,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       {
         questionPattern: 'How much does a new roof cost in {city}?',
         answerPattern:
-          'Roof replacement in {city} typically ranges from $8,000 to $25,000 depending on size, pitch, and material. With median home prices at {medianHomePrice} in {city}, a new roof is one of the best investments you can make. We provide free inspections with exact pricing.',
+          'Roof replacement in {city} starts around $15,000 and can exceed $100,000 depending on size, pitch, material, and complexity. With median home prices at {medianHomePrice} in {city}, a new roof is one of the best investments you can make. We provide free inspections with exact pricing.',
       },
       {
         questionPattern: 'What roofing materials work best for {city} homes?',
@@ -439,7 +439,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       {
         title: 'ADUs & Guest Houses',
         description:
-          'Detached ADUs, garage conversions, and junior ADUs that add living space and rental income. Full design-build with our 60-day permit guarantee. Bay Area ADU experts since 2020.',
+          'Detached ADUs, garage conversions, and junior ADUs that add living space and rental income. Full design-build with our 60-day permit guarantee. Bay Area ADU experts since 2018.',
         imageKey: 'serviceAdu',
       },
       {
