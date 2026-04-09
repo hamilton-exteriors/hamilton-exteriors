@@ -214,7 +214,7 @@ const serviceSchema: Record<string, unknown> = {
   'dateModified': new Date().toISOString().split('T')[0],
   'speakable': {
     '@type': 'SpeakableSpecification',
-    'cssSelector': ['.local-context p:first-of-type', '.service-intro p:first-of-type', '.faq-section details:first-of-type p'],
+    'cssSelector': ['.local-context p:first-of-type', 'details:first-of-type p', 'h2 + p'],
   },
   ...(pricing && {
     'offers': {
