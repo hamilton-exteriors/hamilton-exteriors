@@ -522,6 +522,44 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
           window.dataLayer?.push({ event: 'cta_click', page: window.location.pathname });
         }
       });
+
+      // ── Scroll depth tracking (25/50/75/100%) ──
+      const scrollMilestones = new Set<number>();
+      const scrollPages = ['/', '/roofing', '/siding', '/windows', '/adu', '/custom-homes', '/additions', '/buy'];
+      if (scrollPages.some(p => window.location.pathname === p || window.location.pathname.startsWith('/service-areas/'))) {
+        window.addEventListener('scroll', () => {
+          const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+          [25, 50, 75, 100].forEach(milestone => {
+            if (pct >= milestone && !scrollMilestones.has(milestone)) {
+              scrollMilestones.add(milestone);
+              window.op?.('track', 'scroll_depth', { page: window.location.pathname, depth: milestone });
+              window.dataLayer?.push({ event: 'scroll_depth', page: window.location.pathname, depth: milestone });
+            }
+          });
+        }, { passive: true });
+      }
+
+      // ── Blog article read completion ──
+      const articleContent = document.getElementById('article-content');
+      if (articleContent) {
+        let articleRead = false;
+        const articleObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !articleRead) {
+              articleRead = true;
+              window.op?.('track', 'article_read', {
+                page: window.location.pathname,
+                title: document.title,
+              });
+              window.dataLayer?.push({ event: 'article_read', page: window.location.pathname });
+              articleObserver.disconnect();
+            }
+          });
+        }, { threshold: 0.1 });
+        // Observe the last child to detect reaching end of article
+        const lastChild = articleContent.lastElementChild;
+        if (lastChild) articleObserver.observe(lastChild);
+      }
     </script>
 
   </body>

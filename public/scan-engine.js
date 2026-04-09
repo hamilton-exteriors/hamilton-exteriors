@@ -371,6 +371,10 @@
 
   function goStep(n) {
     state.step = n;
+    // ── Analytics: track funnel steps ──
+    var stepNames = { 1: 'address_entry', 2: 'roof_scan_viewed', 3: 'shingle_selection' };
+    if (window.op && stepNames[n]) window.op('track', 'scan_funnel_step', { step: n, step_name: stepNames[n], address: state.address || '' });
+    if (window.dataLayer && stepNames[n]) window.dataLayer.push({ event: 'scan_funnel_step', step: n, step_name: stepNames[n] });
     // Remove the pre-paint hiding style if going back to step 1
     if (n === 1) {
       var hideStyle = document.getElementById('hide-step1');
@@ -427,6 +431,10 @@
       if (inp) inp.checked = true;
       state.selectedTier = card.dataset.tier;
       updatePrice();
+      // Analytics: shingle selection
+      var tierName = card.querySelector('.text-lg') ? card.querySelector('.text-lg').textContent.trim() : card.dataset.tier;
+      if (window.op) window.op('track', 'shingle_selected', { tier: card.dataset.tier, name: tierName });
+      if (window.dataLayer) window.dataLayer.push({ event: 'shingle_selected', tier: card.dataset.tier });
     });
     card.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
@@ -630,6 +638,9 @@
           purchaseForm.classList.add('hidden');
           $('#pf-ref').textContent = ref;
           pfSuccess.classList.remove('hidden');
+          // Analytics: purchase completed
+          if (window.op) window.op('track', 'purchase_completed', { ref: ref, product: data.product || '', total: data.total || '', address: data.address || '' });
+          if (window.dataLayer) window.dataLayer.push({ event: 'purchase_completed', ref: ref, product: data.product || '', total: data.total || '' });
         })
         .catch(function () {
           // Show success anyway but with a note — order is captured client-side

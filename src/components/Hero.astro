@@ -305,6 +305,13 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
   const skipStep2 = !!presetService && !hasOptions;
 
   function showStep(step: HTMLElement | null) {
+    // Analytics: track form step views for abandonment analysis
+    const stepNum = step === step1 ? 1 : step === step2 ? 2 : step === step3 ? 3 : 0;
+    const stepNames: Record<number, string> = { 1: 'contact_info', 2: 'service_selection', 3: 'consent_submit' };
+    if (stepNum && stepNames[stepNum]) {
+      window.op?.('track', 'hero_form_step', { step: stepNum, step_name: stepNames[stepNum] });
+      window.dataLayer?.push({ event: 'hero_form_step', step: stepNum, step_name: stepNames[stepNum] });
+    }
     [step1, step2, step3].forEach(s => {
       if (s) { s.style.display = 'none'; s.style.opacity = '0'; }
     });

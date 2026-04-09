@@ -4,6 +4,23 @@
  * Server-side: use trackServerEvent() from form handlers.
  *
  * OpenPanel docs: https://openpanel.dev/docs/sdks/sdk
+ *
+ * ── UTM Parameter Strategy ──────────────────────────────────────────
+ * OpenPanel auto-captures UTM params from the URL. Use these conventions:
+ *
+ * | Parameter    | Convention              | Examples                          |
+ * |------------- |-------------------------|-----------------------------------|
+ * | utm_source   | platform name           | google, facebook, nextdoor, yelp  |
+ * | utm_medium   | marketing channel       | cpc, social, email, referral      |
+ * | utm_campaign | descriptive_snake_case  | spring_roofing_2026, adu_launch   |
+ * | utm_content  | variant or placement    | hero_cta, sidebar_banner          |
+ * | utm_term     | keyword (paid search)   | roof+replacement+castro+valley    |
+ *
+ * Rules:
+ * - Always lowercase, underscores for spaces
+ * - Campaign names: {season}_{service}_{year} (e.g. spring_roofing_2026)
+ * - Use utm_content to A/B test ad creatives or CTA placements
+ * - Track in a shared spreadsheet before launching any campaign
  */
 
 import { OpenPanel } from '@openpanel/sdk';
