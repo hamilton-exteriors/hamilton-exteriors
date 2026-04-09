@@ -1,5 +1,6 @@
 ---
 import IconGoogle from './icons/IconGoogle.astro';
+import IconYelp from './icons/IconYelp.astro';
 import StarRating from './StarRating.astro';
 import SectionLabel from './SectionLabel.astro';
 import CTAButton from './CTAButton.astro';
@@ -15,7 +16,7 @@ const { service = 'general' } = Astro.props;
 const rawData = await getGoogleReviews();
 const { rating, reviewCount, reviews: googleReviews } = getDisplayReviews(rawData, 2);
 
-// Blend: 2 live Google reviews + 2 curated reviews from other platforms
+// Blend: 2 live Google reviews (with profile photos) + 2 curated from other platforms
 const curated = getCuratedReviews(service, 2);
 const reviews = [
   ...googleReviews.map(r => ({ ...r, platform: 'google' as const })),
@@ -30,6 +31,8 @@ const reviews = [
     platform: r.platform,
   })),
 ];
+
+const YELP_LINK = 'https://www.yelp.com/biz/hamilton-exteriors-castro-valley';
 ---
 
 <section id="review" class="px-0 py-12 lg:py-20">
@@ -82,10 +85,16 @@ const reviews = [
                 </p>
               </div>
             </div>
-            <!-- Google Logo — links to the review on Google -->
-            <a href={review.author_url || GOOGLE_REVIEW_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Google">
-              <IconGoogle size={26} class="shrink-0" />
-            </a>
+            <!-- Platform Logo -->
+            {review.platform === 'yelp' ? (
+              <a href={YELP_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Yelp">
+                <IconYelp size={26} class="shrink-0" />
+              </a>
+            ) : (
+              <a href={review.author_url || GOOGLE_REVIEW_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Google">
+                <IconGoogle size={26} class="shrink-0" />
+              </a>
+            )}
           </div>
 
           <!-- Star Rating -->
