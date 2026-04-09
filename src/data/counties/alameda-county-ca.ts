@@ -8,7 +8,7 @@ export const data: CountyPageData = {
   adjective: 'Trusted',
   title: 'Roofing, Siding, ADUs & Custom Homes in Alameda County | Hamilton Exteriors',
   description: 'Hamilton Exteriors is Alameda County\u2019s trusted design-build contractor. Roofing, siding, windows, ADUs, additions, and custom homes. Serving Oakland, Berkeley, Fremont, Hayward, San Leandro, Dublin, Pleasanton, Livermore, Union City, and Alameda.',
-  heroHeadline: 'Alameda County\u2019s Top  Design-Build &  Exteriors Contractor',
+  heroHeadline: 'Alameda County\u2019s Architect-Led  Custom Home  & Exteriors Contractor',
   heroFormTitle: 'Get Your Free Estimate in Alameda County',
   proximity: '-122.08,37.65',
 

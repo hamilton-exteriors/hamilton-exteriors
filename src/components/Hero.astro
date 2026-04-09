@@ -203,6 +203,8 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
               <p class="mb-3 text-center text-xs text-muted">Select one to continue</p>
               <input type="hidden" name="service" id="service-input" value={serviceType || ''} />
               <input type="hidden" name="serviceDetail" id="service-detail-input" />
+              <input type="hidden" name="fbclid" id="fbclid-input" />
+              <input type="hidden" name="fbc" id="fbc-input" />
               <div class="grid grid-cols-2 gap-2">
                 {step2Options.map((option) => (
                   <button
@@ -306,6 +308,12 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
   // Skip Step 2 entirely when service is preset and no sub-options
   const skipStep2 = !!presetService && !hasOptions;
 
+  // Populate fbclid/fbc hidden fields from sessionStorage (persisted in Layout.astro)
+  const fbclidInput = document.getElementById('fbclid-input') as HTMLInputElement;
+  const fbcInput = document.getElementById('fbc-input') as HTMLInputElement;
+  if (fbclidInput) fbclidInput.value = sessionStorage.getItem('he_fbclid') || '';
+  if (fbcInput) fbcInput.value = sessionStorage.getItem('he_fbc') || '';
+
   function showStep(step: HTMLElement | null) {
     // Analytics: track form step views for abandonment analysis
     const stepNum = step === step1 ? 1 : step === step2 ? 2 : step === step3 ? 3 : 0;
@@ -400,6 +408,11 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     if (params.get('utm_source')) body.utm_source = params.get('utm_source');
     if (params.get('utm_medium')) body.utm_medium = params.get('utm_medium');
     if (params.get('utm_campaign')) body.utm_campaign = params.get('utm_campaign');
+    // Persist fbclid for Facebook attribution (survives Safari ITP 24h cookie expiry)
+    const storedFbclid = sessionStorage.getItem('he_fbclid');
+    const storedFbc = sessionStorage.getItem('he_fbc');
+    if (storedFbclid) body.fbclid = storedFbclid;
+    if (storedFbc) body.fbc = storedFbc;
 
     fetch('/api/leads/partial', {
       method: 'POST',

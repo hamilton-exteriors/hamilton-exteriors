@@ -13,6 +13,7 @@ import Footer from './Footer.astro';
 import { resolveImage } from '../lib/image-map';
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 import { getCityProximity, getCityCoordinates } from '../lib/city-coordinates';
+import { getCityLocalFacts } from '../lib/city-local-facts';
 import Reviews from './Reviews.astro';
 import Breadcrumb from './Breadcrumb.astro';
 import { getGoogleReviews, getDisplayReviews } from '../lib/google-reviews';
@@ -32,6 +33,7 @@ const proximity = getCityProximity(data.slug);
 const cityCoords = getCityCoordinates(data.slug);
 const mapLat = cityCoords ? cityCoords[1] : 37.7;
 const mapLng = cityCoords ? cityCoords[0] : -122.2;
+const localFacts = getCityLocalFacts(data.slug);
 
 // Fetch live review data so city page schema matches Layout schema
 const _rawReviews = await getGoogleReviews();
@@ -144,13 +146,63 @@ const reviewSchema = {
 <!-- Reviews Section — uses real reviews from Reviews.astro -->
 <Reviews />
 
+<!-- Local Facts — unique city data for content differentiation -->
+{localFacts && (
+  <Section bg="cream" padding="lg">
+    <SectionLabel class="mb-3">Local Expertise</SectionLabel>
+    <h2 class="mb-8">
+      Exterior Projects in {data.city}, California
+    </h2>
+    <div class="mx-auto max-w-3xl flex flex-col gap-5 text-base leading-[1.75] text-charcoal">
+      <p>{localFacts.housingNote}</p>
+      <p>{localFacts.permitNote}</p>
+      {localFacts.weatherNote && <p>{localFacts.weatherNote}</p>}
+      {localFacts.fireZone && localFacts.fireZoneNote && (
+        <p>{localFacts.fireZoneNote}</p>
+      )}
+    </div>
+    <div class="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+      <div>
+        <p class="font-oswald text-2xl text-primary">{localFacts.medianHomeValue}</p>
+        <p class="text-sm text-muted">Median home value</p>
+      </div>
+      <div>
+        <p class="font-oswald text-2xl text-primary">{localFacts.population}</p>
+        <p class="text-sm text-muted">Population</p>
+      </div>
+      <div>
+        <p class="font-oswald text-2xl text-primary">{localFacts.driveTime}</p>
+        <p class="text-sm text-muted">From our office</p>
+      </div>
+      {localFacts.fireZone && (
+        <div>
+          <p class="font-oswald text-2xl text-primary">WUI Zone</p>
+          <p class="text-sm text-muted">Fire-rated materials required</p>
+        </div>
+      )}
+    </div>
+    <div class="mt-8 rounded bg-white p-6">
+      <h3 class="mb-2 text-lg">Permit Authority</h3>
+      <p class="text-sm text-charcoal">
+        {localFacts.permitAuthority}{localFacts.permitPhone && ` · ${localFacts.permitPhone}`}
+      </p>
+    </div>
+    {localFacts.localTip && (
+      <div class="mt-4 rounded bg-white p-6">
+        <h3 class="mb-2 text-lg">Local Tip</h3>
+        <p class="text-sm leading-[1.7] text-charcoal">{localFacts.localTip}</p>
+      </div>
+    )}
+  </Section>
+)}
+
 <!-- Services Grid -->
 <Section bg="white" padding="lg">
   <SectionLabel class="mb-3">What We Build</SectionLabel>
   <h2
     class="mb-12 text-[clamp(28px,5vw,40px)] leading-tight"
   >
-    Design-Build Services in {data.city}
+    Custom Home & Exterior Services in {data.city}
   </h2>
 
   <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

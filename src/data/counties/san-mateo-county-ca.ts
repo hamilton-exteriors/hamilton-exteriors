@@ -8,7 +8,7 @@ export const data: CountyPageData = {
   adjective: "Peninsula's",
   title: 'Roofing, Siding, ADUs & Custom Homes in San Mateo County | Hamilton Exteriors',
   description: 'Hamilton Exteriors serves San Mateo County \u2014 roofing, siding, windows, ADUs, additions, and custom homes. Serving Redwood City, San Mateo, Burlingame, Daly City, and South San Francisco.',
-  heroHeadline: 'San Mateo County\u2019s Top  Design-Build &  Exteriors Contractor',
+  heroHeadline: 'San Mateo County\u2019s Architect-Led  Custom Home  & Exteriors Contractor',
   heroFormTitle: 'Get Your Free Estimate in San Mateo County',
   proximity: '-122.33,37.55',
 

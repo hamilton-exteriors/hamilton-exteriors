@@ -56,7 +56,7 @@ const DEFAULT_GEO_PLACENAME = 'Bay Area, California';
 const FULL_ORG_PATHS = new Set(['/', '/roofing', '/siding', '/windows', '/adu', '/custom-homes', '/additions', '/service-areas']);
 
 const {
-  title = "Bay Area Design-Build & Exteriors Contractor | Hamilton Exteriors",
+  title = "Bay Area Custom Home & Exteriors Contractor | Hamilton Exteriors",
   description: rawDescription,
   image,
   type = 'website',
@@ -170,7 +170,7 @@ const fullOrgSchemaObj = fullOrgSchema ? {
     "url": "https://hamilton-exteriors.com/og-default.jpg",
     "width": 1200,
     "height": 630,
-    "caption": "Hamilton Exteriors — Bay Area Design-Build & Exteriors Contractor"
+    "caption": "Hamilton Exteriors — Bay Area Custom Home & Exteriors Contractor"
   },
   "logo": {
     "@type": "ImageObject",
@@ -280,7 +280,7 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
   "@type": "WebPage",
   "@id": "https://hamilton-exteriors.com/#webpage",
   "url": "https://hamilton-exteriors.com",
-  "name": "Bay Area Design-Build & Exteriors Contractor | Hamilton Exteriors",
+  "name": "Bay Area Custom Home & Exteriors Contractor | Hamilton Exteriors",
   "isPartOf": { "@id": "https://hamilton-exteriors.com/#website" },
   "about": { "@id": "https://hamilton-exteriors.com/#business" },
   "inLanguage": "en-US"
@@ -520,6 +520,18 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
           fbq('track', 'InitiateCheckout');
         }
       }
+
+      // ── Persist fbclid for Facebook attribution ──
+      // Safari ITP kills _fbc after 24h. Capture fbclid from the URL on landing
+      // and store in sessionStorage so it survives form navigation.
+      (function() {
+        const params = new URLSearchParams(window.location.search);
+        const fbclid = params.get('fbclid');
+        if (fbclid) {
+          sessionStorage.setItem('he_fbclid', fbclid);
+          sessionStorage.setItem('he_fbc', 'fb.1.' + Date.now() + '.' + fbclid);
+        }
+      })();
 
       // Track all tel: link clicks
       document.addEventListener('click', (e) => {
