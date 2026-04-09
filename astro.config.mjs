@@ -163,8 +163,7 @@ export default defineConfig({
       ...subServicePages,
       // Blog posts from Ghost CMS
       ...blogSitemapEntries.map(e => e.url),
-      // Blog tag pages
-      ...blogTagSlugs.map(slug => `https://hamilton-exteriors.com/blog/tag/${slug}`),
+      // Blog tag pages — noindexed (thin content), excluded from sitemap
       // City pages (44 cities)
       ...cityPages,
       // City+service pages (44 cities x 6 services = 264 pages)
