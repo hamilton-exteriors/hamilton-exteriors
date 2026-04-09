@@ -6,7 +6,7 @@ export const data: ServicePageData = {
     'ADU Builder in the San Francisco Bay Area | Design & Construction Experts | Hamilton Exteriors',
   description:
     'Hamilton Exteriors is a full-service ADU builder in the Bay Area. Design, architecture, engineering, permitting, and construction — all under one roof.',
-  announcementText: 'Limited Time: Free ADU Design Consultation + Permit Guarantee*',
+  announcementText: 'Now Booking Summer 2026 ADU Projects — Free Design Consultation',
   definition: 'An accessory dwelling unit (ADU) is a secondary housing unit built on a single-family residential lot — either as a detached backyard structure, attached addition, or garage conversion. California state law (AB 68, SB 9) streamlines ADU permitting, and Bay Area ADUs typically cost $80,000 to $350,000 while adding $150,000 to $300,000 in property value.',
   expertQuotes: [
     {

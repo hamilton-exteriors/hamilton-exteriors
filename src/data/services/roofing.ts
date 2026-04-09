@@ -5,7 +5,7 @@ export const data: ServicePageData = {
   title: 'Bay Area Roofing | Shingles, Metal & Tile | Hamilton Exteriors',
   description:
     'Top-rated Bay Area roofing contractor. Composite shingles, metal roofs, tile & GAF solar. 50-year warranty. Free inspection — call (650) 977-3351.',
-  announcementText: 'Limited Time Get up to $2000 off your Roof Replacement*',
+  announcementText: 'Now Booking Summer 2026 Roof Replacements — Schedule Your Free Inspection',
   definition: 'A roof replacement is the complete removal and reinstallation of a home\'s roofing system — including shingles, underlayment, flashing, and ventilation. In the Bay Area, roof replacements typically cost $15,000 to $100,000 depending on size, materials, and complexity, and take 3 to 7 days to complete.',
   expertQuotes: [
     {
