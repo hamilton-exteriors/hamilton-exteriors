@@ -127,6 +127,61 @@ app.post('/api/roof-scan', async (req, res) => {
   }
 });
 
+// ── Google Reviews endpoint ────────────────────────────────────────────────────
+// Returns live Google reviews with 1-hour cache. Called by the Astro frontend SSR.
+const PLACE_ID = 'ChIJLWAh1YeTj4ARccaXE5RZqjE';
+let reviewsCache: { data: any; fetchedAt: number } | null = null;
+const REVIEWS_CACHE_TTL = 60 * 60 * 1000; // 1 hour
+
+app.get('/api/reviews', async (_req, res) => {
+  // Return cached data if fresh
+  if (reviewsCache && Date.now() - reviewsCache.fetchedAt < REVIEWS_CACHE_TTL) {
+    res.json(reviewsCache.data);
+    return;
+  }
+
+  const apiKey = process.env.GOOGLE_API_KEY;
+  if (!apiKey) {
+    res.status(503).json({ error: 'Google API key not configured' });
+    return;
+  }
+
+  try {
+    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=rating,user_ratings_total,reviews&reviews_sort=newest&key=${apiKey}`;
+    const apiRes = await fetch(url, { signal: AbortSignal.timeout(10_000) });
+    const json = await apiRes.json();
+
+    if (json.status !== 'OK') {
+      console.error('[reviews] Google Places API:', json.status, json.error_message);
+      res.status(502).json({ error: `Google API: ${json.status}` });
+      return;
+    }
+
+    const result = json.result;
+    const data = {
+      rating: result.rating || 0,
+      reviewCount: result.user_ratings_total || 0,
+      reviews: (result.reviews || []).map((r: any) => ({
+        author_name: r.author_name,
+        rating: r.rating,
+        text: r.text,
+        time: r.time,
+        relative_time_description: r.relative_time_description,
+        profile_photo_url: r.profile_photo_url || '',
+        author_url: r.author_url || '',
+      })),
+      fetchedAt: Date.now(),
+    };
+
+    reviewsCache = { data, fetchedAt: Date.now() };
+    console.log(`[reviews] Fetched ${data.reviews.length} reviews (${data.rating}★, ${data.reviewCount} total)`);
+    res.json(data);
+  } catch (err: any) {
+    console.error('[reviews] Fetch failed:', err.message);
+    res.status(502).json({ error: err.message });
+  }
+});
+
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', service: 'roof-scan-backend' });
 });
