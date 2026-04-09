@@ -8,8 +8,8 @@ export const server = {
     accept: 'form',
     input: z.object({
       fullName: z.string().min(2, 'Name is required'),
-      phone: z.string().min(7, 'Valid phone number required'),
-      email: z.string().email('Valid email required'),
+      phone: z.string().min(7, 'Enter a 10-digit phone number (e.g. 650-977-3351)'),
+      email: z.string().email('Enter a valid email address (e.g. name@example.com)'),
       address: z.string().min(3, 'Project address required'),
       service: z.string().optional(),
       serviceDetail: z.string().optional(),

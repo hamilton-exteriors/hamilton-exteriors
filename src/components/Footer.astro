@@ -81,7 +81,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
             type="text"
             id="footerName"
             name="footerName"
-            placeholder="Name"
+            placeholder="Your name"
             maxlength="100"
             class="footer-input"
           />
@@ -90,7 +90,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
             type="email"
             id="footerEmail"
             name="footerEmail"
-            placeholder="Email"
+            placeholder="Your email"
             required
             maxlength="254"
             class="footer-input"
@@ -248,7 +248,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
         msg.style.color = 'var(--color-green-light)';
         form.reset();
       } else {
-        msg.textContent = data.error || 'Something went wrong. Try again.';
+        msg.textContent = data.error || 'We couldn\'t sign you up. Please try again.';
         msg.style.color = 'var(--color-yellow)';
       }
     } catch {

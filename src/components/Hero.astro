@@ -152,17 +152,26 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
                 </div>
                 <span class="text-xs text-muted">{hasPresetService && !serviceOptions ? '1/2' : '1/3'}</span>
               </div>
-              <div class="flex flex-col gap-3">
-                <label for="hero-name" class="sr-only">Full Name</label>
-                <input type="text" id="hero-name" name="fullName" placeholder="Full Name" required autocomplete="name" maxlength="100" class="hero-input w-full" />
-                <label for="hero-phone" class="sr-only">Phone Number</label>
-                <input type="tel" id="hero-phone" name="phone" placeholder="Phone Number" required autocomplete="tel" inputmode="tel" maxlength="15" class="hero-input w-full" />
-                <label for="hero-email" class="sr-only">Email</label>
-                <input type="email" id="hero-email" name="email" placeholder="Email" required autocomplete="email" inputmode="email" maxlength="254" class="hero-input w-full" />
-                <label for="hero-address" class="sr-only">Project Address</label>
-                <mapbox-address-autofill access-token={mapboxToken} country="us" data-proximity={proximity || ''} data-bbox="-123.1,36.9,-121.2,38.9" theme={JSON.stringify({ variables: { fontFamily: "'DM Sans', sans-serif", colorText: "#1A1A1A", colorPrimary: "#256346", borderRadius: "10px", unit: "14px" }})}>
-                  <input type="text" id="hero-address" name="address" placeholder="Project Address" required autocomplete="address-line1" maxlength="200" class="hero-input w-full" />
-                </mapbox-address-autofill>
+              <div class="flex flex-col gap-2.5">
+                <div>
+                  <label for="hero-name" class="hero-label">Full Name</label>
+                  <input type="text" id="hero-name" name="fullName" placeholder="Alex Hamilton" required autocomplete="name" maxlength="100" class="hero-input w-full" />
+                </div>
+                <div>
+                  <label for="hero-phone" class="hero-label">Phone Number</label>
+                  <input type="tel" id="hero-phone" name="phone" placeholder="(650) 977-3351" required autocomplete="tel" inputmode="tel" maxlength="16" class="hero-input w-full" />
+                  <p class="mt-1 text-[11px] leading-tight text-muted">We'll only call to schedule your free inspection</p>
+                </div>
+                <div>
+                  <label for="hero-email" class="hero-label">Email</label>
+                  <input type="email" id="hero-email" name="email" placeholder="name@example.com" required autocomplete="email" inputmode="email" maxlength="254" class="hero-input w-full" />
+                </div>
+                <div>
+                  <label for="hero-address" class="hero-label">Project Address</label>
+                  <mapbox-address-autofill access-token={mapboxToken} country="us" data-proximity={proximity || ''} data-bbox="-123.1,36.9,-121.2,38.9" theme={JSON.stringify({ variables: { fontFamily: "'DM Sans', sans-serif", colorText: "#1A1A1A", colorPrimary: "#256346", borderRadius: "10px", unit: "14px" }})}>
+                    <input type="text" id="hero-address" name="address" placeholder="123 Main St, Oakland, CA" required autocomplete="address-line1" maxlength="200" class="hero-input w-full" />
+                  </mapbox-address-autofill>
+                </div>
               </div>
               <button
                 type="button"
@@ -305,11 +314,61 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     }
   }
 
-  // Clear red border on input
+  // ── Phone auto-format ────────────────────────────────────
+  const phoneInput = document.getElementById('hero-phone') as HTMLInputElement;
+  function formatPhone(value: string): string {
+    let raw = value.replace(/\D/g, '');
+    // Strip leading country code (1) if 11 digits
+    if (raw.length === 11 && raw.startsWith('1')) raw = raw.slice(1);
+    raw = raw.slice(0, 10);
+    if (raw.length === 0) return '';
+    if (raw.length <= 3) return `(${raw}`;
+    if (raw.length <= 6) return `(${raw.slice(0, 3)}) ${raw.slice(3)}`;
+    return `(${raw.slice(0, 3)}) ${raw.slice(3, 6)}-${raw.slice(6)}`;
+  }
+  phoneInput?.addEventListener('input', () => { phoneInput.value = formatPhone(phoneInput.value); });
+
+  // ── Inline validation on blur ──────────────────────────────
+  function clearFieldError(el: HTMLElement) {
+    el.style.borderColor = '';
+    el.parentElement?.querySelector('.field-error')?.remove();
+  }
+  function showFieldError(el: HTMLElement, msg: string) {
+    el.style.borderColor = 'var(--color-error)';
+    let errEl = el.parentElement?.querySelector('.field-error') as HTMLElement;
+    if (!errEl) {
+      errEl = document.createElement('p');
+      errEl.className = 'field-error';
+      errEl.style.cssText = "font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-error); margin: 4px 0 0;";
+      el.insertAdjacentElement('afterend', errEl);
+    }
+    errEl.textContent = msg;
+  }
+
+  const blurValidations: Record<string, (el: HTMLInputElement) => string | null> = {
+    fullName: (el) => el.value.trim().length < 2 ? 'Name is required' : null,
+    phone: (el) => {
+      const digits = el.value.replace(/\D/g, '');
+      return digits.length > 0 && digits.length < 10 ? 'Enter a 10-digit phone number' : null;
+    },
+    email: (el) => {
+      if (!el.value.trim()) return null; // don't nag on empty — "Next" button catches required
+      return !el.value.includes('@') || !el.value.includes('.') ? 'Enter a valid email address' : null;
+    },
+  };
+
   heroForm?.querySelectorAll('input, textarea').forEach(input => {
-    input.addEventListener('input', () => {
-      (input as HTMLElement).style.borderColor = '';
-    });
+    const el = input as HTMLInputElement;
+    // Clear errors on input
+    el.addEventListener('input', () => clearFieldError(el));
+    // Validate on blur
+    const validate = blurValidations[el.name];
+    if (validate) {
+      el.addEventListener('blur', () => {
+        const err = validate(el);
+        if (err) showFieldError(el, err);
+      });
+    }
   });
 
   // ── Progressive lead capture ──────────────────────────────
@@ -347,19 +406,27 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     );
     let valid = true;
     const missingFields: string[] = [];
+    const labelMap: Record<string, string> = { fullName: 'Full Name', phone: 'Phone Number', email: 'Email', address: 'Project Address' };
     fields.forEach(f => {
       if (!f?.value?.trim()) {
-        f.style.borderColor = 'var(--color-error)';
+        showFieldError(f, `${labelMap[f.name] || f.name} is required`);
         valid = false;
-        missingFields.push(f.placeholder || f.name);
+        missingFields.push(labelMap[f.name] || f.name);
       }
     });
     // Basic email check
     const email = heroForm.querySelector('input[name="email"]') as HTMLInputElement;
     if (email?.value && !email.value.includes('@')) {
-      email.style.borderColor = 'var(--color-error)';
+      showFieldError(email, 'Enter a valid email address');
       valid = false;
       missingFields.push('valid email');
+    }
+    // Phone digit check
+    const phone = heroForm.querySelector('input[name="phone"]') as HTMLInputElement;
+    if (phone?.value && phone.value.replace(/\D/g, '').length < 10) {
+      showFieldError(phone, 'Enter a 10-digit phone number');
+      valid = false;
+      if (!missingFields.includes('Phone Number')) missingFields.push('valid phone number');
     }
     if (!valid) {
       // Announce validation errors to screen readers
@@ -399,9 +466,16 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     });
   });
 
-  // Back buttons
-  document.getElementById('back-btn-1')?.addEventListener('click', () => showStep(step1));
-  document.getElementById('back-btn-2')?.addEventListener('click', () => showStep(skipStep2 ? step1 : step2));
+  // Back buttons — clear any lingering validation errors when navigating back
+  function clearStepErrors(step: HTMLElement | null) {
+    step?.querySelectorAll('input, textarea').forEach(el => clearFieldError(el as HTMLElement));
+  }
+  document.getElementById('back-btn-1')?.addEventListener('click', () => { clearStepErrors(step1); showStep(step1); });
+  document.getElementById('back-btn-2')?.addEventListener('click', () => {
+    const target = skipStep2 ? step1 : step2;
+    clearStepErrors(target);
+    showStep(target);
+  });
 
   // Form submit — use Astro Action (with double-submit guard)
   let isSubmitting = false;
@@ -413,7 +487,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     const originalText = submitBtn?.textContent || '';
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Submitting...';
+      submitBtn.textContent = 'Sending your request...';
     }
 
     try {
@@ -426,18 +500,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
           const fields = error.fields as Record<string, string[]>;
           for (const [fieldName, messages] of Object.entries(fields)) {
             const input = heroForm.querySelector(`[name="${fieldName}"]`) as HTMLElement;
-            if (input) {
-              input.style.borderColor = 'var(--color-error)';
-              // Find or create error message
-              let errEl = input.parentElement?.querySelector('.field-error') as HTMLElement;
-              if (!errEl) {
-                errEl = document.createElement('p');
-                errEl.className = 'field-error';
-                errEl.style.cssText = "font-family: var(--font-dm-sans); font-size: 0.75rem; color: var(--color-error); margin: 4px 0 0;";
-                input.insertAdjacentElement('afterend', errEl);
-              }
-              errEl.textContent = messages[0];
-            }
+            if (input) showFieldError(input, messages[0]);
           }
           // Go back to the step with the error
           if (fields.fullName || fields.phone || fields.email || fields.address) {
@@ -463,7 +526,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
             </div>
             <h3 style="font-family: var(--font-oswald); font-size: 1.5rem; color: var(--color-primary); text-transform: uppercase; margin-bottom: 8px;">We Got Your Request!</h3>
-            <p style="font-family: var(--font-dm-sans); font-size: 0.875rem; color: var(--color-muted); line-height: 1.5;">We'll call you within <strong>5 minutes</strong> to schedule your free inspection.</p>
+            <p style="font-family: var(--font-dm-sans); font-size: 0.875rem; color: var(--color-muted); line-height: 1.5;">We'll call you within <strong>3–5 minutes</strong> to schedule your free inspection.</p>
             <a href="tel:+16509773351" style="display: inline-block; margin-top: 16px; font-family: var(--font-dm-sans); font-size: 0.875rem; font-weight: 700; color: var(--color-primary); text-decoration: underline;">Or call us now: (650) 977-3351</a>
           </div>
         `;
@@ -482,7 +545,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
         errBox.style.cssText = 'margin-top:12px;padding:14px 16px;border-radius:4px;background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.25);text-align:center;';
         heroForm.appendChild(errBox);
       }
-      errBox.innerHTML = '<p style="font-family:var(--font-dm-sans);font-size:14px;color:var(--color-error);margin-bottom:6px;font-weight:500;">Something went wrong. Please try again.</p><a href="tel:+16509773351" style="font-family:var(--font-dm-sans);font-size:14px;font-weight:700;color:var(--color-primary);text-decoration:underline;">Or call us: (650) 977-3351</a>';
+      errBox.innerHTML = '<p style="font-family:var(--font-dm-sans);font-size:14px;color:var(--color-error);margin-bottom:6px;font-weight:500;">We couldn\'t submit your request. Please try again.</p><a href="tel:+16509773351" style="font-family:var(--font-dm-sans);font-size:14px;font-weight:700;color:var(--color-primary);text-decoration:underline;">Or call us: (650) 977-3351</a>';
     }
   });
 </script>
@@ -572,6 +635,15 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     background: var(--color-primary);
     color: white;
     opacity: 0.95;
+  }
+
+  .hero-label {
+    display: block;
+    font-family: var(--font-dm-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-heading);
+    margin-bottom: 4px;
   }
 
   .hero-input {
