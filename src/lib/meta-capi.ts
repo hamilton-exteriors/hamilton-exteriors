@@ -57,6 +57,8 @@ interface CAPIEvent {
   eventName: string;
   eventId: string;
   eventSourceUrl: string;
+  /** 'website' for browser events, 'system_generated' for CRM/offline conversions */
+  actionSource?: 'website' | 'system_generated';
   userData: UserData;
   customData?: CustomData;
 }
@@ -108,7 +110,7 @@ export async function sendMetaEvent(event: CAPIEvent): Promise<void> {
         event_time: Math.floor(Date.now() / 1000),
         event_id: event.eventId,
         event_source_url: event.eventSourceUrl,
-        action_source: 'website',
+        action_source: event.actionSource || 'website',
         user_data: userData,
         ...(event.customData && {
           custom_data: {

@@ -16,6 +16,8 @@ export const server = {
       service: z.string().optional(),
       serviceDetail: z.string().optional(),
       message: z.string().optional(),
+      fbclid: z.string().optional(),
+      fbc: z.string().optional(),
       consent: z.literal('on', {
         errorMap: () => ({ message: 'You must agree to the terms' }),
       }),
@@ -40,6 +42,8 @@ export const server = {
         email: input.email,
         source: 'website-form',
         notes,
+        ...(input.fbclid && { fbclid: input.fbclid }),
+        ...(input.fbc && { fbc: input.fbc }),
       });
 
       if (!result.success) {
@@ -71,7 +75,10 @@ export const server = {
       const request = context.request;
       const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '';
       const userAgent = request.headers.get('user-agent') || '';
-      const { fbc, fbp } = getMetaCookies(request);
+      const cookies = getMetaCookies(request);
+      // Use client-persisted fbc (from sessionStorage) when Safari ITP killed the cookie
+      const fbc = cookies.fbc || input.fbc;
+      const fbp = cookies.fbp;
       const pageUrl = request.headers.get('referer') || 'https://hamilton-exteriors.com';
 
       sendMetaEvent({

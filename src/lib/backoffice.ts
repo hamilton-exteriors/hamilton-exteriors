@@ -18,6 +18,8 @@ export interface LeadPayload {
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
+  fbclid?: string;
+  fbc?: string;
 }
 
 export interface BackOfficeResult {

@@ -49,6 +49,8 @@ export const POST: APIRoute = async ({ request }) => {
       ...(body.utm_source && { utm_source: String(body.utm_source) }),
       ...(body.utm_medium && { utm_medium: String(body.utm_medium) }),
       ...(body.utm_campaign && { utm_campaign: String(body.utm_campaign) }),
+      ...(body.fbclid && { fbclid: String(body.fbclid) }),
+      ...(body.fbc && { fbc: String(body.fbc) }),
     });
   } catch (err) {
     console.error('[partial] sendToBackOffice threw:', (err as Error).message);
@@ -78,7 +80,10 @@ export const POST: APIRoute = async ({ request }) => {
     const eventId = String(body.eventId || crypto.randomUUID());
     const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '';
     const userAgent = request.headers.get('user-agent') || '';
-    const { fbc, fbp } = getMetaCookies(request);
+    const cookies = getMetaCookies(request);
+    // Use client-persisted fbc (from sessionStorage) as fallback when Safari ITP killed the cookie
+    const fbc = cookies.fbc || (body.fbc ? String(body.fbc) : undefined);
+    const fbp = cookies.fbp;
     const pageUrl = String(body.page_url || request.headers.get('referer') || 'https://hamilton-exteriors.com');
 
     sendMetaEvent({
