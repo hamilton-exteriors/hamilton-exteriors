@@ -176,7 +176,7 @@ const productSchema = productData ? {
 <!-- Author/date line -->
 <div class="mx-auto max-w-[800px] px-5 pt-6 pb-2">
   <p class="text-[13px] text-muted">
-    Reviewed by <a href="/about/alex-hamilton-li" class="text-muted underline underline-offset-2">Alexander Hamilton Li</a>, Architect &amp; General Contractor · <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377" target="_blank" rel="noopener noreferrer" class="text-muted underline underline-offset-2">CSLB #1082377</a> · Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+    Reviewed by <a href="/about/alex-hamilton-li" class="text-muted underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-sm">Alexander Hamilton Li</a>, Architect &amp; General Contractor · <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377" target="_blank" rel="noopener noreferrer" class="text-muted underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-sm">CSLB #1082377</a> · Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
   </p>
 </div>
 
@@ -215,21 +215,21 @@ const productSchema = productData ? {
 
 <!-- Inline CTA -->
 <Section bg="cream" padding="md">
-  <div class="text-center">
-    <h2 class="mb-4">Ready to Get Started?</h2>
+  <div class="text-center" aria-label="Get a quote">
+    <h2 class="mb-4">Get Your {data.headline.replace('\n', ' ')} Estimate</h2>
     <p class="mx-auto mb-7 max-w-[480px] text-base text-muted">
-      Get a free estimate for your {data.headline.replace('\n', ' ').toLowerCase()} project. We respond in minutes, not days.
+      Free estimate for your {data.headline.replace('\n', ' ').toLowerCase()} project. We respond in minutes, not days.
     </p>
     <div class="flex flex-wrap justify-center gap-3">
       <a
         href="#quote"
-        class="inline-block rounded-full bg-yellow px-9 py-3.5 font-oswald text-base font-bold tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90"
+        class="inline-block rounded-full bg-yellow px-9 py-3.5 font-oswald text-base font-bold tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-yellow focus-visible:ring-offset-2 focus-visible:outline-none"
       >
         Get Your Free Estimate
       </a>
       <a
         href={PHONE_HREF}
-        class="inline-block rounded-full border-2 border-primary px-8 py-3 text-[0.9375rem] font-semibold text-primary no-underline transition-opacity hover:opacity-90"
+        class="inline-block rounded-full border-2 border-primary px-8 py-3 text-sm font-semibold text-primary no-underline transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none"
       >
         Call {PHONE_DISPLAY}
       </a>
@@ -240,12 +240,12 @@ const productSchema = productData ? {
 <!-- Cross-links to sibling sub-services -->
 {siblings.length > 0 && (
   <Section bg="white" padding="md" borderTop>
-    <SectionLabel>More {data.parentName} Services</SectionLabel>
+    <SectionLabel>Other {data.parentName} Options</SectionLabel>
     <div class="mt-4 flex flex-wrap gap-3">
       {siblings.map((s) => (
         <a
           href={`/${s.parentService}/${s.typeSlug}`}
-          class="rounded-full border border-border px-5 py-2.5 text-sm font-medium text-primary no-underline transition-opacity hover:opacity-80"
+          class="rounded-full border border-border px-5 py-2.5 text-sm font-medium text-primary no-underline transition-opacity hover:opacity-80 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none"
         >
           {s.headline.replace('\n', ' ')}
         </a>
@@ -255,6 +255,7 @@ const productSchema = productData ? {
 )}
 
 <!-- Contact -->
+<div id="quote" class="scroll-mt-16"></div>
 <ContactUs />
 
 <!-- Footer -->

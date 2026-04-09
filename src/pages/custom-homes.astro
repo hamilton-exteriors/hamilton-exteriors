@@ -25,8 +25,25 @@ const webPageJsonLd = {
   inLanguage: 'en-US',
   speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.local-context p:first-of-type', 'details:first-of-type p', 'h2 + p'] },
 };
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${siteUrl}/custom-homes#service`,
+  name: 'Custom Homes',
+  url: `${siteUrl}/custom-homes`,
+  description: data.description,
+  provider: { '@id': `${siteUrl}/#business` },
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Alameda County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'AdministrativeArea', name: 'Contra Costa County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'AdministrativeArea', name: 'Marin County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'AdministrativeArea', name: 'Napa County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'AdministrativeArea', name: 'Santa Clara County', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'AdministrativeArea', name: 'San Mateo County', containedInPlace: { '@type': 'State', name: 'California' } },
+  ],
+};
 ---
 
-<Layout title={data.title} description={data.description} includeMapbox preloadHero heroImage={data.hero.heroImage} jsonLd={[breadcrumbJsonLd, webPageJsonLd]}>
+<Layout title={data.title} description={data.description} includeMapbox preloadHero heroImage={data.hero.heroImage} jsonLd={[breadcrumbJsonLd, webPageJsonLd, serviceJsonLd]}>
   <ServicePage data={data} />
 </Layout>

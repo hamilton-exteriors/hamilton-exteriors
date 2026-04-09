@@ -87,6 +87,187 @@ const canonicalUrl = Astro.props.canonical || (siteUrl + Astro.url.pathname).rep
 // Resolve OG image: explicit prop > auto-generated from hero > default fallback
 const ogImageUrl = image || (heroOgImage ? siteUrl + heroOgImage.src : siteUrl + '/og-default.jpg');
 const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/jpeg');
+
+// ── Build structured data objects in frontmatter so Astro evaluates all expressions ──
+
+const fullOrgSchemaObj = fullOrgSchema ? {
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "additionalType": "https://schema.org/RoofingContractor",
+  "@id": "https://hamilton-exteriors.com/#business",
+  "name": "Hamilton Exteriors",
+  "url": "https://hamilton-exteriors.com",
+  "telephone": "+16509773351",
+  "email": "support@hamilton-exteriors.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "21634 Redwood Rd Unit F",
+    "addressLocality": "Castro Valley",
+    "addressRegion": "CA",
+    "postalCode": "94546",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 37.69427,
+    "longitude": -122.07887
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+16509773351",
+    "contactType": "customer service",
+    "areaServed": "CA",
+    "availableLanguage": "English"
+  },
+  "hasMap": "https://maps.google.com/?cid=3578771346418026097",
+  "sameAs": [
+    "https://www.facebook.com/hamiltonexteriors",
+    "https://www.instagram.com/hamiltonexteriors",
+    "https://www.linkedin.com/company/hamilton-exteriors/",
+    "https://www.yelp.com/biz/hamilton-exteriors-castro-valley",
+    "https://www.youtube.com/@HamiltonExteriors",
+    "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377",
+    "https://www.wikidata.org/wiki/Q139044457",
+    "https://www.homeadvisor.com/rated.abrqualityresources.150372023.html",
+    "https://www.angi.com/companylist/us/ca/castro-valley/abr-quality-resources-reviews-10768498.htm",
+    "https://www.bbb.org/us/ca/castro-valley/profile/general-contractor/hamilton-exteriors-1116-935089"
+  ],
+  "alternateName": "ABR Quality Resources Inc",
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "Alameda County", "sameAs": "https://en.wikipedia.org/wiki/Alameda_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
+    { "@type": "AdministrativeArea", "name": "Contra Costa County", "sameAs": "https://en.wikipedia.org/wiki/Contra_Costa_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
+    { "@type": "AdministrativeArea", "name": "Marin County", "sameAs": "https://en.wikipedia.org/wiki/Marin_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
+    { "@type": "AdministrativeArea", "name": "Napa County", "sameAs": "https://en.wikipedia.org/wiki/Napa_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
+    { "@type": "AdministrativeArea", "name": "Santa Clara County", "sameAs": "https://en.wikipedia.org/wiki/Santa_Clara_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
+    { "@type": "AdministrativeArea", "name": "San Mateo County", "sameAs": "https://en.wikipedia.org/wiki/San_Mateo_County,_California", "containedInPlace": { "@type": "State", "name": "California" } }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": _displayReviews?.rating ?? 4.8,
+    "reviewCount": _displayReviews?.reviewCount ?? 26,
+    "bestRating": 5,
+    "worstRating": 1
+  },
+  "priceRange": "$$",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://hamilton-exteriors.com/og-default.jpg",
+    "width": 1200,
+    "height": 630,
+    "caption": "Hamilton Exteriors — Bay Area Design-Build & Exteriors Contractor"
+  },
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://hamilton-exteriors.com/logo-schema.png",
+    "width": 600,
+    "height": 120
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Hamilton Exteriors Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/roofing#service", "name": "Roofing", "url": "https://hamilton-exteriors.com/roofing" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/siding#service", "name": "Siding", "url": "https://hamilton-exteriors.com/siding" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/windows#service", "name": "Windows", "url": "https://hamilton-exteriors.com/windows" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/adu#service", "name": "ADUs", "url": "https://hamilton-exteriors.com/adu" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/custom-homes#service", "name": "Custom Homes", "url": "https://hamilton-exteriors.com/custom-homes" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/additions#service", "name": "Additions", "url": "https://hamilton-exteriors.com/additions" } }
+    ]
+  },
+  "hasCredential": [
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "license", "name": "CSLB Contractor License #1082377", "recognizedBy": { "@type": "Organization", "name": "Contractors State License Board", "url": "https://www.cslb.ca.gov" } },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "Tesla Powerwall Certified Installer" },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "GAF Master Elite Contractor" },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "Owens Corning Preferred Contractor" },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "James Hardie Elite Preferred Installer" },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "CertainTeed ShingleMaster" }
+  ],
+  "knowsAbout": [
+    { "@type": "Thing", "name": "Roof replacement", "sameAs": "https://en.wikipedia.org/wiki/Domestic_roof_construction" },
+    { "@type": "Thing", "name": "Asphalt shingle roofing", "sameAs": "https://en.wikipedia.org/wiki/Asphalt_shingle" },
+    { "@type": "Thing", "name": "Metal roofing", "sameAs": "https://en.wikipedia.org/wiki/Metal_roof" },
+    { "@type": "Thing", "name": "Fiber cement siding", "sameAs": "https://en.wikipedia.org/wiki/Fibre_cement" },
+    { "@type": "Thing", "name": "James Hardie fiber cement siding", "sameAs": "https://en.wikipedia.org/wiki/James_Hardie_Industries" },
+    { "@type": "Thing", "name": "Energy-efficient windows", "sameAs": "https://en.wikipedia.org/wiki/Energy-efficient_window" },
+    { "@type": "Thing", "name": "Accessory dwelling unit", "sameAs": "https://en.wikipedia.org/wiki/Accessory_dwelling_unit" },
+    { "@type": "Thing", "name": "Custom home building", "sameAs": "https://en.wikipedia.org/wiki/Custom_home" },
+    { "@type": "Thing", "name": "Bay Area building codes" },
+    { "@type": "Thing", "name": "California contractor licensing", "sameAs": "https://en.wikipedia.org/wiki/Contractors_State_License_Board" }
+  ],
+  "founder": {
+    "@type": "Person",
+    "@id": "https://hamilton-exteriors.com/#founder",
+    "name": "Alexander Hamilton Li",
+    "jobTitle": "Architect & General Contractor",
+    "sameAs": [
+      "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377",
+      "https://www.linkedin.com/in/alexanderhamiltonli"
+    ]
+  },
+  "paymentAccepted": ["Cash", "Check", "ACH Transfer", "Credit Card"],
+  "description": "Bay Area exterior remodeling - roofing, siding, windows, and waterproofing. Licensed, bonded, insured. 50-year warranty. In-house architect and engineering.",
+  "review": [
+    ...(_displayReviews?.reviews ?? []).map((r: any) => ({
+      "@type": "Review",
+      "datePublished": new Date(r.time * 1000).toISOString().split('T')[0],
+      "author": { "@type": "Person", "name": r.author_name },
+      "reviewRating": { "@type": "Rating", "ratingValue": r.rating, "bestRating": 5, "worstRating": 1 },
+      "reviewBody": r.text,
+      "publisher": { "@type": "Organization", "name": "Google" },
+      "itemReviewed": { "@type": "GeneralContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
+    })),
+    ...CURATED_REVIEWS.map((r) => ({
+      "@type": "Review",
+      "datePublished": r.date,
+      "author": { "@type": "Person", "name": r.author_name },
+      "reviewRating": { "@type": "Rating", "ratingValue": r.rating, "bestRating": 5, "worstRating": 1 },
+      "reviewBody": r.text,
+      "publisher": { "@type": "Organization", "name": r.platform === 'yelp' ? 'Yelp' : r.platform === 'angi' ? 'Angi' : r.platform === 'nextdoor' ? 'Nextdoor' : r.platform === 'bbb' ? 'BBB' : r.platform },
+      "itemReviewed": { "@type": "GeneralContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
+    })),
+  ]
+} : null;
+
+const leanOrgSchemaObj = !fullOrgSchema ? {
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "additionalType": "https://schema.org/RoofingContractor",
+  "@id": "https://hamilton-exteriors.com/#business"
+} : null;
+
+const webSiteSchemaObj = Astro.url.pathname === '/' ? {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://hamilton-exteriors.com/#website",
+  "url": "https://hamilton-exteriors.com",
+  "name": "Hamilton Exteriors",
+  "inLanguage": "en-US",
+  "publisher": { "@id": "https://hamilton-exteriors.com/#business" },
+  "description": "Bay Area roofing, siding, windows, ADUs & custom homes by Hamilton Exteriors.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://hamilton-exteriors.com/blog?search={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+} : null;
+
+const webPageSchemaObj = Astro.url.pathname === '/' ? {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://hamilton-exteriors.com/#webpage",
+  "url": "https://hamilton-exteriors.com",
+  "name": "Bay Area Design-Build & Exteriors Contractor | Hamilton Exteriors",
+  "isPartOf": { "@id": "https://hamilton-exteriors.com/#website" },
+  "about": { "@id": "https://hamilton-exteriors.com/#business" },
+  "inLanguage": "en-US"
+} : null;
 ---
 
 <!doctype html>
@@ -98,11 +279,9 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     <!-- ── Resource hints — must be first in <head> for maximum effectiveness ── -->
     <!-- OpenPanel Analytics (cookie-free, session replay, funnels, retention) -->
     <link rel="dns-prefetch" href="https://openpanel.dev" />
-    <!-- GTM: always needed (deferred via interaction, but DNS/TCP warmup is free) -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <!-- GTM: deferred until interaction, so dns-prefetch is sufficient (preconnect wastes a TCP/TLS slot) -->
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <!-- Google Tag Manager secondary domain (loads analytics.js etc.) -->
-    <link rel="preconnect" href="https://www.google-analytics.com" />
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     <!-- BackOffice portfolio widget — loaded on every page with a Projects section -->
     <link rel="preconnect" href="https://backoffice-production-99b7.up.railway.app" />
@@ -119,7 +298,8 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     <link rel="preload" href="/fonts/the-bold-font-700.woff2" as="font" type="font/woff2" crossorigin />
     <!-- DM Sans: body text, rendered before hero paints -->
     <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <!-- Satoshi: labels/badges — not preloaded (non-critical, font-display: optional handles it) -->
+    <!-- Satoshi 700: labels/badges — preloaded to remove from critical chain (discovered late via CSS @font-face) -->
+    <link rel="preload" href="/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin />
 
     {/* Preload hero/LCP image — mobile gets 768px, desktop gets 1440px */}
     {heroMobilePreload && <link rel="preload" href={heroMobilePreload.src} as="image" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />}
@@ -180,223 +360,12 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     <link rel="apple-touch-icon" href="/favicon.png?v=2" />
 
     {/* Full Organization schema on homepage + service pages; lean @id reference elsewhere */}
-    {fullOrgSchema ? (
-    <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@type": "GeneralContractor",
-      "additionalType": "https://schema.org/RoofingContractor",
-      "@id": "https://hamilton-exteriors.com/#business",
-      "name": "Hamilton Exteriors",
-      "url": "https://hamilton-exteriors.com",
-      "telephone": "+16509773351",
-      "email": "support@hamilton-exteriors.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "21634 Redwood Rd Unit F",
-        "addressLocality": "Castro Valley",
-        "addressRegion": "CA",
-        "postalCode": "94546",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 37.69427,
-        "longitude": -122.07887
-      },
-      "openingHoursSpecification": [
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+16509773351",
-        "contactType": "customer service",
-        "areaServed": "CA",
-        "availableLanguage": "English"
-      },
-      "hasMap": "https://maps.google.com/?cid=3578771346418026097",
-      "sameAs": [
-        "https://www.facebook.com/hamiltonexteriors",
-        "https://www.instagram.com/hamiltonexteriors",
-        "https://www.linkedin.com/company/hamilton-exteriors/",
-        "https://www.yelp.com/biz/hamilton-exteriors-castro-valley",
-        "https://www.youtube.com/@HamiltonExteriors",
-        "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377",
-        "https://www.wikidata.org/wiki/Q139044457",
-        "https://www.homeadvisor.com/rated.abrqualityresources.150372023.html",
-        "https://www.angi.com/companylist/us/ca/castro-valley/abr-quality-resources-reviews-10768498.htm",
-        "https://www.bbb.org/us/ca/castro-valley/profile/general-contractor/hamilton-exteriors-1116-935089"
-      ],
-      "alternateName": "ABR Quality Resources Inc",
-      "areaServed": [
-        { "@type": "AdministrativeArea", "name": "Alameda County", "sameAs": "https://en.wikipedia.org/wiki/Alameda_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
-        { "@type": "AdministrativeArea", "name": "Contra Costa County", "sameAs": "https://en.wikipedia.org/wiki/Contra_Costa_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
-        { "@type": "AdministrativeArea", "name": "Marin County", "sameAs": "https://en.wikipedia.org/wiki/Marin_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
-        { "@type": "AdministrativeArea", "name": "Napa County", "sameAs": "https://en.wikipedia.org/wiki/Napa_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
-        { "@type": "AdministrativeArea", "name": "Santa Clara County", "sameAs": "https://en.wikipedia.org/wiki/Santa_Clara_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
-        { "@type": "AdministrativeArea", "name": "San Mateo County", "sameAs": "https://en.wikipedia.org/wiki/San_Mateo_County,_California", "containedInPlace": { "@type": "State", "name": "California" } }
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": _displayReviews?.rating ?? 4.8,
-        "reviewCount": _displayReviews?.reviewCount ?? 26,
-        "bestRating": 5,
-        "worstRating": 1
-      },
-      "priceRange": "$$",
-      "image": {
-        "@type": "ImageObject",
-        "url": "https://hamilton-exteriors.com/og-default.jpg",
-        "width": 1200,
-        "height": 630,
-        "caption": "Hamilton Exteriors — Bay Area Design-Build & Exteriors Contractor"
-      },
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://hamilton-exteriors.com/logo-schema.png",
-        "width": 600,
-        "height": 120
-      },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Hamilton Exteriors Services",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/roofing#service", "name": "Roofing", "url": "https://hamilton-exteriors.com/roofing" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/siding#service", "name": "Siding", "url": "https://hamilton-exteriors.com/siding" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/windows#service", "name": "Windows", "url": "https://hamilton-exteriors.com/windows" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/adu#service", "name": "ADUs", "url": "https://hamilton-exteriors.com/adu" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/custom-homes#service", "name": "Custom Homes", "url": "https://hamilton-exteriors.com/custom-homes" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://hamilton-exteriors.com/additions#service", "name": "Additions", "url": "https://hamilton-exteriors.com/additions" } }
-        ]
-      },
-      "hasCredential": [
-        {
-          "@type": "EducationalOccupationalCredential",
-          "credentialCategory": "license",
-          "name": "CSLB Contractor License #1082377",
-          "recognizedBy": { "@type": "Organization", "name": "Contractors State License Board", "url": "https://www.cslb.ca.gov" }
-        },
-        {
-          "@type": "EducationalOccupationalCredential",
-          "credentialCategory": "certification",
-          "name": "Tesla Powerwall Certified Installer"
-        },
-        {
-          "@type": "EducationalOccupationalCredential",
-          "credentialCategory": "certification",
-          "name": "GAF Master Elite Contractor"
-        },
-        {
-          "@type": "EducationalOccupationalCredential",
-          "credentialCategory": "certification",
-          "name": "Owens Corning Preferred Contractor"
-        },
-        {
-          "@type": "EducationalOccupationalCredential",
-          "credentialCategory": "certification",
-          "name": "James Hardie Elite Preferred Installer"
-        },
-        {
-          "@type": "EducationalOccupationalCredential",
-          "credentialCategory": "certification",
-          "name": "CertainTeed ShingleMaster"
-        }
-      ],
-      "knowsAbout": [
-        { "@type": "Thing", "name": "Roof replacement", "sameAs": "https://en.wikipedia.org/wiki/Domestic_roof_construction" },
-        { "@type": "Thing", "name": "Asphalt shingle roofing", "sameAs": "https://en.wikipedia.org/wiki/Asphalt_shingle" },
-        { "@type": "Thing", "name": "Metal roofing", "sameAs": "https://en.wikipedia.org/wiki/Metal_roof" },
-        { "@type": "Thing", "name": "Fiber cement siding", "sameAs": "https://en.wikipedia.org/wiki/Fibre_cement" },
-        { "@type": "Thing", "name": "James Hardie fiber cement siding", "sameAs": "https://en.wikipedia.org/wiki/James_Hardie_Industries" },
-        { "@type": "Thing", "name": "Energy-efficient windows", "sameAs": "https://en.wikipedia.org/wiki/Energy-efficient_window" },
-        { "@type": "Thing", "name": "Accessory dwelling unit", "sameAs": "https://en.wikipedia.org/wiki/Accessory_dwelling_unit" },
-        { "@type": "Thing", "name": "Custom home building", "sameAs": "https://en.wikipedia.org/wiki/Custom_home" },
-        { "@type": "Thing", "name": "Bay Area building codes" },
-        { "@type": "Thing", "name": "California contractor licensing", "sameAs": "https://en.wikipedia.org/wiki/Contractors_State_License_Board" }
-      ],
-      "founder": {
-        "@type": "Person",
-        "@id": "https://hamilton-exteriors.com/#founder",
-        "name": "Alexander Hamilton Li",
-        "jobTitle": "Architect & General Contractor",
-        "sameAs": [
-          "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377",
-          "https://www.linkedin.com/in/alexanderhamiltonli"
-        ]
-      },
-      "paymentAccepted": ["Cash", "Check", "ACH Transfer", "Credit Card"],
-      "description": "Bay Area exterior remodeling - roofing, siding, windows, and waterproofing. Licensed, bonded, insured. 50-year warranty. In-house architect and engineering.",
-      "review": [
-        // Live Google reviews
-        ...(_displayReviews?.reviews ?? []).map(r => ({
-          "@type": "Review",
-          "datePublished": new Date(r.time * 1000).toISOString().split('T')[0],
-          "author": { "@type": "Person", "name": r.author_name },
-          "reviewRating": { "@type": "Rating", "ratingValue": r.rating, "bestRating": 5, "worstRating": 1 },
-          "reviewBody": r.text,
-          "publisher": { "@type": "Organization", "name": "Google" },
-          "itemReviewed": { "@type": "GeneralContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
-        })),
-        // Curated reviews from other platforms
-        ...CURATED_REVIEWS.map(r => ({
-          "@type": "Review",
-          "datePublished": r.date,
-          "author": { "@type": "Person", "name": r.author_name },
-          "reviewRating": { "@type": "Rating", "ratingValue": r.rating, "bestRating": 5, "worstRating": 1 },
-          "reviewBody": r.text,
-          "publisher": { "@type": "Organization", "name": r.platform === 'yelp' ? 'Yelp' : r.platform === 'angi' ? 'Angi' : r.platform === 'nextdoor' ? 'Nextdoor' : r.platform === 'bbb' ? 'BBB' : r.platform },
-          "itemReviewed": { "@type": "GeneralContractor", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
-        })),
-      ]
-    }
-    </script>
-    ) : (
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "GeneralContractor",
-      "additionalType": "https://schema.org/RoofingContractor",
-      "@id": "https://hamilton-exteriors.com/#business"
-    })} />
-    )}
+    {fullOrgSchemaObj && <script type="application/ld+json" set:html={JSON.stringify(fullOrgSchemaObj)} />}
+    {leanOrgSchemaObj && <script type="application/ld+json" set:html={JSON.stringify(leanOrgSchemaObj)} />}
 
-    <!-- WebSite + WebPage Schema — homepage only -->
-    {Astro.url.pathname === '/' && (
-    <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": "https://hamilton-exteriors.com/#website",
-      "url": "https://hamilton-exteriors.com",
-      "name": "Hamilton Exteriors",
-      "inLanguage": "en-US",
-      "publisher": { "@id": "https://hamilton-exteriors.com/#business" },
-      "description": "Bay Area roofing, siding, windows, ADUs & custom homes by Hamilton Exteriors.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://hamilton-exteriors.com/blog?search={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-    )}
-    {Astro.url.pathname === '/' && (
-    <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://hamilton-exteriors.com/#webpage",
-      "url": "https://hamilton-exteriors.com",
-      "name": "Bay Area Design-Build & Exteriors Contractor | Hamilton Exteriors",
-      "isPartOf": { "@id": "https://hamilton-exteriors.com/#website" },
-      "about": { "@id": "https://hamilton-exteriors.com/#business" },
-      "inLanguage": "en-US"
-    }
-    </script>
-    )}
+    {/* WebSite + WebPage Schema — homepage only */}
+    {webSiteSchemaObj && <script type="application/ld+json" set:html={JSON.stringify(webSiteSchemaObj)} />}
+    {webPageSchemaObj && <script type="application/ld+json" set:html={JSON.stringify(webPageSchemaObj)} />}
 
     <!-- OpenPanel Analytics — cookie-free, session replay, funnels, ~2.3KB -->
     <OpenPanelComponent
