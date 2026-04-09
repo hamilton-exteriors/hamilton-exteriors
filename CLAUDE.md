@@ -48,6 +48,17 @@ NOT: generic contractor site, overly corporate, cheap/discount vibe, over-design
 4. **Substance over decoration** — every element earns its place by communicating something useful
 5. **Mobile-first, always** — phone is the primary design surface
 
+### Copy & Tone Rules
+- **Never** use ALL CAPS for emphasis (FREE, GUARANTEED) — always sentence case
+- **Never** use defensive "no X" phrasing (no surprises, no obligation, no hidden fees) — signals insecurity
+- **Never** use unverifiable superlatives (top, best, #1) — use factual differentiators (architect-led, CSLB #1082377)
+- **Never** lead with discount/price as headlines ($0 Down, Limited Time) — mention in body copy only
+- **Never** use generic contractor boilerplate (quality workmanship, customer satisfaction, your dream home)
+- Standardize CTA to "Get Your Free Quote" everywhere — max 3-4 "free" instances per page
+- Announcement bars signal demand ("Now Booking Summer 2026") not discounts
+- FAQ answers under 80 words, no keyword-stuffed city lists
+- Font alias: display font is "Hamilton Display" in CSS (`--font-oswald` variable)
+
 ### Accessibility
 WCAG 2.1 AA. 4.5:1 contrast for body text, keyboard nav, meaningful alt text, respect `prefers-reduced-motion`.
 
