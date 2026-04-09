@@ -763,8 +763,8 @@ const additionsFullRemodels: SubServiceData = {
 export const SUB_SERVICES: Record<string, SubServiceData> = {
   // Roofing
   'roofing/asphalt-shingles': roofingAsphaltShingles,
-  'roofing/metal': imgRoofingMetal,
-  'roofing/tile': imgRoofingTile,
+  'roofing/metal': roofingMetal,
+  'roofing/tile': roofingTile,
   'roofing/energy': roofingEnergy,
   // Siding
   'siding/vinyl': sidingVinylPage,

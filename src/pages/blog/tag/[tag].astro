@@ -1,0 +1,13 @@
+---
+/**
+ * Static blog tag route — /blog/tag/[tag]
+ *
+ * Rewrites to the blog index with ?tag= param, giving each tag a clean URL
+ * with a self-referencing canonical (better for SEO than query params).
+ * Pagination is preserved: /blog/tag/roofing?page=2
+ */
+const { tag } = Astro.params;
+const page = Astro.url.searchParams.get('page');
+const target = `/blog?tag=${tag}${page ? `&page=${page}` : ''}`;
+return Astro.rewrite(target);
+---

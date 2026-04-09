@@ -1,11 +1,14 @@
 import { defineMiddleware } from 'astro:middleware';
+import crypto from 'node:crypto';
 
 /**
- * Performance middleware — sets Cache-Control headers based on response type.
+ * Middleware — security headers (CSP nonces), caching, redirects, Ghost media proxy.
  *
- * - Static assets (images, fonts, CSS, JS): immutable, 1-year cache
- * - HTML pages: 5 min browser cache, 1 hour CDN cache
- * - API routes: no-store
+ * CSP nonces: A unique nonce is generated per request and injected into all <script>
+ * tags via HTML rewriting. Combined with 'strict-dynamic', this allows:
+ * - Nonced inline scripts (GTM, Mapbox, etc.)
+ * - Scripts dynamically created by trusted scripts (GTM tag injection)
+ * - Astro-bundled external scripts (via nonce on their <script type="module"> tags)
  */
 // Permanent redirects for common probes and URL aliases
 const REDIRECTS: Record<string, string> = {
@@ -42,6 +45,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
     });
   }
 
+  // Generate per-request nonce for CSP
+  const nonce = crypto.randomUUID();
+  context.locals.nonce = nonce;
+
   const response = await next();
 
   // Security headers
@@ -49,10 +56,16 @@ export const onRequest = defineMiddleware(async (context, next) => {
   response.headers.set('X-Frame-Options', 'SAMEORIGIN');
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
-  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(self)');
-  response.headers.set('Content-Security-Policy', [
+  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(self), payment=(), browsing-topics=()');
+
+  // CSP with nonce + strict-dynamic:
+  // - 'nonce-xxx': trusts inline scripts with this nonce
+  // - 'strict-dynamic': trusts scripts created by nonced scripts (GTM tag injection)
+  // - 'unsafe-inline': fallback for browsers that don't support nonces (ignored when nonce present)
+  // - https:: fallback for browsers that don't support strict-dynamic
+  const csp = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google.com https://googleads.g.doubleclick.net https://connect.facebook.net https://api.mapbox.com https://backoffice-production-99b7.up.railway.app",
+    `script-src 'nonce-${nonce}' 'strict-dynamic' 'unsafe-inline' https:`,
     "style-src 'self' 'unsafe-inline'",
     "img-src * data: blob:",
     "font-src 'self'",
@@ -60,7 +73,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
     "frame-src 'self' https://www.googletagmanager.com https://www.google.com https://td.doubleclick.net https://www.facebook.com",
     "base-uri 'self'",
     "form-action 'self'",
-  ].join('; '));
+  ].join('; ');
+  response.headers.set('Content-Security-Policy', csp);
 
   // API routes — never cache
   if (pathname.startsWith('/api/') || pathname.startsWith('/api.')) {
@@ -86,6 +100,19 @@ export const onRequest = defineMiddleware(async (context, next) => {
     response.headers.set('Cache-Control', 'no-store');
   } else if (contentType.includes('text/html') || !contentType) {
     response.headers.set('Cache-Control', 'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400');
+  }
+
+  // Inject nonces into all <script> tags for HTML responses.
+  // This covers Astro-bundled modules, is:inline scripts, and define:vars scripts.
+  // JSON-LD <script type="application/ld+json"> gets a nonce too — harmless, not executed.
+  if (contentType.includes('text/html') && response.body) {
+    const html = await response.text();
+    const noncedHtml = html.replace(/<script(?=[\s>])/gi, `<script nonce="${nonce}"`);
+    return new Response(noncedHtml, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers,
+    });
   }
 
   return response;

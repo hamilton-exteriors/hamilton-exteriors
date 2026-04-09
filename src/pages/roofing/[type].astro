@@ -5,7 +5,7 @@ import { SUB_SERVICES } from '../../data/sub-services';
 
 const { type } = Astro.params;
 const data = SUB_SERVICES[`roofing/${type}`];
-if (!data) return Astro.redirect('/roofing', 302);
+if (!data) return Astro.redirect('/roofing', 301);
 ---
 
 <Layout title={data.title} description={data.description} heroImage={data.heroImage} preloadHero>

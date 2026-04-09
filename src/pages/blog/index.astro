@@ -48,6 +48,8 @@ const pageDesc = activeTag
   : 'Ground Up is the Hamilton Exteriors blog. Bay Area roofing costs, siding guides, ADU planning, and home improvement tips from a licensed contractor (CSLB #1082377).';
 
 const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
+// Tag pages at /blog/tag/[tag] rewrite here — use clean URL as canonical
+const canonicalOverride = tag ? `${siteUrl}/blog/tag/${tag}` : undefined;
 
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org',
@@ -99,7 +101,7 @@ function ghostSrcset(url: string, widths: number[]): string {
 }
 ---
 
-<Layout title={pageTitle} description={pageDesc} jsonLd={blogSchemas} heroImage={heroBg}>
+<Layout title={pageTitle} description={pageDesc} jsonLd={blogSchemas} heroImage={heroBg} canonical={canonicalOverride}>
   <AnnouncementBar slot="header" />
   <Navbar slot="header" />
 
@@ -148,7 +150,7 @@ function ghostSrcset(url: string, widths: number[]): string {
               <span class="filter-row__label">Topic</span>
               <div class="filter-row__chips">
                 {topicTags.map((t: any) => (
-                  <a href={tag === t.slug ? '/blog' : `/blog?tag=${t.slug}`} class:list={['chip', tag === t.slug && 'chip--active']}>
+                  <a href={tag === t.slug ? '/blog' : `/blog/tag/${t.slug}`} class:list={['chip', tag === t.slug && 'chip--active']}>
                     {t.name}<span class="chip__count">{t.count}</span>
                   </a>
                 ))}
@@ -160,7 +162,7 @@ function ghostSrcset(url: string, widths: number[]): string {
               <span class="filter-row__label">Type</span>
               <div class="filter-row__chips">
                 {typeTags.map((t: any) => (
-                  <a href={tag === t.slug ? '/blog' : `/blog?tag=${t.slug}`} class:list={['chip', tag === t.slug && 'chip--active']}>
+                  <a href={tag === t.slug ? '/blog' : `/blog/tag/${t.slug}`} class:list={['chip', tag === t.slug && 'chip--active']}>
                     {t.name}<span class="chip__count">{t.count}</span>
                   </a>
                 ))}
@@ -275,9 +277,9 @@ function ghostSrcset(url: string, widths: number[]): string {
           {/* ── Pagination ── */}
           {pagination.pages > 1 && (
             <div class="blog-pagination">
-              {pagination.page > 1 && <a href={`/blog?page=${pagination.page - 1}${tag ? `&tag=${tag}` : ''}`} rel="prev" class="blog-pagination__btn">&larr; Previous</a>}
+              {pagination.page > 1 && <a href={`${tag ? `/blog/tag/${tag}` : '/blog'}?page=${pagination.page - 1}`} rel="prev" class="blog-pagination__btn">&larr; Previous</a>}
               <span class="blog-pagination__label">Page {pagination.page} of {pagination.pages}</span>
-              {pagination.page < pagination.pages && <a href={`/blog?page=${pagination.page + 1}${tag ? `&tag=${tag}` : ''}`} rel="next" class="blog-pagination__btn">Next &rarr;</a>}
+              {pagination.page < pagination.pages && <a href={`${tag ? `/blog/tag/${tag}` : '/blog'}?page=${pagination.page + 1}`} rel="next" class="blog-pagination__btn">Next &rarr;</a>}
             </div>
           )}
         </>

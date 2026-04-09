@@ -93,7 +93,7 @@ const articleJsonLd = {
   name: post.title,
   headline: post.title,
   description,
-  image: { '@type': 'ImageObject', url: postImage, width: 1200, height: 630 },
+  image: { '@type': 'ImageObject', url: postImage, contentUrl: postImage, width: 1200, height: 630 },
   datePublished: post.published_at || post.updated_at || new Date().toISOString(),
   dateModified: post.updated_at || post.published_at,
   url: canonicalUrl,

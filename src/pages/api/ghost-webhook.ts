@@ -53,7 +53,23 @@ export const POST: APIRoute = async ({ request }) => {
 
     console.log('[ghost-webhook] Redeploy triggered successfully');
 
-    // Notify IndexNow (Bing, Yandex, Naver) about updated content
+    // Trigger full IndexNow batch after redeploy (non-blocking)
+    // Submits all site URLs to Bing/Yandex/Naver for fast re-indexing
+    try {
+      const batchUrl = new URL('/api/indexnow-batch', 'https://hamilton-exteriors.com');
+      const indexnowSecret = import.meta.env.INDEXNOW_SECRET || '';
+      fetch(batchUrl.toString(), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(indexnowSecret && { Authorization: `Bearer ${indexnowSecret}` }),
+        },
+        signal: AbortSignal.timeout(30_000),
+      }).then(r => console.log(`[ghost-webhook] IndexNow batch: ${r.status}`))
+        .catch(e => console.warn('[ghost-webhook] IndexNow batch failed:', e));
+    } catch { /* non-blocking */ }
+
+    // Notify IndexNow about the specific updated blog post
     try {
       const body = await request.clone().json().catch(() => null);
       const slug = body?.post?.current?.slug;

@@ -46,6 +46,31 @@ if (GHOST_URL && GHOST_KEY) {
   }
 }
 
+// Fetch blog tags for tag route sitemap entries
+/** @type {string[]} */
+const blogTagSlugs = [];
+if (GHOST_URL && GHOST_KEY) {
+  try {
+    const tagUrl = new URL(`${GHOST_URL}/ghost/api/content/tags/`);
+    tagUrl.searchParams.set('key', GHOST_KEY);
+    tagUrl.searchParams.set('include', 'count.posts');
+    tagUrl.searchParams.set('limit', 'all');
+    const res = await fetch(tagUrl.toString(), { signal: AbortSignal.timeout(10_000) });
+    if (res.ok) {
+      const data = await res.json();
+      const hiddenSlugs = new Set(['hash-service-area-city', 'hash-service-area-county', 'hash-service-area-city-service', 'location_page', 'blog-post']);
+      for (const t of (data.tags ?? [])) {
+        if (t.count?.posts > 0 && !t.slug.startsWith('hash-') && !hiddenSlugs.has(t.slug)) {
+          blogTagSlugs.push(t.slug);
+        }
+      }
+      console.log(`[sitemap] Added ${blogTagSlugs.length} blog tag pages`);
+    }
+  } catch (e) {
+    console.warn('[sitemap] Could not fetch Ghost tags for sitemap:', e.message);
+  }
+}
+
 // Build a lookup of blog lastmod dates for the serialize function
 const blogLastmodMap = new Map(blogSitemapEntries.map(e => [e.url, e.lastmod]));
 
@@ -70,10 +95,21 @@ const cityServicePages = counties.flatMap(c =>
   )
 );
 
-// County+service pages (5 counties x 6 services = 30 pages)
+// County+service pages (6 counties x 6 services = 36 pages)
 const countyServicePages = counties.flatMap(c =>
   services.map(s => `https://hamilton-exteriors.com/service-areas/${c.slug}/${s}`)
 );
+
+// Sub-service pages (e.g. /roofing/asphalt-shingles, /siding/fiber-cement)
+const subServicePages = [
+  'roofing/asphalt-shingles', 'roofing/metal', 'roofing/tile', 'roofing/energy',
+  'siding/vinyl', 'siding/fiber-cement', 'siding/stucco', 'siding/waterproofing',
+  'windows/single-hung', 'windows/single-slider', 'windows/sliding-glass-doors',
+  'windows/picture', 'windows/double-hung', 'windows/casement',
+  'adu/detached', 'adu/design', 'adu/permits', 'adu/garage-conversions',
+  'custom-homes/ground-up', 'custom-homes/design', 'custom-homes/permits', 'custom-homes/additions-renovations',
+  'additions/second-story', 'additions/room-extensions', 'additions/adus-guest-houses', 'additions/full-remodels',
+].map(s => `https://hamilton-exteriors.com/${s}`);
 
 // https://astro.build/config
 export default defineConfig({
@@ -89,18 +125,22 @@ export default defineConfig({
       // Top-level service pages not auto-discovered by SSR
       'https://hamilton-exteriors.com/siding',
       'https://hamilton-exteriors.com/windows',
+      // Sub-service pages (26 pages)
+      ...subServicePages,
       // Blog posts from Ghost CMS
       ...blogSitemapEntries.map(e => e.url),
-      // City pages (29 cities)
+      // Blog tag pages
+      ...blogTagSlugs.map(slug => `https://hamilton-exteriors.com/blog/tag/${slug}`),
+      // City pages (44 cities)
       ...cityPages,
-      // City+service pages (29 cities x 6 services = 174 pages)
+      // City+service pages (44 cities x 6 services = 264 pages)
       ...cityServicePages,
-      // County+service pages (5 counties x 6 services = 30 pages)
+      // County+service pages (6 counties x 6 services = 36 pages)
       ...countyServicePages,
     ],
     filter: (page) => {
       // Exclude noindex pages from sitemap
-      const exclude = ['/success', '/quote-calculator', '/404', '/privacy-policy', '/privacy-notice-ca', '/terms', '/eeo-policy', '/opt-out', '/additions-2', '/additions-3', '/blog/coming-soon', '/blog/untitled', '/buy', '/buy/scan'];
+      const exclude = ['/success', '/quote-calculator', '/404', '/privacy-policy', '/privacy-notice-ca', '/terms', '/eeo-policy', '/opt-out', '/additions-2', '/additions-3', '/blog/coming-soon', '/blog/untitled', '/buy', '/buy/scan', '/about'];
       return !exclude.some(path => page.includes(path));
     },
     serialize: (item) => {
@@ -124,7 +164,12 @@ export default defineConfig({
           '/service-areas': '2026-03-30',
           '/about/alex-hamilton-li': '2026-04-05',
         };
-        item.lastmod = CORE_PAGE_DATES[path] || '2026-03-30';
+        // Blog index uses newest post date; all others use stable dates
+        const newestBlogDate = blogSitemapEntries.length
+          ? blogSitemapEntries.reduce((a, b) => a.lastmod > b.lastmod ? a : b).lastmod
+          : null;
+        const blogIndexDate = newestBlogDate ? new Date(newestBlogDate).toISOString().split('T')[0] : '2026-03-30';
+        item.lastmod = path === '/blog' ? blogIndexDate : (CORE_PAGE_DATES[path] || '2026-03-30');
       }
 
       // Google ignores changefreq and priority — omit them to keep sitemap clean

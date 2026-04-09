@@ -20,6 +20,8 @@ interface Props {
    *  When false, emits a lean @id-only reference.
    *  Defaults to true only for homepage and top-level service pages. */
   fullOrgSchema?: boolean;
+  /** Override the auto-derived canonical URL (e.g. for blog tag routes) */
+  canonical?: string;
 }
 
 const heroSrc = Astro.props.heroImage || heroBg;
@@ -73,7 +75,7 @@ const description = buildDescription(rawDescription, geoPlacename);
 
 const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
 // Canonical must match sitemap URLs — trailingSlash: 'never' means no trailing slashes
-const canonicalUrl = (siteUrl + Astro.url.pathname).replace(/\/$/, '') || siteUrl;
+const canonicalUrl = Astro.props.canonical || (siteUrl + Astro.url.pathname).replace(/\/$/, '') || siteUrl;
 
 // Resolve OG image: explicit prop > auto-generated from hero > default fallback
 const ogImageUrl = image || (heroOgImage ? siteUrl + heroOgImage.src : siteUrl + '/og-default.jpg');
