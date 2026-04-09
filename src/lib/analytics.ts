@@ -3,24 +3,58 @@
  * Client-side: use window.op('track', ...) directly or data-track attributes.
  * Server-side: use trackServerEvent() from form handlers.
  *
+ * OpenPanel is the SOURCE OF TRUTH for all marketing attribution.
+ * BackOffice is the CRM for the sales process — it fires webhooks when
+ * lead status changes, but does not track marketing.
+ *
  * OpenPanel docs: https://openpanel.dev/docs/sdks/sdk
  *
  * ── UTM Parameter Strategy ──────────────────────────────────────────
- * OpenPanel auto-captures UTM params from the URL. Use these conventions:
+ * OpenPanel auto-captures UTM params from the URL on every page view.
+ * Server-side events also attach UTMs as event properties for redundancy.
  *
  * | Parameter    | Convention              | Examples                          |
  * |------------- |-------------------------|-----------------------------------|
- * | utm_source   | platform name           | google, facebook, nextdoor, yelp  |
- * | utm_medium   | marketing channel       | cpc, social, email, referral      |
+ * | utm_source   | platform name           | google, fb, ig, nextdoor, yelp    |
+ * | utm_medium   | marketing channel       | cpc, paid_social, email, referral |
  * | utm_campaign | descriptive_snake_case  | spring_roofing_2026, adu_launch   |
- * | utm_content  | variant or placement    | hero_cta, sidebar_banner          |
- * | utm_term     | keyword (paid search)   | roof+replacement+castro+valley    |
+ * | utm_content  | ad creative variant     | video_testimonial_v1, static_pricing_a |
+ * | utm_term     | keyword / audience      | roof+replacement, homeowners_45plus |
  *
  * Rules:
- * - Always lowercase, underscores for spaces
- * - Campaign names: {season}_{service}_{year} (e.g. spring_roofing_2026)
- * - Use utm_content to A/B test ad creatives or CTA placements
- * - Track in a shared spreadsheet before launching any campaign
+ * - Always lowercase, underscores for spaces, no special characters
+ * - Campaign names: {season}_{service}_{year}_{geo} (e.g. spring_roofing_2026_bayarea)
+ * - Use utm_content to A/B test ad creatives — name format: {format}_{hook}_{variant}
+ *
+ * ── Facebook Ads URL Parameters ─────────────────────────────────────
+ * Set in Ads Manager > Ad Level > Tracking > URL Parameters:
+ *
+ *   utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign={{campaign.name}}&utm_term={{adset.name}}&utm_content={{ad.name}}
+ *
+ * Dynamic params: {{campaign.name}}, {{campaign.id}}, {{adset.name}},
+ * {{adset.id}}, {{ad.name}}, {{ad.id}}, {{site_source_name}} (fb|ig|msg|an),
+ * {{placement}}
+ *
+ * IMPORTANT: {{campaign.name}} resolves at publish time — rename BEFORE publishing.
+ *
+ * Ad naming convention for utm_content:
+ *   {format}_{hook}_{variant}  →  video_testimonial_smith_v1
+ *                                  carousel_beforeafter_v2
+ *                                  static_pricing_a
+ *
+ * ── Google Ads Tracking Template ────────────────────────────────────
+ * Set at Account Level > Settings > Tracking Template:
+ *
+ *   {lpurl}?utm_source=google&utm_medium=cpc&utm_campaign=CAMPAIGN_NAME&utm_term={keyword}&utm_content={creative}&matchtype={matchtype}&network={network}&device={device}
+ *
+ * Replace CAMPAIGN_NAME manually per campaign (Google has no {campaignname} param).
+ * Auto-tagging (gclid) is on by default — keep it, works alongside UTMs.
+ *
+ * ── Attribution Flow ────────────────────────────────────────────────
+ * 1. User lands → Layout.astro persists UTMs + fbclid/gclid in sessionStorage
+ * 2. Form submit → UTMs flow to OpenPanel identify (profile) + event props
+ * 3. OpenPanel dashboard → filter leads by utm_campaign, utm_content for ROI
+ * 4. Deal closes → BackOffice fires POST /api/conversions → OpenPanel revenue()
  */
 
 import { OpenPanel } from '@openpanel/sdk';

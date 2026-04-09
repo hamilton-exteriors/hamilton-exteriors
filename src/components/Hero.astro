@@ -205,6 +205,12 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
               <input type="hidden" name="serviceDetail" id="service-detail-input" />
               <input type="hidden" name="fbclid" id="fbclid-input" />
               <input type="hidden" name="fbc" id="fbc-input" />
+              <input type="hidden" name="gclid" id="gclid-input" />
+              <input type="hidden" name="utm_source" id="utm-source-input" />
+              <input type="hidden" name="utm_medium" id="utm-medium-input" />
+              <input type="hidden" name="utm_campaign" id="utm-campaign-input" />
+              <input type="hidden" name="utm_content" id="utm-content-input" />
+              <input type="hidden" name="utm_term" id="utm-term-input" />
               <div class="grid grid-cols-2 gap-2">
                 {step2Options.map((option) => (
                   <button
@@ -308,11 +314,21 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
   // Skip Step 2 entirely when service is preset and no sub-options
   const skipStep2 = !!presetService && !hasOptions;
 
-  // Populate fbclid/fbc hidden fields from sessionStorage (persisted in Layout.astro)
-  const fbclidInput = document.getElementById('fbclid-input') as HTMLInputElement;
-  const fbcInput = document.getElementById('fbc-input') as HTMLInputElement;
-  if (fbclidInput) fbclidInput.value = sessionStorage.getItem('he_fbclid') || '';
-  if (fbcInput) fbcInput.value = sessionStorage.getItem('he_fbc') || '';
+  // Populate hidden fields from sessionStorage (persisted on landing in Layout.astro)
+  const hiddenFieldMap: Record<string, string> = {
+    'fbclid-input': 'he_fbclid',
+    'fbc-input': 'he_fbc',
+    'gclid-input': 'he_gclid',
+    'utm-source-input': 'he_utm_source',
+    'utm-medium-input': 'he_utm_medium',
+    'utm-campaign-input': 'he_utm_campaign',
+    'utm-content-input': 'he_utm_content',
+    'utm-term-input': 'he_utm_term',
+  };
+  Object.entries(hiddenFieldMap).forEach(([elId, storageKey]) => {
+    const el = document.getElementById(elId) as HTMLInputElement;
+    if (el) el.value = sessionStorage.getItem(storageKey) || '';
+  });
 
   function showStep(step: HTMLElement | null) {
     // Analytics: track form step views for abandonment analysis
@@ -403,16 +419,19 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
       step,
       page_url: window.location.pathname,
     };
-    // Capture UTM params from URL if present
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('utm_source')) body.utm_source = params.get('utm_source');
-    if (params.get('utm_medium')) body.utm_medium = params.get('utm_medium');
-    if (params.get('utm_campaign')) body.utm_campaign = params.get('utm_campaign');
-    // Persist fbclid for Facebook attribution (survives Safari ITP 24h cookie expiry)
+    // Capture all 5 UTMs + click IDs from sessionStorage (persisted on landing in Layout.astro)
+    // sessionStorage is more reliable than URL params — UTMs survive page navigation
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(k => {
+      const v = sessionStorage.getItem('he_' + k);
+      if (v) body[k] = v;
+    });
+    // Ad platform click IDs for conversion attribution
     const storedFbclid = sessionStorage.getItem('he_fbclid');
     const storedFbc = sessionStorage.getItem('he_fbc');
+    const storedGclid = sessionStorage.getItem('he_gclid');
     if (storedFbclid) body.fbclid = storedFbclid;
     if (storedFbc) body.fbc = storedFbc;
+    if (storedGclid) body.gclid = storedGclid;
 
     fetch('/api/leads/partial', {
       method: 'POST',

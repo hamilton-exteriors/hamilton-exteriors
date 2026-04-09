@@ -521,9 +521,11 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
         }
       }
 
-      // ── Persist fbclid for Facebook attribution ──
-      // Safari ITP kills _fbc after 24h. Capture fbclid from the URL on landing
-      // and store in sessionStorage so it survives form navigation.
+      // ── Persist ad click IDs + UTMs in sessionStorage ──
+      // Survives page navigation within the session. Ensures:
+      // - fbclid persists beyond Safari ITP's 24h cookie expiry
+      // - gclid is captured for Google Ads attribution
+      // - All 5 UTMs are available to form handlers even after URL changes
       (function() {
         const params = new URLSearchParams(window.location.search);
         const fbclid = params.get('fbclid');
@@ -531,6 +533,13 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
           sessionStorage.setItem('he_fbclid', fbclid);
           sessionStorage.setItem('he_fbc', 'fb.1.' + Date.now() + '.' + fbclid);
         }
+        const gclid = params.get('gclid');
+        if (gclid) sessionStorage.setItem('he_gclid', gclid);
+        // Persist UTMs — only overwrite if present (preserves first-touch from landing)
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function(k) {
+          const v = params.get(k);
+          if (v) sessionStorage.setItem('he_' + k, v);
+        });
       })();
 
       // Track all tel: link clicks

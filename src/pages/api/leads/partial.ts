@@ -73,6 +73,12 @@ export const POST: APIRoute = async ({ request }) => {
         ...(body.address && { address: String(body.address) }),
         ...(body.service && { service: String(body.service) }),
         source: 'partial_form',
+        // First-touch UTM attribution on profile
+        ...(body.utm_source && { utm_source: String(body.utm_source) }),
+        ...(body.utm_medium && { utm_medium: String(body.utm_medium) }),
+        ...(body.utm_campaign && { utm_campaign: String(body.utm_campaign) }),
+        ...(body.utm_content && { utm_content: String(body.utm_content) }),
+        ...(body.utm_term && { utm_term: String(body.utm_term) }),
       },
     });
 

@@ -18,6 +18,12 @@ export const server = {
       message: z.string().optional(),
       fbclid: z.string().optional(),
       fbc: z.string().optional(),
+      gclid: z.string().optional(),
+      utm_source: z.string().optional(),
+      utm_medium: z.string().optional(),
+      utm_campaign: z.string().optional(),
+      utm_content: z.string().optional(),
+      utm_term: z.string().optional(),
       consent: z.literal('on', {
         errorMap: () => ({ message: 'You must agree to the terms' }),
       }),
@@ -44,6 +50,9 @@ export const server = {
         notes,
         ...(input.fbclid && { fbclid: input.fbclid }),
         ...(input.fbc && { fbc: input.fbc }),
+        ...(input.utm_source && { utm_source: input.utm_source }),
+        ...(input.utm_medium && { utm_medium: input.utm_medium }),
+        ...(input.utm_campaign && { utm_campaign: input.utm_campaign }),
       });
 
       if (!result.success) {
@@ -62,12 +71,24 @@ export const server = {
           address: input.address,
           service: input.service || 'general',
           source: 'hero_form',
+          // First-touch attribution on profile — survives across sessions in OpenPanel
+          ...(input.utm_source && { utm_source: input.utm_source }),
+          ...(input.utm_medium && { utm_medium: input.utm_medium }),
+          ...(input.utm_campaign && { utm_campaign: input.utm_campaign }),
+          ...(input.utm_content && { utm_content: input.utm_content }),
+          ...(input.utm_term && { utm_term: input.utm_term }),
         },
       });
       trackServerEvent('lead_form_submitted', {
         profileId: input.email,
         service: input.service || 'general',
         source: 'hero_form',
+        // UTMs on the event — enables breakdown by campaign/creative in OpenPanel
+        ...(input.utm_source && { utm_source: input.utm_source }),
+        ...(input.utm_medium && { utm_medium: input.utm_medium }),
+        ...(input.utm_campaign && { utm_campaign: input.utm_campaign }),
+        ...(input.utm_content && { utm_content: input.utm_content }),
+        ...(input.utm_term && { utm_term: input.utm_term }),
       });
 
       // Meta CAPI — server-side Lead event (deduped with client-side Pixel via eventId)

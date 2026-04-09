@@ -20,6 +20,7 @@ export interface LeadPayload {
   utm_campaign?: string;
   fbclid?: string;
   fbc?: string;
+  gclid?: string;
 }
 
 export interface BackOfficeResult {
