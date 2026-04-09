@@ -52,10 +52,11 @@ const step2Options = serviceOptions || ['Roofing', 'Siding', 'Windows', 'Other']
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 
 // Generate responsive hero image variants from dynamic heroImage prop
+// Quality values MUST match Layout.astro preload (45 mobile, 55 desktop) — mismatch = wasted preload
 const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
-  getImage({ src: heroImage, width: 768, height: 432, format: 'webp', quality: 60 }),
-  getImage({ src: heroImage, width: 1280, height: 720, format: 'webp', quality: 60 }),
-  getImage({ src: heroImage, width: 1440, height: 810, format: 'webp', quality: 60 }),
+  getImage({ src: heroImage, width: 768, height: 432, format: 'webp', quality: 45 }),
+  getImage({ src: heroImage, width: 1280, height: 720, format: 'webp', quality: 50 }),
+  getImage({ src: heroImage, width: 1440, height: 810, format: 'webp', quality: 55 }),
 ]);
 ---
 
@@ -186,7 +187,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
             <!-- Step 2: Service Selection -->
             <div id="step-2" class="form-step hidden">
               <div class="mb-3 flex items-center gap-2">
-                <button type="button" id="back-btn-1" class="shrink-0 text-primary" aria-label="Go back">
+                <button type="button" id="back-btn-1" class="shrink-0 text-primary flex items-center justify-center min-h-[44px] min-w-[44px]" aria-label="Go back">
                   <IconArrowLeft size={20} />
                 </button>
                 <div class="flex-1">
@@ -218,7 +219,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
             <!-- Step 3: Details + Submit -->
             <div id="step-3" class="form-step hidden">
               <div class="mb-3 flex items-center gap-2">
-                <button type="button" id="back-btn-2" class="shrink-0 text-primary" aria-label="Go back">
+                <button type="button" id="back-btn-2" class="shrink-0 text-primary flex items-center justify-center min-h-[44px] min-w-[44px]" aria-label="Go back">
                   <IconArrowLeft size={20} />
                 </button>
                 <div class="flex-1">

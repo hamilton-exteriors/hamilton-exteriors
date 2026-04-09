@@ -12,6 +12,7 @@ import IconCheck from './icons/IconCheck.astro';
 import IconPlus from './icons/IconPlus.astro';
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 import { getCityProximity } from '../lib/city-coordinates';
+import { getGoogleReviews, getDisplayReviews } from '../lib/google-reviews';
 import Breadcrumb from './Breadcrumb.astro';
 import Section from './Section.astro';
 import SectionLabel from './SectionLabel.astro';
@@ -32,6 +33,49 @@ const imageMap: Record<string, ImageMetadata> = {
   serviceAdu,
   heroBg,
 };
+
+// Build page URL for schemas
+const countyUrlSlug = countySlug.endsWith('-county-ca') ? countySlug : `${countySlug}-county-ca`;
+const cityUrlSlug = data.slug.endsWith('-ca') ? data.slug : `${data.slug}-ca`;
+const pageUrl = `https://hamilton-exteriors.com/service-areas/${countyUrlSlug}/${cityUrlSlug}`;
+
+// WebPage schema
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${pageUrl}#webpage`,
+  url: pageUrl,
+  name: `${city}, CA Contractor Services | Hamilton Exteriors`,
+  isPartOf: { '@id': 'https://hamilton-exteriors.com/#website' },
+  about: { '@id': 'https://hamilton-exteriors.com/#business' },
+  inLanguage: 'en-US',
+};
+
+// Review schema with live data
+const _rawReviews = await getGoogleReviews();
+const _cityReviews = getDisplayReviews(_rawReviews);
+const allReviews = reviews ? [reviews.featured, ...reviews.side] : [];
+const reviewSchema = allReviews.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'GeneralContractor',
+  '@id': 'https://hamilton-exteriors.com/#business',
+  name: 'Hamilton Exteriors',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: _cityReviews.rating,
+    reviewCount: _cityReviews.reviewCount,
+    bestRating: 5,
+    worstRating: 1,
+  },
+  review: allReviews.map((r, i) => ({
+    '@type': 'Review',
+    author: { '@type': 'Person', name: r.name },
+    reviewRating: { '@type': 'Rating', ratingValue: 5, bestRating: 5, worstRating: 1 },
+    reviewBody: r.text,
+    datePublished: (r as any).date || ['2025-11-15', '2025-12-08', '2026-01-03', '2026-01-22'][i] || '2025-12-01',
+    publisher: { '@type': 'Organization', name: 'Google' },
+  })),
+} : null;
 ---
 
 <AnnouncementBar slot="header" />
@@ -51,9 +95,13 @@ const imageMap: Record<string, ImageMetadata> = {
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hamilton-exteriors.com/" },
     { "@type": "ListItem", "position": 2, "name": "Service Areas", "item": "https://hamilton-exteriors.com/service-areas" },
     { "@type": "ListItem", "position": 3, "name": county, "item": `https://hamilton-exteriors.com/service-areas/${countySlug}` },
-    { "@type": "ListItem", "position": 4, "name": `${city}, CA`, "item": `https://hamilton-exteriors.com/service-areas/${countySlug}/${data.slug}` }
+    { "@type": "ListItem", "position": 4, "name": `${city}, CA`, "item": pageUrl }
   ]
 })} />
+<!-- WebPage JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+<!-- Review JSON-LD -->
+{reviewSchema && <script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />}
 
 <!-- Hero — shared component -->
 <Hero

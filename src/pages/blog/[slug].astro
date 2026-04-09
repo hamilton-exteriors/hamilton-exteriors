@@ -108,6 +108,8 @@ const articleJsonLd = {
     sameAs: [
       'https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377',
       'https://www.linkedin.com/in/alexanderhamiltonli',
+      'https://www.wikidata.org/wiki/Q139044457',
+      'https://www.yelp.com/biz/hamilton-exteriors-castro-valley',
     ],
     worksFor: {
       '@type': 'Organization',
@@ -247,13 +249,15 @@ if (questionHeadings.length >= 2 && processedHtml) {
         text: answerText || heading.text,
       },
     };
-  });
+  }).filter(q => q.acceptedAnswer.text !== q.name && q.acceptedAnswer.text.length > 20);
 
-  faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqEntries,
-  };
+  if (faqEntries.length >= 2) {
+    faqJsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqEntries,
+    };
+  }
 }
 
 // Fetch related posts (same primary tag, exclude current)

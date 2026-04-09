@@ -222,7 +222,6 @@ const serviceSchema: Record<string, unknown> = {
   ...(pricing && {
     'offers': {
       '@type': 'AggregateOffer',
-      'offerCount': 6,
       'lowPrice': pricing.low,
       'highPrice': pricing.high,
       'priceCurrency': pricing.currency,

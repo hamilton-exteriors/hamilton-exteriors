@@ -206,7 +206,9 @@ const fullOrgSchemaObj = fullOrgSchema ? {
     "jobTitle": "Architect & General Contractor",
     "sameAs": [
       "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377",
-      "https://www.linkedin.com/in/alexanderhamiltonli"
+      "https://www.linkedin.com/in/alexanderhamiltonli",
+      "https://www.wikidata.org/wiki/Q139044457",
+      "https://www.yelp.com/biz/hamilton-exteriors-castro-valley"
     ]
   },
   "paymentAccepted": ["Cash", "Check", "ACH Transfer", "Credit Card"],
@@ -297,15 +299,13 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
     {includeMapbox && <link rel="preconnect" href="https://api.mapbox.com" crossorigin />}
     {includeMapbox && <link rel="dns-prefetch" href="https://api.mapbox.com" />}
 
-    <!-- ── Self-hosted font preloads — critical fonts, must load before first paint ── -->
-    <!-- Preload weight-700 first: all headings (h1–h5) use Hamilton Display at weight 700 -->
+    <!-- ── Self-hosted font preloads — only LCP-critical fonts ── -->
+    <!-- Hamilton Display 700: hero H1 + all headings — must arrive before first paint -->
     <link rel="preload" href="/fonts/the-bold-font-700.woff2" as="font" type="font/woff2" crossorigin />
     <!-- DM Sans: body text, rendered before hero paints -->
     <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <!-- Hamilton Display 400: preloaded — used in nav/body text above the fold -->
-    <link rel="preload" href="/fonts/the-bold-font.woff2" as="font" type="font/woff2" crossorigin />
-    <!-- Satoshi: preloaded — used in LogoSlider/ReviewLogos in the hero critical chain -->
-    <link rel="preload" href="/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Hamilton Display 400 + Satoshi 700: not preloaded — below-fold or font-display:optional.
+         Removing these preloads frees ~20KB of bandwidth for the hero image (LCP). -->
 
     {/* Preload hero/LCP image — mobile gets 768px, desktop gets 1440px */}
     {heroMobilePreload && <link rel="preload" href={heroMobilePreload.src} as="image" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />}
