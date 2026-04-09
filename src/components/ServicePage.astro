@@ -343,6 +343,13 @@ const jumpLinks = [
   </div>
 )}
 
+{/* Definition block — standalone 40-60 word answer optimized for AI snippet extraction */}
+{data.definition && (
+  <div class="mx-auto max-w-3xl px-5 pt-8 pb-4">
+    <p class="text-[1.0625rem] leading-[1.8] text-charcoal">{data.definition}</p>
+  </div>
+)}
+
 {data.sections.map((section) => {
   if (section.type === 'logoSlider') {
     return (
@@ -428,6 +435,40 @@ const jumpLinks = [
     );
   }
 
+  if (section.type === 'comparison') {
+    const { data: cmp } = section;
+    return (
+      <section class="w-full bg-white py-16">
+        <div class="mx-auto max-w-[1000px] px-5">
+          <h2 class="mb-8">{cmp.heading}</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse text-[0.9375rem]">
+              <thead>
+                <tr class="border-b-2 border-primary">
+                  <th class="px-4 py-3 text-left font-semibold text-heading">Feature</th>
+                  {cmp.columns.map(col => (
+                    <th class="px-4 py-3 text-left font-semibold text-heading">{col}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {cmp.rows.map(row => (
+                  <tr class="border-b border-border">
+                    <td class="px-4 py-3 font-medium text-charcoal">{row.feature}</td>
+                    {row.values.map(val => (
+                      <td class="px-4 py-3 text-charcoal">{val}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {cmp.source && <p class="mt-3 text-xs text-muted italic">Sources: {cmp.source}</p>}
+        </div>
+      </section>
+    );
+  }
+
   if (section.type === 'localContext') {
     const { data: lc } = section;
     return (
@@ -498,6 +539,19 @@ const jumpLinks = [
   if (section.type === 'faq') {
     return (
       <>
+        {/* Expert quotes — attributed blockquotes for AI citation extraction */}
+        {data.expertQuotes && data.expertQuotes.length > 0 && (
+          <section class="w-full bg-cream py-12">
+            <div class="mx-auto max-w-3xl px-5 flex flex-col gap-8">
+              {data.expertQuotes.map(eq => (
+                <blockquote class="border-l-4 border-primary pl-6 py-2">
+                  <p class="text-[1.0625rem] leading-[1.8] text-charcoal italic">"{eq.quote}"</p>
+                  <footer class="mt-2 text-sm text-muted">— <strong>{eq.author}</strong>, {eq.credentials}</footer>
+                </blockquote>
+              ))}
+            </div>
+          </section>
+        )}
         <div id="faq"><FAQ extraFaqs={data.localFaqs} /></div>
         {relatedPosts.length > 0 && (
           <section class="w-full pt-14">

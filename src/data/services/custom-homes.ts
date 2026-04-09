@@ -6,6 +6,7 @@ export const data: ServicePageData = {
   description:
     'Full-service custom home builder in the Bay Area. Design, architecture, engineering, permits & construction — all under one roof.',
   announcementText: 'Limited Time: Free Design Consultation for Custom Home Projects*',
+  definition: 'Custom home construction is the process of designing and building a new residence from the ground up, tailored to the homeowner\u2019s specifications. In the Bay Area, custom homes cost $350 to $800 per square foot including design, architecture, engineering, permits, and construction.',
   hero: {
     headline: "Bay Area's Best Custom Home Builder",
     formTitle: 'Get a FREE Consultation',

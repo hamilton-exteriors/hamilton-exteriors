@@ -13,6 +13,14 @@ export const data: ServicePageData = {
   title: 'Bay Area Windows | Casement, Hung & Sliding | Hamilton Exteriors',
   description:
     'Energy-efficient window installation across the Bay Area. Double hung, casement, sliding & bay windows. 50-year warranty. Free quote — (650) 977-3351.',
+  definition: 'Window replacement involves removing old or failing windows and installing new energy-efficient units with modern Low-E glass, improved seals, and better insulation. ENERGY STAR-certified replacement windows save homeowners $125 to $465 per year on energy bills according to the U.S. Department of Energy.',
+  expertQuotes: [
+    {
+      quote: 'Most Bay Area homes built before 1990 have single-pane aluminum windows that lose 30 to 40% of heating and cooling energy. Upgrading to dual-pane Low-E windows exceeds California Title 24 energy requirements by 15 to 20% and pays for itself in energy savings within 8 to 12 years.',
+      author: 'Alexander Hamilton Li',
+      credentials: 'Architect & General Contractor, CSLB #1082377',
+    },
+  ],
   hero: {
     headline: 'Best Window  Company in  the Bay Area',
     formTitle: 'Get A FREE Window Quote',

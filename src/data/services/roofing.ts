@@ -6,6 +6,19 @@ export const data: ServicePageData = {
   description:
     'Top-rated Bay Area roofing contractor. Composite shingles, metal roofs, tile & GAF solar. 50-year warranty. Free inspection — call (650) 977-3351.',
   announcementText: 'Limited Time Get up to $2000 off your Roof Replacement*',
+  definition: 'A roof replacement is the complete removal and reinstallation of a home\'s roofing system — including shingles, underlayment, flashing, and ventilation. In the Bay Area, roof replacements typically cost $15,000 to $100,000 depending on size, materials, and complexity, and take 3 to 7 days to complete.',
+  expertQuotes: [
+    {
+      quote: 'In the Oakland Hills and Berkeley Hills, we always recommend Class A fire-rated materials — metal or composite shingles with fire-rated underlayment. Homes in WUI zones face stricter Chapter 7A requirements, and using the right materials upfront avoids costly re-inspection failures.',
+      author: 'Alexander Hamilton Li',
+      credentials: 'Architect & General Contractor, CSLB #1082377',
+    },
+    {
+      quote: 'Metal roofs reflect 70% of solar radiant heat according to Oak Ridge National Laboratory research. For Bay Area homeowners, that translates to measurably lower cooling costs and a roof that lasts 40 to 70 years with virtually zero maintenance.',
+      author: 'Alexander Hamilton Li',
+      credentials: 'GAF Master Elite Contractor, Hamilton Exteriors',
+    },
+  ],
   hero: {
     headline: 'Bay Area\u2019s Top-Rated Roofing Contractor',
     formTitle: 'Get a FREE ROOF INSPECTION',
@@ -88,6 +101,24 @@ export const data: ServicePageData = {
           },
         ],
         footnote: 'Prices per roofing square (100 sq ft) and reflect typical Bay Area installed costs including tear-off, materials, labor, underlayment, and cleanup. Actual pricing varies based on roof size, pitch, accessibility, number of layers, and local permit requirements. Contact us for a free, itemized estimate.',
+      },
+    },
+    {
+      type: 'comparison',
+      data: {
+        heading: 'Roofing Material Comparison: Asphalt vs. Metal vs. Tile',
+        columns: ['Asphalt Shingles', 'Metal Roofing', 'Clay/Concrete Tile'],
+        rows: [
+          { feature: 'Lifespan', values: ['25–50 years', '40–70 years', '75–100 years'] },
+          { feature: 'Cost per sq (installed)', values: ['$1,075–$1,800', '$1,200–$1,800', '$1,500–$2,500'] },
+          { feature: 'Fire rating', values: ['Class A', 'Class A', 'Class A'] },
+          { feature: 'Warranty', values: ['50-year system', '40-year manufacturer', '50-year manufacturer'] },
+          { feature: 'Weight per sq', values: ['250–350 lbs', '100–150 lbs', '900–1,200 lbs'] },
+          { feature: 'Maintenance', values: ['Low', 'Very low', 'Low'] },
+          { feature: 'Solar heat reflection', values: ['Moderate', '70% (Oak Ridge Natl. Lab)', 'Moderate–high'] },
+          { feature: 'Best for', values: ['Most Bay Area homes', 'Fire zones, modern homes', 'Mediterranean/Spanish styles'] },
+        ],
+        source: 'Oak Ridge National Laboratory (doi.org/10.2172/1220000), Asphalt Roofing Manufacturers Association, Hamilton Exteriors project data 2024–2026',
       },
     },
     { type: 'projects' },

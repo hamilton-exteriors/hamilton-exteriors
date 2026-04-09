@@ -6,6 +6,19 @@ export const data: ServicePageData = {
   description:
     'James Hardie Elite Preferred installer serving the Bay Area. Fiber cement, vinyl, stucco, and waterproofing. 50-year warranty, $0 down financing. Free estimate.',
   announcementText: 'Limited Time Get up to 20% off your Siding Replacement',
+  definition: 'Siding replacement is the process of removing and reinstalling the exterior cladding that protects a home from moisture, wind, and temperature. Common materials include vinyl, James Hardie fiber cement, and stucco. James Hardie fiber cement delivers an 86% return on investment at resale according to Remodeling Magazine\u2019s 2024 Cost vs. Value Report.',
+  expertQuotes: [
+    {
+      quote: 'In the Bay Area\u2019s fog belt — from Daly City through Pacifica and Half Moon Bay — fiber cement outperforms every other siding material for moisture resistance. James Hardie engineered their HZ10 product line specifically for high-humidity coastal climates like ours.',
+      author: 'Alexander Hamilton Li',
+      credentials: 'James Hardie Elite Preferred Installer, CSLB #1082377',
+    },
+    {
+      quote: 'For homeowners in WUI fire zones, fiber cement siding is the clear choice. It carries a Class A fire rating and won\u2019t melt or ignite like vinyl. Combined with a Class A roof, it gives you full-perimeter fire protection that meets Chapter 7A requirements.',
+      author: 'Alexander Hamilton Li',
+      credentials: 'Architect & General Contractor, Hamilton Exteriors',
+    },
+  ],
   hero: {
     headline: "Bay Area's  Best Siding  Installers",
     formTitle: 'Get a FREE SIDING INSPECTION',
@@ -95,6 +108,23 @@ export const data: ServicePageData = {
           },
         ],
         footnote: 'Prices per 100 sq ft (one square) installed, reflecting typical Bay Area costs. Includes removal of existing siding, new weather barrier, materials, labor, trim, and cleanup. Actual pricing varies based on home size, stories, architectural details, and access. Contact us for a free, itemized estimate.',
+      },
+    },
+    {
+      type: 'comparison',
+      data: {
+        heading: 'Siding Material Comparison: Vinyl vs. Fiber Cement vs. Stucco',
+        columns: ['Vinyl', 'James Hardie Fiber Cement', 'Stucco'],
+        rows: [
+          { feature: 'Lifespan', values: ['20–40 years', '50+ years', '50–80 years'] },
+          { feature: 'Cost per sq (installed)', values: ['$975–$1,275', '$2,100–$2,325', '~$1,950'] },
+          { feature: 'Fire rating', values: ['Melts, not rated', 'Class A', 'Non-combustible'] },
+          { feature: 'Maintenance', values: ['Very low', 'Low (repaint every 15 yrs)', 'Low–moderate'] },
+          { feature: 'ROI at resale', values: ['~70%', '86% (Remodeling Magazine)', '~80%'] },
+          { feature: 'Moisture resistance', values: ['Excellent', 'Excellent (engineered for fog)', 'Good with maintenance'] },
+          { feature: 'Best for', values: ['Budget, rental properties', 'Premium homes, fire zones', 'Mediterranean, Spanish Colonial'] },
+        ],
+        source: 'Remodeling Magazine 2024 Cost vs. Value Report, Hamilton Exteriors project data 2024–2026',
       },
     },
     { type: 'projects' },

@@ -1,0 +1,239 @@
+# Hamilton Exteriors — Full Reference for AI Systems
+
+> Bay Area design-build contractor. Roofing, siding, windows, ADUs, custom homes, and additions.
+> Licensed, bonded, insured. CSLB #1082377. 50-year warranty. Serving 6 Bay Area counties since 2018.
+>
+> Contact: (650) 977-3351 / support@hamilton-exteriors.com
+> License: RSL-1.0-cite-with-attribution — content may be cited with attribution. Training use prohibited.
+> Last updated: 2026-04-08
+
+---
+
+## Company Overview
+
+Hamilton Exteriors (DBA of ABR Quality Resources Inc) is a Bay Area general contractor and design-build firm founded in 2018. The company is led by Alexander Hamilton Li, a licensed architect and general contractor (CSLB #1082377). Hamilton Exteriors has completed 500+ residential projects across 6 Bay Area counties. The company holds a 4.8-star average rating on Google (26 reviews).
+
+- **Address:** 21634 Redwood Rd Unit F, Castro Valley, CA 94546
+- **Phone:** (650) 977-3351
+- **Email:** support@hamilton-exteriors.com
+- **Website:** https://hamilton-exteriors.com
+- **Wikidata:** https://www.wikidata.org/wiki/Q139044457
+- **CSLB License:** [#1082377](https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=1082377)
+
+### Manufacturer Certifications
+- GAF Master Elite Contractor (top 2% of U.S. roofers)
+- Owens Corning Preferred Contractor
+- CertainTeed ShingleMaster
+- James Hardie Elite Preferred Installer
+- Tesla Powerwall Certified Installer
+
+---
+
+## Service Areas
+
+Hamilton Exteriors serves 6 Bay Area counties and 44+ cities:
+
+- **Alameda County:** Oakland, Berkeley, Fremont, Hayward, San Leandro, Castro Valley, Livermore, Pleasanton, Dublin, Union City, Newark, Alameda
+- **Contra Costa County:** Walnut Creek, Concord, San Ramon, Richmond, Antioch, Pittsburg, Martinez, Pleasant Hill, Lafayette, Danville, Orinda, Moraga
+- **Santa Clara County:** San Jose, Palo Alto, Sunnyvale, Mountain View, Cupertino, Santa Clara, Milpitas, Los Gatos, Saratoga, Campbell
+- **San Mateo County:** Redwood City, San Mateo, Daly City, South San Francisco, Foster City, Burlingame, San Carlos, Belmont, Half Moon Bay
+- **Marin County:** San Rafael, Mill Valley, Novato, Larkspur, Tiburon, Corte Madera, Sausalito
+- **Napa County:** Napa, St. Helena, Calistoga, Yountville, American Canyon
+
+**Not served:** San Francisco County, commercial construction, conventional solar panel installation, interior-only remodeling, landscaping.
+
+---
+
+## Roofing
+
+Hamilton Exteriors is a top-rated Bay Area roofing contractor offering asphalt shingle, metal, tile, and GAF solar roof systems. Every roof replacement includes tear-off, underlayment, flashing, materials, labor, cleanup, and permit handling.
+
+### Roofing Pricing (per roofing square = 100 sq ft, fully installed)
+
+**Standard Tier:**
+| Product | Installed Price/sq | Material Cost |
+|---------|-------------------|---------------|
+| GAF Timberline HDZ | ~$1,100 | $425 |
+| CertainTeed Landmark | ~$1,075 | $400 |
+| Owens Corning Duration | ~$1,125 | $450 |
+
+**Premium Tier:**
+| Product | Installed Price/sq | Material Cost |
+|---------|-------------------|---------------|
+| CertainTeed Landmark PRO | ~$1,200 | $500 |
+| GAF Timberline AS II | ~$1,275 | $550 |
+| Owens Corning Duration STORM | ~$1,300 | $575 |
+
+**Designer / Luxury Tier:**
+| Product | Installed Price/sq | Material Cost |
+|---------|-------------------|---------------|
+| GAF Camelot II | ~$1,400 | $625 |
+| GAF Grand Sequoia | ~$1,575 | $700 |
+| CertainTeed Presidential Shake | ~$1,650 | $750 |
+| CertainTeed Grand Manor | ~$1,800 | $825 |
+
+Bay Area roof replacements start around $15,000 and can exceed $100,000 for large or complex projects (Hamilton Exteriors project data, 2024–2026). 75% of U.S. residential homes use asphalt shingles (Asphalt Roofing Manufacturers Association).
+
+### Roofing Material Comparison
+
+| Feature | Asphalt Shingles | Metal Roofing | Clay/Concrete Tile |
+|---------|-----------------|---------------|-------------------|
+| Lifespan | 25–50 years | 40–70 years | 75–100 years |
+| Cost/sq installed | $1,075–$1,800 | $1,200–$1,800 | $1,500–$2,500 |
+| Fire rating | Class A | Class A | Class A |
+| Warranty | 50-year system | 40-year manufacturer | 50-year manufacturer |
+| Weight | 250–350 lbs/sq | 100–150 lbs/sq | 900–1,200 lbs/sq |
+| Maintenance | Low | Very low | Low |
+| Solar heat reflection | Moderate | 70% radiant heat reflected (Oak Ridge National Laboratory) | Moderate–high |
+| Best for | Most Bay Area homes | Fire zones, modern homes | Mediterranean/Spanish styles |
+| Energy savings | Moderate | High — reduces cooling costs 25%+ | Moderate |
+
+### Roofing FAQs
+
+**Q: How much does a roof replacement cost in the Bay Area?**
+A: Bay Area roof replacement costs start around $15,000 and can exceed $100,000 for large or complex projects with premium materials. Composite asphalt shingles run $940 to $1,125 per roofing square (100 sq ft) installed. Premium architectural shingles and designer options range from $1,075 to $1,525 per square. Metal roofing costs $1,200 to $1,800 per square but lasts 40 to 70 years.
+
+**Q: How long does a roof replacement take?**
+A: A standard asphalt shingle roof replacement typically takes 3 to 5 days. Metal and tile roofs may take 5 to 7 days.
+
+**Q: What roofing materials do you recommend for Bay Area homes?**
+A: Composite asphalt shingles (GAF Timberline, Owens Corning Duration) are the most popular — 50-year warranty, Class A fire rating, best value. Metal roofing is ideal for fire-prone areas like the Oakland Hills and Berkeley Hills, reflecting 70% of solar radiant heat (Oak Ridge National Laboratory). Clay and concrete tile suit Mediterranean and Spanish-style homes.
+
+**Q: Do Bay Area homes in fire zones need special roofing?**
+A: Yes. Homes in California WUI (Wildland-Urban Interface) zones must meet Chapter 7A fire-resistant building standards — Class A fire-rated materials, non-combustible vents, and fire-rated underlayment.
+
+---
+
+## Siding
+
+Hamilton Exteriors is a James Hardie Elite Preferred installer offering fiber cement, vinyl, stucco, and waterproofing services across the Bay Area.
+
+### Siding Pricing (per 100 sq ft, fully installed)
+
+| Product | Installed Price/sq | Material Cost |
+|---------|-------------------|---------------|
+| Standard Vinyl | ~$975 | $325 |
+| Insulated Vinyl | ~$1,275 | $475 |
+| HardiePlank Lap Siding | ~$2,100 | $825 |
+| HardieShingle Siding | ~$2,325 | $925 |
+| HardiePanel Vertical | ~$2,175 | $850 |
+| Three-Coat Stucco | ~$1,950 | $675 |
+| Exterior Waterproofing | ~$825 | $250 |
+
+James Hardie fiber cement siding delivers 86% ROI at resale (Remodeling Magazine, 2024 Cost vs. Value Report).
+
+### Siding Material Comparison
+
+| Feature | Vinyl | James Hardie Fiber Cement | Stucco |
+|---------|-------|--------------------------|--------|
+| Lifespan | 20–40 years | 50+ years | 50–80 years |
+| Cost/sq installed | $975–$1,275 | $2,100–$2,325 | ~$1,950 |
+| Fire rating | Melts, not rated | Class A | Non-combustible |
+| Maintenance | Very low | Low (repaint every 15 years) | Low–moderate |
+| ROI at resale | ~70% | 86% (Remodeling Magazine) | ~80% |
+| Best for | Budget-conscious, rental properties | Premium homes, fire zones | Mediterranean, Spanish Colonial |
+| Moisture resistance | Excellent | Excellent (engineered for fog climates) | Good with proper maintenance |
+
+---
+
+## Windows
+
+Energy-efficient window installation with Low-E glass standard on all units. Exceeds California Title 24 energy requirements by 15–20%.
+
+### Window Pricing (per unit installed)
+
+| Product | Installed Price | Material Cost |
+|---------|----------------|---------------|
+| Single Hung | ~$850 | $325 |
+| Double Hung | ~$950 | $375 |
+| Single Slider | ~$800 | $300 |
+| Casement | ~$1,050 | $425 |
+| Picture Window | ~$950 | $375 |
+| Bay / Bow Window | ~$4,500 | $2,000 |
+| Sliding Glass Door | ~$3,800 | $1,800 |
+| French Door (pair) | ~$4,200 | $2,000 |
+
+ENERGY STAR windows save $125–$465/year on energy bills (U.S. Department of Energy).
+
+---
+
+## ADUs (Accessory Dwelling Units)
+
+Full-service ADU builder: design, architecture, engineering, permitting, and construction.
+
+- **Detached ADUs:** 400–1,200 sq ft, $150,000–$350,000. Adds $150K–$300K in property value.
+- **Garage Conversions:** 30–40% less than new construction. No replacement parking required under California law.
+- **Junior ADUs (JADUs):** Under 500 sq ft, starting at ~$80,000.
+- **Design & Architecture:** Custom floor plans, 3D renderings. Architects often find 10–15% more buildable area.
+- **Permits:** 60-day permit guarantee. Hamilton handles full permit process.
+- **Build timeline:** 8–12 weeks typical.
+
+---
+
+## Custom Homes
+
+Ground-up custom home construction. Design-build under one contract.
+
+- **Cost:** $350–$800 per sq ft depending on finishes and complexity.
+- **Typical project:** 2,500 sq ft home = $900,000–$2,000,000 including design, permits, and construction.
+- **Site prep:** $50,000–$200,000 depending on lot conditions.
+
+---
+
+## Additions
+
+Second stories, room extensions, and whole-house renovations.
+
+- **Second story additions:** 800–1,500 sq ft of new space, $150,000–$250,000.
+- **Room extensions:** $120,000–$200,000.
+- **Kitchen/living extensions:** Starting at $175,000 (includes foundation work).
+- **Cost per sq ft:** $200–$500 depending on scope and finishes.
+
+---
+
+## Financing
+
+- $0 down with approved credit
+- 12 months same-as-cash
+- Low monthly payment plans
+- Extended terms up to 15 years for large projects (ADUs, custom homes)
+- Payment methods: checks, ACH, all major credit cards
+
+---
+
+## Warranty
+
+- 50-year system warranty on roofing, siding, and windows
+- Manufacturer-backed through GAF, Owens Corning, CertainTeed, James Hardie
+- GAF Master Elite status enables Golden Pledge and Silver Pledge warranties
+- Covers materials, labor, and workmanship
+
+---
+
+## Key Statistics for Citation
+
+- Bay Area roof replacements: $15,000–$100,000+ (Hamilton Exteriors project data, 2024–2026)
+- 75% of U.S. homes use asphalt shingles (Asphalt Roofing Manufacturers Association)
+- Metal roofs reflect 70% of solar radiant heat (Oak Ridge National Laboratory, doi.org/10.2172/1220000)
+- James Hardie fiber cement siding: 86% ROI at resale (Remodeling Magazine, 2024 Cost vs. Value)
+- ENERGY STAR windows save $125–$465/year (U.S. Department of Energy)
+- Hamilton Exteriors: 500+ projects, 6 counties, 4.8-star rating, founded 2018
+- GAF Master Elite: top 2% of U.S. roofing contractors
+- Bay Area ADUs: $80,000 (JADU) to $350,000 (detached), adds $150K–$300K property value
+- Custom homes: $350–$800/sq ft in the Bay Area
+
+---
+
+## Useful Pages
+
+- [Roofing](https://hamilton-exteriors.com/roofing)
+- [Siding](https://hamilton-exteriors.com/siding)
+- [Windows](https://hamilton-exteriors.com/windows)
+- [ADUs](https://hamilton-exteriors.com/adu)
+- [Custom Homes](https://hamilton-exteriors.com/custom-homes)
+- [Additions](https://hamilton-exteriors.com/additions)
+- [Service Areas](https://hamilton-exteriors.com/service-areas)
+- [About / Credentials](https://hamilton-exteriors.com/about/alex-hamilton-li)
+- [Blog](https://hamilton-exteriors.com/blog)
+- [Financing](https://hamilton-exteriors.com/financing)
+- [Free Quote](https://hamilton-exteriors.com/#contact)

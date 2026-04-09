@@ -7,6 +7,14 @@ export const data: ServicePageData = {
   description:
     'Hamilton Exteriors is a full-service ADU builder in the Bay Area. Design, architecture, engineering, permitting, and construction — all under one roof.',
   announcementText: 'Limited Time: Free ADU Design Consultation + Permit Guarantee*',
+  definition: 'An accessory dwelling unit (ADU) is a secondary housing unit built on a single-family residential lot — either as a detached backyard structure, attached addition, or garage conversion. California state law (AB 68, SB 9) streamlines ADU permitting, and Bay Area ADUs typically cost $80,000 to $350,000 while adding $150,000 to $300,000 in property value.',
+  expertQuotes: [
+    {
+      quote: 'Our architects consistently find 10 to 15% more buildable area than homeowners expect on their lots. California\u2019s ADU laws override many local zoning restrictions — setback requirements, lot coverage limits, and parking mandates have all been relaxed since 2020.',
+      author: 'Alexander Hamilton Li',
+      credentials: 'Architect & General Contractor, CSLB #1082377',
+    },
+  ],
   hero: {
     headline: "Bay Area's Best ADU Builder",
     formTitle: 'Get a FREE ADU Consultation',

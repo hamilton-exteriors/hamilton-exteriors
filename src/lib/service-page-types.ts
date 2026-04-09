@@ -131,9 +131,25 @@ export type SectionBlock =
   | { type: 'localContext'; data: LocalContextSection }
   | { type: 'cityPricing'; data: CityPricingSection }
   | { type: 'neighborhoodService'; data: NeighborhoodServiceSection }
+  | { type: 'comparison'; data: ComparisonSection }
   | { type: 'faq' }
   | { type: 'contactUs' }
   | { type: 'footer' };
+
+/** Expert blockquote with attribution — renders as a <blockquote> for AI extraction */
+export interface ExpertQuote {
+  quote: string;
+  author: string;
+  credentials: string;
+}
+
+/** Comparison table — side-by-side material/product comparison for AI snippet extraction */
+export interface ComparisonSection {
+  heading: string;
+  columns: string[];
+  rows: Array<{ feature: string; values: string[] }>;
+  source?: string;
+}
 
 export interface ServicePageData {
   /** Page <title> */
@@ -144,6 +160,10 @@ export interface ServicePageData {
   announcementText?: string;
   /** Hero props */
   hero: HeroProps;
+  /** 40-60 word standalone definition rendered after hero — optimized for AI snippet extraction */
+  definition?: string;
+  /** Expert blockquotes with attribution */
+  expertQuotes?: ExpertQuote[];
   /** Ordered list of content sections */
   sections: SectionBlock[];
   /** Extra <style> block content (raw CSS string) */

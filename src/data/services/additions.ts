@@ -7,6 +7,7 @@ export const data: ServicePageData = {
   description:
     'Bay Area home additions, second stories & ADUs. Design, permits & construction under one roof. 50-year warranty. Call (650) 977-3351.',
   announcementText: 'Limited Time: Free Design Consultation for Your Addition Project*',
+  definition: 'A home addition expands an existing residence by adding new living space — either outward (room extension), upward (second story), or as a detached unit (ADU). Bay Area home additions typically cost $200 to $500 per square foot and require building permits from the local jurisdiction.',
   hero: {
     headline: "Bay Area's Best Home Addition Builder",
     formTitle: 'Get a FREE Consultation',
