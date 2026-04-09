@@ -16,29 +16,25 @@ const { service = 'general' } = Astro.props;
 const rawData = await getGoogleReviews();
 const { rating, reviewCount, reviews: allGoogleReviews } = getDisplayReviews(rawData, 5);
 
-// Prioritize Google reviews that have profile photos — they look best on cards
-const withPhotos = allGoogleReviews.filter(r => r.profile_photo_url);
-const withoutPhotos = allGoogleReviews.filter(r => !r.profile_photo_url);
-const sortedGoogle = [...withPhotos, ...withoutPhotos];
+// Only use Google reviews that have a profile photo — no-photo cards look broken
+const googleWithPhotos = allGoogleReviews
+  .filter(r => r.profile_photo_url)
+  .map(r => ({ ...r, platform: 'google' as const }));
 
-// Fill 4 cards: as many Google-with-photo as possible, then curated to fill remaining slots
-const googleSlots = Math.min(sortedGoogle.length, 4);
-const curatedSlots = 4 - googleSlots;
-const curated = getCuratedReviews(service, curatedSlots);
+// Fill remaining slots with curated reviews (always have quality content)
+const curatedSlots = 4 - Math.min(googleWithPhotos.length, 4);
+const curated = getCuratedReviews(service, curatedSlots).map(r => ({
+  author_name: r.author_name,
+  rating: r.rating,
+  text: r.text,
+  time: Math.floor(new Date(r.date).getTime() / 1000),
+  relative_time_description: r.platform === 'yelp' ? 'via Yelp' : r.platform === 'angi' ? 'via Angi' : r.platform === 'nextdoor' ? 'via Nextdoor' : `via ${r.platform}`,
+  profile_photo_url: '',
+  author_url: '',
+  platform: r.platform,
+}));
 
-const reviews = [
-  ...sortedGoogle.slice(0, googleSlots).map(r => ({ ...r, platform: 'google' as const })),
-  ...curated.map(r => ({
-    author_name: r.author_name,
-    rating: r.rating,
-    text: r.text,
-    time: Math.floor(new Date(r.date).getTime() / 1000),
-    relative_time_description: r.platform === 'yelp' ? 'via Yelp' : r.platform === 'angi' ? 'via Angi' : r.platform === 'nextdoor' ? 'via Nextdoor' : `via ${r.platform}`,
-    profile_photo_url: '',
-    author_url: '',
-    platform: r.platform,
-  })),
-];
+const reviews = [...googleWithPhotos.slice(0, 4), ...curated].slice(0, 4);
 
 const YELP_LINK = 'https://www.yelp.com/biz/hamilton-exteriors-castro-valley';
 ---

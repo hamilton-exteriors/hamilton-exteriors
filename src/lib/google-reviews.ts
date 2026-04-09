@@ -143,9 +143,9 @@ export async function getGoogleReviews(): Promise<ReviewData> {
   // 2. Try backend API (holds the Google API key securely)
   try {
     const data = await fetchFromBackend();
-      writeCache(data);
-      console.log(`[google-reviews] Fetched ${data.reviews.length} reviews (${data.rating}★, ${data.reviewCount} total)`);
-      return data;
+    writeCache(data);
+    console.log(`[google-reviews] Fetched ${data.reviews.length} reviews (${data.rating}★, ${data.reviewCount} total)`);
+    return data;
   } catch (e) {
     console.warn('[google-reviews] API fetch failed:', e);
   }
