@@ -4,7 +4,15 @@ import { identifyProfile, trackServerEvent } from '../../lib/analytics';
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export const POST: APIRoute = async ({ request }) => {
-  const formData = await request.formData();
+  let formData: FormData;
+  try {
+    formData = await request.formData();
+  } catch {
+    return new Response(JSON.stringify({ error: 'Invalid form data.' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
   const email = formData.get('footerEmail')?.toString().trim().slice(0, 254);
   const name = formData.get('footerName')?.toString().trim().slice(0, 100);
 

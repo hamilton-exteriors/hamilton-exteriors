@@ -33,8 +33,15 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   // Proxy Ghost media through canonical domain — avoids fragile Railway subdomain in OG tags
   if (pathname.startsWith('/content/images/')) {
-    const ghostUrl = `${GHOST_ORIGIN}${pathname}`;
-    const upstream = await fetch(ghostUrl, { signal: AbortSignal.timeout(10_000) });
+    if (!GHOST_ORIGIN) {
+      return new Response(null, { status: 502 });
+    }
+    let upstream: Response;
+    try {
+      upstream = await fetch(`${GHOST_ORIGIN}${pathname}`, { signal: AbortSignal.timeout(10_000) });
+    } catch {
+      return new Response(null, { status: 502 });
+    }
     if (!upstream.ok) return new Response(null, { status: upstream.status });
     return new Response(upstream.body, {
       status: 200,

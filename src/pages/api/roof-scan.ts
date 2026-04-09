@@ -13,6 +13,7 @@ export const POST: APIRoute = async ({ request }) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body,
+      signal: AbortSignal.timeout(15_000),
     });
 
     const data = await response.text();
