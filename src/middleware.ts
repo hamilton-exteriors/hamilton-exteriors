@@ -1,5 +1,6 @@
 import { defineMiddleware } from 'astro:middleware';
 import crypto from 'node:crypto';
+import { gzipSync } from 'node:zlib';
 
 /**
  * Middleware — security headers (CSP nonces), caching, redirects, Ghost media proxy.
@@ -112,6 +113,20 @@ export const onRequest = defineMiddleware(async (context, next) => {
   if (contentType.includes('text/html') && response.body) {
     const html = await response.text();
     const noncedHtml = html.replace(/<script(?=[\s>])/gi, `<script nonce="${nonce}"`);
+
+    // Compress HTML with gzip when the client supports it (~80KB savings on 113KB pages)
+    const acceptEncoding = context.request.headers.get('accept-encoding') || '';
+    if (acceptEncoding.includes('gzip')) {
+      const compressed = gzipSync(Buffer.from(noncedHtml));
+      response.headers.set('Content-Encoding', 'gzip');
+      response.headers.delete('Content-Length');
+      return new Response(compressed, {
+        status: response.status,
+        statusText: response.statusText,
+        headers: response.headers,
+      });
+    }
+
     return new Response(noncedHtml, {
       status: response.status,
       statusText: response.statusText,
