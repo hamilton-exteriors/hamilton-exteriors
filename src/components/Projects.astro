@@ -64,10 +64,10 @@ function imgAlt(project: Project, index: number): string {
 
     <!-- Header -->
     <div class="mb-6 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
-      <h2 class="m-0 text-[clamp(28px,5vw,36px)] leading-[1.1] text-charcoal">Our Latest Projects</h2>
+      <h2 class="m-0 text-[clamp(1.75rem,5vw,2.25rem)] leading-[1.1] text-charcoal">Our Latest Projects</h2>
       <a href="https://www.backofficeautomations.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 no-underline">
-        <span class="text-[11px] font-normal tracking-[0.3px] text-muted">Powered by</span>
-        <span class="text-[11px] font-semibold text-charcoal">BackOffice</span>
+        <span class="text-[0.6875rem] font-normal tracking-[0.3px] text-muted">Powered by</span>
+        <span class="text-[0.6875rem] font-semibold text-charcoal">BackOffice</span>
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 1h6v6M9 1L1 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
@@ -96,12 +96,12 @@ function imgAlt(project: Project, index: number): string {
                         class="absolute inset-0 size-full object-cover"
                       />
                       {project.service_type && (
-                        <span class="absolute bottom-2 left-2 rounded-[3px] bg-charcoal/65 px-2 py-[3px] text-[10px] font-semibold tracking-[0.5px] text-white uppercase">
+                        <span class="absolute bottom-2 left-2 rounded-[3px] bg-charcoal/65 px-2 py-[3px] text-[0.625rem] font-semibold tracking-[0.5px] text-white uppercase">
                           {project.service_type}
                         </span>
                       )}
                       {photoCount > 1 && (
-                        <span class="absolute right-2 bottom-2 flex items-center gap-1 rounded-[3px] bg-charcoal/65 px-2 py-[3px] text-[11px] font-bold tracking-[0.3px] text-white">
+                        <span class="absolute right-2 bottom-2 flex items-center gap-1 rounded-[3px] bg-charcoal/65 px-2 py-[3px] text-[0.6875rem] font-bold tracking-[0.3px] text-white">
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
                           {photoCount}
                         </span>
@@ -109,24 +109,24 @@ function imgAlt(project: Project, index: number): string {
                     </div>
                   )}
                   <div class="px-4 py-3.5">
-                    <h3 class="m-0 mb-3 text-base leading-[1.3] font-bold text-charcoal">
+                    <h3 class="m-0 mb-3 text-base leading-[1.3] font-normal text-charcoal">
                       {project.title}
                     </h3>
                     {project.city && (
                       <>
-                        <p class="m-0 mb-0.5 text-[10px] font-bold tracking-[0.8px] text-muted uppercase">Location</p>
+                        <p class="m-0 mb-0.5 text-[0.625rem] font-bold tracking-[0.8px] text-muted uppercase">Location</p>
                         <p class="m-0 mb-2 text-sm text-charcoal">{project.city}</p>
                       </>
                     )}
                     {project.products_used && (
                       <>
-                        <p class="m-0 mb-0.5 text-[10px] font-bold tracking-[0.8px] text-muted uppercase">Products</p>
+                        <p class="m-0 mb-0.5 text-[0.625rem] font-bold tracking-[0.8px] text-muted uppercase">Products</p>
                         <p class="m-0 mb-2 text-sm text-charcoal">{project.products_used}</p>
                       </>
                     )}
                     {project.completed_at && (
                       <>
-                        <p class="m-0 mb-0.5 text-[10px] font-bold tracking-[0.8px] text-muted uppercase">Completed</p>
+                        <p class="m-0 mb-0.5 text-[0.625rem] font-bold tracking-[0.8px] text-muted uppercase">Completed</p>
                         <p class="m-0 text-sm text-charcoal">{formatDate(project.completed_at)}</p>
                       </>
                     )}

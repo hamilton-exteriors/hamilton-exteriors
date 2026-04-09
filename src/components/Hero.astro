@@ -136,7 +136,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
             {formTitle}
           </h2>
           <p
-            class="mb-5 text-center text-[13px] leading-normal text-muted"
+            class="mb-5 text-center text-[0.8125rem] leading-normal text-muted"
           >
             {formSubtitle}
           </p>
@@ -161,7 +161,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
                 <div>
                   <label for="hero-phone" class="hero-label">Phone Number</label>
                   <input type="tel" id="hero-phone" name="phone" placeholder="(650) 977-3351" required autocomplete="tel" inputmode="tel" maxlength="16" class="hero-input w-full" />
-                  <p class="mt-1 text-[11px] leading-tight text-muted">We'll only call to schedule your inspection</p>
+                  <p class="mt-1 text-[0.6875rem] leading-tight text-muted">We'll only call to schedule your inspection</p>
                 </div>
                 <div>
                   <label for="hero-email" class="hero-label">Email</label>
@@ -577,11 +577,11 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
 
   /* Hero headline: mobile/tablet full-width, desktop narrower column */
   .hero-h1 {
-    font-size: clamp(48px, 12vw, 72px);
+    font-size: clamp(3rem, 12vw, 4.5rem);
   }
   @media (min-width: 1024px) {
     .hero-h1 {
-      font-size: clamp(44px, 3.8vw, 56px);
+      font-size: clamp(2.75rem, 3.8vw, 3.5rem);
     }
   }
 
@@ -629,7 +629,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
   .service-btn {
     font-family: var(--font-oswald);
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--color-primary);
     background: var(--color-green-bg);
     border: 2px solid rgb(37, 99, 70, 0.2);
