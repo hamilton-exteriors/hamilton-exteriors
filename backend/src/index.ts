@@ -1,5 +1,6 @@
-import express from 'express';
-import cors from 'cors';
+import { Hono } from 'hono';
+import { cors } from 'hono/cors';
+import { serve } from '@hono/node-server';
 import { geocodeAddress } from './services/geocode.js';
 import { getBuildingInsights, getDataLayers } from './services/solarApi.js';
 import { downloadAndParseGeoTiff } from './services/geotiffParser.js';
@@ -9,20 +10,20 @@ import { extractFacetPolygons, facetsToGeoJSON } from './services/polygonExtract
 import { computeMeasurements, computeMaterials, computeBid } from './services/measurements.js';
 import type { RoofScanResponse, RoofSegment } from './types.js';
 
-const app = express();
-app.use(cors({
+const app = new Hono();
+
+app.use('*', cors({
   origin: ['https://hamilton-exteriors.com', 'https://hamilton-exteriors-production.up.railway.app', 'http://localhost:4321', 'http://localhost:3333'],
-  methods: ['GET', 'POST', 'OPTIONS'],
+  allowMethods: ['GET', 'POST', 'OPTIONS'],
 }));
-app.use(express.json());
 
 const PORT = Number(process.env.PORT) || 3001;
 
-app.post('/api/roof-scan', async (req, res) => {
-  const { address } = req.body;
+app.post('/api/roof-scan', async (c) => {
+  const body = await c.req.json().catch(() => ({}));
+  const { address } = body;
   if (!address || typeof address !== 'string' || address.trim().length < 5) {
-    res.status(400).json({ error: 'Address is required (minimum 5 characters)' });
-    return;
+    return c.json({ error: 'Address is required (minimum 5 characters)' }, 400);
   }
 
   try {
@@ -114,36 +115,32 @@ app.post('/api/roof-scan', async (req, res) => {
     };
 
     console.log(`═══ SCAN COMPLETE ═══\n`);
-    res.json(response);
+    return c.json(response);
 
   } catch (err: any) {
     console.error('Scan failed:', err.message);
-    res.status(422).json({
+    return c.json({
       error: err.message,
       hint: err.message.includes('HIGH')
         ? 'This address may not have high-quality satellite imagery available.'
         : undefined,
-    });
+    }, 422);
   }
 });
 
-// ── Google Reviews endpoint ────────────────────────────────────────────────────
-// Returns live Google reviews with 1-hour cache. Called by the Astro frontend SSR.
+// ── Google Reviews endpoint ─────────────���──────────────────────────────────────
 const PLACE_ID = 'ChIJLWAh1YeTj4ARccaXE5RZqjE';
 let reviewsCache: { data: any; fetchedAt: number } | null = null;
 const REVIEWS_CACHE_TTL = 60 * 60 * 1000; // 1 hour
 
-app.get('/api/reviews', async (_req, res) => {
-  // Return cached data if fresh
+app.get('/api/reviews', async (c) => {
   if (reviewsCache && Date.now() - reviewsCache.fetchedAt < REVIEWS_CACHE_TTL) {
-    res.json(reviewsCache.data);
-    return;
+    return c.json(reviewsCache.data);
   }
 
   const apiKey = process.env.GOOGLE_API_KEY;
   if (!apiKey) {
-    res.status(503).json({ error: 'Google API key not configured' });
-    return;
+    return c.json({ error: 'Google API key not configured' }, 503);
   }
 
   try {
@@ -153,8 +150,7 @@ app.get('/api/reviews', async (_req, res) => {
 
     if (json.status !== 'OK') {
       console.error('[reviews] Google Places API:', json.status, json.error_message);
-      res.status(502).json({ error: `Google API: ${json.status}` });
-      return;
+      return c.json({ error: `Google API: ${json.status}` }, 502);
     }
 
     const result = json.result;
@@ -175,18 +171,18 @@ app.get('/api/reviews', async (_req, res) => {
 
     reviewsCache = { data, fetchedAt: Date.now() };
     console.log(`[reviews] Fetched ${data.reviews.length} reviews (${data.rating}★, ${data.reviewCount} total)`);
-    res.json(data);
+    return c.json(data);
   } catch (err: any) {
     console.error('[reviews] Fetch failed:', err.message);
-    res.status(502).json({ error: err.message });
+    return c.json({ error: err.message }, 502);
   }
 });
 
-app.get('/health', (_req, res) => {
-  res.json({ status: 'ok', service: 'hamilton-backend' });
+app.get('/health', (c) => {
+  return c.json({ status: 'ok', service: 'hamilton-backend' });
 });
 
-app.listen(PORT, () => {
+serve({ fetch: app.fetch, port: PORT }, () => {
   console.log(`Hamilton backend running on http://localhost:${PORT}`);
   console.log(`POST /api/roof-scan { address: string }`);
   if (!process.env.GOOGLE_API_KEY) {
