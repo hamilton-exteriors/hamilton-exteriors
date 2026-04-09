@@ -95,6 +95,10 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- ── Resource hints — must be first in <head> for maximum effectiveness ── -->
+    <!-- Plausible Analytics (primary, cookie-free) -->
+    <link rel="dns-prefetch" href="https://plausible.io" />
+    <!-- PostHog (session replay + heatmaps + funnels, free tier 1M events/mo) -->
+    <link rel="dns-prefetch" href="https://us.i.posthog.com" />
     <!-- GTM: always needed (deferred via interaction, but DNS/TCP warmup is free) -->
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
@@ -221,7 +225,9 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
         "https://www.youtube.com/@HamiltonExteriors",
         "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377",
         "https://www.wikidata.org/wiki/Q139044457",
-        "https://www.homeadvisor.com/rated.abrqualityresources.150372023.html"
+        "https://www.homeadvisor.com/rated.abrqualityresources.150372023.html",
+        "https://www.angi.com/companylist/us/ca/castro-valley/abr-quality-resources-reviews-10768498.htm",
+        "https://www.bbb.org/us/ca/castro-valley/profile/general-contractor/hamilton-exteriors-1116-935089"
       ],
       "alternateName": "ABR Quality Resources Inc",
       "areaServed": [
@@ -392,6 +398,30 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
     }
     </script>
     )}
+
+    <!-- Plausible Analytics — cookie-free, no consent banner needed, ~1KB -->
+    <script is:inline defer data-domain="hamilton-exteriors.com" src="https://plausible.io/js/script.js"></script>
+    <!-- Expose plausible() for custom events before the script loads -->
+    <script is:inline>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
+
+    <!-- Microsoft Clarity — free heatmaps + session replay, deferred until first interaction -->
+    <script is:inline>
+      (function(){
+        var loaded=false;
+        function loadClarity(){
+          if(loaded)return;loaded=true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window,document,"clarity","script","CLARITY_PROJECT_ID");
+        }
+        ['scroll','click','touchstart','keydown'].forEach(function(e){
+          window.addEventListener(e,loadClarity,{once:true,passive:true});
+        });
+        setTimeout(loadClarity,5000);
+      })();
+    </script>
 
     <!-- Google Tag Manager — deferred until first user interaction to keep LCP/TBT clean -->
     <script is:inline>

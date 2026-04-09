@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { logoFooter, badgeGoogle, badgeYelp } from '../lib/images';
-import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
+import { PHONE_DISPLAY, PHONE_HREF, CSLB_URL } from '../lib/constants';
 import IconFacebook from './icons/IconFacebook.astro';
 import IconInstagram from './icons/IconInstagram.astro';
 import IconLinkedIn from './icons/IconLinkedIn.astro';
@@ -26,7 +26,7 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
           500+ roofing, siding, and construction projects across the Bay Area. Licensed, bonded, and insured.
         </p>
         <p class="text-center text-xs/relaxed text-white/70 lg:text-left">
-          <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/checklicense.aspx?license=1082377" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 transition-colors hover:text-white/80">CSLB License #1082377</a> &middot; <a href="https://maps.google.com/?cid=3578771346418026097" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 transition-colors hover:text-white/80">Google Business Profile</a>
+          <a href={CSLB_URL} target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 transition-colors hover:text-white/80">CSLB License #1082377</a> &middot; <a href="https://maps.google.com/?cid=3578771346418026097" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 transition-colors hover:text-white/80">Google Business Profile</a>
         </p>
         <a href={PHONE_HREF} class="font-oswald text-2xl font-bold tracking-wide text-white underline underline-offset-4 lg:text-3xl">
           {PHONE_DISPLAY}
