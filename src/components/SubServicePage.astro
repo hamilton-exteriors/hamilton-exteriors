@@ -81,7 +81,290 @@ const PRODUCT_SCHEMA_MAP: Record<string, { name: string; brand?: string; categor
   'windows/casement': { name: 'Casement Windows', brand: 'Andersen, Marvin, Milgard', category: 'Replacement Windows', lowPrice: 1050, highPrice: 1050, unit: 'per window installed', description: 'Crank-open casement windows with 50–90% more airflow, U-factor 0.22, and tightest seal of any operable window.' },
 };
 
+// GEO comparison tables + informational H2 sections for AI citability
+const GEO_DATA_MAP: Record<string, {
+  comparisonHeading: string;
+  comparisonColumns: string[];
+  comparisonRows: Record<string, string>[];
+  infoSections: { heading: string; body: string }[];
+}> = {
+  'roofing/asphalt-shingles': {
+    comparisonHeading: 'How Do Asphalt Shingles Compare to Other Roofing Materials?',
+    comparisonColumns: ['Feature', 'Asphalt Shingles', 'Metal Roofing', 'Clay/Concrete Tile'],
+    comparisonRows: [
+      { 'Feature': 'Cost per square installed', 'Asphalt Shingles': '$1,075–$1,800', 'Metal Roofing': '$1,200–$1,800', 'Clay/Concrete Tile': '$1,500–$2,500' },
+      { 'Feature': 'Lifespan', 'Asphalt Shingles': '25–50 years', 'Metal Roofing': '40–70 years', 'Clay/Concrete Tile': '75–100 years' },
+      { 'Feature': 'Fire rating', 'Asphalt Shingles': 'Class A', 'Metal Roofing': 'Class A', 'Clay/Concrete Tile': 'Class A' },
+      { 'Feature': 'Weight per square', 'Asphalt Shingles': '250–350 lbs', 'Metal Roofing': '100–150 lbs', 'Clay/Concrete Tile': '900–1,200 lbs' },
+      { 'Feature': 'Maintenance', 'Asphalt Shingles': 'Low', 'Metal Roofing': 'Very low', 'Clay/Concrete Tile': 'Low' },
+    ],
+    infoSections: [
+      {
+        heading: 'How Much Do Asphalt Shingles Cost in the Bay Area?',
+        body: 'Bay Area asphalt shingle roof replacements range from $1,075 to $1,800 per roofing square (100 sq ft) fully installed, depending on the product tier chosen. Standard architectural shingles like GAF Timberline HDZ cost approximately $1,100 per square, while designer options such as CertainTeed Grand Manor reach $1,800 per square (Hamilton Exteriors project data, 2024–2026). A typical 2,000 sq ft Bay Area home requires 20–25 roofing squares, placing the total project cost between $15,000 and $45,000. According to the Asphalt Roofing Manufacturers Association, 75% of U.S. residential homes use asphalt shingles due to their balance of cost, durability, and aesthetic range. Material costs account for roughly 35–40% of the installed price, with labor, tear-off, underlayment, flashing, permits, and cleanup comprising the remainder.',
+      },
+      {
+        heading: 'How Long Do Asphalt Shingles Last?',
+        body: 'Modern architectural asphalt shingles carry manufacturer warranties of 30 to 50 years, though actual lifespan depends on installation quality, ventilation, and local climate conditions. The Asphalt Roofing Manufacturers Association reports that properly installed architectural shingles in temperate climates like the Bay Area routinely exceed 30 years of service life. Three-tab shingles, now largely phased out, lasted 15–20 years on average. Premium lines such as GAF Timberline AS II and CertainTeed Landmark PRO include enhanced weather resistance and algae-resistant granules that extend useful life. GAF Master Elite contractors — representing the top 2% of U.S. roofers — can offer system warranties covering materials, labor, and workmanship for up to 50 years, providing homeowners with comprehensive long-term protection against defects.',
+      },
+    ],
+  },
+  'roofing/metal': {
+    comparisonHeading: 'How Do Metal Roofing Systems Compare?',
+    comparisonColumns: ['Feature', 'Standing Seam', 'Corrugated Metal', 'Exposed Fastener'],
+    comparisonRows: [
+      { 'Feature': 'Cost per square installed', 'Standing Seam': '$1,400–$1,800', 'Corrugated Metal': '$1,200–$1,400', 'Exposed Fastener': '$1,200–$1,350' },
+      { 'Feature': 'Lifespan', 'Standing Seam': '50–70 years', 'Corrugated Metal': '40–60 years', 'Exposed Fastener': '30–50 years' },
+      { 'Feature': 'Maintenance', 'Standing Seam': 'Very low', 'Corrugated Metal': 'Low', 'Exposed Fastener': 'Moderate (fastener re-sealing)' },
+      { 'Feature': 'Aesthetics', 'Standing Seam': 'Clean, modern lines', 'Corrugated Metal': 'Agricultural or industrial', 'Exposed Fastener': 'Utilitarian' },
+      { 'Feature': 'Leak resistance', 'Standing Seam': 'Excellent (concealed clips)', 'Corrugated Metal': 'Good', 'Exposed Fastener': 'Fair (fastener penetration)' },
+    ],
+    infoSections: [
+      {
+        heading: 'How Much Does a Metal Roof Cost in the Bay Area?',
+        body: 'Metal roofing in the Bay Area costs $1,200 to $1,800 per roofing square (100 sq ft) fully installed, with standing seam panels at the premium end and corrugated or exposed fastener systems at the lower end (Hamilton Exteriors project data, 2024–2026). For a typical 2,000 sq ft home requiring 20–25 squares, total project costs range from $24,000 to $45,000. Standing seam metal roofing uses concealed clips rather than exposed screws, eliminating the most common failure point in metal roof systems. Oak Ridge National Laboratory research shows metal roofs reflect up to 70% of solar radiant heat, which can reduce cooling costs by 25% or more in warm months. The higher upfront investment is offset by a 40–70 year lifespan — roughly double that of standard asphalt shingles — and near-zero maintenance requirements over the roof\'s service life.',
+      },
+      {
+        heading: 'Are Metal Roofs Worth It in the Bay Area?',
+        body: 'Metal roofing offers compelling long-term value for Bay Area homeowners, particularly in fire-prone hillside communities. All metal roofing carries a Class A fire rating, meeting California\'s Chapter 7A Wildland-Urban Interface building standards without additional treatments. According to Oak Ridge National Laboratory, metal roofs reflect 70% of solar radiant heat, reducing attic temperatures significantly and lowering cooling energy consumption by 25% or more. The 40–70 year expected lifespan means most homeowners never replace the roof again after installation. Metal roofing weighs 100–150 lbs per square — roughly one-third the weight of asphalt shingles — making it suitable for homes where structural load capacity is a concern. Standing seam systems also shed water and debris efficiently, an advantage during Bay Area winter storms that can dump significant rainfall in short periods.',
+      },
+    ],
+  },
+  'roofing/tile': {
+    comparisonHeading: 'How Do Tile Roofing Materials Compare?',
+    comparisonColumns: ['Feature', 'Clay Tile', 'Concrete Tile', 'Synthetic Tile'],
+    comparisonRows: [
+      { 'Feature': 'Cost per square installed', 'Clay Tile': '$2,000–$2,500', 'Concrete Tile': '$1,500–$2,000', 'Synthetic Tile': '$1,200–$1,800' },
+      { 'Feature': 'Weight per square', 'Clay Tile': '900–1,200 lbs', 'Concrete Tile': '800–1,100 lbs', 'Synthetic Tile': '200–400 lbs' },
+      { 'Feature': 'Lifespan', 'Clay Tile': '75–100+ years', 'Concrete Tile': '50–75 years', 'Synthetic Tile': '30–50 years' },
+      { 'Feature': 'Style options', 'Clay Tile': 'Mediterranean, Spanish', 'Concrete Tile': 'Flat, barrel, shake profiles', 'Synthetic Tile': 'Mimics slate, shake, clay' },
+      { 'Feature': 'Fire rating', 'Clay Tile': 'Class A', 'Concrete Tile': 'Class A', 'Synthetic Tile': 'Class A (most products)' },
+    ],
+    infoSections: [
+      {
+        heading: 'How Much Does a Tile Roof Cost in the Bay Area?',
+        body: 'Tile roofing in the Bay Area ranges from $1,500 to $2,500 per roofing square (100 sq ft) fully installed, with concrete tile at the lower end and premium clay tile at the upper end (Hamilton Exteriors project data, 2024–2026). For a 2,000 sq ft home requiring 20–25 squares, total project costs typically fall between $30,000 and $62,500. Tile installations often require structural evaluation because clay and concrete tiles weigh 800–1,200 lbs per square — roughly three to four times heavier than asphalt shingles. According to the Tile Roofing Industry Alliance, properly installed clay tile roofs in Mediterranean climates regularly exceed 75 years of service life, with many historic installations in California still performing after 100 years. The thermal mass of tile naturally regulates attic temperatures, providing passive energy savings throughout the year.',
+      },
+      {
+        heading: 'How Long Do Tile Roofs Last?',
+        body: 'Clay tile roofs are among the longest-lasting roofing materials available, with documented service lives of 75 to 100+ years in favorable climates. The Tile Roofing Industry Alliance notes that clay tiles fired at temperatures above 2,000 degrees Fahrenheit are virtually impervious to weathering, UV degradation, and biological growth. Concrete tiles offer a shorter but still substantial lifespan of 50–75 years. The Bay Area\'s Mediterranean climate — mild winters, dry summers, and minimal freeze-thaw cycling — is ideal for tile roofing longevity. While tiles themselves are extraordinarily durable, the underlayment beneath them typically needs replacement every 30–40 years, requiring tile removal and reinstallation. Synthetic tile products, made from engineered polymers, last 30–50 years and weigh 200–400 lbs per square, making them suitable for structures that cannot support traditional tile weight.',
+      },
+    ],
+  },
+  'roofing/energy': {
+    comparisonHeading: 'How Do Solar Roofing Systems Compare?',
+    comparisonColumns: ['Feature', 'GAF Energy Roof', 'Tesla Solar Roof', 'Traditional Solar Panels'],
+    comparisonRows: [
+      { 'Feature': 'Cost per square installed', 'GAF Energy Roof': '$1,800–$2,800', 'Tesla Solar Roof': '$2,500–$3,500', 'Traditional Solar Panels': '$800–$1,200 (panels only)' },
+      { 'Feature': 'Energy output', 'GAF Energy Roof': '80–95% offset', 'Tesla Solar Roof': '80–100% offset', 'Traditional Solar Panels': '80–100% offset' },
+      { 'Feature': 'Warranty', 'GAF Energy Roof': '25-year power + 50-year roof', 'Tesla Solar Roof': '25-year tile + power', 'Traditional Solar Panels': '25-year panel, roof warranty separate' },
+      { 'Feature': 'Aesthetics', 'GAF Energy Roof': 'Integrated shingle profile', 'Tesla Solar Roof': 'Glass tile, sleek', 'Traditional Solar Panels': 'Rack-mounted, visible' },
+      { 'Feature': 'Federal tax credit', 'GAF Energy Roof': '30% ITC', 'Tesla Solar Roof': '30% ITC', 'Traditional Solar Panels': '30% ITC' },
+    ],
+    infoSections: [
+      {
+        heading: 'How Much Does a Solar Roof Cost in the Bay Area?',
+        body: 'Integrated solar roofing systems in the Bay Area cost $1,800 to $2,800 per roofing square (100 sq ft) installed for GAF Energy systems, combining roof replacement with solar energy generation in a single product (Hamilton Exteriors project data, 2024–2026). Tesla Solar Roof tiles range higher at $2,500–$3,500 per square. For a typical 2,000 sq ft home, total project costs run $36,000 to $70,000 before incentives. The federal Investment Tax Credit (ITC) provides a 30% credit on the full system cost — including the roofing materials — under the Inflation Reduction Act of 2022, which can reduce net cost by $10,800 to $21,000. Unlike traditional rack-mounted panels, integrated solar shingles replace the roof itself, eliminating the need for a separate roofing project. Bay Area homes average 5.5 peak sun hours daily (National Renewable Energy Laboratory), making the region highly favorable for solar energy production.',
+      },
+      {
+        heading: 'Is a Solar Roof Worth It?',
+        body: 'Solar roofing systems deliver strong financial returns for Bay Area homeowners who need a roof replacement within the next five years. The key advantage is combining two major expenses — a new roof and a solar installation — into a single project with one warranty, one crew, and one permit cycle. According to the U.S. Department of Energy, ENERGY STAR-qualified roofing integrated with solar generation can offset 80–95% of a home\'s electricity consumption. PG&E residential rates in the Bay Area average $0.35–$0.45 per kWh (California Public Utilities Commission, 2025), making solar payback periods shorter than the national average. GAF Energy systems include a 25-year power warranty alongside a 50-year roofing warranty. The 30% federal ITC applies to the entire installed cost, including roofing materials, significantly improving return on investment compared to traditional panel-only installations.',
+      },
+    ],
+  },
+  'siding/vinyl': {
+    comparisonHeading: 'How Does Vinyl Siding Compare to Other Siding Materials?',
+    comparisonColumns: ['Feature', 'Vinyl Siding', 'Fiber Cement', 'Stucco'],
+    comparisonRows: [
+      { 'Feature': 'Cost per square installed', 'Vinyl Siding': '$975–$1,275', 'Fiber Cement': '$2,100–$2,325', 'Stucco': '~$1,950' },
+      { 'Feature': 'Lifespan', 'Vinyl Siding': '20–40 years', 'Fiber Cement': '50+ years', 'Stucco': '50–80 years' },
+      { 'Feature': 'Maintenance', 'Vinyl Siding': 'Very low (wash only)', 'Fiber Cement': 'Low (repaint every 15 years)', 'Stucco': 'Low–moderate' },
+      { 'Feature': 'ROI at resale', 'Vinyl Siding': '~70%', 'Fiber Cement': '86% (Remodeling Magazine)', 'Stucco': '~80%' },
+      { 'Feature': 'Fire rating', 'Vinyl Siding': 'Melts, not fire-rated', 'Fiber Cement': 'Class A', 'Stucco': 'Non-combustible' },
+    ],
+    infoSections: [
+      {
+        heading: 'How Much Does Vinyl Siding Cost in the Bay Area?',
+        body: 'Vinyl siding installation in the Bay Area costs $975 to $1,275 per square (100 sq ft) fully installed, with standard vinyl at the lower end and insulated vinyl at the upper end (Hamilton Exteriors project data, 2024–2026). For a typical 1,500 sq ft exterior surface area, total project costs range from $14,625 to $19,125. Insulated vinyl siding includes a rigid foam backing that improves thermal performance and reduces exterior noise transmission. According to the Vinyl Siding Institute, modern vinyl siding is available in 60+ colors and profiles, including Dutch lap, beaded, and board-and-batten styles. Vinyl requires no painting, staining, or sealing — only periodic washing with a garden hose. The 2024 Remodeling Magazine Cost vs. Value Report shows vinyl siding replacement recovers approximately 70% of project cost at resale, making it a practical choice for budget-conscious homeowners and investment properties.',
+      },
+      {
+        heading: 'How Long Does Vinyl Siding Last?',
+        body: 'Quality vinyl siding lasts 20 to 40 years depending on product grade, installation quality, and exposure conditions. The Vinyl Siding Institute reports that premium insulated vinyl siding products carry lifetime limited warranties covering manufacturing defects, excessive fading, and hail damage. Vinyl does not rot, absorb moisture, or attract termites — common failure modes for wood siding in the Bay Area\'s fog-belt microclimates. However, vinyl can crack in extreme cold (rare in the Bay Area) and may warp if installed too tightly without proper expansion gaps. UV-stabilized pigments in modern vinyl resist fading for 15–20 years before noticeable color change. Unlike fiber cement or wood, vinyl siding cannot be repainted — when color refresh is desired, panels must be replaced. For Bay Area homes outside fire zones, vinyl siding offers the lowest total cost of ownership over a 20-year period.',
+      },
+    ],
+  },
+  'siding/fiber-cement': {
+    comparisonHeading: 'How Does Fiber Cement Siding Compare to Other Materials?',
+    comparisonColumns: ['Feature', 'James Hardie Fiber Cement', 'LP SmartSide', 'Real Wood'],
+    comparisonRows: [
+      { 'Feature': 'Cost per square installed', 'James Hardie Fiber Cement': '$2,100–$2,325', 'LP SmartSide': '$1,600–$2,000', 'Real Wood': '$2,500–$4,000' },
+      { 'Feature': 'Lifespan', 'James Hardie Fiber Cement': '50+ years', 'LP SmartSide': '30–50 years', 'Real Wood': '20–40 years (with maintenance)' },
+      { 'Feature': 'Fire rating', 'James Hardie Fiber Cement': 'Class A non-combustible', 'LP SmartSide': 'Treated (flame spread 25)', 'Real Wood': 'Combustible' },
+      { 'Feature': 'ROI at resale', 'James Hardie Fiber Cement': '86% (Remodeling Magazine)', 'LP SmartSide': '~75%', 'Real Wood': '~70%' },
+      { 'Feature': 'Maintenance', 'James Hardie Fiber Cement': 'Repaint every 15 years', 'LP SmartSide': 'Repaint every 10–12 years', 'Real Wood': 'Stain/paint every 3–7 years' },
+    ],
+    infoSections: [
+      {
+        heading: 'How Much Does James Hardie Siding Cost?',
+        body: 'James Hardie fiber cement siding costs $2,100 to $2,325 per square (100 sq ft) fully installed in the Bay Area, including HardiePlank lap siding, HardieShingle panels, and HardiePanel vertical board options (Hamilton Exteriors project data, 2024–2026). For a typical 1,500 sq ft exterior, total project costs range from $31,500 to $34,875. James Hardie\'s ColorPlus factory-finish technology applies and bakes color onto each plank in a climate-controlled facility, producing a more consistent and durable finish than field painting. The 2024 Remodeling Magazine Cost vs. Value Report ranks fiber cement siding replacement at 86% cost recovery at resale — the highest ROI of any siding material tracked in the report. Hamilton Exteriors is a James Hardie Elite Preferred installer, a designation requiring annual training and adherence to Hardie\'s installation specifications for HZ5 climate-zone products.',
+      },
+      {
+        heading: 'Why Do Bay Area Homeowners Choose Fiber Cement?',
+        body: 'Fiber cement siding addresses three challenges specific to Bay Area homes: fire risk, moisture exposure, and long-term durability. James Hardie HZ5 products are engineered specifically for climates with high humidity and temperature variation — conditions found throughout the Bay Area\'s fog belt, from Pacifica to San Francisco to Daly City. As a Class A non-combustible material, fiber cement meets California Chapter 7A Wildland-Urban Interface requirements without additional treatments, making it the preferred choice in hillside communities like the Oakland Hills and Berkeley Hills. Unlike wood siding, fiber cement does not rot, swell, or attract termites. Unlike vinyl, it cannot melt or deform under radiant heat exposure. The material\'s composition — Portland cement, sand, and cellulose fibers — provides dimensional stability that resists warping and cracking through decades of seasonal temperature cycling.',
+      },
+    ],
+  },
+  'siding/stucco': {
+    comparisonHeading: 'How Do Stucco Systems Compare?',
+    comparisonColumns: ['Feature', 'Three-Coat Stucco', 'EIFS (Synthetic)', 'One-Coat Stucco'],
+    comparisonRows: [
+      { 'Feature': 'Cost per square installed', 'Three-Coat Stucco': '~$1,950', 'EIFS (Synthetic)': '$1,800–$2,200', 'One-Coat Stucco': '$1,600–$1,800' },
+      { 'Feature': 'Lifespan', 'Three-Coat Stucco': '50–80 years', 'EIFS (Synthetic)': '30–50 years', 'One-Coat Stucco': '30–50 years' },
+      { 'Feature': 'Moisture resistance', 'Three-Coat Stucco': 'Good (breathable)', 'EIFS (Synthetic)': 'Excellent (barrier system)', 'One-Coat Stucco': 'Good' },
+      { 'Feature': 'Appearance', 'Three-Coat Stucco': 'Traditional textured finish', 'EIFS (Synthetic)': 'Smooth, modern', 'One-Coat Stucco': 'Smooth to medium texture' },
+      { 'Feature': 'Fire rating', 'Three-Coat Stucco': 'One-hour fire rating', 'EIFS (Synthetic)': 'Varies by assembly', 'One-Coat Stucco': 'One-hour fire rating' },
+    ],
+    infoSections: [
+      {
+        heading: 'How Much Does Stucco Cost in the Bay Area?',
+        body: 'Traditional three-coat stucco installation in the Bay Area costs approximately $1,950 per square (100 sq ft) fully installed, including lath, scratch coat, brown coat, and finish coat (Hamilton Exteriors project data, 2024–2026). For a typical 1,500 sq ft exterior surface area, total project costs run approximately $29,250. One-coat stucco systems range from $1,600 to $1,800 per square and offer faster installation, though they lack the thickness and longevity of three-coat systems. EIFS (Exterior Insulation and Finish Systems), sometimes called synthetic stucco, costs $1,800–$2,200 per square and provides superior insulation properties. According to the Portland Cement Association, properly installed three-coat stucco carries a one-hour fire rating and can last 50–80 years in Mediterranean climates like the Bay Area, where minimal freeze-thaw cycling reduces the primary cause of stucco deterioration.',
+      },
+      {
+        heading: 'How Long Does Stucco Siding Last?',
+        body: 'Three-coat stucco is one of the longest-lasting siding materials available, with a documented service life of 50 to 80 years in favorable climates. The Portland Cement Association reports that traditional stucco applied over a proper lath and weather-resistive barrier system requires only periodic patching and repainting to maintain its performance and appearance. The Bay Area\'s Mediterranean climate — dry summers, mild winters, and rare freezing temperatures — is ideal for stucco longevity. Hairline cracking is normal and typically cosmetic; structural cracking indicates substrate movement and should be evaluated. Stucco should be repainted every 10–15 years to maintain its protective seal. Common failure points include improper flashing at windows and doors, which can allow moisture intrusion behind the stucco layer. Homes with properly installed weep screeds and kickout flashing experience significantly fewer moisture-related issues over the life of the system.',
+      },
+    ],
+  },
+  'windows/casement': {
+    comparisonHeading: 'How Do Casement Windows Compare to Other Window Styles?',
+    comparisonColumns: ['Feature', 'Casement', 'Double-Hung', 'Single-Hung', 'Slider'],
+    comparisonRows: [
+      { 'Feature': 'Cost per window installed', 'Casement': '~$1,050', 'Double-Hung': '~$950', 'Single-Hung': '~$850', 'Slider': '~$800' },
+      { 'Feature': 'Airflow', 'Casement': '50–90% more (AAMA)', 'Double-Hung': 'Both sashes', 'Single-Hung': 'Bottom sash only', 'Slider': 'Half the opening' },
+      { 'Feature': 'Seal tightness', 'Casement': 'Best (4-side compression)', 'Double-Hung': 'Good', 'Single-Hung': 'Good', 'Slider': 'Fair' },
+      { 'Feature': 'Ease of cleaning', 'Casement': 'Easy (opens fully outward)', 'Double-Hung': 'Easy (tilt-in sashes)', 'Single-Hung': 'Moderate (top sash fixed)', 'Slider': 'Moderate (remove panel)' },
+      { 'Feature': 'Exterior clearance', 'Casement': 'Required (outward swing)', 'Double-Hung': 'None', 'Single-Hung': 'None', 'Slider': 'None' },
+    ],
+    infoSections: [
+      {
+        heading: 'How Much Do Casement Windows Cost?',
+        body: 'Casement window installation in the Bay Area costs approximately $1,050 per window fully installed, including the window unit, labor, interior and exterior trim, and weathersealing (Hamilton Exteriors project data, 2024–2026). Material cost accounts for roughly $425 of that total. A whole-house window replacement project with 15–20 casement windows typically runs $15,750 to $21,000. Casement windows cost 10–25% more than single-hung or slider alternatives due to their crank hardware mechanism and multi-point locking system. According to the American Architectural Manufacturers Association (AAMA), casement windows deliver 50–90% more airflow than same-sized single-hung windows because the entire sash opens rather than just one panel. The U.S. Department of Energy reports that ENERGY STAR-qualified windows save homeowners $125–$465 per year on energy bills, with casement windows\' superior seal contributing to the higher end of that savings range.',
+      },
+      {
+        heading: 'Are Casement Windows More Energy Efficient?',
+        body: 'Casement windows are the most energy-efficient operable window style available, achieving the tightest air seal of any window that opens. The compression seal is created by the sash pressing against the frame on all four sides when the crank mechanism is closed — a design that the American Architectural Manufacturers Association (AAMA) confirms produces measurably lower air infiltration rates than sliding or hung window styles. Casement windows from brands like Andersen and Marvin achieve U-factors as low as 0.22 with dual-pane Low-E glass, exceeding California Title 24 energy requirements by 15–20%. Wind pressure actually improves the seal, pushing the sash more firmly against the weatherstripping. For Bay Area fog-belt homes — where wind-driven moisture and cool air infiltration drive heating costs — casement windows offer meaningful energy savings over single-hung and slider alternatives.',
+      },
+    ],
+  },
+  'windows/double-hung': {
+    comparisonHeading: 'How Do Double-Hung Windows Compare to Other Styles?',
+    comparisonColumns: ['Feature', 'Double-Hung', 'Single-Hung', 'Casement'],
+    comparisonRows: [
+      { 'Feature': 'Cost per window installed', 'Double-Hung': '~$950', 'Single-Hung': '~$850', 'Casement': '~$1,050' },
+      { 'Feature': 'Ventilation', 'Double-Hung': 'Both sashes (convection)', 'Single-Hung': 'Bottom sash only', 'Casement': 'Full sash opening' },
+      { 'Feature': 'Ease of cleaning', 'Double-Hung': 'Easy (both sashes tilt in)', 'Single-Hung': 'Moderate (top sash fixed)', 'Casement': 'Easy (opens outward)' },
+      { 'Feature': 'Heritage compatibility', 'Double-Hung': 'Excellent (Victorian, Craftsman)', 'Single-Hung': 'Good', 'Casement': 'Modern aesthetic' },
+      { 'Feature': 'Energy efficiency (U-factor)', 'Double-Hung': '0.27', 'Single-Hung': '0.25', 'Casement': '0.22' },
+    ],
+    infoSections: [
+      {
+        heading: 'How Much Do Double-Hung Windows Cost?',
+        body: 'Double-hung window installation in the Bay Area costs approximately $950 per window fully installed, including the window unit, labor, interior and exterior trim, and weathersealing (Hamilton Exteriors project data, 2024–2026). Material cost accounts for roughly $375 of that total. A whole-house replacement project with 15–20 double-hung windows typically costs $14,250 to $19,000. Double-hung windows cost about $100 more per unit than single-hung alternatives due to the second operable sash and additional balance hardware. Brands like Andersen, Marvin, and Pella offer period-accurate double-hung profiles that match Victorian, Craftsman, and Colonial Revival architectural styles common throughout Berkeley, Alameda, and San Jose historic districts. The U.S. Department of Energy reports that ENERGY STAR-qualified windows save homeowners $125–$465 per year on energy bills, helping offset the upfront investment over the window\'s 25–30 year service life.',
+      },
+      {
+        heading: 'Single-Hung vs Double-Hung: Which Should You Choose?',
+        body: 'The primary difference between single-hung and double-hung windows is that double-hung windows have two operable sashes while single-hung windows have only one. This means double-hung windows allow convection-style ventilation — warm air exits through the top while cool air enters through the bottom — providing more effective natural cooling. Both sashes in a double-hung window tilt inward for easy cleaning from inside the home, a significant advantage for second-story windows. Single-hung windows cost approximately $100 less per unit ($850 vs $950 installed in the Bay Area, per Hamilton Exteriors project data). For homeowners replacing 15–20 windows, that adds up to $1,500–$2,000 in savings. Choose double-hung when ventilation flexibility and cleaning convenience matter. Choose single-hung when budget is the priority and the windows are accessible from ground level for exterior cleaning.',
+      },
+    ],
+  },
+  'windows/single-hung': {
+    comparisonHeading: 'How Do Single-Hung Windows Compare to Other Styles?',
+    comparisonColumns: ['Feature', 'Single-Hung', 'Double-Hung', 'Slider'],
+    comparisonRows: [
+      { 'Feature': 'Cost per window installed', 'Single-Hung': '~$850', 'Double-Hung': '~$950', 'Slider': '~$800' },
+      { 'Feature': 'Ventilation', 'Single-Hung': 'Bottom sash only', 'Double-Hung': 'Both sashes', 'Slider': 'Half the opening' },
+      { 'Feature': 'Maintenance', 'Single-Hung': 'Low (tilt-in lower sash)', 'Double-Hung': 'Low (both tilt-in)', 'Slider': 'Low (remove panel)' },
+      { 'Feature': 'Energy efficiency (U-factor)', 'Single-Hung': '0.25', 'Double-Hung': '0.27', 'Slider': '0.27' },
+      { 'Feature': 'Exterior clearance', 'Single-Hung': 'None', 'Double-Hung': 'None', 'Slider': 'None' },
+    ],
+    infoSections: [
+      {
+        heading: 'How Much Do Single-Hung Windows Cost?',
+        body: 'Single-hung window installation in the Bay Area costs approximately $850 per window fully installed, including the window unit, labor, interior and exterior trim, and weathersealing (Hamilton Exteriors project data, 2024–2026). Material cost accounts for roughly $325 of that total. A whole-house replacement project with 15–20 single-hung windows typically costs $12,750 to $17,000, making single-hung the most affordable vertical-opening window style. Single-hung windows from brands like Milgard and Andersen include tilt-in lower sashes for interior cleaning and dual-pane Low-E glass with a U-factor of 0.25, exceeding California Title 24 energy requirements. The U.S. Department of Energy reports that ENERGY STAR-qualified windows save homeowners $125–$465 per year on energy bills. With fewer moving parts than double-hung alternatives, single-hung windows also have lower long-term maintenance requirements and fewer potential points of air infiltration.',
+      },
+      {
+        heading: 'Single-Hung vs Double-Hung: What\'s the Difference?',
+        body: 'Single-hung windows have one operable (moving) sash at the bottom and a fixed sash at the top. Double-hung windows have two operable sashes, both of which can open and tilt inward for cleaning. This distinction affects ventilation, cleaning convenience, and price. Single-hung windows cost approximately $850 installed in the Bay Area versus $950 for double-hung — a $100 per-unit savings that totals $1,500–$2,000 across a typical 15–20 window project (Hamilton Exteriors project data, 2024–2026). Single-hung windows achieve a slightly better U-factor of 0.25 compared to 0.27 for double-hung, because the fixed upper sash has fewer air-infiltration pathways. However, double-hung windows offer convection ventilation (opening both top and bottom) and easier cleaning of the upper sash from inside the home. For second-story or hard-to-reach windows, double-hung\'s tilt-in upper sash is a meaningful practical advantage.',
+      },
+    ],
+  },
+  'windows/single-slider': {
+    comparisonHeading: 'How Do Slider Windows Compare to Other Styles?',
+    comparisonColumns: ['Feature', 'Single Slider', 'Double Slider', 'Casement'],
+    comparisonRows: [
+      { 'Feature': 'Cost per window installed', 'Single Slider': '~$800', 'Double Slider': '~$900', 'Casement': '~$1,050' },
+      { 'Feature': 'Exterior clearance', 'Single Slider': 'None', 'Double Slider': 'None', 'Casement': 'Required (outward swing)' },
+      { 'Feature': 'Airflow', 'Single Slider': 'Half the opening', 'Double Slider': 'Half the opening', 'Casement': '50–90% more (AAMA)' },
+      { 'Feature': 'Operation', 'Single Slider': 'Horizontal slide', 'Double Slider': 'Both panels slide', 'Casement': 'Crank mechanism' },
+      { 'Feature': 'Best for', 'Single Slider': 'Kitchens, above counters', 'Double Slider': 'Wide openings', 'Casement': 'Maximum airflow' },
+    ],
+    infoSections: [
+      {
+        heading: 'How Much Do Slider Windows Cost?',
+        body: 'Single slider window installation in the Bay Area costs approximately $800 per window fully installed, including the window unit, labor, trim, and weathersealing (Hamilton Exteriors project data, 2024–2026). Material cost accounts for roughly $300 of that total. A whole-house replacement project with 15–20 slider windows typically costs $12,000 to $16,000, making sliders the most affordable window style Hamilton Exteriors offers. Slider windows operate horizontally on a track, requiring no exterior clearance — an advantage over casement windows that swing outward and can interfere with walkways, patios, or landscaping. Brands like Milgard and Andersen offer slider windows with Low-E glass and a U-factor of 0.27, meeting California Title 24 energy requirements. The U.S. Department of Energy reports that ENERGY STAR-qualified windows save homeowners $125–$465 per year on energy bills regardless of operating style.',
+      },
+      {
+        heading: 'When Should You Choose Slider Windows?',
+        body: 'Slider windows are the practical choice for locations where exterior clearance is limited or where the window is positioned above a counter, sink, or appliance. In mid-century modern homes — including the Eichler-style homes found throughout Palo Alto, Sunnyvale, and San Mateo — slider windows match the original architectural language of horizontal lines and low profiles. Sliders are also preferred along walkways, above patios, and next to decks where an outward-swinging casement sash would create an obstruction. The trade-off is airflow: slider windows open only half their total width, delivering less ventilation than casement windows of the same size. According to the American Architectural Manufacturers Association, casement windows provide 50–90% more airflow than same-sized sliders. For rooms where maximum ventilation is not the primary concern — kitchens, bathrooms, and utility areas — slider windows offer reliable, cost-effective performance.',
+      },
+    ],
+  },
+  'windows/sliding-glass-doors': {
+    comparisonHeading: 'How Do Patio Door Styles Compare?',
+    comparisonColumns: ['Feature', 'Sliding Glass Doors', 'French Doors', 'Bi-Fold Doors'],
+    comparisonRows: [
+      { 'Feature': 'Cost installed', 'Sliding Glass Doors': '~$3,800', 'French Doors': '~$4,200 (pair)', 'Bi-Fold Doors': '$6,000–$12,000' },
+      { 'Feature': 'Space required', 'Sliding Glass Doors': 'Minimal (panels slide)', 'French Doors': 'Swing radius clearance', 'Bi-Fold Doors': 'Panel stacking area' },
+      { 'Feature': 'Maximum views', 'Sliding Glass Doors': 'Wide unobstructed glass', 'French Doors': 'Divided by center stile', 'Bi-Fold Doors': 'Full opening when folded' },
+      { 'Feature': 'Security', 'Sliding Glass Doors': 'Multi-point locking', 'French Doors': 'Multi-point + deadbolt', 'Bi-Fold Doors': 'Multi-point locking' },
+      { 'Feature': 'ADA accessible', 'Sliding Glass Doors': 'Yes (flush threshold)', 'French Doors': 'Possible with modifications', 'Bi-Fold Doors': 'Yes (flush threshold)' },
+    ],
+    infoSections: [
+      {
+        heading: 'How Much Do Sliding Glass Doors Cost?',
+        body: 'Sliding glass door installation in the Bay Area costs approximately $3,800 per door fully installed, including the door unit, labor, framing, and hardware (Hamilton Exteriors project data, 2024–2026). Material cost accounts for roughly $1,800 of that total. Multi-panel configurations spanning 8–16 feet wide can cost $6,000–$10,000 depending on panel count and frame material. French door pairs — the primary alternative — cost approximately $4,200 installed but require swing clearance that reduces usable floor space. Brands like Milgard, Andersen, and Marvin offer sliding glass doors with multi-point locking systems, Low-E glass, and ADA-compliant flush thresholds. The U.S. Department of Energy notes that patio doors represent a significant thermal envelope opening, and ENERGY STAR-qualified sliding doors with Low-E coatings can reduce heat transfer by 30–50% compared to single-pane units.',
+      },
+      {
+        heading: 'Sliding vs French Doors: Which Is Better?',
+        body: 'The choice between sliding glass doors and French doors depends primarily on available space, architectural style, and how you use the opening. Sliding doors require no swing clearance — the panels glide on a track, making them ideal for rooms where furniture sits near the door or where a patio is close to the opening. French doors require a clear swing radius of 30–36 inches on the opening side. Sliding doors provide wider unobstructed glass panels for maximum views, which is why they are the default choice for Bay Area hillside homes and properties overlooking landscaped yards. French doors suit traditional architectural styles — Victorians, Colonials, and Craftsmans — where their divided-lite profiles complement the home\'s character. At $3,800 installed versus $4,200 for a French door pair (Hamilton Exteriors project data, 2024–2026), sliding doors also cost approximately 10% less.',
+      },
+    ],
+  },
+  'windows/picture': {
+    comparisonHeading: 'How Do Picture Windows Compare to Other Window Styles?',
+    comparisonColumns: ['Feature', 'Picture Window', 'Bay Window', 'Casement'],
+    comparisonRows: [
+      { 'Feature': 'Cost per window installed', 'Picture Window': '~$950', 'Bay Window': '~$4,500', 'Casement': '~$1,050' },
+      { 'Feature': 'Natural light', 'Picture Window': 'Maximum (no frame divisions)', 'Bay Window': 'Excellent (three-panel)', 'Casement': 'Good' },
+      { 'Feature': 'Ventilation', 'Picture Window': 'None (fixed pane)', 'Bay Window': 'Side panels open', 'Casement': 'Full sash opens' },
+      { 'Feature': 'Views', 'Picture Window': 'Unobstructed panoramic', 'Bay Window': 'Wide-angle (angled panels)', 'Casement': 'Standard' },
+      { 'Feature': 'Energy efficiency (U-factor)', 'Picture Window': '0.20 (triple-pane)', 'Bay Window': '0.25–0.30', 'Casement': '0.22' },
+    ],
+    infoSections: [
+      {
+        heading: 'How Much Do Picture Windows Cost?',
+        body: 'Picture window installation in the Bay Area costs approximately $950 per window fully installed, including the window unit, labor, and trim (Hamilton Exteriors project data, 2024–2026). Material cost accounts for roughly $375 of that total. Large custom-sized picture windows — up to 8 feet wide by 6 feet tall — can cost $1,500–$2,500 installed depending on glass type and frame material. Picture windows are fixed (non-operable) panels designed to maximize natural light and views without frame divisions breaking up the glass surface. They are commonly paired with operable flanking windows — casement or single-hung units on either side — to provide ventilation while preserving the central unobstructed view. For Bay Area hillside homes and properties with landscape views, picture windows deliver the highest ratio of visible glass area to total window unit size of any residential window style.',
+      },
+      {
+        heading: 'Are Picture Windows Energy Efficient?',
+        body: 'Picture windows are the most energy-efficient residential window style because they have no operable sash and therefore zero air infiltration from moving parts. With triple-pane Low-E glass, picture windows achieve U-factors as low as 0.20 — the best thermal performance of any standard window configuration. By comparison, casement windows achieve 0.22, double-hung windows 0.27, and sliders 0.27 (Hamilton Exteriors product specifications, Andersen and Milgard data sheets). The fixed-pane design eliminates the weatherstripping degradation that affects operable windows over time, maintaining peak efficiency throughout the window\'s service life. According to the U.S. Department of Energy, ENERGY STAR-qualified windows save homeowners $125–$465 per year on energy bills. For rooms that do not require ventilation — living rooms, stairwells, and hallways — picture windows provide maximum light with minimum energy loss.',
+      },
+    ],
+  },
+};
+
 const productKey = `${data.parentService}/${data.typeSlug}`;
+const geoData = GEO_DATA_MAP[productKey];
 const productData = PRODUCT_SCHEMA_MAP[productKey];
 
 const productSchema = productData ? {
@@ -201,6 +484,46 @@ const productSchema = productData ? {
     ))}
   </div>
 </Section>
+
+<!-- GEO Comparison & Info Sections -->
+{geoData && (
+  <Section bg="white" padding="lg" width="narrow">
+    <h2 class="mb-6 font-oswald text-[clamp(1.5rem,4vw,2rem)] font-normal leading-[1.2] text-charcoal">{geoData.comparisonHeading}</h2>
+    <div class="overflow-x-auto mb-12 -mx-5 px-5 md:mx-0 md:px-0">
+      <table class="w-full min-w-[540px] text-[0.9375rem] leading-[1.6] border-collapse">
+        <thead>
+          <tr>
+            {geoData.comparisonColumns.map((col) => (
+              <th
+                class="bg-primary px-4 py-3 text-left font-satoshi text-xs font-semibold tracking-[0.08em] text-white uppercase first:rounded-tl-md last:rounded-tr-md"
+              >
+                {col}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {geoData.comparisonRows.map((row, i) => (
+            <tr class={i % 2 === 0 ? 'bg-cream/50' : 'bg-white'}>
+              {geoData.comparisonColumns.map((col, j) => (
+                <td class={`px-4 py-3 text-charcoal ${j === 0 ? 'font-medium' : ''}`}>
+                  {row[col]}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    {geoData.infoSections.map((section) => (
+      <div class="mb-10 last:mb-0">
+        <h2 class="mb-4 font-oswald text-[clamp(1.25rem,3vw,1.75rem)] font-normal leading-[1.25] text-charcoal">{section.heading}</h2>
+        <p class="text-[1.0625rem] leading-[1.8] text-charcoal">{section.body}</p>
+      </div>
+    ))}
+  </Section>
+)}
 
 <!-- Key Facts -->
 <Section bg="cream" padding="md" width="narrow">

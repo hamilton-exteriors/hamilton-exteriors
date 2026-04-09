@@ -263,6 +263,16 @@ import IconLinkedIn from './icons/IconLinkedIn.astro';
       const res = await fetch('/api/newsletter', { method: 'POST', body: new FormData(form) });
       const data = await res.json();
       if (res.ok) {
+        const nlEmail = (new FormData(form).get('footerEmail') as string) || '';
+        const nlName = (new FormData(form).get('footerName') as string) || '';
+        if (nlEmail) {
+          window.op?.('identify', {
+            profileId: nlEmail,
+            email: nlEmail,
+            firstName: nlName.split(' ')[0] || '',
+            lastName: nlName.split(' ').slice(1).join(' ') || '',
+          });
+        }
         window.op?.('track', 'newsletter_subscribed', { source: 'footer' });
         window.dataLayer?.push({ event: 'newsletter_subscribed', source: 'footer' });
         msg.textContent = 'You\'re in! Watch your inbox.';

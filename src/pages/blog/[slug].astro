@@ -193,6 +193,13 @@ processedHtml = processedHtml.replace(/<\/table>/gi, '</table></div>');
 processedHtml = processedHtml.replace(/<img(?![^>]*decoding=)([^>]*?)>/gi, '<img decoding="async"$1>');
 processedHtml = processedHtml.replace(/<img(?![^>]*loading=)([^>]*?)>/gi, '<img loading="lazy"$1>');
 
+// Auto-wrap common citation patterns in <cite> tags for AI citability
+// Matches: (Source: ...), (according to ...), (per ...) — case-insensitive
+processedHtml = processedHtml.replace(
+  /(?<!<cite[^>]*>)\((?:(Source:\s+|according to\s+|per\s+))([^)]+)\)/gi,
+  '<cite>($1$2)</cite>'
+);
+
 // Add width/height to Ghost images missing dimensions — prevents CLS
 processedHtml = processedHtml.replace(/<img(?![^>]*(?:width|height)=)([^>]*?)>/gi, '<img width="1000" height="563"$1>');
 
@@ -805,5 +812,38 @@ const serviceLinks = matchedLinksMap.size > 0
   .ghost-content pre code {
     background: none;
     padding: 0;
+  }
+
+  /* ── Source citations (AI citability) ────────────────────────── */
+  .ghost-content cite {
+    font-size: 0.85em;
+    color: var(--color-light, #6b7280);
+    font-style: italic;
+    font-family: var(--font-dm-sans);
+  }
+  .ghost-content .source-note {
+    border-left: 3px solid #e0ddd6;
+    padding: 12px 20px;
+    margin: 24px 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-light, #6b7280);
+  }
+  .ghost-content .source-note p {
+    margin: 0 0 8px;
+  }
+  .ghost-content .source-note p:last-child {
+    margin: 0;
+  }
+  .ghost-content blockquote[cite] {
+    position: relative;
+  }
+  .ghost-content blockquote[cite]::after {
+    content: '— ' attr(cite);
+    display: block;
+    margin-top: 12px;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--color-light, #6b7280);
   }
 </style>

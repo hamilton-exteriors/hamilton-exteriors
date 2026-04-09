@@ -526,8 +526,23 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
         return;
       }
 
-      // Success — track conversion
+      // Success — identify user profile + track conversion
+      const leadName = formData.get('fullName') as string || '';
+      const leadEmail = formData.get('email') as string || '';
+      const leadPhone = formData.get('phone') as string || '';
       if ((window as any).op) {
+        (window as any).op('identify', {
+          profileId: leadEmail,
+          email: leadEmail,
+          firstName: leadName.split(' ')[0] || '',
+          lastName: leadName.split(' ').slice(1).join(' ') || '',
+          phone: leadPhone,
+          properties: {
+            address: formData.get('address') as string || '',
+            service: formData.get('service') as string || 'general',
+            source: 'hero_form',
+          },
+        });
         (window as any).op('track', 'lead_form_submitted', {
           service: formData.get('service') || 'general',
           source: 'hero_form',
