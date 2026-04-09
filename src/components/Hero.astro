@@ -517,6 +517,21 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
         return;
       }
 
+      // Success — track conversion
+      if ((window as any).op) {
+        (window as any).op('track', 'lead_form_submitted', {
+          service: formData.get('service') || 'general',
+          source: 'hero_form',
+        });
+      }
+      if ((window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          event: 'lead_form_submitted',
+          service: formData.get('service') || 'general',
+          source: 'hero_form',
+        });
+      }
+
       // Success — show confirmation
       const formCard = heroForm.parentElement;
       if (formCard) {

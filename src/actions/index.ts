@@ -2,6 +2,7 @@ import { defineAction, ActionError } from 'astro:actions';
 import { z } from 'astro/zod';
 import { isInServiceArea, SERVICE_AREA_ERROR } from '../lib/service-area';
 import { sendToBackOffice } from '../lib/backoffice';
+import { trackServerEvent } from '../lib/analytics';
 
 export const server = {
   submitLead: defineAction({
@@ -44,6 +45,12 @@ export const server = {
         console.error('[submitLead] BackOffice send failed:', result.error);
         // Don't block the user — still show success since we captured the data
       }
+
+      // Server-side analytics — bypasses ad blockers, 100% accurate
+      trackServerEvent('lead_form_submitted', {
+        service: input.service || 'general',
+        source: 'hero_form',
+      });
 
       return { success: true, name: input.fullName };
     },
