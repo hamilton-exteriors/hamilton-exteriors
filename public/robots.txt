@@ -54,7 +54,7 @@ Sitemap: https://hamilton-exteriors.com/sitemap-index.xml
 Sitemap: https://hamilton-exteriors.com/image-sitemap.xml
 
 # IndexNow — instant URL submission for Bing, Yandex, Naver
-# Key file: https://hamilton-exteriors.com/3cd39a138292441f8a1c56fd44fa0d12.txt
+# Key file: https://hamilton-exteriors.com/524a5da56e0e45ef9f726d847b63daf4.txt
 
 # AI/LLM content files
 # See https://llmstxt.org for specification

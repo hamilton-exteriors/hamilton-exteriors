@@ -25,8 +25,8 @@ if (GHOST_URL && GHOST_KEY) {
       url.searchParams.set('limit', '100');
       url.searchParams.set('page', String(page));
       url.searchParams.set('fields', 'slug,updated_at,published_at');
-      // Exclude service-area CMS pages and internal tags
-      url.searchParams.set('filter', 'tag:-hash-service-area-city+tag:-hash-service-area-county+tag:-hash-service-area-city-service');
+      // Exclude service-area CMS pages, sub-service data, and internal tags
+      url.searchParams.set('filter', 'tag:-hash-service-area-city+tag:-hash-service-area-county+tag:-hash-service-area-city-service+tag:-hash-hash-sub-service');
       const res = await fetch(url.toString(), { signal: AbortSignal.timeout(15_000) });
       if (!res.ok) throw new Error(`Ghost API ${res.status}`);
       const data = await res.json();
@@ -100,21 +100,51 @@ const countyServicePages = counties.flatMap(c =>
   services.map(s => `https://hamilton-exteriors.com/service-areas/${c.slug}/${s}`)
 );
 
-// Sub-service pages (e.g. /roofing/asphalt-shingles, /siding/fiber-cement)
-const subServicePages = [
-  'roofing/asphalt-shingles', 'roofing/metal', 'roofing/tile', 'roofing/energy',
-  'siding/vinyl', 'siding/fiber-cement', 'siding/stucco', 'siding/waterproofing',
-  'windows/single-hung', 'windows/single-slider', 'windows/sliding-glass-doors',
-  'windows/picture', 'windows/double-hung', 'windows/casement',
-  'adu/detached', 'adu/design', 'adu/permits', 'adu/garage-conversions',
-  'custom-homes/ground-up', 'custom-homes/design', 'custom-homes/permits', 'custom-homes/additions-renovations',
-  'additions/second-story', 'additions/room-extensions', 'additions/adus-guest-houses', 'additions/full-remodels',
-].map(s => `https://hamilton-exteriors.com/${s}`);
+// Sub-service pages — fetched dynamically from Ghost CMS
+/** @type {string[]} */
+const subServicePages = [];
+if (GHOST_URL && GHOST_KEY) {
+  try {
+    let page = 1;
+    let more = true;
+    while (more) {
+      const url = new URL(`${GHOST_URL}/ghost/api/content/posts/`);
+      url.searchParams.set('key', GHOST_KEY);
+      url.searchParams.set('limit', '100');
+      url.searchParams.set('page', String(page));
+      url.searchParams.set('formats', 'html');
+      url.searchParams.set('include', 'tags');
+      url.searchParams.set('filter', 'tag:hash-hash-sub-service');
+      const res = await fetch(url.toString(), { signal: AbortSignal.timeout(15_000) });
+      if (!res.ok) throw new Error(`Ghost API ${res.status}`);
+      const data = await res.json();
+      const posts = data?.posts ?? [];
+      for (const post of posts) {
+        // Extract parentService/typeSlug from the JSON embedded in Ghost HTML
+        const jsonMatch = post.html?.match(/<script[^>]*type="application\/json"[^>]*>([\s\S]*?)<\/script>/);
+        if (jsonMatch?.[1]) {
+          try {
+            const parsed = JSON.parse(jsonMatch[1]);
+            if (parsed.parentService && parsed.typeSlug) {
+              subServicePages.push(`https://hamilton-exteriors.com/${parsed.parentService}/${parsed.typeSlug}`);
+            }
+          } catch { /* skip malformed */ }
+        }
+      }
+      more = posts.length === 100;
+      page++;
+    }
+    console.log(`[sitemap] Added ${subServicePages.length} sub-service pages from Ghost`);
+  } catch (e) {
+    console.warn('[sitemap] Could not fetch sub-service pages from Ghost:', e.message);
+  }
+}
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://hamilton-exteriors.com',
   trailingSlash: 'never',
+  compressHTML: true,
   output: 'server',
   adapter: node({ mode: 'standalone' }),
   integrations: [sitemap({
@@ -123,8 +153,12 @@ export default defineConfig({
     ],
     customPages: [
       // Top-level service pages not auto-discovered by SSR
+      'https://hamilton-exteriors.com/roofing',
       'https://hamilton-exteriors.com/siding',
       'https://hamilton-exteriors.com/windows',
+      'https://hamilton-exteriors.com/adu',
+      'https://hamilton-exteriors.com/custom-homes',
+      'https://hamilton-exteriors.com/additions',
       // Sub-service pages (26 pages)
       ...subServicePages,
       // Blog posts from Ghost CMS
@@ -183,8 +217,8 @@ export default defineConfig({
     },
   })],
   build: {
-    // Inline CSS files under 8KB to eliminate render-blocking stylesheets (fixes LCP)
-    inlineStylesheets: 'auto',
+    // Inline ALL CSS into HTML to eliminate render-blocking stylesheet requests (fixes LCP)
+    inlineStylesheets: 'always',
   },
   image: {
     remotePatterns: [

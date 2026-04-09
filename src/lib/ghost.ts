@@ -82,6 +82,7 @@ export async function getPosts(options?: {
     'tag:-hash-service-area-city',
     'tag:-hash-service-area-county',
     'tag:-hash-service-area-city-service',
+    'tag:-hash-hash-sub-service',
     'slug:-untitled',
     'slug:-untitled-2',
   ];
@@ -131,6 +132,7 @@ const HIDDEN_TAGS = new Set([
   'hash-service-area-city',
   'hash-service-area-county',
   'hash-service-area-city-service',
+  'hash-hash-sub-service',
   'location_page',
   'blog-post',  // internal type tag, not a content category
 ]);
@@ -323,6 +325,86 @@ export async function getServiceAreaCityService(
   return data;
 }
 
+/* ── Sub-Service Pages (Ghost-powered) ──────────────────────── */
+
+import type { SubServiceData } from '../data/sub-services';
+
+/** Minimal sub-service info for cross-links and sitemap */
+export interface SubServiceRef {
+  parentService: string;
+  parentName: string;
+  typeSlug: string;
+  headline: string;
+}
+
+/** In-memory cache for sub-service Ghost posts */
+let _subWarmPromise: Promise<void> | null = null;
+const _subCache = new Map<string, GhostPost>();
+
+async function warmSubServiceCache(): Promise<void> {
+  if (_subCache.size > 0) return;
+  if (!isGhostConfigured()) return;
+
+  let page = 1;
+  let more = true;
+  while (more) {
+    try {
+      const data = await ghostFetch('posts', {
+        filter: 'tag:hash-hash-sub-service',
+        include: 'tags',
+        formats: 'html',
+        limit: '100',
+        page: String(page),
+      });
+      const posts: GhostPost[] = data?.posts ?? [];
+      for (const post of posts) {
+        _subCache.set(post.slug, post);
+      }
+      more = posts.length === 100;
+      page++;
+    } catch (e) {
+      console.error(`[ghost] Failed to fetch sub-service posts page ${page}:`, e);
+      more = false;
+    }
+  }
+  console.log(`[ghost] Warmed sub-service cache: ${_subCache.size} posts`);
+}
+
+function ensureSubWarmed(): Promise<void> {
+  if (!_subWarmPromise) {
+    _subWarmPromise = warmSubServiceCache();
+  }
+  return _subWarmPromise;
+}
+
+/**
+ * Fetch a sub-service page from Ghost CMS.
+ * Slug format: sub-{parentService}-{typeSlug} e.g. sub-roofing-metal
+ * Returns the text fields (content, faqs, keyFacts) — images still come from static data.
+ */
+export async function getSubService(
+  parentService: string,
+  typeSlug: string,
+): Promise<Partial<SubServiceData> | null> {
+  const slug = `sub-${parentService}-${typeSlug}`;
+
+  const cached = cacheGet<Partial<SubServiceData>>(slug);
+  if (cached) return cached;
+
+  await ensureSubWarmed();
+  const post = _subCache.get(slug);
+  if (!post?.html) return null;
+
+  const data = extractJsonFromHtml(post.html) as Partial<SubServiceData> | null;
+  if (data) {
+    // Override title/description from Ghost meta if set
+    if (post.meta_title) data.title = post.meta_title;
+    if (post.meta_description) data.description = post.meta_description;
+    cacheSet(slug, data);
+  }
+  return data;
+}
+
 /** Fetch all service-area city posts (for index page / sitemap). */
 export async function getAllServiceAreaCities(): Promise<
   Array<{ slug: string; countySlug: string; citySlug: string; title: string }>
@@ -349,5 +431,41 @@ export async function getAllServiceAreaCities(): Promise<
   }
 
   cacheSet(cacheKey, results);
+  return results;
+}
+
+/** Get sibling sub-services for cross-linking (e.g. all roofing sub-services). */
+export async function getSubServicesForParent(parentService: string): Promise<SubServiceRef[]> {
+  await ensureSubWarmed();
+  const results: SubServiceRef[] = [];
+  for (const [slug, post] of _subCache) {
+    if (!slug.startsWith(`sub-${parentService}-`)) continue;
+    const data = extractJsonFromHtml(post.html) as Partial<SubServiceData> | null;
+    if (data?.parentService === parentService && data.typeSlug && data.headline) {
+      results.push({
+        parentService: data.parentService,
+        parentName: data.parentName || parentService,
+        typeSlug: data.typeSlug,
+        headline: data.headline,
+      });
+    }
+  }
+  return results;
+}
+
+/** Get all sub-service slugs for sitemap generation. */
+export async function getAllSubServiceSlugs(): Promise<Array<{ parentService: string; typeSlug: string; updatedAt: string }>> {
+  await ensureSubWarmed();
+  const results: Array<{ parentService: string; typeSlug: string; updatedAt: string }> = [];
+  for (const [, post] of _subCache) {
+    const data = extractJsonFromHtml(post.html) as Partial<SubServiceData> | null;
+    if (data?.parentService && data.typeSlug) {
+      results.push({
+        parentService: data.parentService,
+        typeSlug: data.typeSlug,
+        updatedAt: post.updated_at,
+      });
+    }
+  }
   return results;
 }

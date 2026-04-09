@@ -86,7 +86,6 @@ const faqs = [...baseFaqs, ...(extraFaqs || [])];
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   '@id': `https://hamilton-exteriors.com${Astro.url.pathname}#faq`,
-  'isPartOf': { '@id': `https://hamilton-exteriors.com${Astro.url.pathname}#webpage` },
   'mainEntity': faqs.map(faq => ({
     '@type': 'Question',
     'name': faq.question,

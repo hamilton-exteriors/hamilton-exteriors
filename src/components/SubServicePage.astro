@@ -19,7 +19,7 @@ import ContactUs from './ContactUs.astro';
 import Footer from './Footer.astro';
 import Breadcrumb from './Breadcrumb.astro';
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
-import { getSubServicesForParent } from '../data/sub-services';
+import { getSubServicesForParent } from '../lib/ghost';
 
 interface Props {
   data: SubServiceData;
@@ -31,7 +31,7 @@ const siteUrl = 'https://hamilton-exteriors.com';
 const pageUrl = `${siteUrl}/${data.parentService}/${data.typeSlug}`;
 
 // Sibling sub-services for cross-linking
-const siblings = getSubServicesForParent(data.parentService)
+const siblings = (await getSubServicesForParent(data.parentService))
   .filter(s => s.typeSlug !== data.typeSlug);
 
 // Schema
@@ -100,17 +100,28 @@ const productSchema = productData ? {
   'manufacturer': productData.brand && !productData.brand.includes(',')
     ? { '@type': 'Organization', 'name': productData.brand }
     : undefined,
-  'offers': {
-    '@type': 'AggregateOffer',
-    'lowPrice': productData.lowPrice,
-    'highPrice': productData.highPrice,
-    'priceCurrency': 'USD',
-    'unitText': productData.unit,
-    'availability': 'https://schema.org/InStock',
-    'seller': { '@id': `${siteUrl}/#business` },
-    'areaServed': { '@type': 'State', 'name': 'California' },
-    'priceValidUntil': `${new Date().getFullYear()}-12-31`,
-  },
+  'offers': productData.lowPrice === productData.highPrice
+    ? {
+        '@type': 'Offer',
+        'price': productData.lowPrice,
+        'priceCurrency': 'USD',
+        'unitText': productData.unit,
+        'availability': 'https://schema.org/InStock',
+        'seller': { '@id': `${siteUrl}/#business` },
+        'areaServed': { '@type': 'State', 'name': 'California' },
+        'priceValidUntil': `${new Date().getFullYear()}-12-31`,
+      }
+    : {
+        '@type': 'AggregateOffer',
+        'lowPrice': productData.lowPrice,
+        'highPrice': productData.highPrice,
+        'priceCurrency': 'USD',
+        'unitText': productData.unit,
+        'availability': 'https://schema.org/InStock',
+        'seller': { '@id': `${siteUrl}/#business` },
+        'areaServed': { '@type': 'State', 'name': 'California' },
+        'priceValidUntil': `${new Date().getFullYear()}-12-31`,
+      },
 } : null;
 ---
 

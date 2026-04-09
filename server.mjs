@@ -1,15 +1,14 @@
 /**
  * Custom server wrapper for the Astro Node standalone adapter.
  *
- *  1. Cache-Control for static assets
- *  2. Security headers
- *  3. www → apex 301 redirect
- *
- * Note: Brotli/gzip compression is handled by Railway's CDN edge,
- * so we don't compress here.
+ *  1. Brotli/gzip compression for SSR responses
+ *  2. Cache-Control for static assets
+ *  3. Security headers
+ *  4. www → apex 301 redirect
  */
 
 import http from 'node:http';
+import zlib from 'node:zlib';
 
 process.env.ASTRO_NODE_AUTOSTART = 'disabled';
 
@@ -33,6 +32,75 @@ const SECURITY_HEADERS = {
   'Permissions-Policy': 'camera=(), microphone=(), geolocation=(self)',
   'Content-Security-Policy': "frame-ancestors 'self'",
 };
+
+/** Content types worth compressing */
+const COMPRESSIBLE = /^(text\/|application\/json|application\/javascript|application\/xml|image\/svg\+xml)/;
+
+/**
+ * Wrap res to transparently compress the response body.
+ * Picks brotli > gzip based on Accept-Encoding.
+ */
+function compressResponse(req, res) {
+  const accept = req.headers['accept-encoding'] || '';
+  // Skip if already compressed or not worth compressing
+  const pathname = (req.url || '').split('?')[0];
+  // Static assets are pre-compressed or small — skip compression overhead
+  if (STATIC_CACHE_RULES.some(r => r.pattern.test(pathname))) return res;
+
+  let encoding = null;
+  let stream = null;
+
+  if (accept.includes('br')) {
+    encoding = 'br';
+    stream = zlib.createBrotliCompress({
+      params: { [zlib.constants.BROTLI_PARAM_QUALITY]: 4 },
+    });
+  } else if (accept.includes('gzip')) {
+    encoding = 'gzip';
+    stream = zlib.createGzip({ level: 6 });
+  }
+
+  if (!stream) return res;
+
+  const origWriteHead = res.writeHead.bind(res);
+  const origWrite = res.write.bind(res);
+  const origEnd = res.end.bind(res);
+  let headSent = false;
+  let shouldCompress = true;
+
+  res.writeHead = function (statusCode, ...args) {
+    headSent = true;
+    const contentType = res.getHeader('content-type') || '';
+    // Only compress compressible content types
+    if (!COMPRESSIBLE.test(String(contentType))) {
+      shouldCompress = false;
+      return origWriteHead(statusCode, ...args);
+    }
+    res.removeHeader('content-length');
+    res.setHeader('content-encoding', encoding);
+    res.setHeader('vary', 'Accept-Encoding');
+    return origWriteHead(statusCode, ...args);
+  };
+
+  res.write = function (chunk, ...args) {
+    if (!headSent) res.writeHead(res.statusCode || 200);
+    if (!shouldCompress) return origWrite(chunk, ...args);
+    return stream.write(chunk, ...args);
+  };
+
+  res.end = function (chunk, ...args) {
+    if (!headSent) res.writeHead(res.statusCode || 200);
+    if (!shouldCompress) {
+      return chunk ? origEnd(chunk, ...args) : origEnd(...args);
+    }
+    stream.on('data', (compressed) => origWrite(compressed));
+    stream.on('end', () => origEnd());
+    if (chunk) stream.end(chunk);
+    else stream.end();
+  };
+
+  return res;
+}
 
 const server = http.createServer((req, res) => {
   const host = (req.headers.host || '').toLowerCase();
@@ -63,7 +131,7 @@ const server = http.createServer((req, res) => {
     };
   }
 
-  handler(req, res);
+  handler(req, compressResponse(req, res));
 });
 
 server.listen(PORT, HOST, () => {

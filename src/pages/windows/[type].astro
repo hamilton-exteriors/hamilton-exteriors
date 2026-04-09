@@ -1,11 +1,18 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import SubServicePage from '../../components/SubServicePage.astro';
-import { SUB_SERVICES } from '../../data/sub-services';
+import { SUB_SERVICE_IMAGES } from '../../data/sub-services';
+import { getSubService } from '../../lib/ghost';
+import type { SubServiceData } from '../../data/sub-services';
 
 const { type } = Astro.params;
-const data = SUB_SERVICES[`windows/${type}`];
-if (!data) return Astro.redirect('/windows', 301);
+const images = SUB_SERVICE_IMAGES[`windows/${type}`];
+if (!images) return Astro.redirect('/windows', 301);
+
+const ghost = await getSubService('windows', type!);
+if (!ghost) return Astro.redirect('/windows', 301);
+
+const data: SubServiceData = { ...ghost, ...images } as SubServiceData;
 ---
 
 <Layout title={data.title} description={data.description} heroImage={data.heroImage} preloadHero>
