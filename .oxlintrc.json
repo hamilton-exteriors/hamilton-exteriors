@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript"],
+  "jsPlugins": ["eslint-plugin-better-tailwindcss"],
+  "ignorePatterns": [
+    "src/layouts/Layout.astro",
+    "src/pages/blog/index.astro",
+    "src/components/ServicePage.astro"
+  ],
+  "rules": {
+    "better-tailwindcss/enforce-consistent-class-order": "warn",
+    "better-tailwindcss/no-conflicting-classes": "error",
+    "better-tailwindcss/no-duplicate-classes": "error",
+    "better-tailwindcss/no-unnecessary-whitespace": "error",
+    "better-tailwindcss/enforce-shorthand-classes": "warn",
+    "better-tailwindcss/enforce-canonical-classes": "warn",
+    "better-tailwindcss/no-unknown-classes": "warn",
+    "no-unused-vars": "warn",
+    "typescript/triple-slash-reference": "off"
+  },
+  "settings": {
+    "better-tailwindcss": {
+      "entryPoint": "src/styles/global.css"
+    }
+  }
+}

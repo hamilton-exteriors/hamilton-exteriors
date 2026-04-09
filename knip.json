@@ -1,0 +1,13 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": ["src/pages/**/*.astro", "src/pages/**/*.ts", "server.mjs"],
+  "project": ["src/**/*.{astro,ts,tsx,js,mjs}"],
+  "ignore": ["src/env.d.ts", ".astro/**"],
+  "ignoreDependencies": [
+    "@astrojs/node",
+    "sharp",
+    "prettier-plugin-astro",
+    "prettier-plugin-tailwindcss",
+    "dotenv"
+  ]
+}
