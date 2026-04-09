@@ -103,6 +103,60 @@ button[type="submit"]:active {
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
 }
 
+/* Scroll reveal — elements rise into view as user scrolls */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stagger children within a reveal-group */
+.reveal-group > .reveal:nth-child(1) { transition-delay: 0s; }
+.reveal-group > .reveal:nth-child(2) { transition-delay: 0.08s; }
+.reveal-group > .reveal:nth-child(3) { transition-delay: 0.16s; }
+.reveal-group > .reveal:nth-child(4) { transition-delay: 0.24s; }
+.reveal-group > .reveal:nth-child(5) { transition-delay: 0.32s; }
+.reveal-group > .reveal:nth-child(6) { transition-delay: 0.40s; }
+
+/* Footer link underline — grows from left on hover */
+.footer-link {
+  position: relative;
+}
+.footer-link::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: width 0.25s ease-out;
+}
+.footer-link:hover::after {
+  width: 100%;
+}
+
+/* Success checkmark — SVG draw animation */
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: checkmark-circle-draw 0.6s ease-out 0.2s forwards;
+}
+.checkmark-path {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: checkmark-path-draw 0.35s ease-out 0.65s forwards;
+}
+@keyframes checkmark-circle-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes checkmark-path-draw {
+  to { stroke-dashoffset: 0; }
+}
+
 
 
 /* ── Theme Tokens ────────────────────────────────────────────────────── */

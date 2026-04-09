@@ -366,7 +366,15 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
       "name": "Hamilton Exteriors",
       "inLanguage": "en-US",
       "publisher": { "@id": "https://hamilton-exteriors.com/#business" },
-      "description": "Bay Area roofing, siding, windows, ADUs & custom homes by Hamilton Exteriors."
+      "description": "Bay Area roofing, siding, windows, ADUs & custom homes by Hamilton Exteriors.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://hamilton-exteriors.com/blog?search={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
     )}
@@ -454,6 +462,15 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
         onScroll();
       }
 
+
+      // Scroll reveal — fade+rise sections into view
+      const reveals = document.querySelectorAll('.reveal');
+      if (reveals.length) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => io.observe(el));
+      }
 
       // Scroll #quote links to center the form on screen
       document.querySelectorAll('a[href="#quote"], a[href="/#quote"]').forEach(link => {
