@@ -40,6 +40,8 @@ interface EventProps {
  * Fire a server-side event to OpenPanel (bypasses ad blockers).
  * Call from Astro actions / API routes after successful form submissions.
  * Requires OPENPANEL_CLIENT_SECRET env var on Railway.
+ *
+ * Pass profileId in props to attribute the event to a known user.
  */
 export async function trackServerEvent(
   eventName: string,
@@ -52,5 +54,44 @@ export async function trackServerEvent(
   } catch (e) {
     // Analytics should never block the user flow
     console.error('[analytics] server event failed:', e);
+  }
+}
+
+/**
+ * Create or update a user profile in OpenPanel (server-side).
+ * Uses email as the stable profileId so client + server events unify.
+ *
+ * IMPORTANT: This creates a fresh SDK instance per call to avoid the
+ * singleton race condition — the module-level `op` instance is shared
+ * across concurrent SSR requests, so calling op.identify() on it would
+ * bleed profileId between visitors.
+ */
+export async function identifyProfile(profile: {
+  email: string;
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+  properties?: Record<string, string | number | boolean>;
+}) {
+  if (!import.meta.env.OPENPANEL_CLIENT_SECRET) return;
+
+  try {
+    const isolated = new OpenPanel({
+      clientId: import.meta.env.OPENPANEL_CLIENT_ID || 'edc36a20-3fa1-49e8-bae6-d0be0abfadec',
+      clientSecret: import.meta.env.OPENPANEL_CLIENT_SECRET || '',
+    });
+
+    await isolated.identify({
+      profileId: profile.email,
+      email: profile.email,
+      ...(profile.firstName && { firstName: profile.firstName }),
+      ...(profile.lastName && { lastName: profile.lastName }),
+      properties: {
+        ...(profile.phone && { phone: profile.phone }),
+        ...profile.properties,
+      },
+    });
+  } catch (e) {
+    console.error('[analytics] identify failed:', e);
   }
 }

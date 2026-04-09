@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { sendToBackOffice } from '../../../lib/backoffice';
+import { identifyProfile } from '../../../lib/analytics';
 
 /**
  * POST /api/leads/partial — Progressive lead capture.
@@ -55,6 +56,22 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (!result.success) {
     return json({ error: result.error || 'Failed to save lead' }, 502);
+  }
+
+  // Identify profile server-side once we have an email
+  if (email) {
+    const [first, ...rest] = name.split(' ');
+    identifyProfile({
+      email,
+      firstName: first,
+      lastName: rest.join(' '),
+      ...(phone && { phone }),
+      properties: {
+        ...(body.address && { address: String(body.address) }),
+        ...(body.service && { service: String(body.service) }),
+        source: 'partial_form',
+      },
+    });
   }
 
   return json({

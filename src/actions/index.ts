@@ -2,7 +2,7 @@ import { defineAction, ActionError } from 'astro:actions';
 import { z } from 'astro/zod';
 import { isInServiceArea, SERVICE_AREA_ERROR } from '../lib/service-area';
 import { sendToBackOffice } from '../lib/backoffice';
-import { trackServerEvent } from '../lib/analytics';
+import { trackServerEvent, identifyProfile } from '../lib/analytics';
 
 export const server = {
   submitLead: defineAction({
@@ -47,7 +47,20 @@ export const server = {
       }
 
       // Server-side analytics — bypasses ad blockers, 100% accurate
+      const [firstName, ...lastParts] = input.fullName.split(' ');
+      identifyProfile({
+        email: input.email,
+        firstName,
+        lastName: lastParts.join(' '),
+        phone: input.phone,
+        properties: {
+          address: input.address,
+          service: input.service || 'general',
+          source: 'hero_form',
+        },
+      });
       trackServerEvent('lead_form_submitted', {
+        profileId: input.email,
         service: input.service || 'general',
         source: 'hero_form',
       });
