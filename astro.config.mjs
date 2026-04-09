@@ -103,6 +103,8 @@ const countyServicePages = counties.flatMap(c =>
 // Sub-service pages — fetched dynamically from Ghost CMS
 /** @type {string[]} */
 const subServicePages = [];
+/** @type {Map<string, string>} URL → lastmod date for all Ghost-sourced pSEO pages */
+const pseoLastmodMap = new Map();
 if (GHOST_URL && GHOST_KEY) {
   try {
     let page = 1;
@@ -126,7 +128,9 @@ if (GHOST_URL && GHOST_KEY) {
           try {
             const parsed = JSON.parse(jsonMatch[1]);
             if (parsed.parentService && parsed.typeSlug) {
-              subServicePages.push(`https://hamilton-exteriors.com/${parsed.parentService}/${parsed.typeSlug}`);
+              const pageUrl = `https://hamilton-exteriors.com/${parsed.parentService}/${parsed.typeSlug}`;
+              subServicePages.push(pageUrl);
+              if (post.updated_at) pseoLastmodMap.set(pageUrl, post.updated_at);
             }
           } catch { /* skip malformed */ }
         }
@@ -138,6 +142,63 @@ if (GHOST_URL && GHOST_KEY) {
   } catch (e) {
     console.warn('[sitemap] Could not fetch sub-service pages from Ghost:', e.message);
   }
+}
+
+// Fetch updated_at for all service-area pages (city, county, city+service) from Ghost
+if (GHOST_URL && GHOST_KEY) {
+  const saFilters = [
+    'tag:hash-service-area-city',
+    'tag:hash-service-area-county',
+    'tag:hash-service-area-city-service',
+  ];
+  for (const filter of saFilters) {
+    try {
+      let page = 1;
+      let more = true;
+      while (more) {
+        const url = new URL(`${GHOST_URL}/ghost/api/content/posts/`);
+        url.searchParams.set('key', GHOST_KEY);
+        url.searchParams.set('limit', '100');
+        url.searchParams.set('page', String(page));
+        url.searchParams.set('formats', 'html');
+        url.searchParams.set('fields', 'slug,updated_at,html');
+        url.searchParams.set('filter', filter);
+        const res = await fetch(url.toString(), { signal: AbortSignal.timeout(15_000) });
+        if (!res.ok) break;
+        const data = await res.json();
+        const posts = data?.posts ?? [];
+        for (const post of posts) {
+          if (!post.updated_at || !post.html) continue;
+          const jsonMatch = post.html.match(/<script[^>]*type="application\/json"[^>]*>([\s\S]*?)<\/script>/);
+          if (!jsonMatch?.[1]) continue;
+          try {
+            const parsed = JSON.parse(jsonMatch[1]);
+            // Build the canonical URL from the parsed data
+            let pageUrl = '';
+            if (parsed.city && parsed.countySlug && parsed.serviceSlug) {
+              // city+service page
+              const county = parsed.countySlug.endsWith('-county-ca') ? parsed.countySlug : `${parsed.countySlug}-county-ca`;
+              const city = parsed.slug?.endsWith('-ca') ? parsed.slug : `${parsed.slug}-ca`;
+              pageUrl = `https://hamilton-exteriors.com/service-areas/${county}/${city}/${parsed.serviceSlug}`;
+            } else if (parsed.city && parsed.countySlug) {
+              // city hub page
+              const county = parsed.countySlug.endsWith('-county-ca') ? parsed.countySlug : `${parsed.countySlug}-county-ca`;
+              const city = parsed.slug?.endsWith('-ca') ? parsed.slug : `${parsed.slug}-ca`;
+              pageUrl = `https://hamilton-exteriors.com/service-areas/${county}/${city}`;
+            } else if (parsed.county && parsed.countySlug) {
+              // county page
+              const county = parsed.countySlug.endsWith('-county-ca') ? parsed.countySlug : `${parsed.countySlug}-county-ca`;
+              pageUrl = `https://hamilton-exteriors.com/service-areas/${county}`;
+            }
+            if (pageUrl) pseoLastmodMap.set(pageUrl, post.updated_at);
+          } catch { /* skip */ }
+        }
+        more = posts.length === 100;
+        page++;
+      }
+    } catch { /* non-fatal */ }
+  }
+  console.log(`[sitemap] Collected ${pseoLastmodMap.size} pSEO lastmod dates from Ghost`);
 }
 
 // https://astro.build/config
@@ -184,8 +245,12 @@ export default defineConfig({
 
       // Blog posts: use real content-change dates from Ghost CMS
       const blogDate = blogLastmodMap.get(item.url);
+      // pSEO pages: use Ghost updated_at for sub-service and service-area pages
+      const pseoDate = pseoLastmodMap.get(item.url);
       if (blogDate) {
         item.lastmod = new Date(blogDate).toISOString().split('T')[0];
+      } else if (pseoDate) {
+        item.lastmod = new Date(pseoDate).toISOString().split('T')[0];
       } else {
         // Use stable dates for non-blog pages instead of today's date
         // (identical lastmod across all URLs trains Google to ignore the signal)

@@ -177,7 +177,6 @@ const counties = [
 const siblingCityLinks = isCityServicePage
   ? (counties.find(c => c.slug === countySlugFromPath)?.cities || [])
       .filter(city => city.slug !== citySlugFromPath)
-      .slice(0, 3)
   : [];
 
 // Derive serviceType from the page slug (serviceSlug declared above near RELATED_BLOG_POSTS)
