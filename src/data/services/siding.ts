@@ -21,9 +21,9 @@ export const data: ServicePageData = {
   ],
   hero: {
     headline: "Bay Area's  Best Siding  Installers",
-    formTitle: 'Get a FREE SIDING INSPECTION',
+    formTitle: 'Get Your Free Siding Inspection',
     formSubtitle:
-      "We'll contact you in 3-5 minutes to schedule a FREE SIDING inspection.",
+      "We'll reach out within 3\u20135 minutes to schedule your free inspection.",
     ctaText: 'Call Now - We Answer Fast',
     serviceType: 'Siding',
     // serviceOptions removed — service is known from page context, form is 2 steps
@@ -40,7 +40,7 @@ export const data: ServicePageData = {
       data: {
         items: [
           { value: '50', label: 'Year Warranty' },
-          { value: '$0', label: 'Down Payment Required' },
+          { value: '100%', label: 'Satisfaction Guaranteed' },
           { value: '3-5', label: 'Day Installation' },
         ],
       },
@@ -129,7 +129,7 @@ export const data: ServicePageData = {
     },
     { type: 'projects' },
     { type: 'faq' },
-    { type: 'yellowBar', text: 'Schedule a FREE Siding Inspection', href: '#contact' },
+    { type: 'yellowBar', text: 'Schedule Your Free Siding Inspection', href: '#contact' },
     { type: 'cta' },
     { type: 'contactUs' },
     { type: 'footer' },

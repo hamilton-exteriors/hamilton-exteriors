@@ -21,9 +21,9 @@ export const data: ServicePageData = {
   ],
   hero: {
     headline: 'Bay Area\u2019s Top-Rated Roofing Contractor',
-    formTitle: 'Get a FREE ROOF INSPECTION',
+    formTitle: 'Get Your Free Roof Inspection',
     formSubtitle:
-      "We'll contact you in 3-5 minutes to schedule a FREE roof inspection.",
+      "We'll reach out within 3\u20135 minutes to schedule your free inspection.",
     ctaText: 'Call Now - We Answer Fast',
     serviceType: 'Roofing',
     // serviceOptions removed — service is known from page context, form is 2 steps
@@ -123,7 +123,7 @@ export const data: ServicePageData = {
     },
     { type: 'projects' },
     { type: 'faq' },
-    { type: 'yellowBar', text: 'Schedule a FREE Inspection', href: '#contact' },
+    { type: 'yellowBar', text: 'Schedule Your Free Roof Inspection', href: '#contact' },
     { type: 'cta' },
     { type: 'contactUs' },
     { type: 'footer' },

@@ -23,9 +23,9 @@ export const data: ServicePageData = {
   ],
   hero: {
     headline: 'Best Window  Company in  the Bay Area',
-    formTitle: 'Get A FREE Window Quote',
+    formTitle: 'Get Your Free Window Quote',
     formSubtitle:
-      "We'll contact you in 3-5 minutes to schedule a FREE Window inspection.",
+      "We'll reach out within 3\u20135 minutes to schedule your free inspection.",
     ctaText: 'Call Now (650) 977-3351',
     heroImage: heroWindows,
     heroAlt: 'Energy-efficient window replacement on a Bay Area home by Hamilton Exteriors',
@@ -136,7 +136,7 @@ export const data: ServicePageData = {
     },
     { type: 'projects' },
     { type: 'faq' },
-    { type: 'yellowBar', text: 'Schedule a FREE Inspection', href: '#contact' },
+    { type: 'yellowBar', text: 'Schedule Your Free Window Consultation', href: '#contact' },
     { type: 'cta' },
     { type: 'contactUs' },
     { type: 'footer' },

@@ -16,7 +16,7 @@ export const data: ServicePageData = {
   ],
   hero: {
     headline: "Bay Area's Best Custom Home Builder",
-    formTitle: 'Get a FREE Consultation',
+    formTitle: 'Get Your Free Consultation',
     formSubtitle:
       "Tell us about your dream home. We'll call within 5 minutes to discuss your project.",
     ctaText: 'Call Now - We Answer Fast',
@@ -90,7 +90,7 @@ export const data: ServicePageData = {
     },
     { type: 'projects' },
     { type: 'faq' },
-    { type: 'yellowBar', text: 'Schedule a FREE Consultation', href: '#contact' },
+    { type: 'yellowBar', text: 'Schedule Your Free Consultation', href: '#contact' },
     { type: 'cta' },
     { type: 'contactUs' },
     { type: 'footer' },

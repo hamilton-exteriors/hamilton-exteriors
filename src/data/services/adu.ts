@@ -17,9 +17,9 @@ export const data: ServicePageData = {
   ],
   hero: {
     headline: "Bay Area's Best ADU Builder",
-    formTitle: 'Get a FREE ADU Consultation',
+    formTitle: 'Get Your Free ADU Consultation',
     formSubtitle:
-      "We'll contact you in 3-5 minutes to discuss your ADU project.",
+      "We'll reach out within 3\u20135 minutes to discuss your ADU project.",
     ctaText: 'Call Now - We Answer Fast',
     heroImage: aduHero,
     heroAlt: 'Accessory dwelling unit under construction in the Bay Area',
@@ -92,7 +92,7 @@ export const data: ServicePageData = {
     },
     { type: 'projects' },
     { type: 'faq' },
-    { type: 'yellowBar', text: 'Schedule a FREE ADU Consultation', href: '#contact' },
+    { type: 'yellowBar', text: 'Schedule Your Free ADU Consultation', href: '#contact' },
     { type: 'cta' },
     { type: 'contactUs' },
     { type: 'footer' },

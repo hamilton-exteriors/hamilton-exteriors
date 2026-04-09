@@ -17,9 +17,9 @@ export const data: ServicePageData = {
   ],
   hero: {
     headline: "Bay Area's Best Home Addition Builder",
-    formTitle: 'Get a FREE Consultation',
+    formTitle: 'Get Your Free Consultation',
     formSubtitle:
-      "We'll contact you in 3-5 minutes to discuss your project.",
+      "We'll reach out within 3\u20135 minutes to discuss your project.",
     ctaText: 'Call Now - We Answer Fast',
     heroImage: serviceAdditions,
     heroAlt: 'Home addition and second-story expansion in the Bay Area',
@@ -85,7 +85,7 @@ export const data: ServicePageData = {
     },
     { type: 'projects' },
     { type: 'faq' },
-    { type: 'yellowBar', text: 'Schedule a FREE Consultation', href: '#contact' },
+    { type: 'yellowBar', text: 'Schedule Your Free Consultation', href: '#contact' },
     { type: 'cta' },
     { type: 'contactUs' },
     { type: 'footer' },

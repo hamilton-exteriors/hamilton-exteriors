@@ -30,9 +30,9 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     serviceSlug: 'roofing',
     serviceName: 'Roofing',
     heroHeadlinePattern: 'Best Roofing Company in {city}',
-    heroFormTitle: 'Get a FREE ROOF INSPECTION',
+    heroFormTitle: 'Get Your Free Roof Inspection',
     heroFormSubtitle:
-      "We'll contact you in 3-5 minutes to schedule a FREE roof inspection.",
+      "We'll contact you in 3-5 minutes to schedule your free inspection.",
     serviceType: 'Roofing',
     heroImageKey: 'heroRoofing',
     titlePattern: 'Reliable Roofing in {city}, CA | Hamilton Exteriors',
@@ -99,9 +99,9 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     serviceSlug: 'siding',
     serviceName: 'Siding',
     heroHeadlinePattern: 'Best Siding Company in {city}',
-    heroFormTitle: 'Get a FREE SIDING INSPECTION',
+    heroFormTitle: 'Get Your Free Siding Inspection',
     heroFormSubtitle:
-      "We'll contact you in 3-5 minutes to schedule a FREE siding inspection.",
+      "We'll contact you in 3-5 minutes to schedule your free inspection.",
     serviceType: 'Siding',
     heroImageKey: 'serviceSiding',
     titlePattern: 'Durable Siding in {city}, CA | Hamilton Exteriors',
@@ -168,9 +168,9 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     serviceSlug: 'windows',
     serviceName: 'Windows',
     heroHeadlinePattern: 'Best Window Company in {city}',
-    heroFormTitle: 'Get A FREE Window Quote',
+    heroFormTitle: 'Get Your Free Window Quote',
     heroFormSubtitle:
-      "We'll contact you in 3-5 minutes to schedule a FREE window inspection.",
+      "We'll contact you in 3-5 minutes to schedule your free inspection.",
     serviceType: 'Windows',
     heroImageKey: 'heroWindows',
     titlePattern: 'Energy-Efficient Windows in {city}, CA | Hamilton Exteriors',
@@ -249,7 +249,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     serviceSlug: 'adu',
     serviceName: 'ADU',
     heroHeadlinePattern: 'Best ADU Builder in {city}',
-    heroFormTitle: 'Get a FREE ADU Consultation',
+    heroFormTitle: 'Get Your Free ADU Consultation',
     heroFormSubtitle:
       "We'll contact you in 3-5 minutes to discuss your ADU project.",
     serviceType: 'ADU',
@@ -318,7 +318,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     serviceSlug: 'custom-homes',
     serviceName: 'Custom Homes',
     heroHeadlinePattern: 'Best Custom Home Builder in {city}',
-    heroFormTitle: 'Get a FREE Consultation',
+    heroFormTitle: 'Get Your Free Consultation',
     heroFormSubtitle:
       "Tell us about your dream home. We'll call within 5 minutes to discuss your project.",
     serviceType: 'Custom Home',
@@ -387,7 +387,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     serviceSlug: 'additions',
     serviceName: 'Home Additions',
     heroHeadlinePattern: 'Best Home Addition Builder in {city}',
-    heroFormTitle: 'Get a FREE Consultation',
+    heroFormTitle: 'Get Your Free Consultation',
     heroFormSubtitle:
       "We'll contact you in 3-5 minutes to discuss your project.",
     serviceType: 'Addition',

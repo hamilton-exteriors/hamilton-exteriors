@@ -9,9 +9,9 @@ export const data: ServicePageData = {
   announcementText: 'Now Booking Summer 2026 Room Additions — Free Design Consultation',
   hero: {
     headline: 'Room Additions  & Second  Stories',
-    formTitle: 'Get a FREE Consultation',
+    formTitle: 'Get Your Free Consultation',
     formSubtitle:
-      "We'll contact you in 3-5 minutes to discuss your extension project.",
+      "We'll reach out within 3\u20135 minutes to discuss your project.",
     ctaText: 'Call Now - We Answer Fast',
     heroImage: serviceAdditions,
     serviceType: 'Extension',
@@ -58,7 +58,7 @@ export const data: ServicePageData = {
     { type: 'difference' },
     { type: 'projects' },
     { type: 'faq' },
-    { type: 'yellowBar', text: 'Schedule a FREE Consultation', href: '#contact' },
+    { type: 'yellowBar', text: 'Schedule Your Free Consultation', href: '#contact' },
     { type: 'cta' },
     { type: 'contactUs' },
     { type: 'footer' },
