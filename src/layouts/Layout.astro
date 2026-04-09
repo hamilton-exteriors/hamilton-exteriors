@@ -291,12 +291,11 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
     {includeMapbox && <link rel="dns-prefetch" href="https://api.mapbox.com" />}
 
     <!-- ── Self-hosted font preloads — critical fonts, must load before first paint ── -->
-    <!-- Preload weight-700 first: all headings (h1–h5) use THE BOLD FONT at weight 700 -->
+    <!-- Preload weight-700 first: all headings (h1–h5) use Hamilton Display at weight 700 -->
     <link rel="preload" href="/fonts/the-bold-font-700.woff2" as="font" type="font/woff2" crossorigin />
     <!-- DM Sans: body text, rendered before hero paints -->
     <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <!-- Satoshi 700: labels/badges — preloaded to remove from critical chain (discovered late via CSS @font-face) -->
-    <link rel="preload" href="/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Satoshi: not preloaded — labels/badges are below fold, loads via CSS @font-face -->
 
     {/* Preload hero/LCP image — mobile gets 768px, desktop gets 1440px */}
     {heroMobilePreload && <link rel="preload" href={heroMobilePreload.src} as="image" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />}

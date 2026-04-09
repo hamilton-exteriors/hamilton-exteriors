@@ -271,14 +271,8 @@ const jumpLinks = [
 ].filter(Boolean) as Array<{ href: string; label: string }>;
 ---
 
-{/* Only emit BreadcrumbList for city/county+service pages — main service pages
-    get their breadcrumb via the parent page's jsonLd prop to avoid duplicates */}
-{!isMainServicePage && (
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-)}
-{!isMainServicePage && (
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-)}
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
 {data.announcementText ? <AnnouncementBar text={data.announcementText} slot="header" /> : <AnnouncementBar slot="header" />}
 <Navbar slot="header" />
@@ -549,7 +543,7 @@ const jumpLinks = [
           <section class="w-full bg-cream py-12">
             <div class="mx-auto max-w-3xl px-5 flex flex-col gap-8">
               {data.expertQuotes.map(eq => (
-                <blockquote class="border-l-4 border-primary pl-6 py-2">
+                <blockquote class="pl-6 py-2 relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-primary/30 before:rounded-full">
                   <p class="text-[1.0625rem] leading-[1.8] text-charcoal italic">"{eq.quote}"</p>
                   <footer class="mt-2 text-sm text-muted">— <strong>{eq.author}</strong>, {eq.credentials}</footer>
                 </blockquote>
