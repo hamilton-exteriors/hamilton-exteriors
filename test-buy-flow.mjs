@@ -43,8 +43,8 @@ const scanEngineLoaded = await page.evaluate(() => window.__scanEngineLoaded);
 console.log('   scan-engine loaded:', scanEngineLoaded);
 
 // Check API URL
-const apiUrl = await page.evaluate(() => window.ROOF_SCAN_API);
-console.log('   ROOF_SCAN_API:', apiUrl);
+const apiUrl = await page.evaluate(() => window.BACKEND_URL);
+console.log('   BACKEND_URL:', apiUrl);
 
 const mapboxToken = await page.evaluate(() => window.MAPBOX_TOKEN);
 console.log('   MAPBOX_TOKEN:', mapboxToken ? mapboxToken.slice(0, 10) + '...' : 'NOT SET');

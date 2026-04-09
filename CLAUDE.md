@@ -12,7 +12,7 @@ If items exist, remind the user and offer to work through them first.
 - **Stack:** Astro 6.1 + Tailwind v4, SSR on Railway
 - **CMS:** Ghost (headless) — blog posts + service area page data
 - **Package manager:** bun only — never npm. Railway uses `bun install --frozen-lockfile`.
-- **Backend:** `roof-scan/backend/` — Express + TypeScript, Google Solar API pipeline
+- **Backend:** `backend/` — Express + TypeScript, Google Solar API + Reviews pipeline
 - **Branch:** `main` only (Railway deploys from main)
 - **Repo:** `hamilton-exteriors/hamilton-exteriors` on GitHub
 - **Design system:** Green (#256346) / Yellow (#FFDE21) / Cream (#F4F1EB) / Charcoal (#1A1A1A)

@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import IconCheckmark from '../../components/icons/IconCheckmark.astro';
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
-const apiUrl = import.meta.env.PUBLIC_ROOF_SCAN_API || 'http://localhost:3001';
+const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
 ---
 <Layout title="Your Roof Scan | Hamilton Exteriors" description="See your roof measurements and get an instant price." noindex>
 <Navbar slot="header" />
@@ -261,7 +261,7 @@ const apiUrl = import.meta.env.PUBLIC_ROOF_SCAN_API || 'http://localhost:3001';
 .tier-arrow{transition:transform .2s}.tier-group.collapsed{display:none}.tier-toggle.collapsed .tier-arrow{transform:rotate(-90deg)}
 #swatch-preview{transition:opacity .15s}#swatch-preview-name{font-family:var(--font-dm-sans)}</style>
 <script is:inline define:vars={{ mapboxToken, apiUrl }}>
-  window.ROOF_SCAN_API = apiUrl;
+  window.BACKEND_URL = apiUrl;
   window.MAPBOX_TOKEN = mapboxToken;
 </script>
 <script is:inline src="/scan-engine.js" defer></script>

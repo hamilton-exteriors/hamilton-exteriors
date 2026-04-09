@@ -3,7 +3,7 @@
   window.__scanEngineLoaded = true;
 
   // ── Config ──────────────────────────────────────────────────────────
-  var API_URL = window.ROOF_SCAN_API || 'http://localhost:3001';
+  var API_URL = window.BACKEND_URL || 'http://localhost:3001';
   var DEFAULT_LAT = 37.6941;
   var DEFAULT_LNG = -122.0908;
 

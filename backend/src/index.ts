@@ -183,11 +183,11 @@ app.get('/api/reviews', async (_req, res) => {
 });
 
 app.get('/health', (_req, res) => {
-  res.json({ status: 'ok', service: 'roof-scan-backend' });
+  res.json({ status: 'ok', service: 'hamilton-backend' });
 });
 
 app.listen(PORT, () => {
-  console.log(`Roof scan backend running on http://localhost:${PORT}`);
+  console.log(`Hamilton backend running on http://localhost:${PORT}`);
   console.log(`POST /api/roof-scan { address: string }`);
   if (!process.env.GOOGLE_API_KEY) {
     console.warn('⚠️  GOOGLE_API_KEY not set — API calls will fail');

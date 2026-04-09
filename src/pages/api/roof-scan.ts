@@ -1,15 +1,8 @@
 import type { APIRoute } from 'astro';
 
-/**
- * Proxy roof-scan requests to the dedicated backend service.
- *
- * Previously this file imported backend services directly from
- * roof-scan/backend/dist/, which coupled the Astro build to backend
- * dependencies (node-cache, geotiff, @turf/*). Now we proxy to the
- * backend over HTTP, keeping the frontend and backend fully decoupled.
- */
+/** Proxy roof-scan requests to the backend service. */
 
-const BACKEND_URL = import.meta.env.PUBLIC_ROOF_SCAN_API
+const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL
   || 'https://roof-scan-api-production.up.railway.app';
 
 export const POST: APIRoute = async ({ request }) => {

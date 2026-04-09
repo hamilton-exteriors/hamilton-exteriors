@@ -12,7 +12,7 @@ import path from 'node:path';
 
 // Reviews are fetched from the roof-scan backend which holds the Google API key.
 // The frontend never touches the API key directly.
-const REVIEWS_API = (import.meta.env.PUBLIC_ROOF_SCAN_API || 'https://roof-scan-api-production.up.railway.app') + '/api/reviews';
+const REVIEWS_API = (import.meta.env.PUBLIC_BACKEND_URL || 'https://roof-scan-api-production.up.railway.app') + '/api/reviews';
 const PLACE_ID = 'ChIJLWAh1YeTj4ARccaXE5RZqjE';
 const CACHE_FILE = path.join(process.cwd(), '.google-reviews-cache.json');
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
