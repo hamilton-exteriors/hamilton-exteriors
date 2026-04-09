@@ -15,6 +15,10 @@ User-agent: ClaudeBot
 Allow: /
 Disallow: /api/
 
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+
 # AI Search Features — Allow (enables AI Overviews / Apple Intelligence)
 User-agent: Google-Extended
 Allow: /
