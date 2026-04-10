@@ -153,13 +153,13 @@ const productSchema = productData ? {
 ]} />
 
 <!-- Hero — image with overlay text -->
-<section class="relative min-h-[420px] w-full" aria-label={`${data.headline.replace('\n', ' ')} hero`}>
+<section class="relative min-h-[420px] w-full md:min-h-[500px]" aria-label={`${data.headline.replace('\n', ' ')} hero`}>
   <Image
     src={data.heroImage}
     alt={data.heroAlt}
     width={1440}
     height={600}
-    class="block h-[420px] w-full object-cover"
+    class="block h-[420px] w-full object-cover md:h-[500px]"
     loading="eager"
     decoding="async"
   />

@@ -15,11 +15,13 @@ const { scheduleHref } = Astro.props;
   <div class="mx-auto flex max-w-[1294px] flex-col overflow-hidden lg:flex-row">
     <!-- Left Column: Photo -->
     <div class="relative h-[280px] w-full md:h-[420px] lg:h-auto lg:min-h-[600px] lg:w-1/2">
+      {/* Lazy-loaded — no LCP/Lighthouse impact, so quality: 90 is fine */}
       <Image
         src={financingHouse}
         alt="Bay Area home with financing options available through Hamilton Exteriors"
-        widths={[420, 700]}
-        sizes="(max-width: 1023px) 420px, 700px"
+        widths={[420, 768, 1024, 1400]}
+        sizes="(max-width: 640px) 420px, (max-width: 1023px) 100vw, 700px"
+        quality={90}
         class="absolute inset-0 size-full object-cover object-center"
         loading="lazy"
         decoding="async"

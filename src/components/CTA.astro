@@ -4,10 +4,11 @@ import { financingWorker, iconCheckmarkCircle, ctaAssistant } from '../lib/image
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 import SectionLabel from './SectionLabel.astro';
 
+// Lazy-loaded — no LCP/Lighthouse impact, so use high quality freely
 const [ctaMobile, ctaTablet, ctaDesktop] = await Promise.all([
-  getImage({ src: ctaAssistant, width: 600, height: 450, format: 'webp', quality: 75 }),
-  getImage({ src: ctaAssistant, width: 900, height: 675, format: 'webp', quality: 75 }),
-  getImage({ src: ctaAssistant, width: 1200, height: 900, format: 'webp', quality: 78 }),
+  getImage({ src: ctaAssistant, width: 600, height: 450, format: 'webp', quality: 90 }),
+  getImage({ src: ctaAssistant, width: 1280, height: 960, format: 'webp', quality: 90 }),
+  getImage({ src: ctaAssistant, width: 1200, height: 900, format: 'webp', quality: 90 }),
 ]);
 ---
 
@@ -56,7 +57,7 @@ const [ctaMobile, ctaTablet, ctaDesktop] = await Promise.all([
     <div class="relative aspect-4/3 min-h-[250px] w-full lg:w-1/2">
       <picture>
         <source srcset={ctaMobile.src} media="(max-width: 640px)" type="image/webp" width="600" height="450" />
-        <source srcset={ctaTablet.src} media="(max-width: 1024px)" type="image/webp" width="900" height="675" />
+        <source srcset={ctaTablet.src} media="(max-width: 1280px)" type="image/webp" width="1280" height="960" />
         <source srcset={ctaDesktop.src} type="image/webp" width="1200" height="900" />
         <img
           src={ctaDesktop.src}

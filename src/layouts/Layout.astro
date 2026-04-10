@@ -40,8 +40,8 @@ const metaPixelId = import.meta.env.META_PIXEL_ID || '';
 
 const heroSrc = Astro.props.heroImage || heroBg;
 // Only process hero preload images when actually needed — avoids wasted SSR work
-const heroMobilePreload = Astro.props.preloadHero ? await getImage({ src: heroSrc, width: 768, height: 432, format: 'webp', quality: 72 }) : null;
-const heroDesktopPreload = Astro.props.preloadHero ? await getImage({ src: heroSrc, width: 1440, height: 810, format: 'webp', quality: 78 }) : null;
+const heroMobilePreload = Astro.props.preloadHero ? await getImage({ src: heroSrc, width: 768, height: 960, format: 'webp', quality: 82 }) : null;
+const heroDesktopPreload = Astro.props.preloadHero ? await getImage({ src: heroSrc, width: 1440, height: 810, format: 'webp', quality: 82 }) : null;
 
 // Auto-generate page-specific OG image from heroImage when no explicit image prop is set.
 // Produces a 1200x630 JPEG (maximum social-media compatibility) at build time.
