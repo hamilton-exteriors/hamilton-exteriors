@@ -18,6 +18,12 @@ const REDIRECTS: Record<string, string> = {
   '/blog/untitled-2': '/blog',
   '/additions-2': '/additions',
   '/additions-3': '/additions',
+  '/roof': '/roofing',
+  '/roofs': '/roofing',
+  '/bathroom': '/bathrooms',
+  '/bathroom-remodeling': '/bathrooms',
+  '/deck': '/decks',
+  '/deck-remodeling': '/decks',
 };
 
 const GHOST_ORIGIN = import.meta.env.GHOST_URL || '';

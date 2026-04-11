@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Reviews from '../components/Reviews.astro';
+import ReviewLogos from '../components/ReviewLogos.astro';
+import ContactUs from '../components/ContactUs.astro';
+import Footer from '../components/Footer.astro';
+import { getGoogleReviews, getDisplayReviews, GOOGLE_REVIEW_LINK } from '../lib/google-reviews';
+import { CURATED_REVIEWS } from '../data/curated-reviews';
+
+const rawData = await getGoogleReviews();
+const { rating, reviewCount } = getDisplayReviews(rawData, 5);
+
+const siteUrl = 'https://hamilton-exteriors.com';
+const title = 'Customer Reviews | Hamilton Exteriors';
+const description = `Rated ${rating}/5 from ${reviewCount} verified Bay Area homeowners. Read reviews from Google, Yelp, Angi & Nextdoor for Hamilton Exteriors roofing, siding, windows & more.`;
+
+const webPageJsonLd = {
+  '@type': 'WebPage',
+  '@id': `${siteUrl}/reviews#webpage`,
+  url: `${siteUrl}/reviews`,
+  name: title,
+  description,
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  inLanguage: 'en-US',
+};
+---
+
+<Layout title={title} description={description} jsonLd={[webPageJsonLd]}>
+  <Navbar />
+
+  <!-- Hero -->
+  <section class="bg-(--color-cream) px-4 py-16 lg:py-24">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-3 font-satoshi text-sm font-medium uppercase tracking-widest text-(--color-primary)">
+        Verified Reviews
+      </p>
+      <h1 class="font-hamilton-display text-[clamp(2rem,6vw,3.5rem)] leading-[1.1] font-normal tracking-[-0.02em] text-heading uppercase">
+        What Bay Area Homeowners Say
+      </h1>
+      <p class="mx-auto mt-4 max-w-xl font-dm-sans text-lg tracking-[-0.02em] text-body">
+        Rated <strong>{rating}/5</strong> from <strong>{reviewCount}</strong> verified homeowners across Google, Yelp, Angi, and Nextdoor.
+      </p>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href={GOOGLE_REVIEW_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full bg-(--color-primary) px-6 py-3 font-dm-sans text-sm font-medium text-white transition-opacity hover:opacity-90"
+        >
+          Leave a Review on Google
+        </a>
+        <a
+          href="#quote"
+          class="inline-flex items-center gap-2 rounded-full border border-(--color-primary) px-6 py-3 font-dm-sans text-sm font-medium text-(--color-primary) transition-opacity hover:opacity-80"
+        >
+          Get Your Free Quote
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Ratings -->
+  <ReviewLogos />
+
+  <!-- Featured Reviews -->
+  <Reviews service="general" />
+
+  <!-- All Reviews by Service -->
+  <section class="px-4 py-12 lg:py-20">
+    <div class="mx-auto max-w-5xl">
+      <h2 class="mb-8 text-center font-hamilton-display text-[clamp(1.5rem,5vw,2.5rem)] leading-[1.1] font-normal tracking-[-0.02em] text-heading uppercase">
+        Reviews by Service
+      </h2>
+
+      <!-- Roofing Reviews -->
+      <div class="mb-10">
+        <h3 class="mb-4 font-hamilton-display text-xl font-normal uppercase tracking-[-0.01em] text-heading">
+          Roofing
+        </h3>
+        <div class="space-y-4">
+          {CURATED_REVIEWS.filter(r => r.tags.includes('roofing')).map(review => (
+            <div class="rounded-lg border border-[rgb(226,226,226)] bg-white p-5">
+              <div class="mb-2 flex items-center gap-3">
+                <div class="flex size-9 items-center justify-center rounded-full bg-(--color-primary) text-sm font-medium text-white">
+                  {review.author_name.charAt(0)}
+                </div>
+                <div>
+                  <p class="font-dm-sans text-sm font-medium text-body">{review.author_name}</p>
+                  <p class="font-dm-sans text-xs text-muted">via {review.platform.charAt(0).toUpperCase() + review.platform.slice(1)}</p>
+                </div>
+                <div class="ml-auto font-dm-sans text-sm text-amber-500">{'★'.repeat(review.rating)}</div>
+              </div>
+              <p class="font-dm-sans text-sm leading-relaxed text-body">{review.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Siding Reviews -->
+      <div class="mb-10">
+        <h3 class="mb-4 font-hamilton-display text-xl font-normal uppercase tracking-[-0.01em] text-heading">
+          Siding
+        </h3>
+        <div class="space-y-4">
+          {CURATED_REVIEWS.filter(r => r.tags.includes('siding')).map(review => (
+            <div class="rounded-lg border border-[rgb(226,226,226)] bg-white p-5">
+              <div class="mb-2 flex items-center gap-3">
+                <div class="flex size-9 items-center justify-center rounded-full bg-(--color-primary) text-sm font-medium text-white">
+                  {review.author_name.charAt(0)}
+                </div>
+                <div>
+                  <p class="font-dm-sans text-sm font-medium text-body">{review.author_name}</p>
+                  <p class="font-dm-sans text-xs text-muted">via {review.platform.charAt(0).toUpperCase() + review.platform.slice(1)}</p>
+                </div>
+                <div class="ml-auto font-dm-sans text-sm text-amber-500">{'★'.repeat(review.rating)}</div>
+              </div>
+              <p class="font-dm-sans text-sm leading-relaxed text-body">{review.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Windows Reviews -->
+      <div class="mb-10">
+        <h3 class="mb-4 font-hamilton-display text-xl font-normal uppercase tracking-[-0.01em] text-heading">
+          Windows
+        </h3>
+        <div class="space-y-4">
+          {CURATED_REVIEWS.filter(r => r.tags.includes('windows')).map(review => (
+            <div class="rounded-lg border border-[rgb(226,226,226)] bg-white p-5">
+              <div class="mb-2 flex items-center gap-3">
+                <div class="flex size-9 items-center justify-center rounded-full bg-(--color-primary) text-sm font-medium text-white">
+                  {review.author_name.charAt(0)}
+                </div>
+                <div>
+                  <p class="font-dm-sans text-sm font-medium text-body">{review.author_name}</p>
+                  <p class="font-dm-sans text-xs text-muted">via {review.platform.charAt(0).toUpperCase() + review.platform.slice(1)}</p>
+                </div>
+                <div class="ml-auto font-dm-sans text-sm text-amber-500">{'★'.repeat(review.rating)}</div>
+              </div>
+              <p class="font-dm-sans text-sm leading-relaxed text-body">{review.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-(--color-yellow) px-4 py-10">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="font-hamilton-display text-2xl font-normal uppercase tracking-[-0.02em] text-heading">
+        Ready to Join Our Happy Homeowners?
+      </h2>
+      <p class="mt-2 font-dm-sans text-body">
+        Get a free, itemized quote for your project. We respond within 3 to 5 minutes.
+      </p>
+      <a
+        href="#quote"
+        class="mt-4 inline-block rounded-full bg-(--color-primary) px-8 py-3 font-dm-sans text-sm font-medium text-white transition-opacity hover:opacity-90"
+      >
+        Get Your Free Quote
+      </a>
+    </div>
+  </section>
+
+  <ContactUs />
+  <Footer />
+</Layout>

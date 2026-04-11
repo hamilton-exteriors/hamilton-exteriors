@@ -235,10 +235,23 @@ export function getDisplayReviews(data: ReviewData, limit = 5) {
     )
     .slice(0, limit);
 
+  // Star-only fallbacks: reviews with high ratings and photos but no/short text.
+  // Used by Reviews.astro when all Google reviews lack text (common with the
+  // Places API "most relevant" sort — many reviewers leave only a star rating).
+  const starOnly = data.reviews
+    .filter(r =>
+      r.rating >= MIN_DISPLAY_STARS &&
+      r.text.length < MIN_TEXT_LENGTH &&
+      r.profile_photo_url &&
+      isUsernameAppropriate(r.author_name)
+    )
+    .slice(0, limit);
+
   return {
     rating: Math.max(data.rating, MIN_DISPLAY_RATING),
     reviewCount: data.reviewCount,
     reviews: filtered,
+    starOnlyReviews: starOnly,
   };
 }
 

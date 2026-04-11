@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServicePage from '../components/ServicePage.astro';
+import { data } from '../data/services/decks';
+
+const siteUrl = 'https://hamilton-exteriors.com';
+const webPageJsonLd = {
+  '@type': 'WebPage',
+  '@id': `${siteUrl}/decks#webpage`,
+  url: `${siteUrl}/decks`,
+  name: data.title,
+  description: data.description,
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  about: { '@id': `${siteUrl}/decks#service` },
+  inLanguage: 'en-US',
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.local-context p:first-of-type', 'details:first-of-type p', 'h2 + p'] },
+};
+---
+
+<Layout title={data.title} description={data.description} includeMapbox preloadHero heroImage={data.hero.heroImage} jsonLd={[webPageJsonLd]}>
+  <ServicePage data={data} />
+</Layout>
