@@ -41,6 +41,9 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
 </div>
 </div>
 <div id="step-2" class="scanner-step hidden">
+<div id="demo-banner" class="mb-4 hidden rounded-[4px] border border-yellow/30 bg-yellow/10 px-5 py-3 text-center text-sm text-charcoal">
+  <strong>Estimated measurements.</strong> A project manager will confirm exact pricing and measurements before any commitment.
+</div>
 <div class="overflow-hidden rounded-[4px] bg-white shadow-sm">
 <div class="flex flex-wrap items-center justify-between gap-3 border-b border-border px-6 py-4">
 <div class="flex items-center gap-3">
@@ -178,6 +181,15 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
 <button id="purchase-btn" class="text-button mb-3 w-full rounded-[4px] bg-primary px-6 py-4 text-[17px] text-white transition-opacity hover:opacity-90" data-track="purchase_btn_click">Purchase This Roof</button>
 <button class="text-button w-full rounded-[4px] border border-border bg-transparent px-6 py-3.5 text-charcoal transition-colors hover:bg-charcoal/5" data-track="schedule_call_click">Schedule a Call Instead</button>
 <p class="mt-4 text-center text-xs text-muted">*0% APR financing available with approved credit.</p>
+<!-- Inline FAQ for hesitant buyers -->
+<details class="mt-6 border-t border-border pt-4">
+  <summary class="cursor-pointer text-sm font-medium text-muted hover:text-charcoal">Have questions?</summary>
+  <div class="mt-3 flex flex-col gap-3 text-[13px] leading-[1.6] text-muted">
+    <div><p class="font-semibold text-charcoal">What if the on-site inspection finds something different?</p><p>We'll update your quote with an itemized explanation. You approve any changes before we proceed.</p></div>
+    <div><p class="font-semibold text-charcoal">What about the warranty?</p><p>Every roof includes a manufacturer's warranty (25 years to lifetime) plus our 35-year labor guarantee.</p></div>
+    <div><p class="font-semibold text-charcoal">How long does installation take?</p><p>Most roofs are completed in 1-3 days. We handle permits, delivery, and cleanup.</p></div>
+  </div>
+</details>
 </div></div>
 </div>
 </div>
@@ -187,8 +199,17 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
 <div id="purchase-modal" class="fixed inset-0 z-60 hidden bg-[--color-charcoal]/50 backdrop-blur-xs" role="dialog" aria-modal="true" aria-label="Confirm your purchase">
   <div class="flex min-h-full items-center justify-center p-4">
     <div class="w-full max-w-[480px] rounded-[4px] bg-white px-8 py-9 shadow-xl">
-      <h3 class="text-center text-2xl font-semibold text-charcoal">Almost there!</h3>
-      <p class="mt-2 mb-6 text-center text-[15px] text-muted">Enter your info and we'll finalize your roof purchase. A project manager will confirm measurements within 24 hours.</p>
+      <h3 class="text-center text-2xl font-semibold text-charcoal">Review Your Order</h3>
+      <p class="mt-2 mb-5 text-center text-[15px] text-muted">A project manager will verify measurements on-site before work begins.</p>
+      <!-- Order summary — prominent, above form fields -->
+      <div id="pf-summary" class="mb-6 rounded-[4px] border border-border bg-cream p-5">
+        <p id="pf-summary-address" class="font-dm-sans text-sm font-semibold text-charcoal">Your address</p>
+        <p id="pf-summary-product" class="mt-1.5 font-dm-sans text-[15px] font-semibold text-charcoal">Product &mdash; Color</p>
+        <div class="mt-3 flex items-baseline justify-between border-t border-border/40 pt-3">
+          <span id="pf-summary-total" class="font-hamilton-display text-2xl font-bold text-charcoal">$0</span>
+          <span id="pf-summary-monthly" class="font-dm-sans text-sm text-muted">or $0/mo for 60 months</span>
+        </div>
+      </div>
       <form id="purchase-form" class="flex flex-col gap-4" novalidate>
         <input type="hidden" id="pf-address" name="address" />
         <input type="hidden" id="pf-product" name="product" />
@@ -219,15 +240,6 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
             <label class="flex cursor-pointer items-center gap-2"><input type="radio" name="contact_method" value="phone" checked /> Phone</label>
             <label class="flex cursor-pointer items-center gap-2"><input type="radio" name="contact_method" value="email" /> Email</label>
             <label class="flex cursor-pointer items-center gap-2"><input type="radio" name="contact_method" value="text" /> Text</label>
-          </div>
-        </div>
-        <!-- Order summary — structure visible, values populated by JS -->
-        <div id="pf-summary" class="rounded-[4px] bg-cream p-3.5 text-[13px]">
-          <p id="pf-summary-address" class="font-dm-sans font-semibold text-charcoal">Your address</p>
-          <p id="pf-summary-product" class="mt-1 font-dm-sans text-muted">Product &mdash; Color</p>
-          <div class="mt-2 flex items-baseline justify-between border-t border-border/40 pt-2">
-            <span id="pf-summary-total" class="font-hamilton-display text-lg font-bold text-charcoal">$0</span>
-            <span id="pf-summary-monthly" class="font-dm-sans text-xs text-muted">or $0/mo for 60 months</span>
           </div>
         </div>
         <button type="submit" class="text-button w-full rounded-[4px] bg-primary py-4 text-base text-white transition-opacity hover:opacity-90">

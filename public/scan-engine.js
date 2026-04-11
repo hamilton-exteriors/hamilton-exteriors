@@ -317,10 +317,19 @@
       .then(function () { return delay('Calculating measurements', 700); })
       .then(function () {
         state.roofData = genDemoData(DEFAULT_LAT, DEFAULT_LNG);
+        state.isDemo = true;
         populateMeasurements(state.roofData);
         sl.classList.add('hidden');
         rl.classList.remove('hidden');
         sip = false;
+        // Show demo banner
+        var banner = document.getElementById('demo-banner');
+        if (banner) banner.classList.remove('hidden');
+        // Change purchase CTA text in demo mode
+        var purchaseBtn = document.getElementById('purchase-btn');
+        if (purchaseBtn) purchaseBtn.textContent = 'Request Your Quote';
+        var mobilePurchaseBtn = document.getElementById('mobile-purchase-btn');
+        if (mobilePurchaseBtn) mobilePurchaseBtn.textContent = 'Request Quote';
       })
       .catch(function () {
         sl.classList.add('hidden');
@@ -385,12 +394,18 @@
     }, 400);
   }
 
-  function goStep(n) {
+  function goStep(n, fromPopstate) {
     state.step = n;
     // ── Analytics: track funnel steps ──
     var stepNames = { 1: 'address_entry', 2: 'roof_scan_viewed', 3: 'shingle_selection' };
     if (window.op && stepNames[n]) window.op('track', 'scan_funnel_step', { step: n, step_name: stepNames[n], address: state.address || '' });
     if (window.dataLayer && stepNames[n]) window.dataLayer.push({ event: 'scan_funnel_step', step: n, step_name: stepNames[n] });
+    // Push browser history so back button navigates between steps
+    if (!fromPopstate && n > 1) {
+      var url = new URL(window.location);
+      url.searchParams.set('step', n);
+      history.pushState({ step: n }, '', url);
+    }
     // Remove the pre-paint hiding style if going back to step 1
     if (n === 1) {
       var hideStyle = document.getElementById('hide-step1');
@@ -860,10 +875,31 @@
     if (focusTarget) setTimeout(function () { focusTarget.focus(); }, 100);
   }
 
-  // ── Schedule a Call button ──────────────────────────────────────────
+  // ── Schedule a Call button — tel: on mobile, info on desktop ────────
   $$('[id$="schedule-call-btn"], button').forEach(function (btn) {
     if (btn.textContent.trim() === 'Schedule a Call Instead') {
-      btn.addEventListener('click', function () { window.location.href = window.PHONE_HREF || 'tel:6509773351'; });
+      btn.addEventListener('click', function () {
+        var isMobile = /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
+        if (isMobile) {
+          window.location.href = 'tel:6509773351';
+        } else {
+          // Show inline call info instead of silent tel: failure
+          var panel = btn.closest('div');
+          btn.outerHTML = '<div class="w-full rounded-[4px] border border-border bg-cream px-4 py-3 text-center">' +
+            '<p class="text-sm font-semibold text-charcoal">(650) 977-3351</p>' +
+            '<p class="mt-1 text-xs text-muted">Mon–Fri 8am–6pm &middot; Sat 9am–2pm</p>' +
+            '</div>';
+        }
+      });
+    }
+  });
+
+  // ── Browser back button support ────────────────────────────────────
+  window.addEventListener('popstate', function (e) {
+    if (e.state && typeof e.state.step === 'number') {
+      goStep(e.state.step, true);
+    } else if (state.step > 1) {
+      goStep(state.step - 1, true);
     }
   });
 
