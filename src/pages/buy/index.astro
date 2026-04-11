@@ -295,15 +295,15 @@ const faqJsonLd = {
           </div>
         </div>
       </div>
-      <!-- Trust strip -->
+      <!-- Trust strip — differentiated from hero badges -->
       <div class="mt-10 flex flex-wrap items-center justify-center gap-4 rounded-[4px] border border-border bg-cream px-6 py-5">
-        <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-primary uppercase">GAF Master Elite &middot; Top 2% Nationwide</span>
+        <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-primary uppercase">35-Year Labor Guarantee</span>
         <span class="text-xs text-border">&bull;</span>
-        <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">CSLB #1082377</span>
+        <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">Architect-Led Design Review</span>
         <span class="text-xs text-border">&bull;</span>
-        <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">4.8 Google Rating</span>
+        <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">In-House Project Manager</span>
         <span class="text-xs text-border">&bull;</span>
-        <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">Licensed &amp; Insured</span>
+        <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">$2M Liability Coverage</span>
       </div>
     </div>
   </section>
@@ -312,6 +312,7 @@ const faqJsonLd = {
   <section class="w-full bg-cream px-5 py-12 lg:py-20">
     <div class="mx-auto max-w-[1060px]">
       <SectionLabel align="center">What Homeowners Say</SectionLabel>
+      <p class="mb-8 text-center text-sm text-muted">Rated 4.8 by 200+ Bay Area homeowners on Google and Yelp</p>
       <div class="mx-auto mb-8 max-w-[760px] rounded-[4px] border border-border bg-white px-8 py-10 sm:px-10">
         <div class="mb-4 flex items-center justify-center gap-3">
           <span class="text-lg text-yellow">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
@@ -398,25 +399,6 @@ const faqJsonLd = {
           </div>
         </details>
       </div>
-    </div>
-  </section>
-
-  <!-- ── MID-PAGE CTA — after FAQ so objections are defused ────────── -->
-  <section class="w-full bg-heading px-5 py-12 lg:py-20">
-    <div class="mx-auto max-w-[600px] text-center">
-      <SectionLabel align="center" color="yellow">Your Next Step</SectionLabel>
-      <p class="mb-4 font-hamilton-display text-[clamp(24px,3.5vw,36px)] leading-[1.15] text-white uppercase">
-        Ready to see your price?
-      </p>
-      <p class="mb-8 text-base text-white/70">
-        Enter your address. Instant satellite scan. Transparent pricing.
-      </p>
-      <a
-        href="/buy/scan"
-        class="inline-block rounded-full bg-yellow px-10 py-4 font-hamilton-display text-base font-bold tracking-[0.04em] text-footer uppercase no-underline transition-opacity duration-150 hover:opacity-90"
-      >
-        Scan Your Roof Now
-      </a>
     </div>
   </section>
 
@@ -718,9 +700,6 @@ const faqJsonLd = {
       input.value = (nameEl ? nameEl.textContent : '') + (detailEl ? ', ' + detailEl.textContent : '');
       dropdown.classList.add('hidden');
       toggleClear();
-      // Auto-submit the form after selecting a suggestion
-      var form = input.closest('form');
-      if (form) form.requestSubmit();
     });
 
     document.addEventListener('click', function(e) {
