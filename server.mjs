@@ -135,4 +135,46 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, HOST, () => {
   console.log(`Server listening on http://${HOST}:${PORT}`);
+
+  // IndexNow: notify Bing/Yandex/Naver of all pages after deploy.
+  // Runs once on server start as a background task — no external CI needed.
+  setTimeout(async () => {
+    try {
+      const SITE = 'https://hamilton-exteriors.com';
+      const KEY = '524a5da56e0e45ef9f726d847b63daf4';
+
+      // Fetch URLs from live sitemap
+      const indexRes = await fetch(`${SITE}/sitemap-index.xml`, { signal: AbortSignal.timeout(15_000) });
+      if (!indexRes.ok) throw new Error(`Sitemap: ${indexRes.status}`);
+      const indexXml = await indexRes.text();
+      const sitemapUrls = [...indexXml.matchAll(/<loc>([^<]+)<\/loc>/g)]
+        .map(m => m[1])
+        .filter(u => !u.includes('image-sitemap'));
+
+      const urls = [];
+      for (const sitemapUrl of sitemapUrls) {
+        const res = await fetch(sitemapUrl, { signal: AbortSignal.timeout(30_000) });
+        if (!res.ok) continue;
+        const xml = await res.text();
+        urls.push(...[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]));
+      }
+
+      if (urls.length === 0) throw new Error('No URLs found in sitemap');
+
+      const res = await fetch('https://api.indexnow.org/indexnow', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        body: JSON.stringify({
+          host: 'hamilton-exteriors.com',
+          key: KEY,
+          keyLocation: `${SITE}/${KEY}.txt`,
+          urlList: urls,
+        }),
+      });
+
+      console.log(`[IndexNow] Submitted ${urls.length} URLs — ${res.status}`);
+    } catch (e) {
+      console.warn(`[IndexNow] Skipped: ${e.message}`);
+    }
+  }, 5_000); // 5s delay — let the server settle before fetching its own sitemap
 });

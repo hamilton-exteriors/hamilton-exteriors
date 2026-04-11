@@ -9,7 +9,6 @@
     "dev": "astro dev",
     "build": "astro build",
     "start": "node server.mjs",
-    "postdeploy": "node scripts/indexnow-submit.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "oxlint src/",
