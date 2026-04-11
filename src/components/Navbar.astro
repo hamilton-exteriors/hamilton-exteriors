@@ -67,6 +67,11 @@ const services = [
     ],
   },
 ];
+
+interface Props {
+  logoHref?: string;
+}
+const { logoHref = '/' } = Astro.props;
 ---
 
 <nav class="navbar sticky top-0 z-50 w-full border-b border-black/6 bg-white" aria-label="Main navigation">
@@ -74,7 +79,7 @@ const services = [
     class="navbar-inner mx-auto flex max-w-[1329px] items-center justify-between gap-4 px-4 py-3"
   >
     <!-- Logo -->
-    <a href="/" class="shrink-0" aria-label="Hamilton Exteriors — home">
+    <a href={logoHref} class="shrink-0" aria-label="Hamilton Exteriors — home">
       <Image
         src={logoNav}
         alt="Hamilton Exteriors"

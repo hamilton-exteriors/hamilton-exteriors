@@ -337,7 +337,7 @@ const serviceLinks = matchedLinksMap.size > 0
   {post.primary_tag && <meta slot="head" property="article:section" content={post.primary_tag.name} />}
   {post.tags?.map((t: any) => <meta slot="head" property="article:tag" content={t.name} />)}
   <AnnouncementBar slot="header" />
-  <Navbar slot="header" />
+  <Navbar slot="header" logoHref="/blog" />
 
   <!-- Reading progress bar (sticks below navbar) -->
   <div id="reading-progress-track" class="sticky z-49 h-[3px] w-full bg-black/6" style="top: var(--navbar-height, 56px);">
