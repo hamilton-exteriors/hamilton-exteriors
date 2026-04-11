@@ -14,6 +14,7 @@ const CITY_COORDINATES: Record<string, [number, number]> = {
   'livermore': [-121.7680, 37.6819],
   'union-city': [-122.0439, 37.5934],
   'alameda': [-122.2416, 37.7652],
+  'castro-valley': [-122.0864, 37.6941],
   // Contra Costa County
   'antioch': [-121.8058, 38.0049],
   'concord': [-122.0311, 37.9780],

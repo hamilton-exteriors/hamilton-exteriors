@@ -654,7 +654,7 @@ const graphJsonLd = graphItems.length > 0 ? {
 
       // ── Service area engagement tracking ──
       if (window.location.pathname.startsWith('/service-areas/')) {
-        const serviceSlugs = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions'];
+        const serviceSlugs = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions', 'decks'];
         document.addEventListener('click', (e) => {
           const link = (e.target as HTMLElement).closest('a[href]') as HTMLAnchorElement | null;
           if (!link) return;

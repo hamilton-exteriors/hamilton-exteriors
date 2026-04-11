@@ -15,14 +15,14 @@ const INDEXNOW_SECRET = import.meta.env.INDEXNOW_SECRET || '';
 const SITE = 'https://hamilton-exteriors.com';
 
 const counties = [
-  { slug: 'alameda-county-ca', cities: ['oakland-ca', 'berkeley-ca', 'fremont-ca', 'hayward-ca', 'san-leandro-ca', 'dublin-ca', 'pleasanton-ca', 'livermore-ca', 'union-city-ca', 'alameda-ca'] },
+  { slug: 'alameda-county-ca', cities: ['oakland-ca', 'berkeley-ca', 'fremont-ca', 'hayward-ca', 'san-leandro-ca', 'dublin-ca', 'pleasanton-ca', 'livermore-ca', 'union-city-ca', 'alameda-ca', 'castro-valley-ca'] },
   { slug: 'contra-costa-county-ca', cities: ['antioch-ca', 'concord-ca', 'richmond-ca', 'san-ramon-ca', 'walnut-creek-ca', 'lafayette-ca', 'orinda-ca', 'danville-ca', 'brentwood-ca', 'pittsburg-ca'] },
   { slug: 'marin-county-ca', cities: ['larkspur-ca', 'mill-valley-ca', 'novato-ca', 'san-rafael-ca'] },
   { slug: 'napa-county-ca', cities: ['napa-ca', 'american-canyon-ca', 'st-helena-ca', 'calistoga-ca', 'yountville-ca'] },
   { slug: 'santa-clara-county-ca', cities: ['san-jose-ca', 'palo-alto-ca', 'mountain-view-ca', 'sunnyvale-ca', 'cupertino-ca', 'santa-clara-ca', 'saratoga-ca', 'los-gatos-ca', 'campbell-ca', 'milpitas-ca'] },
   { slug: 'san-mateo-county-ca', cities: ['redwood-city-ca', 'san-mateo-ca', 'burlingame-ca', 'daly-city-ca', 'south-san-francisco-ca'] },
 ];
-const services = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions'];
+const services = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions', 'decks'];
 
 function getAllUrls(): string[] {
   const urls: string[] = [];

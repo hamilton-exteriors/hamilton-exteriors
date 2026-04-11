@@ -9,6 +9,7 @@ export const CITY_WIKIPEDIA: Record<string, string> = {
   'fremont': 'https://en.wikipedia.org/wiki/Fremont,_California',
   'hayward': 'https://en.wikipedia.org/wiki/Hayward,_California',
   'san-leandro': 'https://en.wikipedia.org/wiki/San_Leandro,_California',
+  'castro-valley': 'https://en.wikipedia.org/wiki/Castro_Valley,_California',
   // Contra Costa County
   'antioch': 'https://en.wikipedia.org/wiki/Antioch,_California',
   'concord': 'https://en.wikipedia.org/wiki/Concord,_California',

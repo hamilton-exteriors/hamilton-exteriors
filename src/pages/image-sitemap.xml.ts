@@ -95,6 +95,7 @@ const COUNTY_CITIES: Record<string, { slug: string; name: string }[]> = {
     { slug: 'san-leandro-ca', name: 'San Leandro' }, { slug: 'dublin-ca', name: 'Dublin' },
     { slug: 'pleasanton-ca', name: 'Pleasanton' }, { slug: 'livermore-ca', name: 'Livermore' },
     { slug: 'union-city-ca', name: 'Union City' }, { slug: 'alameda-ca', name: 'Alameda' },
+    { slug: 'castro-valley-ca', name: 'Castro Valley' },
   ],
   'contra-costa-county-ca': [
     { slug: 'antioch-ca', name: 'Antioch' }, { slug: 'walnut-creek-ca', name: 'Walnut Creek' },
@@ -126,7 +127,7 @@ const COUNTY_CITIES: Record<string, { slug: string; name: string }[]> = {
   ],
 };
 
-const SERVICES = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions'];
+const SERVICES = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions', 'decks'];
 
 function buildPseoImageEntries(): { page: string; images: { src: string; title: string; caption: string }[] }[] {
   const entries: { page: string; images: { src: string; title: string; caption: string }[] }[] = [];

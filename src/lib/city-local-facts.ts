@@ -105,6 +105,22 @@ const CITY_FACTS: Record<string, CityFacts> = {
     driveTime: '10 minutes',
     localTip: 'San Leandro\'s proximity to the Bay means homes in the western flatlands see more fog and salt air than inland neighborhoods. Choosing corrosion-resistant flashing and galvanized fasteners adds years to your roof in these areas.',
   },
+  'castro-valley': {
+    housingNote: 'Castro Valley is an unincorporated community of approximately 61,000 residents with roughly 23,000 housing units. Most homes were built between the 1950s and 1970s during the suburban expansion of the East Bay, meaning many roofs and exteriors are original or on their second replacement cycle.',
+    permitNote: 'As an unincorporated area, Castro Valley building permits are issued by the Alameda County Building Inspection Department, not a city building department. Permit processing typically takes 5-10 business days for straightforward roof replacements. Hamilton Exteriors handles all county permit applications on your behalf.',
+    weatherNote: 'Castro Valley sits in a sheltered inland valley that experiences slightly warmer summers and cooler winters than bayside communities. The area receives about 20 inches of rain annually, and homes in the hillside areas above the valley floor face increased wind exposure.',
+    medianHomeValue: '$1,050,000',
+    population: '61,000',
+    roofingCostRange: '$10,000–$30,000',
+    sidingCostRange: '$14,000–$40,000',
+    windowCostRange: '$600–$1,800 per window',
+    permitAuthority: 'Alameda County Building Inspection Department',
+    permitPhone: '(510) 670-5400',
+    fireZone: false,
+    topNeighborhoods: ['Five Canyons', 'Proctor', 'Palomares Hills', 'Greenridge', 'Castro Village'],
+    driveTime: '5 minutes',
+    localTip: 'Castro Valley is Hamilton Exteriors\' home base. As an unincorporated community, permits go through Alameda County rather than a city building department. The county process is straightforward and we know the inspectors and requirements well from years of local projects.',
+  },
   // Contra Costa County
   'walnut-creek': {
     housingNote: 'Walnut Creek has approximately 33,000 housing units. The city\'s location in the inland East Bay means higher summer temperatures, which can accelerate asphalt shingle aging compared to coastal cities.',

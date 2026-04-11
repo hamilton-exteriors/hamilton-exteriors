@@ -52,7 +52,7 @@ const COUNTY_SHORT_TO_FULL: Record<string, string> = {
 if (rawSegments[0] && COUNTY_SHORT_TO_FULL[rawSegments[0]]) {
   const fixedSegments = [COUNTY_SHORT_TO_FULL[rawSegments[0]], ...rawSegments.slice(1)];
   // Append -ca to city slugs that are missing it
-  if (fixedSegments[1] && !fixedSegments[1].endsWith('-ca') && !['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions'].includes(fixedSegments[1])) {
+  if (fixedSegments[1] && !fixedSegments[1].endsWith('-ca') && !['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions', 'decks'].includes(fixedSegments[1])) {
     fixedSegments[1] = `${fixedSegments[1]}-ca`;
   }
   return Astro.redirect(`/service-areas/${fixedSegments.join('/')}`, 301);
@@ -60,7 +60,7 @@ if (rawSegments[0] && COUNTY_SHORT_TO_FULL[rawSegments[0]]) {
 
 const segments = slug.split('/');
 
-const SERVICE_SLUGS = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions'];
+const SERVICE_SLUGS = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions', 'decks'];
 
 let pageType: 'county' | 'city' | 'cityService' | 'countyService' | null = null;
 let cityData: GeneralCityPageData | null = null;

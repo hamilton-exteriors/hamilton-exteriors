@@ -19,6 +19,7 @@ const CITY_IMAGES: Record<string, ImageMetadata> = {
   'hayward-ca': areaHayward,
   'berkeley-ca': areaBerkeley,
   'san-leandro-ca': areaSanLeandro,
+  'castro-valley-ca': areaHayward,
   // Contra Costa County
   'antioch-ca': areaAntioch,
   'concord-ca': areaConcord,

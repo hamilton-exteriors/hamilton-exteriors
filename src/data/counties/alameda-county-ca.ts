@@ -7,7 +7,7 @@ export const data: CountyPageData = {
   state: 'CA',
   adjective: 'Trusted',
   title: 'Roofing, Siding, ADUs & Custom Homes in Alameda County | Hamilton Exteriors',
-  description: 'Hamilton Exteriors is Alameda County\u2019s trusted design-build contractor. Roofing, siding, windows, ADUs, additions, and custom homes. Serving Oakland, Berkeley, Fremont, Hayward, San Leandro, Dublin, Pleasanton, Livermore, Union City, and Alameda.',
+  description: 'Hamilton Exteriors is Alameda County\u2019s trusted design-build contractor. Roofing, siding, windows, ADUs, additions, and custom homes. Serving Oakland, Berkeley, Fremont, Hayward, San Leandro, Dublin, Pleasanton, Livermore, Union City, Alameda, and Castro Valley.',
   heroHeadline: 'Alameda County\u2019s Architect-Led  Custom Home  & Exteriors Contractor',
   heroFormTitle: 'Get Your Free Estimate in Alameda County',
   proximity: '-122.08,37.65',
@@ -23,6 +23,7 @@ export const data: CountyPageData = {
     { name: 'Livermore', slug: '/service-areas/alameda-county-ca/livermore-ca', image: areaLivermore },
     { name: 'Union City', slug: '/service-areas/alameda-county-ca/union-city-ca', image: areaUnionCity },
     { name: 'Alameda', slug: '/service-areas/alameda-county-ca/alameda-ca', image: areaAlameda },
+    { name: 'Castro Valley', slug: '/service-areas/alameda-county-ca/castro-valley-ca', image: areaHayward },
   ],
   citySectionStyle: 'heading',
 
