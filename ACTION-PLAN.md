@@ -1,66 +1,71 @@
 # Hamilton Exteriors — SEO Action Plan
 
-**Generated:** 2026-04-10 (v9 — 6-agent audit) | **Current Score:** 74/100 | **Target:** 85/100
+**Generated:** 2026-04-11 (v10 — post-fix re-audit) | **Current Score:** 84/100 | **Target:** 90/100
+**Lighthouse:** Performance 98 | Accessibility 100 | Best Practices 100 | SEO 100
 
 ---
+
+## Fixed (Deployed)
+
+| # | Action | Status |
+|---|--------|--------|
+| ~~1~~ | ~~Remove `/contact` and `/financing` from sitemap~~ | Done |
+| ~~2~~ | ~~Fix review count inconsistency — dynamic llms.txt~~ | Done |
+| ~~3~~ | ~~Fix pSEO meta description duplication ("County, County")~~ | Done |
+| ~~4~~ | ~~Homepage title — remove "Top", lead with "General Contractor"~~ | Done |
+| ~~5~~ | ~~Trim meta descriptions to <155 chars~~ | Done (4 pages) |
+| ~~6~~ | ~~Fix footer contrast for WCAG AA~~ | Done (Lighthouse a11y → 100) |
+| ~~7~~ | ~~Update llms.txt blog index (3 → dynamic)~~ | Done (Ghost CMS auto) |
+| ~~8~~ | ~~Fix legacy slug `/alameda-ca` 404~~ | Done |
+| ~~9~~ | ~~CSP analytics — verified already correct~~ | No action needed |
 
 ## Critical (Fix Immediately)
 
 | # | Action | Category | Effort | Impact |
 |---|--------|----------|--------|--------|
-| 1 | **Fix CSP to allow `api.openpanel.dev`** — analytics silently broken in production | Technical | 15 min | Analytics data loss |
-| 2 | **Remove `/contact` and `/financing` from sitemap** — they're 301 redirects | Technical | 10 min | Sitemap quality |
-| 3 | **Verify GBP primary category is "General Contractor"** | Local | 5 min | #1 local ranking factor |
-| 4 | **Fix review count inconsistency** — single dynamic source for hero, schema, llms.txt | Content | 1-2 hrs | Trust + AI citability |
-| 5 | **Fix pSEO meta description duplication** — "Alameda County, Alameda County, CA" pattern | On-Page | 30 min | 344+ pages affected |
-| 6 | **Normalize trade name on Angi/HomeAdvisor** to "Hamilton Exteriors" | Local | 30 min | NAP consistency |
+| 1 | **Verify GBP primary category is "General Contractor"** | Local | 5 min | #1 local ranking factor |
+| 2 | **Normalize trade name on Angi/HomeAdvisor** to "Hamilton Exteriors" | Local | 30 min | NAP consistency |
 
 ## High (Fix Within 1 Week)
 
 | # | Action | Category | Effort | Impact |
 |---|--------|----------|--------|--------|
-| 7 | **Optimize hero image for mobile** — add w=480 srcset at q=60, target <80KB | Performance | 1 hr | LCP 3.3s → <2.5s |
-| 8 | **Trim 6 meta descriptions to <155 chars** — phone/CSLB getting truncated | On-Page | 30 min | SERP display |
-| 9 | **Tighten 5 page titles to <60 chars** — Google rewrites long titles | On-Page | 30 min | SERP display |
-| 10 | **Create dedicated `/contact` page** — NAP, embedded map, ContactPage schema | Local | 3-4 hrs | Local pack ranking |
-| 11 | **Fix H1 superlatives** — "Best" and "Top" → brand-compliant alternatives | Content | Ghost CMS | Quality signals |
-| 12 | **Fix homepage title** — remove "Top", lead with "General Contractor" | On-Page | 5 min | Brand + category |
-| 13 | **Add inline source attribution** to blog post cost figures | Content/GEO | 1-2 hrs | AI citation confidence |
-| 14 | **Add FAQPage schema** to service pages (/roofing, /siding, /windows, /adu, etc.) | Schema | 2-3 hrs | FAQ rich results + AIO |
-| 15 | **Implement review velocity system** — post-project request within 7 days | Local | Process | GBP rankings |
-| 16 | **Start GBP Posts** — minimum weekly | Local | Ongoing | GBP engagement |
-| 17 | **Fix footer contrast** — `#6e8077` on green = 3.63:1, need 4.5:1 | Accessibility | 10 min | WCAG AA compliance |
-| 18 | **Reduce cert/nav logo source widths** — serving 280px for 90px render (144 KiB wasted) | Performance | 30 min | LCP bytes |
+| 3 | **Create dedicated `/contact` page** — NAP, embedded map, ContactPage schema | Local | 3-4 hrs | Local pack ranking |
+| 4 | **Add inline source attribution** to blog post cost figures | Content/GEO | 1-2 hrs | AI citation confidence |
+| 5 | **Add FAQPage schema** to service pages (/roofing, /siding, /windows, /adu, etc.) | Schema | 2-3 hrs | FAQ rich results + AIO |
+| 6 | **Fix H1 superlatives** — "Best" and "Top" → brand-compliant alternatives | Content | Ghost CMS | Quality signals |
+| 7 | **Implement review velocity system** — post-project request within 7 days | Local | Process | GBP rankings |
+| 8 | **Start GBP Posts** — minimum weekly | Local | Ongoing | GBP engagement |
+| 9 | **Reduce cert/nav logo source widths** — serving 280px for 90px render (144 KiB wasted) | Performance | 30 min | LCP bytes |
 
 ## Medium (Fix Within 1 Month)
 
 | # | Action | Category | Effort | Impact |
 |---|--------|----------|--------|--------|
-| 19 | Create dedicated `/financing` page with FinancialProduct schema | Technical | 3-4 hrs | New keyword capture |
-| 20 | Fix legacy city slug gap (`alameda-ca` → 404) | Technical | 30 min | Link equity |
-| 21 | Add question-format H2s to ADU/blog posts (triggers FAQ schema) | Content/GEO | Ghost edits | Rich results |
-| 22 | Update llms.txt blog index (3 → 14 posts) | GEO | 30 min | AI discoverability |
-| 23 | Add Thumbtack, BuildZoom, Nextdoor Business profiles | Local | 2-3 hrs | Citations + AI visibility |
-| 24 | Seed GBP Q&A with 5-7 canonical questions | Local | 30 min | GBP content |
-| 25 | Fix geo coordinate precision to 5+ decimal places | Schema | 1 hr | Schema compliance |
-| 26 | Standardize hero images to WebP/JPG (roofing hero is PNG) | Performance | 30 min | LCP consistency |
-| 27 | Fix canonical/sitemap trailing slash mismatch | Technical | 30 min | Crawl signals |
-| 28 | Audit internal links for `/about` — ensure all point to `/about/alex-hamilton-li` | Technical | 30 min | Redirect chain |
-| 29 | Increase city+service page uniqueness (2-3 more city-specific paragraphs) | Content | Ongoing | Thin content risk |
-| 30 | Fix blog "Sources" section to match actual cited sources | GEO | 1 hr | Source credibility |
+| 10 | Create dedicated `/financing` page with FinancialProduct schema | Technical | 3-4 hrs | New keyword capture |
+| 11 | Add question-format H2s to ADU/blog posts (triggers FAQ schema) | Content/GEO | Ghost edits | Rich results |
+| 12 | Add Thumbtack, BuildZoom, Nextdoor Business profiles | Local | 2-3 hrs | Citations + AI visibility |
+| 13 | Seed GBP Q&A with 5-7 canonical questions | Local | 30 min | GBP content |
+| 14 | Fix geo coordinate precision to 5+ decimal places | Schema | 1 hr | Schema compliance |
+| 15 | Standardize hero images to WebP/JPG (roofing hero is PNG) | Performance | 30 min | LCP consistency |
+| 16 | Audit internal links for `/about` — ensure all point to `/about/alex-hamilton-li` | Technical | 30 min | Redirect chain |
+| 17 | Increase city+service page uniqueness (2-3 more city-specific paragraphs) | Content | Ongoing | Thin content risk |
+| 18 | Fix blog "Sources" section to match actual cited sources | GEO | 1 hr | Source credibility |
+| 19 | Tighten service page titles to <60 chars (Ghost CMS) | On-Page | Ghost edits | SERP display |
+| 20 | Trim service page meta descriptions to <155 chars (Ghost CMS) | On-Page | Ghost edits | SERP display |
 
 ## Low (Backlog)
 
 | # | Action | Category | Effort | Impact |
 |---|--------|----------|--------|--------|
-| 31 | Convert certification logos PNG → SVG | Performance | 1 hr | Minor perf |
-| 32 | Create page-specific OG images | Images | 3-4 hrs | Social CTR |
-| 33 | Add Service schema to county+service pages | Schema | 1 hr | Schema completeness |
-| 34 | Add city-level LocalBusiness schema nodes | Schema | 2 hrs | AI entity matching |
-| 35 | Start YouTube channel (3-5 project videos) | GEO | High | AI citation (0.737 correlation) |
-| 36 | Build Reddit presence (r/bayarea, r/HomeImprovement) | GEO | Ongoing | Brand signals |
-| 37 | Enrich Wikidata entity Q139044457 | GEO | 30 min | Entity resolution |
-| 38 | Add explicit Bingbot rule in robots.txt | Technical | 5 min | Bing Copilot |
+| 21 | Convert certification logos PNG → SVG | Performance | 1 hr | Minor perf |
+| 22 | Create page-specific OG images | Images | 3-4 hrs | Social CTR |
+| 23 | Add Service schema to county+service pages | Schema | 1 hr | Schema completeness |
+| 24 | Add city-level LocalBusiness schema nodes | Schema | 2 hrs | AI entity matching |
+| 25 | Start YouTube channel (3-5 project videos) | GEO | High | AI citation (0.737 correlation) |
+| 26 | Build Reddit presence (r/bayarea, r/HomeImprovement) | GEO | Ongoing | Brand signals |
+| 27 | Enrich Wikidata entity Q139044457 | GEO | 30 min | Entity resolution |
+| 28 | Add explicit Bingbot rule in robots.txt | Technical | 5 min | Bing Copilot |
 
 ---
 
@@ -68,10 +73,11 @@
 
 | Actions Completed | Estimated Score |
 |-------------------|----------------|
-| Critical (1-6) | 74 → 79 |
-| + High (7-18) | 79 → 85 |
-| + Medium (19-30) | 85 → 89 |
-| + Low (31-38) | 89 → 92 |
+| Deployed fixes (v10) | 74 → **84** |
+| + Critical (1-2) | 84 → 86 |
+| + High (3-9) | 86 → 90 |
+| + Medium (10-20) | 90 → 93 |
+| + Low (21-28) | 93 → 95 |
 
 ---
 

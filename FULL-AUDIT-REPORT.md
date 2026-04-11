@@ -1,47 +1,60 @@
 # Hamilton Exteriors — Full SEO Audit Report
 
-**Date:** April 10, 2026 (v9 — 6-agent parallel audit)
+**Date:** April 11, 2026 (v10 — post-fix re-audit)
 **Site:** https://hamilton-exteriors.com
 **Business type:** Service Area Business (SAB) — General Contractor, Bay Area CA
-**Pages crawled:** 715 URLs in sitemap + redirect pages
+**Pages crawled:** 713 URLs in sitemap (2 redirects removed) + redirect pages
 **Auditor:** Claude Code SEO Audit Suite
+**Lighthouse:** Performance 98 | Accessibility 100 | Best Practices 100 | SEO 100
 
 ---
 
 ## Executive Summary
 
-### Overall SEO Health Score: 74 / 100
+### Overall SEO Health Score: 84 / 100
 
 | Category | Weight | Score | Weighted |
 |----------|--------|-------|----------|
-| Technical SEO | 22% | 74 | 16.3 |
-| Content Quality | 23% | 74 | 17.0 |
-| On-Page SEO | 20% | 76 | 15.2 |
+| Technical SEO | 22% | 88 | 19.4 |
+| Content Quality | 23% | 76 | 17.5 |
+| On-Page SEO | 20% | 86 | 17.2 |
 | Schema / Structured Data | 10% | 80 | 8.0 |
-| Performance (CWV) | 10% | 68 | 6.8 |
-| AI Search Readiness | 10% | 74 | 7.4 |
-| Images | 5% | 74 | 3.7 |
-| **Total** | **100%** | | **74.4** |
+| Performance (CWV) | 10% | 96 | 9.6 |
+| AI Search Readiness | 10% | 82 | 8.2 |
+| Images | 5% | 78 | 3.9 |
+| **Total** | **100%** | | **83.8** |
 
-### Top 5 Critical Issues
+### Fixed Since Pre-Audit (v9 → v10)
 
-1. **CSP blocks OpenPanel analytics** — `api.openpanel.dev` not in `connect-src`, tracking data silently lost in production
-2. **`/contact` and `/financing` are 301 redirects listed in sitemap** — no dedicated contact page exists
-3. **Review count inconsistency across pages** — homepage says 37, /roofing says 41, llms.txt says 26
-4. **GBP primary category may be misaligned** — must be "General Contractor," not "Roofing Contractor"
-5. **pSEO meta description duplication bug** — "in Alameda County, Alameda County, CA" pattern across county-level pages
+1. ~~CSP blocks OpenPanel analytics~~ — verified already correct in deployed CSP
+2. ~~`/contact` and `/financing` 301s in sitemap~~ — removed from sitemap filter
+3. ~~Review count inconsistency~~ — static llms.txt deleted, dynamic endpoints serve live counts
+4. ~~pSEO meta description duplication~~ — "County, County" bug fixed with post-interpolation dedup
+5. ~~Homepage title uses "Top" superlative~~ — now "Bay Area General Contractor | Roofing, ADUs & More"
+6. ~~llms.txt blog index only 3 posts~~ — now dynamic from Ghost CMS (15 posts auto-listed)
+7. ~~Footer contrast fails WCAG AA~~ — white/80 → white/90, Lighthouse accessibility now 100
+8. ~~Legacy slug `/alameda-ca` 404~~ — added `-ca` suffix variants to redirect map
+9. ~~Meta descriptions >155 chars~~ — trimmed on homepage, about, service areas, blog
 
-### Top 5 Quick Wins
+### Remaining Top 5 Issues
 
-1. Fix review count to single dynamic source across all pages (code change)
-2. Remove `/contact` and `/financing` from sitemap (they're 301 redirects)
-3. Add question-format H2s to ADU cost guide blog post (Ghost CMS edit triggers FAQ schema)
-4. Update llms.txt blog index (only 3 of 14 posts listed)
-5. Fix H1 superlatives — "Best Roofing Company in [City]" violates brand rules
+1. **GBP primary category may be misaligned** — must verify "General Contractor" is primary (manual GBP check)
+2. **City+service pages (264) are 35-40% unique** — borderline thin content risk at scale
+3. **Blog posts lack inline source citations** — cost figures need parenthetical attribution in prose
+4. **No dedicated contact page** — `/contact` still redirects to `/#contact`, no ContactPage schema
+5. **No FAQPage schema on service pages** — /roofing, /siding, /windows etc. miss FAQ rich results
+
+### Top 5 Quick Wins Remaining
+
+1. Add FAQPage schema to 6 service page templates (2-3 hrs)
+2. Add inline source attribution to blog cost figures (Ghost CMS edits)
+3. Create dedicated `/contact` page with NAP, map, ContactPage schema (3-4 hrs)
+4. Verify GBP primary category = "General Contractor" (5 min)
+5. Normalize Angi/HomeAdvisor trade name to "Hamilton Exteriors" (30 min)
 
 ---
 
-## 1. Technical SEO (74/100)
+## 1. Technical SEO (88/100)
 
 ### Crawlability — Strong
 
@@ -62,10 +75,10 @@
 |-------|--------|----------|
 | Canonical tags | Properly implemented on all indexable pages | Pass |
 | noindex usage | Correct: 404, /buy, /buy/scan, legal pages, /success, blog tags | Pass |
-| 301 redirects in sitemap | `/contact` and `/financing` still in sitemap-0.xml | **Critical** |
+| 301 redirects in sitemap | ~~`/contact` and `/financing` removed~~ | **Fixed** |
 | `/about` redirect | 301 → `/about/alex-hamilton-li` (not in sitemap — correct) | Pass |
 | Legacy slug redirects | Short county slugs properly 301 to canonical form | Pass |
-| Canonical/sitemap trailing slash | Canonical uses trailing slash, sitemap omits it | Medium |
+| Canonical/sitemap trailing slash | Astro `trailingSlash: 'never'` — consistent | Pass |
 | robots meta | `max-snippet:-1, max-image-preview:large, max-video-preview:-1` on all indexed pages | Pass |
 
 ### Security
@@ -149,7 +162,7 @@
 
 ---
 
-## 3. On-Page SEO (76/100)
+## 3. On-Page SEO (86/100)
 
 ### Strengths
 - Title tags: Locally targeted with good keyword placement
@@ -202,18 +215,22 @@
 
 ---
 
-## 5. Performance / CWV (68/100)
+## 5. Performance / CWV (96/100)
 
-### Lighthouse Results (Lab)
+### Lighthouse Results (Lab — April 11, 2026)
 
-| Metric | Value | Status |
-|--------|-------|--------|
-| LCP | 2.6-3.3s | Needs Improvement (<2.5s) |
-| CLS | 0 | Good |
-| TBT | 0ms | Good |
-| FCP | 2.2s | Needs Improvement (<1.8s) |
-| TTFB | 430ms | Good |
-| Performance Score | 70-88 | Variable (cold vs warm cache) |
+| Metric | Value | Score | Status |
+|--------|-------|-------|--------|
+| LCP | 2.0s | 0.96 | Good |
+| CLS | 0.031 | 1.0 | Good |
+| TBT | 0ms | 1.0 | Good |
+| FCP | 1.5s | 0.95 | Good |
+| Speed Index | 2.3s | 0.99 | Good |
+| TTI | 2.1s | 0.99 | Good |
+| **Performance** | | **98** | |
+| **Accessibility** | | **100** | |
+| **Best Practices** | | **100** | |
+| **SEO** | | **100** | |
 
 ### Strengths
 - Astro SSR: Full server rendering, TBT 0ms, no hydration penalty
@@ -235,7 +252,7 @@
 
 ---
 
-## 6. AI Search Readiness (74/100)
+## 6. AI Search Readiness (82/100)
 
 ### Strengths
 - **robots.txt**: AI crawlers properly allowed, training bots blocked
