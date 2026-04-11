@@ -566,6 +566,21 @@ const graphJsonLd = graphItems.length > 0 ? {
         }
       });
 
+      // Track any element with a data-track attribute (generic catch-all)
+      document.addEventListener('click', (e) => {
+        const el = (e.target as HTMLElement).closest('[data-track]') as HTMLElement;
+        if (!el) return;
+        // Skip elements already handled by tel: or CTA selectors
+        const a = el.closest('a') as HTMLAnchorElement | null;
+        if (a?.href?.startsWith('tel:')) return;
+        if (a && ['#quote', '/#quote', '/buy', '/buy/scan'].includes(a.getAttribute('href') || '')) return;
+        const trackValue = el.getAttribute('data-track')!;
+        const page = window.location.pathname;
+        const text = el.textContent?.trim() || '';
+        window.op?.('track', trackValue, { page, text });
+        window.dataLayer?.push({ event: trackValue, page, text });
+      });
+
       // ── Scroll depth tracking (25/50/75/100%) ──
       const scrollMilestones = new Set<number>();
       const scrollPages = ['/', '/roofing', '/siding', '/windows', '/adu', '/custom-homes', '/additions', '/buy'];
@@ -581,6 +596,15 @@ const graphJsonLd = graphItems.length > 0 ? {
           });
         }, { passive: true });
       }
+
+      // ── Outbound link tracking ──
+      document.addEventListener('click', (e) => {
+        const link = (e.target as HTMLElement).closest('a[href^="http"]') as HTMLAnchorElement;
+        if (!link || new URL(link.href).hostname.includes('hamilton-exteriors.com')) return;
+        const detail = { url: link.href, text: link.textContent?.trim() || '', page: window.location.pathname };
+        window.op?.('track', 'outbound_click', detail);
+        window.dataLayer?.push({ event: 'outbound_click', ...detail });
+      });
 
       // ── Blog article read completion ──
       const articleContent = document.getElementById('article-content');
@@ -602,6 +626,37 @@ const graphJsonLd = graphItems.length > 0 ? {
         // Observe the last child to detect reaching end of article
         const lastChild = articleContent.lastElementChild;
         if (lastChild) articleObserver.observe(lastChild);
+      }
+
+      // ── Service area engagement tracking ──
+      if (window.location.pathname.startsWith('/service-areas/')) {
+        const serviceSlugs = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions'];
+        document.addEventListener('click', (e) => {
+          const link = (e.target as HTMLElement).closest('a[href]') as HTMLAnchorElement | null;
+          if (!link) return;
+          const href = link.getAttribute('href') || '';
+          const parts = href.replace(/\/$/, '').split('/').filter(Boolean);
+          // Only match /service-areas/... links
+          if (parts[0] !== 'service-areas' || parts.length < 2) return;
+          const page = window.location.pathname;
+          const lastSegment = parts[parts.length - 1];
+
+          // Service card click: href ends with a service slug
+          if (serviceSlugs.includes(lastSegment)) {
+            const cityOrCounty = parts.length >= 3 ? parts[1] : '';
+            const props = { service: lastSegment, city_or_county: cityOrCounty, page };
+            window.op?.('track', 'service_area_click', props);
+            window.dataLayer?.push({ event: 'service_area_click', ...props });
+            return;
+          }
+
+          // City card click: /service-areas/{county}/{city} (3 segments)
+          if (parts.length === 3 && !serviceSlugs.includes(parts[2])) {
+            const props = { city: parts[2], page };
+            window.op?.('track', 'city_card_click', props);
+            window.dataLayer?.push({ event: 'city_card_click', ...props });
+          }
+        });
       }
     </script>
 

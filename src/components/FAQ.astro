@@ -104,3 +104,15 @@ const faqs = [...baseFaqs, ...(extraFaqs || [])];
     transform: rotate(45deg);
   }
 </style>
+
+<script>
+  document.addEventListener('toggle', (e) => {
+    const details = e.target;
+    if (!(details instanceof HTMLDetailsElement) || !details.open) return;
+    if (!details.closest('section')) return;
+    const question = details.querySelector('summary')?.textContent?.trim() || '';
+    const page = window.location.pathname;
+    window.op?.('track', 'faq_opened', { question, page });
+    window.dataLayer?.push({ event: 'faq_opened', question, page });
+  }, true);
+</script>

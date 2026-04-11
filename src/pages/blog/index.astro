@@ -767,10 +767,21 @@ function ghostSrcset(url: string, widths: number[]): string {
         p.tags.some((t: string) => t.toLowerCase().includes(q))
       ).slice(0, 6);
 
+      const results_count = matches.length;
+      (window as any).op?.('track', 'blog_search', { query, results_count, page: '/blog' });
+      (window as any).dataLayer?.push({ event: 'blog_search', query, results_count, page: '/blog' });
+
       dropdown!.innerHTML = matches.length === 0
         ? '<div class="no-match">No results</div>'
         : matches.map((p: any, i: number) => `<a href="/blog/${p.slug}" role="option" data-idx="${i}">${hl(p.title, query)}</a>`).join('');
       dropdown!.classList.add('open');
+      dropdown!.querySelectorAll('a[role="option"]').forEach(a => {
+        a.addEventListener('click', () => {
+          const url = (a as HTMLAnchorElement).getAttribute('href') || '';
+          (window as any).op?.('track', 'blog_search_click', { query: searchInput.value, url, page: '/blog' });
+          (window as any).dataLayer?.push({ event: 'blog_search_click', query: searchInput.value, url, page: '/blog' });
+        });
+      });
 
       let visible = 0;
       cards.forEach(c => {

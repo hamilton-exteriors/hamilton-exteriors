@@ -284,3 +284,85 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
   window.MAPBOX_TOKEN = mapboxToken;
 </script>
 <script is:inline src="/scan-engine.js" defer></script>
+<script is:inline>
+(function () {
+  var page = '/buy/scan';
+  var stepNames = { 1: 'enter_address', 2: 'roof_scan', 3: 'choose_and_buy' };
+
+  function fire(event, props) {
+    var p = Object.assign({ page: page }, props || {});
+    if (window.op) window.op('track', event, p);
+    if (window.dataLayer) window.dataLayer.push(Object.assign({ event: event }, p));
+  }
+
+  // 1. Track step visibility via MutationObserver on hidden class
+  var steps = [
+    document.getElementById('step-1'),
+    document.getElementById('step-2'),
+    document.getElementById('step-3')
+  ];
+
+  steps.forEach(function (el, i) {
+    if (!el) return;
+    var stepNum = i + 1;
+    var fired = false;
+
+    // Fire for initially visible step
+    if (!el.classList.contains('hidden')) {
+      fire('scan_step_viewed', { step: stepNum, step_name: stepNames[stepNum] });
+      fired = true;
+    }
+
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (m) {
+        if (m.attributeName === 'class' && !el.classList.contains('hidden') && !fired) {
+          fire('scan_step_viewed', { step: stepNum, step_name: stepNames[stepNum] });
+          fired = true;
+        }
+      });
+    });
+    observer.observe(el, { attributes: true, attributeFilter: ['class'] });
+  });
+
+  // 2. Address submitted
+  var scanBtn = document.getElementById('scan-btn');
+  if (scanBtn) {
+    scanBtn.addEventListener('click', function () {
+      fire('scan_address_submitted');
+    });
+  }
+
+  // 3. Shingle selected — material-card click with radio value
+  var materialOptions = document.getElementById('material-options');
+  if (materialOptions) {
+    materialOptions.addEventListener('change', function (e) {
+      if (e.target && e.target.name === 'material') {
+        fire('shingle_selected', { product: e.target.value });
+      }
+    });
+  }
+
+  // 4. Purchase initiated
+  var purchaseBtn = document.getElementById('purchase-btn');
+  if (purchaseBtn) {
+    purchaseBtn.addEventListener('click', function () {
+      fire('purchase_initiated');
+    });
+  }
+  // Mobile purchase button too
+  var mobilePurchaseBtn = document.getElementById('mobile-purchase-btn');
+  if (mobilePurchaseBtn) {
+    mobilePurchaseBtn.addEventListener('click', function () {
+      fire('purchase_initiated');
+    });
+  }
+
+  // 5. Purchase form submitted
+  var purchaseForm = document.getElementById('purchase-form');
+  if (purchaseForm) {
+    purchaseForm.addEventListener('submit', function () {
+      fire('purchase_form_submitted');
+    });
+  }
+})();
+</script>
