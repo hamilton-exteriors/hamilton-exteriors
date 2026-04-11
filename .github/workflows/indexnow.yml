@@ -1,0 +1,20 @@
+name: IndexNow Submit
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    # Wait for Railway deploy to finish serving new pages before submitting
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Wait for deploy
+        run: sleep 90
+
+      - name: Submit URLs to IndexNow
+        run: node scripts/indexnow-submit.mjs
