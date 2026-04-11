@@ -2,7 +2,18 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import LogoSlider from '../../components/LogoSlider.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import { Image, getImage } from 'astro:assets';
+import { default as heroRoofing } from '../../assets/images/hero-roofing.png';
+import { reviewLogoGoogle, reviewLogoYelp } from '../../lib/images';
+
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
+
+const [heroMobile, heroDesktop] = await Promise.all([
+  getImage({ src: heroRoofing, width: 768, height: 960, format: 'webp', quality: 80 }),
+  getImage({ src: heroRoofing, width: 1440, height: 810, format: 'webp', quality: 80 }),
+]);
 
 const webAppJsonLd = {
   '@type': 'WebApplication',
@@ -92,15 +103,52 @@ const faqJsonLd = {
   <Navbar slot="header" />
 
   <!-- ── HERO — address input drives to /buy/scan ──────────────────── -->
-  <section id="buy-hero" class="relative z-2 w-full bg-footer">
+  <section id="buy-hero" class="relative z-2 w-full overflow-hidden">
+    <!-- Background image -->
+    <div class="absolute inset-0">
+      <picture>
+        <source srcset={heroMobile.src} media="(max-width: 768px)" type="image/webp" width="768" height="960" />
+        <source srcset={heroDesktop.src} type="image/webp" width="1440" height="810" />
+        <img
+          src={heroDesktop.src}
+          alt="Hamilton Exteriors roofing project"
+          width="1440"
+          height="810"
+          sizes="100vw"
+          class="size-full object-cover object-center"
+          loading="eager"
+          fetchpriority="high"
+          decoding="sync"
+        />
+      </picture>
+    </div>
+    <!-- Dark scrim -->
+    <div class="pointer-events-none absolute inset-0 z-1 bg-black/35" aria-hidden="true"></div>
+    <!-- Film grain -->
+    <div class="hero-grain pointer-events-none absolute inset-0 z-2" aria-hidden="true"></div>
+
     <div class="relative z-10 mx-auto max-w-[720px] text-center">
-      <p class="mb-4 text-sm font-semibold tracking-[2px] text-yellow uppercase">Architect-led. Transparent pricing. Online in minutes.</p>
-      <h1 class="mb-4 text-[clamp(40px,7vw,72px)] leading-[1.05] text-white">
+      <p class="mb-4 font-satoshi text-xs font-bold tracking-[0.15em] text-yellow uppercase">Architect-led roofing</p>
+      <h1 class="mb-4 font-oswald text-[clamp(40px,7vw,72px)] leading-[1.05] text-white uppercase">
         Buy Your Roof Online
       </h1>
-      <p class="mx-auto mb-8 max-w-[480px] text-lg leading-[28px] text-white-70">
+      <p class="mx-auto mb-5 max-w-[480px] text-[clamp(15px,2.5vw,18px)] leading-[1.6] text-white/75">
         Enter your address. We'll scan your roof and give you an instant price — buy direct, online in minutes.
       </p>
+
+      <!-- Trust badges -->
+      <div class="mx-auto mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+        {['GAF Master Elite Certified', '50-Year Warranty', '0% Sales Commission'].map((badge) => (
+          <div class="flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" class="shrink-0">
+              <circle cx="10" cy="10" r="10" fill="rgba(255,255,255,0.15)"/>
+              <path d="M6 10.5l2.5 2.5 5.5-5.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="text-[13px] font-medium text-white/80">{badge}</span>
+          </div>
+        ))}
+      </div>
+
       <form id="hero-form" class="relative z-20 mx-auto max-w-[520px] px-1" action="/buy/scan">
         <input
           id="hero-address-input"
@@ -124,16 +172,19 @@ const faqJsonLd = {
         </button>
         <div id="hero-dropdown" class="addr-dropdown absolute inset-x-0 top-full z-50 mt-1 hidden overflow-hidden rounded-[4px] shadow-lg"></div>
       </form>
-      <p class="mt-4 text-[13px] text-white-65">
+      <p class="mt-4 text-[13px] text-white/55">
         Serving all of California &middot; Bay Area, Sacramento, Stockton & beyond
       </p>
     </div>
   </section>
 
+  <LogoSlider />
+
   <!-- ── WHY WE'RE DIFFERENT — comparison + stats ───────────────────── -->
-  <section class="w-full bg-white px-5 pt-16 pb-0">
+  <section class="w-full bg-white px-5 py-12 lg:py-20">
     <div class="mx-auto max-w-[1060px]">
-      <h2 class="mb-4 text-center text-[clamp(28px,4vw,48px)] leading-[1.1] text-footer">
+      <SectionLabel align="center">Transparent Pricing</SectionLabel>
+      <h2 class="mb-4 text-center font-oswald text-[clamp(28px,4vw,48px)] leading-[1.1] text-footer uppercase">
         Where does your money <em class="normal-case italic">actually</em> go?
       </h2>
       <p class="mx-auto mb-12 max-w-[600px] text-center text-muted">
@@ -254,15 +305,18 @@ const faqJsonLd = {
           <span class="font-satoshi text-xs font-semibold tracking-[0.05em] text-muted uppercase">Licensed &amp; Insured</span>
         </div>
       </div>
-      <div class="pb-12"></div>
     </div>
   </section>
 
   <!-- ── SOCIAL PROOF ──────────────────────────────────────────────── -->
-  <section class="w-full bg-cream px-5 py-16 pb-14">
+  <section class="w-full bg-cream px-5 py-12 lg:py-20">
     <div class="mx-auto max-w-[1060px]">
-      <p class="text-label-uppercase mb-6 text-center text-primary">What homeowners say</p>
-      <div class="mx-auto mb-8 max-w-[760px] rounded-[4px] border border-border bg-white p-10">
+      <SectionLabel align="center">What Homeowners Say</SectionLabel>
+      <div class="mx-auto mb-8 max-w-[760px] rounded-[4px] border border-border bg-white px-8 py-10 sm:px-10">
+        <div class="mb-4 flex items-center justify-center gap-3">
+          <span class="text-lg text-yellow">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <Image src={reviewLogoGoogle} alt="Google review" width={60} height={20} class="h-5 w-auto opacity-60" loading="lazy" />
+        </div>
         <blockquote class="text-center font-oswald text-[clamp(20px,3vw,28px)] leading-[1.4] text-charcoal italic">
           "I got three quotes from traditional roofers — all $15k+. Hamilton's online price was $11,200 for better materials. The savings from cutting out the salesman are real."
         </blockquote>
@@ -276,8 +330,9 @@ const faqJsonLd = {
       </div>
       <div class="mx-auto grid max-w-[760px] grid-cols-1 gap-6 md:grid-cols-2">
         <div class="rounded-[4px] border border-border bg-white p-6">
-          <div class="mb-2 flex gap-1">
+          <div class="mb-2 flex items-center gap-2">
             <span class="text-sm text-yellow">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <Image src={reviewLogoGoogle} alt="Google" width={48} height={16} class="h-4 w-auto opacity-50" loading="lazy" />
           </div>
           <p class="mb-3 text-sm leading-[1.7] text-charcoal">
             "Typed my address, got an instant price. No waiting for some guy to come measure. So easy."
@@ -285,8 +340,9 @@ const faqJsonLd = {
           <p class="text-[13px] font-semibold text-charcoal">Maria S. <span class="font-normal text-muted">&middot; Oakland</span></p>
         </div>
         <div class="rounded-[4px] border border-border bg-white p-6">
-          <div class="mb-2 flex gap-1">
+          <div class="mb-2 flex items-center gap-2">
             <span class="text-sm text-yellow">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <Image src={reviewLogoYelp} alt="Yelp" width={48} height={16} class="h-4 w-auto opacity-50" loading="lazy" />
           </div>
           <p class="mb-3 text-sm leading-[1.7] text-charcoal">
             "The transparency blew me away. Every line item right there. The crew showed up on time and did an incredible job."
@@ -298,17 +354,18 @@ const faqJsonLd = {
   </section>
 
   <!-- ── MID-PAGE CTA ──────────────────────────────────────────────── -->
-  <section class="w-full bg-primary px-5 py-12">
+  <section class="w-full bg-heading px-5 py-12 lg:py-16">
     <div class="mx-auto max-w-[600px] text-center">
-      <p class="mb-4 font-oswald text-[clamp(22px,3.5vw,32px)] leading-[1.15] text-white uppercase">
+      <SectionLabel align="center" color="yellow">Your Next Step</SectionLabel>
+      <p class="mb-4 font-oswald text-[clamp(24px,3.5vw,36px)] leading-[1.15] text-white uppercase">
         Ready to see your price?
       </p>
-      <p class="mb-6 text-base text-white-75">
-        Just your address — instant results.
+      <p class="mb-8 text-base text-white/70">
+        Enter your address. Instant satellite scan. Transparent pricing.
       </p>
       <a
         href="/buy/scan"
-        class="inline-block rounded-[4px] bg-yellow px-10 py-4 font-oswald text-base font-bold tracking-[0.05em] text-footer uppercase no-underline transition-all hover:opacity-90"
+        class="inline-block rounded-full bg-yellow px-10 py-4 font-oswald text-base font-bold tracking-[0.04em] text-footer uppercase no-underline transition-opacity duration-150 hover:opacity-90"
       >
         Scan Your Roof Now
       </a>
@@ -316,10 +373,11 @@ const faqJsonLd = {
   </section>
 
   <!-- ── FAQ ───────────────────────────────────────────────────────── -->
-  <section class="w-full bg-white px-5 pt-14 pb-[72px]">
+  <section class="w-full bg-white px-5 py-12 lg:py-20">
     <div class="mx-auto max-w-[720px]">
-      <h2 class="mb-12 text-center text-[clamp(28px,4vw,48px)] leading-[1.1] text-footer">
-        Common questions
+      <SectionLabel align="center">FAQ</SectionLabel>
+      <h2 class="mb-12 text-center font-oswald text-[clamp(28px,4vw,48px)] leading-[1.1] text-footer uppercase">
+        Common Questions
       </h2>
       <div class="flex flex-col gap-3">
         <details class="faq-item rounded-[4px] border border-border bg-cream">
@@ -363,9 +421,10 @@ const faqJsonLd = {
   </section>
 
   <!-- ── FINAL CTA ─────────────────────────────────────────────────── -->
-  <section class="w-full bg-footer px-5 py-[72px]">
+  <section class="w-full bg-footer px-5 py-12 lg:py-20">
     <div class="mx-auto max-w-[640px] text-center">
-      <h2 class="mb-3 text-[clamp(28px,4vw,44px)] leading-[1.1] text-white">
+      <SectionLabel align="center" color="yellow">Get Started</SectionLabel>
+      <h2 class="mb-3 font-oswald text-[clamp(28px,4vw,44px)] leading-[1.1] text-white uppercase">
         Your new roof is 3 clicks away
       </h2>
       <p class="mb-8 text-[17px] text-white-70">
@@ -393,8 +452,8 @@ const faqJsonLd = {
           Scan My Roof
         </button>
       </form>
-      <div class="mt-7 border-t border-white/10 pt-5">
-        <p class="mb-2 text-sm text-white-60">Prefer to talk to someone?</p>
+      <div class="mt-8 border-t border-white/10 pt-6">
+        <p class="mb-2 text-sm text-white/55">Prefer to talk to someone?</p>
         <a href="tel:+16509773351" class="font-oswald text-[clamp(22px,3vw,28px)] font-bold tracking-[0.02em] text-yellow no-underline transition-opacity duration-150 hover:opacity-80">(650) 977-3351</a>
       </div>
     </div>
@@ -410,12 +469,26 @@ const faqJsonLd = {
     #buy-hero { padding: 120px 24px 80px; }
   }
 
+  /* Film grain texture — matches home page hero */
+  .hero-grain {
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+  }
+
+  /* Hero text readability on photo background */
+  #buy-hero .text-white,
+  #buy-hero .text-white\/75 {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+
   #hero-address-input:focus {
     border-color: rgba(255,255,255,0.4);
     background: rgba(255,255,255,0.12);
   }
   #hero-address-input::placeholder {
-    color: var(--color-white-45);
+    color: rgba(255,255,255,0.45);
   }
   .faq-summary {
     list-style: none;
