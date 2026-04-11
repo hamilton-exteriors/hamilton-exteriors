@@ -4,9 +4,10 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import LogoSlider from '../../components/LogoSlider.astro';
 import SectionLabel from '../../components/SectionLabel.astro';
-import { Image, getImage } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import { default as heroRoofing } from '../../assets/images/hero-roofing.png';
-import { reviewLogoGoogle, reviewLogoYelp } from '../../lib/images';
+import IconGoogle from '../../components/icons/IconGoogle.astro';
+import IconYelp from '../../components/icons/IconYelp.astro';
 
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 
@@ -314,9 +315,9 @@ const faqJsonLd = {
       <div class="mx-auto mb-8 max-w-[760px] rounded-[4px] border border-border bg-white px-8 py-10 sm:px-10">
         <div class="mb-4 flex items-center justify-center gap-3">
           <span class="text-lg text-yellow">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <Image src={reviewLogoGoogle} alt="Google review" width={60} height={20} class="h-5 w-auto opacity-60" loading="lazy" />
+          <IconGoogle size={22} class="opacity-60" />
         </div>
-        <blockquote class="text-center font-hamilton-display text-[clamp(20px,3vw,28px)] leading-[1.4] text-charcoal italic">
+        <blockquote class="text-center font-dm-sans text-[clamp(18px,2.5vw,24px)] leading-[1.6] text-charcoal italic">
           "I got three quotes from traditional roofers — all $15k+. Hamilton's online price was $11,200 for better materials. The savings from cutting out the salesman are real."
         </blockquote>
         <div class="mt-6 flex items-center justify-center gap-3">
@@ -331,7 +332,7 @@ const faqJsonLd = {
         <div class="rounded-[4px] border border-border bg-white p-6">
           <div class="mb-2 flex items-center gap-2">
             <span class="text-sm text-yellow">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <Image src={reviewLogoGoogle} alt="Google" width={48} height={16} class="h-4 w-auto opacity-50" loading="lazy" />
+            <IconGoogle size={18} class="opacity-50" />
           </div>
           <p class="mb-3 text-sm leading-[1.7] text-charcoal">
             "Typed my address, got an instant price. No waiting for some guy to come measure. So easy."
@@ -341,7 +342,7 @@ const faqJsonLd = {
         <div class="rounded-[4px] border border-border bg-white p-6">
           <div class="mb-2 flex items-center gap-2">
             <span class="text-sm text-yellow">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <Image src={reviewLogoYelp} alt="Yelp" width={48} height={16} class="h-4 w-auto opacity-50" loading="lazy" />
+            <IconYelp size={18} class="opacity-50" />
           </div>
           <p class="mb-3 text-sm leading-[1.7] text-charcoal">
             "The transparency blew me away. Every line item right there. The crew showed up on time and did an incredible job."
