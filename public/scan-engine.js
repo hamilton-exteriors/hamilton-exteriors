@@ -562,6 +562,11 @@
   var previewImg = $('#swatch-preview-img');
   var previewName = $('#swatch-preview-name');
 
+  if (previewImg) {
+    previewImg.addEventListener('error', function () {
+      preview.classList.add('hidden');
+    });
+  }
   if (preview) {
     $$('.swatch').forEach(function (sw) {
       sw.addEventListener('mouseenter', function (e) {
