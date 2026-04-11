@@ -14,6 +14,11 @@ export const data: ServicePageData = {
       author: 'Alexander Hamilton Li',
       credentials: 'Architect & General Contractor, CSLB #1082377',
     },
+    {
+      quote: 'Garage conversions are the fastest path to rental income in the Bay Area. The structure already exists, so you skip foundation and framing — the two most expensive phases of new construction. Most garage conversions complete in 10 to 14 weeks from permit approval.',
+      author: 'Alexander Hamilton Li',
+      credentials: 'Architect & General Contractor, CSLB #1082377',
+    },
   ],
   hero: {
     headline: "Bay Area ADU Builder. We Design, Permit, and Build It All",
@@ -90,6 +95,37 @@ export const data: ServicePageData = {
         source: 'California Department of Housing and Community Development, Hamilton Exteriors project data 2024–2026',
       },
     },
+    {
+      type: 'pricing',
+      data: {
+        heading: 'How Much Does an ADU Cost in the Bay Area?',
+        tiers: [
+          {
+            name: 'Garage Conversion',
+            rows: [
+              { product: 'Basic Garage Conversion', pricePerSq: '~$125,000', materialCost: '$45,000' },
+              { product: 'Premium Garage Conversion', pricePerSq: '~$165,000', materialCost: '$60,000' },
+            ],
+          },
+          {
+            name: 'Junior ADU (JADU)',
+            rows: [
+              { product: 'Interior JADU (under 500 sq ft)', pricePerSq: '~$100,000', materialCost: '$35,000' },
+              { product: 'JADU with Kitchen', pricePerSq: '~$135,000', materialCost: '$50,000' },
+            ],
+          },
+          {
+            name: 'Detached ADU',
+            rows: [
+              { product: 'Standard 400-600 sq ft', pricePerSq: '~$200,000', materialCost: '$75,000' },
+              { product: 'Premium 600-800 sq ft', pricePerSq: '~$275,000', materialCost: '$100,000' },
+              { product: 'Luxury 800-1,200 sq ft', pricePerSq: '~$375,000', materialCost: '$140,000' },
+            ],
+          },
+        ],
+        footnote: 'Prices reflect typical Bay Area all-in costs including design, engineering, permitting, site preparation, construction, and finishes. Actual pricing varies based on lot conditions, soil type, utility distance, interior finishes, and local permit fees ($5,000 to $15,000 depending on city). Contact us for an itemized estimate.',
+      },
+    },
     { type: 'projects' },
     { type: 'serviceAreas', data: { heading: 'ADU Construction Across the Bay Area', serviceSlug: 'adu' } },
     { type: 'faq' },
@@ -123,6 +159,31 @@ export const data: ServicePageData = {
       question: 'Can I rent out my ADU?',
       answer:
         'Yes. California law explicitly allows homeowners to rent ADUs as long-term rentals (30 days or more). Some Bay Area cities — including San Francisco, Oakland, and Berkeley — restrict or prohibit short-term rentals under 30 days in ADUs, so check your local ordinance before planning an Airbnb-style rental. An ADU in the Bay Area typically rents for $1,800 to $3,500 per month depending on size, location, and finishes. A well-built 600 sq ft one-bedroom ADU in Alameda County can generate $2,200 to $2,800 per month in rental income, often covering the construction loan payment within 3 to 5 years. Many homeowners also use ADUs for aging parents, adult children, or home offices rather than rental income — the flexibility adds long-term value regardless of how you use the space.',
+    },
+    {
+      question: 'What is the ROI on building an ADU in the Bay Area?',
+      answer:
+        'ADUs are one of the highest-ROI home improvements in the Bay Area. Freddie Mac research shows that accessory dwelling units add 20 to 35% to overall property value, translating to $150,000 to $300,000 in added equity depending on size and location. Beyond property value, rental income from a detached ADU typically ranges from $2,000 to $3,500 per month in Bay Area markets. At those rates, a detached ADU costing $200,000 to $275,000 pays for itself in 5 to 8 years through rental income alone. Garage conversions offer an even faster payback period of 3 to 5 years because construction costs are 30 to 40% lower than new builds. Many homeowners also benefit from reduced property tax impact, since California Proposition 13 limits reassessment on the existing home — only the ADU improvement is assessed at current value.',
+    },
+    {
+      question: 'What are the ADU setback requirements in California?',
+      answer:
+        'California AB 68 significantly reduced setback requirements for ADUs statewide. Rear and side yard setbacks are now limited to 4 feet for detached ADUs, regardless of what local zoning previously required. Garage conversions have no additional setback requirements since the structure already exists in its current location. Lot coverage limits have been relaxed since 2020 — cities cannot deny an ADU of up to 800 sq ft based on lot coverage, floor area ratio, or open space requirements. There is no minimum lot size for ADUs under 800 sq ft. Front setbacks still follow local zoning rules, and ADUs must maintain fire department access. Hamilton Exteriors evaluates all setback and zoning requirements during your initial lot assessment.',
+    },
+    {
+      question: 'Can I build an ADU and a JADU on the same property?',
+      answer:
+        'Yes. Under California SB 9 and existing ADU law, single-family lot owners can build one ADU plus one JADU (junior ADU up to 500 sq ft) on the same property. The JADU must be built within the existing home footprint — either a converted bedroom, attached garage, or other interior space. No additional parking is required for either unit. The JADU must include a separate entrance and an efficiency kitchen, though it can share a bathroom with the main house. This combination allows homeowners to add two income-producing units to a single-family lot, maximizing rental income potential.',
+    },
+    {
+      question: 'How does ADU financing work?',
+      answer:
+        'Several financing options are available for ADU construction in the Bay Area. Home equity lines of credit (HELOCs) are the most common, allowing homeowners to borrow against existing equity at competitive rates. Cash-out refinancing replaces your current mortgage with a larger one that includes ADU construction costs. Construction-to-permanent loans fund the build and then convert to a standard mortgage upon completion. RenoFi loans are specifically designed for renovation and ADU projects, offering higher borrowing limits based on the after-renovation value of your home. Projected rental income from the completed ADU strengthens loan applications — lenders increasingly factor this into qualification. Hamilton Exteriors works with lending partners who specialize in ADU financing and can connect you during your consultation.',
+    },
+    {
+      question: 'What cities in the Bay Area are most ADU-friendly?',
+      answer:
+        'San Jose leads the Bay Area with a streamlined online permitting portal and pre-approved ADU plans that reduce design costs and approval times. Oakland offers reduced permit fees for ADUs designated as affordable housing units and has processed thousands of ADU applications since 2020. Fremont, San Mateo, and Berkeley have all adopted expedited review processes for ADUs under 750 sq ft. California state law (AB 68, SB 13) overrides restrictive local zoning since January 2020, meaning no Bay Area city can impose minimum lot sizes, owner-occupancy requirements, or parking mandates that effectively block ADU construction. Hamilton Exteriors has permitted ADUs across 30 Bay Area cities and knows the specific requirements and review timelines for each jurisdiction.',
     },
   ],
 };
