@@ -138,7 +138,7 @@ const faqJsonLd = {
 
       <!-- Trust badges -->
       <div class="mx-auto mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-        {['GAF Master Elite Certified', '50-Year Warranty', '0% Sales Commission'].map((badge) => (
+        {['GAF Master Elite Certified', '50-Year Warranty', 'CSLB #1082377'].map((badge) => (
           <div class="flex items-center gap-2">
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none" class="shrink-0">
               <circle cx="10" cy="10" r="10" fill="rgba(255,255,255,0.15)"/>
@@ -294,34 +294,15 @@ const faqJsonLd = {
           </div>
         </div>
       </div>
-      <!-- Stats -->
-      <div class="stats-row mt-10 rounded-[4px] border border-border bg-cream px-6 py-9">
-        <div class="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
-          <div>
-            <p class="font-hamilton-display text-[clamp(36px,5vw,48px)] leading-none text-primary">0%</p>
-            <p class="mt-1.5 text-[13px] text-muted">Sales Commission</p>
-          </div>
-          <div>
-            <p class="font-hamilton-display text-[clamp(36px,5vw,48px)] leading-none text-primary">$4,200</p>
-            <p class="mt-1.5 text-[13px] text-muted">Avg. Customer Savings</p>
-          </div>
-          <div>
-            <p class="font-hamilton-display text-[clamp(36px,5vw,48px)] leading-none text-primary">500+</p>
-            <p class="mt-1.5 text-[13px] text-muted">Roofs Completed</p>
-          </div>
-          <div>
-            <p class="font-hamilton-display text-[clamp(36px,5vw,48px)] leading-none text-primary">4.8</p>
-            <p class="mt-1.5 text-[13px] text-muted">Google Rating</p>
-          </div>
-        </div>
-        <!-- Trust badges -->
-        <div class="mt-6 flex flex-wrap items-center justify-center gap-4 border-t border-border pt-4">
-          <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-primary uppercase">GAF Master Elite Contractor</span>
-          <span class="text-xs text-border">&bull;</span>
-          <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">CSLB #1082377</span>
-          <span class="text-xs text-border">&bull;</span>
-          <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">Licensed &amp; Insured</span>
-        </div>
+      <!-- Trust strip -->
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4 rounded-[4px] border border-border bg-cream px-6 py-5">
+        <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-primary uppercase">GAF Master Elite &middot; Top 2% Nationwide</span>
+        <span class="text-xs text-border">&bull;</span>
+        <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">CSLB #1082377</span>
+        <span class="text-xs text-border">&bull;</span>
+        <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">4.8 Google Rating</span>
+        <span class="text-xs text-border">&bull;</span>
+        <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">Licensed &amp; Insured</span>
       </div>
     </div>
   </section>
@@ -622,7 +603,6 @@ const faqJsonLd = {
   @media (max-width: 640px) {
     .bar-chart-track { height: 40px; }
     .bar-segment { font-size: 10px; }
-    .stats-row .grid { gap: 12px; }
   }
 </style>
 
@@ -756,5 +736,17 @@ const faqJsonLd = {
   document.querySelectorAll('.cta-address-form').forEach(function(form) {
     setupAutofill(form.querySelector('.cta-address-input'), form.querySelector('.cta-dropdown'));
   });
+
+  // Sync address between hero and CTA forms
+  var heroInput = document.getElementById('hero-address-input');
+  var ctaInputs = document.querySelectorAll('.cta-address-input');
+  if (heroInput && ctaInputs.length) {
+    heroInput.addEventListener('change', function() {
+      ctaInputs.forEach(function(i) { i.value = heroInput.value; });
+    });
+    ctaInputs.forEach(function(ci) {
+      ci.addEventListener('change', function() { heroInput.value = ci.value; });
+    });
+  }
 })();
 </script>
