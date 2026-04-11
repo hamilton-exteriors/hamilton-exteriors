@@ -60,9 +60,9 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
           'Yes, we offer flexible financing options for {city} homeowners, including low down payment plans with monthly payments that fit your budget. Get pre-qualified during your roof inspection.',
       },
       {
-        questionPattern: 'Is Hamilton Exteriors licensed to work in {city}?',
+        questionPattern: 'What roof maintenance do {city} homeowners need?',
         answerPattern:
-          'Absolutely. Hamilton Exteriors is fully licensed, bonded, and insured to perform roofing work throughout {county} County, including {city} and surrounding neighborhoods. We carry a California CSLB license and comprehensive liability coverage.',
+          'In {city}, we recommend annual inspections — especially after the rainy season. {county} County homes face {climateFactor}, which accelerates wear on flashing, vents, and shingle edges. Homes in {neighborhood} should also check for debris buildup from surrounding trees. Catching small issues early prevents costly replacements.',
       },
     ],
     stylesHeading: 'What Roofing Styles Are Available?',
@@ -129,9 +129,9 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
           'Yes. Every siding installation in {city} includes comprehensive waterproofing — moisture barriers, flashing, and caulking. This is especially important for homes in {county} County where seasonal rain can cause hidden damage.',
       },
       {
-        questionPattern: 'Does Hamilton Exteriors offer siding financing in {city}?',
+        questionPattern: 'How does {city}\'s climate affect siding lifespan?',
         answerPattern:
-          'Yes, we offer financing for siding projects in {city} with approved credit. Get pre-qualified during your inspection — most homeowners pay between $150-$300/month.',
+          '{city} homes face {climateFactor}. These conditions cause {commonIssue}. The right siding material matched to your microclimate — not just generic Bay Area specs — is the difference between a 15-year and 30-year lifespan. We evaluate your specific exposure during your free inspection.',
       },
     ],
     stylesHeading: 'What Siding Options Are Available?',
@@ -198,9 +198,9 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
           'Absolutely. {city} homeowners with dual-pane Low-E windows typically save 15-25% on energy bills. With median home prices at {medianHomePrice}, new windows also boost resale value. Many {county} County utility rebates are available.',
       },
       {
-        questionPattern: 'Does Hamilton Exteriors install bay windows in {city}?',
+        questionPattern: 'What energy rebates are available for windows in {city}?',
         answerPattern:
-          'Yes, we install bay, bow, picture, garden, and specialty windows throughout {city} and {county} County. Bay windows are especially popular in neighborhoods like {neighborhood} where they maximize natural light and views.',
+          '{city} homeowners in Title 24 Climate Zone {climateZone} can access federal tax credits (up to $600/year for ENERGY STAR windows), plus {county} County utility rebates for dual-pane Low-E upgrades. Homes in {neighborhood} replacing single-pane originals typically see the fastest payback. We help identify all applicable rebates during your quote.',
       },
     ],
     stylesHeading: 'What Window Styles Are Available?',
@@ -279,9 +279,9 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
           'Yes. We handle all ADU permitting in {city} and throughout {county} County — architectural plans, structural engineering, Title 24 energy compliance, and city submissions. Our 60-day permit guarantee means we manage the entire process.',
       },
       {
-        questionPattern: 'What types of ADUs can I build in {city}?',
+        questionPattern: 'What ADU styles work best for {city} lots?',
         answerPattern:
-          'In {city}, you can build detached ADUs (up to 1,200 sq ft), garage conversions, attached additions, and junior ADUs (up to 500 sq ft). Many homeowners in {neighborhood} are choosing detached ADUs for rental income or multi-generational living.',
+          '{city}\'s housing stock features {homeStyles}. We design ADUs that complement the existing architecture while maximizing your lot. In {neighborhood}, detached ADUs are popular for rental income, while garage conversions work well on smaller lots. Local setback and height limits in {county} County shape the design — we navigate these daily.',
       },
     ],
     stylesHeading: 'What ADU Services Are Available?',
@@ -348,9 +348,9 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
           'Absolutely. Modern farmhouse is one of our most requested styles in {city}. We design and build everything from contemporary modern to craftsman and Mediterranean. Many homeowners in {neighborhood} are choosing modern designs that complement the neighborhood character.',
       },
       {
-        questionPattern: 'Do you build on hillside lots in {city}?',
+        questionPattern: 'What building challenges are specific to {city}?',
         answerPattern:
-          'Yes. Many lots in {city} and {county} County are on slopes. We have extensive experience with hillside construction, including retaining walls, custom foundations, and grading. Our engineers evaluate every lot for feasibility.',
+          '{city}\'s housing stock spans {eraBreakdown}. Common challenges include {commonIssue}. {county} County permitting adds complexity — timelines and requirements vary by city. Our in-house architects and engineers handle site-specific issues daily, from hillside grading to historic neighborhood design review.',
       },
     ],
     stylesHeading: 'What Custom Home Services Are Available?',
@@ -417,9 +417,9 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
           'Yes. We handle all permitting for home additions in {city} and {county} County — architectural plans, structural engineering, and city submissions. We work with {city} planning departments regularly.',
       },
       {
-        questionPattern: 'Can I live in my home during the addition in {city}?',
+        questionPattern: 'What structural issues affect home additions in {city}?',
         answerPattern:
-          'In most cases, yes. We phase construction to minimize disruption. For second story additions, there may be a brief period where certain rooms are inaccessible. We create a detailed plan before starting so you know exactly what to expect.',
+          '{city} homes — especially {homeStyles} — often have {commonIssue}. These issues surface during additions and must be addressed before new construction can tie in. Our structural engineers evaluate existing foundations, framing, and load paths as part of every {city} addition project. Catching problems during design prevents costly surprises during construction.',
       },
     ],
     stylesHeading: 'What Types of Home Additions Are Available?',

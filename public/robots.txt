@@ -19,7 +19,9 @@ User-agent: ChatGPT-User
 Allow: /
 Disallow: /api/
 
-# AI Search Features — Allow (enables AI Overviews / Apple Intelligence)
+# Google-Extended — controls Gemini model training (NOT AI Overviews).
+# AI Overviews use Googlebot, which is always allowed.
+# Allow here opts into Gemini training for broader AI visibility.
 User-agent: Google-Extended
 Allow: /
 Disallow: /api/

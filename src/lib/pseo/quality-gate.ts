@@ -51,7 +51,7 @@ interface PageContent {
 // ── Constants ───────────────────────────────────────────────────────────
 
 const MIN_WORD_COUNT = 300;
-const MIN_UNIQUENESS_PERCENT = 40;
+const MIN_UNIQUENESS_PERCENT = 60;
 const PLACEHOLDER_PATTERNS = [
   /\{city\}/gi,
   /\{county\}/gi,
@@ -273,9 +273,9 @@ export function validatePage(
       `Uniqueness ${uniquenessPercent}% is below minimum ${MIN_UNIQUENESS_PERCENT}%`,
     );
     score -= 20;
-  } else if (uniquenessPercent < 60) {
+  } else if (uniquenessPercent < 70) {
     warnings.push(
-      `Uniqueness ${uniquenessPercent}% is adequate but could be improved (aim for 60%+)`,
+      `Uniqueness ${uniquenessPercent}% is adequate but could be improved (aim for 70%+)`,
     );
     score -= 5;
   }

@@ -100,6 +100,9 @@ const countyServicePages = counties.flatMap(c =>
   services.map(s => `https://hamilton-exteriors.com/service-areas/${c.slug}/${s}`)
 );
 
+// County hub pages (6 counties)
+const countyPages = counties.map(c => `https://hamilton-exteriors.com/service-areas/${c.slug}`);
+
 // Sub-service pages — fetched dynamically from Ghost CMS
 /** @type {string[]} */
 const subServicePages = [];
@@ -213,7 +216,8 @@ export default defineConfig({
       'https://hamilton-exteriors.com/image-sitemap.xml',
     ],
     customPages: [
-      // Top-level service pages not auto-discovered by SSR
+      // Top-level pages not auto-discovered by SSR
+      'https://hamilton-exteriors.com/buy',
       'https://hamilton-exteriors.com/roofing',
       'https://hamilton-exteriors.com/siding',
       'https://hamilton-exteriors.com/windows',
@@ -225,6 +229,8 @@ export default defineConfig({
       // Blog posts from Ghost CMS
       ...blogSitemapEntries.map(e => e.url),
       // Blog tag pages — noindexed (thin content), excluded from sitemap
+      // County hub pages (6 counties)
+      ...countyPages,
       // City pages (44 cities)
       ...cityPages,
       // City+service pages (44 cities x 6 services = 264 pages)
@@ -235,8 +241,8 @@ export default defineConfig({
     filter: (page) => {
       // Exclude noindex pages from sitemap (exact pathname match against end of URL)
       const exclude = ['/success', '/quote-calculator', '/404', '/privacy-policy', '/privacy-notice-ca', '/terms', '/eeo-policy', '/opt-out', '/additions-2', '/additions-3', '/blog/coming-soon', '/blog/untitled', '/buy/scan'];
-      // Exact-match pages (not substring): /about and /financing are redirects; /buy is noindex
-      const exactExclude = ['/about', '/buy', '/financing'];
+      // Exact-match pages (not substring): /about and /financing are redirects
+      const exactExclude = ['/about', '/financing'];
       const pagePath = new URL(page).pathname;
       return !exclude.some(path => page.includes(path)) && !exactExclude.includes(pagePath);
     },
@@ -256,6 +262,7 @@ export default defineConfig({
         // (identical lastmod across all URLs trains Google to ignore the signal)
         const CORE_PAGE_DATES = {
           '/': '2026-04-05',
+          '/buy': '2026-04-11',
           '/roofing': '2026-04-05',
           '/siding': '2026-03-30',
           '/windows': '2026-03-30',

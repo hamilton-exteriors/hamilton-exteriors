@@ -212,6 +212,156 @@ const SERVICE_PRICE_KEY: Record<string, 'roof' | 'siding' | 'windows' | 'adu'> =
   additions: 'adu',
 };
 
+// ── Climate-aware styles ──────────────────────────────────────────────────
+
+/**
+ * Climate-specific suffixes for roofing style descriptions.
+ * Keyed by style title → climate zone or climate keyword.
+ */
+const ROOFING_CLIMATE_NOTES: Record<string, Record<string, string>> = {
+  'Asphalt Shingles': {
+    fire: 'In fire-prone areas, Class A–rated architectural shingles provide the fire resistance required by Chapter 7A while delivering strong curb appeal.',
+    fog: 'In fog-heavy microclimates, algae-resistant shingles with copper granules prevent the dark streaking common on north-facing slopes.',
+    heat: 'In inland areas with 90°F+ summers, cool-roof-rated shingles (like Owens Corning Duration COOL) reflect solar heat and meet Title 24 cool-roof requirements.',
+    default: 'Architectural shingles rated for your local Title 24 climate zone balance durability, curb appeal, and code compliance.',
+  },
+  'Metal Roofs': {
+    fire: 'Standing seam metal is inherently Class A fire-rated and ember-resistant — ideal for homes in Very High Fire Hazard Severity Zones.',
+    fog: 'Factory-applied Kynar finishes resist the salt-air corrosion and moisture common in coastal and fog-belt areas.',
+    heat: 'Metal\'s high solar reflectance index (SRI 25+) can reduce attic temperatures by 20-30°F in hot inland valleys.',
+    default: 'Metal roofing\'s 50-year lifespan and energy efficiency make it a strong long-term investment for Bay Area homeowners.',
+  },
+  'Tile Shingles': {
+    fire: 'Concrete and clay tile are non-combustible and naturally Class A fire-rated — the highest fire protection available for residential roofing.',
+    fog: 'Tile\'s dense composition resists the moisture absorption that causes rot in wood products, but proper underlayment is critical in high-humidity zones.',
+    heat: 'The thermal mass of tile creates an air gap above the deck that reduces heat transfer — a significant advantage in climate zones with extreme summer temperatures.',
+    default: 'Tile roofing offers 50+ year durability with minimal maintenance, and its weight requires proper structural evaluation before installation.',
+  },
+  'Energy Roofs': {
+    fire: 'GAF Energy solar shingles are Class A fire-rated and ICC-certified, meeting WUI requirements while generating clean energy.',
+    fog: 'Solar output varies by microclimate — south-facing slopes above the fog line produce 15-20% more energy than coastal sites in the same city.',
+    heat: 'High UV exposure in inland valleys means faster solar ROI — most homeowners recoup installation costs 2-3 years sooner than coastal counterparts.',
+    default: 'The GAF Energy system integrates solar directly into roofing materials, combining energy production with traditional roof protection.',
+  },
+};
+
+const SIDING_CLIMATE_NOTES: Record<string, Record<string, string>> = {
+  'Vinyl Siding': {
+    fire: 'In fire zones, vinyl alone doesn\'t meet Chapter 7A — pair it with fire-resistant sheathing or consider fiber cement for WUI-compliant installations.',
+    fog: 'Marine-grade vinyl formulations resist the UV degradation and moisture issues common in fog-belt and coastal environments.',
+    heat: 'Choose lighter colors in hot inland areas — dark vinyl can soften and warp when surface temperatures exceed 160°F on west-facing walls.',
+    default: 'Vinyl siding offers low maintenance and decades of weather resistance at a lower price point than fiber cement or wood.',
+  },
+  'Fiber Cement Siding': {
+    fire: 'James Hardie fiber cement is non-combustible and meets ASTM E136 — the preferred siding material for homes in Very High Fire Hazard Severity Zones.',
+    fog: 'HardiePlank\'s ColorPlus finish resists the moisture and salt-air damage that deteriorates wood siding within 5-10 years in coastal microclimates.',
+    heat: 'Fiber cement\'s dimensional stability means it won\'t expand, contract, or warp in the 40-degree temperature swings common in inland valleys.',
+    default: 'James Hardie fiber cement siding carries a 30-year warranty and resists fire, pests, and moisture — the most durable option for Bay Area homes.',
+  },
+  'Stucco Siding': {
+    fire: 'Three-coat stucco over metal lath provides a 1-hour fire rating — one of the most fire-resistant wall assemblies available for residential construction.',
+    fog: 'Stucco in coastal zones requires elastomeric coating to prevent the hairline cracking that lets moisture penetrate behind the finish coat.',
+    heat: 'Stucco\'s thermal mass moderates interior temperatures in hot climates, but expansion joints are critical where summer temperatures regularly exceed 95°F.',
+    default: 'Stucco provides a seamless, durable exterior with excellent fire and weather resistance — a natural fit for California architecture.',
+  },
+  'Waterproofing': {
+    fire: 'Fire-rated waterproofing membranes protect the building envelope even when exterior cladding is compromised during wildfire ember exposure.',
+    fog: 'In fog-belt and coastal areas, waterproofing isn\'t optional — persistent moisture drives mold growth and structural rot behind siding within years, not decades.',
+    heat: 'UV-stable waterproofing membranes prevent the thermal cycling damage that breaks down standard moisture barriers in high-heat climate zones.',
+    default: 'Comprehensive waterproofing — moisture barriers, flashing, and caulking — protects your home\'s structure behind whatever siding material you choose.',
+  },
+};
+
+const WINDOW_CLIMATE_NOTES: Record<string, Record<string, string>> = {
+  'Single Hung': {
+    fog: 'In fog-belt areas, choose vinyl or fiberglass frames — wood windows require constant maintenance in high-humidity microclimates.',
+    heat: 'Low-E coatings with argon gas fill block solar heat gain while maintaining views — essential for comfort in inland climate zones.',
+    default: 'A fixed upper sash and movable lower sash provide classic style and reliable ventilation with lower cost than double-hung options.',
+  },
+  'Single Slider': {
+    fog: 'Weep holes and drainage channels are critical in fog-heavy areas to prevent condensation pooling along the sill track.',
+    heat: 'Horizontal sliders maximize ventilation for cross-breezes that naturally cool homes in inland valleys where AC costs add up.',
+    default: 'A horizontal slider is space-efficient and easy to operate, with one fixed pane and one sliding pane for controlled airflow.',
+  },
+  'Sliding Glass Doors': {
+    fog: 'Marine-grade hardware and sealed tracks prevent the corrosion and sticking common in coastal and fog-belt installations.',
+    heat: 'Dual-pane Low-E glass with Solar Heat Gain Coefficient under 0.25 keeps indoor temperatures comfortable without blocking natural light.',
+    default: 'Large glass panels glide smoothly on tracks, offering easy indoor-outdoor access, natural light, and a sleek profile.',
+  },
+  'Picture Windows': {
+    fog: 'Fixed panes are inherently more weather-tight than operable windows — ideal for exposed coastal walls where wind-driven rain is an issue.',
+    heat: 'Spectrally selective Low-E coatings block infrared heat while transmitting visible light — views without the heat gain.',
+    default: 'A large fixed-pane window provides expansive views and abundant natural light while improving energy efficiency.',
+  },
+  'Double Hung': {
+    fog: 'Both sashes tilt in for cleaning — critical on upper floors where exterior access is limited by the steep lots common in hilly Bay Area cities.',
+    heat: 'Open the top sash to vent hot air and the bottom sash to draw in cooler air — natural convection cooling that reduces AC load.',
+    default: 'Two movable sashes provide versatile ventilation and easy tilt-in cleaning, fitting a wide range of architectural styles.',
+  },
+  'Casement Windows': {
+    fog: 'Compression seals on all four sides make casement windows the most weather-tight operable option — important where wind-driven rain is common.',
+    heat: 'Crank-open casements catch cross-breezes from any direction, providing the best natural ventilation of any window type for passive cooling.',
+    default: 'A single sash opens outward on hinges via a crank, providing excellent ventilation, unobstructed views, and a tight seal.',
+  },
+};
+
+/**
+ * Determine the primary climate keyword for a city based on its seed data.
+ * Used to select the right climate-specific style description variant.
+ */
+function getClimateKeyword(seed: CitySeed): 'fire' | 'fog' | 'heat' | 'default' {
+  const cf = (seed.climateFactor + ' ' + seed.roofingNote).toLowerCase();
+  // Fire zones take priority (life safety)
+  if (cf.includes('vhfhsz') || cf.includes('fire zone') || cf.includes('fire-rated') || cf.includes('wildfire') || cf.includes('wui')) {
+    return 'fire';
+  }
+  // Fog / coastal / marine next
+  if (cf.includes('fog') || cf.includes('marine') || cf.includes('salt air') || cf.includes('coastal')) {
+    return 'fog';
+  }
+  // Hot inland
+  if (cf.includes('95') || cf.includes('100') || cf.includes('105') || cf.includes('hot') || cf.includes('inland')) {
+    return 'heat';
+  }
+  return 'default';
+}
+
+/**
+ * Get the climate notes lookup for a given service.
+ */
+function getClimateNotesForService(serviceSlug: string): Record<string, Record<string, string>> | null {
+  switch (serviceSlug) {
+    case 'roofing': return ROOFING_CLIMATE_NOTES;
+    case 'siding': return SIDING_CLIMATE_NOTES;
+    case 'windows': return WINDOW_CLIMATE_NOTES;
+    default: return null;
+  }
+}
+
+/**
+ * Enhance a style item description with climate-specific context for a city.
+ * For services without climate notes (ADU, custom-homes, additions), returns original description.
+ */
+function localizeStyleDescription(
+  seed: CitySeed,
+  serviceSlug: string,
+  title: string,
+  originalDescription: string,
+): string {
+  const notesMap = getClimateNotesForService(serviceSlug);
+  if (!notesMap) return originalDescription;
+
+  const styleNotes = notesMap[title];
+  if (!styleNotes) return originalDescription;
+
+  const keyword = getClimateKeyword(seed);
+  const note = styleNotes[keyword] || styleNotes['default'] || '';
+  if (!note) return originalDescription;
+
+  // Append the climate-specific note to the original description
+  return `${originalDescription} ${note}`;
+}
+
 // ── City+Service content helpers ──────────────────────────────────────────
 
 /**
@@ -655,14 +805,14 @@ export function generateCityServicePage(
     };
   });
 
-  // Styles section — store imageKey as string; ServicePage.astro resolves at render time
+  // Styles section — climate-localized descriptions per city
   const stylesSection: SectionBlock = {
     type: 'styles',
     data: {
       heading: stylesHeading,
       items: stylesItems.map((item) => ({
         title: item.title,
-        description: item.description,
+        description: localizeStyleDescription(seed, serviceSlug, item.title, item.description),
         ...(item.imageKey ? { image: item.imageKey } : {}),
       })),
       cardVariant: cardVariantForService(serviceSlug),
@@ -864,13 +1014,14 @@ export function generateCountyServicePage(
     ...countyFaqs,
   ];
 
+  // Styles section — climate-localized using primary city's data for the county
   const stylesSection: SectionBlock = {
     type: 'styles',
     data: {
       heading: stylesHeading,
       items: stylesItems.map(item => ({
         title: item.title,
-        description: item.description,
+        description: localizeStyleDescription(primarySeed, serviceSlug, item.title, item.description),
         ...(item.imageKey ? { image: item.imageKey } : {}),
       })),
       cardVariant: cardVariantForService(serviceSlug),
