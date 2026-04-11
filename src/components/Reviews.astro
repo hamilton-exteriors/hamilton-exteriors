@@ -7,7 +7,7 @@ import StarRating from './StarRating.astro';
 import SectionLabel from './SectionLabel.astro';
 import CTAButton from './CTAButton.astro';
 import { getGoogleReviews, getDisplayReviews, detectServiceTags, GOOGLE_REVIEW_LINK } from '../lib/google-reviews';
-import { getCuratedReviews } from '../data/curated-reviews';
+import { CURATED_REVIEWS } from '../data/curated-reviews';
 
 interface Props {
   /** Service context for review selection (e.g. 'roofing', 'siding'). Default: 'general' */
@@ -32,9 +32,9 @@ const sortedGoogle = service !== 'general'
     ]
   : googleWithPhotos;
 
-// Fill remaining slots with curated reviews (always have quality content)
-const curatedSlots = 4 - Math.min(sortedGoogle.length, 4);
-const curated = getCuratedReviews(service, curatedSlots).map(r => ({
+// Build a mixed-platform review set: 1 Google, 1 Yelp, 1 Angi, 1 Nextdoor
+const allCurated = CURATED_REVIEWS.filter(r => r.tags.includes(service));
+const toCuratedCard = (r: typeof CURATED_REVIEWS[number]) => ({
   author_name: r.author_name,
   rating: r.rating,
   text: r.text,
@@ -43,9 +43,19 @@ const curated = getCuratedReviews(service, curatedSlots).map(r => ({
   profile_photo_url: '',
   author_url: '',
   platform: r.platform,
-}));
+});
 
-const reviews = [...sortedGoogle.slice(0, 4), ...curated].slice(0, 4);
+const pickCurated = (platform: string) => {
+  const match = allCurated.find(r => r.platform === platform);
+  return match ? toCuratedCard(match) : null;
+};
+
+const google = sortedGoogle[0] ?? null;
+const yelp = pickCurated('yelp');
+const angi = pickCurated('angi');
+const nextdoor = pickCurated('nextdoor');
+
+const reviews = [google, yelp, angi, nextdoor].filter(Boolean);
 
 const YELP_LINK = 'https://www.yelp.com/biz/hamilton-exteriors-castro-valley';
 const ANGI_LINK = 'https://www.angi.com/companylist/us/ca/castro-valley/hamilton-exteriors-reviews-10769498.htm';
