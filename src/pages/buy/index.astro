@@ -166,15 +166,36 @@ const faqJsonLd = {
         </button>
         <button
           type="submit"
-          class="absolute top-1/2 right-2 -translate-y-1/2 rounded-[4px] bg-yellow px-6 py-3 font-hamilton-display text-sm font-bold tracking-[0.05em] text-footer uppercase transition-all hover:opacity-90"
+          class="absolute top-1/2 right-2 -translate-y-1/2 rounded-[4px] bg-yellow px-6 py-3 font-hamilton-display text-sm font-bold tracking-[0.05em] text-footer uppercase transition-opacity duration-150 hover:opacity-90"
         >
           Scan My Roof
         </button>
-        <div id="hero-dropdown" class="addr-dropdown absolute inset-x-0 top-full z-50 mt-1 hidden overflow-hidden rounded-[4px] shadow-lg"></div>
+        <div id="hero-dropdown" role="listbox" class="addr-dropdown absolute inset-x-0 top-full z-50 mt-1 hidden overflow-hidden rounded-[4px] shadow-lg"></div>
       </form>
-      <p class="mt-4 text-[13px] text-white/55">
-        Serving all of California &middot; Bay Area, Sacramento, Stockton & beyond
+      <p class="mt-3 text-[13px] text-white/55">
+        Serving all of California &middot; Bay Area, Sacramento, Stockton &amp; beyond
       </p>
+      <p class="mt-2 text-[13px] text-white/55">
+        or call <a href="tel:+16509773351" class="font-semibold text-white/75 no-underline transition-opacity duration-150 hover:opacity-80">(650) 977-3351</a>
+      </p>
+
+      <!-- How it works -->
+      <div class="mx-auto mt-10 flex max-w-[480px] items-center justify-center gap-3 sm:gap-5">
+        <div class="flex flex-col items-center gap-1.5">
+          <span class="flex size-9 items-center justify-center rounded-full bg-white/10 text-sm font-semibold text-white">1</span>
+          <span class="text-[11px] text-white/55">Enter address</span>
+        </div>
+        <div class="h-px flex-1 bg-white/15" aria-hidden="true"></div>
+        <div class="flex flex-col items-center gap-1.5">
+          <span class="flex size-9 items-center justify-center rounded-full bg-white/10 text-sm font-semibold text-white">2</span>
+          <span class="text-[11px] text-white/55">See your roof</span>
+        </div>
+        <div class="h-px flex-1 bg-white/15" aria-hidden="true"></div>
+        <div class="flex flex-col items-center gap-1.5">
+          <span class="flex size-9 items-center justify-center rounded-full bg-white/10 text-sm font-semibold text-white">3</span>
+          <span class="text-[11px] text-white/55">Get your price</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -224,10 +245,10 @@ const faqJsonLd = {
           </div>
           <div class="bar-chart-track mt-6 h-8 overflow-hidden rounded-[4px] bg-border/40">
             <div class="flex h-full">
-              <div class="flex h-full w-[35%] items-center justify-center bg-error text-[11px] font-bold text-white">COMMISSION 35%</div>
-              <div class="flex h-full w-[20%] items-center justify-center bg-error/40 text-[11px] font-semibold text-charcoal">Overhead</div>
-              <div class="flex h-full w-[25%] items-center justify-center bg-border text-[11px] font-semibold text-charcoal">Materials</div>
-              <div class="flex h-full w-[20%] items-center justify-center bg-muted/30 text-[11px] font-semibold text-charcoal">Labor</div>
+              <div class="bar-segment flex h-full w-[35%] items-center justify-center bg-error font-bold text-white">Commission 35%</div>
+              <div class="bar-segment flex h-full w-[20%] items-center justify-center bg-error/40 font-semibold text-charcoal">Overhead</div>
+              <div class="bar-segment flex h-full w-[25%] items-center justify-center bg-border font-semibold text-charcoal">Materials</div>
+              <div class="bar-segment flex h-full w-[20%] items-center justify-center bg-muted/30 font-semibold text-charcoal">Labor</div>
             </div>
           </div>
         </div>
@@ -266,9 +287,9 @@ const faqJsonLd = {
           </div>
           <div class="bar-chart-track mt-6 h-8 overflow-hidden rounded-[4px] bg-border/40">
             <div class="flex h-full">
-              <div class="flex h-full w-[40%] items-center justify-center bg-primary text-[11px] font-bold text-white">MATERIALS 40%</div>
-              <div class="flex h-full w-[35%] items-center justify-center bg-primary/75 text-[11px] font-semibold text-white">Labor 35%</div>
-              <div class="flex h-full w-[25%] items-center justify-center bg-primary/55 text-[11px] font-semibold text-white">Permits 25%</div>
+              <div class="bar-segment flex h-full w-[40%] items-center justify-center bg-primary font-bold text-white">Materials 40%</div>
+              <div class="bar-segment flex h-full w-[35%] items-center justify-center bg-primary/75 font-semibold text-white">Labor 35%</div>
+              <div class="bar-segment flex h-full w-[25%] items-center justify-center bg-primary/55 font-semibold text-white">Permits 25%</div>
             </div>
           </div>
         </div>
@@ -350,26 +371,7 @@ const faqJsonLd = {
     </div>
   </section>
 
-  <!-- ── MID-PAGE CTA ──────────────────────────────────────────────── -->
-  <section class="cv-auto w-full bg-heading px-5 py-12 lg:py-20">
-    <div class="mx-auto max-w-[600px] text-center">
-      <SectionLabel align="center" color="yellow">Your Next Step</SectionLabel>
-      <p class="mb-4 font-hamilton-display text-[clamp(24px,3.5vw,36px)] leading-[1.15] text-white uppercase">
-        Ready to see your price?
-      </p>
-      <p class="mb-8 text-base text-white/70">
-        Enter your address. Instant satellite scan. Transparent pricing.
-      </p>
-      <a
-        href="/buy/scan"
-        class="inline-block rounded-full bg-yellow px-10 py-4 font-hamilton-display text-base font-bold tracking-[0.04em] text-footer uppercase no-underline transition-opacity duration-150 hover:opacity-90"
-      >
-        Scan Your Roof Now
-      </a>
-    </div>
-  </section>
-
-  <!-- ── FAQ ───────────────────────────────────────────────────────── -->
+  <!-- ── FAQ — before CTA so objections get answered first ─────────── -->
   <section class="cv-auto w-full bg-white px-5 py-12 lg:py-20">
     <div class="mx-auto max-w-[720px]">
       <SectionLabel align="center">FAQ</SectionLabel>
@@ -417,6 +419,25 @@ const faqJsonLd = {
     </div>
   </section>
 
+  <!-- ── MID-PAGE CTA — after FAQ so objections are defused ────────── -->
+  <section class="cv-auto w-full bg-heading px-5 py-12 lg:py-20">
+    <div class="mx-auto max-w-[600px] text-center">
+      <SectionLabel align="center" color="yellow">Your Next Step</SectionLabel>
+      <p class="mb-4 font-hamilton-display text-[clamp(24px,3.5vw,36px)] leading-[1.15] text-white uppercase">
+        Ready to see your price?
+      </p>
+      <p class="mb-8 text-base text-white/70">
+        Enter your address. Instant satellite scan. Transparent pricing.
+      </p>
+      <a
+        href="/buy/scan"
+        class="inline-block rounded-full bg-yellow px-10 py-4 font-hamilton-display text-base font-bold tracking-[0.04em] text-footer uppercase no-underline transition-opacity duration-150 hover:opacity-90"
+      >
+        Scan Your Roof Now
+      </a>
+    </div>
+  </section>
+
   <!-- ── FINAL CTA ─────────────────────────────────────────────────── -->
   <section class="w-full bg-footer px-5 py-12 lg:py-20">
     <div class="mx-auto max-w-[640px] text-center">
@@ -441,10 +462,10 @@ const faqJsonLd = {
         <button type="button" class="addr-clear-btn absolute top-1/2 right-[130px] hidden -translate-y-1/2" aria-label="Clear address">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
         </button>
-        <div class="cta-dropdown addr-dropdown absolute inset-x-0 top-full z-50 mt-1 hidden overflow-hidden rounded-[4px] shadow-lg"></div>
+        <div class="cta-dropdown addr-dropdown absolute inset-x-0 top-full z-50 mt-1 hidden overflow-hidden rounded-[4px] shadow-lg" role="listbox"></div>
         <button
           type="submit"
-          class="absolute top-1/2 right-2 -translate-y-1/2 rounded-[4px] bg-yellow px-6 py-3 font-hamilton-display text-sm font-bold tracking-[0.05em] text-footer uppercase transition-all hover:opacity-90"
+          class="absolute top-1/2 right-2 -translate-y-1/2 rounded-[4px] bg-yellow px-6 py-3 font-hamilton-display text-sm font-bold tracking-[0.05em] text-footer uppercase transition-opacity duration-150 hover:opacity-90"
         >
           Scan My Roof
         </button>
@@ -592,10 +613,15 @@ const faqJsonLd = {
     outline: 2px solid var(--color-yellow);
     outline-offset: 2px;
   }
-  /* Comparison bar chart: taller + larger text on mobile */
+  /* Bar chart segments */
+  .bar-segment {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
   @media (max-width: 640px) {
-    .bar-chart-track { height: 40px !important; }
-    .bar-chart-track .h-full { font-size: 10px !important; }
+    .bar-chart-track { height: 40px; }
+    .bar-segment { font-size: 10px; }
     .stats-row .grid { gap: 12px; }
   }
 </style>
@@ -650,8 +676,12 @@ const faqJsonLd = {
           '&session_token=' + session + '&access_token=' + TOKEN)
           .then(function(r) { return r.json(); })
           .then(function(data) {
-            if (!data.suggestions || !data.suggestions.length) { dropdown.classList.add('hidden'); return; }
-            dropdown.innerHTML = data.suggestions.map(function(s) {
+            if (!data.suggestions || !data.suggestions.length) {
+              dropdown.innerHTML = '<div class="address-suggestion" style="pointer-events:none;opacity:0.5;"><div class="suggestion-name">No addresses found</div><div class="suggestion-detail">Try including city and state</div></div>';
+              dropdown.classList.remove('hidden');
+              return;
+            }
+            dropdown.innerHTML = data.suggestions.map(function(s, i) {
               var name = esc(s.name || s.full_address || '');
               var detail = '';
               if (s.full_address && s.name && s.full_address !== s.name) {
@@ -659,7 +689,7 @@ const faqJsonLd = {
               } else if (s.place_formatted) {
                 detail = esc(s.place_formatted);
               }
-              return '<div class="address-suggestion flex items-start gap-3" role="option">' +
+              return '<div class="address-suggestion flex items-start gap-3" role="option" id="addr-opt-' + i + '">' +
                 PIN_SVG +
                 '<div><div class="suggestion-name">' + name + '</div>' +
                 (detail ? '<div class="suggestion-detail">' + detail + '</div>' : '') +
@@ -668,7 +698,10 @@ const faqJsonLd = {
             dropdown.classList.remove('hidden');
             activeIdx = -1;
           })
-          .catch(function() { dropdown.classList.add('hidden'); });
+          .catch(function() {
+            dropdown.innerHTML = '<div class="address-suggestion" style="pointer-events:none;opacity:0.5;"><div class="suggestion-name">Something went wrong</div><div class="suggestion-detail">Check your connection and try again</div></div>';
+            dropdown.classList.remove('hidden');
+          });
       }, 250);
     });
 
