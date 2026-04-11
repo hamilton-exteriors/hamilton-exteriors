@@ -29,6 +29,10 @@ If items exist, remind the user and offer to work through them first.
 - No icons next to page titles
 - Prices are per roofing square from BackOffice catalog seed data
 - Mapbox token via `PUBLIC_MAPBOX_TOKEN` env var, never hardcoded
+- Logo link context: Navbar has a `logoHref` prop. Use `/buy` on scan page, `/blog` on blog pages. Default is `/`.
+- CSS font variable is `--font-hamilton-display` (Tailwind class: `font-hamilton-display`). Never use `font-oswald`.
+- Add-on prices on scan page scale by roof measurements (eave/ridge LF), not fixed values
+- Mapbox autocomplete bbox covers all California (`-124.5,32.5,-114.0,42.0`), not just Bay Area
 
 ## Design Context
 
