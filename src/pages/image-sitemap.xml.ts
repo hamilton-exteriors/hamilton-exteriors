@@ -19,7 +19,7 @@ const GHOST_KEY = import.meta.env.GHOST_CONTENT_API_KEY || '';
 // Key pages and their primary images with SEO-optimized captions
 const pageImages: { page: string; images: { src: string; title: string; caption: string }[] }[] = [
   {
-    page: '/',
+    page: '',
     images: [
       { src: heroBg.src, title: 'Hamilton Exteriors Bay Area contractor', caption: 'Bay Area roofing, siding, and exterior remodeling by Hamilton Exteriors' },
       { src: logoCert1.src, title: 'Owens Corning Preferred Contractor certification', caption: 'Hamilton Exteriors is an Owens Corning Preferred Contractor' },

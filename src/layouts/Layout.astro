@@ -139,7 +139,7 @@ const fullOrgSchemaObj = fullOrgSchema ? {
     "https://www.instagram.com/hamiltonexteriors",
     "https://www.linkedin.com/company/hamilton-exteriors/",
     "https://www.yelp.com/biz/hamilton-exteriors-castro-valley",
-    "https://www.youtube.com/@HamiltonExteriors",
+    /* YouTube removed from sameAs until channel has published content — empty profile is a negative entity signal */
     "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377",
     "https://www.wikidata.org/wiki/Q139044457",
     "https://www.homeadvisor.com/rated.abrqualityresources.150372023.html",
@@ -313,7 +313,7 @@ const graphJsonLd = graphItems.length > 0 ? {
     <!-- Google Tag Manager secondary domain (loads analytics.js etc.) -->
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     <!-- Meta Pixel (Facebook) -->
-    <link rel="dns-prefetch" href="https://connect.facebook.net" />
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
     <!-- BackOffice portfolio widget — loaded on every page with a Projects section -->
     <link rel="preconnect" href="https://backoffice-production-99b7.up.railway.app" />
     <link rel="dns-prefetch" href="https://backoffice-production-99b7.up.railway.app" />

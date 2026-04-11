@@ -185,7 +185,10 @@ if (pageType === 'cityService' && cityServiceData) {
   ];
 } else if (pageType === 'county' && countyData) {
   const [urlCountySlug] = segments;
-  const countyName = countyData.county || urlCountySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+  const rawCountyName = countyData.county || urlCountySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+  // Strip trailing "County" if already present (Ghost CMS may include it) to avoid "Alameda County County"
+  const countyBase = rawCountyName.replace(/\s+County$/i, '');
+  const countyName = `${countyBase} County`;
   jsonLd = [
     {
 
@@ -193,7 +196,7 @@ if (pageType === 'cityService' && cityServiceData) {
       'itemListElement': [
         { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
         { '@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': `${siteUrl}/service-areas` },
-        { '@type': 'ListItem', 'position': 3, 'name': `${countyName} County, CA`, 'item': `${siteUrl}/service-areas/${urlCountySlug}` },
+        { '@type': 'ListItem', 'position': 3, 'name': `${countyName}, CA`, 'item': `${siteUrl}/service-areas/${urlCountySlug}` },
       ],
     },
     {
@@ -201,7 +204,7 @@ if (pageType === 'cityService' && cityServiceData) {
       '@type': 'WebPage',
       '@id': `${siteUrl}/service-areas/${urlCountySlug}#webpage`,
       'url': `${siteUrl}/service-areas/${urlCountySlug}`,
-      'name': `Roofing and Exterior Services in ${countyName} County, CA`,
+      'name': `Roofing and Exterior Services in ${countyName}, CA`,
       'isPartOf': { '@id': `${siteUrl}/#website` },
       'about': { '@id': `${siteUrl}/service-areas/${urlCountySlug}#service` },
       'inLanguage': 'en-US',
@@ -210,12 +213,12 @@ if (pageType === 'cityService' && cityServiceData) {
 
       '@type': 'Service',
       '@id': `${siteUrl}/service-areas/${urlCountySlug}#service`,
-      'name': `Roofing and Exterior Services in ${countyName} County, CA`,
+      'name': `Roofing and Exterior Services in ${countyName}, CA`,
       'url': `${siteUrl}/service-areas/${urlCountySlug}`,
       'provider': { '@id': `${siteUrl}/#business` },
-      'areaServed': { '@type': 'County', 'name': `${countyName} County`, 'sameAs': `https://en.wikipedia.org/wiki/${countyName.replace(/ /g, '_')}_County,_California`, 'containedInPlace': { '@type': 'State', 'name': 'California' } },
+      'areaServed': { '@type': 'County', 'name': countyName, 'sameAs': `https://en.wikipedia.org/wiki/${countyBase.replace(/ /g, '_')}_County,_California`, 'containedInPlace': { '@type': 'State', 'name': 'California' } },
       'serviceType': ['Roofing', 'Siding', 'Windows', 'ADUs', 'Custom Homes', 'Additions'],
-      'description': countyData.description || `Hamilton Exteriors serves ${countyName} County with professional roofing, siding, windows, ADUs, and custom homes. CSLB #1082377.`,
+      'description': countyData.description || `Hamilton Exteriors serves ${countyName} with professional roofing, siding, windows, ADUs, and custom homes. CSLB #1082377.`,
       'offers': {
         '@type': 'AggregateOffer',
         'offerCount': 6,

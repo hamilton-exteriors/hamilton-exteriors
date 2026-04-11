@@ -1,84 +1,181 @@
 # Hamilton Exteriors — SEO Action Plan
 
-**Generated:** 2026-04-11 (v10 — post-fix re-audit) | **Current Score:** 84/100 | **Target:** 90/100
-**Lighthouse:** Performance 98 | Accessibility 100 | Best Practices 100 | SEO 100
+**Generated:** April 10, 2026 | **Current Score:** 81/100 | **Target:** 90/100
 
 ---
-
-## Fixed (Deployed)
-
-| # | Action | Status |
-|---|--------|--------|
-| ~~1~~ | ~~Remove `/contact` and `/financing` from sitemap~~ | Done |
-| ~~2~~ | ~~Fix review count inconsistency — dynamic llms.txt~~ | Done |
-| ~~3~~ | ~~Fix pSEO meta description duplication ("County, County")~~ | Done |
-| ~~4~~ | ~~Homepage title — remove "Top", lead with "General Contractor"~~ | Done |
-| ~~5~~ | ~~Trim meta descriptions to <155 chars~~ | Done (4 pages) |
-| ~~6~~ | ~~Fix footer contrast for WCAG AA~~ | Done (Lighthouse a11y → 100) |
-| ~~7~~ | ~~Update llms.txt blog index (3 → dynamic)~~ | Done (Ghost CMS auto) |
-| ~~8~~ | ~~Fix legacy slug `/alameda-ca` 404~~ | Done |
-| ~~9~~ | ~~CSP analytics — verified already correct~~ | No action needed |
 
 ## Critical (Fix Immediately)
 
-| # | Action | Category | Effort | Impact |
-|---|--------|----------|--------|--------|
-| 1 | **Verify GBP primary category is "General Contractor"** | Local | 5 min | #1 local ranking factor |
-| 2 | **Normalize trade name on Angi/HomeAdvisor** to "Hamilton Exteriors" | Local | 30 min | NAP consistency |
+### 1. Fix "County County" schema bug on all 6 county pages
+**Category:** Schema | **Impact:** Entity clarity for 6 core service area pages
+**File:** `src/pages/service-areas/[...slug].astro` ~line 213
+**Issue:** String interpolation appends "County" when the source name from Ghost CMS already contains it. Results in "Alameda County County" in `areaServed.name` and broken Wikipedia `sameAs` URLs (404).
+**Fix:** Check if `countyName` already ends with "County" before appending.
+**Effort:** 15 minutes
+
+### ~~2. Accelerate review velocity~~ — FALSE POSITIVE
+**Status:** Not an issue. Live Google Reviews API is actively pulling fresh reviews (25 in last 3 days). The audit agent incorrectly flagged this based on the static `curated-reviews.ts` file dates (last entry Jan 22, 2026), which are non-Google platform reviews and do not reflect actual review velocity.
+
+---
 
 ## High (Fix Within 1 Week)
 
-| # | Action | Category | Effort | Impact |
-|---|--------|----------|--------|--------|
-| 3 | **Create dedicated `/contact` page** — NAP, embedded map, ContactPage schema | Local | 3-4 hrs | Local pack ranking |
-| 4 | **Add inline source attribution** to blog post cost figures | Content/GEO | 1-2 hrs | AI citation confidence |
-| 5 | **Add FAQPage schema** to service pages (/roofing, /siding, /windows, /adu, etc.) | Schema | 2-3 hrs | FAQ rich results + AIO |
-| 6 | **Fix H1 superlatives** — "Best" and "Top" → brand-compliant alternatives | Content | Ghost CMS | Quality signals |
-| 7 | **Implement review velocity system** — post-project request within 7 days | Local | Process | GBP rankings |
-| 8 | **Start GBP Posts** — minimum weekly | Local | Ongoing | GBP engagement |
-| 9 | **Reduce cert/nav logo source widths** — serving 280px for 90px render (144 KiB wasted) | Performance | 30 min | LCP bytes |
+### ~~3. Fix announcement-bar H1s~~ — FALSE POSITIVE
+**Status:** Not an issue. H1s are already topical ("Bay Area's Architect-Led Roofing Contractors", etc.). The announcement text ("Now Booking Summer 2026...") is rendered in a separate `<AnnouncementBar>` component, not the H1.
+
+### 4. Add FAQ sections + FAQPage schema to city/county pages
+**Category:** Schema + GEO + Local SEO | **Impact:** 308 pages gain FAQ extraction pathway
+**Files:** `src/components/CountyPage.astro`, `src/components/GeneralCityPage.astro`
+**Issue:** City pages have `#faq` anchor links but no FAQ content. llms.txt promises citable FAQ that doesn't exist.
+**Fix:** Import FAQ.astro component into county/city page templates. Supply 3-5 city-specific FAQs (permit timeline, fire zone materials, local cost range) via Ghost CMS or static data.
+**Effort:** 2-4 hours (template + content)
+
+### 5. Resolve YouTube channel gap
+**Category:** GEO | **Impact:** 0.737 AI citation correlation
+**File:** `src/layouts/Layout.astro` line 142
+**Issue:** @HamiltonExteriors declared in sameAs on every page. If channel is empty, this is a broken entity signal.
+**Fix (short-term):** Remove YouTube URL from sameAs until channel has real content.
+**Fix (long-term):** Publish 3-5 short-form videos (roof inspection walkthrough, before/after, ADU process overview).
+**Effort:** 5 minutes (removal) or ongoing (content creation)
+
+### 6. Consolidate Angi/HomeAdvisor to "Hamilton Exteriors" brand name
+**Category:** Local SEO | **Impact:** Tier 1 citation NAP consistency
+**Issue:** Both platforms list business under "ABR Quality Resources Inc" — not attributed to primary brand.
+**Fix:** Update profile names on both platforms to "Hamilton Exteriors" (with DBA note for ABR Quality Resources Inc).
+**Effort:** 30 minutes per platform
+
+### 7. Verify GBP primary category
+**Category:** Local SEO | **Impact:** #1 ranking factor (Whitespark score: 193)
+**Issue:** Cannot verify from site alone whether GBP primary category is "General Contractor" or "Roofing Contractor."
+**Fix:** Log into GBP and confirm primary = General Contractor, secondary = Roofing Contractor.
+**Effort:** 5 minutes
+
+### 8. Add Google review request CTA to site
+**Category:** Local SEO | **Impact:** Review velocity acceleration
+**Issue:** Zero on-site paths lead users to leave a Google review.
+**Fix:** Add "Leave us a review on Google" link using GBP short URL or `https://search.google.com/local/writereview?placeid=...` to footer and /success page.
+**Effort:** 30 minutes
+
+### 9. Fix financing-house image compression
+**Category:** Performance + Images | **Impact:** -157KB page weight
+**Issue:** `financing-house.jpeg` served at q=90 (222KB). Lighthouse flags 157KB reclaimable.
+**Fix:** Add `quality={75}` to the Image component, or switch to `format="avif"`.
+**Effort:** 5 minutes
+
+### 10. Add /contact to image sitemap
+**Category:** Sitemap + Images | **Impact:** Image search visibility for indexable page
+**File:** `src/pages/image-sitemap.xml.ts`
+**Fix:** Add a `pageImages` entry for `/contact`.
+**Effort:** 5 minutes
+
+---
 
 ## Medium (Fix Within 1 Month)
 
-| # | Action | Category | Effort | Impact |
-|---|--------|----------|--------|--------|
-| 10 | Create dedicated `/financing` page with FinancialProduct schema | Technical | 3-4 hrs | New keyword capture |
-| 11 | Add question-format H2s to ADU/blog posts (triggers FAQ schema) | Content/GEO | Ghost edits | Rich results |
-| 12 | Add Thumbtack, BuildZoom, Nextdoor Business profiles | Local | 2-3 hrs | Citations + AI visibility |
-| 13 | Seed GBP Q&A with 5-7 canonical questions | Local | 30 min | GBP content |
-| 14 | Fix geo coordinate precision to 5+ decimal places | Schema | 1 hr | Schema compliance |
-| 15 | Standardize hero images to WebP/JPG (roofing hero is PNG) | Performance | 30 min | LCP consistency |
-| 16 | Audit internal links for `/about` — ensure all point to `/about/alex-hamilton-li` | Technical | 30 min | Redirect chain |
-| 17 | Increase city+service page uniqueness (2-3 more city-specific paragraphs) | Content | Ongoing | Thin content risk |
-| 18 | Fix blog "Sources" section to match actual cited sources | GEO | 1 hr | Source credibility |
-| 19 | Tighten service page titles to <60 chars (Ghost CMS) | On-Page | Ghost edits | SERP display |
-| 20 | Trim service page meta descriptions to <155 chars (Ghost CMS) | On-Page | Ghost edits | SERP display |
+### 11. Reduce TTFB via server-side caching
+**Category:** Performance | **Impact:** -450ms LCP/FCP (estimated)
+**Issue:** TTFB is 526ms. Google Reviews API fetch blocks HTML response on cache miss.
+**Fix:** (a) Move Google Reviews to background revalidation (stale-while-revalidate at process level). (b) Add `Cache-Control: s-maxage=300, stale-while-revalidate=86400` header for homepage + top service pages. (c) Consider Cloudflare free tier or Railway US-West region.
+**Effort:** 2-4 hours
+
+### 12. Fix homepage URL in image sitemap
+**Category:** Sitemap | **Impact:** URL consistency between sitemaps
+**File:** `src/pages/image-sitemap.xml.ts` ~line 22
+**Fix:** Change `page: '/'` to `page: ''` so homepage URL matches sitemap-0.xml (no trailing slash).
+**Effort:** 2 minutes
+
+### 13. Preload Bold Font 400 weight (or switch to font-display: optional)
+**Category:** Performance | **Impact:** -100-150ms LCP
+**File:** `src/layouts/Layout.astro`
+**Issue:** Bold Font 400 is on critical path at 1,269ms but not preloaded. Comment says "below-fold" but Lighthouse network tree contradicts this.
+**Fix:** Either add `<link rel="preload">` for the 400-weight, or add `font-display: optional` to its @font-face in global.css.
+**Effort:** 10 minutes
+
+### 14. Reduce hero image quality on mobile preload
+**Category:** Performance | **Impact:** -60-80ms LCP on 4G
+**File:** `src/layouts/Layout.astro` line 43
+**Fix:** Change `quality: 82` to `quality: 75` for mobile hero preload.
+**Effort:** 2 minutes
+
+### 15. Cross-link service pages to top city pages
+**Category:** On-Page SEO + Local SEO | **Impact:** PageRank distribution to high-value pSEO pages
+**Files:** `src/pages/roofing.astro`, etc.
+**Fix:** Add "Cities We Serve" section linking to top 3-5 city+service pages (Oakland, San Jose, Berkeley, etc.).
+**Effort:** 1-2 hours
+
+### 16. Fix "Best Roofing Company" superlative on city page H1s
+**Category:** Content + GEO | **Impact:** Brand rule compliance + AI citation credibility
+**Issue:** City pages use "Best Roofing Company in Oakland" — violates anti-superlative rule.
+**Fix:** Change to factual H1: "Oakland Roofing Contractor | Hamilton Exteriors"
+**Effort:** 30 minutes (template change)
+
+### 17. Add manufacturer locator URLs to sameAs
+**Category:** Local SEO | **Impact:** High-authority contractor-specific citations
+**File:** `src/layouts/Layout.astro` sameAs array
+**Fix:** Add GAF Find-a-Roofer, Owens Corning, James Hardie, CertainTeed contractor locator profile URLs.
+**Effort:** 30 minutes (locate URLs + code change)
+
+### 18. Upgrade Meta Pixel dns-prefetch to preconnect
+**Category:** Performance | **Impact:** -100-200ms Pixel load time
+**File:** `src/layouts/Layout.astro` line 312
+**Fix:** Change `<link rel="dns-prefetch" href="https://connect.facebook.net" />` to `<link rel="preconnect" href="https://connect.facebook.net" crossorigin />`.
+**Effort:** 2 minutes
+
+### 19. Add county centroid geo coordinates to county pages
+**Category:** Local SEO | **Impact:** Geo relevance signals for 6 county pages
+**File:** `src/pages/service-areas/[...slug].astro`
+**Fix:** Pass county-specific lat/lng through the Layout `geoPosition` prop instead of defaulting to Castro Valley office coordinates.
+**Effort:** 30 minutes
+
+### 20. Rephrase blog H2s as questions (or add explicit FAQ blocks)
+**Category:** GEO + Schema | **Impact:** FAQPage schema coverage for blog posts
+**Fix:** In Ghost CMS, rephrase declarative H2s to question format ("ADU Cost by Type" → "How Much Does a Bay Area ADU Cost?"). This triggers auto-FAQ detection in blog/[slug].astro.
+**Effort:** 30 minutes per post
+
+---
 
 ## Low (Backlog)
 
-| # | Action | Category | Effort | Impact |
-|---|--------|----------|--------|--------|
-| 21 | Convert certification logos PNG → SVG | Performance | 1 hr | Minor perf |
-| 22 | Create page-specific OG images | Images | 3-4 hrs | Social CTR |
-| 23 | Add Service schema to county+service pages | Schema | 1 hr | Schema completeness |
-| 24 | Add city-level LocalBusiness schema nodes | Schema | 2 hrs | AI entity matching |
-| 25 | Start YouTube channel (3-5 project videos) | GEO | High | AI citation (0.737 correlation) |
-| 26 | Build Reddit presence (r/bayarea, r/HomeImprovement) | GEO | Ongoing | Brand signals |
-| 27 | Enrich Wikidata entity Q139044457 | GEO | 30 min | Entity resolution |
-| 28 | Add explicit Bingbot rule in robots.txt | Technical | 5 min | Bing Copilot |
+### 21. Fix nav logo dimensions + WebP format
+**File:** Navbar component | **Impact:** -18KB per page load
+**Fix:** Set width/height to match display size (250x104); add `format="webp"`.
+
+### 22. Switch Satoshi 700 to font-display: optional
+**File:** `src/styles/global.css` | **Impact:** Eliminates FOUT flash
+**Fix:** Change `font-display: swap` to `font-display: optional` for Satoshi 700 @font-face.
+
+### 23. Extend font cache TTL to 1 year (immutable)
+**Impact:** Repeat visit improvement | **Fix:** Add Cache-Control header for /fonts/ in Railway config.
+
+### 24. Extend BackOffice widget cache TTL to 7 days
+**Impact:** Repeat visit -6KB | **Fix:** Set `max-age=604800` on portfolio.js response.
+
+### 25. Delete stale `seo_sitemap.xml` from repo root
+**Impact:** Housekeeping | **Fix:** `rm seo_sitemap.xml`
+
+### 26. Build Reddit presence
+**Impact:** AI citation for Bay Area homeowner queries | **Fix:** Alex participates in r/bayarea, r/homeowners, r/FirstTimeHomeBuyer with genuine contractor advice.
+
+### 27. Pursue BBB accreditation
+**Impact:** Trust signal for premium positioning | **Cost:** ~$400-600/year
+
+### 28. Increase geo coordinate precision to 5 decimal places
+**File:** `src/layouts/Layout.astro` | **Fix:** Change 37.6942 to 37.69427, -122.0788 to -122.07887.
+
+### 29. Add Nextdoor and Houzz to sameAs (if profiles exist)
+**File:** `src/layouts/Layout.astro` | **Fix:** Add URLs if active profiles exist on these platforms.
 
 ---
 
-## Score Improvement Projection
+## Score Projection
 
-| Actions Completed | Estimated Score |
-|-------------------|----------------|
-| Deployed fixes (v10) | 74 → **84** |
-| + Critical (1-2) | 84 → 86 |
-| + High (3-9) | 86 → 90 |
-| + Medium (10-20) | 90 → 93 |
-| + Low (21-28) | 93 → 95 |
+| Action | Score Impact |
+|--------|-------------|
+| Fix County County bug (#1) | +1 |
+| Fix H1s on service pages (#3) | +2 |
+| Add FAQ to city pages (#4) | +3 |
+| Reduce TTFB (#11) | +2 |
+| Fix image compression (#9, #14, #21) | +1 |
+| Cross-link service→city pages (#15) | +1 |
 
----
-
-*Generated by Claude Code SEO Audit Suite — April 10, 2026*
+**Projected score after top priorities:** ~91/100
