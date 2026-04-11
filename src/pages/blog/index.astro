@@ -11,6 +11,7 @@ import { heroBg } from '../../lib/images';
 const tagParam = Astro.url.searchParams.get('tag') || undefined;
 const tag = tagParam ? tagParam.replace(/[^a-zA-Z0-9_-]/g, '') : undefined;
 const page = Math.max(1, Math.floor(Number(Astro.url.searchParams.get('page') || '1')) || 1);
+const searchParam = Astro.url.searchParams.get('search') || '';
 
 let posts: GhostPost[] = [];
 let pagination: GhostPagination = { page: 1, limit: 12, pages: 1, total: 0 };
@@ -30,6 +31,12 @@ if (isGhostConfigured()) {
   error = 'Ghost CMS is not configured. Set GHOST_URL and GHOST_CONTENT_API_KEY in your .env file.';
 }
 
+// Server-side search filtering
+if (searchParam) {
+  const q = searchParam.toLowerCase();
+  posts = posts.filter(p => p.title.toLowerCase().includes(q) || (p.excerpt || '').toLowerCase().includes(q));
+}
+
 const featuredPost = !tag && page === 1 && posts.length > 0 ? posts[0] : null;
 
 function humanTag(tag: any): string {
@@ -42,7 +49,9 @@ const typeTags = tags.filter(t => ['cost-guide', 'cost-guide-2', 'comparison', '
 
 const gridPosts = featuredPost ? posts.slice(1) : posts;
 const activeTag = tags.find((t: any) => t.slug === tag);
-const pageTitle = activeTag ? `${activeTag.name} — Ground Up | Hamilton Exteriors` : 'Ground Up — Roofing & Home Tips | Hamilton Exteriors';
+const pageTitle = searchParam
+  ? `Search: ${searchParam} | Ground Up — Hamilton Exteriors`
+  : activeTag ? `${activeTag.name} — Ground Up | Hamilton Exteriors` : 'Ground Up — Roofing & Home Tips | Hamilton Exteriors';
 const pageDesc = activeTag
   ? `Articles about ${activeTag.name.toLowerCase()} from Hamilton Exteriors — Bay Area's trusted contractor.`
   : 'Bay Area roofing costs, siding guides, ADU planning & home improvement tips from Hamilton Exteriors. Licensed contractor, CSLB #1082377.';
@@ -123,7 +132,7 @@ function ghostSrcset(url: string, widths: number[]): string {
         <svg class="search-wrap__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
         </svg>
-        <input type="search" id="blog-search" placeholder='Search articles — try "roof cost" or "fire zone"...' autocomplete="off" class="search-wrap__input" />
+        <input type="search" id="blog-search" placeholder='Search articles — try "roof cost" or "fire zone"...' autocomplete="off" class="search-wrap__input" value={searchParam} />
         <div id="search-dropdown" class="search-dropdown" role="listbox" aria-label="Search suggestions"></div>
       </div>
     </div>

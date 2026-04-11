@@ -784,6 +784,15 @@
             window.op('revenue', totalNum, { ref: ref, product: data.product || '', source: 'buy_flow' });
           }
           if (window.dataLayer) window.dataLayer.push({ event: 'purchase_completed', ref: ref, product: data.product || '', total: data.total || '' });
+          if (window.dataLayer) window.dataLayer.push({
+            event: 'enhanced_conversion_data',
+            enhanced_conversions: {
+              email: data.email || '',
+              phone_number: data.phone || '',
+              first_name: (data.name || '').split(' ')[0] || '',
+              last_name: (data.name || '').split(' ').slice(1).join(' ') || '',
+            }
+          });
           // Meta Pixel — client-side Purchase event (deduped with server CAPI via eventId)
           var purchaseEventId = 'purchase_' + ref;
           if (typeof fbq === 'function') fbq('track', 'Purchase', { value: totalNum, currency: 'USD', content_ids: [data.product || ''], content_type: 'product' }, { eventID: purchaseEventId });

@@ -597,6 +597,15 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
           source: 'hero_form',
           ...utmProps,
         });
+        (window as any).dataLayer.push({
+          event: 'enhanced_conversion_data',
+          enhanced_conversions: {
+            email: leadEmail,
+            phone_number: leadPhone,
+            first_name: leadName.split(' ')[0] || '',
+            last_name: leadName.split(' ').slice(1).join(' ') || '',
+          }
+        });
       }
 
       // Meta Pixel — client-side Lead event (deduped with server CAPI via eventId)
