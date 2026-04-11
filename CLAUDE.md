@@ -57,7 +57,7 @@ NOT: generic contractor site, overly corporate, cheap/discount vibe, over-design
 - Standardize CTA to "Get Your Free Quote" everywhere — max 3-4 "free" instances per page
 - Announcement bars signal demand ("Now Booking Summer 2026") not discounts
 - FAQ answers under 80 words, no keyword-stuffed city lists
-- Font alias: display font is "Hamilton Display" in CSS (`--font-oswald` variable)
+- Font alias: display font is "Hamilton Display" in CSS (`--font-hamilton-display` variable)
 
 ### Accessibility
 WCAG 2.1 AA. 4.5:1 contrast for body text, keyboard nav, meaningful alt text, respect `prefers-reduced-motion`.

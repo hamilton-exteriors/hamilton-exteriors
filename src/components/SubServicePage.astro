@@ -170,7 +170,7 @@ const productSchema = productData ? {
       <div class="mt-7 flex flex-wrap gap-3">
         <a
           href="#quote"
-          class="inline-block rounded-full bg-yellow px-8 py-3.5 font-oswald text-base font-normal tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal focus-visible:outline-none"
+          class="inline-block rounded-full bg-yellow px-8 py-3.5 font-hamilton-display text-base font-normal tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal focus-visible:outline-none"
         >
           Get Your Quote
         </a>
@@ -209,7 +209,7 @@ const productSchema = productData ? {
 <!-- GEO Comparison & Info Sections -->
 {geoData && (
   <Section bg="white" padding="lg" width="narrow">
-    <h2 class="mb-6 font-oswald text-[clamp(1.5rem,4vw,2rem)] font-normal leading-[1.2] text-charcoal">{geoData.comparisonHeading}</h2>
+    <h2 class="mb-6 font-hamilton-display text-[clamp(1.5rem,4vw,2rem)] font-normal leading-[1.2] text-charcoal">{geoData.comparisonHeading}</h2>
     <div class="overflow-x-auto mb-12 -mx-5 px-5 md:mx-0 md:px-0">
       <table class="w-full min-w-[540px] text-[0.9375rem] leading-[1.6] border-collapse">
         <thead>
@@ -239,7 +239,7 @@ const productSchema = productData ? {
 
     {geoData.infoSections.map((section) => (
       <div class="mb-10 last:mb-0">
-        <h2 class="mb-4 font-oswald text-[clamp(1.25rem,3vw,1.75rem)] font-normal leading-[1.25] text-charcoal">{section.heading}</h2>
+        <h2 class="mb-4 font-hamilton-display text-[clamp(1.25rem,3vw,1.75rem)] font-normal leading-[1.25] text-charcoal">{section.heading}</h2>
         <p class="text-[1.0625rem] leading-[1.8] text-charcoal">{section.body}</p>
       </div>
     ))}
@@ -251,7 +251,7 @@ const productSchema = productData ? {
   <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
     {data.keyFacts.map((fact) => (
       <div class="flex flex-col">
-        <span class="font-oswald text-[clamp(1.5rem,3.5vw,2rem)] leading-[1.2] font-normal text-primary">
+        <span class="font-hamilton-display text-[clamp(1.5rem,3.5vw,2rem)] leading-[1.2] font-normal text-primary">
           {fact.value}
         </span>
         <span class="mt-1 text-[0.8125rem] text-muted">
@@ -278,7 +278,7 @@ const productSchema = productData ? {
     <div class="flex flex-wrap justify-center gap-3">
       <a
         href="#quote"
-        class="inline-block rounded-full bg-yellow px-9 py-3.5 font-oswald text-base font-normal tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-yellow focus-visible:ring-offset-2 focus-visible:outline-none"
+        class="inline-block rounded-full bg-yellow px-9 py-3.5 font-hamilton-display text-base font-normal tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-yellow focus-visible:ring-offset-2 focus-visible:outline-none"
       >
         Get Your Estimate
       </a>

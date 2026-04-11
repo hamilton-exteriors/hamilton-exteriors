@@ -200,7 +200,7 @@ const cityGraphJsonLd = {
               )}
               <h3 class={`text-xl font-bold text-white mb-1${card.badge ? ' mt-2' : ''}`}>{card.title}</h3>
               <p class="text-sm text-white-80 mb-4">{card.subtitle}</p>
-              <p class="font-oswald text-[28px] font-bold text-yellow mb-1">{card.price}</p>
+              <p class="font-hamilton-display text-[28px] font-bold text-yellow mb-1">{card.price}</p>
               <p class="text-xs text-white-80 mb-5">{card.sqft}</p>
               <ul class="flex flex-col gap-2 mt-auto">
                 {card.features.map(item => (
@@ -223,7 +223,7 @@ const cityGraphJsonLd = {
               )}
               <h3 class={`text-xl font-bold text-heading mb-1${card.badge ? ' mt-2' : ''}`}>{card.title}</h3>
               <p class="text-sm text-muted mb-4">{card.subtitle}</p>
-              <p class="font-oswald text-[28px] font-bold text-heading mb-1">{card.price}</p>
+              <p class="font-hamilton-display text-[28px] font-bold text-heading mb-1">{card.price}</p>
               <p class="text-xs text-muted mb-5">{card.sqft}</p>
               <ul class="flex flex-col gap-2 mt-auto">
                 {card.features.map(item => (
@@ -282,7 +282,7 @@ const cityGraphJsonLd = {
                 </svg>
               )}
             </div>
-            <p class="font-oswald text-[36px] font-bold text-heading mb-1">{stat.value}</p>
+            <p class="font-hamilton-display text-[36px] font-bold text-heading mb-1">{stat.value}</p>
             <p class="text-base font-semibold text-heading mb-2">{stat.label}</p>
             <p class="text-sm leading-[22px] text-muted">
               {stat.description}
@@ -319,7 +319,7 @@ const cityGraphJsonLd = {
         <div class="grid grid-cols-2 gap-6">
           {trustedExperts.stats.map((stat) => (
             <div class="p-6 text-center bg-white/[0.08]">
-              <p class="font-oswald text-[42px] font-bold text-yellow">{stat.value}</p>
+              <p class="font-hamilton-display text-[42px] font-bold text-yellow">{stat.value}</p>
               <p class="text-sm text-white-80">{stat.label}</p>
             </div>
           ))}
@@ -342,7 +342,7 @@ const cityGraphJsonLd = {
       <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
         {processSection.steps.map((step, i) => (
           <div>
-            <div class="w-12 h-12 rounded-full bg-primary-dark text-white flex items-center justify-center font-oswald text-xl font-bold mb-4">{i + 1}</div>
+            <div class="w-12 h-12 rounded-full bg-primary-dark text-white flex items-center justify-center font-hamilton-display text-xl font-bold mb-4">{i + 1}</div>
             <h3 class="text-lg font-bold mb-2">{step.title}</h3>
             <p class="text-sm leading-[24px] text-muted">{step.description}</p>
           </div>
@@ -406,7 +406,7 @@ const cityGraphJsonLd = {
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {regulations.items.map((item) => (
           <div class="p-6 text-center bg-white">
-            <p class="font-oswald text-[42px] font-bold text-primary-dark mb-2">{item.value}</p>
+            <p class="font-hamilton-display text-[42px] font-bold text-primary-dark mb-2">{item.value}</p>
             <p class="text-sm font-semibold text-heading mb-1">{item.label}</p>
             <p class="text-xs text-muted leading-5">{item.description}</p>
           </div>
@@ -586,7 +586,7 @@ const cityGraphJsonLd = {
       <!-- Right Column — CTA to hero form -->
       <div class="flex w-full flex-col items-center md:w-1/2 text-center p-0">
         <div>
-          <p class="font-oswald text-[clamp(28px,4vw,40px)] font-normal text-white uppercase leading-[1.15] mb-4">
+          <p class="font-hamilton-display text-[clamp(28px,4vw,40px)] font-normal text-white uppercase leading-[1.15] mb-4">
             Ready to Start?
           </p>
           <p class="text-base leading-[26px] text-white-80 mb-8">
@@ -595,7 +595,7 @@ const cityGraphJsonLd = {
           <div class="flex flex-col gap-3 w-full max-w-[320px]">
             <a
               href="#quote"
-              class="block w-full rounded-full text-center py-4 transition-opacity hover:opacity-90 bg-yellow text-heading font-oswald text-base font-bold uppercase tracking-[0.04em] no-underline"
+              class="block w-full rounded-full text-center py-4 transition-opacity hover:opacity-90 bg-yellow text-heading font-hamilton-display text-base font-bold uppercase tracking-[0.04em] no-underline"
             >
               Get Your Consultation
             </a>

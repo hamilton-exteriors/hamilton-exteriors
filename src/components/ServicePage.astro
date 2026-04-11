@@ -416,7 +416,7 @@ const jumpLinks = [
                 {p.tiers.map((tier) => (
                   <>
                     <tr class="bg-[rgba(37,99,70,0.08)]">
-                      <td colspan="3" class="px-4 py-2.5 font-oswald text-[0.8125rem] font-bold tracking-[0.08em] text-primary uppercase">{tier.name}</td>
+                      <td colspan="3" class="px-4 py-2.5 font-hamilton-display text-[0.8125rem] font-bold tracking-[0.08em] text-primary uppercase">{tier.name}</td>
                     </tr>
                     {tier.rows.map((row) => (
                       <tr class="border-b border-border">
@@ -484,7 +484,7 @@ const jumpLinks = [
             ))}
           </div>
           <div class="mt-8">
-            <a href="#quote" class="inline-block rounded-full bg-yellow px-8 py-3.5 font-oswald text-base font-bold tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:outline-none">
+            <a href="#quote" class="inline-block rounded-full bg-yellow px-8 py-3.5 font-hamilton-display text-base font-bold tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:outline-none">
               Get Your Quote
             </a>
           </div>
@@ -502,7 +502,7 @@ const jumpLinks = [
           {tierBadge}
         </span>
         <h2 class="mb-4 text-white">{cp.heading}</h2>
-        <p class="mb-2 font-oswald text-[clamp(2.5rem,6vw,3.5rem)] leading-[1.1] font-normal wrap-break-word text-yellow uppercase">
+        <p class="mb-2 font-hamilton-display text-[clamp(2.5rem,6vw,3.5rem)] leading-[1.1] font-normal wrap-break-word text-yellow uppercase">
           {cp.priceRange}
         </p>
         <p class="mb-6 text-[0.9375rem] text-white-70">
@@ -511,7 +511,7 @@ const jumpLinks = [
         <p class="mx-auto mb-7 max-w-[540px] text-[0.8125rem] leading-[1.6] text-white-50">
           {cp.footnote}
         </p>
-        <a href="#quote" class="inline-block rounded-full bg-yellow px-9 py-4 font-oswald text-base font-bold tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:ring-offset-(--color-heading) focus:outline-none">
+        <a href="#quote" class="inline-block rounded-full bg-yellow px-9 py-4 font-hamilton-display text-base font-bold tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:ring-offset-(--color-heading) focus:outline-none">
           Get Your Estimate
         </a>
       </Section>
@@ -640,7 +640,7 @@ const jumpLinks = [
         <div class={`mx-auto grid max-w-[1200px] grid-cols-2 gap-6 px-5 md:grid-cols-${stats.items.length}`}>
           {stats.items.map((stat) => (
             <div class="flex flex-col">
-              <span class="font-oswald text-[clamp(1.5rem,3.5vw,2rem)] leading-[1.2] font-normal text-primary">{stat.value}</span>
+              <span class="font-hamilton-display text-[clamp(1.5rem,3.5vw,2rem)] leading-[1.2] font-normal text-primary">{stat.value}</span>
               <span class="mt-1 text-sm text-muted">{stat.label}</span>
             </div>
           ))}

@@ -193,7 +193,7 @@ button[type="submit"]:active {
 
   /* Font Families — 3 fonts only: THE BOLD FONT, DM Sans, Satoshi */
   --font-dm-sans: "DM Sans", "DM Sans Fallback", sans-serif;
-  --font-oswald: "Hamilton Display", system-ui, sans-serif;
+  --font-hamilton-display: "Hamilton Display", system-ui, sans-serif;
   --font-satoshi: "Satoshi", sans-serif;
 }
 
@@ -201,7 +201,7 @@ button[type="submit"]:active {
 /*
  * 5-step scale: caption → secondary → body → subheading → heading
  * Ratio: ~1.25 (major third)
- * Headings: fluid clamp() with Oswald
+ * Headings: fluid clamp() with Hamilton Display
  * Body: fixed rem with DM Sans
  * Labels: fixed rem with Satoshi
  */
@@ -224,7 +224,7 @@ button[type="submit"]:active {
   }
 
   h1, h2, h3, h4, h5 {
-    font-family: var(--font-oswald);
+    font-family: var(--font-hamilton-display);
     color: var(--color-heading);
     font-weight: 400;
     text-transform: uppercase;
@@ -336,7 +336,7 @@ button[type="submit"]:active {
 
   /* Button: 0.875rem (14px) / 1.4 — Oswald 700, uppercase */
   .text-button {
-    font-family: var(--font-oswald);
+    font-family: var(--font-hamilton-display);
     font-weight: 700;
     font-size: 0.875rem;
     line-height: 1.4;
