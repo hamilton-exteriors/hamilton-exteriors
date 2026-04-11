@@ -244,15 +244,15 @@
   function renderRoofMap(result) {
     var mapEl = $('#roof-map');
 
-    // If we have GeoJSON facets, render them as colored SVG
+    // If we have GeoJSON facets, render them as colored SVG over satellite imagery
     if (result.roofGeoJSON && result.roofGeoJSON.features.length > 0) {
-      // Use image bounds (cropped around roof) so polygons align with satellite image
       var ib = result.imageBounds || result.dsm.bounds;
       var minX = ib.west, maxX = ib.east;
       var minY = ib.south, maxY = ib.north;
       var w = maxX - minX;
       var h = maxY - minY;
 
+      // Build SVG polygon overlay
       var svgPaths = result.roofGeoJSON.features.map(function (f) {
         var coords = f.geometry.coordinates[0];
         var points = coords.map(function (c) {
@@ -261,24 +261,40 @@
           return x + ',' + y;
         }).join(' ');
 
-        var pitch = f.properties.pitchDegrees;
-        var color = pitch < 15 ? 'rgba(76,175,80,0.15)' : pitch < 30 ? 'rgba(255,222,33,0.2)' : 'rgba(244,67,54,0.2)';
-        var stroke = pitch < 15 ? 'rgb(76,175,80)' : pitch < 30 ? 'rgb(255,222,33)' : 'rgb(244,67,54)';
-
-        return '<polygon points="' + points + '" fill="' + color + '" stroke="' + stroke + '" stroke-width="3"/>';
+        return '<polygon points="' + points + '" fill="rgba(37,99,70,0.25)" stroke="rgba(255,222,33,0.9)" stroke-width="2"/>';
       }).join('');
 
-      // Use satellite image as background if available
-      var bgStyle = result.satelliteImage
-        ? 'background:url(' + result.satelliteImage + ') center/cover no-repeat'
-        : 'background:linear-gradient(135deg,#2a3d2a,#1e2d1e 25%,#243424 50%,#1e2d1e 75%,#2a3d2a)';
+      // Build Mapbox Static Image URL for satellite background
+      var token = window.MAPBOX_TOKEN;
+      var cLng = (minX + maxX) / 2;
+      var cLat = (minY + maxY) / 2;
+      var bgStyle = 'background:#1e2d1e';
+      if (token) {
+        // Build GeoJSON overlay for Mapbox (green fill, yellow stroke)
+        var overlay = {
+          type: 'FeatureCollection',
+          features: result.roofGeoJSON.features.map(function (f) {
+            return {
+              type: 'Feature',
+              geometry: f.geometry,
+              properties: { 'stroke': '#FFDE21', 'stroke-width': 2, 'stroke-opacity': 0.9, 'fill': '#256346', 'fill-opacity': 0.25 }
+            };
+          })
+        };
+        var geoStr = encodeURIComponent(JSON.stringify(overlay));
+        var satUrl = 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/geojson(' + geoStr + ')/' + cLng.toFixed(6) + ',' + cLat.toFixed(6) + ',19,0/600x600@2x?access_token=' + token;
+        bgStyle = 'background:url(' + satUrl + ') center/cover no-repeat';
+      }
 
       mapEl.innerHTML = '<div style="width:100%;height:100%;position:relative;">' +
-        '<div style="position:absolute;inset:0;' + bgStyle + ';"></div>' +
-        '<svg viewBox="0 0 400 400" style="position:absolute;inset:0;width:100%;height:100%;" preserveAspectRatio="xMidYMid meet">' +
+        '<div style="position:absolute;inset:0;' + bgStyle + ';border-radius:4px;"></div>' +
+        '<svg viewBox="0 0 400 400" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;" preserveAspectRatio="xMidYMid meet">' +
         svgPaths +
-        '<text x="200" y="390" text-anchor="middle" fill="white" font-size="11" opacity="0.8" style="text-shadow:0 1px 3px rgba(0,0,0,0.8)">Imagery: ' + result.imageryDate + ' | ' + result.facets.length + ' facets detected</text>' +
-        '</svg></div>';
+        '</svg>' +
+        '<div style="position:absolute;bottom:8px;left:0;right:0;text-align:center;">' +
+        '<span style="background:rgba(0,0,0,0.55);color:white;font-size:11px;padding:3px 10px;border-radius:3px;">' +
+        result.imageryDate + ' &middot; ' + result.facets.length + ' facets detected</span></div>' +
+        '</div>';
     } else {
       renderDemoRoofSVG(mapEl);
     }
