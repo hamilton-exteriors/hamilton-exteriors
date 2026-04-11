@@ -155,12 +155,12 @@ export const data: ServicePageData = {
     {
       question: 'How long does a window replacement take?',
       answer:
-        'Window replacements average 1 to 2 days for a typical Bay Area home with 10 to 15 windows. Each window takes approximately 45 to 90 minutes to remove, prep, install, insulate, flash, and trim. Larger projects (20+ windows or custom sizes) may take 3 days. We install one window at a time and seal each opening before moving to the next, so your home is never left open to the elements.',
+        'Window replacements average 1 to 2 days for a typical Bay Area home with 10 to 15 windows. Each window takes approximately 45 to 90 minutes to remove, prep, install, insulate, flash, and trim. Larger projects with 20 or more windows or custom sizes may take 3 days. If structural modifications are needed — such as widening an opening or adding a header for a larger window — add 1 day per modified opening. We install one window at a time and seal each opening before moving to the next, so your home is never left open to the elements. All windows are tested for proper operation and airtight seal before we move on, and interior trim is completed the same day so there is no exposed framing inside your home overnight.',
     },
     {
       question: 'What window styles work best for Bay Area homes?',
       answer:
-        'The best window style depends on your home\'s architecture and ventilation needs. Casement windows (hinged, crank-open) provide the best airflow and seal — ideal for Bay Area homes that rely on natural cooling. Double-hung windows are the most versatile and popular in Craftsman and Victorian homes. Sliding windows work well in mid-century modern and Eichler-style homes common in Sunnyvale, Palo Alto, and the South Bay. Bay and bow windows add light and space to living rooms — especially popular in San Francisco Victorians and Marin County homes.',
+        'The best window style depends on your home\'s architecture and ventilation needs. Casement windows (hinged, crank-open) provide the best airflow and tightest seal when closed — ideal for Bay Area homes that rely on natural cooling instead of air conditioning. Double-hung windows are the most versatile and popular choice for Craftsman and Victorian homes found throughout Oakland, Berkeley, and San Francisco. Sliding windows work well in mid-century modern and Eichler-style homes common in Sunnyvale, Palo Alto, and the South Bay. Bay and bow windows add light and interior space to living rooms — especially popular in San Francisco Victorians and Marin County homes. Picture windows are a strong option for rooms with views where ventilation is not needed, as they provide the largest unobstructed glass area and the best energy efficiency ratings since they do not open.',
     },
     {
       question: 'Do replacement windows qualify for energy rebates in California?',

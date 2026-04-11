@@ -101,27 +101,27 @@ export const data: ServicePageData = {
     {
       question: 'How much does it cost to build an ADU in the Bay Area?',
       answer:
-        'Bay Area ADU costs range from $150,000 to $350,000 for a detached unit and $100,000 to $200,000 for a garage conversion. Junior ADUs (JADUs under 500 sq ft) start around $80,000. Key cost factors include foundation type, utility connections, finishes, and local permit fees. Hamilton Exteriors provides fully itemized estimates — every cost spelled out.',
+        'Bay Area ADU costs range from $150,000 to $350,000 for a detached unit and $100,000 to $200,000 for a garage conversion. Junior ADUs (JADUs under 500 sq ft) start around $80,000. Key cost factors include foundation type, utility connections, interior finishes, and local permit fees — which range from $5,000 to $15,000 depending on the city. Detached ADUs with separate utility meters cost more upfront but allow independent billing for rental income. Site preparation including grading, trenching for utilities, and concrete work typically adds $20,000 to $40,000. Hamilton Exteriors provides fully itemized estimates at every phase — design, permitting, and construction costs are all broken out so you can plan your budget before committing.',
     },
     {
       question: 'Do I need a permit to build an ADU in California?',
       answer:
-        'Yes. California\u2019s ADU laws (AB 68, SB 13, AB 881) streamlined permitting statewide, but you still need building permits from your local jurisdiction. Most Bay Area cities must approve or deny ADU permits within 60 days. Hamilton Exteriors handles the full permitting process — architectural plans, engineering, plan check submittal, and inspection coordination.',
+        'Yes. California\'s ADU laws (AB 68, SB 13, AB 881) streamlined permitting statewide, but you still need building permits from your local jurisdiction. Most Bay Area cities must approve or deny ADU permits within 60 days under state law. Required permits typically include building, electrical, plumbing, and mechanical — and some jurisdictions require a separate grading permit if site work is involved. Cities cannot require owner-occupancy for ADUs built after January 2020, and impact fees have been eliminated for units under 750 sq ft. Hamilton Exteriors handles the full permitting process — architectural plans, structural engineering, Title 24 energy compliance calculations, plan check submittal, and inspection coordination throughout construction.',
     },
     {
       question: 'How long does it take to build an ADU?',
       answer:
-        'From permit approval, most detached ADUs complete in 4 to 6 months. Garage conversions are faster at 2 to 4 months since the shell already exists. The permitting phase adds 2 to 4 months depending on your city\u2019s backlog. Total timeline from design to move-in is typically 8 to 12 months. We provide a detailed schedule at contract signing.',
+        'From permit approval, most detached ADUs complete in 4 to 6 months. Garage conversions are faster at 2 to 4 months since the shell already exists. The permitting phase adds 2 to 4 months depending on your city\'s plan review backlog — San Francisco and some Peninsula cities tend toward the longer end, while most East Bay cities process within 60 days. Total timeline from design to move-in is typically 8 to 12 months. The longest single phase is usually foundation and framing at 6 to 8 weeks for a detached unit. Your project manager provides a detailed construction schedule at contract signing with weekly milestone updates so you can plan your rental listing or family move-in date accordingly.',
     },
     {
       question: 'Can I build an ADU on my property?',
       answer:
-        'Under California law, most single-family residential lots can accommodate at least one ADU. Since January 2020, cities cannot impose minimum lot size requirements for ADUs under 800 sq ft. Setback requirements have been reduced to 4 feet for rear and side yards. Hamilton Exteriors evaluates your lot for utility access, setbacks, and local overlay zones during your initial consultation.',
+        'Under California law, most single-family residential lots can accommodate at least one ADU. Since January 2020, cities cannot impose minimum lot size requirements for ADUs under 800 sq ft. Setback requirements have been reduced to 4 feet for rear and side yards. You are also allowed to build one JADU (junior ADU up to 500 sq ft) inside your existing home in addition to a detached ADU, for a total of two accessory units on a single-family lot. The main factors that affect feasibility are utility access — sewer and water connections must reach the ADU location — and any easements or deed restrictions on your property. Hamilton Exteriors evaluates your lot for utility access, setbacks, fire department access, and local overlay zones during your initial consultation at no cost.',
     },
     {
       question: 'Can I rent out my ADU?',
       answer:
-        'Yes. California law explicitly allows homeowners to rent ADUs as long-term rentals. Some cities restrict short-term rentals (under 30 days) in ADUs, so check your local ordinance. An ADU in the Bay Area typically rents for $1,800 to $3,500 per month depending on size, location, and finishes — often covering the construction loan payment within a few years.',
+        'Yes. California law explicitly allows homeowners to rent ADUs as long-term rentals (30 days or more). Some Bay Area cities — including San Francisco, Oakland, and Berkeley — restrict or prohibit short-term rentals under 30 days in ADUs, so check your local ordinance before planning an Airbnb-style rental. An ADU in the Bay Area typically rents for $1,800 to $3,500 per month depending on size, location, and finishes. A well-built 600 sq ft one-bedroom ADU in Alameda County can generate $2,200 to $2,800 per month in rental income, often covering the construction loan payment within 3 to 5 years. Many homeowners also use ADUs for aging parents, adult children, or home offices rather than rental income — the flexibility adds long-term value regardless of how you use the space.',
     },
   ],
 };

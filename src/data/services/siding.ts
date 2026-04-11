@@ -138,7 +138,7 @@ export const data: ServicePageData = {
     {
       question: 'How much does siding replacement cost in the Bay Area?',
       answer:
-        'Bay Area siding costs vary by material. Vinyl siding runs $975 to $1,275 per 100 sq ft installed. James Hardie fiber cement siding — our most popular choice — costs $2,100 to $2,325 per 100 sq ft. Stucco remediation and re-application averages $1,950 per 100 sq ft. A typical 2,000 sq ft Bay Area home costs $12,500 to $28,000 for full siding replacement. Every Hamilton Exteriors estimate is fully itemized — every cost spelled out.',
+        'Bay Area siding costs vary by material. Vinyl siding runs $975 to $1,275 per 100 sq ft installed. James Hardie fiber cement siding — our most popular choice — costs $2,100 to $2,325 per 100 sq ft. Stucco remediation and re-application averages $1,950 per 100 sq ft. A typical 2,000 sq ft Bay Area home costs $12,500 to $28,000 for full siding replacement depending on the material chosen and the number of stories. Multi-story homes require scaffolding, which adds $1,500 to $4,000 to the project cost. Homes with significant dry rot or water damage behind the existing siding will also need sheathing repairs before new siding is installed. Every Hamilton Exteriors estimate is fully itemized — materials, labor, trim, weather barrier, and disposal costs are all listed separately so you can compare options.',
     },
     {
       question: 'Why is James Hardie fiber cement siding recommended for Bay Area homes?',
@@ -148,7 +148,7 @@ export const data: ServicePageData = {
     {
       question: 'How long does a siding installation take?',
       answer:
-        'James Hardie fiber cement siding projects generally run 1 to 2 weeks depending on your home\'s square footage, number of stories, and architectural complexity. Vinyl siding is faster — typically 3 to 5 days. Every project includes removal of old siding, inspection and repair of underlying sheathing, installation of a weather-resistant barrier, new siding, and trim and caulking. A dedicated project manager keeps you updated daily.',
+        'James Hardie fiber cement siding projects generally run 1 to 2 weeks depending on your home\'s square footage, number of stories, and architectural complexity. Vinyl siding is faster — typically 3 to 5 days. Every project includes removal of old siding, inspection and repair of underlying sheathing, installation of a weather-resistant barrier, new siding, and trim and caulking. If we discover moisture damage or dry rot during tear-off, repairs are completed before new siding goes on — this can add 1 to 3 days but prevents hidden problems from continuing behind the new material. We work in sections around your home so exposed walls are never left unprotected overnight. A dedicated project manager keeps you updated daily with progress photos.',
     },
     {
       question: 'What is the difference between fiber cement and vinyl siding?',
@@ -158,7 +158,7 @@ export const data: ServicePageData = {
     {
       question: 'Can new siding help with water damage prevention?',
       answer:
-        'Yes. The average water damage insurance claim in the Bay Area is $12,500. Properly installed siding with a weather-resistant barrier (WRB) is your home\'s primary defense against water intrusion. Hamilton Exteriors installs a full WRB system behind every siding project, including flashing around all windows, doors, and penetrations. We inspect the underlying sheathing during removal and repair any existing moisture damage before new siding goes on.',
+        'Yes. The average water damage insurance claim in the Bay Area is $12,500, making prevention far more cost-effective than repair. Properly installed siding with a weather-resistant barrier (WRB) is your home\'s primary defense against water intrusion. Hamilton Exteriors installs a full WRB system behind every siding project, including flashing around all windows, doors, and penetrations. We use both peel-and-stick flashing at critical junctions and mechanically fastened house wrap across wall surfaces, creating a continuous drainage plane that channels water down and out. We inspect the underlying sheathing during removal and repair any existing moisture damage before new siding goes on. Bay Area coastal homes are especially vulnerable — salt-laden fog accelerates wood decay and can cause water damage behind siding that appears intact from the outside.',
     },
   ],
 };
