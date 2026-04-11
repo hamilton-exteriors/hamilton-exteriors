@@ -85,22 +85,11 @@ const breadcrumbSchema = {
   ],
 };
 
-// FAQPage schema — emit when city page has FAQ content from Ghost CMS
-const faqPageSchema = faqs && faqs.length > 0 ? {
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((faq: { question: string; answer: string }) => ({
-    '@type': 'Question',
-    name: faq.question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: faq.answer,
-    },
-  })),
-} : null;
+// FAQPage schema removed — Google restricted FAQ rich results to gov/healthcare sites (Aug 2023)
 
 const cityGraphJsonLd = {
   '@context': 'https://schema.org',
-  '@graph': [breadcrumbSchema, webPageSchema, ...(reviewSchema ? [reviewSchema] : []), ...(faqPageSchema ? [faqPageSchema] : [])],
+  '@graph': [breadcrumbSchema, webPageSchema, ...(reviewSchema ? [reviewSchema] : [])],
 };
 ---
 

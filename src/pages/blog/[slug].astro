@@ -155,7 +155,7 @@ const breadcrumbJsonLd = {
 };
 
 // HowTo rich results removed by Google Sept 2023 — schema omitted
-let faqJsonLd: Record<string, unknown> | null = null;
+// FAQPage schema removed — Google restricted FAQ rich results to gov/healthcare sites (Aug 2023)
 
 // Extract H2 headings for table of contents
 const tocHeadings: { id: string; text: string }[] = [];
@@ -211,58 +211,6 @@ processedHtml = processedHtml.replace(
   }
 );
 
-// Build FAQPage schema from question-format H2 headings (AI search engines extract Q&A)
-const questionHeadings = tocHeadings.filter(h =>
-  /^(what|how|why|when|where|who|which|can|do|does|is|are|should|will|could)\b/i.test(h.text) ||
-  h.text.endsWith('?')
-);
-if (questionHeadings.length >= 2 && processedHtml) {
-  const faqEntries = questionHeadings.map((heading, i) => {
-    const startTag = `id="${heading.id}"`;
-    const startIdx = processedHtml.indexOf(startTag);
-    const nextQ = questionHeadings[i + 1];
-    const endIdx = nextQ
-      ? processedHtml.indexOf(`id="${nextQ.id}"`)
-      : processedHtml.length;
-
-    let answerText = '';
-    if (startIdx > -1) {
-      const section = processedHtml.slice(startIdx, endIdx);
-      // Strip the heading itself and any partial tag fragments, then extract plain text
-      const rawAnswer = section
-        .replace(/^[^<]*>/, '')           // remove leading partial tag (id="..." ...>)
-        .replace(/^[\s\S]*?<\/h2>/i, '')  // strip heading text + closing </h2> tag
-        .replace(/<h2[^>]*>.*?<\/h2>/gi, '') // strip any remaining H2 tags
-        .replace(/<[^>]+>/g, ' ')          // strip all HTML tags
-        .replace(/\s+/g, ' ')
-        .trim();
-      // Truncate at sentence boundary to avoid cut-off answers in FAQ schema
-      const truncated = rawAnswer.slice(0, 800);
-      const lastSentenceEnd = Math.max(
-        truncated.lastIndexOf('. '),
-        truncated.lastIndexOf('.\u201D'),
-        truncated.lastIndexOf('.)'),
-      );
-      answerText = lastSentenceEnd > 100 ? truncated.slice(0, lastSentenceEnd + 1) : truncated;
-    }
-
-    return {
-      '@type': 'Question',
-      name: heading.text.replace(/\?$/, '') + '?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: answerText || heading.text,
-      },
-    };
-  }).filter(q => q.acceptedAnswer.text !== q.name && q.acceptedAnswer.text.length > 20);
-
-  if (faqEntries.length >= 2) {
-    faqJsonLd = {
-      '@type': 'FAQPage',
-      mainEntity: faqEntries,
-    };
-  }
-}
 
 // Fetch related posts (same primary tag, exclude current)
 let relatedPosts: any[] = [];
@@ -320,7 +268,7 @@ const serviceLinks = matchedLinksMap.size > 0
   description={description}
   image={postImage}
   type="article"
-  jsonLd={shouldNoindex ? undefined : [articleJsonLd, breadcrumbJsonLd, ...(faqJsonLd ? [faqJsonLd] : [])]}
+  jsonLd={shouldNoindex ? undefined : [articleJsonLd, breadcrumbJsonLd]}
   noindex={shouldNoindex}
 >
   {post.feature_image?.includes('/content/images/') ? (
