@@ -92,7 +92,7 @@
     dt = setTimeout(function () {
       if (!MAPBOX_TOKEN) { demoSug(v); return; }
       fetch('https://api.mapbox.com/search/searchbox/v1/suggest?q=' + encodeURIComponent(v) +
-        '&types=address&country=us&language=en&limit=5&bbox=-123.1,36.9,-121.2,38.9' +
+        '&types=address&country=us&language=en&limit=5&bbox=-124.5,32.5,-114.0,42.0' +
         '&session_token=' + sessionToken + '&access_token=' + MAPBOX_TOKEN)
         .then(function (r) { return r.json(); })
         .then(function (data) {
@@ -392,6 +392,36 @@
       el.textContent = d.complexity;
       el.style.color = d.complexity === 'Complex' ? 'rgb(196,112,75)' : d.complexity === 'Moderate' ? 'rgb(37,99,70)' : 'var(--color-charcoal)';
     }, 400);
+    // Scale add-on prices by roof measurements
+    updateAddonPrices(d);
+  }
+
+  // ── Scale add-on prices by roof measurements ──────────────────────
+  function updateAddonPrices(d) {
+    $$('#addons input[data-addon-price]').forEach(function (input) {
+      var label = input.parentElement.querySelector('.addon-label');
+      var name = label ? label.textContent.toLowerCase() : '';
+      var newPrice = null;
+
+      if (name.indexOf('gutter guard') !== -1) {
+        // $8 per linear foot of eave
+        newPrice = Math.round((d.eaves || 0) * 8);
+      } else if (name.indexOf('ice') !== -1 && name.indexOf('water') !== -1) {
+        // $12 per linear foot of eave + (valley count * 15 LF per valley)
+        newPrice = Math.round(((d.eaves || 0) + (d.valleys || 0) * 15) * 12);
+      } else if (name.indexOf('ridge vent') !== -1) {
+        // $10 per linear foot of ridge
+        newPrice = Math.round((d.ridges || 0) * 10);
+      }
+      // Skylights stay fixed — no update needed
+
+      if (newPrice !== null && newPrice > 0) {
+        input.dataset.addonPrice = newPrice;
+        // Update the displayed price label if present
+        var priceDisplay = input.parentElement.querySelector('.addon-price');
+        if (priceDisplay) priceDisplay.textContent = '+$' + newPrice.toLocaleString();
+      }
+    });
   }
 
   function goStep(n, fromPopstate) {

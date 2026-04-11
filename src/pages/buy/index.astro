@@ -99,7 +99,6 @@ const faqJsonLd = {
   title="Buy Your Roof Online | Hamilton Exteriors"
   description="Enter your address, see your roof, get an instant price. Buy your new roof online — direct from Hamilton Exteriors."
   jsonLd={[webAppJsonLd, serviceJsonLd, faqJsonLd]}
-  noindex
 >
   <Navbar slot="header" />
 
@@ -596,7 +595,7 @@ const faqJsonLd = {
 (function() {
   var TOKEN = window.__MAPBOX_TOKEN || '';
   var session = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
-  var BA_BBOX = '-123.1,36.9,-121.2,38.9';
+  var BA_BBOX = '-124.5,32.5,-114.0,42.0';
   var PIN_SVG = '<svg class="suggestion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
 
   function esc(s) { return s.replace(/[<>"&]/g, function(c) { return '&#' + c.charCodeAt(0) + ';'; }); }
