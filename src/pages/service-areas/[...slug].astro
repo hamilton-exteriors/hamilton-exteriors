@@ -37,11 +37,17 @@ if (!slug) return Astro.redirect('/service-areas');
 const rawSegments = slug.split('/');
 const COUNTY_SHORT_TO_FULL: Record<string, string> = {
   alameda: 'alameda-county-ca',
+  'alameda-ca': 'alameda-county-ca',
   'contra-costa': 'contra-costa-county-ca',
+  'contra-costa-ca': 'contra-costa-county-ca',
   marin: 'marin-county-ca',
+  'marin-ca': 'marin-county-ca',
   napa: 'napa-county-ca',
+  'napa-ca': 'napa-county-ca',
   'san-mateo': 'san-mateo-county-ca',
+  'san-mateo-ca': 'san-mateo-county-ca',
   'santa-clara': 'santa-clara-county-ca',
+  'santa-clara-ca': 'santa-clara-county-ca',
 };
 if (rawSegments[0] && COUNTY_SHORT_TO_FULL[rawSegments[0]]) {
   const fixedSegments = [COUNTY_SHORT_TO_FULL[rawSegments[0]], ...rawSegments.slice(1)];

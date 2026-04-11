@@ -1,8 +1,20 @@
 import type { APIRoute } from 'astro';
 import { getGoogleReviews } from '../lib/google-reviews';
+import { getPosts } from '../lib/ghost';
 
 export const GET: APIRoute = async () => {
   const { rating, reviewCount } = await getGoogleReviews();
+
+  // Fetch all published blog posts from Ghost CMS
+  let blogLines = '';
+  try {
+    const { posts } = await getPosts({ limit: 100 });
+    blogLines = posts
+      .map(p => `- [${p.title}](https://hamilton-exteriors.com/blog/${p.slug})`)
+      .join('\n');
+  } catch {
+    blogLines = '- [All articles](https://hamilton-exteriors.com/blog)';
+  }
 
   const body = `# Hamilton Exteriors
 
@@ -50,9 +62,7 @@ Alameda, Contra Costa, Marin, Napa, San Mateo, and Santa Clara counties \u2014 4
 These pages contain detailed, externally-sourced statistics and self-contained answer blocks optimized for citation:
 
 ### Blog Guides (Primary Citation Surface)
-- [How much does a roof replacement cost in the Bay Area in 2026?](https://hamilton-exteriors.com/blog/how-much-does-a-roof-replacement-cost-in-the-bay-area-in-2026): Per-square pricing by tier, permit costs by county, real project examples
-- [ADU cost guide — Bay Area 2026](https://hamilton-exteriors.com/blog/adu-cost-bay-area-2026): Cost-by-type tables, permit timelines, rental income projections
-- [Bay Area fire zone roofing requirements](https://hamilton-exteriors.com/blog/bay-area-fire-zone-roofing-requirements): CAL FIRE FHSZ zones, California Building Code Chapter 7A, material cost-impact data
+${blogLines}
 - [All articles](https://hamilton-exteriors.com/blog)
 
 ### Service Detail Pages (Material-Specific Pricing & Specs)

@@ -824,7 +824,11 @@ export function generateCountyServicePage(
   };
 
   const title = interpolate(titlePattern, vars);
-  const description = interpolate(descriptionPattern, vars);
+  // Fix duplication: when {city} is "Alameda County" and template appends
+  // "{county} County", the result is "Alameda County, Alameda County, CA".
+  // Collapse to single instance: "Alameda County, CA".
+  const rawDescription = interpolate(descriptionPattern, vars);
+  const description = rawDescription.replace(`${countyName}, ${countyName}`, countyName);
   const heroHeadline = interpolate(heroHeadlinePattern, vars);
 
   const hero: HeroProps = {

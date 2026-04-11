@@ -235,8 +235,8 @@ export default defineConfig({
     filter: (page) => {
       // Exclude noindex pages from sitemap (exact pathname match against end of URL)
       const exclude = ['/success', '/quote-calculator', '/404', '/privacy-policy', '/privacy-notice-ca', '/terms', '/eeo-policy', '/opt-out', '/additions-2', '/additions-3', '/blog/coming-soon', '/blog/untitled', '/buy/scan'];
-      // Exact-match pages (not substring): /about is a redirect, /buy is noindex
-      const exactExclude = ['/about', '/buy'];
+      // Exact-match pages (not substring): /about, /contact, /financing are redirects; /buy is noindex
+      const exactExclude = ['/about', '/buy', '/contact', '/financing'];
       const pagePath = new URL(page).pathname;
       return !exclude.some(path => page.includes(path)) && !exactExclude.includes(pagePath);
     },
