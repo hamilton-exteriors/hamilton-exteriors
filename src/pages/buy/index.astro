@@ -181,16 +181,13 @@ const faqJsonLd = {
   <LogoSlider />
 
   <!-- ── WHY WE'RE DIFFERENT — comparison + stats ───────────────────── -->
-  <section class="w-full bg-white px-5 py-12 lg:py-20">
+  <section class="cv-auto w-full bg-white px-5 py-12 lg:py-20">
     <div class="mx-auto max-w-[1060px]">
       <SectionLabel align="center">Transparent Pricing</SectionLabel>
       <h2 class="mb-4 text-center font-hamilton-display text-[clamp(28px,4vw,48px)] leading-[1.1] text-footer uppercase">
         Where does your money <em class="normal-case italic">actually</em> go?
       </h2>
-      <p class="mx-auto mb-12 max-w-[600px] text-center text-muted">
-
-        Most roofing companies are sales organizations with a construction crew attached. Here's the difference.
-      </p>
+      <p class="mx-auto mb-12 max-w-[600px] text-center text-muted">Most roofing companies are sales organizations with a construction crew attached. Here's the difference.</p>
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
         <!-- Traditional -->
         <div class="rounded-[4px] border-2 border-border bg-cream p-8">
@@ -225,12 +222,12 @@ const faqJsonLd = {
               </div>
             </div>
           </div>
-          <div class="bar-chart-track mt-6 h-8 overflow-hidden rounded-[4px] bg-[#e8e4de]">
+          <div class="bar-chart-track mt-6 h-8 overflow-hidden rounded-[4px] bg-border/40">
             <div class="flex h-full">
-              <div class="flex h-full w-[35%] items-center justify-center bg-[#c44] text-[11px] font-bold text-white">COMMISSION 35%</div>
-              <div class="flex h-full w-[20%] items-center justify-center bg-[#e8a87c] text-[11px] font-semibold">Overhead</div>
-              <div class="flex h-full w-[25%] items-center justify-center bg-border text-[11px] font-semibold">Materials</div>
-              <div class="flex h-full w-[20%] items-center justify-center bg-[#b8b3a8] text-[11px] font-semibold">Labor</div>
+              <div class="flex h-full w-[35%] items-center justify-center bg-error text-[11px] font-bold text-white">COMMISSION 35%</div>
+              <div class="flex h-full w-[20%] items-center justify-center bg-error/40 text-[11px] font-semibold text-charcoal">Overhead</div>
+              <div class="flex h-full w-[25%] items-center justify-center bg-border text-[11px] font-semibold text-charcoal">Materials</div>
+              <div class="flex h-full w-[20%] items-center justify-center bg-muted/30 text-[11px] font-semibold text-charcoal">Labor</div>
             </div>
           </div>
         </div>
@@ -267,11 +264,11 @@ const faqJsonLd = {
               </div>
             </div>
           </div>
-          <div class="bar-chart-track mt-6 h-8 overflow-hidden rounded-[4px] bg-[#e8e4de]">
+          <div class="bar-chart-track mt-6 h-8 overflow-hidden rounded-[4px] bg-border/40">
             <div class="flex h-full">
               <div class="flex h-full w-[40%] items-center justify-center bg-primary text-[11px] font-bold text-white">MATERIALS 40%</div>
-              <div class="flex h-full w-[35%] items-center justify-center bg-[rgb(45,110,70)] text-[11px] font-semibold text-white">Labor 35%</div>
-              <div class="flex h-full w-[25%] items-center justify-center bg-[rgb(65,125,85)] text-[11px] font-semibold text-white">Permits 25%</div>
+              <div class="flex h-full w-[35%] items-center justify-center bg-primary/75 text-[11px] font-semibold text-white">Labor 35%</div>
+              <div class="flex h-full w-[25%] items-center justify-center bg-primary/55 text-[11px] font-semibold text-white">Permits 25%</div>
             </div>
           </div>
         </div>
@@ -298,18 +295,18 @@ const faqJsonLd = {
         </div>
         <!-- Trust badges -->
         <div class="mt-6 flex flex-wrap items-center justify-center gap-4 border-t border-border pt-4">
-          <span class="font-satoshi text-xs font-semibold tracking-[0.05em] text-primary uppercase">GAF Master Elite Contractor</span>
+          <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-primary uppercase">GAF Master Elite Contractor</span>
           <span class="text-xs text-border">&bull;</span>
-          <span class="font-satoshi text-xs font-semibold tracking-[0.05em] text-muted uppercase">CSLB #1082377</span>
+          <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">CSLB #1082377</span>
           <span class="text-xs text-border">&bull;</span>
-          <span class="font-satoshi text-xs font-semibold tracking-[0.05em] text-muted uppercase">Licensed &amp; Insured</span>
+          <span class="font-satoshi text-xs font-bold tracking-[0.15em] text-muted uppercase">Licensed &amp; Insured</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ── SOCIAL PROOF ──────────────────────────────────────────────── -->
-  <section class="w-full bg-cream px-5 py-12 lg:py-20">
+  <section class="cv-auto w-full bg-cream px-5 py-12 lg:py-20">
     <div class="mx-auto max-w-[1060px]">
       <SectionLabel align="center">What Homeowners Say</SectionLabel>
       <div class="mx-auto mb-8 max-w-[760px] rounded-[4px] border border-border bg-white px-8 py-10 sm:px-10">
@@ -354,7 +351,7 @@ const faqJsonLd = {
   </section>
 
   <!-- ── MID-PAGE CTA ──────────────────────────────────────────────── -->
-  <section class="w-full bg-heading px-5 py-12 lg:py-16">
+  <section class="cv-auto w-full bg-heading px-5 py-12 lg:py-20">
     <div class="mx-auto max-w-[600px] text-center">
       <SectionLabel align="center" color="yellow">Your Next Step</SectionLabel>
       <p class="mb-4 font-hamilton-display text-[clamp(24px,3.5vw,36px)] leading-[1.15] text-white uppercase">
@@ -373,7 +370,7 @@ const faqJsonLd = {
   </section>
 
   <!-- ── FAQ ───────────────────────────────────────────────────────── -->
-  <section class="w-full bg-white px-5 py-12 lg:py-20">
+  <section class="cv-auto w-full bg-white px-5 py-12 lg:py-20">
     <div class="mx-auto max-w-[720px]">
       <SectionLabel align="center">FAQ</SectionLabel>
       <h2 class="mb-12 text-center font-hamilton-display text-[clamp(28px,4vw,48px)] leading-[1.1] text-footer uppercase">
@@ -427,7 +424,7 @@ const faqJsonLd = {
       <h2 class="mb-3 font-hamilton-display text-[clamp(28px,4vw,44px)] leading-[1.1] text-white uppercase">
         Your new roof is 3 clicks away
       </h2>
-      <p class="mb-8 text-[17px] text-white-70">
+      <p class="mb-8 text-[17px] text-white/70">
         Enter your address, see your price, and buy your roof in minutes — direct from our team.
       </p>
       <form class="cta-address-form relative mx-auto max-w-[480px] px-1" action="/buy/scan">
@@ -439,7 +436,7 @@ const faqJsonLd = {
           autocomplete="off"
           aria-label="Home address"
           maxlength="200"
-          class="cta-address-input w-full rounded-[4px] border-2 border-white/15 bg-white/8 py-[18px] pr-[140px] pl-5 text-[17px] text-white outline-none"
+          class="cta-address-input w-full rounded-[4px] border-2 border-white/15 bg-white/8 py-[18px] pr-[140px] pl-5 text-[17px] text-white transition-[border-color] duration-200 outline-none"
         />
         <button type="button" class="addr-clear-btn absolute top-1/2 right-[130px] hidden -translate-y-1/2" aria-label="Clear address">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
@@ -490,6 +487,14 @@ const faqJsonLd = {
   #hero-address-input::placeholder {
     color: rgba(255,255,255,0.45);
   }
+  .cta-address-input:focus {
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.12);
+  }
+  .cta-address-input::placeholder {
+    color: rgba(255,255,255,0.45);
+  }
+
   .faq-summary {
     list-style: none;
     cursor: pointer;
