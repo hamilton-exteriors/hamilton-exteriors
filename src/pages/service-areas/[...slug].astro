@@ -108,21 +108,7 @@ if (segments.length === 3) {
 
 const siteUrl = 'https://hamilton-exteriors.com';
 
-/** Build FAQPage schema from an array of Q&A pairs */
-function buildFaqSchema(faqs: Array<{ question: string; answer: string }> | undefined): Record<string, unknown> | null {
-  if (!faqs || faqs.length === 0) return null;
-  return {
-    '@type': 'FAQPage',
-    'mainEntity': faqs.map(faq => ({
-      '@type': 'Question',
-      'name': faq.question,
-      'acceptedAnswer': {
-        '@type': 'Answer',
-        'text': faq.answer,
-      },
-    })),
-  };
-}
+// FAQPage schema removed — Google restricted FAQ rich results to gov/healthcare sites (Aug 2023)
 
 let jsonLd: Record<string, unknown>[] | undefined;
 

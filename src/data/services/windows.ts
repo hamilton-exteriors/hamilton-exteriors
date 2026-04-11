@@ -135,6 +135,7 @@ export const data: ServicePageData = {
       },
     },
     { type: 'projects' },
+    { type: 'serviceAreas', data: { heading: 'Window Installation Across the Bay Area', serviceSlug: 'windows' } },
     { type: 'faq' },
     { type: 'yellowBar', text: 'Schedule Your Free Window Consultation', href: '#contact' },
     { type: 'cta' },

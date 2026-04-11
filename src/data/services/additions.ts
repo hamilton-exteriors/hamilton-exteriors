@@ -84,6 +84,7 @@ export const data: ServicePageData = {
       },
     },
     { type: 'projects' },
+    { type: 'serviceAreas', data: { heading: 'Home Additions Across the Bay Area', serviceSlug: 'additions' } },
     { type: 'faq' },
     { type: 'yellowBar', text: 'Schedule Your Free Consultation', href: '#contact' },
     { type: 'cta' },

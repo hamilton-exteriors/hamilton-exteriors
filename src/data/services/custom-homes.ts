@@ -89,6 +89,7 @@ export const data: ServicePageData = {
       },
     },
     { type: 'projects' },
+    { type: 'serviceAreas', data: { heading: 'Custom Home Building Across the Bay Area', serviceSlug: 'custom-homes' } },
     { type: 'faq' },
     { type: 'yellowBar', text: 'Schedule Your Free Consultation', href: '#contact' },
     { type: 'cta' },

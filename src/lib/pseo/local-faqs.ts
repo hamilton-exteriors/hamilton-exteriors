@@ -96,6 +96,24 @@ export function getCountyLocalFaqs(
         answer: `${city} homeowners often want exteriors that reflect Napa Valley's rustic-elegant character without formal design restrictions. Popular combinations include James Hardie board-and-batten siding in earthy tones (Monterey Taupe, Timber Bark, Woodstock Brown), natural stone wainscoting, standing-seam metal roofing in aged bronze or weathered copper, and wood-look composite accents. Hamilton Exteriors carries the full James Hardie ColorPlus palette and architectural shingle lines in slate, weathered-wood, and barkwood tones that complement wine country architecture. We bring physical samples to your property so you can see colors against your landscaping and surroundings.`,
       },
     ],
+    'san-mateo': [
+      {
+        question: `How does the Peninsula climate affect roofing and siding in ${city}?`,
+        answer: `${city} and San Mateo County sit between the Pacific fog belt and the warmer inland Peninsula. Homes in western and elevated neighborhoods experience persistent fog, moisture, and salt air that accelerate wood rot and metal corrosion. Eastern and lower-elevation homes see more sun and heat. Hamilton Exteriors selects materials based on your home's specific microclimate — fiber cement siding resists coastal moisture, while cool-roof-rated shingles manage heat on sun-exposed slopes. We use corrosion-resistant fasteners on all Bay-adjacent projects.`,
+      },
+      {
+        question: `Does ${city} require permits for exterior renovations?`,
+        answer: `Yes. San Mateo County and the city of ${city} require building permits for roof replacements, siding installations, and window changes. Some ${city} neighborhoods have additional design review requirements for exterior changes — particularly in older residential areas with historic character. Hamilton Exteriors handles all permit applications, plan submissions, and inspections as part of every project. Typical permit turnaround in ${city} is 2-3 weeks for standard residential work.`,
+      },
+      {
+        question: `Are there earthquake retrofit considerations for ${city} homes?`,
+        answer: `The San Andreas Fault runs through the San Mateo County coast, and the Peninsula's mix of fill soil and bedrock creates variable seismic risk. Older ${city} homes — especially those built before 1970 on cripple walls — should consider seismic retrofitting when doing major exterior work. A roof replacement is the ideal time to add Simpson Strong-Tie roof-to-wall connections. Hamilton Exteriors includes hurricane clips as standard on all Peninsula projects and can coordinate with structural engineers for full seismic evaluation.`,
+      },
+      {
+        question: `What SFO airport noise considerations affect window choices in ${city}?`,
+        answer: `Several San Mateo County cities including ${city} fall under SFO flight paths. For homes in high-noise areas, we recommend windows with STC (Sound Transmission Class) ratings of 35+ — dual-pane laminated glass with asymmetric pane thickness is the most effective noise reduction option. The FAA's Part 150 program and SFO's Airport/Community Roundtable may offer noise insulation funding for qualifying homes. Hamilton Exteriors can assess your noise exposure and recommend the right glazing package during your free consultation.`,
+      },
+    ],
     'santa-clara': [
       {
         question: `What are ${city}'s ADU permit requirements and timelines?`,

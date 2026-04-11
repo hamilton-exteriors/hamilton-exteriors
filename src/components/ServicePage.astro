@@ -18,11 +18,42 @@ import FAQ from './FAQ.astro';
 import ContactUs from './ContactUs.astro';
 import Footer from './Footer.astro';
 import { hasImage } from '../lib/service-page-types';
-import type { ServicePageData, SectionBlock, StylesSection } from '../lib/service-page-types';
+import type { ServicePageData, SectionBlock, StylesSection, ServiceAreasSection } from '../lib/service-page-types';
 import { resolveImage } from '../lib/image-map';
 import { getCityWikipedia } from '../lib/city-wikipedia';
 import { getCityLocalFacts } from '../lib/city-local-facts';
 import { getCityProximity } from '../lib/city-coordinates';
+
+/** County+city data for the service areas grid on main service pages */
+const SERVICE_AREA_COUNTIES = [
+  { name: 'Alameda County', slug: 'alameda-county-ca', cities: [
+    { name: 'Oakland', slug: 'oakland-ca' }, { name: 'Berkeley', slug: 'berkeley-ca' },
+    { name: 'Fremont', slug: 'fremont-ca' }, { name: 'Hayward', slug: 'hayward-ca' },
+    { name: 'San Leandro', slug: 'san-leandro-ca' },
+  ]},
+  { name: 'Contra Costa County', slug: 'contra-costa-county-ca', cities: [
+    { name: 'Walnut Creek', slug: 'walnut-creek-ca' }, { name: 'Concord', slug: 'concord-ca' },
+    { name: 'San Ramon', slug: 'san-ramon-ca' }, { name: 'Lafayette', slug: 'lafayette-ca' },
+    { name: 'Danville', slug: 'danville-ca' },
+  ]},
+  { name: 'Santa Clara County', slug: 'santa-clara-county-ca', cities: [
+    { name: 'San Jose', slug: 'san-jose-ca' }, { name: 'Palo Alto', slug: 'palo-alto-ca' },
+    { name: 'Sunnyvale', slug: 'sunnyvale-ca' }, { name: 'Cupertino', slug: 'cupertino-ca' },
+    { name: 'Los Gatos', slug: 'los-gatos-ca' },
+  ]},
+  { name: 'Marin County', slug: 'marin-county-ca', cities: [
+    { name: 'Mill Valley', slug: 'mill-valley-ca' }, { name: 'San Rafael', slug: 'san-rafael-ca' },
+    { name: 'Novato', slug: 'novato-ca' }, { name: 'Larkspur', slug: 'larkspur-ca' },
+  ]},
+  { name: 'San Mateo County', slug: 'san-mateo-county-ca', cities: [
+    { name: 'Redwood City', slug: 'redwood-city-ca' }, { name: 'San Mateo', slug: 'san-mateo-ca' },
+    { name: 'Burlingame', slug: 'burlingame-ca' }, { name: 'Daly City', slug: 'daly-city-ca' },
+  ]},
+  { name: 'Napa County', slug: 'napa-county-ca', cities: [
+    { name: 'Napa', slug: 'napa-ca' }, { name: 'St. Helena', slug: 'st-helena-ca' },
+    { name: 'Calistoga', slug: 'calistoga-ca' },
+  ]},
+];
 
 interface Props {
   data: ServicePageData;
@@ -533,6 +564,45 @@ const jumpLinks = [
               </p>
             </div>
           ))}
+        </div>
+      </Section>
+    );
+  }
+
+  if (section.type === 'serviceAreas') {
+    const saData = section.data as ServiceAreasSection;
+    return (
+      <Section class="py-16 bg-cream">
+        <div class="mx-auto max-w-[1000px] px-5">
+          <SectionLabel class="mb-3">Service Areas</SectionLabel>
+          <h2 class="mb-8">{saData.heading}</h2>
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {SERVICE_AREA_COUNTIES.map(county => (
+              <div>
+                <a
+                  href={`/service-areas/${county.slug}/${saData.serviceSlug}`}
+                  class="block text-[0.9375rem] font-semibold text-heading no-underline hover:opacity-75 transition-opacity mb-2"
+                >
+                  {county.name} &rarr;
+                </a>
+                <ul class="flex flex-col gap-1">
+                  {county.cities.map(city => (
+                    <li>
+                      <a
+                        href={`/service-areas/${county.slug}/${city.slug}/${saData.serviceSlug}`}
+                        class="text-sm text-muted no-underline hover:opacity-75 transition-opacity"
+                      >
+                        {city.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p class="mt-6 text-sm text-muted">
+            <a href="/service-areas" class="text-primary no-underline hover:opacity-75 transition-opacity">View all service areas &rarr;</a>
+          </p>
         </div>
       </Section>
     );

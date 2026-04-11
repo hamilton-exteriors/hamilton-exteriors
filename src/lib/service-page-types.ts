@@ -132,9 +132,16 @@ export type SectionBlock =
   | { type: 'cityPricing'; data: CityPricingSection }
   | { type: 'neighborhoodService'; data: NeighborhoodServiceSection }
   | { type: 'comparison'; data: ComparisonSection }
+  | { type: 'serviceAreas'; data: ServiceAreasSection }
   | { type: 'faq' }
   | { type: 'contactUs' }
   | { type: 'footer' };
+
+/** Grid of links to city+service pSEO pages from main service pages */
+export interface ServiceAreasSection {
+  heading: string;
+  serviceSlug: string;
+}
 
 /** Expert blockquote with attribution — renders as a <blockquote> for AI extraction */
 export interface ExpertQuote {

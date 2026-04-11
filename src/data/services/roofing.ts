@@ -122,6 +122,7 @@ export const data: ServicePageData = {
       },
     },
     { type: 'projects' },
+    { type: 'serviceAreas', data: { heading: 'Roofing Services Across the Bay Area', serviceSlug: 'roofing' } },
     { type: 'faq' },
     { type: 'yellowBar', text: 'Schedule Your Free Roof Inspection', href: '#contact' },
     { type: 'cta' },

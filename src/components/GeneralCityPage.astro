@@ -93,25 +93,7 @@ const reviewSchema = {
   })),
 };
 
-// FAQPage schema — base FAQs (same as FAQ.astro) + city-specific extra FAQs from Ghost CMS
-const baseFaqsForSchema = [
-  { question: 'What areas in the Bay Area do you serve?', answer: 'We serve six Bay Area counties \u2014 Alameda, Contra Costa, Marin, Napa, San Mateo, and Santa Clara \u2014 covering 47 cities from Oakland to San Jose. Our crews are based in Castro Valley, putting us within 45 minutes of every city we serve. We handle permits and know the building codes for each jurisdiction, which matters because requirements and fees vary significantly between cities.' },
-  { question: 'How does billing and financing work?', answer: 'We offer $0-down financing with approved credit, 12-month same-as-cash plans, and extended terms up to 15 years for larger projects. You only pay for completed, inspected work \u2014 we never ask for full payment before the job is done. Your project manager will walk you through every option during your estimate appointment. We also accept checks, ACH, and all major credit cards.' },
-  { question: 'Are you licensed and insured?', answer: 'Yes. CSLB License #1082377 \u2014 verify it anytime at cslb.ca.gov. We carry $2M general liability, full workers\u2019 comp, and are bonded per California law. We hold GAF Master Elite, Owens Corning Preferred, CertainTeed ShingleMaster, and James Hardie Elite Preferred certifications \u2014 each requires annual training and quality audits to maintain. We\u2019re happy to provide proof of insurance before any work begins.' },
-  { question: 'Do I need a permit for my exterior project?', answer: 'Most exterior projects in the Bay Area require a building permit. Fees vary by city \u2014 Oakland runs $200\u2013$600, Peninsula cities often more. We handle the entire permit process: application, plan submission, and scheduling inspections. Permit fees appear as a separate line item in your estimate so you\u2019ll see every cost upfront. For homes in WUI fire zones (Berkeley Hills, Oakland Hills, parts of Marin), we ensure full compliance with local fire-rated material requirements.' },
-];
-const allFaqsForSchema = [...baseFaqsForSchema, ...(data.faqs || [])];
-const faqPageSchema = {
-  '@type': 'FAQPage',
-  mainEntity: allFaqsForSchema.map((faq) => ({
-    '@type': 'Question',
-    name: faq.question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: faq.answer,
-    },
-  })),
-};
+// FAQPage schema removed — Google restricted FAQ rich results to gov/healthcare sites (Aug 2023)
 ---
 
 <AnnouncementBar slot="header" />
@@ -126,7 +108,7 @@ const faqPageSchema = {
 ]} />
 
 <!-- Structured data: BreadcrumbList + WebPage + Reviews -->
-<script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': [breadcrumbSchema, webPageSchema, reviewSchema, faqPageSchema] })} />
+<script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': [breadcrumbSchema, webPageSchema, reviewSchema] })} />
 
 <!-- Hero -->
 <Hero

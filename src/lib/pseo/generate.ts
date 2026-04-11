@@ -16,6 +16,7 @@ import type { HeroProps, SectionBlock, LocalContextSection, CityPricingSection, 
 import type { CitySeed } from './city-seed-data';
 import type { ServiceTemplate } from './service-templates';
 import { CITY_SEEDS } from './city-seed-data';
+import { getCountyLocalFaqs } from './local-faqs';
 
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
@@ -84,84 +85,8 @@ function buildVars(
 }
 
 // ── Local FAQ Content ──────────────────────────────────────────────────────
-// Genuinely location-specific FAQs referencing real building codes, climate
-// factors, fire zones, and permit requirements per county.
-
-function getCountyLocalFaqs(
-  countySlug: string,
-  city: string,
-  county: string,
-): Array<{ question: string; answer: string }> {
-  const faqsByCounty: Record<string, Array<{ question: string; answer: string }>> = {
-    'alameda': [
-      {
-        question: `Do ${city} homes need seismic upgrades when replacing a roof?`,
-        answer: `Many older homes in ${city} and Alameda County were built before modern seismic codes. While a roof replacement alone doesn't trigger a seismic retrofit requirement, it's the ideal time to reinforce roof-to-wall connections — especially for homes near the Hayward Fault. Hamilton Exteriors uses Simpson Strong-Tie hurricane clips on every roof we install, which improves earthquake resistance and meets California's latest building standards at no extra cost.`,
-      },
-      {
-        question: `Are there fire-hardening requirements for roofing in ${city}?`,
-        answer: `Yes. Parts of ${city} and the East Bay Hills fall within Cal Fire's Very High Fire Hazard Severity Zones (VHFHSZ). Homes in these zones must use Class A fire-rated roofing materials — which includes the asphalt, metal, and tile options Hamilton Exteriors installs. If your property is in a designated fire zone, we also ensure compliant ember-resistant vents and remove combustible material within 5 feet of the roofline as part of our standard installation process.`,
-      },
-    ],
-    'contra-costa': [
-      {
-        question: `What roofing materials work best for ${city}'s hot summers?`,
-        answer: `Contra Costa County's inland climate pushes summer temperatures above 100°F in cities like ${city}, which accelerates shingle aging. We recommend cool-roof-rated asphalt shingles (like Owens Corning Duration COOL) that reflect solar heat and meet California's Title 24 energy standards. Metal roofing is another excellent choice — it reflects up to 70% of solar radiant heat and can reduce cooling costs by 20-40%. Hamilton Exteriors helps you choose the right material for ${city}'s specific microclimate.`,
-      },
-      {
-        question: `Does ${city} require permits for roof replacements or siding projects?`,
-        answer: `Yes. Contra Costa County requires building permits for roof replacements, siding installations, and window changes. ${city} processes these through the county building department. Hamilton Exteriors handles all permit applications, inspections, and final sign-offs as part of every project — you never have to visit city hall. Typical permit turnaround in ${county} County is 5-10 business days for standard residential work.`,
-      },
-    ],
-    'marin': [
-      {
-        question: `Does ${city} have design review requirements for exterior work?`,
-        answer: `Marin County communities including ${city} often have architectural review or design guidelines that apply to exterior changes — especially in historic districts and hillside zones. Some projects require approval from the Marin County Community Development Agency or local design review boards before permits are issued. Hamilton Exteriors is experienced with Marin's review process and helps homeowners select materials and colors that meet local aesthetic guidelines while achieving their design vision.`,
-      },
-      {
-        question: `How does the coastal climate in ${city} affect siding and roofing choices?`,
-        answer: `${city}'s proximity to the coast means higher moisture, salt air exposure, and persistent fog — all of which can shorten the life of standard materials. We recommend James Hardie fiber cement siding for Marin homes because it's engineered for coastal climates and resists moisture, rot, and salt damage for 30+ years. For roofing, we use enhanced underlayment and corrosion-resistant fasteners on every ${city} project to account for the marine environment.`,
-      },
-    ],
-    'napa': [
-      {
-        question: `What are the fire-hardening requirements for homes in ${city}?`,
-        answer: `After the devastating 2017 Atlas and Tubbs fires and the 2020 Glass Fire, Napa County adopted strict fire-hardening rules for the Wildland-Urban Interface (WUI). Homes in ${city}'s fire zones must use Class A fire-rated roofing, ember-resistant vents, non-combustible siding within 6 feet of grade, and tempered or dual-pane windows. Hamilton Exteriors is experienced with Napa County's fire rebuild and hardening requirements — we ensure every material selection and installation detail meets current Cal Fire and local codes.`,
-      },
-      {
-        question: `Do wine country aesthetics affect what materials are available in ${city}?`,
-        answer: `Napa Valley's distinctive character does influence exterior choices, but not through formal restrictions for most residential projects. ${city} homeowners often choose materials that complement wine country architecture — earth-toned James Hardie siding, natural stone accents, and architectural shingles in weathered-wood or slate tones. Hamilton Exteriors offers a full range of colors and textures that blend with ${city}'s aesthetic. For properties in or near vineyard zones, we can advise on any county-specific overlay requirements.`,
-      },
-    ],
-    'san-mateo': [
-      {
-        question: `How does the Peninsula climate affect roofing and siding in ${city}?`,
-        answer: `${city} and San Mateo County sit between the Pacific fog belt and the warmer inland Peninsula. Homes in western and elevated neighborhoods experience persistent fog, moisture, and salt air that accelerate wood rot and metal corrosion. Eastern and lower-elevation homes see more sun and heat. Hamilton Exteriors selects materials based on your home's specific microclimate — fiber cement siding resists coastal moisture, while cool-roof-rated shingles manage heat on sun-exposed slopes. We use corrosion-resistant fasteners on all Bay-adjacent projects.`,
-      },
-      {
-        question: `Does ${city} require permits for exterior renovations?`,
-        answer: `Yes. San Mateo County and the city of ${city} require building permits for roof replacements, siding installations, and window changes. Some ${city} neighborhoods have additional design review requirements for exterior changes — particularly in older residential areas with historic character. Hamilton Exteriors handles all permit applications, plan submissions, and inspections as part of every project. Typical permit turnaround in ${city} is 2-3 weeks for standard residential work.`,
-      },
-    ],
-    'santa-clara': [
-      {
-        question: `What are ${city}'s ADU permit requirements?`,
-        answer: `Santa Clara County is one of California's most ADU-friendly regions. ${city} follows state ADU law (AB 68/SB 13) allowing detached ADUs up to 1,200 sq ft, junior ADUs up to 500 sq ft, and garage conversions on most single-family lots — often without additional parking requirements. ${city} has also adopted streamlined ADU permits with reduced fees. Hamilton Exteriors handles the full ADU process: design, engineering, permit applications, and construction. Most ADU permits in ${city} are approved within 60 days.`,
-      },
-      {
-        question: `Does ${city} require Title 24 energy compliance for roof and window replacements?`,
-        answer: `Yes. California's Title 24 energy standards apply to all roof and window replacements in ${city} and throughout Santa Clara County. For roofing, this means cool-roof-rated materials are required on low-slope roofs and recommended on steep-slope roofs to reduce heat gain. For windows, replacements must meet U-factor and SHGC ratings for Climate Zone 4 (which covers most of ${county} County). Hamilton Exteriors ensures every project meets or exceeds Title 24 requirements — we handle the energy calculations and compliance documentation.`,
-      },
-    ],
-  };
-
-  return faqsByCounty[countySlug] || [
-    {
-      question: `Is Hamilton Exteriors licensed to work in ${county} County?`,
-      answer: `Yes. Hamilton Exteriors is fully licensed, bonded, and insured to work throughout ${county} County, including ${city} and all surrounding communities. We carry California CSLB License #1082377, general liability coverage, and workers' compensation insurance.`,
-    },
-  ];
-}
+// County-level FAQs imported from local-faqs.ts (single source of truth).
+// City-level FAQs are generated below from seed data.
 
 /**
  * Generate one city-specific FAQ using unique local context from the seed data.

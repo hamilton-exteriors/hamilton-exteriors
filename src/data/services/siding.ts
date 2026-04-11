@@ -128,6 +128,7 @@ export const data: ServicePageData = {
       },
     },
     { type: 'projects' },
+    { type: 'serviceAreas', data: { heading: 'Siding Services Across the Bay Area', serviceSlug: 'siding' } },
     { type: 'faq' },
     { type: 'yellowBar', text: 'Schedule Your Free Siding Inspection', href: '#contact' },
     { type: 'cta' },
