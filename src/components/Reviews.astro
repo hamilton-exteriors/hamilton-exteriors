@@ -18,19 +18,18 @@ const { service = 'general' } = Astro.props;
 const rawData = await getGoogleReviews();
 const { rating, reviewCount, reviews: allGoogleReviews } = getDisplayReviews(rawData, 5);
 
-// Only use Google reviews that have a profile photo — no-photo cards look broken
 // When a service is specified, prefer reviews whose text mentions that service
-const googleWithPhotos = allGoogleReviews
-  .filter(r => r.profile_photo_url)
+// No-photo reviews use a letter avatar (lines 102-105), so no photo filter needed
+const googleReviews = allGoogleReviews
   .map(r => ({ ...r, platform: 'google' as const, _tags: detectServiceTags(r.text) }));
 
 // Sort: service-relevant reviews first, then general
 const sortedGoogle = service !== 'general'
   ? [
-      ...googleWithPhotos.filter(r => r._tags.includes(service)),
-      ...googleWithPhotos.filter(r => !r._tags.includes(service)),
+      ...googleReviews.filter(r => r._tags.includes(service)),
+      ...googleReviews.filter(r => !r._tags.includes(service)),
     ]
-  : googleWithPhotos;
+  : googleReviews;
 
 // Build a mixed-platform review set: 1 Google, 1 Yelp, 1 Angi, 1 Nextdoor
 const allCurated = CURATED_REVIEWS.filter(r => r.tags.includes(service));
