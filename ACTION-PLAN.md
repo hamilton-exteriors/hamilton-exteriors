@@ -1,85 +1,94 @@
 # Hamilton Exteriors — SEO Action Plan
 
-**Generated:** April 10, 2026 (refresh) | **Current Score:** 79/100 | **Target:** 90/100
+**Generated:** April 11, 2026 | **Current Score:** 76/100 | **Target:** 90/100
 
 ---
 
-## Critical (Fix Immediately) — Estimated +7 points
+## Critical (Fix Immediately)
 
-| # | Action | Owner | Effort | Impact |
-|---|--------|-------|--------|--------|
-| 1 | **Fix San Mateo County 404** — Create Ghost CMS content for `/service-areas/san-mateo-county-ca` and 6 county-service pages (roofing, siding, windows, adu, custom-homes, additions). These are in the sitemap and linked from every page's footer. | Dev/Alex | 3 hr | Eliminates dead links on every page, restores coverage for high-value county |
-| 2 | Fix `itemReviewed` schema type from `["GeneralContractor","RoofingContractor"]` to `"LocalBusiness"` in Layout.astro:234,243 | Dev | 30 min | Unlocks review star rich results |
-| 3 | **Fix dual Angi listings** — Merge ABR listing (ID 10768498) into Hamilton listing (ID 10769498). Update Layout.astro sameAs to use correct URL. | Alex | 2 hr | Eliminates split entity signal |
-| 4 | **Fix Wikidata geographic error** — Q139044457 lists Castro Valley in Contra Costa County. Correct to Alameda County on wikidata.org. | Alex | 15 min | Fixes wrong county in knowledge graph |
-| 5 | Update HomeAdvisor business name from "ABR Quality Resources" to "Hamilton Exteriors" | Alex | 1 hr | Unifies entity signal |
-| 6 | **Fix Yelp sameAs 404** — Verify correct Yelp URL and update Layout.astro:141 | Dev | 15 min | Removes dead link from schema |
+| # | Issue | Location | Effort | Impact |
+|---|---|---|---|---|
+| 1 | Update `reviewCount` fallback 26 to 37 | `src/layouts/Layout.astro:164-165` | 5 min | Prevents schema/GBP mismatch during API outages |
+| 2 | Fix `contactPoint.areaServed` "CA" to 6-county array | `src/layouts/Layout.astro:133` | 5 min | Corrects geographic over-claim in structured data |
+| 3 | Add missing pages to sitemap (/buy, /financing, /about) | Astro sitemap config | 15 min | Ensures key conversion pages are indexed |
 
-## High (This Week) — Estimated +4 points
+**Estimated score after Critical fixes: +2 pts (78/100)**
 
-| # | Action | Owner | Effort | Impact |
-|---|--------|-------|--------|--------|
-| 7 | Fix pSEO H1s — replace "Best [Service] Company in [City]" with factual differentiators in Ghost CMS | Dev/Alex | 2 hr | Removes unverifiable superlatives from 880+ pages |
-| 8 | Fix pSEO meta descriptions — replace "top-rated" with "architect-led" in Ghost CMS | Dev | 1 hr | Removes unverifiable claims from 880+ pages |
-| 9 | Add Service JSON-LD to `/roofing`, `/siding`, `/windows`, `/adu`, `/custom-homes`, `/additions` | Dev | 2 hr | Machine-readable service identity for top pages |
-| 10 | Fix `aggregateRating.reviewCount` — only count API-sourced reviews (Layout.astro:161) | Dev | 1 hr | Schema guideline compliance |
-| 11 | Standardize warranty copy (Difference.astro:18 "35-year labor" vs FAQ "full duration") | Alex/Dev | 15 min | Factual consistency |
-| 12 | Defer Meta Pixel behind interaction listener (match GTM pattern at Layout.astro:419) | Dev | 30 min | LCP/TBT improvement |
-| 13 | Claim Houzz and BuildZoom profiles | Alex | 1 hr | Top-5 GC citation sources |
-| 14 | Add `/buy` to sitemap-0.xml | Dev | 10 min | Missing primary conversion page |
+---
 
-## Medium (This Month) — Estimated +3 points
+## High (Fix Within 1 Week)
 
-| # | Action | Owner | Effort | Impact |
-|---|--------|-------|--------|--------|
-| 15 | Create real `/financing` page with content | Dev/Alex | 3 hr | SEO gap + trust for cost-conscious users |
-| 16 | Start YouTube channel (3-5 project walkthrough videos) | Alex | 5 hr | Highest-leverage off-page AI citation signal |
-| 17 | Reconcile Oak Ridge DOI — use `10.2172/1220146` in llms.txt.ts:51 and roofing.ts:121 (match index.astro) | Dev | 30 min | Citation verification consistency |
-| 18 | Add `legalName` and `foundingDate` to Organization schema (Layout.astro fullOrgSchemaObj) | Dev | 10 min | Entity disambiguation |
-| 19 | Add 5 working county landing pages to sitemap-0.xml | Dev | 30 min | Crawl signal for hub pages |
-| 20 | Add Service schema to county-service pages (`/service-areas/{county}/{service}`) | Dev | 1 hr | Machine-readable service on pSEO pages |
-| 21 | Add external citations to blog post body text (ARMA, DOE, Oak Ridge inline) | Dev | 2 hr | AI citability improvement |
-| 22 | Expand contact page editorial content (add "What to expect" section) | Dev | 1 hr | Thin content fix |
-| 23 | Expand service-areas index editorial introduction to 500+ words | Dev | 1 hr | Thin content fix |
-| 24 | Fix hero review count caching (Hero.astro shows "37", API returns 41) | Dev | 30 min | Trust signal accuracy |
-| 25 | Add Google Maps embed to contact page | Dev | 30 min | GBP co-citation signal |
+| # | Issue | Effort | Impact |
+|---|---|---|---|
+| 4 | Add FAQPage JSON-LD to city page templates | 30 min | FAQ rich results for "[service] [city]" queries |
+| 5 | Add Service schema to county-service pages (~30 pages) | 30 min | Structured data coverage for 30 orphaned pages |
+| 6 | Add external source citations to blog post body text | 1-2 hrs/post | AI citation confidence across all platforms |
+| 7 | Add visible "Last reviewed by" date + author to blog template | 15 min | Perplexity freshness signal, Google AIO author display |
+| 8 | Embed Google Maps iframe on contact page | 15 min | GBP association signal for Googlebot |
+| 9 | Fix contact page schema — add full streetAddress | 10 min | NAP consistency in structured data |
+
+**Estimated score after High fixes: +6 pts (84/100)**
+
+---
+
+## Medium (Fix Within 1 Month)
+
+| # | Issue | Effort | Impact |
+|---|---|---|---|
+| 10 | A/B test city page meta titles: GC-first for high-ADU cities | 2 hrs | Better category alignment with GBP primary |
+| 11 | Implement post-project review request workflow | 2-3 hrs setup | Target 50 reviews by Q3 2026 |
+| 12 | Create YouTube channel with 3-5 videos | 2-3 days | Strongest AI citation correlation (0.737) |
+| 13 | Populate Wikidata Q139044457 (P856, P571, P131, P452) | 30 min | ChatGPT + Bing entity recognition |
+| 14 | Pursue BBB Accreditation | External | Tier 1 citation + conversion trust signal |
+| 15 | Create Houzz listing with project portfolio | 1-2 hrs | Critical Tier 2 citation for affluent Bay Area |
+| 16 | Add Content-Security-Policy header | 1 hr | Security posture improvement |
+| 17 | Spot-check 10-15 city+service pages for uniqueness | 1-2 hrs | Verify no thin content at scale |
+| 18 | Verify homepage meta description is not truncated | 5 min | Complete sentence in SERPs |
+
+**Estimated score after Medium fixes: +6 pts (90/100)**
+
+---
 
 ## Low (Backlog)
 
-| # | Action | Effort |
-|---|--------|--------|
-| 26 | Change Satoshi to `font-display: optional` in global.css:27,34 | 5 min |
-| 27 | Add homepage `SpeakableSpecification` (Mission + first FAQ) | 30 min |
-| 28 | Trim roofing/siding FAQ answers to under 80 words | 1 hr |
-| 29 | Replace generic blog filler link on non-roofing service pages | 30 min |
-| 30 | Add `sitemap:` metadata to llms.txt header blockquote | 10 min |
-| 31 | Add Nextdoor Business Profile | 30 min |
-| 32 | Subset DM Sans to used unicode ranges (~18KB savings) | 30 min |
-| 33 | Fix blog slug `sa-county-san-mateo-county-ca` (CMS artifact) | 15 min |
-| 34 | Normalize homepage trailing slash in image-sitemap.xml | 10 min |
+| # | Issue | Effort | Impact |
+|---|---|---|---|
+| 19 | Add HowTo schema to process-oriented blog posts | 30 min/post | Rich result eligibility |
+| 20 | Add Amazonbot explicit allow to robots.txt | 2 min | Future-proof Alexa/Rufus |
+| 21 | Implement WebP/AVIF image serving | 2-4 hrs | Performance improvement for 510 images |
+| 22 | Create infographics for cost comparison posts | 4-6 hrs | Shareable visual + backlink surface |
+| 23 | Add TL;DR summary block at top of blog posts | 10 min/post | Optimal AI extraction target |
+| 24 | Verify .well-known/llms.txt does not conflict with /llms.txt | 10 min | Prevent canonical confusion |
+| 25 | Add X-Frame-Options + X-Content-Type-Options headers | 15 min | Security hardening |
 
 ---
 
-## Score Projection
+## Implementation Roadmap
 
-| Milestone | Items | Score |
-|-----------|-------|-------|
-| Current | — | 79 |
-| After Critical fixes | #1-6 | ~86 |
-| After High fixes | #7-14 | ~89 |
-| After Medium fixes | #15-25 | ~92 |
-| After all | #26-34 | ~93 |
+### Week 1: Critical + Quick Wins (items 1-3, 7-9)
+- Code fixes: reviewCount fallback, areaServed, contact schema, Maps embed
+- Template update: visible date/author on blog posts
+- Config: add missing pages to sitemap
+- **Expected: 76 to 80**
+
+### Week 2: Schema + Content (items 4-6)
+- Add FAQPage JSON-LD to city page template
+- Add Service schema to county-service pages
+- Begin adding external citations to top 5 blog posts
+- **Expected: 80 to 84**
+
+### Month 1: Authority Building (items 10-18)
+- Create Houzz listing, pursue BBB accreditation
+- Set up review request workflow
+- Populate Wikidata, test city meta titles
+- **Expected: 84 to 90**
+
+### Ongoing: Content + Multi-Modal (items 12, 19-25)
+- YouTube channel creation
+- Image optimization
+- Infographic creation
+- **Expected: 90+**
 
 ---
 
-## Items Completed (Previous Audit)
-
-| Item | Date |
-|------|------|
-| IndexNow key file deployed to `/public/` | April 2026 |
-| LinkedIn company page added to `sameAs` | April 2026 |
-| `preloadHero` on `/siding` and `/windows` | April 2026 |
-| `dateModified` on BlogPosting schema | April 2026 |
-| `Person.url` on about page schema | April 2026 |
-| HSTS preload submitted | April 2026 |
-| www redirect configured | April 2026 |
+*Action plan generated April 11, 2026*

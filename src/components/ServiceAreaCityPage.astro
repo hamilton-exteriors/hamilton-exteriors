@@ -85,9 +85,22 @@ const breadcrumbSchema = {
   ],
 };
 
+// FAQPage schema — emit when city page has FAQ content from Ghost CMS
+const faqPageSchema = faqs && faqs.length > 0 ? {
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq: { question: string; answer: string }) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+} : null;
+
 const cityGraphJsonLd = {
   '@context': 'https://schema.org',
-  '@graph': [breadcrumbSchema, webPageSchema, ...(reviewSchema ? [reviewSchema] : [])],
+  '@graph': [breadcrumbSchema, webPageSchema, ...(reviewSchema ? [reviewSchema] : []), ...(faqPageSchema ? [faqPageSchema] : [])],
 };
 ---
 

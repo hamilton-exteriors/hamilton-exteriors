@@ -130,7 +130,14 @@ const fullOrgSchemaObj = fullOrgSchema ? {
     "@type": "ContactPoint",
     "telephone": "+16509773351",
     "contactType": "customer service",
-    "areaServed": "CA",
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "Alameda County, CA" },
+      { "@type": "AdministrativeArea", "name": "Contra Costa County, CA" },
+      { "@type": "AdministrativeArea", "name": "Marin County, CA" },
+      { "@type": "AdministrativeArea", "name": "Napa County, CA" },
+      { "@type": "AdministrativeArea", "name": "Santa Clara County, CA" },
+      { "@type": "AdministrativeArea", "name": "San Mateo County, CA" }
+    ],
     "availableLanguage": "English"
   },
   "hasMap": "https://maps.google.com/?cid=3578771346418026097",
@@ -161,8 +168,8 @@ const fullOrgSchemaObj = fullOrgSchema ? {
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": _displayReviews?.rating ?? 4.8,
-    "reviewCount": _displayReviews?.reviewCount ?? 26,
-    "ratingCount": _displayReviews?.reviewCount ?? 26,
+    "reviewCount": _displayReviews?.reviewCount ?? 37,
+    "ratingCount": _displayReviews?.reviewCount ?? 37,
     "bestRating": 5,
     "worstRating": 1
   },
