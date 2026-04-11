@@ -1,9 +1,10 @@
 import type { APIRoute } from 'astro';
-import { getGoogleReviews } from '../lib/google-reviews';
+import { getGoogleReviews, getDisplayReviews } from '../lib/google-reviews';
 import { getPosts } from '../lib/ghost';
 
 export const GET: APIRoute = async () => {
-  const { rating, reviewCount } = await getGoogleReviews();
+  const rawData = await getGoogleReviews();
+  const { rating, reviewCount } = getDisplayReviews(rawData);
 
   // Fetch all published blog posts from Ghost CMS
   let blogLines = '';
@@ -33,7 +34,8 @@ export const GET: APIRoute = async () => {
 - **Address:** 21634 Redwood Rd Unit F, Castro Valley, CA 94546
 - **Legal name:** ABR Quality Resources Inc (DBA Hamilton Exteriors)
 - **Founded:** 2018 | **Rating:** ${rating} stars (${reviewCount} Google reviews)
-- **Wikidata:** https://www.wikidata.org/wiki/Q139044457
+- **Wikidata (company):** https://www.wikidata.org/wiki/Q139044457
+- **Wikidata (founder):** https://www.wikidata.org/wiki/Q139196186
 - **Directory listings:** [HomeAdvisor](https://www.homeadvisor.com/rated.abrqualityresources.150372023.html), [Yelp](https://www.yelp.com/biz/hamilton-exteriors-castro-valley)
 - **Not covered:** commercial construction, San Francisco County, conventional solar, interior-only remodeling, landscaping
 

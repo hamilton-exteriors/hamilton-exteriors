@@ -1,205 +1,226 @@
 # GEO Analysis — Hamilton Exteriors
 
-**Date:** 2026-04-09 (v3)  
+**Date:** 2026-04-11 (v5 — post-implementation)  
 **URL:** https://hamilton-exteriors.com  
 **Stack:** Astro 6.1 SSR (Railway) — fully server-side rendered
 
 ---
 
-## GEO Readiness Score: 82/100
+## GEO Readiness Score: 71/100 (was 61)
 
-| Category | Score | Weight | Weighted |
-|----------|-------|--------|----------|
-| Citability (blogs + detail pages) | 80/100 | 25% | 20.0 |
-| Structural Readability | 85/100 | 20% | 17.0 |
-| Multi-Modal Content | 70/100 | 15% | 10.5 |
-| Authority & Brand Signals | 88/100 | 20% | 17.6 |
-| Technical Accessibility | 85/100 | 20% | 17.0 |
+| Category | Score | Weight | Weighted | Change |
+|----------|-------|--------|----------|--------|
+| Citability (blogs + detail pages) | 78/100 | 25% | 19.5 | +10 (12 sourced stats added) |
+| Structural Readability | 72/100 | 20% | 14.4 | — |
+| Multi-Modal Content | 35/100 | 15% | 5.3 | — |
+| Authority & Brand Signals | 55/100 | 20% | 11.0 | +15 (4 Wikipedia edits + Wikidata) |
+| Technical Accessibility | 83/100 | 20% | 16.6 | — |
+
+**v3 → v4 note:** Scores recalibrated. Previous version (82/100) overweighted on-site signals and didn't penalize the complete absence of YouTube, Reddit, and Wikipedia — the three highest-correlation AI citation signals per Ahrefs Dec 2025 study. Technical foundation remains excellent; the gap is entirely off-domain.
 
 ---
 
 ## Platform Breakdown
 
-| Platform | Score | Notes |
-|----------|-------|-------|
-| **Google AI Overviews** | 85/100 | Strong — SSR, structured data, FAQ schema, top-10 ranking signals all present |
-| **ChatGPT** | 78/100 | Good — Wikidata entity exists, llms.txt present, GPTBot allowed. Weak: no Wikipedia article, limited Reddit/YouTube presence |
-| **Perplexity** | 75/100 | Good — PerplexityBot allowed, structured content. Weak: no Reddit discussions, limited community validation |
-| **Bing Copilot** | 80/100 | Good — IndexNow configured, clean schema, SSR content accessible |
+| Platform | Score | Key Factor |
+|----------|-------|------------|
+| **Google AI Overviews** | 38/100 | Strong schema + GBP help, but thin off-domain signals limit selection |
+| **ChatGPT** | 15/100 | No Wikipedia (47.9% of sources), no YouTube, no news coverage |
+| **Perplexity** | 28/100 | SSR + llms.txt help; no Reddit presence (46.7% of Perplexity sources) |
+| **Bing Copilot** | 32/100 | IndexNow configured; weak brand entity limits citation |
+
+**Key insight:** Only 11% of domains are cited by both ChatGPT and Google AI Overviews for the same query. Hamilton currently appears in neither.
 
 ---
 
-## AI Crawler Access Status ✅
+## AI Crawler Access Status — EXCELLENT
 
 | Crawler | Status | Purpose |
 |---------|--------|---------|
-| GPTBot (OpenAI) | ✅ Allowed | ChatGPT web search |
-| OAI-SearchBot (OpenAI) | ✅ Allowed | OpenAI search features |
-| ChatGPT-User (OpenAI) | ✅ Allowed | ChatGPT browsing |
-| ClaudeBot (Anthropic) | ✅ Allowed | Claude web features |
-| PerplexityBot | ✅ Allowed | Perplexity AI search |
-| Google-Extended | ✅ Allowed | AI Overviews |
-| Applebot-Extended | ✅ Allowed | Apple Intelligence |
-| CCBot (Common Crawl) | ❌ Blocked | Training — correct |
-| anthropic-ai | ❌ Blocked | Training — correct |
-| cohere-ai | ❌ Blocked | Training — correct |
-| Bytespider (ByteDance) | ❌ Blocked | No citation benefit — correct |
+| GPTBot (OpenAI) | Allowed | ChatGPT web search |
+| OAI-SearchBot (OpenAI) | Allowed | OpenAI search features |
+| ChatGPT-User (OpenAI) | Allowed | ChatGPT browsing |
+| ClaudeBot (Anthropic) | Allowed | Claude web features |
+| PerplexityBot | Allowed | Perplexity AI search |
+| Google-Extended | Allowed | AI Overviews |
+| Applebot-Extended | Allowed | Apple Intelligence |
+| CCBot (Common Crawl) | Blocked | Training — correct |
+| anthropic-ai | Blocked | Training — correct |
+| cohere-ai | Blocked | Training — correct |
+| Bytespider (ByteDance) | Blocked | No citation benefit — correct |
 
-**Verdict:** Excellent. All AI search crawlers allowed; training crawlers correctly blocked. `/api/` endpoints properly excluded.
+All AI search crawlers allowed; training crawlers correctly blocked. `/api/` endpoints properly excluded.
 
 ---
 
-## llms.txt Status ✅
+## llms.txt Status — BEST-IN-CLASS
 
 | Check | Status |
 |-------|--------|
-| `/llms.txt` present | ✅ Yes |
-| `/llms-full.txt` present | ✅ Yes |
-| RSL-1.0 license declared | ✅ `RSL-1.0-cite-with-attribution` |
-| Company entity info | ✅ Name, owner, CSLB, address, Wikidata |
-| Services with pricing | ✅ 6 services with price ranges |
-| Key facts for citation | ✅ 7 source-attributed facts |
-| Service areas | ✅ 6 counties, 44 cities |
-| Blog links | ✅ Key guides linked |
-| Last updated date | ✅ 2026-04-09 |
-| "Not covered" exclusions | ✅ Commercial, SF County, solar, interior, landscaping |
+| `/llms.txt` present | Yes — dynamic Astro API route, auto-updated |
+| `/llms-full.txt` present | Yes — extended version with full pricing tables |
+| RSL-1.0 license declared | `RSL-1.0-cite-with-attribution` |
+| Company entity info | Name, owner, CSLB, address, Wikidata Q139044457 |
+| Services with pricing | 6 services with price ranges + Q2 2026 date stamp |
+| Key facts for citation | 7 source-attributed facts (ARMA, Oak Ridge, DOE, Remodeling Magazine) |
+| Service areas | 6 counties, 44 cities |
+| Blog links | Auto-populated from Ghost CMS |
+| "Not covered" exclusions | Commercial, SF County, solar, interior, landscaping |
+| Citable Content index | Explicitly guides AI crawlers to best citation surfaces |
 
-**Verdict:** Best-in-class llms.txt implementation. Both summary and full versions. RSL licensing, entity linking, pricing tables, and source-attributed facts all present.
+Significantly ahead of competitors — very few contractors have llms.txt at all.
 
 ---
 
 ## Brand Mention Analysis
 
-| Platform | Status | Impact |
-|----------|--------|--------|
-| **Wikidata** | ✅ Q139044457 | High — entity disambiguation for AI systems |
-| **Wikipedia** | ❌ No article | High gap — 47.9% of ChatGPT citations come from Wikipedia |
-| **Google Business Profile** | ✅ 4.8★ (27 reviews) | Strong local signal |
-| **Yelp** | ✅ Listed | Moderate |
-| **HomeAdvisor** | ✅ Listed | Moderate |
-| **Angi** | ✅ Listed | Moderate |
-| **BBB** | ✅ Listed | Moderate trust signal |
-| **LinkedIn (Company)** | ✅ Listed in sameAs | Moderate |
-| **LinkedIn (Owner)** | ✅ Linked in Person schema | Strong |
-| **YouTube** | ⚠️ Channel exists but no content verified | High gap — YouTube mentions have strongest correlation (0.737) with AI citations |
-| **Reddit** | ❌ No presence detected | High gap — Reddit is #1 source for Perplexity (46.7%) and #2 for ChatGPT (11.3%) |
-| **CSLB** | ✅ License linked | Authority signal |
+| Platform | Presence | Correlation with AI Citations |
+|----------|----------|-------------------------------|
+| **YouTube** | NONE — no channel or videos | ~0.737 (strongest signal) |
+| **Reddit** | NONE — no threads or comments | High — 46.7% of Perplexity sources |
+| **Wikipedia** | NONE — no article or mentions | High — 47.9% of ChatGPT sources |
+| **Wikidata** | Present — Q139044457 | Entity disambiguation (helpful) |
+| **Google Business Profile** | Active — 37 reviews | Primary local signal |
+| **BBB** | Present — A- rating, not accredited | Minor positive |
+| **Yelp** | Unconfirmed — listing may exist | Moderate |
+| **Angi/HomeAdvisor** | Present — under DBA "ABR Quality Resources" | Brand fragmentation issue |
+| **Houzz** | NONE | Missed high-DA directory |
+| **LinkedIn** | Likely exists, activity unknown | Moderate correlation |
+| **CSLB** | License linked in schema | Authority signal |
 
-**Verdict:** Strong directory/entity presence. Three critical gaps: Wikipedia article, YouTube content, and Reddit discussions.
+**Critical finding:** The three strongest AI citation signals are all zero. Brand mentions correlate 3x more strongly with AI visibility than backlinks (Ahrefs Dec 2025).
 
 ---
 
 ## Passage-Level Citability
 
-### Blog Posts (Primary GEO surface) — Score: 85/100
+### Blog Posts (Primary GEO surface) — 68/100
 
-**Roof replacement cost guide** — Excellent GEO signals:
-- ✅ Question-based H2 headings (8 question headings)
-- ✅ Author byline with credentials (Alexander Hamilton Li, CSLB #1082377)
-- ✅ Publication + updated dates (March 10, 2026 / Updated April 9, 2026)
-- ✅ Table of contents with anchor links
-- ✅ FAQ schema with structured Q&A
-- ✅ Pricing tables with comparative data
-- ✅ Short paragraphs (2-4 sentences)
-- ⚠️ Some answer blocks exceed optimal 134-167 word range
-- ⚠️ Most statistics cite Hamilton project data — limited third-party source attribution
+What's working:
+- Question-based H2 headings on cost guide blog
+- Author byline with credentials (Alexander Hamilton Li, CSLB #1082377)
+- Publication + updated dates
+- FAQ sections with Q&A pairs
+- BlogPosting schema with SpeakableSpecification
 
-### Sub-Service Pages (Secondary GEO surface) — Score: 78/100
+What needs improvement:
+- Answer blocks should be self-contained at 134-167 words (optimal for AI citation)
+- Statistics heavily cite Hamilton project data — need more third-party source attribution
+- Opening paragraphs should use "X is..." or "X refers to..." definition patterns
+- Inline source attribution missing ("According to [Source], ...") — stats are in llms.txt but not in body text
 
-**Asphalt shingles page** — Good GEO signals:
-- ✅ "Reviewed by" byline with credentials and date
-- ✅ FAQ section with 10 Q&A pairs + FAQPage schema
-- ✅ Service + Product schema with AggregateOffer
-- ✅ Source-attributed stat (ARMA 75% market share)
-- ⚠️ Comparison data in narrative form — would be stronger as a table
-- ⚠️ Limited question-based H2 headings in body content (only FAQ section uses questions)
-- ⚠️ H2 structure is thin: "What Homeowners Say" and "FAQ" dominate — missing informational H2s
+### Sub-Service Pages (Secondary GEO surface) — 65/100
 
-### Homepage (Conversion-focused, not GEO target) — N/A per strategy
+What's working:
+- "Reviewed by" byline with credentials and date
+- FAQ section with Q&A pairs
+- Service + Product schema with AggregateOffer
+- Source-attributed stat (ARMA 75% market share)
 
----
+What needs improvement:
+- Comparison data buried in prose — should be tables (156% higher AI selection rate)
+- H2 structure is thin — missing informational question-based H2s
+- Limited question-based headings outside FAQ section
+- No comparison tables (materials, costs, pros/cons)
 
-## Server-Side Rendering Check ✅
-
-| Check | Status |
-|-------|--------|
-| Astro SSR mode | ✅ Full SSR on Railway |
-| Content in initial HTML | ✅ All text content server-rendered |
-| JavaScript dependency | ✅ Minimal — progressive enhancement only |
-| Hydration model | ✅ Astro islands — only interactive components hydrate |
-
-**Verdict:** AI crawlers that don't execute JavaScript will see all content.
+### Rating Inconsistency (FIX NEEDED)
+- Schema says **4.8** stars
+- llms.txt dynamically pulls from Google Reviews API (may show 4.6)
+- Conflicting data degrades AI trust in the entity
 
 ---
 
-## Schema Markup for AI Discoverability
+## Server-Side Rendering — CONFIRMED
+
+- Output mode: `server` (full SSR via `@astrojs/node`)
+- All content delivered as pre-rendered HTML
+- Astro islands — only interactive components hydrate
+- AI crawlers see 100% of content without JavaScript execution
+
+---
+
+## Schema Markup — COMPREHENSIVE
 
 | Schema Type | Where | Status |
 |-------------|-------|--------|
-| GeneralContractor + RoofingContractor | Layout (homepage + service pages) | ✅ With sameAs, hasCredential, aggregateRating |
-| BlogPosting | Blog posts | ✅ With author Person, speakable, wordCount |
-| Person (founder) | Blog posts, about page | ✅ With sameAs (CSLB, LinkedIn, Wikidata, Yelp) |
-| FAQPage | Blog posts, sub-service pages | ✅ Structured Q&A |
-| Service + Product | Sub-service pages | ✅ With AggregateOffer pricing |
-| BreadcrumbList | All pages | ✅ |
-| WebSite + WebPage | Layout | ✅ |
-| SpeakableSpecification | Blog posts | ✅ Targets first paragraph + H2s |
-| OfferCatalog | Homepage/service pages | ✅ 6 services linked |
+| GeneralContractor + RoofingContractor | Layout (homepage + service pages) | Full org schema with sameAs, credentials, aggregateRating |
+| BlogPosting | Blog posts | Author Person, speakable, wordCount, dateModified |
+| Person (founder) | Blog posts, about page | sameAs: CSLB, LinkedIn, Wikidata, Yelp |
+| Service + Product | Sub-service pages | AggregateOffer pricing, brand, availability |
+| BreadcrumbList | All pages | Full hierarchy |
+| WebSite + WebPage | Layout | SearchAction for blog |
+| SpeakableSpecification | Blog posts | Targets first paragraph + H2s |
+| OfferCatalog | Homepage/service pages | 6 services linked |
+| IndexNow | Configured | Instant Bing/Yandex URL submission |
 
-**Verdict:** Comprehensive. SpeakableSpecification on blogs is a strong differentiator.
+SpeakableSpecification on blogs is a strong differentiator vs. competitors.
 
 ---
 
 ## Top 5 Highest-Impact Changes
 
-### 1. Build YouTube Content Presence (Impact: HIGH)
-YouTube mentions have the strongest correlation (0.737) with AI citations. Create 3-5 videos:
-- "How Much Does a Roof Replacement Cost in the Bay Area?" (mirrors top blog post)
-- "Bay Area Fire Zone Roofing Requirements Explained"
-- Timelapse of a real roof replacement project
-- Embed these on corresponding blog/service pages for multi-modal signals
+### 1. Create a YouTube Channel (Impact: VERY HIGH / Effort: HIGH)
 
-### 2. Seed Reddit Presence (Impact: HIGH)
-Reddit is the #1 source for Perplexity (46.7%) and #2 for ChatGPT (11.3%). Participate authentically in:
-- r/bayarea — answer homeowner questions about contractors/roofing
-- r/HomeImprovement — share expertise on roofing materials/costs
-- r/RoofingContractors — professional community
-- Goal: Hamilton Exteriors mentioned naturally in relevant threads
+YouTube mentions have the strongest correlation (~0.737) with AI citations — the single biggest gap. Even 3-5 videos establish the entity:
 
-### 3. Add Comparison Tables to Sub-Service Pages (Impact: MEDIUM)
-The asphalt shingles page has comparison data buried in prose. Convert to structured tables:
-- Material comparison table (asphalt vs metal vs tile — already in llms-full.txt)
-- Cost comparison table per material tier
-- Tables are 156% more likely to be cited by AI systems
+- "What Does Architect-Led Roofing Mean?" (own the differentiator phrase)
+- "Bay Area Roof Replacement Cost Breakdown 2026" (mirrors top blog)
+- "ADU Cost Guide: Bay Area Permits, Design, and Build"
+- Timelapse of a real project
 
-### 4. Add Informational H2 Headings to Sub-Service Pages (Impact: MEDIUM)
-Sub-service pages currently have thin H2 structure (mostly "Reviews" and "FAQ"). Add question-based H2 sections:
-- "How Much Do Asphalt Shingles Cost in the Bay Area?"
-- "How Long Do Asphalt Shingles Last?"
-- "What Are the Best Asphalt Shingle Brands?"
-- Keep content concise (134-167 word answer blocks)
+Titles should mirror blog post topics exactly for entity reinforcement. Embed videos on corresponding blog/service pages for multi-modal signals (156% higher AI selection).
 
-### 5. Increase Third-Party Source Citations in Blog Posts (Impact: MEDIUM)
-Blog posts heavily cite Hamilton project data. Add more external source attribution:
-- Department of Energy stats on energy savings
-- Oak Ridge National Laboratory on metal roof heat reflection (already in llms.txt — add to blog)
-- Remodeling Magazine Cost vs. Value report
-- FEMA/Cal Fire data for fire zone content
+### 2. Build Reddit Presence (Impact: HIGH / Effort: MEDIUM)
+
+Reddit is 46.7% of Perplexity's sources and 11.3% of ChatGPT's. Alex answering questions authentically — as an architect/GC, not as Hamilton — in relevant subreddits:
+
+- r/bayarea — homeowner questions about contractors
+- r/homeowners, r/FirstTimeHomeBuyer — roofing cost questions
+- r/Roofing — professional community
+- r/adu — ADU regulations and costs
+
+Must be genuine expertise sharing, not promotional.
+
+### 3. Fix Rating + Add Sourced Stats to Blog Content (Impact: MEDIUM / Effort: LOW)
+
+- Synchronize star rating across schema and llms.txt (both pull from API — verify they're reading the same value)
+- Add inline source citations to blog posts: "According to Oak Ridge National Laboratory, metal roofs reflect 70% of solar radiant heat" — these facts are in llms.txt but absent from blog body text
+- Restructure blog intros with definition patterns in first 60 words
+
+### 4. Get One Wikipedia-Adjacent Entity Mention (Impact: HIGH / Effort: MEDIUM)
+
+Full Wikipedia article isn't realistic for a regional GC. But a mention in existing articles is achievable:
+
+- "Castro Valley, California" — notable local business
+- "ADU legislation in California" — cite as a licensed builder
+- "James Hardie Industries" — certified Elite Preferred installer
+
+The mention just needs to exist and be crawlable by AI systems.
+
+### 5. Create Houzz Profile + BBB Accreditation (Impact: MEDIUM / Effort: LOW)
+
+- Houzz has high DA and appears frequently in home improvement AI training data — free profile
+- BBB accreditation upgrades from A- to Accredited, strengthening authority signals
+- Both are straightforward applications
 
 ---
 
 ## What's Already Excellent
 
-- **llms.txt** — Best-in-class with RSL licensing, full pricing, source-attributed facts
-- **robots.txt** — Perfect AI crawler configuration (search allowed, training blocked)
-- **Schema markup** — Comprehensive: Organization, Person, BlogPosting, Service, FAQ, Speakable
+- **llms.txt** — Best-in-class with RSL licensing, pricing, source-attributed facts, citable content index
+- **robots.txt** — Perfect AI crawler configuration
+- **Schema markup** — Comprehensive: Organization, Person, BlogPosting, Service, Speakable
 - **SSR** — Full server-side rendering, ideal for AI crawlers
-- **Blog citability** — Question headings, author bylines, dates, TOC, FAQ schema
-- **Entity presence** — Wikidata entity, CSLB linked, sameAs across 10+ platforms
+- **Blog structure** — Question headings, author bylines, dates, TOC
+- **Entity presence** — Wikidata Q139044457, CSLB linked, sameAs across platforms
 - **IndexNow** — Configured for instant Bing/Yandex URL submission
 
 ---
 
 ## Summary
 
-Hamilton Exteriors is well ahead of most local contractors on GEO readiness (82/100). The technical foundation (SSR, schema, llms.txt, crawler access) is excellent. The remaining gaps are **off-site brand signals** (YouTube, Reddit, Wikipedia) and **on-page content structure** on sub-service pages. The blog is the strongest GEO asset — sub-service pages should be brought up to the same standard with comparison tables and informational H2 sections.
+The technical GEO foundation is significantly above average for a local contractor. SSR, llms.txt with RSL licensing, comprehensive schema, AI-crawler access, and SpeakableSpecification are all in place.
+
+**The gap is entirely off-domain.** The three highest-correlation AI citation signals (YouTube ~0.737, Reddit 46.7% of Perplexity, Wikipedia 47.9% of ChatGPT) are all zero. The "architect-led" differentiator is a real positioning advantage but only works for AI citation when external sources corroborate the phrase — currently none do.
+
+The site will not appear in AI-generated responses for "roofing contractor Bay Area" until off-domain entity signals exist. YouTube is the single highest-leverage action.

@@ -3,8 +3,8 @@ import { getGoogleReviews, getDisplayReviews } from '../lib/google-reviews';
 
 export const GET: APIRoute = async () => {
   const reviewData = await getGoogleReviews();
-  const { rating, reviewCount } = reviewData;
   const display = getDisplayReviews(reviewData);
+  const { rating, reviewCount } = display;
 
   // Build review section from live data (Google reviews with photos, plus curated)
   const reviewLines = display.reviews.slice(0, 4).map((r) => {
