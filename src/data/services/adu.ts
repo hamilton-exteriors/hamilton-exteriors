@@ -16,7 +16,7 @@ export const data: ServicePageData = {
     },
   ],
   hero: {
-    headline: "Bay Area ADU Builder — We Design, Permit, and Build It All",
+    headline: "Bay Area ADU Builder. We Design, Permit, and Build It All",
     formTitle: 'Get Your Free ADU Consultation',
     formSubtitle:
       "We'll reach out within 3\u20135 minutes to discuss your ADU project.",

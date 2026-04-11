@@ -15,7 +15,7 @@ export const data: ServicePageData = {
     },
   ],
   hero: {
-    headline: "Bay Area Custom Home Builder — One Team From Design to Move-In",
+    headline: "Bay Area Custom Home Builder. One Team From Design to Move-In",
     formTitle: 'Get Your Free Consultation',
     formSubtitle:
       "Tell us about your dream home. We'll call within 5 minutes to discuss your project.",
