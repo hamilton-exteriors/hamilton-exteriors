@@ -10,7 +10,7 @@ If items exist, remind the user and offer to work through them first.
 ## Project
 
 - **Stack:** Astro 6.1 + Tailwind v4, SSR on Railway
-- **CMS:** Ghost (headless) — blog posts + service area page data
+- **CMS:** Ghost (headless) — blog posts + service area page data. You have Ghost Admin API access (GHOST_ADMIN_API_KEY in .env). Use it proactively for content tasks — creating/updating blog posts, managing service area pages, publishing drafts. Ghost actions first before code changes when content is involved.
 - **Package manager:** bun only — never npm. Railway uses `bun install --frozen-lockfile`.
 - **Backend:** `backend/` — Express + TypeScript, Google Solar API + Reviews pipeline
 - **Branch:** `main` only (Railway deploys from main)
