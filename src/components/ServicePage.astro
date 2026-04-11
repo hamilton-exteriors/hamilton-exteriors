@@ -202,7 +202,6 @@ const SERVICE_PRICING: Record<string, { low: number; high: number; unit: string;
 const pricing = SERVICE_PRICING[serviceSlug];
 
 const serviceSchema: Record<string, unknown> = {
-  '@context': 'https://schema.org',
   '@type': 'Service',
   '@id': `https://hamilton-exteriors.com${Astro.url.pathname}#service`,
   'name': data.title.split('|')[0].trim(),
@@ -213,7 +212,6 @@ const serviceSchema: Record<string, unknown> = {
   },
   'areaServed': areaServed,
   'description': data.description,
-  'dateModified': new Date().toISOString().split('T')[0],
   'speakable': {
     '@type': 'SpeakableSpecification',
     'cssSelector': ['.local-context p:first-of-type', 'details:first-of-type p', 'h2 + p'],
@@ -251,7 +249,6 @@ if (isCityServicePage) {
 }
 
 const breadcrumbSchema = {
-  '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   'itemListElement': breadcrumbItems,
 };
@@ -270,8 +267,7 @@ const jumpLinks = [
 ].filter(Boolean) as Array<{ href: string; label: string }>;
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-<script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': [breadcrumbSchema, serviceSchema] })} />
 
 {data.announcementText ? <AnnouncementBar text={data.announcementText} slot="header" /> : <AnnouncementBar slot="header" />}
 <Navbar slot="header" />

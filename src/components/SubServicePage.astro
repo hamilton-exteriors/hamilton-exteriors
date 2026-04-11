@@ -36,7 +36,6 @@ const siblings = (await getSubServicesForParent(data.parentService))
 
 // Schema
 const breadcrumbSchema = {
-  '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
@@ -46,7 +45,6 @@ const breadcrumbSchema = {
 };
 
 const serviceSchema = {
-  '@context': 'https://schema.org',
   '@type': 'Service',
   '@id': `${pageUrl}#service`,
   name: data.title.split('|')[0].trim(),
@@ -96,7 +94,6 @@ const productData = PRODUCT_SCHEMA_MAP[productKey];
 // [GEO_DATA_MAP removed — content now served from Ghost CMS]
 
 const productSchema = productData ? {
-  '@context': 'https://schema.org',
   '@type': 'Product',
   '@id': `${pageUrl}#product`,
   'name': productData.name,
@@ -136,11 +133,7 @@ const productSchema = productData ? {
 } : null;
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-<script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-{productSchema && (
-  <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
-)}
+<script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': [breadcrumbSchema, serviceSchema, ...(productSchema ? [productSchema] : [])] })} />
 
 <AnnouncementBar slot="header" />
 <Navbar slot="header" />

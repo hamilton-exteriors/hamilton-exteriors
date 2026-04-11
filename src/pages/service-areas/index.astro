@@ -16,7 +16,6 @@ import {
 const siteUrl = 'https://hamilton-exteriors.com';
 
 const itemListJsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'ItemList',
   name: 'Hamilton Exteriors Service Areas',
   itemListElement: counties.map((county, i) => ({
@@ -28,7 +27,6 @@ const itemListJsonLd = {
 };
 
 const breadcrumbJsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },

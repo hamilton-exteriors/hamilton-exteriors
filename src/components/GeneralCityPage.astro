@@ -47,7 +47,6 @@ const cityUrlSlug = data.slug.endsWith('-ca') ? data.slug : `${data.slug}-ca`;
 const pageUrl = `https://hamilton-exteriors.com/service-areas/${countyUrlSlug}/${cityUrlSlug}`;
 
 const breadcrumbSchema = {
-  '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   'itemListElement': [
     { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://hamilton-exteriors.com/' },
@@ -58,7 +57,6 @@ const breadcrumbSchema = {
 };
 
 const webPageSchema = {
-  '@context': 'https://schema.org',
   '@type': 'WebPage',
   '@id': `${pageUrl}#webpage`,
   url: pageUrl,
@@ -75,7 +73,6 @@ const allReviews = [
   ...data.reviews.side,
 ];
 const reviewSchema = {
-  '@context': 'https://schema.org',
   '@type': 'GeneralContractor',
   '@id': 'https://hamilton-exteriors.com/#business',
   name: 'Hamilton Exteriors',
@@ -89,9 +86,9 @@ const reviewSchema = {
   review: allReviews.map((r, i) => ({
     '@type': 'Review',
     author: { '@type': 'Person', name: r.name },
-    reviewRating: { '@type': 'Rating', ratingValue: 5, bestRating: 5, worstRating: 1 },
+    reviewRating: { '@type': 'Rating', ratingValue: (r as any).rating || 5, bestRating: 5, worstRating: 1 },
     reviewBody: r.text,
-    datePublished: (r as any).date || ['2025-11-15', '2025-12-08', '2026-01-03', '2026-01-22'][i] || '2025-12-01',
+    ...((r as any).date && { datePublished: (r as any).date }),
     publisher: { '@type': 'Organization', name: 'Google' },
   })),
 };
@@ -108,12 +105,8 @@ const reviewSchema = {
   { label: `${data.city}, ${data.state}` },
 ]} />
 
-<!-- BreadcrumbList JSON-LD -->
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-<!-- WebPage JSON-LD -->
-<script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
-<!-- Review JSON-LD -->
-<script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
+<!-- Structured data: BreadcrumbList + WebPage + Reviews -->
+<script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': [breadcrumbSchema, webPageSchema, reviewSchema] })} />
 
 <!-- Hero -->
 <Hero

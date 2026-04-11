@@ -103,7 +103,6 @@ const ogImageType = image ? 'image/jpeg' : (heroOgImage ? 'image/jpeg' : 'image/
 // ── Build structured data objects in frontmatter so Astro evaluates all expressions ──
 
 const fullOrgSchemaObj = fullOrgSchema ? {
-  "@context": "https://schema.org",
   "@type": ["GeneralContractor", "RoofingContractor"],
   "@id": "https://hamilton-exteriors.com/#business",
   "name": "Hamilton Exteriors",
@@ -247,13 +246,11 @@ const fullOrgSchemaObj = fullOrgSchema ? {
 } : null;
 
 const leanOrgSchemaObj = !fullOrgSchema ? {
-  "@context": "https://schema.org",
   "@type": ["GeneralContractor", "RoofingContractor"],
   "@id": "https://hamilton-exteriors.com/#business"
 } : null;
 
 const webSiteSchemaObj = Astro.url.pathname === '/' ? {
-  "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": "https://hamilton-exteriors.com/#website",
   "url": "https://hamilton-exteriors.com",
@@ -261,22 +258,9 @@ const webSiteSchemaObj = Astro.url.pathname === '/' ? {
   "inLanguage": "en-US",
   "publisher": { "@id": "https://hamilton-exteriors.com/#business" },
   "description": "Bay Area roofing, siding, windows, ADUs & custom homes by Hamilton Exteriors.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://hamilton-exteriors.com/blog?search={search_term_string}"
-    },
-    "query-input": {
-      "@type": "PropertyValueSpecification",
-      "valueRequired": true,
-      "valueName": "search_term_string"
-    }
-  }
 } : null;
 
 const webPageSchemaObj = Astro.url.pathname === '/' ? {
-  "@context": "https://schema.org",
   "@type": "WebPage",
   "@id": "https://hamilton-exteriors.com/#webpage",
   "url": "https://hamilton-exteriors.com",
@@ -284,6 +268,29 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
   "isPartOf": { "@id": "https://hamilton-exteriors.com/#website" },
   "about": { "@id": "https://hamilton-exteriors.com/#business" },
   "inLanguage": "en-US"
+} : null;
+
+// ── Assemble single @graph from all schema objects ──
+const graphItems: Record<string, unknown>[] = [];
+
+// Layout-level schemas (org, website, webpage)
+if (fullOrgSchemaObj) graphItems.push(fullOrgSchemaObj);
+if (leanOrgSchemaObj) graphItems.push(leanOrgSchemaObj);
+if (webSiteSchemaObj) graphItems.push(webSiteSchemaObj);
+if (webPageSchemaObj) graphItems.push(webPageSchemaObj);
+
+// Page-level schemas passed via jsonLd prop
+if (jsonLd) {
+  const items = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+  for (const item of items) {
+    const { '@context': _ctx, ...rest } = item;
+    graphItems.push(rest);
+  }
+}
+
+const graphJsonLd = graphItems.length > 0 ? {
+  "@context": "https://schema.org",
+  "@graph": graphItems,
 } : null;
 ---
 
@@ -362,12 +369,8 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
-    {jsonLd && !Array.isArray(jsonLd) && (
-      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    )}
-    {jsonLd && Array.isArray(jsonLd) && jsonLd.map((schema) => (
-      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-    ))}
+    {/* Single @graph block: org + website + webpage + page-level schemas */}
+    {graphJsonLd && <script type="application/ld+json" set:html={JSON.stringify(graphJsonLd)} />}
 
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="Ground Up — Hamilton Exteriors" href="/blog/rss.xml" />
@@ -377,14 +380,6 @@ const webPageSchemaObj = Astro.url.pathname === '/' ? {
     <link rel="icon" type="image/x-icon" sizes="32x32 16x16" href="/favicon.ico?v=2" />
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=2" />
     <link rel="apple-touch-icon" href="/favicon.png?v=2" />
-
-    {/* Full Organization schema on homepage + service pages; lean @id reference elsewhere */}
-    {fullOrgSchemaObj && <script type="application/ld+json" set:html={JSON.stringify(fullOrgSchemaObj)} />}
-    {leanOrgSchemaObj && <script type="application/ld+json" set:html={JSON.stringify(leanOrgSchemaObj)} />}
-
-    {/* WebSite + WebPage Schema — homepage only */}
-    {webSiteSchemaObj && <script type="application/ld+json" set:html={JSON.stringify(webSiteSchemaObj)} />}
-    {webPageSchemaObj && <script type="application/ld+json" set:html={JSON.stringify(webPageSchemaObj)} />}
 
     {/* Analytics excluded for dev/owner IPs to keep data clean */}
     {!isExcludedIp && (

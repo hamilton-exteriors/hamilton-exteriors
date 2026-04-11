@@ -5,7 +5,6 @@ import Footer from '../../components/Footer.astro';
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 
 const webAppJsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'WebApplication',
   '@id': 'https://hamilton-exteriors.com/buy#webapp',
   name: 'Hamilton Exteriors Online Roof Scanner',
@@ -21,7 +20,6 @@ const webAppJsonLd = {
 };
 
 const serviceJsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'Service',
   '@id': 'https://hamilton-exteriors.com/buy#service',
   name: 'Online Roof Replacement',
@@ -49,7 +47,6 @@ const serviceJsonLd = {
 };
 
 const faqJsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: [
     {

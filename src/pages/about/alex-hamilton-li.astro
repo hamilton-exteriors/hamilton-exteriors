@@ -10,7 +10,6 @@ const siteUrl = 'https://hamilton-exteriors.com';
 const pageUrl = `${siteUrl}/about/alex-hamilton-li`;
 
 const personSchema = {
-  '@context': 'https://schema.org',
   '@type': 'ProfilePage',
   '@id': `${pageUrl}#profilepage`,
   url: pageUrl,
@@ -66,7 +65,6 @@ const personSchema = {
 };
 
 const breadcrumbSchema = {
-  '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },

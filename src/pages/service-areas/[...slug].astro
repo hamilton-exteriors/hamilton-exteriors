@@ -112,7 +112,7 @@ if (pageType === 'cityService' && cityServiceData) {
   const pageUrl = `${siteUrl}/service-areas/${urlCountySlug}/${urlCitySlug}/${segments[2]}`;
   jsonLd = [
     {
-      '@context': 'https://schema.org',
+
       '@type': 'BreadcrumbList',
       'itemListElement': [
         { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
@@ -123,7 +123,7 @@ if (pageType === 'cityService' && cityServiceData) {
       ],
     },
     {
-      '@context': 'https://schema.org',
+
       '@type': 'Service',
       '@id': `${pageUrl}#service`,
       'name': `${cityServiceData.serviceName} in ${cityServiceData.city}, ${cityServiceData.state}`,
@@ -137,7 +137,6 @@ if (pageType === 'cityService' && cityServiceData) {
         'containedInPlace': { '@type': 'State', 'name': 'California' },
         ...(csLat && csLng && { 'geo': { '@type': 'GeoCoordinates', 'latitude': csLat, 'longitude': csLng } }),
       },
-      'dateModified': new Date().toISOString().split('T')[0],
     },
   ];
 } else if (pageType === 'city' && cityData) {
@@ -148,7 +147,7 @@ if (pageType === 'cityService' && cityServiceData) {
   const cityName = cityData.city || urlCitySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
   jsonLd = [
     {
-      '@context': 'https://schema.org',
+
       '@type': 'Service',
       '@id': `${siteUrl}/service-areas/${urlCountySlug}/${urlCitySlug}#service`,
       'name': `Roofing and Exterior Services in ${cityName}, CA`,
@@ -183,7 +182,7 @@ if (pageType === 'cityService' && cityServiceData) {
   const countyName = countyData.county || urlCountySlug.replace(/-ca$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
   jsonLd = [
     {
-      '@context': 'https://schema.org',
+
       '@type': 'BreadcrumbList',
       'itemListElement': [
         { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },
@@ -192,7 +191,7 @@ if (pageType === 'cityService' && cityServiceData) {
       ],
     },
     {
-      '@context': 'https://schema.org',
+
       '@type': 'WebPage',
       '@id': `${siteUrl}/service-areas/${urlCountySlug}#webpage`,
       'url': `${siteUrl}/service-areas/${urlCountySlug}`,
@@ -202,7 +201,7 @@ if (pageType === 'cityService' && cityServiceData) {
       'inLanguage': 'en-US',
     },
     {
-      '@context': 'https://schema.org',
+
       '@type': 'Service',
       '@id': `${siteUrl}/service-areas/${urlCountySlug}#service`,
       'name': `Roofing and Exterior Services in ${countyName} County, CA`,
@@ -225,7 +224,7 @@ if (pageType === 'cityService' && cityServiceData) {
   const [urlCountySlug, serviceSlug] = segments;
   jsonLd = [
     {
-      '@context': 'https://schema.org',
+
       '@type': 'BreadcrumbList',
       'itemListElement': [
         { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${siteUrl}/` },

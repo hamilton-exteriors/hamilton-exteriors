@@ -87,7 +87,6 @@ const rawSection = post.primary_tag?.name;
 const articleSection = rawSection && !/^[a-z0-9_-]+$/.test(rawSection) ? rawSection : 'Home Improvement';
 
 const articleJsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   '@id': `${canonicalUrl}#article`,
   name: post.title,
@@ -132,8 +131,8 @@ const articleJsonLd = {
     logo: {
       '@type': 'ImageObject',
       url: 'https://hamilton-exteriors.com/logo-schema.png',
-      width: 600,
-      height: 120,
+      width: 271,
+      height: 112,
     },
   },
   speakable: {
@@ -147,7 +146,6 @@ const articleJsonLd = {
 };
 
 const breadcrumbJsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
@@ -260,7 +258,6 @@ if (questionHeadings.length >= 2 && processedHtml) {
 
   if (faqEntries.length >= 2) {
     faqJsonLd = {
-      '@context': 'https://schema.org',
       '@type': 'FAQPage',
       mainEntity: faqEntries,
     };

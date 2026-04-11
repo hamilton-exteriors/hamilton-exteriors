@@ -32,7 +32,6 @@ const services = [
 ];
 
 const breadcrumbSchema = {
-  '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   'itemListElement': [
     { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://hamilton-exteriors.com/' },
@@ -42,7 +41,6 @@ const breadcrumbSchema = {
 };
 
 const serviceSchema = {
-  '@context': 'https://schema.org',
   '@type': 'Service',
   '@id': `https://hamilton-exteriors.com/service-areas/${data.countySlug}#service`,
   'name': `Custom Home & Exterior Contracting in ${data.county}, ${data.state}`,
@@ -50,7 +48,6 @@ const serviceSchema = {
   'url': `https://hamilton-exteriors.com/service-areas/${data.countySlug}`,
   'provider': { '@type': 'GeneralContractor', '@id': 'https://hamilton-exteriors.com/#business', 'name': 'Hamilton Exteriors' },
   'serviceType': ['Roofing', 'Siding', 'Windows', 'ADUs', 'Custom Homes', 'Additions'],
-  'dateModified': new Date().toISOString().split('T')[0],
   'areaServed': {
     '@type': 'AdministrativeArea',
     'name': data.county,
@@ -67,8 +64,7 @@ const serviceSchema = {
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-<script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': [breadcrumbSchema, serviceSchema] })} />
 
 <AnnouncementBar slot="header" />
 <Navbar slot="header" />
