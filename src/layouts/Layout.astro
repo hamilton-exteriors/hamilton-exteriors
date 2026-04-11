@@ -148,6 +148,8 @@ const fullOrgSchemaObj = fullOrgSchema ? {
     "https://maps.google.com/?cid=3578771346418026097"
   ],
   "alternateName": "ABR Quality Resources Inc",
+  "legalName": "ABR Quality Resources Inc",
+  "foundingDate": "2018",
   "areaServed": [
     { "@type": "AdministrativeArea", "name": "Alameda County", "sameAs": "https://en.wikipedia.org/wiki/Alameda_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
     { "@type": "AdministrativeArea", "name": "Contra Costa County", "sameAs": "https://en.wikipedia.org/wiki/Contra_Costa_County,_California", "containedInPlace": { "@type": "State", "name": "California" } },
@@ -159,8 +161,8 @@ const fullOrgSchemaObj = fullOrgSchema ? {
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": _displayReviews?.rating ?? 4.8,
-    "reviewCount": (_displayReviews?.reviewCount ?? 26) + CURATED_REVIEWS.length,
-    "ratingCount": (_displayReviews?.reviewCount ?? 26) + CURATED_REVIEWS.length,
+    "reviewCount": _displayReviews?.reviewCount ?? 26,
+    "ratingCount": _displayReviews?.reviewCount ?? 26,
     "bestRating": 5,
     "worstRating": 1
   },
@@ -230,7 +232,7 @@ const fullOrgSchemaObj = fullOrgSchema ? {
       "reviewRating": { "@type": "Rating", "ratingValue": r.rating, "bestRating": 5, "worstRating": 1 },
       "reviewBody": r.text,
       "publisher": { "@type": "Organization", "name": "Google" },
-      "itemReviewed": { "@type": ["GeneralContractor", "RoofingContractor"], "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
+      "itemReviewed": { "@type": "LocalBusiness", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
     })),
     ...CURATED_REVIEWS.map((r) => ({
       "@type": "Review",
@@ -239,7 +241,7 @@ const fullOrgSchemaObj = fullOrgSchema ? {
       "reviewRating": { "@type": "Rating", "ratingValue": r.rating, "bestRating": 5, "worstRating": 1 },
       "reviewBody": r.text,
       "publisher": { "@type": "Organization", "name": r.platform === 'yelp' ? 'Yelp' : r.platform === 'angi' ? 'Angi' : r.platform === 'nextdoor' ? 'Nextdoor' : r.platform === 'bbb' ? 'BBB' : r.platform },
-      "itemReviewed": { "@type": ["GeneralContractor", "RoofingContractor"], "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
+      "itemReviewed": { "@type": "LocalBusiness", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
     })),
   ]
 } : null;
@@ -396,20 +398,30 @@ const graphJsonLd = graphItems.length > 0 ? {
           trackAttributes={true}
         />
 
-        {/* Meta Pixel — fires PageView on every page, Lead/Purchase via event helpers */}
+        {/* Meta Pixel — deferred until first user interaction to keep LCP/TBT clean */}
         {metaPixelId && (
           <>
             <script is:inline define:vars={{ metaPixelId }}>
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', metaPixelId);
-              fbq('track', 'PageView');
+              (function(){
+                var loaded=false;
+                function loadPixel(){
+                  if(loaded)return;loaded=true;
+                  !function(f,b,e,v,n,t,s)
+                  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                  n.queue=[];t=b.createElement(e);t.async=!0;
+                  t.src=v;s=b.getElementsByTagName(e)[0];
+                  s.parentNode.insertBefore(t,s)}(window, document,'script',
+                  'https://connect.facebook.net/en_US/fbevents.js');
+                  fbq('init', metaPixelId);
+                  fbq('track', 'PageView');
+                }
+                ['scroll','click','touchstart','keydown'].forEach(function(e){
+                  window.addEventListener(e,loadPixel,{once:true,passive:true});
+                });
+                setTimeout(loadPixel,5000);
+              })();
             </script>
             <noscript><img height="1" width="1" style="display:none" src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`} /></noscript>
           </>

@@ -48,7 +48,7 @@ export const GET: APIRoute = async () => {
 ## Key Facts for Citation
 - Bay Area roof replacements start around $15,000 and can exceed $100,000 depending on size and materials (Hamilton Exteriors project data, 2024\u20132026)
 - 75% of U.S. residential homes use asphalt shingles (Asphalt Roofing Manufacturers Association)
-- Metal roofs reflect 70% of solar radiant heat (Oak Ridge National Laboratory, doi.org/10.2172/1220000)
+- Metal roofs reflect 70% of solar radiant heat (Oak Ridge National Laboratory, doi.org/10.2172/1220146)
 - James Hardie fiber cement siding delivers 86% ROI at resale (Remodeling Magazine, 2024 Cost vs. Value)
 - ENERGY STAR windows save $125\u2013$465/year on energy bills (U.S. Department of Energy)
 - Hamilton Exteriors: 500+ projects across 6 Bay Area counties since 2018, CSLB #1082377

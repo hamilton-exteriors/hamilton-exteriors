@@ -118,7 +118,7 @@ export const data: ServicePageData = {
           { feature: 'Solar heat reflection', values: ['Moderate', '70% (Oak Ridge Natl. Lab)', 'Moderate–high'] },
           { feature: 'Best for', values: ['Most Bay Area homes', 'Fire zones, modern homes', 'Mediterranean/Spanish styles'] },
         ],
-        source: 'Oak Ridge National Laboratory (doi.org/10.2172/1220000), Asphalt Roofing Manufacturers Association, Hamilton Exteriors project data 2024–2026',
+        source: 'Oak Ridge National Laboratory (doi.org/10.2172/1220146), Asphalt Roofing Manufacturers Association, Hamilton Exteriors project data 2024–2026',
       },
     },
     { type: 'projects' },
