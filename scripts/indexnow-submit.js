@@ -5,7 +5,7 @@
  * If no URLs provided, submits the sitemap-index for re-crawl.
  */
 
-const INDEXNOW_KEY = 'af3ac877-3050-450e-8ded-758f5bd46cb5';
+const INDEXNOW_KEY = '524a5da56e0e45ef9f726d847b63daf4';
 const HOST = 'hamilton-exteriors.com';
 const ENDPOINT = 'https://api.indexnow.org/indexnow';
 

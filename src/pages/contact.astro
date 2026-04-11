@@ -9,7 +9,6 @@ import { PHONE_DISPLAY, PHONE_HREF, EMAIL, ADDRESS, CSLB_URL } from '../lib/cons
 const siteUrl = import.meta.env.SITE || 'https://hamilton-exteriors.com';
 
 const contactSchema = {
-  '@context': 'https://schema.org',
   '@type': 'ContactPage',
   name: 'Contact Hamilton Exteriors',
   description: 'Get in touch with Hamilton Exteriors for roofing, siding, windows, ADUs, and custom home projects across the Bay Area.',
@@ -32,7 +31,6 @@ const contactSchema = {
 };
 
 const breadcrumbSchema = {
-  '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },

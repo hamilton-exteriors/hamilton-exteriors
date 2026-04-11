@@ -8,7 +8,7 @@
  */
 
 const SITE = 'https://hamilton-exteriors.com';
-const KEY = '176391810415c623c205bb23fef07dbf';
+const KEY = '524a5da56e0e45ef9f726d847b63daf4';
 const ENDPOINT = 'https://api.indexnow.org/indexnow';
 
 // Core pages that change frequently

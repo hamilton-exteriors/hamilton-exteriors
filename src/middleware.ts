@@ -25,6 +25,15 @@ const GHOST_ORIGIN = import.meta.env.GHOST_URL || '';
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
 
+  // Normalise trailing slashes — trailingSlash: 'never' in astro.config,
+  // but SSR catch-all routes may still receive requests with trailing slashes
+  if (pathname !== '/' && pathname.endsWith('/')) {
+    return new Response(null, {
+      status: 301,
+      headers: { Location: pathname.slice(0, -1) + context.url.search },
+    });
+  }
+
   // Handle permanent redirects before processing
   const redirectTo = REDIRECTS[pathname];
   if (redirectTo) {
@@ -85,8 +94,16 @@ export const onRequest = defineMiddleware(async (context, next) => {
     "upgrade-insecure-requests",
     "base-uri 'self'",
     "form-action 'self'",
+    "report-uri https://hamilton-exteriors.report-uri.com/r/d/csp/enforce",
+    "report-to csp-endpoint",
   ].join('; ');
   response.headers.set('Content-Security-Policy', csp);
+  // Reporting API v1 — browsers send CSP violations as structured JSON
+  response.headers.set('Report-To', JSON.stringify({
+    group: 'csp-endpoint',
+    max_age: 86400,
+    endpoints: [{ url: 'https://hamilton-exteriors.report-uri.com/r/d/csp/enforce' }],
+  }));
 
   // API routes — never cache
   if (pathname.startsWith('/api/') || pathname.startsWith('/api.')) {
