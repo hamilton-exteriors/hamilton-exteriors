@@ -15,7 +15,7 @@ export const data: ServicePageData = {
     },
   ],
   hero: {
-    headline: "Bay Area Custom Home Builders —  Architect-Led, CSLB #1082377",
+    headline: "Your Architect and Builder, One Team From Design to Move-In",
     formTitle: 'Get Your Free Consultation',
     formSubtitle:
       "Tell us about your dream home. We'll call within 5 minutes to discuss your project.",

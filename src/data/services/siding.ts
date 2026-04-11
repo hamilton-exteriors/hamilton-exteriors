@@ -20,7 +20,7 @@ export const data: ServicePageData = {
     },
   ],
   hero: {
-    headline: "Bay Area's James Hardie  Elite Preferred  Siding Installers",
+    headline: "New Siding That Transforms Your Home's Curb Appeal",
     formTitle: 'Get Your Free Siding Inspection',
     formSubtitle:
       "We'll reach out within 3\u20135 minutes to schedule your inspection.",

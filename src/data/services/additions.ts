@@ -16,7 +16,7 @@ export const data: ServicePageData = {
     },
   ],
   hero: {
-    headline: "Bay Area Home Additions —  Second Story to Ground Floor",
+    headline: "More Space Without Moving — Additions That Match Your Home",
     formTitle: 'Get Your Free Consultation',
     formSubtitle:
       "We'll reach out within 3\u20135 minutes to discuss your project.",

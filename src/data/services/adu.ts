@@ -16,7 +16,7 @@ export const data: ServicePageData = {
     },
   ],
   hero: {
-    headline: "Bay Area ADU Builders —  Design Through Occupancy",
+    headline: "We Design, Permit, and Build Your ADU — You Just Move In",
     formTitle: 'Get Your Free ADU Consultation',
     formSubtitle:
       "We'll reach out within 3\u20135 minutes to discuss your ADU project.",
