@@ -161,5 +161,25 @@ export const data: ServicePageData = {
       answer:
         'Yes. The average water damage insurance claim in the Bay Area is $12,500, making prevention far more cost-effective than repair. Properly installed siding with a weather-resistant barrier (WRB) is your home\'s primary defense against water intrusion. Hamilton Exteriors installs a full WRB system behind every siding project, including flashing around all windows, doors, and penetrations. We use both peel-and-stick flashing at critical junctions and mechanically fastened house wrap across wall surfaces, creating a continuous drainage plane that channels water down and out. We inspect the underlying sheathing during removal and repair any existing moisture damage before new siding goes on. Bay Area coastal homes are especially vulnerable — salt-laden fog accelerates wood decay and can cause water damage behind siding that appears intact from the outside.',
     },
+    {
+      question: 'Is fiber cement siding worth the extra cost over vinyl?',
+      answer:
+        'Yes for most Bay Area homes. Fiber cement lasts 50+ years vs. 20 to 30 for vinyl, delivers 86% ROI at resale vs. roughly 70% for vinyl (Remodeling Magazine 2024), carries a Class A fire rating required in WUI zones, and resists Bay Area fog and moisture better than any alternative. The higher upfront cost ($2,100 to $2,325 per square vs. $975 to $1,275 per square for vinyl) pays for itself through longer lifespan and higher resale return. Vinyl remains a smart choice for rental properties and budget-conscious projects where fire zone compliance is not required.',
+    },
+    {
+      question: 'How do I know if my siding needs replacement?',
+      answer:
+        'Common signs include warping or buckling panels, soft or spongy spots (indicating moisture damage behind the siding), peeling paint that returns within 1 to 2 years of repainting, visible cracks or holes, mold or mildew growth between panels, rising energy bills from air infiltration, and dry rot visible at corners or around windows. If damage affects more than 30% of your siding, full replacement is more cost-effective than patching. Hamilton Exteriors provides a free exterior inspection. We check every wall, corner, and trim piece before recommending repair or replacement.',
+    },
+    {
+      question: 'Does new siding help with noise reduction?',
+      answer:
+        'Yes. James Hardie fiber cement siding is significantly denser than vinyl and reduces exterior noise by 20 to 25% compared to single-layer vinyl. Homes near highways (101, 880, 280), BART lines, or Oakland/SFO airport flight paths benefit most. Adding an insulated weather barrier behind fiber cement further improves sound dampening. Stucco also performs well for noise reduction due to its mass and continuous surface.',
+    },
+    {
+      question: 'What is dry rot and how does siding prevent it?',
+      answer:
+        'Dry rot is fungal decay that destroys wood framing when moisture penetrates behind siding. Bay Area fog belt homes from Daly City to Half Moon Bay are especially vulnerable. Modern siding installation includes a weather-resistant barrier (WRB) with integrated flashing at every window, door, and penetration to create a continuous drainage plane. Fiber cement and vinyl siding are both immune to rot themselves, but the WRB system behind them is what protects your framing. Hamilton Exteriors inspects all underlying sheathing during tear-off and repairs existing damage before new siding goes on.',
+    },
   ],
 };
