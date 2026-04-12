@@ -99,15 +99,13 @@ const productSchema = productData ? {
   'name': productData.name,
   'description': productData.description,
   'url': pageUrl,
+  'image': data.heroImage.src.startsWith('http') ? data.heroImage.src : `${siteUrl}${data.heroImage.src}`,
   'category': productData.category,
   ...(productData.brand && {
     'brand': productData.brand.includes(',')
       ? productData.brand.split(', ').map(b => ({ '@type': 'Brand', 'name': b }))
       : { '@type': 'Brand', 'name': productData.brand },
   }),
-  'manufacturer': productData.brand && !productData.brand.includes(',')
-    ? { '@type': 'Organization', 'name': productData.brand }
-    : undefined,
   'offers': productData.lowPrice === productData.highPrice
     ? {
         '@type': 'Offer',
