@@ -79,6 +79,7 @@ export const data: ServicePageData = {
       },
     },
     { type: 'projects' },
+    { type: 'serviceAreas', data: { heading: 'Deck Building Across the Bay Area', serviceSlug: 'decks' } },
     { type: 'faq' },
     { type: 'yellowBar', text: 'Schedule Your Free Consultation', href: '#contact' },
     { type: 'cta' },
