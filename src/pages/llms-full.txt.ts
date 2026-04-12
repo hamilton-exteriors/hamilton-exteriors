@@ -1,6 +1,10 @@
 import type { APIRoute } from 'astro';
 import { getGoogleReviews, getDisplayReviews } from '../lib/google-reviews';
 
+// Real content last-modified date — update when llms-full.txt content meaningfully changes.
+// AI crawlers use this for freshness signals; dynamic new Date() was misleading.
+const CONTENT_LAST_MODIFIED = '2026-04-12';
+
 export const GET: APIRoute = async () => {
   const reviewData = await getGoogleReviews();
   const display = getDisplayReviews(reviewData);
@@ -12,7 +16,7 @@ export const GET: APIRoute = async () => {
     return `### ${r.author_name} ${stars}\n"${r.text}"`;
   }).join('\n\n');
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = CONTENT_LAST_MODIFIED;
 
   const body = `# Hamilton Exteriors \u2014 Full Company Information
 

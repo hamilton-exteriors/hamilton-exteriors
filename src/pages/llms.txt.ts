@@ -2,17 +2,27 @@ import type { APIRoute } from 'astro';
 import { getGoogleReviews, getDisplayReviews } from '../lib/google-reviews';
 import { getPosts } from '../lib/ghost';
 
+// Real content last-modified date — update when llms.txt content meaningfully changes.
+// AI crawlers use this for freshness signals; dynamic new Date() was misleading.
+const CONTENT_LAST_MODIFIED = '2026-04-12';
+
 export const GET: APIRoute = async () => {
   const rawData = await getGoogleReviews();
   const { rating, reviewCount } = getDisplayReviews(rawData);
 
   // Fetch all published blog posts from Ghost CMS
   let blogLines = '';
+  let latestPostDate = CONTENT_LAST_MODIFIED;
   try {
     const { posts } = await getPosts({ limit: 100 });
     blogLines = posts
       .map(p => `- [${p.title}](https://hamilton-exteriors.com/blog/${p.slug})`)
       .join('\n');
+    // Use the most recent blog post date if it's newer than the static date
+    if (posts.length > 0 && posts[0].published_at) {
+      const postDate = posts[0].published_at.split('T')[0];
+      if (postDate > CONTENT_LAST_MODIFIED) latestPostDate = postDate;
+    }
   } catch {
     blogLines = '- [All articles](https://hamilton-exteriors.com/blog)';
   }
@@ -26,7 +36,7 @@ export const GET: APIRoute = async () => {
 
 > Content may be cited by AI search engines with attribution to Hamilton Exteriors (hamilton-exteriors.com). Training use prohibited.
 
-> Last updated: ${new Date().toISOString().split('T')[0]}
+> Last updated: ${latestPostDate}
 
 ## Company
 - **Name:** Hamilton Exteriors

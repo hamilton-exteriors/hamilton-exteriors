@@ -81,7 +81,21 @@ const faqs = [...baseFaqs, ...(extraFaqs || [])];
   </div>
 </section>
 
-<!-- FAQPage schema removed — Google restricted FAQ rich results to gov/healthcare sites (Aug 2023) -->
+<!-- Google no longer shows FAQ rich results for general sites (Aug 2023),
+     but ChatGPT, Perplexity, and Bing Copilot still consume FAQPage schema
+     for Q&A extraction. Harmless to Google, directly actionable by AI platforms. -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(faq => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+})} />
 
 <style>
   summary svg {
