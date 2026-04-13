@@ -443,17 +443,20 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
 
   // Step 1 → Step 2 (or Step 3 if skipping): validate
   document.getElementById('next-btn-1')?.addEventListener('click', () => {
-    const fields = ['fullName', 'phone', 'email', 'address'].map(n =>
+    const fieldNames = ['fullName', 'phone', 'email', 'address'];
+    const fields = fieldNames.map(n =>
       heroForm.querySelector(`input[name="${n}"]`) as HTMLInputElement
+        || document.getElementById(`hero-${n === 'fullName' ? 'name' : n}`) as HTMLInputElement
     );
     let valid = true;
     const missingFields: string[] = [];
     const labelMap: Record<string, string> = { fullName: 'Full Name', phone: 'Phone Number', email: 'Email', address: 'Project Address' };
-    fields.forEach(f => {
+    fields.forEach((f, i) => {
       if (!f?.value?.trim()) {
-        showFieldError(f, `${labelMap[f.name] || f.name} is required`);
+        if (f) showFieldError(f, `${labelMap[f.name] || f.name} is required`);
         valid = false;
-        missingFields.push(labelMap[f.name] || f.name);
+        const name = f?.name || fieldNames[i];
+        missingFields.push(labelMap[name] || name);
       }
     });
     // Basic email check
