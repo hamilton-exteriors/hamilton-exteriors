@@ -579,7 +579,7 @@ const graphJsonLd = graphItems.length > 0 ? {
 
       // Track CTA button clicks (Get Free Quote, Get a Quote, etc.)
       document.addEventListener('click', (e) => {
-        const el = (e.target as HTMLElement).closest('a[href="#quote"], a[href="/#quote"], a[href="/buy"], a[href="/buy/scan"]') as HTMLAnchorElement;
+        const el = (e.target as HTMLElement).closest('a[href="#quote"], a[href="/#quote"], a[href="/contact"], a[href="/buy"], a[href="/buy/scan"]') as HTMLAnchorElement;
         if (el) {
           window.op?.('track', 'cta_click', {
             page: window.location.pathname,
