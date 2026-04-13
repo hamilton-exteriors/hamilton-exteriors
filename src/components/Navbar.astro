@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { logoNav } from '../lib/images';
+import logoHamilton from '../assets/images/logo-hamilton.svg?raw';
 import { PHONE_DISPLAY, PHONE_HREF } from '../lib/constants';
 
 const services = [
@@ -80,16 +80,7 @@ const { logoHref = '/' } = Astro.props;
   >
     <!-- Logo -->
     <a href={logoHref} class="shrink-0" aria-label="Hamilton Exteriors — home">
-      <Image
-        src={logoNav}
-        alt="Hamilton Exteriors"
-        width={200}
-        height={83}
-        densities={[1, 2]}
-        format="webp"
-        loading="eager"
-        class="h-auto w-[143px] object-contain lg:w-[168px]"
-      />
+      <div class="h-[40px] w-auto text-heading lg:h-[48px] [&>svg]:h-full [&>svg]:w-auto" set:html={logoHamilton} role="img" aria-label="Hamilton Exteriors" />
     </a>
 
     <!-- Desktop nav -->
