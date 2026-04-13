@@ -260,3 +260,6 @@ export const GOOGLE_REVIEW_LINK = `https://search.google.com/local/writereview?p
 
 /** Google Maps listing link */
 export const GOOGLE_MAPS_LINK = 'https://maps.google.com/?cid=3578771346418026097';
+
+/** Google Maps roofing-specific listing */
+export const GOOGLE_MAPS_ROOFING_LINK = 'https://maps.google.com/?cid=16940455721437723245';
