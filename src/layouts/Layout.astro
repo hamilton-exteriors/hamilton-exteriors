@@ -53,7 +53,7 @@ const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs & custom ho
 const DEFAULT_GEO_PLACENAME = 'Bay Area, California';
 
 // Pages that should carry the full Organization schema (ratings, reviews, catalog)
-const FULL_ORG_PATHS = new Set(['/', '/roofing', '/siding', '/windows', '/adu', '/custom-homes', '/additions', '/decks', '/bathrooms', '/service-areas']);
+const FULL_ORG_PATHS = new Set(['/', '/roofing', '/siding', '/windows', '/adu', '/custom-homes', '/additions', '/decks', '/bathrooms', '/service-areas', '/reviews', '/buy', '/about/alex-hamilton-li']);
 
 const {
   title = "Bay Area Custom Home & Exteriors Contractor | Hamilton Exteriors",
@@ -256,7 +256,7 @@ const fullOrgSchemaObj = fullOrgSchema ? {
       "reviewRating": { "@type": "Rating", "ratingValue": r.rating, "bestRating": 5, "worstRating": 1 },
       "reviewBody": r.text,
       "publisher": { "@type": "Organization", "name": "Google" },
-      "itemReviewed": { "@type": "LocalBusiness", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
+      "itemReviewed": { "@id": "https://hamilton-exteriors.com/#business" }
     })),
     ...CURATED_REVIEWS.map((r) => ({
       "@type": "Review",
@@ -265,7 +265,7 @@ const fullOrgSchemaObj = fullOrgSchema ? {
       "reviewRating": { "@type": "Rating", "ratingValue": r.rating, "bestRating": 5, "worstRating": 1 },
       "reviewBody": r.text,
       "publisher": { "@type": "Organization", "name": r.platform === 'yelp' ? 'Yelp' : r.platform === 'angi' ? 'Angi' : r.platform === 'nextdoor' ? 'Nextdoor' : r.platform === 'bbb' ? 'BBB' : r.platform },
-      "itemReviewed": { "@type": "LocalBusiness", "@id": "https://hamilton-exteriors.com/#business", "name": "Hamilton Exteriors" }
+      "itemReviewed": { "@id": "https://hamilton-exteriors.com/#business" }
     })),
   ]
 } : null;

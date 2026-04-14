@@ -110,6 +110,17 @@ const siteUrl = 'https://hamilton-exteriors.com';
 
 // FAQPage schema removed — Google restricted FAQ rich results to gov/healthcare sites (Aug 2023)
 
+// Shared AggregateRating for all Service schemas on service-area pages.
+// Matches homepage data (4.8/37). Nested inline so each Service node is self-contained
+// and doesn't depend on Google merging by @id from other pages.
+const SERVICE_AGGREGATE_RATING = {
+  '@type': 'AggregateRating',
+  'ratingValue': 4.8,
+  'reviewCount': 37,
+  'bestRating': 5,
+  'worstRating': 1,
+};
+
 let jsonLd: Record<string, unknown>[] | undefined;
 
 if (pageType === 'cityService' && cityServiceData) {
@@ -132,6 +143,17 @@ if (pageType === 'cityService' && cityServiceData) {
     },
     {
 
+      '@type': 'WebPage',
+      '@id': `${pageUrl}#webpage`,
+      'url': pageUrl,
+      'name': cityServiceData.title,
+      'description': cityServiceData.description,
+      'isPartOf': { '@id': `${siteUrl}/#website` },
+      'about': { '@id': `${pageUrl}#service` },
+      'inLanguage': 'en-US',
+    },
+    {
+
       '@type': 'Service',
       '@id': `${pageUrl}#service`,
       'name': `${cityServiceData.serviceName} in ${cityServiceData.city}, ${cityServiceData.state}`,
@@ -145,6 +167,7 @@ if (pageType === 'cityService' && cityServiceData) {
         'containedInPlace': { '@type': 'State', 'name': 'California' },
         ...(csLat && csLng && { 'geo': { '@type': 'GeoCoordinates', 'latitude': csLat, 'longitude': csLng } }),
       },
+      'aggregateRating': SERVICE_AGGREGATE_RATING,
     },
   ];
 } else if (pageType === 'city' && cityData) {
@@ -183,6 +206,7 @@ if (pageType === 'cityService' && cityServiceData) {
         'priceCurrency': 'USD',
         'unitText': 'starting price varies by service',
       },
+      'aggregateRating': SERVICE_AGGREGATE_RATING,
     },
   ];
 } else if (pageType === 'county' && countyData) {
@@ -229,6 +253,7 @@ if (pageType === 'cityService' && cityServiceData) {
         'priceCurrency': 'USD',
         'unitText': 'starting price varies by service',
       },
+      'aggregateRating': SERVICE_AGGREGATE_RATING,
     },
   ];
 } else if (pageType === 'countyService' && countyServiceData) {
@@ -250,6 +275,17 @@ if (pageType === 'cityService' && cityServiceData) {
     },
     {
 
+      '@type': 'WebPage',
+      '@id': `${csPageUrl}#webpage`,
+      'url': csPageUrl,
+      'name': countyServiceData.title,
+      'description': countyServiceData.description,
+      'isPartOf': { '@id': `${siteUrl}/#website` },
+      'about': { '@id': `${csPageUrl}#service` },
+      'inLanguage': 'en-US',
+    },
+    {
+
       '@type': 'Service',
       '@id': `${csPageUrl}#service`,
       'name': `${countyServiceData.serviceName} in ${countyDisplayName}, CA`,
@@ -262,6 +298,7 @@ if (pageType === 'cityService' && cityServiceData) {
         'sameAs': `https://en.wikipedia.org/wiki/${countyBase.replace(/ /g, '_')}_County,_California`,
         'containedInPlace': { '@type': 'State', 'name': 'California' },
       },
+      'aggregateRating': SERVICE_AGGREGATE_RATING,
     },
   ];
 }

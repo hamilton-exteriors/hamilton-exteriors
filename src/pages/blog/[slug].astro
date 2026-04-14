@@ -155,7 +155,41 @@ const breadcrumbJsonLd = {
 };
 
 // HowTo rich results removed by Google Sept 2023 — schema omitted
-// FAQPage schema removed — Google restricted FAQ rich results to gov/healthcare sites (Aug 2023)
+// FAQPage: Google restricted FAQ *rich results* to gov/healthcare (Aug 2023), but
+// FAQPage schema still drives AI citations in ChatGPT, Perplexity, and AI Overviews
+// (which source from LLM training + structured data, not rich result blocks).
+// Auto-extract Q&A from any H2/H3 ending with "?" followed by body content.
+function extractFaqs(html: string): { question: string; answer: string }[] {
+  if (!html) return [];
+  const faqs: { question: string; answer: string }[] = [];
+  // Match H2/H3 ending with ? and capture content until next H2/H3
+  const re = /<h([23])[^>]*>([^<]*\?)\s*<\/h\1>([\s\S]*?)(?=<h[23][^>]*>|$)/gi;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    const question = m[2].replace(/<[^>]+>/g, '').trim();
+    // Strip tags from answer, collapse whitespace, cap at 500 chars for schema hygiene
+    const answer = m[3]
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 500);
+    if (question && answer.length > 20) {
+      faqs.push({ question, answer });
+    }
+  }
+  return faqs;
+}
+
+const extractedFaqs = extractFaqs(post.html || '');
+const faqJsonLd = extractedFaqs.length >= 2 ? {
+  '@type': 'FAQPage',
+  '@id': `${canonicalUrl}#faq`,
+  mainEntity: extractedFaqs.map(f => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+} : null;
 
 // Extract H2 headings for table of contents
 const tocHeadings: { id: string; text: string }[] = [];
@@ -268,7 +302,7 @@ const serviceLinks = matchedLinksMap.size > 0
   description={description}
   image={postImage}
   type="article"
-  jsonLd={shouldNoindex ? undefined : [articleJsonLd, breadcrumbJsonLd]}
+  jsonLd={shouldNoindex ? undefined : [articleJsonLd, breadcrumbJsonLd, ...(faqJsonLd ? [faqJsonLd] : [])]}
   noindex={shouldNoindex}
 >
   {post.feature_image?.includes('/content/images/') ? (

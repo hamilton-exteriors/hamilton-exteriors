@@ -59,12 +59,20 @@ const serviceJsonLd = {
 };
 
 // FAQPage schema removed — Google restricted FAQ rich results to gov/healthcare sites (Aug 2023)
+
+const breadcrumbJsonLd = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://hamilton-exteriors.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Buy Your Roof Online', item: 'https://hamilton-exteriors.com/buy' },
+  ],
+};
 ---
 
 <Layout
   title="Buy Your Roof Online | Hamilton Exteriors"
   description="Enter your address, see your roof, get an instant price. Buy your new roof online — direct from Hamilton Exteriors."
-  jsonLd={[webAppJsonLd, serviceJsonLd]}
+  jsonLd={[webAppJsonLd, serviceJsonLd, breadcrumbJsonLd]}
 >
   <Navbar slot="header" />
 
