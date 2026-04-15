@@ -210,6 +210,12 @@ export default defineConfig({
   trailingSlash: 'never',
   compressHTML: true,
   output: 'server',
+  security: {
+    // Astro 6 defaults checkOrigin: true for SSR, which breaks form Actions behind
+    // Railway's reverse proxy — origin/host headers don't align. CSRF is already
+    // covered by the nonce-based CSP in middleware.ts.
+    checkOrigin: false,
+  },
   adapter: node({ mode: 'standalone' }),
   integrations: [sitemap({
     customSitemaps: [
