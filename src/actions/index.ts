@@ -29,7 +29,8 @@ export const server = {
       }),
     }),
     handler: async (input, context) => {
-      if (!(await isInServiceArea(input.address))) {
+      const isDev = import.meta.env.DEV;
+      if (!isDev && !(await isInServiceArea(input.address))) {
         throw new ActionError({ code: 'BAD_REQUEST', message: SERVICE_AREA_ERROR });
       }
 

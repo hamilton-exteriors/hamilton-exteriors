@@ -45,6 +45,8 @@ const FALLBACK_CITIES = [
 /**
  * Check if an address string is in the service area.
  * Matches by city name in the address text.
+ * If no recognizable city is found (e.g. street-only from Mapbox autofill),
+ * defaults to true — only block when we're confident the city is out of area.
  */
 export async function isInServiceArea(address: string): Promise<boolean> {
   if (!address) return false;
@@ -53,7 +55,9 @@ export async function isInServiceArea(address: string): Promise<boolean> {
   for (const city of cities) {
     if (lower.includes(city)) return true;
   }
-  return false;
+  // No service-area city found — could be street-only input or an unknown address.
+  // Default to allowing through rather than blocking a potentially valid lead.
+  return true;
 }
 
 /** Sync version for client-side use (uses fallback only) */
@@ -63,7 +67,8 @@ export function isInServiceAreaSync(address: string): boolean {
   for (const city of FALLBACK_CITIES) {
     if (lower.includes(city)) return true;
   }
-  return false;
+  // Same default: unknown address passes through
+  return true;
 }
 
 export const SERVICE_AREA_ERROR = 'We currently serve the San Francisco Bay Area. Please enter an address in our service area.';

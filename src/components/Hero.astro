@@ -537,6 +537,10 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
 
     try {
       const formData = new FormData(heroForm);
+      // Mapbox autofill drops the address field from FormData when no token
+      // is available (e.g. localhost). Manually sync it from the input value.
+      const addressInput = document.getElementById('hero-address') as HTMLInputElement;
+      if (addressInput?.value) formData.set('address', addressInput.value);
       const { data, error } = await actions.submitLead(formData);
 
       if (error) {
@@ -553,6 +557,18 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
           } else if (fields.consent) {
             showStep(step3);
           }
+        } else {
+          // Non-field error (e.g. service area) — show inline message
+          const msg = (error as any).message || 'Something went wrong. Please try again.';
+          let errBox = heroForm.querySelector('.form-error-inline') as HTMLElement | null;
+          if (!errBox) {
+            errBox = document.createElement('div');
+            errBox.className = 'form-error-inline';
+            errBox.style.cssText = 'margin-top:12px;padding:14px 16px;border-radius:4px;background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.25);text-align:center;';
+            heroForm.appendChild(errBox);
+          }
+          errBox.innerHTML = `<p style="font-family:var(--font-dm-sans);font-size:14px;color:var(--color-error);margin-bottom:6px;font-weight:500;">${msg}</p><a href="tel:+16509773351" style="font-family:var(--font-dm-sans);font-size:14px;font-weight:700;color:var(--color-primary);text-decoration:underline;">Or call us: (650) 977-3351</a>`;
+          showStep(step1);
         }
         if (submitBtn) {
           submitBtn.disabled = false;
