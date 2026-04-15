@@ -125,7 +125,7 @@ export const server = {
       });
 
       // Fire n8n LP webhook — triggers OpenPhone msg, AI call, email sequences
-      const n8nUrl = import.meta.env.N8N_LP_WEBHOOK_URL || 'https://n8n.contai.app/webhook/new_lp_lead';
+      const n8nUrl = import.meta.env.N8N_LP_WEBHOOK_URL || 'https://n8n.contai.app/webhook/new_lp';
       fetch(n8nUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
