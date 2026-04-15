@@ -537,10 +537,6 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
 
     try {
       const formData = new FormData(heroForm);
-      // Mapbox autofill component can drop the address value from FormData when
-      // it fails (e.g. no token locally). Pull it directly from the input as a fallback.
-      const addressInput = document.getElementById('hero-address') as HTMLInputElement;
-      if (addressInput?.value) formData.set('address', addressInput.value);
       const { data, error } = await actions.submitLead(formData);
 
       if (error) {

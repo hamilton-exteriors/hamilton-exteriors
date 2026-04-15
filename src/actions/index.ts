@@ -29,8 +29,7 @@ export const server = {
       }),
     }),
     handler: async (input, context) => {
-      const isDev = import.meta.env.DEV;
-      if (!isDev && !(await isInServiceArea(input.address))) {
+      if (!(await isInServiceArea(input.address))) {
         throw new ActionError({ code: 'BAD_REQUEST', message: SERVICE_AREA_ERROR });
       }
 
@@ -123,27 +122,6 @@ export const server = {
           contentIds: [input.service || 'general'],
         },
       });
-
-      // Fire n8n LP webhook — triggers OpenPhone msg, AI call, email sequences
-      const n8nUrl = import.meta.env.N8N_LP_WEBHOOK_URL || 'https://n8n.contai.app/webhook/new_lp_lead';
-      fetch(n8nUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          'Email': input.email,
-          'Message': input.message || '',
-          'Name': input.fullName,
-          'Phone Number': input.phone,
-          'address': input.address,
-          'current-url': pageUrl,
-          'utm_source': input.utm_source || '',
-          'utm_medium': input.utm_medium || '',
-          'utm_campaign': input.utm_campaign || '',
-          'utm_content': input.utm_content || '',
-          'utm_term': input.utm_term || '',
-        }),
-        signal: AbortSignal.timeout(8_000),
-      }).catch(err => console.error('[n8n webhook] Failed:', (err as Error).message));
 
       return { success: true, name: input.fullName, eventId };
     },
