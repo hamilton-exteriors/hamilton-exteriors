@@ -56,7 +56,6 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
 <div class="relative min-h-[400px] bg-(--color-heading) lg:flex-1">
 <div id="roof-map" class="absolute inset-0 size-full"></div>
 <div id="scan-loading" class="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[rgba(26,35,50,0.92)]" role="alert" aria-busy="true"><div class="scan-spinner mb-4"></div><p class="text-[15px] font-semibold text-white">Scanning your roof...</p><p class="text-[13px] text-white/50" id="scan-status" aria-live="polite" role="status">Locating property</p></div>
-<div id="roof-legend" class="absolute bottom-4 left-4 z-10 hidden rounded-[4px] bg-[--color-primary-dark]/80 px-3.5 py-2.5 text-[13px] text-white backdrop-blur"><div class="flex items-center gap-2"><span class="inline-block h-[3px] w-3.5 rounded bg-[rgb(196,112,75)]"></span><span>Roof outline</span></div></div>
 </div>
 <div class="shrink-0 border-l border-border px-6 py-7 lg:w-[340px]">
 <h2 class="mb-5 text-xl text-charcoal">Roof Measurements</h2>
@@ -167,10 +166,10 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
 <div class="my-4 border-y border-border py-3.5">
 <p class="mb-3 text-sm font-semibold text-charcoal">Add-ons</p>
 <div class="flex flex-col gap-2" id="addons">
-<label class="addon-row"><input type="checkbox" name="addon" value="gutter-guards" data-addon-price="1200"/><span class="addon-check"></span><span class="addon-label">Gutter Guards<span class="addon-hint">Prevents clogs and water damage year-round</span></span><span class="addon-price">+$1,200</span></label>
-<label class="addon-row"><input type="checkbox" name="addon" value="ice-shield" data-addon-price="800"/><span class="addon-check"></span><span class="addon-label">Ice & Water Shield<span class="addon-hint">Extra waterproofing layer along eaves and valleys</span></span><span class="addon-price">+$800</span></label>
-<label class="addon-row"><input type="checkbox" name="addon" value="ridge-vent" data-addon-price="600"/><span class="addon-check"></span><span class="addon-label">Ridge Vent Upgrade<span class="addon-hint">Improves attic airflow, extends shingle life</span></span><span class="addon-price">+$600</span></label>
-<label class="addon-row"><input type="checkbox" name="addon" value="skylights" data-addon-price="2500"/><span class="addon-check"></span><span class="addon-label">Skylight Install<span class="addon-hint">Bring natural light into your home</span></span><span class="addon-price">+$2,500</span></label>
+<label class="addon-row" data-addon="gutter-guards"><input type="checkbox" name="addon" value="gutter-guards" data-addon-price="1200"/><span class="addon-check"></span><span class="addon-label">Gutter Guards<span class="addon-rec hidden">Recommended for your eave length</span><span class="addon-hint">Prevents clogs and water damage year-round</span></span><span class="addon-price">+$1,200</span></label>
+<label class="addon-row" data-addon="ice-shield"><input type="checkbox" name="addon" value="ice-shield" data-addon-price="800"/><span class="addon-check"></span><span class="addon-label">Ice & Water Shield<span class="addon-rec hidden">Recommended for your valley count</span><span class="addon-hint">Extra waterproofing layer along eaves and valleys</span></span><span class="addon-price">+$800</span></label>
+<label class="addon-row" data-addon="ridge-vent"><input type="checkbox" name="addon" value="ridge-vent" data-addon-price="600"/><span class="addon-check"></span><span class="addon-label">Ridge Vent Upgrade<span class="addon-rec hidden">Recommended for your roof complexity</span><span class="addon-hint">Improves attic airflow, extends shingle life</span></span><span class="addon-price">+$600</span></label>
+<label class="addon-row" data-addon="skylights"><input type="checkbox" name="addon" value="skylights" data-addon-price="2500"/><span class="addon-check"></span><span class="addon-label">Skylight Install<span class="addon-hint">Bring natural light into your home</span></span><span class="addon-price">+$2,500</span></label>
 </div>
 <div id="addons-summary" class="mt-2"></div>
 </div>
@@ -178,16 +177,28 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
 <div><p class="text-[13px] text-muted">Total Price</p><p class="text-4xl leading-none font-bold text-charcoal" id="total-price">$0</p></div>
 <div class="text-right"><p class="text-[13px] text-muted">or as low as</p><p class="font-hamilton-display text-[22px] leading-none font-bold text-primary" id="monthly-price">$0/mo</p><p class="text-[11px] text-muted">for 60 months*</p></div>
 </div>
+<!-- Install window urgency — credible, calendar-based -->
+<p class="mb-3 flex items-center gap-2 text-[12px] leading-[1.4] text-primary">
+  <span aria-hidden="true" class="inline-block size-[7px] rounded-full bg-primary"></span>
+  <span><strong class="font-semibold">Next install window:</strong> <span id="install-window">2 to 3 weeks out</span></span>
+</p>
+<!-- Pinned guarantee strip — risk reversal at the moment of commitment -->
+<ul class="mb-4 flex flex-col gap-2 rounded-[4px] bg-cream px-4 py-3 text-[13px] leading-[1.5] text-charcoal">
+  <li class="flex items-start gap-2"><span aria-hidden="true" class="mt-[2px] text-primary">✓</span><span><strong class="font-semibold">Price locked.</strong> If the on-site visit finds anything different, we show you the delta and you approve before we touch a shingle.</span></li>
+  <li class="flex items-start gap-2"><span aria-hidden="true" class="mt-[2px] text-primary">✓</span><span><strong class="font-semibold">35-year labor guarantee</strong> backed by our manufacturer warranty (25 years to lifetime).</span></li>
+  <li class="flex items-start gap-2"><span aria-hidden="true" class="mt-[2px] text-primary">✓</span><span><strong class="font-semibold">Installed in 1 to 3 days.</strong> We handle permits, delivery, and cleanup.</span></li>
+</ul>
 <button id="purchase-btn" class="text-button mb-3 w-full rounded-[4px] bg-primary px-6 py-4 text-[17px] text-white transition-opacity hover:opacity-90" data-track="purchase_btn_click">Purchase This Roof</button>
-<button class="text-button w-full rounded-[4px] border border-border bg-transparent px-6 py-3.5 text-charcoal transition-colors hover:bg-charcoal/5" data-track="schedule_call_click">Schedule a Call Instead</button>
-<p class="mt-4 text-center text-xs text-muted">*0% APR financing available with approved credit.</p>
-<!-- Inline FAQ for hesitant buyers -->
-<details class="mt-6 border-t border-border pt-4">
-  <summary class="cursor-pointer text-sm font-medium text-muted hover:text-charcoal">Have questions?</summary>
+<p class="mt-3 text-center text-[11px] leading-[1.5] text-muted">CSLB #1082377 · Licensed, bonded, insured · We respond within 2 business hours</p>
+<p class="mt-2 text-center text-[11px] text-muted">Prefer to talk? <a href="tel:+16509773351" class="underline hover:text-charcoal" data-track="schedule_call_click">Call (650) 977-3351</a></p>
+<p class="mt-2 text-center text-xs text-muted">*0% APR for 12 months, then 6.99% APR for 48 months with approved credit.</p>
+<!-- Expanded FAQ for hesitant buyers -->
+<details class="mt-5 border-t border-border pt-4">
+  <summary class="cursor-pointer text-sm font-medium text-muted hover:text-charcoal">More questions?</summary>
   <div class="mt-3 flex flex-col gap-3 text-[13px] leading-[1.6] text-muted">
-    <div><p class="font-semibold text-charcoal">What if the on-site inspection finds something different?</p><p>We'll update your quote with an itemized explanation. You approve any changes before we proceed.</p></div>
-    <div><p class="font-semibold text-charcoal">What about the warranty?</p><p>Every roof includes a manufacturer's warranty (25 years to lifetime) plus our 35-year labor guarantee.</p></div>
-    <div><p class="font-semibold text-charcoal">How long does installation take?</p><p>Most roofs are completed in 1-3 days. We handle permits, delivery, and cleanup.</p></div>
+    <div><p class="font-semibold text-charcoal">What about the warranty details?</p><p>Manufacturer's warranty runs 25 years to lifetime depending on the shingle you choose. Our 35-year labor guarantee covers installation workmanship.</p></div>
+    <div><p class="font-semibold text-charcoal">Do I pay anything today?</p><p>No. This reserves your project manager call. Payment is scheduled after on-site verification, with 0% financing available.</p></div>
+    <div><p class="font-semibold text-charcoal">Who actually does the work?</p><p>Our in-house crews, supervised by our architect-led project managers. We do not subcontract installations.</p></div>
   </div>
 </details>
 </div></div>
@@ -196,11 +207,16 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
 </div>
 </section>
 <!-- Purchase / Lead Capture Modal -->
-<div id="purchase-modal" class="fixed inset-0 z-60 hidden bg-[--color-charcoal]/50 backdrop-blur-xs" role="dialog" aria-modal="true" aria-label="Confirm your purchase">
+<div id="purchase-modal" class="fixed inset-0 z-60 hidden overflow-y-auto overscroll-contain bg-[--color-charcoal]/50 backdrop-blur-xs" role="dialog" aria-modal="true" aria-label="Confirm your purchase">
   <div class="flex min-h-full items-center justify-center p-4">
-    <div class="w-full max-w-[480px] rounded-[4px] bg-white px-8 py-9 shadow-xl">
+    <div class="my-auto w-full max-w-[480px] rounded-[4px] bg-white px-8 py-9 shadow-xl">
       <h3 class="text-center text-2xl font-semibold text-charcoal">Review Your Order</h3>
-      <p class="mt-2 mb-5 text-center text-[15px] text-muted">A project manager will verify measurements on-site before work begins.</p>
+      <p class="mt-2 mb-4 text-center text-[15px] text-muted">A project manager will verify measurements on-site before any work begins. Your price is locked.</p>
+      <!-- Social proof strip -->
+      <div class="mb-5 flex items-center justify-center gap-2 rounded-[4px] border border-border bg-cream px-3 py-2.5 text-center">
+        <span aria-hidden="true" class="text-[13px] text-yellow">★★★★★</span>
+        <p class="text-[12px] leading-tight text-charcoal"><strong class="font-semibold">4.8</strong> from verified Bay Area homeowners on Google and Yelp</p>
+      </div>
       <!-- Order summary — prominent, above form fields -->
       <div id="pf-summary" class="mb-6 rounded-[4px] border border-border bg-cream p-5">
         <p id="pf-summary-address" class="font-dm-sans text-sm font-semibold text-charcoal">Your address</p>
@@ -246,14 +262,15 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
           Confirm Purchase
         </button>
         <button type="button" id="pf-close" class="min-h-11 w-full py-3.5 text-center text-sm text-muted">Cancel</button>
+        <p class="mt-1 text-center text-[11px] leading-[1.5] text-muted">🔒 CSLB #1082377 · Licensed, bonded, insured · 2-hour response · Your info is never sold</p>
       </form>
       <!-- Success state -->
       <div id="pf-success" class="hidden py-5 text-center">
         <div class="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-primary">
           <IconCheckmark size={28} />
         </div>
-        <h3 class="text-[22px] font-semibold text-charcoal">You're all set!</h3>
-        <p class="mt-2 text-[15px] text-muted">A Hamilton project manager will call you within 24 hours to confirm your roof measurements and schedule the work.</p>
+        <h3 class="text-[22px] font-semibold text-charcoal">Your price is locked.</h3>
+        <p class="mt-2 text-[15px] text-muted">A Hamilton project manager will reach out within 2 business hours to schedule your on-site verification. Nothing changes in your quote unless you approve it first.</p>
         <p class="mt-4 text-sm font-semibold text-charcoal">Your reference number:</p>
         <p id="pf-ref" class="font-hamilton-display text-xl font-bold text-primary"></p>
         <a href="/buy" class="mt-6 inline-block text-sm text-muted underline">Back to Hamilton Exteriors</a>
@@ -270,10 +287,14 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
       </div>
       <h3 class="text-[22px] font-semibold text-charcoal">We can't scan this address yet</h3>
-      <p id="scan-error-msg" class="mt-2 mb-6 text-[15px] text-muted"></p>
+      <p id="scan-error-msg" class="mt-2 mb-4 text-[15px] text-muted"></p>
+      <div class="mb-5 rounded-[4px] border border-border bg-cream px-4 py-3 text-left">
+        <p class="text-[11px] font-semibold tracking-[0.08em] text-primary uppercase">Ballpark while we sort this out</p>
+        <p class="mt-1 text-[14px] leading-[1.5] text-charcoal">Typical Bay Area roof replacement: <strong class="font-semibold">$18,000 to $40,000</strong> installed, or <strong class="font-semibold">$9.50 to $15.25 per square</strong> depending on shingle tier. A project manager can confirm your number in one call.</p>
+      </div>
       <div class="flex flex-col gap-3">
-        <a href="tel:+16509773351" class="text-button w-full rounded-[4px] bg-primary py-3.5 text-center text-[15px] text-white transition-opacity hover:opacity-90">Call (650) 977-3351 for a Quote</a>
-        <button type="button" id="error-retry" class="min-h-11 w-full py-3.5 text-center text-sm text-muted">Try a different address</button>
+        <button type="button" id="error-retry" class="text-button w-full rounded-[4px] bg-primary py-3.5 text-center text-[15px] text-white transition-opacity hover:opacity-90">Try a different address</button>
+        <a href="tel:+16509773351" class="min-h-11 w-full py-3.5 text-center text-sm text-muted underline">Or call (650) 977-3351 for a quote</a>
       </div>
     </div>
   </div>
@@ -283,7 +304,7 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
 <Footer slot="footer" />
 </Layout>
 <style>
-.step-dot{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:default}.step-dot.completed{cursor:pointer}.step-dot.completed:hover .step-num{opacity:.8}.step-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-dm-sans);font-weight:700;font-size:14px;background:var(--color-border);color:var(--color-muted);transition:all .3s ease}.step-label{font-family:var(--font-satoshi);font-size:12px;font-weight:500;color:var(--color-muted)}.step-dot.active .step-num{background:var(--color-primary);color:#fff}.step-dot.active .step-label{color:var(--color-charcoal);font-weight:700}.step-dot.completed .step-num{background:var(--color-primary);color:#fff}.step-line{width:60px;height:2px;background:var(--color-border);margin-bottom:22px}.step-line.active{background:var(--color-primary)}.scanner-step{animation:fadeUp .4s ease}.scanner-step.hidden{display:none}@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}.scan-spinner{width:48px;height:48px;border:3px solid rgba(255,255,255,.15);border-top-color:var(--color-primary);border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.measurement-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(196,191,182,.4)}.meas-label{font-family:var(--font-dm-sans);font-size:14px;color:var(--color-muted)}.meas-value{font-family:var(--font-hamilton-display);font-size:16px;font-weight:600;color:var(--color-charcoal)}.material-card{position:relative;display:block;cursor:pointer;border:2px solid var(--color-border);border-radius:4px;padding:20px;transition:border-color .2s,box-shadow .2s}.material-card:hover{border-color:var(--color-primary)}.material-card.selected{border-color:var(--color-primary);box-shadow:0 0 0 1px var(--color-primary)}.check-indicator{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:50%;background:var(--color-border);display:flex;align-items:center;justify-content:center}.check-indicator svg{opacity:0;transition:opacity .2s}.material-card.selected .check-indicator{background:var(--color-primary)}.material-card.selected .check-indicator svg{opacity:1}.swatch{width:40px;height:40px;border-radius:50%;border:2px solid transparent;cursor:pointer;position:relative;background-size:cover;background-position:center;background-color:#888}.swatch::before{content:'';position:absolute;inset:-4px}.swatch:hover{opacity:.75}.swatch.active{border-color:var(--color-primary);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--color-primary)}.addon-row{display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px 10px;border:1px solid var(--color-border);border-radius:8px;font-size:13px}.addon-row:hover{border-color:var(--color-primary)}.addon-row input{display:none}.addon-check{width:16px;height:16px;border-radius:4px;border:2px solid var(--color-border);flex-shrink:0;position:relative}.addon-row input:checked~.addon-check{background:var(--color-primary);border-color:var(--color-primary)}.addon-row input:checked~.addon-check::after{content:'';position:absolute;top:2px;left:5px;width:4px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}.addon-label{flex:1;font-family:var(--font-dm-sans);font-size:13px;color:var(--color-charcoal)}.addon-hint{display:block;font-size:11px;font-weight:400;color:var(--color-muted);margin-top:1px}.addon-price{font-family:var(--font-dm-sans);font-size:13px;font-weight:600;color:var(--color-muted);flex-shrink:0}.price-updating{animation:pricePulse .3s}@keyframes pricePulse{0%,100%{opacity:1}50%{opacity:0.85}}.address-suggestion{padding:12px 16px;cursor:pointer;font-family:var(--font-dm-sans);font-size:15px;color:var(--color-charcoal);border-bottom:1px solid rgba(196,191,182,.3)}.address-suggestion:last-child{border-bottom:none}.address-suggestion:hover{background:var(--color-cream)}#address-input:focus{border-color:var(--color-primary)}body.has-mobile-bar{padding-bottom:72px}@media(max-width:1023px){#step-2 .flex-col.lg\:flex-row>div:last-child{border-left:none;border-top:1px solid var(--color-border)}}.meas-info{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid var(--color-border);background:transparent;font-family:var(--font-dm-sans);font-size:11px;font-weight:600;color:var(--color-muted);cursor:pointer;margin-left:4px;vertical-align:middle;position:relative;padding:13px;box-sizing:content-box;line-height:1}.meas-info:hover,.meas-info:focus{border-color:var(--color-primary);color:var(--color-primary);outline:none}.meas-tip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;padding:10px 12px;background:var(--color-charcoal);color:#fff;font-family:var(--font-dm-sans);font-size:12px;font-weight:400;line-height:1.5;border-radius:4px;z-index:20;pointer-events:none;opacity:0;transition:opacity .15s}.meas-info:hover .meas-tip,.meas-info:focus .meas-tip{opacity:1}
+.step-dot{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:default}.step-dot.completed{cursor:pointer}.step-dot.completed:hover .step-num{opacity:.8}.step-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-dm-sans);font-weight:700;font-size:14px;background:var(--color-border);color:var(--color-muted);transition:all .3s ease}.step-label{font-family:var(--font-satoshi);font-size:12px;font-weight:500;color:var(--color-muted)}.step-dot.active .step-num{background:var(--color-primary);color:#fff}.step-dot.active .step-label{color:var(--color-charcoal);font-weight:700}.step-dot.completed .step-num{background:var(--color-primary);color:#fff}.step-line{width:60px;height:2px;background:var(--color-border);margin-bottom:22px}.step-line.active{background:var(--color-primary)}.scanner-step{animation:fadeUp .4s ease}.scanner-step.hidden{display:none}@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}.scan-spinner{width:48px;height:48px;border:3px solid rgba(255,255,255,.15);border-top-color:var(--color-primary);border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.measurement-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(196,191,182,.4)}.meas-label{font-family:var(--font-dm-sans);font-size:14px;color:var(--color-muted)}.meas-value{font-family:var(--font-hamilton-display);font-size:16px;font-weight:600;color:var(--color-charcoal)}.material-card{position:relative;display:block;cursor:pointer;border:2px solid var(--color-border);border-radius:4px;padding:20px;transition:border-color .2s,box-shadow .2s}.material-card:hover{border-color:var(--color-primary)}.material-card.selected{border-color:var(--color-primary);box-shadow:0 0 0 1px var(--color-primary)}.check-indicator{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:50%;background:var(--color-border);display:flex;align-items:center;justify-content:center}.check-indicator svg{opacity:0;transition:opacity .2s}.material-card.selected .check-indicator{background:var(--color-primary)}.material-card.selected .check-indicator svg{opacity:1}.swatch{width:40px;height:40px;border-radius:50%;border:2px solid transparent;cursor:pointer;position:relative;background-size:cover;background-position:center;background-color:#888}.swatch::before{content:'';position:absolute;inset:-4px}.swatch:hover{opacity:.75}.swatch.active{border-color:var(--color-primary);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--color-primary)}.addon-row{display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px 10px;border:1px solid var(--color-border);border-radius:8px;font-size:13px}.addon-row:hover{border-color:var(--color-primary)}.addon-row.recommended{border-color:var(--color-primary);background:rgba(37,99,70,.04)}.addon-rec{display:inline-block;margin-top:2px;margin-right:6px;padding:1px 6px;background:var(--color-primary);color:#fff;font-family:var(--font-satoshi);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-radius:3px;vertical-align:middle}.addon-rec.hidden{display:none}.addon-row input{display:none}.addon-check{width:16px;height:16px;border-radius:4px;border:2px solid var(--color-border);flex-shrink:0;position:relative}.addon-row input:checked~.addon-check{background:var(--color-primary);border-color:var(--color-primary)}.addon-row input:checked~.addon-check::after{content:'';position:absolute;top:2px;left:5px;width:4px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}.addon-label{flex:1;font-family:var(--font-dm-sans);font-size:13px;color:var(--color-charcoal)}.addon-hint{display:block;font-size:11px;font-weight:400;color:var(--color-muted);margin-top:1px}.addon-price{font-family:var(--font-dm-sans);font-size:13px;font-weight:600;color:var(--color-muted);flex-shrink:0}.price-updating{animation:pricePulse .3s}@keyframes pricePulse{0%,100%{opacity:1}50%{opacity:0.85}}.address-suggestion{padding:12px 16px;cursor:pointer;font-family:var(--font-dm-sans);font-size:15px;color:var(--color-charcoal);border-bottom:1px solid rgba(196,191,182,.3)}.address-suggestion:last-child{border-bottom:none}.address-suggestion:hover{background:var(--color-cream)}#address-input:focus{border-color:var(--color-primary)}body.has-mobile-bar{padding-bottom:72px}@media(max-width:1023px){#step-2 .flex-col.lg\:flex-row>div:last-child{border-left:none;border-top:1px solid var(--color-border)}}.meas-info{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid var(--color-border);background:transparent;font-family:var(--font-dm-sans);font-size:11px;font-weight:600;color:var(--color-muted);cursor:pointer;margin-left:4px;vertical-align:middle;position:relative;padding:13px;box-sizing:content-box;line-height:1}.meas-info:hover,.meas-info:focus{border-color:var(--color-primary);color:var(--color-primary);outline:none}.meas-tip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;padding:10px 12px;background:var(--color-charcoal);color:#fff;font-family:var(--font-dm-sans);font-size:12px;font-weight:400;line-height:1.5;border-radius:4px;z-index:20;pointer-events:none;opacity:0;transition:opacity .15s}.meas-info:hover .meas-tip,.meas-info:focus .meas-tip{opacity:1}
 @media(max-width:480px){.meas-label{font-size:13px}.meas-value{font-size:14px}.measurement-row{padding:6px 0}.meas-tip{left:auto;right:0;transform:none}}
 .tier-toggle{cursor:pointer;padding:12px 0;background:none;border:none;min-height:44px;}.tier-toggle:hover .tier-arrow{color:var(--color-charcoal)}
 .tier-arrow{transition:transform .2s}.tier-group.collapsed{display:none}.tier-toggle.collapsed .tier-arrow{transform:rotate(-90deg)}
@@ -296,6 +317,17 @@ const apiUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
   window.MAPBOX_TOKEN = mapboxToken;
 </script>
 <script is:inline src="/scan-engine.js" defer></script>
+<script is:inline>
+// Seasonal install-window messaging — swaps to rainy-season urgency Oct-Mar
+(function () {
+  var el = document.getElementById('install-window');
+  if (!el) return;
+  var m = new Date().getMonth(); // 0=Jan
+  if (m >= 8 && m <= 11) { el.textContent = 'before rainy season — schedule within 2 weeks'; }
+  else if (m >= 0 && m <= 2) { el.textContent = 'storm-season priority queue, 1 to 2 weeks'; }
+  else { el.textContent = '2 to 3 weeks out'; }
+})();
+</script>
 <script is:inline>
 (function () {
   var page = '/buy/scan';

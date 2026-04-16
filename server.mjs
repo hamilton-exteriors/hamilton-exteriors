@@ -9,6 +9,7 @@
 
 import http from 'node:http';
 import zlib from 'node:zlib';
+import { existsSync } from 'node:fs';
 
 process.env.ASTRO_NODE_AUTOSTART = 'disabled';
 
@@ -178,3 +179,35 @@ server.listen(PORT, HOST, () => {
     }
   }, 5_000); // 5s delay — let the server settle before fetching its own sitemap
 });
+
+// ── Overture Maps buildings parquet — self-seed on first deploy ──────────
+// If the parquet isn't on the Railway volume yet, download it in the background
+// via DuckDB's httpfs extension. Takes ~10 min once; persists forever on the volume.
+// While downloading, the residential gate falls back to Smarty-only (fail-open).
+const OVERTURE_FILE = '/data/overture-bayarea-buildings.parquet';
+if (!existsSync(OVERTURE_FILE) && existsSync('/data')) {
+  console.log('[overture] Parquet missing at /data, starting background download...');
+  (async () => {
+    try {
+      const duckdb = await import('duckdb');
+      const db = new duckdb.default.Database(':memory:');
+      const con = db.connect();
+      const run = (sql) => new Promise((res, rej) => con.all(sql, (e, r) => e ? rej(e) : res(r)));
+      await run(`INSTALL httpfs; LOAD httpfs;`);
+      await run(`SET s3_region='us-west-2';`);
+      const t0 = Date.now();
+      console.log('[overture] Downloading Bay Area buildings from Overture S3 via DuckDB...');
+      await run(`
+        COPY (
+          SELECT id, subtype, class, height, num_floors, bbox
+          FROM read_parquet('s3://overturemaps-us-west-2/release/2026-03-18.0/theme=buildings/type=building/*')
+          WHERE bbox.xmin >= -123.5 AND bbox.xmax <= -121.2
+            AND bbox.ymin >= 36.8 AND bbox.ymax <= 38.9
+        ) TO '${OVERTURE_FILE}' (FORMAT PARQUET, COMPRESSION ZSTD);
+      `);
+      console.log(`[overture] Done in ${((Date.now() - t0) / 1000 / 60).toFixed(1)} min.`);
+    } catch (err) {
+      console.warn('[overture] Background download failed:', err.message);
+    }
+  })();
+}

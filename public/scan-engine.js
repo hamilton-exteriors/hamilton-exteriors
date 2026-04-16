@@ -19,7 +19,9 @@
   // ── DOM refs ────────────────────────────────────────────────────────
   var ai = $('#address-input'), sb = $('#scan-btn'), dd = $('#address-dropdown');
   var s1 = $('#step-1'), s2 = $('#step-2'), s3 = $('#step-3');
-  var sl = $('#scan-loading'), ss = $('#scan-status'), rl = $('#roof-legend');
+  var sl = $('#scan-loading'), ss = $('#scan-status');
+  // Null-safe no-op for the removed roof-legend element (kept for backward-compat with existing calls)
+  var rl = { classList: { add: function () {}, remove: function () {} } };
   var cb = $('#continue-to-options'), ca = $('#change-address');
   var da = $('#display-address'), mb = $('#mobile-price-bar');
 
@@ -73,6 +75,44 @@
       errEl.classList.remove('hidden');
     }
     ai.value = '';
+    ai.focus();
+  }
+
+  // ── Residential-only gate ──────────────────────────────────────────
+  // Hamilton's online roof-buy flow is for owner-occupied homes only.
+  // Commercial roofs have different economics, permitting, and bid processes —
+  // we route them to a manual quote instead. Classification is USPS-sourced
+  // via Smarty's US Street API (proxied through /api/validate-address).
+  function validateAddressRemote(address) {
+    return fetch('/api/validate-address', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ address: address }),
+    })
+      .then(function (r) { return r.json(); })
+      .catch(function () {
+        // Fail-open on network errors — don't block users on infra problems.
+        return { valid: true, residential: true, lat: null, lng: null, reason: 'network' };
+      });
+  }
+
+  function showCommercialError() {
+    goStep(1);
+    var errEl = $('#service-area-error');
+    if (errEl) {
+      errEl.innerHTML = 'Our online roof-buy flow is for <strong>residential homes only</strong>.<br>For commercial roofing, call <a href="tel:+16509773351" class="underline">(650) 977-3351</a> for a custom quote.';
+      errEl.classList.remove('hidden');
+    }
+    ai.focus();
+  }
+
+  function showAddressNotFoundError() {
+    goStep(1);
+    var errEl = $('#service-area-error');
+    if (errEl) {
+      errEl.innerHTML = 'We couldn\'t verify that address. Please double-check the street number and spelling.';
+      errEl.classList.remove('hidden');
+    }
     ai.focus();
   }
 
@@ -142,24 +182,20 @@
             state.lat = coords[1]; state.lng = coords[0];
           }
           sessionToken = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
-          if (!isInServiceArea(state.address)) { showServiceAreaError(); return; }
-          startScan(state.address);
+          validateAndStartScan(state.address);
         })
         .catch(function () {
-          if (!isInServiceArea(state.address)) { showServiceAreaError(); return; }
-          startScan(state.address);
+          validateAndStartScan(state.address);
         });
     } else {
-      if (!isInServiceArea(state.address)) { showServiceAreaError(); return; }
-      startScan(state.address);
+      validateAndStartScan(state.address);
     }
   });
 
   sb.addEventListener('click', function () {
     if (ai.value.trim().length < 5) return;
     state.address = ai.value.trim();
-    if (!isInServiceArea(state.address)) { showServiceAreaError(); return; }
-    startScan(state.address);
+    validateAndStartScan(state.address);
   });
 
   ai.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); sb.click(); } });
@@ -172,6 +208,20 @@
 
   // ── Scan orchestrator ───────────────────────────────────────────────
   var sip = false;
+
+  // Runs service-area + residential checks, then kicks off the scan.
+  // All entry points should call this instead of startScan directly.
+  function validateAndStartScan(address) {
+    if (!isInServiceArea(address)) { showServiceAreaError(); return; }
+    validateAddressRemote(address).then(function (v) {
+      if (!v.valid && v.reason === 'address_not_found') { showAddressNotFoundError(); return; }
+      if (!v.residential) { showCommercialError(); return; }
+      // Use Smarty's USPS-verified coords when available.
+      if (v.lat != null && v.lng != null) { state.lat = v.lat; state.lng = v.lng; }
+      if (v.normalized) { state.address = v.normalized; }
+      startScan(state.address);
+    });
+  }
 
   function startScan(address) {
     if (sip) return;
@@ -243,67 +293,66 @@
 
   function renderRoofMap(result) {
     var mapEl = $('#roof-map');
-
-    // If we have GeoJSON facets, render them as colored SVG over satellite imagery
-    if (result.roofGeoJSON && result.roofGeoJSON.features.length > 0) {
+    // Use the bounds center from the scan result when available; otherwise fall back to state coords.
+    var lat, lng;
+    if (result && (result.imageBounds || (result.dsm && result.dsm.bounds))) {
       var ib = result.imageBounds || result.dsm.bounds;
-      var minX = ib.west, maxX = ib.east;
-      var minY = ib.south, maxY = ib.north;
-      var w = maxX - minX;
-      var h = maxY - minY;
-
-      // Build SVG polygon overlay
-      var svgPaths = result.roofGeoJSON.features.map(function (f) {
-        var coords = f.geometry.coordinates[0];
-        var points = coords.map(function (c) {
-          var x = ((c[0] - minX) / w) * 400;
-          var y = ((maxY - c[1]) / h) * 400;
-          return x + ',' + y;
-        }).join(' ');
-
-        return '<polygon points="' + points + '" fill="rgba(37,99,70,0.25)" stroke="rgba(255,222,33,0.9)" stroke-width="2"/>';
-      }).join('');
-
-      // Build Mapbox Static Image URL for satellite background
-      var token = window.MAPBOX_TOKEN;
-      var cLng = (minX + maxX) / 2;
-      var cLat = (minY + maxY) / 2;
-      var bgStyle = 'background:#1e2d1e';
-      if (token) {
-        // Build GeoJSON overlay for Mapbox (green fill, yellow stroke)
-        var overlay = {
-          type: 'FeatureCollection',
-          features: result.roofGeoJSON.features.map(function (f) {
-            return {
-              type: 'Feature',
-              geometry: f.geometry,
-              properties: { 'stroke': '#FFDE21', 'stroke-width': 2, 'stroke-opacity': 0.9, 'fill': '#256346', 'fill-opacity': 0.25 }
-            };
-          })
-        };
-        var geoStr = encodeURIComponent(JSON.stringify(overlay));
-        var satUrl = 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/geojson(' + geoStr + ')/' + cLng.toFixed(6) + ',' + cLat.toFixed(6) + ',19,0/600x600@2x?access_token=' + token;
-        bgStyle = 'background:url(' + satUrl + ') center/cover no-repeat';
-      }
-
-      mapEl.innerHTML = '<div style="width:100%;height:100%;position:relative;">' +
-        '<div style="position:absolute;inset:0;' + bgStyle + ';border-radius:4px;"></div>' +
-        '<svg viewBox="0 0 400 400" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;" preserveAspectRatio="xMidYMid meet">' +
-        svgPaths +
-        '</svg>' +
-        '<div style="position:absolute;bottom:8px;left:0;right:0;text-align:center;">' +
-        '<span style="background:rgba(0,0,0,0.55);color:white;font-size:11px;padding:3px 10px;border-radius:3px;">' +
-        result.imageryDate + ' &middot; ' + result.facets.length + ' facets detected</span></div>' +
-        '</div>';
+      lat = (ib.south + ib.north) / 2;
+      lng = (ib.west + ib.east) / 2;
     } else {
-      renderDemoRoofSVG(mapEl);
+      lat = state.lat; lng = state.lng;
     }
+    var caption = result && result.imageryDate ? result.imageryDate + ' · satellite imagery' : '';
+    renderSatelliteImage(mapEl, lat, lng, caption);
+  }
+
+  // ── Pure Mapbox satellite image renderer (no overlay) ───────────────
+  function renderSatelliteImage(el, lat, lng, caption) {
+    var token = window.MAPBOX_TOKEN;
+    if (!token || lat == null || lng == null) {
+      el.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1e2d1e;color:rgba(255,255,255,0.55);font-family:var(--font-dm-sans);font-size:13px;">Satellite view unavailable</div>';
+      return;
+    }
+    var url = 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/' +
+      lng.toFixed(6) + ',' + lat.toFixed(6) + ',19,0/600x600@2x?access_token=' + token;
+    var capHtml = caption
+      ? '<div style="position:absolute;bottom:8px;left:0;right:0;text-align:center;pointer-events:none;"><span style="background:rgba(0,0,0,0.55);color:white;font-family:var(--font-dm-sans);font-size:11px;padding:3px 10px;border-radius:3px;">' + caption + '</span></div>'
+      : '';
+    el.innerHTML = '<div style="width:100%;height:100%;position:relative;">' +
+      '<img src="' + url + '" alt="Satellite view of the roof at the entered address" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:4px;" />' +
+      capHtml +
+      '</div>';
+  }
+
+  // ── Fallback geocoder when address was typed without clicking autocomplete ──
+  function geocodeAddress(addr) {
+    var token = window.MAPBOX_TOKEN;
+    if (!token || !addr) return Promise.resolve(null);
+    var q = encodeURIComponent(addr);
+    return fetch('https://api.mapbox.com/geocoding/v5/mapbox.places/' + q + '.json?limit=1&access_token=' + token)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data && data.features && data.features[0] && data.features[0].center) {
+          return { lng: data.features[0].center[0], lat: data.features[0].center[1] };
+        }
+        return null;
+      })
+      .catch(function () { return null; });
   }
 
   // ── Demo mode (no API) ──────────────────────────────────────────────
   function runDemoScan() {
     var mapEl = $('#roof-map');
-    renderDemoRoofSVG(mapEl);
+    // Resolve coords: prefer autocomplete-clicked coords, else geocode the typed address.
+    var coordsPromise = (state.lat != null && state.lng != null)
+      ? Promise.resolve({ lat: state.lat, lng: state.lng })
+      : geocodeAddress(state.address);
+    coordsPromise.then(function (c) {
+      var lat = c && c.lat != null ? c.lat : DEFAULT_LAT;
+      var lng = c && c.lng != null ? c.lng : DEFAULT_LNG;
+      state.lat = lat; state.lng = lng;
+      renderSatelliteImage(mapEl, lat, lng, '');
+    });
 
     var delay = function (t, ms) {
       return new Promise(function (r) {
@@ -336,22 +385,6 @@
         sip = false;
         showScanError('Something went wrong. Please try again or call us for a quote.');
       });
-  }
-
-  function renderDemoRoofSVG(el) {
-    el.innerHTML = '<div style="width:100%;height:100%;background:#1e2d1e;position:relative;overflow:hidden">' +
-      '<div style="position:absolute;inset:0;background:linear-gradient(135deg,#2a3d2a,#1e2d1e 25%,#243424 50%,#1e2d1e 75%,#2a3d2a)"></div>' +
-      '<div style="position:absolute;top:15%;left:15%;width:70%;height:70%;background:linear-gradient(145deg,#3a5a3a,#2d4a2d);border-radius:4px"></div>' +
-      '<div style="position:absolute;bottom:15%;left:45%;width:12%;height:30%;background:#5a5a5a;border-radius:2px"></div>' +
-      '<svg viewBox="0 0 400 400" style="position:absolute;inset:0;width:100%;height:100%" preserveAspectRatio="xMidYMid meet">' +
-      '<polygon points="120,100 280,100 300,120 300,260 280,280 120,280 100,260 100,120" fill="rgba(196,112,75,.12)" stroke="rgb(196,112,75)" stroke-width="2.5"/>' +
-      '<line x1="120" y1="100" x2="280" y2="280" stroke="rgb(196,112,75)" stroke-width="1.2" opacity=".5"/>' +
-      '<line x1="280" y1="100" x2="120" y2="280" stroke="rgb(196,112,75)" stroke-width="1.2" opacity=".5"/>' +
-      '<line x1="200" y1="100" x2="200" y2="280" stroke="rgb(196,112,75)" stroke-width="1.5" opacity=".6"/>' +
-      '<text x="200" y="90" text-anchor="middle" fill="#fff" font-size="11" opacity=".9">62 ft</text>' +
-      '<text x="310" y="195" fill="#fff" font-size="11" opacity=".9">48 ft</text>' +
-      '<circle cx="200" cy="190" r="5" fill="rgb(37,99,70)" stroke="#fff" stroke-width="2"/>' +
-      '</svg></div>';
   }
 
   function genDemoData(lat, lng) {
@@ -394,6 +427,29 @@
     }, 400);
     // Scale add-on prices by roof measurements
     updateAddonPrices(d);
+    // Flag add-ons recommended for this specific roof
+    applyAddonRecommendations(d);
+  }
+
+  // ── Conditional add-on recommendations based on scan data ───────────
+  function applyAddonRecommendations(d) {
+    var recs = {
+      'gutter-guards': (d.eaves || 0) >= 200,
+      'ice-shield':    (d.valleys || 0) >= 3,
+      'ridge-vent':    (d.facets || 0) >= 8 || d.complexity === 'Complex'
+    };
+    Object.keys(recs).forEach(function (key) {
+      var row = document.querySelector('.addon-row[data-addon="' + key + '"]');
+      if (!row) return;
+      var badge = row.querySelector('.addon-rec');
+      if (recs[key]) {
+        row.classList.add('recommended');
+        if (badge) badge.classList.remove('hidden');
+      } else {
+        row.classList.remove('recommended');
+        if (badge) badge.classList.add('hidden');
+      }
+    });
   }
 
   // ── Scale add-on prices by roof measurements ──────────────────────
@@ -609,13 +665,19 @@
   });
 
   // ── Measurement info tooltips ─────────────────────────────────────
+  // Use inline styles — Astro's scoped CSS won't match dynamically-created nodes.
   $$('.meas-info').forEach(function (btn) {
     var tip = btn.getAttribute('data-tip');
     if (!tip) return;
     var el = document.createElement('span');
     el.className = 'meas-tip';
     el.textContent = tip;
+    el.style.cssText = 'position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;padding:10px 12px;background:var(--color-charcoal);color:#fff;font-family:var(--font-dm-sans);font-size:12px;font-weight:400;line-height:1.5;border-radius:4px;z-index:20;pointer-events:none;opacity:0;transition:opacity .15s';
     btn.appendChild(el);
+    btn.addEventListener('mouseenter', function () { el.style.opacity = '1'; });
+    btn.addEventListener('mouseleave', function () { el.style.opacity = '0'; });
+    btn.addEventListener('focus', function () { el.style.opacity = '1'; });
+    btn.addEventListener('blur', function () { el.style.opacity = '0'; });
   });
 
   // ── Swatch preview on hover/click ──────────────────────────────────
@@ -765,6 +827,7 @@
     if (stEl) stEl.textContent = $('#pf-total').value;
     if (smEl) smEl.textContent = 'or ' + $('#monthly-price').textContent + ' for 60 months';
     purchaseModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
     // Focus the first input in the modal for keyboard users
     var firstInput = purchaseModal.querySelector('input:not([type="hidden"])');
     if (firstInput) setTimeout(function () { firstInput.focus(); }, 100);
@@ -773,7 +836,7 @@
   if ($('#purchase-btn')) $('#purchase-btn').addEventListener('click', openPurchaseModal);
   if ($('#mobile-purchase-btn')) $('#mobile-purchase-btn').addEventListener('click', openPurchaseModal);
 
-  function closeModal(modal) { if (modal) modal.classList.add('hidden'); }
+  function closeModal(modal) { if (modal) { modal.classList.add('hidden'); document.body.style.overflow = ''; } }
   if (pfClose) pfClose.addEventListener('click', function () { closeModal(purchaseModal); });
   if (purchaseModal) purchaseModal.addEventListener('click', function (e) { if (e.target === purchaseModal) closeModal(purchaseModal); });
 
@@ -937,7 +1000,6 @@
   var ua = new URLSearchParams(window.location.search).get('address');
   if (ua && ua.trim().length >= 5) {
     ai.value = ua; state.address = ua; loadMaps();
-    if (!isInServiceArea(ua)) { showServiceAreaError(); }
-    else { s1.classList.add('hidden'); sip = false; startScan(ua); }
+    s1.classList.add('hidden'); sip = false; validateAndStartScan(ua);
   }
 })();

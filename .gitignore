@@ -43,3 +43,7 @@ page_data.json
 extractions/
 docs/
 scripts/
+
+# Overture Maps parquet — 629MB, rebuild with overturemaps CLI
+data/*.parquet
+data/*.parquet.state
