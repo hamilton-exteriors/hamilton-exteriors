@@ -15,7 +15,7 @@ import duckdb from 'duckdb';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const PARQUET_NAME = 'overture-bayarea-buildings.parquet';
+const PARQUET_NAME = 'overture-bayarea-buildings-v2.parquet';
 // Railway volume at /data, local dev at ./data
 const PARQUET_PATH = existsSync(resolve('/data', PARQUET_NAME))
   ? resolve('/data', PARQUET_NAME)

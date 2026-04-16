@@ -184,7 +184,8 @@ server.listen(PORT, HOST, () => {
 // If the parquet isn't on the Railway volume yet, download it in the background
 // via DuckDB's httpfs extension. Takes ~10 min once; persists forever on the volume.
 // While downloading, the residential gate falls back to Smarty-only (fail-open).
-const OVERTURE_FILE = '/data/overture-bayarea-buildings.parquet';
+// Version the filename so bbox expansions trigger a fresh download.
+const OVERTURE_FILE = '/data/overture-bayarea-buildings-v2.parquet';
 if (!existsSync(OVERTURE_FILE) && existsSync('/data')) {
   console.log('[overture] Parquet missing at /data, starting background download...');
   (async () => {
