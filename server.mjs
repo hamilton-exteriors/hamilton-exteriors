@@ -201,8 +201,8 @@ if (!existsSync(OVERTURE_FILE) && existsSync('/data')) {
         COPY (
           SELECT id, subtype, class, height, num_floors, bbox
           FROM read_parquet('s3://overturemaps-us-west-2/release/2026-03-18.0/theme=buildings/type=building/*')
-          WHERE bbox.xmin >= -123.5 AND bbox.xmax <= -121.2
-            AND bbox.ymin >= 36.8 AND bbox.ymax <= 38.9
+          WHERE bbox.xmin >= -123.5 AND bbox.xmax <= -120.0
+            AND bbox.ymin >= 36.8 AND bbox.ymax <= 39.2
         ) TO '${OVERTURE_FILE}' (FORMAT PARQUET, COMPRESSION ZSTD);
       `);
       console.log(`[overture] Done in ${((Date.now() - t0) / 1000 / 60).toFixed(1)} min.`);
