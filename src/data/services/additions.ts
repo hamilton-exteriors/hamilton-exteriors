@@ -12,7 +12,7 @@ export const data: ServicePageData = {
     {
       quote: 'Second-story additions are the fastest-growing project type in the Bay Area because lot sizes average just 5,000 to 7,000 square feet — there is nowhere to go but up. Our structural engineers assess every existing foundation before we quote, because 60% of pre-1970 Bay Area homes need some reinforcement before adding a second floor.',
       author: 'Alexander Hamilton Li',
-      credentials: 'Architect & General Contractor, CSLB #1082377',
+      credentials: 'Architect & General Contractor, CSLB #1078806',
     },
   ],
   hero: {

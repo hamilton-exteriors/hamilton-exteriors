@@ -5,14 +5,14 @@ export const data: ServicePageData = {
   title:
     'Bathroom Remodeling in the Bay Area | Hamilton Exteriors',
   description:
-    'Full-service bathroom remodeling across the Bay Area. Custom tile, walk-in showers, vanities & fixtures. Design-build under one roof. CSLB #1082377. Call (650) 977-3351.',
+    'Full-service bathroom remodeling across the Bay Area. Custom tile, walk-in showers, vanities & fixtures. Design-build under one roof. CSLB #1078806. Call (650) 977-3351.',
   announcementText: 'Now Booking Summer 2026 Remodels — Schedule Your Consultation',
   definition: 'A bathroom remodel transforms an outdated or dysfunctional bathroom into a modern, efficient space — from cosmetic updates like tile and vanities to full gut renovations with new plumbing, waterproofing, and layout changes. Bay Area bathroom remodels typically cost $25,000 to $75,000 depending on scope and finishes.',
   expertQuotes: [
     {
       quote: 'The biggest mistake homeowners make with bathroom remodels is treating waterproofing as an afterthought. In the Bay Area, where homes shift on clay soils, proper waterproofing behind tile — Kerdi membrane or equivalent — is non-negotiable. We waterproof every shower and tub surround to prevent the mold and rot issues that plague 30 to 40 year old Bay Area bathrooms.',
       author: 'Alexander Hamilton Li',
-      credentials: 'Architect & General Contractor, CSLB #1082377',
+      credentials: 'Architect & General Contractor, CSLB #1078806',
     },
   ],
   hero: {

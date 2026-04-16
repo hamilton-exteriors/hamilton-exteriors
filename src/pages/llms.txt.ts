@@ -40,7 +40,7 @@ export const GET: APIRoute = async () => {
 
 ## Company
 - **Name:** Hamilton Exteriors
-- **Owner:** Alexander Hamilton Li, Architect & General Contractor (CSLB #1082377)
+- **Owner:** Alexander Hamilton Li, Architect & General Contractor (CSLB #1078806)
 - **Address:** 21634 Redwood Rd Unit F, Castro Valley, CA 94546
 - **Legal name:** ABR Quality Resources Inc (DBA Hamilton Exteriors)
 - **Founded:** 2018 | **Rating:** ${rating} stars (${reviewCount} Google reviews)
@@ -63,7 +63,7 @@ export const GET: APIRoute = async () => {
 - Metal roofs reflect 70% of solar radiant heat (Oak Ridge National Laboratory, doi.org/10.2172/1220146)
 - James Hardie fiber cement siding delivers 86% ROI at resale (Remodeling Magazine, 2024 Cost vs. Value)
 - ENERGY STAR windows save $125\u2013$465/year on energy bills (U.S. Department of Energy)
-- Hamilton Exteriors: 500+ projects across 6 Bay Area counties since 2018, CSLB #1082377
+- Hamilton Exteriors: 500+ projects across 6 Bay Area counties since 2018, CSLB #1078806
 - Certifications: GAF Master Elite, Owens Corning Preferred, CertainTeed ShingleMaster, James Hardie Elite Preferred
 
 ## Service Areas

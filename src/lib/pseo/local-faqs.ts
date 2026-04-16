@@ -137,7 +137,7 @@ export function getCountyLocalFaqs(
   return faqsByCounty[short] || [
     {
       question: `Is Hamilton Exteriors licensed to work in ${county} County?`,
-      answer: `Yes. Hamilton Exteriors is fully licensed, bonded, and insured to work throughout ${county} County, including ${city} and all surrounding communities. We carry California CSLB License #1082377, general liability coverage, and workers' compensation insurance.`,
+      answer: `Yes. Hamilton Exteriors is fully licensed, bonded, and insured to work throughout ${county} County, including ${city} and all surrounding communities. We carry California CSLB License #1078806, general liability coverage, and workers' compensation insurance.`,
     },
   ];
 }

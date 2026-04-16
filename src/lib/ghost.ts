@@ -83,8 +83,7 @@ export async function getPosts(options?: {
     'tag:-hash-service-area-county',
     'tag:-hash-service-area-city-service',
     'tag:-hash-hash-sub-service',
-    'slug:-untitled',
-    'slug:-untitled-2',
+    'title:-Untitled',
   ];
   const tagFilter = options?.tag ? `tag:${options.tag}` : '';
   params.filter = [tagFilter, ...excludeFilters].filter(Boolean).join('+');

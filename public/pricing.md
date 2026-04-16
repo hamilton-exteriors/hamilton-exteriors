@@ -95,4 +95,4 @@ Includes: removal of existing window, flashing, materials, labor, trim, cleanup.
 - All prices reflect Bay Area installed costs as of Q2 2026
 - Actual pricing varies based on project size, complexity, access, and local permits
 - Free itemized estimates available: (650) 977-3351
-- CSLB License #1082377 — verify at cslb.ca.gov
+- CSLB License #1078806 — verify at cslb.ca.gov

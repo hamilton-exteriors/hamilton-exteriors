@@ -12,12 +12,12 @@ export const data: ServicePageData = {
     {
       quote: 'Our architects consistently find 10 to 15% more buildable area than homeowners expect on their lots. California\u2019s ADU laws override many local zoning restrictions — setback requirements, lot coverage limits, and parking mandates have all been relaxed since 2020.',
       author: 'Alexander Hamilton Li',
-      credentials: 'Architect & General Contractor, CSLB #1082377',
+      credentials: 'Architect & General Contractor, CSLB #1078806',
     },
     {
       quote: 'Garage conversions are the fastest path to rental income in the Bay Area. The structure already exists, so you skip foundation and framing — the two most expensive phases of new construction. Most garage conversions complete in 10 to 14 weeks from permit approval.',
       author: 'Alexander Hamilton Li',
-      credentials: 'Architect & General Contractor, CSLB #1082377',
+      credentials: 'Architect & General Contractor, CSLB #1078806',
     },
   ],
   hero: {

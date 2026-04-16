@@ -4,14 +4,14 @@ import { roofingAsphalt, roofingMetal, roofingTile, roofingFlat, heroRoofing } f
 export const data: ServicePageData = {
   title: 'Bay Area Roofing | Shingles, Metal & Tile | Hamilton Exteriors',
   description:
-    'Architect-led Bay Area roofing contractor. Composite shingles, metal roofs, tile & GAF solar. 50-year warranty. CSLB #1082377 — call (650) 977-3351.',
+    'Architect-led Bay Area roofing contractor. Composite shingles, metal roofs, tile & GAF solar. 50-year warranty. CSLB #1078806 — call (650) 977-3351.',
   announcementText: 'Now Booking Summer 2026 Roof Replacements — Schedule Your Inspection',
   definition: 'A roof replacement is the complete removal and reinstallation of a home\'s roofing system — including shingles, underlayment, flashing, and ventilation. In the Bay Area, roof replacements typically cost $15,000 to $100,000 depending on size, materials, and complexity, and take 3 to 7 days to complete.',
   expertQuotes: [
     {
       quote: 'In the Oakland Hills and Berkeley Hills, we always recommend Class A fire-rated materials — metal or composite shingles with fire-rated underlayment. Homes in WUI zones face stricter Chapter 7A requirements, and using the right materials upfront avoids costly re-inspection failures.',
       author: 'Alexander Hamilton Li',
-      credentials: 'Architect & General Contractor, CSLB #1082377',
+      credentials: 'Architect & General Contractor, CSLB #1078806',
     },
     {
       quote: 'Metal roofs reflect 70% of solar radiant heat according to Oak Ridge National Laboratory research. For Bay Area homeowners, that translates to measurably lower cooling costs and a roof that lasts 40 to 70 years with virtually zero maintenance.',

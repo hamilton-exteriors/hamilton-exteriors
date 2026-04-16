@@ -37,7 +37,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     heroImageKey: 'heroRoofing',
     titlePattern: 'Reliable Roofing in {city}, CA | Hamilton Exteriors',
     descriptionPattern:
-      'Hamilton Exteriors provides architect-led roofing services in {city}, {county} County, CA. Composite shingles, metal roofs, tile, and solar. CSLB #1082377.',
+      'Hamilton Exteriors provides architect-led roofing services in {city}, {county} County, CA. Composite shingles, metal roofs, tile, and solar. CSLB #1078806.',
     faqTemplates: [
       {
         questionPattern: 'How much does a new roof cost in {city}?',
@@ -106,7 +106,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     heroImageKey: 'serviceSiding',
     titlePattern: 'Durable Siding in {city}, CA | Hamilton Exteriors',
     descriptionPattern:
-      'Hamilton Exteriors — James Hardie Elite Preferred siding installer in {city}, {county} County. Fiber cement, vinyl, stucco, and waterproofing. CSLB #1082377.',
+      'Hamilton Exteriors — James Hardie Elite Preferred siding installer in {city}, {county} County. Fiber cement, vinyl, stucco, and waterproofing. CSLB #1078806.',
     faqTemplates: [
       {
         questionPattern: 'How much does siding replacement cost in {city}?',
@@ -175,7 +175,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
     heroImageKey: 'heroWindows',
     titlePattern: 'Energy-Efficient Windows in {city}, CA | Hamilton Exteriors',
     descriptionPattern:
-      'Hamilton Exteriors provides energy-efficient window installation in {city}, {county} County. Single hung, double hung, sliding, casement, and more. CSLB #1082377.',
+      'Hamilton Exteriors provides energy-efficient window installation in {city}, {county} County. Single hung, double hung, sliding, casement, and more. CSLB #1078806.',
     faqTemplates: [
       {
         questionPattern: 'How much do replacement windows cost in {city}?',

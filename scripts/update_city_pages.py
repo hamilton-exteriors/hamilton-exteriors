@@ -113,7 +113,7 @@ pages = [
      'Trusted ADU contractors deliver projects that pass inspection the first time. Our reputation is built on quality.',
      'Concord Regulations Knowledge', 'Experienced in navigating local zoning, permits, and building codes.',
      'Custom Design Solutions', 'Every Concord ADU designed to fit your property and specific needs.',
-     'Licensed and Insured', 'Fully licensed (CA #1082377) and insured for your protection.'),
+     'Licensed and Insured', 'Fully licensed (CA #1078806) and insured for your protection.'),
 
     ('contra-costa-county-ca/richmond-ca.astro', 'Richmond', 'Contra Costa County', 'Experienced', 'Proven. Skilled. Reliable.', 'Knowledge. Value. Confidence.',
      'Hamilton Exteriors is home to experienced ADU contractors in Richmond, CA who bring years of expertise to every project.',

@@ -4,14 +4,14 @@ import { sidingVinyl, sidingFiberCement, sidingWood, sidingStucco, serviceSiding
 export const data: ServicePageData = {
   title: 'Bay Area Siding | James Hardie & Vinyl | Hamilton Exteriors',
   description:
-    'James Hardie Elite Preferred installer serving the Bay Area. Fiber cement, vinyl, stucco, and waterproofing. 50-year warranty, financing available. CSLB #1082377.',
+    'James Hardie Elite Preferred installer serving the Bay Area. Fiber cement, vinyl, stucco, and waterproofing. 50-year warranty, financing available. CSLB #1078806.',
   announcementText: 'Now Booking Summer 2026 Siding Projects — Schedule Your Inspection',
   definition: 'Siding replacement is the process of removing and reinstalling the exterior cladding that protects a home from moisture, wind, and temperature. Common materials include vinyl, James Hardie fiber cement, and stucco. James Hardie fiber cement delivers an 86% return on investment at resale according to Remodeling Magazine\u2019s 2024 Cost vs. Value Report.',
   expertQuotes: [
     {
       quote: 'In the Bay Area\u2019s fog belt — from Daly City through Pacifica and Half Moon Bay — fiber cement outperforms every other siding material for moisture resistance. James Hardie engineered their HZ10 product line specifically for high-humidity coastal climates like ours.',
       author: 'Alexander Hamilton Li',
-      credentials: 'James Hardie Elite Preferred Installer, CSLB #1082377',
+      credentials: 'James Hardie Elite Preferred Installer, CSLB #1078806',
     },
     {
       quote: 'For homeowners in WUI fire zones, fiber cement siding is the clear choice. It carries a Class A fire rating and won\u2019t melt or ignite like vinyl. Combined with a Class A roof, it gives you full-perimeter fire protection that meets Chapter 7A requirements.',

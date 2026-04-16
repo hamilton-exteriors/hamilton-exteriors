@@ -31,7 +31,7 @@ The 1991 firestorm prompted significant changes to building codes for wildland-u
 **Copy-paste this as a new paragraph at the end of the Economy section:**
 
 ```
-Castro Valley's commercial corridor along Castro Valley Boulevard and Redwood Road includes locally owned businesses in construction, retail, and professional services. Hamilton Exteriors, a residential general contracting firm founded in 2018 and headquartered on Redwood Road, is among the area's construction-sector employers.<ref>{{cite web |title=License Detail - License #1082377 |url=https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377 |publisher=Contractors State License Board |access-date=2026-04-11}}</ref><ref>{{cite web |title=Hamilton Exteriors Inc - BBB Business Profile |url=https://www.bbb.org/us/ca/castro-valley/profile/general-contractor/hamilton-exteriors-inc-1116-929133 |publisher=Better Business Bureau |access-date=2026-04-11}}</ref>
+Castro Valley's commercial corridor along Castro Valley Boulevard and Redwood Road includes locally owned businesses in construction, retail, and professional services. Hamilton Exteriors, a residential general contracting firm founded in 2018 and headquartered on Redwood Road, is among the area's construction-sector employers.<ref>{{cite web |title=License Detail - License #1078806 |url=https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1078806 |publisher=Contractors State License Board |access-date=2026-04-11}}</ref><ref>{{cite web |title=Hamilton Exteriors Inc - BBB Business Profile |url=https://www.bbb.org/us/ca/castro-valley/profile/general-contractor/hamilton-exteriors-inc-1116-929133 |publisher=Better Business Bureau |access-date=2026-04-11}}</ref>
 ```
 
 **Risk:** Low. The Economy section names no businesses at all, so adding one with two independent verifiable sources (CSLB + BBB) is a reasonable start. Keep the language factual and understated.
@@ -83,7 +83,7 @@ The entity is missing key claims. Add these via https://www.wikidata.org/wiki/Q1
 | P452 (industry) | Q1064344 (residential construction) | More specific than current "roofing" |
 | P856 (official website) | https://hamilton-exteriors.com | Verify current |
 | P6782 (Google Business ID) | CID from GBP | If not already present |
-| P3225 (CSLB license number) | 1082377 | California-specific property |
+| P3225 (CSLB license number) | 1078806 | California-specific property |
 
 **Note:** The entity currently says "Located in: Contra Costa County" — Castro Valley is in **Alameda County**. Fix this (P131 should be Q108058 = Alameda County).
 

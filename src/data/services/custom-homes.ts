@@ -11,12 +11,12 @@ export const data: ServicePageData = {
     {
       quote: 'The biggest cost driver in Bay Area custom homes is site preparation — hillside lots in the Oakland Hills or Marin headlands can add $100,000 to $200,000 in foundation engineering alone. Design-build under one contract eliminates the coordination gaps between separate architects, engineers, and builders that cause 80% of budget overruns.',
       author: 'Alexander Hamilton Li',
-      credentials: 'Architect & General Contractor, CSLB #1082377',
+      credentials: 'Architect & General Contractor, CSLB #1078806',
     },
     {
       quote: 'Ground-up construction gives you complete control over layout, materials, and energy systems in ways that renovation never can. We design every custom home around the specific lot conditions — sun exposure, views, slope, and soil — so the house works with the land instead of fighting it.',
       author: 'Alexander Hamilton Li',
-      credentials: 'Architect & General Contractor, CSLB #1082377',
+      credentials: 'Architect & General Contractor, CSLB #1078806',
     },
   ],
   hero: {
@@ -150,7 +150,7 @@ export const data: ServicePageData = {
     {
       question: 'Do I need an architect to build a custom home in California?',
       answer:
-        'California law requires a licensed architect or engineer to design residential structures over two stories or exceeding certain size thresholds. Even for single-story custom homes, detailed architectural plans with structural engineering are required for building permits in every Bay Area jurisdiction. Hiring a separate architect typically costs 8 to 15% of construction cost and adds months of back-and-forth before construction can begin. Hamilton Exteriors\' founder Alexander Hamilton Li is a licensed architect and general contractor (CSLB #1082377), so design and construction are handled in-house under one contract — no separate architect needed. This means design decisions account for construction feasibility and cost from the start, eliminating the expensive redesign cycles that commonly happen when architects and builders work separately.',
+        'California law requires a licensed architect or engineer to design residential structures over two stories or exceeding certain size thresholds. Even for single-story custom homes, detailed architectural plans with structural engineering are required for building permits in every Bay Area jurisdiction. Hiring a separate architect typically costs 8 to 15% of construction cost and adds months of back-and-forth before construction can begin. Hamilton Exteriors\' founder Alexander Hamilton Li is a licensed architect and general contractor (CSLB #1078806), so design and construction are handled in-house under one contract — no separate architect needed. This means design decisions account for construction feasibility and cost from the start, eliminating the expensive redesign cycles that commonly happen when architects and builders work separately.',
     },
     {
       question: 'Can I build a custom home on a hillside lot in the Bay Area?',
@@ -180,7 +180,7 @@ export const data: ServicePageData = {
     {
       question: 'Do I need an architect to build a custom home?',
       answer:
-        'California requires licensed architect or engineer stamped plans for any new residential construction. Hamilton Exteriors is architect-led — Alexander Hamilton Li, our founder, is both a licensed architect and general contractor (CSLB #1082377). Having design and construction under one roof eliminates the communication gaps that cause budget overruns and delays on custom home projects.',
+        'California requires licensed architect or engineer stamped plans for any new residential construction. Hamilton Exteriors is architect-led — Alexander Hamilton Li, our founder, is both a licensed architect and general contractor (CSLB #1078806). Having design and construction under one roof eliminates the communication gaps that cause budget overruns and delays on custom home projects.',
     },
   ],
 };

@@ -49,7 +49,7 @@ const heroOgImage = !Astro.props.image && Astro.props.heroImage
   ? await getImage({ src: heroSrc, width: 1200, height: 630, format: 'jpg', quality: 80 })
   : null;
 
-const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs & custom homes. Architect-led, CSLB #1082377. 50-year warranty. Free estimate: (650) 977-3351.';
+const DEFAULT_DESCRIPTION = 'Bay Area roofing, siding, windows, ADUs & custom homes. Architect-led, CSLB #1078806. 50-year warranty. Free estimate: (650) 977-3351.';
 const DEFAULT_GEO_PLACENAME = 'Bay Area, California';
 
 // Pages that should carry the full Organization schema (ratings, reviews, catalog)
@@ -83,7 +83,7 @@ function buildDescription(raw: string | undefined, geo: string): string {
   if (geo !== DEFAULT_GEO_PLACENAME) {
     // Normalise: strip trailing ", California" to keep it at ", CA"
     const place = geo.replace(/, California$/, ', CA');
-    return `Hamilton Exteriors serves ${place} — roofing, siding, windows & more. 50-year warranty. CSLB #1082377. Free estimate: (650) 977-3351.`;
+    return `Hamilton Exteriors serves ${place} — roofing, siding, windows & more. 50-year warranty. CSLB #1078806. Free estimate: (650) 977-3351.`;
   }
 
   return DEFAULT_DESCRIPTION;
@@ -147,7 +147,7 @@ const fullOrgSchemaObj = fullOrgSchema ? {
     "https://www.linkedin.com/company/hamilton-exteriors/",
     "https://www.yelp.com/biz/hamilton-exteriors-castro-valley",
     /* YouTube removed from sameAs until channel has published content — empty profile is a negative entity signal */
-    "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377",
+    "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1078806",
     "https://www.wikidata.org/wiki/Q139044457",
     "https://www.homeadvisor.com/rated.abrqualityresources.150372023.html",
     "https://www.angi.com/companylist/us/ca/castro-valley/abr-quality-resources-reviews-10768498.htm",
@@ -216,7 +216,7 @@ const fullOrgSchemaObj = fullOrgSchema ? {
     ]
   },
   "hasCredential": [
-    { "@type": "EducationalOccupationalCredential", "credentialCategory": "license", "name": "CSLB Contractor License #1082377", "recognizedBy": { "@type": "Organization", "name": "Contractors State License Board", "url": "https://www.cslb.ca.gov" } },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "license", "name": "CSLB Contractor License #1078806", "recognizedBy": { "@type": "Organization", "name": "Contractors State License Board", "url": "https://www.cslb.ca.gov" } },
     { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "Tesla Powerwall Certified Installer" },
     { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "GAF Master Elite Contractor" },
     { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "Owens Corning Preferred Contractor" },
@@ -241,7 +241,7 @@ const fullOrgSchemaObj = fullOrgSchema ? {
     "name": "Alexander Hamilton Li",
     "jobTitle": "Architect & General Contractor",
     "sameAs": [
-      "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1082377",
+      "https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1078806",
       "https://www.linkedin.com/in/alexanderhamiltonli",
       "https://www.wikidata.org/wiki/Q139196186"
     ]

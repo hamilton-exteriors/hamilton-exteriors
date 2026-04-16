@@ -12,7 +12,7 @@ report.append("""# Hamilton Exteriors -- GEO Analysis Report
 **Scope:** Full GEO (Generative Engine Optimization) audit -- post-SEO-update deployment
 **Site:** https://hamilton-exteriors.com
 **Business:** Hamilton Exteriors -- Bay Area Design-Build and Exterior Contractor
-**Owner:** Alexander Hamilton Li, CSLB #1082377
+**Owner:** Alexander Hamilton Li, CSLB #1078806
 
 ---
 

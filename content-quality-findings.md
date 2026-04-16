@@ -14,7 +14,7 @@ scope: 7 pages — Homepage, Roofing, Siding, Windows, Service Areas, Oakland ci
 
 ## Executive Summary
 
-Hamilton Exteriors has a technically competent content foundation: all service pages exceed minimum word counts, structured data is implemented across every page, pricing tables are published with specific Bay Area figures, and CSLB license #1082377 appears in footers. However, the site has three systemic weaknesses that cap its E-E-A-T ceiling. First, there are no named human authors, no individual team member profiles, and no first-person staff voice anywhere on the site — a critical absence for a $15k–$80k purchase category. Second, all five FAQ sets (Roofing, Siding, Windows, Oakland, and by extension other city pages) are identical: the same five generic questions with the same answers, word for word. Google's QRG specifically flags duplicate, templated FAQ content as a trust signal problem. Third, the blog has only three articles, all dated the same day (March 31, 2026), with no named authors, no bylines, and no content beyond teaser-length text in the index.
+Hamilton Exteriors has a technically competent content foundation: all service pages exceed minimum word counts, structured data is implemented across every page, pricing tables are published with specific Bay Area figures, and CSLB license #1078806 appears in footers. However, the site has three systemic weaknesses that cap its E-E-A-T ceiling. First, there are no named human authors, no individual team member profiles, and no first-person staff voice anywhere on the site — a critical absence for a $15k–$80k purchase category. Second, all five FAQ sets (Roofing, Siding, Windows, Oakland, and by extension other city pages) are identical: the same five generic questions with the same answers, word for word. Google's QRG specifically flags duplicate, templated FAQ content as a trust signal problem. Third, the blog has only three articles, all dated the same day (March 31, 2026), with no named authors, no bylines, and no content beyond teaser-length text in the index.
 
 ---
 
@@ -56,7 +56,7 @@ Hamilton Exteriors has a technically competent content foundation: all service p
 ### Authoritativeness — Score: 14 / 25
 
 **What's present:**
-- CSLB License #1082377 displayed in footer of every page
+- CSLB License #1078806 displayed in footer of every page
 - Google Business Profile link in footer
 - Third-party review integration (schema shows review dates from Nov 2025 – Jan 2026)
 - 4.8/5.0 star rating stated (based on 50 reviews per schema on homepage/service pages)

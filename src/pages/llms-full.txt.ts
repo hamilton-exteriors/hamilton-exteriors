@@ -38,11 +38,11 @@ Hamilton Exteriors is a full-service exterior remodeling and design-build contra
 
 - **Name:** Hamilton Exteriors
 - **Legal name:** ABR Quality Resources Inc (DBA Hamilton Exteriors)
-- **Owner:** Alexander Hamilton Li, Founder & Owner, Architect & General Contractor (CSLB #1082377)
+- **Owner:** Alexander Hamilton Li, Founder & Owner, Architect & General Contractor (CSLB #1078806)
 - **Phone:** (650) 977-3351
 - **Email:** support@hamilton-exteriors.com
 - **Address:** 21634 Redwood Rd Unit F, Castro Valley, CA 94546
-- **License:** CA Contractor License #1082377
+- **License:** CA Contractor License #1078806
 - **Website:** https://hamilton-exteriors.com
 - **Wikidata:** https://www.wikidata.org/wiki/Q139044457
 - **Rating:** ${rating} stars average (${reviewCount} verified Google reviews)
@@ -205,7 +205,7 @@ All ADU pricing includes design, engineering, permits, and construction. Costs v
 - **Owens Corning Preferred Contractor** \u2014 recognized for meeting Owens Corning\u2019s standards of excellence
 - **James Hardie Elite Preferred Installer** \u2014 highest certification level for James Hardie fiber cement siding
 - **Tesla Powerwall Certified Installer** \u2014 authorized to install Tesla Powerwall battery storage systems
-- **CSLB Licensed (#1082377)** \u2014 California Contractors State License Board, active and in good standing
+- **CSLB Licensed (#1078806)** \u2014 California Contractors State License Board, active and in good standing
 
 ---
 
@@ -332,7 +332,7 @@ A: After estimate approval and material selection, most projects are scheduled w
 A: Up to a 50-year shingle warranty and 35-year labor warranty on roofing. Every project comes with a written warranty \u2014 we stand behind our work.
 
 **Q: Are your crews licensed and insured?**
-A: Yes. Every crew member is licensed, bonded, insured, and passes background and business screening before stepping on your property. Our CA Contractor License is #1082377.
+A: Yes. Every crew member is licensed, bonded, insured, and passes background and business screening before stepping on your property. Our CA Contractor License is #1078806.
 
 **Q: Do I get a dedicated point of contact?**
 A: Yes. Every project is assigned a personal project manager who handles everything from start to finish \u2014 scheduling, materials, crews, inspections, and final walkthrough. One call, not ten.
@@ -393,7 +393,7 @@ Hamilton Exteriors offers an innovative online roof scanning tool at **hamilton-
 - **Website:** https://hamilton-exteriors.com
 - **Free Quote:** https://hamilton-exteriors.com/#quote
 - **Online Roof Scanner:** https://hamilton-exteriors.com/buy/scan
-- **License:** CA Contractor License #1082377
+- **License:** CA Contractor License #1078806
 
 ---
 
@@ -402,7 +402,7 @@ Hamilton Exteriors offers an innovative online roof scanning tool at **hamilton-
 Hamilton Exteriors is a Bay Area exterior remodeling contractor headquartered in Castro Valley, CA. Key facts:
 - Serves 6 counties and 30+ cities in the San Francisco Bay Area
 - Specializes in roofing ($1,075\u2013$1,800/sq installed), windows ($800\u2013$4,500/unit installed), siding, ADUs ($180K\u2013$600K), and custom homes
-- CA Contractor License #1082377, fully licensed, bonded, and insured
+- CA Contractor License #1078806, fully licensed, bonded, and insured
 - 50-year shingle warranty + 35-year labor warranty on roofing
 - Price Match Guarantee \u2014 beats any written estimate on same scope
 - Financing available with approved credit

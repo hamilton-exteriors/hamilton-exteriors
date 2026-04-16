@@ -5,7 +5,7 @@
 **Business Type:** Service Area Business (SAB) — Roofing & Exteriors Contractor
 **Industry Vertical:** Home Services (Roofing / General Contractor)
 **Service Area:** 6 Bay Area counties, 47+ cities
-**License:** CSLB #1082377
+**License:** CSLB #1078806
 **Auditor Framework:** Whitespark Local Search Ranking Factors 2026
 
 ---
@@ -45,7 +45,7 @@ Signals observed:
 **Detected: Home Services — Roofing / General Contractor**
 
 Signals confirming this:
-- CSLB license number displayed prominently (#1082377)
+- CSLB license number displayed prominently (#1078806)
 - Manufacturer certifications: GAF Certified, Owens Corning Preferred, James Hardie Elite Preferred
 - Service catalog: Roofing, Siding, Windows, ADUs, Custom Homes, Additions
 - Schema type: `["RoofingContractor", "GeneralContractor"]` — correctly typed, not generic `LocalBusiness`
@@ -251,7 +251,7 @@ This level of hyper-local specificity is the correct approach. The problem is th
 
 **Key citation gaps for home services contractors:**
 
-- **BuildZoom** is particularly important — it pulls directly from CSLB data and ranks well for "[contractor type] in [city]" searches in California. With CSLB #1082377, a BuildZoom profile can be claimed or auto-generated.
+- **BuildZoom** is particularly important — it pulls directly from CSLB data and ranks well for "[contractor type] in [city]" searches in California. With CSLB #1078806, a BuildZoom profile can be claimed or auto-generated.
 - **Houzz** is the #1 photo-driven citation for home improvement contractors and frequently outranks contractor sites for remodeling-related queries.
 - **Nextdoor** is underrated for Bay Area home services. Bay Area neighborhoods are active on Nextdoor and contractor recommendations travel virally.
 
@@ -319,7 +319,7 @@ This level of hyper-local specificity is the correct approach. The problem is th
 At 74 days without a new review, the listing has crossed the 18-day Sterling Sky cliff. Text or email every completed project from the past 60 days asking for a Google review. Target: 2-4 new reviews per month as a floor, 8-10 to catch up. A single Google review request sequence (job completion email + 7-day SMS follow-up) is the highest-ROI local SEO action available.
 
 **2. Verify and optimize GBP primary category**
-Log into GBP and confirm: primary category = "Roofing Contractor" (not "General Contractor" or "Home Improvement Contractor"). Per Whitespark 2026, the primary category is the single highest-weighted local ranking factor (193 points). The wrong category is simultaneously the #1 negative factor (176 points). Add secondary categories: "Siding Contractor," "Window Installation Service," "General Contractor." Add services, description with CSLB #1082377, and service area (all 6 counties).
+Log into GBP and confirm: primary category = "Roofing Contractor" (not "General Contractor" or "Home Improvement Contractor"). Per Whitespark 2026, the primary category is the single highest-weighted local ranking factor (193 points). The wrong category is simultaneously the #1 negative factor (176 points). Add secondary categories: "Siding Contractor," "Window Installation Service," "General Contractor." Add services, description with CSLB #1078806, and service area (all 6 counties).
 
 **3. Resolve the business name inconsistency**
 "Hamilton Exteriors" vs "Hamilton Exteriors, Inc." appears across schema, the About page, and BBB. Decide on one canonical name and apply it uniformly: schema `name` property, GBP business name, all directory listings. If the legal entity is Hamilton Exteriors, Inc., the GBP name should match the legal DBA exactly.
@@ -330,7 +330,7 @@ Log into GBP and confirm: primary category = "Roofing Contractor" (not "General 
 An embedded interactive map (even for a SAB) is a strong trust signal and helps Google associate the website with the GBP listing. Use the Place embed with your CID. At minimum, add a "View on Google Maps" button with the full CID URL rendered as a user-visible link (not just in schema).
 
 **5. Claim BuildZoom and Houzz profiles**
-BuildZoom pulls CSLB #1082377 data automatically — claim the profile at buildzoom.com, add photos, and link to hamilton-exteriors.com. Houzz requires manual profile creation: add 10+ project photos from CompanyCam, list all services, and include the Castro Valley address. Both platforms rank on page 1 for "[city] roofing contractor" in California.
+BuildZoom pulls CSLB #1078806 data automatically — claim the profile at buildzoom.com, add photos, and link to hamilton-exteriors.com. Houzz requires manual profile creation: add 10+ project photos from CompanyCam, list all services, and include the Castro Valley address. Both platforms rank on page 1 for "[city] roofing contractor" in California.
 
 **6. Fix the `contactPoint.areaServed` value**
 Change from `"US"` to `"CA"` or an array of the 6 county names. An SAB claiming to serve all of the United States in schema dilutes geographic relevance signals.

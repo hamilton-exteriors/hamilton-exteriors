@@ -15,7 +15,11 @@ import { gzipSync, brotliCompressSync, constants } from 'node:zlib';
 const REDIRECTS: Record<string, string> = {
   '/sitemap.xml': '/sitemap-index.xml',
   '/privacy': '/privacy-policy',
+  '/blog/untitled': '/blog',
   '/blog/untitled-2': '/blog',
+  '/blog/untitled-3': '/blog',
+  '/blog/untitled-4': '/blog',
+  '/blog/untitled-5': '/blog',
   '/additions-2': '/additions',
   '/additions-3': '/additions',
   '/roof': '/roofing',

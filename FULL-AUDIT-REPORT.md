@@ -34,7 +34,7 @@
 Hamilton Exteriors has a **strong technical foundation** that outperforms the vast majority of contractor websites. The Astro SSR stack delivers excellent performance, security headers are enterprise-grade, schema markup is sophisticated with live Google Reviews integration, and the llms.txt implementation is among the most advanced in the local contractor space.
 
 **Top 5 Critical Issues:**
-1. Low Google review count (37 reviews across 8 years) — biggest local SEO risk
+1. Low Google review count (37 reviews) — biggest local SEO risk
 2. No FAQPage schema (removed for Google but still consumed by AI platforms)
 3. Missing Houzz profile — critical for custom home/ADU buyer research
 4. BBB A- rating with negative reviews unaddressed
@@ -119,7 +119,7 @@ HTTP Link header declares AI content files — very few sites implement this.
 | Signal | Status | Notes |
 |--------|--------|-------|
 | **Experience** | Strong | Real project photos, CompanyCam daily updates mentioned, specific permit cost ranges by county |
-| **Expertise** | Strong | CSLB #1082377, architect-led differentiator, GAF Master Elite, Tesla Powerwall Certified |
+| **Expertise** | Strong | CSLB #1078806, architect-led differentiator, GAF Master Elite, Tesla Powerwall Certified |
 | **Authoritativeness** | Good | Wikidata entity (Q139044457), CSLB verification link, founder Person schema with credentials |
 | **Trustworthiness** | Strong | Live Google reviews (4.8/5), BBB listed, HSTS preload, enterprise-grade CSP |
 
@@ -319,7 +319,7 @@ NAP is centralized in `src/lib/constants.ts` — no drift risk. Consistent acros
 | Platforms | Google, Yelp, Angi, Nextdoor, Trustpilot | Good diversity |
 | Velocity | Active (recent reviews) | Needs systematic process |
 
-**Critical:** 37 reviews across ~8 years means ~4.6 reviews/year. The 18-day review cliff (Sterling Sky research) can drop local pack positions. Target: 2+ new Google reviews per month.
+**Critical:** 37 Google reviews is low for local pack competitiveness in the Bay Area home services vertical. The 18-day review cliff (Sterling Sky research) means any gap in new reviews can drop local pack positions. Target: 2+ new Google reviews per month.
 
 ### Location Page Architecture: Strong
 

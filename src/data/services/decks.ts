@@ -5,14 +5,14 @@ export const data: ServicePageData = {
   title:
     'Deck Building & Remodeling in the Bay Area | Hamilton Exteriors',
   description:
-    'Custom deck building and remodeling across the Bay Area. Composite, hardwood & pressure-treated decks. Design-build under one roof. CSLB #1082377. Call (650) 977-3351.',
+    'Custom deck building and remodeling across the Bay Area. Composite, hardwood & pressure-treated decks. Design-build under one roof. CSLB #1078806. Call (650) 977-3351.',
   announcementText: 'Now Booking Summer 2026 Decks — Schedule Your Consultation',
   definition: 'A deck is an elevated outdoor platform attached to or adjacent to a home, built for dining, entertaining, and extending indoor living space outdoors. Bay Area decks are typically built from composite lumber, redwood, or pressure-treated wood and cost $15,000 to $60,000 depending on size, materials, and structural complexity.',
   expertQuotes: [
     {
       quote: 'Bay Area deck projects are more complex than most homeowners expect because of our seismic requirements and hillside lot conditions. Every deck we build is engineered to current California Building Code standards — that means proper ledger board connections with through-bolts, not lag screws, and post-to-beam hardware rated for lateral loads. We see failed decks every year from contractors who skip the engineering.',
       author: 'Alexander Hamilton Li',
-      credentials: 'Architect & General Contractor, CSLB #1082377',
+      credentials: 'Architect & General Contractor, CSLB #1078806',
     },
   ],
   hero: {

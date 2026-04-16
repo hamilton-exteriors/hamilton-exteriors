@@ -640,7 +640,7 @@ export function generateCountyPage(countyUrlSlug: string): CountyPageSeedData | 
     state: 'CA',
     adjective: COUNTY_ADJECTIVES[shortCounty] || 'Trusted',
     title: `${displayCounty} County Roofing & Exteriors | Hamilton Exteriors`,
-    description: `Hamilton Exteriors serves ${displayCounty} County — roofing, siding, windows, ADUs & custom homes. 50-year warranty. CSLB #1082377. Free estimate: (650) 977-3351.`,
+    description: `Hamilton Exteriors serves ${displayCounty} County — roofing, siding, windows, ADUs & custom homes. 50-year warranty. CSLB #1078806. Free estimate: (650) 977-3351.`,
     heroHeadline: `Roofing, Siding &  Exterior Remodeling  in ${displayCounty} County`,
     heroFormTitle: 'Get Your Free Estimate',
     proximity: COUNTY_PROXIMITY[shortCounty],

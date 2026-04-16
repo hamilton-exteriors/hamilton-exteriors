@@ -61,7 +61,7 @@ def extract(url, label):
         f.write(f"REVIEW/RATING SCHEMA: {'YES' if review_schema else 'NO'}\n")
         f.write(f"AGG RATING: {agg_rating_m.group(1) if agg_rating_m else 'N/A'}\n")
         f.write(f"REVIEW COUNT: {review_count_m.group(1) if review_count_m else 'N/A'}\n")
-        f.write(f"LICENSE MENTION: {'YES - CSLB #1082377' if 'CSLB' in html else 'NO'}\n")
+        f.write(f"LICENSE MENTION: {'YES - CSLB #1078806' if 'CSLB' in html else 'NO'}\n")
         f.write(f"CREDENTIALS: {cred_m}\n")
         f.write(f"PRICE MENTIONS: {price_mentions}\n")
         f.write(f"SPECIFIC NUMBERS/STATS: {specific_numbers}\n")
