@@ -120,19 +120,19 @@ const NEXTDOOR_LINK = 'https://nextdoor.com/pages/hamilton-exteriors-castro-vall
             </div>
             <!-- Platform Logo -->
             {review.platform === 'yelp' ? (
-              <a href={YELP_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Yelp">
+              <a href={YELP_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Yelp" class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center">
                 <IconYelp size={26} class="shrink-0" />
               </a>
             ) : review.platform === 'angi' ? (
-              <a href={ANGI_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Angi">
+              <a href={ANGI_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Angi" class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center">
                 <IconAngi size={26} class="shrink-0" />
               </a>
             ) : review.platform === 'nextdoor' ? (
-              <a href={NEXTDOOR_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Nextdoor">
+              <a href={NEXTDOOR_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Nextdoor" class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center">
                 <IconNextdoor size={26} class="shrink-0" />
               </a>
             ) : (
-              <a href={review.author_url || GOOGLE_REVIEW_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Google">
+              <a href={review.author_url || GOOGLE_REVIEW_LINK} target="_blank" rel="noopener noreferrer" aria-label="View on Google" class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center">
                 <IconGoogle size={26} class="shrink-0" />
               </a>
             )}

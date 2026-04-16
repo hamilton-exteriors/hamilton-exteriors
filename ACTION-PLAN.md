@@ -1,50 +1,61 @@
 # Hamilton Exteriors — SEO Action Plan
 
-**Generated:** April 12, 2026 | **Current Score:** 82/100 | **Target:** 90/100
+**Generated:** April 16, 2026 | **Current Score:** 78/100 | **Target:** 90/100
 
 ---
 
 ## Critical (Fix Immediately)
 
-- [ ] **Review velocity program** — Send GBP review shortlink 3 days post-project. Target: 2+ Google reviews/month. (Owner task)
-- [ ] **Verify GBP primary category** — Confirm "General Contractor" is primary in GBP dashboard. (Owner task)
+- [ ] **Fix CSLB license in Ghost CMS** — All service area pages show #1082377 (wrong), should be #1078806. Use Ghost Admin API to bulk-update all posts/pages. ~1 hour.
+- [ ] **Verify two-GBP-listing compliance** — Check that roofing department CID (16940455721437723245) meets Google's department policy (separate staffing, distinct hours). Rename to "Hamilton Exteriors — Roofing" if needed. ~1 hour.
 
-## High Priority (This Week)
+## High (Fix Within 1 Week)
 
-- [ ] **Add FAQPage schema** to FAQ.astro — ChatGPT, Perplexity, Bing still consume it. (Code: 1 day)
-- [ ] **Create Houzz profile** — Upload 10-15 project photos. Free Tier 1 citation. (Owner: 2 hours)
-- [ ] **Address BBB listing** — Respond to negative reviews, evaluate accreditation, fix founding date. (Owner: 1 hour)
-- [ ] **Fix llms.txt dynamic date** — Store real last-modified timestamp instead of `new Date()`. (Code: 2 hours)
+- [ ] **Fix CLS 0.147 on mobile** — (a) Switch hero H1 font to `font-display: optional`, (b) Add explicit CSS width/height to cert/partner logos matching rendered dimensions. ~2 hours.
+- [ ] **Hero image `decoding="async"`** — Change `decoding="sync"` to `decoding="async"` on hero `<img>`. ~5 min.
+- [ ] **Eliminate www redirect penalty** — Audit all ad destinations, email templates, and external directory links to use `https://hamilton-exteriors.com` (no www). ~1 hour.
+- [ ] **Review velocity program** — Implement post-project text/email review request within 48 hours of completion. Target: 75 reviews on primary listing within 6 months. ~2 hours setup.
+- [ ] **Fix 2 missing alt attributes** — Find shared component with untagged images on homepage + /roofing. Add descriptive alt or `alt=""`. ~15 min.
+- [ ] **Source location page statistics** — Add inline citations for Oakland housing stock (U.S. Census), rainfall (NOAA), median home value (Zillow/Redfin) and apply pattern to all city pages. ~2 hours.
+- [ ] **Correct BBB profile** — Update name from "Hamilton Exteriors, Inc" to "Hamilton Exteriors", fix founding date from 2024 to 2018, apply for accreditation. ~30 min.
 
-## Medium Priority (This Month)
+## Medium (Fix Within 1 Month)
 
-- [ ] **Add pages to FULL_ORG_PATHS** — `/additions`, `/decks`, `/bathrooms` in Layout.astro:56. (Code: 30 min)
-- [ ] **Prose lead paragraphs** — 150-200 words on /roofing, /siding, /windows, /adu service pages. (Content: 1-2 days)
-- [ ] **ItemList schema on /service-areas** — ListItem entries for county page URLs. (Code: 2 hours)
-- [ ] **City-specific blog posts** — 4-6 posts targeting Oakland, San Jose, Berkeley, Fremont. (Content: 1-2 weeks)
-- [ ] **Expand Marin/Napa cities** — Add Tiburon, Corte Madera, Fairfax, San Anselmo. (Code + Content: 1-2 days)
-- [ ] **Launch YouTube channel** — One authoritative video to establish presence. Re-add sameAs. (Owner: 4-8 weeks)
+- [ ] **Blog → city page internal links** — Add 1-2 contextual links from each geographically-relevant blog post to corresponding /service-areas/ pages. ~3 hours.
+- [ ] **YouTube channel** — Create Hamilton Exteriors YouTube channel. Post 3 videos: roof replacement process walkthrough, Bay Area fire zone explainer, ADU cost breakdown. Embed on corresponding blog posts. ~1-2 weeks.
+- [ ] **Social icon touch targets** — Wrap platform icons in 44x44px minimum tap area (add `min-w-[44px] min-h-[44px]` with flexbox centering). ~30 min.
+- [ ] **Warranty blog fix** — Rewrite opening paragraph with direct 40-50 word answer. Add FAQPage JSON-LD with 4-6 Q&As. ~1 hour.
+- [ ] **Contractor directory listings** — Create profiles on Houzz, Thumbtack, BuildZoom. Add URLs to schema sameAs array. ~2 hours.
+- [ ] **Schema: remove duplicate ratingCount** — In Layout.astro aggregateRating, remove `ratingCount` or differentiate from `reviewCount`. ~15 min.
+- [ ] **Fix financing image srcset** — Verify `sizes` attribute resolves to 420w variant on mobile. Reduce `q=90` to `q=75`. ~30 min.
+- [ ] **Fix AggregateOffer on city pages** — $400-$3,200 range is misleadingly wide. Either remove or split by service type. ~1 hour.
+- [ ] **Google Maps embed on /contact** — Add iframe with CID 3578771346418026097. ~15 min.
+- [ ] **Expand curated reviews** — Import recent Yelp, Angi, Houzz, Nextdoor reviews to `src/data/curated-reviews.ts`. ~1 hour, then ongoing.
+- [ ] **Hero.astro forced reflow** — Investigate ~92ms reflow from inline script (line 209). Batch layout reads before writes or defer with rAF. ~1 hour.
 
-## Low Priority (Backlog)
+## Low (Backlog)
 
-- [ ] Reddit presence on r/bayarea and r/HomeImprovement
-- [ ] Claim BuildZoom and Thumbtack profiles
-- [ ] Add Nextdoor Business page URL to sameAs
-- [ ] Consider splitting sitemap-0.xml if timeout persists
-- [ ] Full image alt text audit across all page types
+- [ ] Add BreadcrumbList schema across all pages (~1 hour)
+- [ ] Add HowTo schema on "How a Project Works" section (~30 min)
+- [ ] Create Wikipedia article for Hamilton Exteriors (~4+ hours)
+- [ ] Trim ADU FAQ answers to <80 words (~30 min)
+- [ ] Add H3 sub-breaks to long blog sections (350-520 words) (~2 hours)
+- [ ] Verify Satoshi-700 font preload is above-fold critical (~30 min)
+- [ ] Add emergency/storm language to /roofing + GBP listing (~30 min)
+- [ ] Add "Optional" section to llms.txt per spec (~15 min)
+- [ ] Increase BackOffice portfolio.js cache TTL to 7 days (~15 min)
+- [ ] Reframe metal vs asphalt blog headings to question-form (~15 min)
 
 ---
 
-## Score Projection
+## Score Projections
 
-| Action | Estimated Score Impact |
-|--------|----------------------|
-| FAQPage schema + FULL_ORG_PATHS fix | Schema: 92 -> 96 (+0.4 overall) |
-| Review velocity (50+ reviews) | Local: 74 -> 82 (+n/a, not in main score) |
-| Prose lead paragraphs on service pages | Content: 85 -> 88, GEO: 81 -> 84 (+1.1 overall) |
-| City blog posts (6 posts) | Content: 88 -> 90 (+0.5 overall) |
-| YouTube channel + Reddit | GEO: 84 -> 88 (+0.4 overall) |
-| llms.txt date fix + ItemList schema | GEO: 88 -> 89, Schema: 96 -> 97 (+0.2 overall) |
-| **Cumulative target** | **~85 -> 88 overall** |
+| Action Batch | Est. Score Impact |
+|-------------|-------------------|
+| Fix CSLB + CLS + www redirect | 78 → 83 |
+| + Review velocity + BBB + directories | 83 → 86 |
+| + Blog internal links + YouTube + schema fixes | 86 → 90 |
 
-To reach 90+, the site needs: all high/medium items complete + 50+ Google reviews + YouTube content + 20+ blog posts.
+---
+
+*Generated by Claude Code SEO Audit — April 16, 2026*

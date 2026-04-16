@@ -3,7 +3,7 @@ import { getGoogleReviews, getDisplayReviews } from '../lib/google-reviews';
 
 // Real content last-modified date — update when llms-full.txt content meaningfully changes.
 // AI crawlers use this for freshness signals; dynamic new Date() was misleading.
-const CONTENT_LAST_MODIFIED = '2026-04-12';
+const CONTENT_LAST_MODIFIED = '2026-04-16';
 
 export const GET: APIRoute = async () => {
   const reviewData = await getGoogleReviews();

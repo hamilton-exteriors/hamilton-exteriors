@@ -254,7 +254,9 @@ const serviceSchema: Record<string, unknown> = {
       'highPrice': pricing.high,
       'priceCurrency': pricing.currency,
       'unitText': pricing.unit,
+      'availability': 'https://schema.org/InStock',
       'seller': { '@id': 'https://hamilton-exteriors.com/#business' },
+      'areaServed': { '@type': 'State', 'name': 'California' },
     },
   }),
 };
