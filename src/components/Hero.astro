@@ -77,7 +77,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
         class="hero-bg-img size-full object-cover"
         loading="eager"
         fetchpriority="high"
-        decoding="sync"
+        decoding="async"
       />
     </picture>
   </div>
@@ -330,6 +330,13 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     const el = document.getElementById(elId) as HTMLInputElement;
     if (el) el.value = sessionStorage.getItem(storageKey) || '';
   });
+
+  // Track initial step 1 view — showStep() only fires on transitions, so the
+  // default-visible step 1 was previously invisible in the funnel.
+  if (step1) {
+    window.op?.('track', 'hero_form_step', { step: 1, step_name: 'contact_info' });
+    window.dataLayer?.push({ event: 'hero_form_step', step: 1, step_name: 'contact_info' });
+  }
 
   function showStep(step: HTMLElement | null) {
     // Analytics: track form step views for abandonment analysis

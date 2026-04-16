@@ -185,7 +185,6 @@ const fullOrgSchemaObj = fullOrgSchema ? {
     "@type": "AggregateRating",
     "ratingValue": _displayReviews?.rating ?? 4.8,
     "reviewCount": _displayReviews?.reviewCount ?? 37,
-    "ratingCount": _displayReviews?.reviewCount ?? 37,
     "bestRating": 5,
     "worstRating": 1
   },
@@ -447,7 +446,7 @@ const graphJsonLd = graphItems.length > 0 ? {
                 setTimeout(loadPixel,5000);
               })();
             </script>
-            <noscript><img height="1" width="1" style="display:none" src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`} /></noscript>
+            <noscript><img height="1" width="1" style="display:none" alt="" src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`} /></noscript>
           </>
         )}
 
@@ -523,7 +522,8 @@ const graphJsonLd = graphItems.length > 0 ? {
       }
 
 
-      // Scroll #quote links to center the form on screen
+      // Scroll #quote links to center the form on screen, or fall back to /contact
+      // when the page has no hero form (service area pages, /reviews, etc.)
       document.querySelectorAll('a[href="#quote"], a[href="/#quote"]').forEach(link => {
         link.addEventListener('click', (e) => {
           const form = document.getElementById('hero-form');
@@ -533,11 +533,13 @@ const graphJsonLd = graphItems.length > 0 ? {
             const formCenter = rect.top + window.scrollY + (rect.height / 2);
             const screenCenter = window.innerHeight / 2;
             window.scrollTo({ top: formCenter - screenCenter, behavior: 'smooth' });
-            // Focus first input after scroll
             setTimeout(() => {
               const firstInput = form.querySelector('input:not([type="hidden"])') as HTMLInputElement;
               firstInput?.focus();
             }, 600);
+          } else {
+            e.preventDefault();
+            window.location.href = '/contact';
           }
         });
       });
