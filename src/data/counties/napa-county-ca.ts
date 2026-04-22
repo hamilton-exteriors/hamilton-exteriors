@@ -6,7 +6,7 @@ export const data: CountyPageData = {
   countySlug: 'napa-county-ca',
   state: 'CA',
   adjective: 'Skilled',
-  title: 'Roofing, Siding, ADUs & Custom Homes in Napa County | Hamilton Exteriors',
+  title: 'Napa County Contractor — Roofing, Siding, ADUs & Custom Homes',
   description: 'Hamilton Exteriors serves Napa County with expert roofing, siding, windows, ADUs, additions, and custom homes. Serving Napa, American Canyon, St. Helena, Calistoga, and Yountville.',
   heroHeadline: 'Napa County\u2019s Architect-Led  Custom Home  & Exteriors Contractor',
   heroFormTitle: 'Get Your Free Estimate in Napa County',

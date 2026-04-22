@@ -241,8 +241,67 @@ const reviewSchema = {
   </Section>
 )}
 
-<!-- FAQ -->
-<FAQ extraFaqs={data.faqs} />
+<!-- Local Considerations & Building Department (city-specific overrides) -->
+{(localFacts?.localConsideration || localFacts?.buildingDeptName || localFacts?.neighborhoodsServed) && (
+  <Section bg="cream" padding="md">
+    {localFacts.localConsideration && (
+      <div class="mb-10 max-w-3xl">
+        <SectionLabel class="mb-3">Local Considerations</SectionLabel>
+        <h2 class="mb-4">{localFacts.localConsideration.heading}</h2>
+        <p class="text-base leading-[1.75] text-charcoal">{localFacts.localConsideration.body}</p>
+      </div>
+    )}
+
+    {localFacts.neighborhoodsServed && localFacts.neighborhoodsServed.length > 0 && (
+      <div class="mb-10">
+        <h3 class="mb-4 text-xl">Neighborhoods we serve in {data.city}</h3>
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+          {localFacts.neighborhoodsServed.map((hood) => (
+            <div class="bg-white p-6">
+              <p class="mb-2 font-hamilton-display text-lg text-heading">{hood.name}</p>
+              <p class="text-sm leading-[1.7] text-muted">{hood.note}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {localFacts.buildingDeptName && (
+      <div class="rounded bg-white p-6">
+        <h3 class="mb-2 text-lg">{localFacts.buildingDeptName}</h3>
+        {localFacts.buildingDeptNote && (
+          <p class="text-sm leading-[1.7] text-charcoal">{localFacts.buildingDeptNote}</p>
+        )}
+        {localFacts.permitPhone && (
+          <p class="mt-1 text-sm text-muted">Permit counter: {localFacts.permitPhone}</p>
+        )}
+      </div>
+    )}
+  </Section>
+)}
+
+<!-- FAQ — merge city-specific override FAQ with Ghost-provided FAQs -->
+<FAQ extraFaqs={[
+  ...(localFacts?.cityFaq ? [localFacts.cityFaq] : []),
+  ...(data.faqs || []),
+]} />
+
+<!-- Cross-links to services + nearby cities (city-specific overrides) -->
+{localFacts?.crossLinks && localFacts.crossLinks.length > 0 && (
+  <Section bg="white" padding="sm" borderTop>
+    <h2 class="mb-5 text-2xl">Hamilton Exteriors services and nearby cities</h2>
+    <div class="flex flex-wrap gap-3">
+      {localFacts.crossLinks.map((link) => (
+        <a
+          href={link.href}
+          class="rounded-full border border-border bg-white px-4 py-2 text-sm text-primary-dark no-underline transition-opacity duration-200 hover:opacity-90"
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </Section>
+)}
 
 <!-- Contact Us -->
 <ContactUs />

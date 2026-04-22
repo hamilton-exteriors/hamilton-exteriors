@@ -6,7 +6,7 @@ export const data: CountyPageData = {
   countySlug: 'santa-clara-county-ca',
   state: 'CA',
   adjective: 'Trusted',
-  title: 'Roofing, Siding, ADUs & Custom Homes in Santa Clara County | Hamilton Exteriors',
+  title: 'Santa Clara County Contractor — Roofing, Siding, ADUs & Custom Homes',
   description: 'Hamilton Exteriors is Santa Clara County\u2019s trusted design-build contractor. Roofing, siding, windows, ADUs, additions, and custom homes. Serving San Jose, Palo Alto, Mountain View, Sunnyvale, and more.',
   heroHeadline: 'Santa Clara County\u2019s Architect-Led  Custom Home  & Exteriors Contractor',
   heroFormTitle: 'Get Your Free Estimate in Santa Clara County',

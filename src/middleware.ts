@@ -44,6 +44,18 @@ export const onRequest = defineMiddleware(async (context, next) => {
     });
   }
 
+  // Strip Ghost dev/staging ?ref= query so duplicate URLs consolidate.
+  // Without this, /blog/foo?ref=ghost-production-42337.up.railway.app is
+  // indexed separately from /blog/foo, splitting ranking signals.
+  if (context.url.searchParams.has('ref')) {
+    const cleaned = new URL(context.url);
+    cleaned.searchParams.delete('ref');
+    return new Response(null, {
+      status: 301,
+      headers: { Location: cleaned.pathname + (cleaned.search || '') },
+    });
+  }
+
   // Handle permanent redirects before processing
   const redirectTo = REDIRECTS[pathname];
   if (redirectTo) {

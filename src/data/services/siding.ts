@@ -2,9 +2,9 @@ import type { ServicePageData } from '../../lib/service-page-types';
 import { sidingVinyl, sidingFiberCement, sidingWood, sidingStucco, serviceSiding } from '../../lib/images';
 
 export const data: ServicePageData = {
-  title: 'Bay Area Siding | James Hardie & Vinyl | Hamilton Exteriors',
+  title: 'Bay Area Siding Contractor | Fiber Cement & Vinyl',
   description:
-    'James Hardie Elite Preferred installer serving the Bay Area. Fiber cement, vinyl, stucco, and waterproofing. 50-year warranty, financing available. CSLB #1078806.',
+    'James Hardie Elite Preferred installer covering the Bay Area. Fiber cement, vinyl, and stucco siding engineered for fog, fire zones, and resale ROI.',
   announcementText: 'Now Booking Summer 2026 Siding Projects — Schedule Your Inspection',
   definition: 'Siding replacement is the process of removing and reinstalling the exterior cladding that protects a home from moisture, wind, and temperature. Common materials include vinyl, James Hardie fiber cement, and stucco. James Hardie fiber cement delivers an 86% return on investment at resale according to Remodeling Magazine\u2019s 2024 Cost vs. Value Report.',
   expertQuotes: [

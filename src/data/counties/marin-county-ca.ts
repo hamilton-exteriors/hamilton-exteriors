@@ -6,7 +6,7 @@ export const data: CountyPageData = {
   countySlug: 'marin-county-ca',
   state: 'CA',
   adjective: 'Experienced',
-  title: 'Roofing, Siding, ADUs & Custom Homes in Marin County | Hamilton Exteriors',
+  title: 'Marin County Contractor — Roofing, Siding, ADUs & Custom Homes',
   description: 'Hamilton Exteriors is Marin County\u2019s trusted design-build contractor. Roofing, siding, windows, ADUs, additions, and custom homes. Serving San Rafael, Mill Valley, Novato, and Larkspur.',
   heroHeadline: 'Marin County\u2019s Architect-Led  Custom Home  & Exteriors Contractor',
   heroFormTitle: 'Get Your Free Estimate in Marin County',

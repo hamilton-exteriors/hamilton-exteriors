@@ -22,6 +22,40 @@ interface CityFacts {
   topNeighborhoods: string[];
   driveTime: string;
   localTip: string;
+
+  /**
+   * Optional per-city overrides used to push templated pages out of page 2-3.
+   * All optional so the existing 56 cities keep working unchanged.
+   */
+  /** Page <title> override. When set, replaces Ghost's meta_title. */
+  metaTitle?: string;
+  /** Meta description override. When set, replaces Ghost's meta_description. */
+  metaDescription?: string;
+  /** 2-3 specific neighborhoods served (named, not "all neighborhoods"). */
+  neighborhoodsServed?: Array<{ name: string; note: string }>;
+  /** City building department for permits. */
+  buildingDeptName?: string;
+  /** One-line note about permitting cadence/quirks. */
+  buildingDeptNote?: string;
+  /** Climate / siding / roofing consideration specific to this city. */
+  localConsideration?: { heading: string; body: string };
+  /** City-specific FAQ appended to the standard FAQ list. */
+  cityFaq?: { question: string; answer: string };
+  /** Internal cross-links to /roofing, /siding, /adu, /additions, /custom-homes, and nearby cities. */
+  crossLinks?: Array<{ label: string; href: string }>;
+}
+
+/**
+ * Optional county-level overrides (parallel to CityFacts) used to give county
+ * pages city-specific titles/meta and richer comparison content.
+ */
+interface CountyOverride {
+  metaTitle?: string;
+  metaDescription?: string;
+  /** Top cities in this county with a 1-line differentiator each. */
+  cityComparison?: Array<{ name: string; href: string; note: string }>;
+  /** County-level building / permit context. */
+  countyPermitContext?: { heading: string; body: string };
 }
 
 const CITY_FACTS: Record<string, CityFacts> = {
@@ -74,6 +108,33 @@ const CITY_FACTS: Record<string, CityFacts> = {
     topNeighborhoods: ['Mission San Jose', 'Warm Springs', 'Irvington', 'Niles', 'Centerville'],
     driveTime: '20 minutes',
     localTip: 'Fremont\'s Mission San Jose district sits at a higher elevation with more wind exposure than the flatlands, meaning roofs there tend to wear 3-5 years faster. Homes in this area benefit from impact-resistant shingles rated for higher wind speeds.',
+    metaTitle: 'Fremont, CA Roofing, Siding & ADUs | Hamilton Exteriors (CSLB #1078806)',
+    metaDescription: 'Fremont contractor for roofing, James Hardie siding, windows, ADUs and additions. Serving Mission San Jose, Warm Springs and Irvington. Hayward Fault seismic detailing. CSLB #1078806.',
+    neighborhoodsServed: [
+      { name: 'Mission San Jose', note: 'Older hillside homes near Mission Peak with steeper pitches and more wind exposure than the flatlands.' },
+      { name: 'Warm Springs', note: '1970s-1990s tract homes around the Tesla and BART corridor due for first or second re-roofs.' },
+      { name: 'Irvington', note: 'Mature ranch-style homes east of Fremont Boulevard, often with original asbestos cement siding ready for James Hardie replacement.' },
+    ],
+    buildingDeptName: 'City of Fremont Development Services Center',
+    buildingDeptNote: 'Online portal with 1-2 week residential re-roof turnaround; over-the-counter approval available for like-for-like replacements with no structural changes.',
+    localConsideration: {
+      heading: 'Hayward Fault and WUI fringe — what Fremont homes need',
+      body: 'The Hayward Fault runs directly through Fremont, with the strongest shaking risk in Mission San Jose and Niles. Re-roofs and additions in these neighborhoods should include diaphragm nailing upgrades, properly fastened sheathing and Simpson hardware at the top plate connection. Hillside parcels above Mission Boulevard also fall on the fringe of Cal Fire State Responsibility Area maps, so we install Class A fire-rated assemblies and ember-resistant vents on those projects by default.',
+    },
+    cityFaq: {
+      question: 'Do I need a permit for a roof replacement in Fremont?',
+      answer: 'Yes. The City of Fremont Development Services Center requires a building permit for any roof replacement, including like-for-like re-roofs. Standard residential re-roof permits cost roughly $250-$500 and are typically issued within 1-2 weeks; simple replacements with no structural change can usually be approved over the counter. Hamilton Exteriors pulls and closes the permit, schedules inspection and handles Title 24 cool-roof documentation as part of every project.',
+    },
+    crossLinks: [
+      { label: 'Roofing in Fremont', href: '/service-areas/alameda-county-ca/fremont-ca/roofing' },
+      { label: 'Siding in Fremont', href: '/service-areas/alameda-county-ca/fremont-ca/siding' },
+      { label: 'ADUs in Fremont', href: '/service-areas/alameda-county-ca/fremont-ca/adu' },
+      { label: 'Custom homes in Fremont', href: '/service-areas/alameda-county-ca/fremont-ca/custom-homes' },
+      { label: 'Additions in Fremont', href: '/service-areas/alameda-county-ca/fremont-ca/additions' },
+      { label: 'Nearby: Union City', href: '/service-areas/alameda-county-ca/union-city-ca' },
+      { label: 'Nearby: Hayward', href: '/service-areas/alameda-county-ca/hayward-ca' },
+      { label: 'Nearby: Milpitas', href: '/service-areas/santa-clara-county-ca/milpitas-ca' },
+    ],
   },
   'hayward': {
     housingNote: 'Hayward has approximately 52,000 housing units spread across flatland and hillside neighborhoods. Homes in the Hayward Hills and Fairview areas often face increased wind exposure that can reduce roof lifespan.',
@@ -104,6 +165,34 @@ const CITY_FACTS: Record<string, CityFacts> = {
     topNeighborhoods: ['Estudillo Estates', 'Washington Manor', 'Bay-O-Vista', 'Broadmoor'],
     driveTime: '10 minutes',
     localTip: 'San Leandro\'s proximity to the Bay means homes in the western flatlands see more fog and salt air than inland neighborhoods. Choosing corrosion-resistant flashing and galvanized fasteners adds years to your roof in these areas.',
+    metaTitle: 'San Leandro Roofing & James Hardie Siding | Hamilton Exteriors (CSLB #1078806)',
+    metaDescription: 'San Leandro architect-led contractor for roofing, fiber cement siding, windows and ADUs. Bay-air corrosion detailing, stucco repair and Title 24 cool-roof installs. Free estimate.',
+    neighborhoodsServed: [
+      { name: 'Estudillo Estates', note: '1920s-1940s Spanish revival and bungalows where original stucco and clay tile often need targeted restoration rather than full replacement.' },
+      { name: 'Bay-O-Vista', note: 'Hillside mid-century homes with steep roof pitches and view-line constraints that affect material and color choice.' },
+      { name: 'Washington Manor', note: 'Post-war flatland tract homes near the shoreline where bay-air corrosion dictates galvanized or stainless flashing on every re-roof.' },
+    ],
+    buildingDeptName: 'City of San Leandro Community Development Department',
+    buildingDeptNote: 'Roofing permits issued in 5-7 business days; a separate structural permit is required if dry rot or sheathing damage is discovered during tear-off, so we budget that contingency upfront.',
+    localConsideration: {
+      heading: 'Bay-air corrosion and stucco maintenance in San Leandro',
+      body: 'San Leandro\'s western neighborhoods sit within a mile of the bay shoreline, so salt-laden fog accelerates the failure of galvanized flashing, plain-steel fasteners and field-painted stucco. We default to hot-dipped galvanized or stainless fasteners, copper or pre-painted aluminum step flashing and James Hardie ColorPlus fiber cement when replacing original stucco. On older homes we also re-skin chimney saddles and add ice-and-water shield in valleys, which is where coastal moisture quietly rots out 1950s-era roof decks.',
+    },
+    cityFaq: {
+      question: 'Do I need a permit for a roof replacement in San Leandro?',
+      answer: 'Yes. San Leandro\'s Community Development Department requires a building permit for every re-roof, including like-for-like asphalt shingle replacements. Standard residential permits are typically issued in 5-7 business days. If we uncover sheathing damage or structural rot during tear-off, the city requires a separate structural repair permit, which we coordinate so the project stays on schedule. We pull the permit in your name and stay onsite for the final inspection.',
+    },
+    crossLinks: [
+      { label: 'Roofing in San Leandro', href: '/service-areas/alameda-county-ca/san-leandro-ca/roofing' },
+      { label: 'Siding in San Leandro', href: '/service-areas/alameda-county-ca/san-leandro-ca/siding' },
+      { label: 'Windows in San Leandro', href: '/service-areas/alameda-county-ca/san-leandro-ca/windows' },
+      { label: 'ADUs in San Leandro', href: '/service-areas/alameda-county-ca/san-leandro-ca/adu' },
+      { label: 'Additions in San Leandro', href: '/service-areas/alameda-county-ca/san-leandro-ca/additions' },
+      { label: 'Custom homes in San Leandro', href: '/service-areas/alameda-county-ca/san-leandro-ca/custom-homes' },
+      { label: 'Nearby: Castro Valley', href: '/service-areas/alameda-county-ca/castro-valley-ca' },
+      { label: 'Nearby: Hayward', href: '/service-areas/alameda-county-ca/hayward-ca' },
+      { label: 'Nearby: Oakland', href: '/service-areas/alameda-county-ca/oakland-ca' },
+    ],
   },
   'castro-valley': {
     housingNote: 'Castro Valley is an unincorporated community of approximately 61,000 residents with roughly 23,000 housing units. Most homes were built between the 1950s and 1970s during the suburban expansion of the East Bay, meaning many roofs and exteriors are original or on their second replacement cycle.',
@@ -199,6 +288,34 @@ const CITY_FACTS: Record<string, CityFacts> = {
     topNeighborhoods: ['Dougherty Valley', 'Gale Ranch', 'Bollinger Canyon', 'Canyon Lakes', 'Windemere'],
     driveTime: '20 minutes',
     localTip: 'San Ramon HOAs are among the most active in the Tri-Valley — many have pre-approved color palettes for roofing. Check your CC&Rs before selecting materials, as HOA approval can add 2-3 weeks to your project timeline.',
+    metaTitle: 'San Ramon Cool-Roof, Siding & ADU Contractor | Hamilton Exteriors',
+    metaDescription: 'Architect-led roofing, James Hardie siding, windows and ADUs in San Ramon, CA. Cool-roof shingles for hot Tri-Valley summers, HOA-friendly color palettes, CSLB #1078806.',
+    neighborhoodsServed: [
+      { name: 'Dougherty Valley', note: 'Master-planned 1990s-2000s homes with active HOAs and pre-approved color palettes that gate roofing and siding choices.' },
+      { name: 'Gale Ranch', note: 'Larger custom production homes with complex rooflines and steep south-facing exposures that benefit from cool-roof granules.' },
+      { name: 'Canyon Lakes', note: 'Original 1980s tract homes near the golf course where most original wood-shake roofs have been replaced once and are due again.' },
+    ],
+    buildingDeptName: 'City of San Ramon Building Division',
+    buildingDeptNote: 'Re-roof permits typically issued in 5-7 business days; HOA architectural approval is required for almost every Dougherty Valley and Windemere home and adds 2-3 weeks, so we submit that package in parallel with the city.',
+    localConsideration: {
+      heading: 'Hot inland summers and cool-roof requirements',
+      body: 'San Ramon sits in the inland Tri-Valley where summer highs routinely exceed 95°F and attic temperatures push past 140°F. Title 24 already requires cool-roof rated shingles on most re-roofs in this climate zone, and we go further by specifying GAF Timberline HDZ Reflector Series or TimberCrest cool-color shingles paired with radiant-barrier underlayment and balanced ridge/soffit ventilation. Eastern-ridge homes near Bollinger Canyon also fall inside Cal Fire WUI maps, so we install Class A assemblies, ember-resistant O\'Hagin vents and non-combustible drip edge as a baseline.',
+    },
+    cityFaq: {
+      question: 'Do I need a permit for a roof replacement in San Ramon?',
+      answer: 'Yes. The City of San Ramon Building Division requires a permit for every re-roof, and Title 24 cool-roof compliance documentation is required on most homes. Permits typically issue in 5-7 business days. If your home is in Dougherty Valley, Windemere, Gale Ranch or another HOA community, you also need architectural review approval for color and material — we submit both packages in parallel so the project still starts on time.',
+    },
+    crossLinks: [
+      { label: 'Roofing in San Ramon', href: '/service-areas/contra-costa-county-ca/san-ramon-ca/roofing' },
+      { label: 'Siding in San Ramon', href: '/service-areas/contra-costa-county-ca/san-ramon-ca/siding' },
+      { label: 'Windows in San Ramon', href: '/service-areas/contra-costa-county-ca/san-ramon-ca/windows' },
+      { label: 'ADUs in San Ramon', href: '/service-areas/contra-costa-county-ca/san-ramon-ca/adu' },
+      { label: 'Additions in San Ramon', href: '/service-areas/contra-costa-county-ca/san-ramon-ca/additions' },
+      { label: 'Custom homes in San Ramon', href: '/service-areas/contra-costa-county-ca/san-ramon-ca/custom-homes' },
+      { label: 'Nearby: Danville', href: '/service-areas/contra-costa-county-ca/danville-ca' },
+      { label: 'Nearby: Walnut Creek', href: '/service-areas/contra-costa-county-ca/walnut-creek-ca' },
+      { label: 'Nearby: Pleasanton', href: '/service-areas/alameda-county-ca/pleasanton-ca' },
+    ],
   },
   // Marin County
   'san-rafael': {
@@ -215,6 +332,34 @@ const CITY_FACTS: Record<string, CityFacts> = {
     topNeighborhoods: ['Dominican', 'Gerstle Park', 'Sun Valley', 'Terra Linda', 'Fair Hills'],
     driveTime: '45 minutes',
     localTip: 'San Rafael\'s Terra Linda neighborhood was one of the first master-planned communities in Marin — most homes there were built in the 1950s-1960s and are on their second or third roof. Original low-slope designs benefit from TPO or modified bitumen instead of standard shingles.',
+    metaTitle: 'San Rafael Fiber Cement Siding & Roofing | Hamilton Exteriors (CSLB #1078806)',
+    metaDescription: 'San Rafael contractor for fog-resistant fiber cement siding, Class A roofing, windows and ADUs. Serving Dominican, Gerstle Park and Terra Linda. Marin permit and WUI compliance included.',
+    neighborhoodsServed: [
+      { name: 'Dominican', note: 'Wooded hillside lots near Dominican University with mature oaks shading roofs and accelerating moss and algae buildup.' },
+      { name: 'Gerstle Park', note: 'Early-1900s craftsman and Victorian homes with original wood siding and complex multi-pitch roofs that need a careful, code-compliant retrofit.' },
+      { name: 'Terra Linda', note: 'Eichler and 1950s low-slope ranches where standard shingles are the wrong material — TPO, modified bitumen or standing-seam metal is the durable answer.' },
+    ],
+    buildingDeptName: 'City of San Rafael Community Development Department',
+    buildingDeptNote: 'Residential re-roof and re-side permits typically issued in 1-2 weeks; properties in the Wildland-Urban Interface overlay (much of west and north San Rafael) require Class A assemblies and ember-resistant venting per Marin County code.',
+    localConsideration: {
+      heading: 'Fog, mildew and the case for fiber cement in San Rafael',
+      body: 'Marin\'s persistent marine layer means San Rafael homes — especially shaded properties in Dominican, Sun Valley and the western canyons — stay damp far longer than inland Bay Area cities. Wood and engineered-wood siding mildew, swell and rot in this climate, and field-painted stucco chalks within a few seasons. We specify James Hardie HardiePlank or HardieShingle ColorPlus fiber cement as the default re-side and pair re-roofs with zinc or copper ridge strips that inhibit moss and algae growth, which alone adds 5-10 years to roof life on shaded lots.',
+    },
+    cityFaq: {
+      question: 'Do I need a permit for a roof replacement in San Rafael?',
+      answer: 'Yes. The City of San Rafael Community Development Department requires a building permit for every re-roof, and homes within the Wildland-Urban Interface overlay (much of west and north San Rafael) must use Class A fire-rated assemblies and ember-resistant vents under Marin County code. Standard residential permits are usually issued in 1-2 weeks. We pull and close the permit in your name and handle Marin\'s WUI documentation as part of the project.',
+    },
+    crossLinks: [
+      { label: 'Roofing in San Rafael', href: '/service-areas/marin-county-ca/san-rafael-ca/roofing' },
+      { label: 'Siding in San Rafael', href: '/service-areas/marin-county-ca/san-rafael-ca/siding' },
+      { label: 'Windows in San Rafael', href: '/service-areas/marin-county-ca/san-rafael-ca/windows' },
+      { label: 'ADUs in San Rafael', href: '/service-areas/marin-county-ca/san-rafael-ca/adu' },
+      { label: 'Additions in San Rafael', href: '/service-areas/marin-county-ca/san-rafael-ca/additions' },
+      { label: 'Custom homes in San Rafael', href: '/service-areas/marin-county-ca/san-rafael-ca/custom-homes' },
+      { label: 'Nearby: Mill Valley', href: '/service-areas/marin-county-ca/mill-valley-ca' },
+      { label: 'Nearby: Larkspur', href: '/service-areas/marin-county-ca/larkspur-ca' },
+      { label: 'Nearby: Novato', href: '/service-areas/marin-county-ca/novato-ca' },
+    ],
   },
   'mill-valley': {
     housingNote: 'Mill Valley\'s hillside location and proximity to redwood forests create unique roofing challenges. Homes nestled among trees deal with increased debris accumulation, moisture retention, and limited sun exposure that can promote moss and algae growth.',
@@ -505,4 +650,37 @@ const CITY_FACTS: Record<string, CityFacts> = {
 export function getCityLocalFacts(citySlug: string): CityFacts | undefined {
   const normalized = citySlug.replace(/-ca$/, '');
   return CITY_FACTS[normalized];
+}
+
+/**
+ * Per-county overrides for unique title/meta and county-page specific content.
+ * Keyed by full county slug (e.g. "santa-clara-county-ca"). All optional.
+ */
+const COUNTY_OVERRIDES: Record<string, CountyOverride> = {
+  'santa-clara-county-ca': {
+    metaTitle: 'Santa Clara County Roofing, Siding & ADUs | Hamilton Exteriors (CSLB #1078806)',
+    metaDescription: 'Architect-led roofing, James Hardie siding, windows, ADUs and custom homes across Santa Clara County. San Jose, Palo Alto, Mountain View, Sunnyvale, Cupertino, Saratoga and Los Gatos. Title 24 cool-roof and WUI compliance built in.',
+    cityComparison: [
+      { name: 'San Jose', href: '/service-areas/santa-clara-county-ca/san-jose-ca', note: 'South Bay\'s largest city, online permit portal, hot summers favor cool-roof shingles and tile.' },
+      { name: 'Palo Alto', href: '/service-areas/santa-clara-county-ca/palo-alto-ca', note: 'Strict Architectural Review Board for historic districts (Professorville, Crescent Park) — plan 4-6 extra weeks.' },
+      { name: 'Mountain View', href: '/service-areas/santa-clara-county-ca/mountain-view-ca', note: 'Strict Title 24 enforcement; SRI 16+ cool-roof shingles required on most re-roofs.' },
+      { name: 'Sunnyvale', href: '/service-areas/santa-clara-county-ca/sunnyvale-ca', note: 'Streamlined online permits in 5-7 days; many original 1950s-1970s low-pitch roofs need TPO, not shingles.' },
+      { name: 'Cupertino', href: '/service-areas/santa-clara-county-ca/cupertino-ca', note: 'High-value market where premium architectural shingles deliver the best resale ROI.' },
+      { name: 'Saratoga', href: '/service-areas/santa-clara-county-ca/saratoga-ca', note: 'Hillside WUI fire zones require Class A assemblies, ember-resistant vents and defensible space.' },
+      { name: 'Los Gatos', href: '/service-areas/santa-clara-county-ca/los-gatos-ca', note: 'Historic Preservation Zone in downtown — composite shake look-alikes are the standard approved upgrade.' },
+      { name: 'Milpitas', href: '/service-areas/santa-clara-county-ca/milpitas-ca', note: 'Closest South Bay city to our Castro Valley shop, online permits in about a week.' },
+    ],
+    countyPermitContext: {
+      heading: 'Santa Clara County permit context',
+      body: 'Permitting is generally efficient across Santa Clara County. San Jose\'s Department of Planning, Building and Code Enforcement runs an express over-the-counter track for like-for-like re-roofs, while Palo Alto\'s Architectural Review Board can add four to six weeks for projects in Professorville and Crescent Park historic districts. Mountain View and Sunnyvale both enforce Title 24 cool-roof requirements (SRI 16+) on most re-roofs, and the western foothills of Los Gatos and Saratoga sit in Cal Fire WUI zones requiring Class A roof assemblies, ember-resistant vents and defensible-space inspections. Hamilton Exteriors pulls every permit in your name, schedules inspections and handles WUI documentation as part of the project.',
+    },
+  },
+};
+
+/**
+ * Get county-level overrides (title, meta, comparison block, permit context).
+ * Accepts the full county slug e.g. "santa-clara-county-ca".
+ */
+export function getCountyOverride(countySlug: string): CountyOverride | undefined {
+  return COUNTY_OVERRIDES[countySlug];
 }

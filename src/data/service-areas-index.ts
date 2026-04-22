@@ -11,7 +11,7 @@ import { data as sanMateo } from './counties/san-mateo-county-ca';
 /* ── Page metadata ────────────────────────────────────────────── */
 
 export const pageTitle =
-  'Roofing, ADUs & Custom Homes Across 6 Bay Area Counties | Hamilton Exteriors';
+  'Bay Area Service Areas — Roofing, ADUs & Custom Homes in 6 Counties';
 
 export const pageDescription =
   'Hamilton Exteriors serves Alameda, Contra Costa, Marin, Napa, Santa Clara & San Mateo counties. Roofing, siding, windows, ADUs & custom homes. CSLB #1078806. Free estimates.';

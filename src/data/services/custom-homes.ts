@@ -2,11 +2,11 @@ import type { ServicePageData } from '../../lib/service-page-types';
 import { serviceCustomHomesFull, serviceCustomHomes, serviceAdditions, designEngineering, designPlanning } from '../../lib/images';
 
 export const data: ServicePageData = {
-  title: 'Custom Home Builder in the Bay Area | Hamilton Exteriors',
+  title: 'Custom Home Builder Bay Area | Ground-Up Construction',
   description:
-    'Full-service custom home builder in the Bay Area. Design, architecture, engineering, permits & construction — all under one roof.',
+    'Architect-led custom home builder in the Bay Area since 2018. Ground-up design-build from $350 per sq ft, with a guaranteed maximum price at signing.',
   announcementText: 'Now Booking Summer 2026 Custom Homes — Schedule Your Consultation',
-  definition: 'Custom home construction is the process of designing and building a new residence from the ground up — ground-up new construction tailored entirely to the homeowner\u2019s specifications, lot conditions, and lifestyle. In the Bay Area, ground-up custom homes cost $350 to $800 per square foot including design, architecture, engineering, permits, and construction.',
+  definition: 'Custom home construction is the process of designing and building a new residence from the ground up — ground-up new construction tailored entirely to the homeowner\u2019s specifications, lot conditions, and lifestyle. Hamilton Exteriors builds luxury custom homes and hillside homes across the Bay Area, from the Oakland Hills and Berkeley Hills to Marin headlands and Los Gatos Mountains. Ground-up custom homes cost $350 to $800 per square foot including design, architecture, engineering, permits, and construction.',
   expertQuotes: [
     {
       quote: 'The biggest cost driver in Bay Area custom homes is site preparation — hillside lots in the Oakland Hills or Marin headlands can add $100,000 to $200,000 in foundation engineering alone. Design-build under one contract eliminates the coordination gaps between separate architects, engineers, and builders that cause 80% of budget overruns.',
@@ -158,16 +158,6 @@ export const data: ServicePageData = {
         'Yes, but hillside construction requires specialized engineering for foundations, retaining walls, drainage, and seismic bracing. Bay Area hillside lots in the Oakland Hills, Marin headlands, and Los Gatos mountains often require geotechnical reports, soil testing, and engineered pier-and-grade-beam foundations rather than standard slab-on-grade. Retaining walls for hillside sites typically cost $200 to $500 per linear foot depending on height and soil conditions. Many hillside lots also fall within Wildland-Urban Interface fire zones, requiring Chapter 7A compliant exterior materials and defensible space planning. Access for construction equipment is another key factor — narrow hillside roads may require specialized delivery logistics that add to the project timeline. Hamilton Exteriors has experience with hillside construction across Alameda, Contra Costa, and Marin counties and coordinates all geotechnical and civil engineering as part of our design-build process.',
     },
     {
-      question: 'How much does it cost to build a house from the ground up in the Bay Area?',
-      answer:
-        'Ground-up custom homes in the Bay Area cost $400 to $700 per square foot, or $750,000 to $3,500,000+ for a complete project. Key cost drivers include lot preparation (grading, retaining walls, utilities), foundation type (slab vs. raised), finish level, and permit fees. Bay Area construction costs run 20-30% above the national average due to labor rates, seismic engineering requirements, and strict energy code compliance. Hamilton Exteriors provides phase-by-phase itemized estimates.',
-    },
-    {
-      question: 'How long does it take to build a custom home in the Bay Area?',
-      answer:
-        'Ground-up custom homes typically take 12 to 24 months from permit approval to move-in. Design and permitting add 4 to 8 months before construction begins. Foundation and framing take 3 to 5 months, followed by MEP rough-in, insulation, drywall, finishes, and final inspections. Total timeline from initial consultation to keys is 18 to 30 months. Hamilton Exteriors assigns a dedicated project manager who provides weekly milestone updates.',
-    },
-    {
       question: 'Can I build a new home on an existing lot in the Bay Area?',
       answer:
         'Yes. Many Bay Area homeowners tear down aging homes to build new on existing lots, especially in established neighborhoods with desirable locations. This avoids the cost of land acquisition. Zoning determines maximum building envelope, setbacks, and height. Some jurisdictions offer streamlined permitting for rebuild projects on previously developed lots. Hamilton Exteriors evaluates your lot for buildability during the free consultation.',
@@ -178,9 +168,9 @@ export const data: ServicePageData = {
         'Custom homes are designed from scratch for a specific homeowner and lot. You control every decision from floor plan to finishes. Spec homes are built by developers to sell on the open market, with standard layouts and finishes chosen for broad appeal. Custom homes cost more per square foot but deliver exactly what you want. Hamilton Exteriors builds custom only — every project starts with your vision and your lot.',
     },
     {
-      question: 'Do I need an architect to build a custom home?',
+      question: 'Do you build luxury and hillside custom homes in the Bay Area?',
       answer:
-        'California requires licensed architect or engineer stamped plans for any new residential construction. Hamilton Exteriors is architect-led — Alexander Hamilton Li, our founder, is both a licensed architect and general contractor (CSLB #1078806). Having design and construction under one roof eliminates the communication gaps that cause budget overruns and delays on custom home projects.',
+        'Yes. Hamilton Exteriors specializes in architect-led luxury custom homes across Alameda, Contra Costa, Marin, and Santa Clara counties, including hillside lots in the Oakland Hills, Berkeley Hills, Los Gatos Mountains, and Marin headlands. Luxury builds from $600 per square foot include custom millwork, chef kitchens, primary suites with spa baths, wine rooms, smart home systems, and indoor-outdoor living designed for Bay Area climate. Hillside luxury homes require engineered pier-and-grade-beam foundations, reinforced retaining walls, and Chapter 7A fire-resistant exteriors in WUI zones. Every luxury project is designed in-house by our licensed architect so structural, aesthetic, and cost decisions stay aligned from day one.',
     },
   ],
 };

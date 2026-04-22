@@ -11,46 +11,88 @@ const { city = 'the Bay Area' } = Astro.props;
 
 const services = [
   {
-    title: 'Custom Homes',
-    description:
-      'Ground-up custom home construction tailored to your vision. From foundation to finishing touches, our team manages every detail to deliver a home designed around how you actually live.',
-    image: serviceCustomHomes,
-    href: '/custom-homes',
-  },
-  {
-    title: 'Additions',
-    description:
-      'Expand your living space with seamless room additions that match your home\'s existing style. Permits, design, and construction managed end-to-end — adding value and square footage.',
-    image: serviceAdditions,
-    href: '/additions',
-  },
-  {
-    title: 'ADUs',
-    description:
-      'Detached ADUs, garage conversions, and junior ADUs that add living space and rental income. Design through permitting through construction, all under one roof.',
-    image: serviceAdu,
-    href: '/adu',
-  },
-  {
-    title: 'Windows',
-    description:
-      'Energy-efficient window replacements that transform your home\'s comfort and curb appeal. Double-hung, casement, bay, and more — professionally installed with a full warranty.',
-    image: serviceWindows,
-    href: '/windows',
-  },
-  {
     title: 'Roofing',
     description:
-      'Full roof replacements and repairs with GAF-certified shingles and a 50-year warranty. We handle everything from tear-off to final inspection — most jobs done in 3-5 days.',
+      'Full roof replacements and repairs with GAF-certified shingles and a 50-year warranty. Most jobs done in 3 to 5 days.',
     image: serviceRoofing,
     href: '/roofing',
+    ctaLabel: 'Explore roofing',
+    subLinks: [
+      { name: 'Metal', href: '/roofing/metal' },
+      { name: 'Tile', href: '/roofing/tile' },
+      { name: 'Asphalt', href: '/roofing/asphalt-shingles' },
+      { name: 'Energy', href: '/roofing/energy' },
+    ],
   },
   {
     title: 'Siding',
     description:
-      'James Hardie fiber cement siding that protects your home and looks great for decades. We handle dry rot repair, full replacements, and fresh paint — transforming your curb appeal.',
+      'James Hardie fiber cement siding that protects your home and looks great for decades. Dry rot repair, full replacements, and fresh paint.',
     image: serviceSiding,
     href: '/siding',
+    ctaLabel: 'Explore siding',
+    subLinks: [
+      { name: 'Fiber cement', href: '/siding/fiber-cement' },
+      { name: 'Stucco', href: '/siding/stucco' },
+      { name: 'Vinyl', href: '/siding/vinyl' },
+      { name: 'Waterproofing', href: '/siding/waterproofing' },
+    ],
+  },
+  {
+    title: 'Windows',
+    description:
+      'Energy-efficient window replacements that improve your home\'s comfort and curb appeal. Professionally installed with a full warranty.',
+    image: serviceWindows,
+    href: '/windows',
+    ctaLabel: 'Explore windows',
+    subLinks: [
+      { name: 'Double-hung', href: '/windows/double-hung' },
+      { name: 'Casement', href: '/windows/casement' },
+      { name: 'Picture', href: '/windows/picture' },
+      { name: 'Sliding doors', href: '/windows/sliding-glass-doors' },
+    ],
+  },
+  {
+    title: 'ADUs',
+    description:
+      'Detached ADUs, garage conversions, and junior ADUs that add living space and rental income. Design, permitting, and construction under one roof.',
+    image: serviceAdu,
+    href: '/adu',
+    ctaLabel: 'Explore ADUs',
+    subLinks: [
+      { name: 'Detached', href: '/adu/detached' },
+      { name: 'Garage conversion', href: '/adu/garage-conversions' },
+      { name: 'Design', href: '/adu/design' },
+      { name: 'Permits', href: '/adu/permits' },
+    ],
+  },
+  {
+    title: 'Additions',
+    description:
+      'Seamless room additions that match your home\'s existing style. Second stories, room extensions, and full remodels, end-to-end.',
+    image: serviceAdditions,
+    href: '/additions',
+    ctaLabel: 'Explore additions',
+    subLinks: [
+      { name: 'Second story', href: '/additions/second-story' },
+      { name: 'Room extensions', href: '/additions/room-extensions' },
+      { name: 'Full remodels', href: '/additions/full-remodels' },
+      { name: 'Guest houses', href: '/additions/adus-guest-houses' },
+    ],
+  },
+  {
+    title: 'Custom Homes',
+    description:
+      'Ground-up custom home construction tailored to your vision. Architect-led from foundation to finishing touches.',
+    image: serviceCustomHomes,
+    href: '/custom-homes',
+    ctaLabel: 'Explore custom homes',
+    subLinks: [
+      { name: 'Ground-up', href: '/custom-homes/ground-up' },
+      { name: 'Design', href: '/custom-homes/design' },
+      { name: 'Permits', href: '/custom-homes/permits' },
+      { name: 'Additions & reno', href: '/custom-homes/additions-renovations' },
+    ],
   },
 ];
 ---
@@ -65,8 +107,8 @@ const services = [
       Custom Home & Exterior Services in {city}
     </h2>
 
-    <!-- Service cards grid — 2x2 -->
-    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+    <!-- Service cards grid — 2x3 with sub-service entry points per card -->
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         services.map((service) => (
           <ServiceCard
@@ -75,6 +117,8 @@ const services = [
             image={service.image}
             href={service.href}
             city={city}
+            ctaLabel={service.ctaLabel}
+            subLinks={service.subLinks}
           />
         ))
       }

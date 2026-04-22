@@ -59,15 +59,32 @@
 
 import { OpenPanel } from '@openpanel/sdk';
 
-// ── Server-side OpenPanel instance ────────────────────────────────
-
-const op = new OpenPanel({
-  clientId: import.meta.env.OPENPANEL_CLIENT_ID || 'edc36a20-3fa1-49e8-bae6-d0be0abfadec',
-  clientSecret: import.meta.env.OPENPANEL_CLIENT_SECRET || '',
-});
-
 interface EventProps {
   [key: string]: string | number | boolean;
+}
+
+export interface SessionHandle {
+  deviceId?: string;
+  sessionId?: string;
+}
+
+/**
+ * Build a fresh per-request OpenPanel instance. Never share across requests:
+ * the SDK mutates instance state (this.profileId, this.global) on identify()
+ * and setGlobalProperties(), which would bleed between concurrent SSR visitors.
+ *
+ * When the browser forwards its deviceId/sessionId (via hidden form fields),
+ * passing them here stitches the server event into the same OpenPanel session
+ * as the preceding screen_view / scroll_depth / form_step events.
+ */
+function makeOp(session?: SessionHandle) {
+  const op = new OpenPanel({
+    clientId: import.meta.env.OPENPANEL_CLIENT_ID || 'edc36a20-3fa1-49e8-bae6-d0be0abfadec',
+    clientSecret: import.meta.env.OPENPANEL_CLIENT_SECRET || '',
+  });
+  if (session?.deviceId) op.deviceId = session.deviceId;
+  if (session?.sessionId) op.sessionId = session.sessionId;
+  return op;
 }
 
 /**
@@ -80,11 +97,12 @@ interface EventProps {
 export async function trackServerEvent(
   eventName: string,
   props?: EventProps,
+  session?: SessionHandle,
 ) {
   if (!import.meta.env.OPENPANEL_CLIENT_SECRET) return;
 
   try {
-    await op.track(eventName, props || {});
+    await makeOp(session).track(eventName, props || {});
   } catch (e) {
     // Analytics should never block the user flow
     console.error('[analytics] server event failed:', e);
@@ -107,37 +125,31 @@ export async function trackServerEvent(
 export async function trackRevenue(
   amount: number,
   props?: EventProps,
+  session?: SessionHandle,
 ) {
   if (!import.meta.env.OPENPANEL_CLIENT_SECRET) return;
 
   try {
-    const isolated = new OpenPanel({
-      clientId: import.meta.env.OPENPANEL_CLIENT_ID || 'edc36a20-3fa1-49e8-bae6-d0be0abfadec',
-      clientSecret: import.meta.env.OPENPANEL_CLIENT_SECRET || '',
-    });
-
-    await isolated.revenue(amount, props || {});
+    await makeOp(session).revenue(amount, props || {});
   } catch (e) {
     console.error('[analytics] revenue tracking failed:', e);
   }
 }
 
-export async function identifyProfile(profile: {
-  email: string;
-  firstName?: string;
-  lastName?: string;
-  phone?: string;
-  properties?: Record<string, string | number | boolean>;
-}) {
+export async function identifyProfile(
+  profile: {
+    email: string;
+    firstName?: string;
+    lastName?: string;
+    phone?: string;
+    properties?: Record<string, string | number | boolean>;
+  },
+  session?: SessionHandle,
+) {
   if (!import.meta.env.OPENPANEL_CLIENT_SECRET) return;
 
   try {
-    const isolated = new OpenPanel({
-      clientId: import.meta.env.OPENPANEL_CLIENT_ID || 'edc36a20-3fa1-49e8-bae6-d0be0abfadec',
-      clientSecret: import.meta.env.OPENPANEL_CLIENT_SECRET || '',
-    });
-
-    await isolated.identify({
+    await makeOp(session).identify({
       profileId: profile.email,
       email: profile.email,
       ...(profile.firstName && { firstName: profile.firstName }),

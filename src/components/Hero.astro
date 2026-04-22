@@ -158,21 +158,22 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
               <div class="flex flex-col gap-2.5">
                 <div>
                   <label for="hero-name" class="hero-label">Full Name</label>
-                  <input type="text" id="hero-name" name="fullName" placeholder="Your full name" required autocomplete="name" maxlength="100" class="hero-input w-full" />
+                  <input type="text" id="hero-name" name="fullName" placeholder="Your full name" required autocomplete="name" maxlength="100" class="hero-input w-full" data-op-block />
+
                 </div>
                 <div>
                   <label for="hero-phone" class="hero-label">Phone Number</label>
-                  <input type="tel" id="hero-phone" name="phone" placeholder="(650) 977-3351" required autocomplete="tel" inputmode="tel" maxlength="16" class="hero-input w-full" />
+                  <input type="tel" id="hero-phone" name="phone" placeholder="(650) 977-3351" required autocomplete="tel" inputmode="tel" maxlength="16" class="hero-input w-full" data-op-block />
                   <p class="mt-1 text-[0.6875rem] leading-tight text-muted">We'll only call to schedule your inspection</p>
                 </div>
                 <div>
                   <label for="hero-email" class="hero-label">Email</label>
-                  <input type="email" id="hero-email" name="email" placeholder="name@example.com" required autocomplete="email" inputmode="email" maxlength="254" class="hero-input w-full" />
+                  <input type="email" id="hero-email" name="email" placeholder="name@example.com" required autocomplete="email" inputmode="email" maxlength="254" class="hero-input w-full" data-op-block />
                 </div>
                 <div>
                   <label for="hero-address" class="hero-label">Project Address</label>
                   <mapbox-address-autofill access-token={mapboxToken} country="us" data-proximity={proximity || ''} data-bbox="-123.1,36.9,-121.2,38.9" theme={JSON.stringify({ variables: { fontFamily: "'DM Sans', sans-serif", colorText: "#1A1A1A", colorPrimary: "#256346", borderRadius: "10px", unit: "14px" }})}>
-                    <input type="text" id="hero-address" name="address" placeholder="123 Main St, Oakland, CA" required autocomplete="address-line1" maxlength="200" class="hero-input w-full" />
+                    <input type="text" id="hero-address" name="address" placeholder="123 Main St, Oakland, CA" required autocomplete="address-line1" maxlength="200" class="hero-input w-full" data-op-block />
                   </mapbox-address-autofill>
                 </div>
               </div>
@@ -212,6 +213,8 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
               <input type="hidden" name="utm_campaign" id="utm-campaign-input" />
               <input type="hidden" name="utm_content" id="utm-content-input" />
               <input type="hidden" name="utm_term" id="utm-term-input" />
+              <input type="hidden" name="op_device_id" id="op-device-id-input" />
+              <input type="hidden" name="op_session_id" id="op-session-id-input" />
               <div class="grid grid-cols-2 gap-2">
                 {step2Options.map((option) => (
                   <button
@@ -262,6 +265,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
               <button
                 type="submit"
                 class="mt-4 w-full rounded-full bg-yellow py-3.5 text-center font-hamilton-display text-sm font-bold tracking-[0.05em] text-primary uppercase"
+                data-track="hero_submit_click"
               >
                 Get Your Free Quote
               </button>
@@ -330,6 +334,24 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     const el = document.getElementById(elId) as HTMLInputElement;
     if (el) el.value = sessionStorage.getItem(storageKey) || '';
   });
+
+  // Populate OpenPanel deviceId/sessionId into hidden fields so server-side
+  // trackServerEvent stitches to the same session as the browser's screen_view
+  // and form_step events. Poll briefly — the SDK sets these asynchronously on
+  // first track() response. Falls back to empty (server still gets the event).
+  const opDeviceEl = document.getElementById('op-device-id-input') as HTMLInputElement | null;
+  const opSessionEl = document.getElementById('op-session-id-input') as HTMLInputElement | null;
+  function syncOpIds() {
+    const op = (window as any).op;
+    const inst = op?.instance || op?.getInstance?.();
+    const did = inst?.deviceId || '';
+    const sid = inst?.sessionId || '';
+    if (opDeviceEl && did) opDeviceEl.value = did;
+    if (opSessionEl && sid) opSessionEl.value = sid;
+  }
+  syncOpIds();
+  setTimeout(syncOpIds, 500);
+  setTimeout(syncOpIds, 2000);
 
   // Track initial step 1 view — showStep() only fires on transitions, so the
   // default-visible step 1 was previously invisible in the funnel.
@@ -589,9 +611,11 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
       const leadName = formData.get('fullName') as string || '';
       const leadEmail = formData.get('email') as string || '';
       const leadPhone = formData.get('phone') as string || '';
-      // Build UTM props from sessionStorage for client-side attribution
+      // Build first-touch attribution props (UTMs + ad-IDs + landing) from
+      // sessionStorage so the client-side identify call carries the same
+      // source context as the server-side identify.
       const utmProps: Record<string, string> = {};
-      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(k => {
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid', 'referrer', 'landing_page'].forEach(k => {
         const v = sessionStorage.getItem('he_' + k);
         if (v) utmProps[k] = v;
       });

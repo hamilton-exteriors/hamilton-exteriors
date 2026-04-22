@@ -24,6 +24,8 @@ export const server = {
       utm_campaign: z.string().optional(),
       utm_content: z.string().optional(),
       utm_term: z.string().optional(),
+      op_device_id: z.string().optional(),
+      op_session_id: z.string().optional(),
       consent: z.literal('on', {
         errorMap: () => ({ message: 'You must agree to the terms' }),
       }),
@@ -61,7 +63,13 @@ export const server = {
         // Don't block the user — still show success since we captured the data
       }
 
-      // Server-side analytics — bypasses ad blockers, 100% accurate
+      // Server-side analytics — bypasses ad blockers, 100% accurate.
+      // Forward the browser's deviceId/sessionId so this event stitches onto
+      // the visitor's pre-submit session (screen_view, form_step, scroll_depth).
+      const session = {
+        ...(input.op_device_id && { deviceId: input.op_device_id }),
+        ...(input.op_session_id && { sessionId: input.op_session_id }),
+      };
       const [firstName, ...lastParts] = input.fullName.split(' ');
       identifyProfile({
         email: input.email,
@@ -78,8 +86,10 @@ export const server = {
           ...(input.utm_campaign && { utm_campaign: input.utm_campaign }),
           ...(input.utm_content && { utm_content: input.utm_content }),
           ...(input.utm_term && { utm_term: input.utm_term }),
+          ...(input.gclid && { gclid: input.gclid }),
+          ...(input.fbclid && { fbclid: input.fbclid }),
         },
-      });
+      }, session);
       trackServerEvent('lead_form_submitted', {
         profileId: input.email,
         service: input.service || 'general',
@@ -90,7 +100,7 @@ export const server = {
         ...(input.utm_campaign && { utm_campaign: input.utm_campaign }),
         ...(input.utm_content && { utm_content: input.utm_content }),
         ...(input.utm_term && { utm_term: input.utm_term }),
-      });
+      }, session);
 
       // Meta CAPI — server-side Lead event (deduped with client-side Pixel via eventId)
       const eventId = crypto.randomUUID();

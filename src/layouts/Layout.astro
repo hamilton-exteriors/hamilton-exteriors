@@ -413,13 +413,67 @@ const graphJsonLd = graphItems.length > 0 ? {
     {/* Analytics excluded for dev/owner IPs to keep data clean */}
     {!isExcludedIp && (
       <>
-        {/* OpenPanel Analytics — cookie-free, session replay, funnels, ~2.3KB */}
+        {/* OpenPanel Analytics — cookie-free, session replay, funnels, ~2.3KB.
+            Session replay sampled at 25% with full input masking + explicit
+            PII blocking on fields tagged [data-op-block] (name/email/phone/address). */}
         <OpenPanelComponent
           clientId="edc36a20-3fa1-49e8-bae6-d0be0abfadec"
           trackScreenViews={true}
           trackOutgoingLinks={true}
           trackAttributes={true}
+          sessionReplay={{
+            enabled: true,
+            sampleRate: 0.25,
+            maskAllInputs: true,
+            maskAllText: false,
+            blockSelector: '[data-op-block]',
+          }}
         />
+
+        {/* Attribution global properties — persist UTMs/ad-IDs/referrer/landing_page
+            in sessionStorage (first-touch within session) and attach to every
+            OpenPanel event via setGlobalProperties. Runs inline in <head>, after
+            the OP queue proxy is installed, so globals are applied before any
+            track() call (including trackScreenViews fired by the SDK on load). */}
+        <script is:inline>
+          (function(){
+            try {
+              var params = new URLSearchParams(window.location.search);
+              var keys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'];
+              keys.forEach(function(k){
+                var v = params.get(k);
+                if (v) sessionStorage.setItem('he_' + k, v);
+              });
+              // First-touch referrer + landing page (don't overwrite on internal nav)
+              if (!sessionStorage.getItem('he_referrer')) {
+                var ref = document.referrer || '';
+                var sameHost = false;
+                try { sameHost = ref && new URL(ref).hostname === window.location.hostname; } catch(e){}
+                sessionStorage.setItem('he_referrer', sameHost ? '' : ref);
+              }
+              if (!sessionStorage.getItem('he_landing_page')) {
+                sessionStorage.setItem('he_landing_page', window.location.pathname + window.location.search);
+              }
+              var globals = {};
+              keys.forEach(function(k){
+                var v = sessionStorage.getItem('he_' + k);
+                if (v) globals[k] = v;
+              });
+              var r = sessionStorage.getItem('he_referrer');
+              if (r) globals.referrer = r;
+              var lp = sessionStorage.getItem('he_landing_page');
+              if (lp) globals.landing_page = lp;
+              // OpenPanelComponent installs window.op as a queue proxy via
+              // getInitSnippet() BEFORE this script runs, so window.op is
+              // guaranteed to exist. Push unconditionally — any null/length-0
+              // check here silently drops attribution on the very first page
+              // view, which is the exact moment it matters most.
+              if (Object.keys(globals).length) {
+                (window.op = window.op || function(){(window.op.q = window.op.q || []).push(arguments);})('setGlobalProperties', globals);
+              }
+            } catch(e) {}
+          })();
+        </script>
 
         {/* Meta Pixel — deferred until first user interaction to keep LCP/TBT clean */}
         {metaPixelId && (

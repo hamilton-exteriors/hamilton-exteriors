@@ -35,7 +35,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       "We'll contact you in 3-5 minutes to schedule your inspection.",
     serviceType: 'Roofing',
     heroImageKey: 'heroRoofing',
-    titlePattern: 'Reliable Roofing in {city}, CA | Hamilton Exteriors',
+    titlePattern: 'Reliable Roofing Contractor in {city}, CA',
     descriptionPattern:
       'Hamilton Exteriors provides architect-led roofing services in {city}, {county} County, CA. Composite shingles, metal roofs, tile, and solar. CSLB #1078806.',
     faqTemplates: [
@@ -104,7 +104,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       "We'll contact you in 3-5 minutes to schedule your inspection.",
     serviceType: 'Siding',
     heroImageKey: 'serviceSiding',
-    titlePattern: 'Durable Siding in {city}, CA | Hamilton Exteriors',
+    titlePattern: 'Durable Siding Contractor in {city}, CA',
     descriptionPattern:
       'Hamilton Exteriors — James Hardie Elite Preferred siding installer in {city}, {county} County. Fiber cement, vinyl, stucco, and waterproofing. CSLB #1078806.',
     faqTemplates: [
@@ -173,7 +173,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       "We'll contact you in 3-5 minutes to schedule your inspection.",
     serviceType: 'Windows',
     heroImageKey: 'heroWindows',
-    titlePattern: 'Energy-Efficient Windows in {city}, CA | Hamilton Exteriors',
+    titlePattern: 'Energy-Efficient Window Replacement in {city}, CA',
     descriptionPattern:
       'Hamilton Exteriors provides energy-efficient window installation in {city}, {county} County. Single hung, double hung, sliding, casement, and more. CSLB #1078806.',
     faqTemplates: [
@@ -254,7 +254,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       "We'll contact you in 3-5 minutes to discuss your ADU project.",
     serviceType: 'ADU',
     heroImageKey: 'aduHero',
-    titlePattern: 'ADU Builder in {city}, CA | Design & Construction | Hamilton Exteriors',
+    titlePattern: 'ADU Builder in {city}, CA — Design & Construction',
     descriptionPattern:
       'Hamilton Exteriors is a full-service ADU builder in {city}, {county} County. Design, architecture, engineering, permitting, and construction — all under one roof.',
     faqTemplates: [
@@ -323,7 +323,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       "Tell us about your dream home. We'll call within 5 minutes to discuss your project.",
     serviceType: 'Custom Home',
     heroImageKey: 'serviceCustomHomesFull',
-    titlePattern: 'Custom Home Builder in {city}, CA | Hamilton Exteriors',
+    titlePattern: 'Custom Home Builder in {city}, CA',
     descriptionPattern:
       'Hamilton Exteriors is a full-service custom home builder in {city}, {county} County. Design, architecture, engineering, permitting, and construction — all under one roof.',
     faqTemplates: [
@@ -392,7 +392,7 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       "We'll contact you in 3-5 minutes to discuss your project.",
     serviceType: 'Addition',
     heroImageKey: 'serviceAdditions',
-    titlePattern: 'Home Additions & Construction in {city}, CA | Hamilton Exteriors',
+    titlePattern: 'Home Additions & Room Extensions in {city}, CA',
     descriptionPattern:
       'Hamilton Exteriors builds home additions, ADUs, second stories, and custom homes in {city}, {county} County. Design, engineering, permits, and construction — all under one roof.',
     faqTemplates: [

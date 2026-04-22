@@ -1,0 +1,297 @@
+---
+/**
+ * City-specific second story addition pages.
+ *
+ * Routes:
+ *   /additions/second-story-addition-san-francisco-ca
+ *   /additions/second-story-addition-san-jose-ca
+ *   /additions/second-story-addition-oakland-ca
+ *   /additions/second-story-addition-concord-ca
+ *   /additions/second-story-addition-berkeley-ca
+ *   /additions/second-story-addition-walnut-creek-ca
+ *
+ * Hub: /additions/second-story
+ *
+ * Self-contained — no Ghost CMS dependency, no shared service-data dependency.
+ * Content lives in src/data/second-story-cities.ts.
+ */
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import AnnouncementBar from '../../components/AnnouncementBar.astro';
+import Navbar from '../../components/Navbar.astro';
+import LogoSlider from '../../components/LogoSlider.astro';
+import Section from '../../components/Section.astro';
+import Reviews from '../../components/Reviews.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactUs from '../../components/ContactUs.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { PHONE_DISPLAY, PHONE_HREF } from '../../lib/constants';
+import { serviceAdditions } from '../../lib/images';
+import { SECOND_STORY_CITY_MAP, SECOND_STORY_CITIES } from '../../data/second-story-cities';
+
+const { city: citySlug } = Astro.params;
+const data = citySlug ? SECOND_STORY_CITY_MAP[citySlug] : undefined;
+if (!data) return Astro.redirect('/additions/second-story', 302);
+
+const siteUrl = 'https://hamilton-exteriors.com';
+const pageUrl = `${siteUrl}/additions/second-story-addition-${data.slug}-ca`;
+const heroAlt = `Second story addition under construction on a home in ${data.city}, California`;
+
+// --- Other cities for cross-linking ---
+const otherCities = SECOND_STORY_CITIES.filter(c => c.slug !== data.slug);
+
+// --- Schema ---
+const breadcrumbSchema = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: 'Home Additions', item: `${siteUrl}/additions` },
+    { '@type': 'ListItem', position: 3, name: 'Second Story Additions', item: `${siteUrl}/additions/second-story` },
+    { '@type': 'ListItem', position: 4, name: `${data.city}, CA`, item: pageUrl },
+  ],
+};
+
+const serviceSchema = {
+  '@type': 'Service',
+  '@id': `${pageUrl}#service`,
+  name: `Second Story Addition in ${data.city}, CA`,
+  url: pageUrl,
+  serviceType: 'Second Story Home Addition',
+  description: data.description,
+  provider: { '@id': `${siteUrl}/#business` },
+  areaServed: {
+    '@type': 'City',
+    name: data.city,
+    containedInPlace: {
+      '@type': 'AdministrativeArea',
+      name: data.county,
+      containedInPlace: { '@type': 'State', name: 'California' },
+    },
+    geo: { '@type': 'GeoCoordinates', longitude: data.geo[0], latitude: data.geo[1] },
+  },
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'USD',
+    lowPrice: data.costPerSqFt.low,
+    highPrice: data.costPerSqFt.high,
+    unitText: 'per square foot installed',
+    availability: 'https://schema.org/InStock',
+    seller: { '@id': `${siteUrl}/#business` },
+    areaServed: { '@type': 'City', name: data.city },
+  },
+};
+
+const faqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: data.faqs.map(f => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+};
+
+const jsonLd = [breadcrumbSchema, serviceSchema, faqSchema];
+
+const geoPosition = `${data.geo[1]};${data.geo[0]}`;
+---
+
+<Layout
+  title={data.title}
+  description={data.description}
+  heroImage={serviceAdditions}
+  preloadHero
+  jsonLd={jsonLd}
+  geoPlacename={`${data.city}, CA`}
+  geoPosition={geoPosition}
+  canonical={pageUrl}
+>
+  <AnnouncementBar slot="header" />
+  <Navbar slot="header" />
+
+  <Breadcrumb items={[
+    { label: 'Home', href: '/' },
+    { label: 'Home Additions', href: '/additions' },
+    { label: 'Second Story Additions', href: '/additions/second-story' },
+    { label: `${data.city}, CA` },
+  ]} />
+
+  <!-- Hero -->
+  <section class="relative min-h-[420px] w-full md:min-h-[500px]" aria-label={`${data.headline} hero`}>
+    <Image
+      src={serviceAdditions}
+      alt={heroAlt}
+      width={1440}
+      height={600}
+      class="block h-[420px] w-full object-cover md:h-[500px]"
+      loading="eager"
+      decoding="async"
+    />
+    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(26,26,26,0.85) 0%, rgba(26,26,26,0.4) 100%);">
+      <div class="mx-auto flex h-full max-w-[1200px] flex-col justify-center px-5">
+        <a
+          href="/additions/second-story"
+          class="mb-4 inline-block font-satoshi text-xs font-semibold tracking-[0.12em] text-yellow uppercase no-underline transition-opacity hover:opacity-80 focus-visible:ring-2 focus-visible:ring-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal focus-visible:outline-none rounded-sm"
+        >
+          &larr; All second story additions
+        </a>
+        <h1 class="max-w-[640px] text-[clamp(2.25rem,6vw,3.5rem)] leading-[1.15] text-white">
+          {data.headline}
+        </h1>
+        <p class="mt-4 max-w-[540px] text-[1.0625rem] leading-[1.6] text-white/85">
+          Architect-led design, in-house structural engineering, and full permits through {data.buildingDept}.
+        </p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a
+            href="#quote"
+            class="inline-block rounded-full bg-yellow px-8 py-3.5 font-hamilton-display text-base font-normal tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal focus-visible:outline-none"
+          >
+            Get Your Free Quote
+          </a>
+          <a
+            href={PHONE_HREF}
+            class="inline-block rounded-full border-2 border-white/40 px-7 py-3 text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal focus-visible:outline-none"
+          >
+            {PHONE_DISPLAY}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <LogoSlider />
+
+  <!-- Reviewed-by line -->
+  <div class="mx-auto max-w-[800px] px-5 pt-6 pb-2">
+    <p class="text-[0.8125rem] text-muted">
+      Reviewed by <a href="/about/alex-hamilton-li" class="text-muted underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-sm">Alexander Hamilton Li</a>, Architect &amp; General Contractor &middot; <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1078806" target="_blank" rel="noopener noreferrer" class="text-muted underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-sm">CSLB #1078806</a> &middot; Updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+    </p>
+  </div>
+
+  <!-- Intro -->
+  <Section bg="white" padding="lg" width="narrow">
+    <div class="flex flex-col gap-6">
+      {data.intro.map((para) => (
+        <p class="text-[1.0625rem] leading-[1.8] text-charcoal">{para}</p>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Key facts row -->
+  <Section bg="cream" padding="md" width="narrow">
+    <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+      <div class="flex flex-col">
+        <span class="font-hamilton-display text-[clamp(1.5rem,3.5vw,2rem)] leading-[1.2] font-normal text-primary">${data.costPerSqFt.low}–${data.costPerSqFt.high}</span>
+        <span class="mt-1 text-[0.8125rem] text-muted">Per sq ft installed</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-hamilton-display text-[clamp(1.5rem,3.5vw,2rem)] leading-[1.2] font-normal text-primary">800–1,500</span>
+        <span class="mt-1 text-[0.8125rem] text-muted">Typical sq ft added</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-hamilton-display text-[clamp(1.5rem,3.5vw,2rem)] leading-[1.2] font-normal text-primary">CSLB</span>
+        <span class="mt-1 text-[0.8125rem] text-muted">#1078806 verified</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-hamilton-display text-[clamp(1.5rem,3.5vw,2rem)] leading-[1.2] font-normal text-primary">2018</span>
+        <span class="mt-1 text-[0.8125rem] text-muted">Building in {data.city} since</span>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Body sections -->
+  <Section bg="white" padding="lg" width="narrow">
+    {data.sections.map((sec) => (
+      <div class="mb-10 last:mb-0">
+        <h2 class="mb-4 font-hamilton-display text-[clamp(1.5rem,4vw,2rem)] font-normal leading-[1.2] text-charcoal">{sec.heading}</h2>
+        <p class="text-[1.0625rem] leading-[1.8] text-charcoal">{sec.body}</p>
+      </div>
+    ))}
+  </Section>
+
+  <!-- Building department call-out -->
+  <Section bg="cream" padding="md" width="narrow">
+    <div class="rounded-lg border border-border bg-white p-6 md:p-8">
+      <p class="mb-2 font-satoshi text-xs font-semibold tracking-[0.08em] text-primary uppercase">Local jurisdiction</p>
+      <h3 class="mb-3 font-hamilton-display text-[1.375rem] leading-[1.25] font-normal text-charcoal">
+        {data.buildingDept}
+      </h3>
+      <p class="mb-4 text-[1rem] leading-[1.7] text-charcoal">
+        {data.zoningNotes}
+      </p>
+      {data.buildingDeptUrl && (
+        <a
+          href={data.buildingDeptUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm font-semibold text-primary underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-sm"
+        >
+          {data.buildingDept} permit information &rarr;
+        </a>
+      )}
+    </div>
+
+    <div class="mt-6 flex flex-wrap gap-3 text-sm text-muted">
+      <span>Local resources:</span>
+      <a href="/additions/second-story" class="text-primary underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-sm">Second story addition hub</a>
+      <span>&middot;</span>
+      <a href={data.serviceAreaHref} class="text-primary underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-sm">{data.city} service area</a>
+      <span>&middot;</span>
+      <a href="/additions" class="text-primary underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-sm">All home additions</a>
+    </div>
+  </Section>
+
+  <Reviews />
+
+  <FAQ extraFaqs={data.faqs} />
+
+  <!-- Inline CTA -->
+  <Section bg="cream" padding="md">
+    <div class="text-center">
+      <h2 class="mb-4">Get your {data.city} second story estimate</h2>
+      <p class="mx-auto mb-7 max-w-[520px] text-base text-muted">
+        Tell us about your home and we will reach out within 5 minutes to schedule a free feasibility consultation.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a
+          href="#quote"
+          class="inline-block rounded-full bg-yellow px-9 py-3.5 font-hamilton-display text-base font-normal tracking-[0.04em] text-heading uppercase no-underline transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-yellow focus-visible:ring-offset-2 focus-visible:outline-none"
+        >
+          Get Your Free Quote
+        </a>
+        <a
+          href={PHONE_HREF}
+          class="inline-block rounded-full border-2 border-primary px-8 py-3 text-sm font-semibold text-primary no-underline transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none"
+        >
+          Call {PHONE_DISPLAY}
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Cross-links to other city pages -->
+  <Section bg="white" padding="md" borderTop>
+    <p class="mb-4 font-satoshi text-xs font-semibold tracking-[0.08em] text-muted uppercase">Where we serve</p>
+    <div class="flex flex-wrap gap-3">
+      <a
+        href="/additions/second-story"
+        class="rounded-full border border-border px-5 py-2.5 text-sm font-medium text-primary no-underline transition-opacity hover:opacity-80 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none"
+      >
+        Bay Area hub
+      </a>
+      {otherCities.map((c) => (
+        <a
+          href={`/additions/second-story-addition-${c.slug}-ca`}
+          class="rounded-full border border-border px-5 py-2.5 text-sm font-medium text-primary no-underline transition-opacity hover:opacity-80 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none"
+        >
+          {c.city}
+        </a>
+      ))}
+    </div>
+  </Section>
+
+  <div id="quote" class="scroll-mt-16"></div>
+  <ContactUs />
+
+  <Footer slot="footer" />
+</Layout>

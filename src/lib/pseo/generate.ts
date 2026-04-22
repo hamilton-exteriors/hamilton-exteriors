@@ -549,7 +549,7 @@ export function generateGeneralCityPage(seed: CitySeed): GeneralCityPageData {
     state,
     slug,
     countySlug,
-    title: `Roofing & Exteriors in ${city}, CA | Hamilton Exteriors`,
+    title: `Roofing, Siding & Exterior Contractor in ${city}, CA`,
     description: `${city}'s trusted design-build contractor. Roofing, siding, windows, ADUs & custom homes in ${county} County. Licensed, insured. Free estimates.`,
     hero: {
       headline: `Roofing, Siding &  Exterior Remodeling  in ${city}`,
@@ -639,7 +639,7 @@ export function generateCountyPage(countyUrlSlug: string): CountyPageSeedData | 
     countySlug: countyUrlSlug,
     state: 'CA',
     adjective: COUNTY_ADJECTIVES[shortCounty] || 'Trusted',
-    title: `${displayCounty} County Roofing & Exteriors | Hamilton Exteriors`,
+    title: `${displayCounty} County Roofing, Siding & Exteriors Contractor`,
     description: `Hamilton Exteriors serves ${displayCounty} County — roofing, siding, windows, ADUs & custom homes. 50-year warranty. CSLB #1078806. Free estimate: (650) 977-3351.`,
     heroHeadline: `Roofing, Siding &  Exterior Remodeling  in ${displayCounty} County`,
     heroFormTitle: 'Get Your Free Estimate',

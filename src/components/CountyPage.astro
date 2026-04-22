@@ -15,12 +15,14 @@ import Breadcrumb from './Breadcrumb.astro';
 import Section from './Section.astro';
 import SectionLabel from './SectionLabel.astro';
 import ServiceCard from './ServiceCard.astro';
+import { getCountyOverride } from '../lib/city-local-facts';
 
 interface Props {
   data: CountyPageData;
 }
 
 const { data } = Astro.props;
+const countyOverride = getCountyOverride(data.countySlug.endsWith('-county-ca') ? data.countySlug : `${data.countySlug}-county-ca`);
 
 const services = [
   { title: 'Roofing', description: 'Full roof replacements and repairs with GAF-certified shingles and a 50-year warranty. Most jobs done in 3\u20135 days.', image: serviceRoofing, href: `/service-areas/${data.countySlug}/roofing` },
@@ -154,6 +156,38 @@ const services = [
       </div>
     </div>
   </section>
+)}
+
+<!-- County-level comparison block (city-specific override) -->
+{countyOverride?.cityComparison && countyOverride.cityComparison.length > 0 && (
+  <Section bg="cream" padding="md">
+    <SectionLabel class="mb-3">Top Cities We Serve</SectionLabel>
+    <h2 class="mb-8 text-[clamp(24px,4vw,32px)] leading-[1.3]">
+      Cities and what makes each one different
+    </h2>
+    <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {countyOverride.cityComparison.map((c) => (
+        <a href={c.href} class="group block bg-white p-6 no-underline transition-opacity hover:opacity-90">
+          <p class="mb-2 font-hamilton-display text-lg text-heading">{c.name}</p>
+          <p class="mb-3 text-sm leading-[1.6] text-muted">{c.note}</p>
+          <span class="text-sm font-semibold text-primary group-hover:underline">View {c.name} services &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </Section>
+)}
+
+<!-- County-level permit context (city-specific override) -->
+{countyOverride?.countyPermitContext && (
+  <Section bg="white" padding="md" width="narrow">
+    <SectionLabel class="mb-3">Permits and Compliance</SectionLabel>
+    <h2 class="mb-4 text-[clamp(22px,3.5vw,28px)] leading-[1.3]">
+      {countyOverride.countyPermitContext.heading}
+    </h2>
+    <p class="text-base leading-[1.75] text-body">
+      {countyOverride.countyPermitContext.body}
+    </p>
+  </Section>
 )}
 
 <Reviews />

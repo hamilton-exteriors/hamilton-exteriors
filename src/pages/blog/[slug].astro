@@ -455,8 +455,43 @@ const serviceLinks = matchedLinksMap.size > 0
       </section>
     )}
 
+    {/* Author byline — sits above the article body for E-E-A-T */}
+    <section class="w-full bg-white pt-10">
+      <div class="mx-auto max-w-[800px] px-5">
+        <div class="flex items-center gap-4 border-y border-border py-5">
+          <a
+            href="/about/alex-hamilton-li"
+            aria-label="Read full bio of Alexander Hamilton Li"
+            class="block h-14 w-14 shrink-0 overflow-hidden rounded-full transition-opacity hover:opacity-85 sm:h-16 sm:w-16"
+          >
+            <img
+              src="/images/alex-hamilton-li.jpg"
+              alt="Alexander Hamilton Li, architect and general contractor"
+              width="64"
+              height="64"
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-cover"
+              style="object-position: 30% 25%;"
+            />
+          </a>
+          <div class="min-w-0 flex-1">
+            <p class="font-hamilton-display text-base leading-tight text-(--color-heading) sm:text-lg">
+              By <a href="/about/alex-hamilton-li" class="text-(--color-heading) no-underline hover:underline">Alexander Hamilton Li</a>
+            </p>
+            <p class="mt-1 font-dm-sans text-[13px] leading-snug text-(--color-muted) sm:text-sm">
+              Architect &amp; General Contractor &middot; <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/LicenseDetail.aspx?LicNum=1078806" target="_blank" rel="noopener noreferrer" class="text-(--color-muted) underline underline-offset-2 hover:text-(--color-heading)">CSLB #1078806</a>
+            </p>
+            <p class="mt-1 font-dm-sans text-[13px] leading-snug sm:text-sm">
+              <a href="/about/alex-hamilton-li" class="text-(--color-primary) no-underline hover:underline">Read full bio &rarr;</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     {/* Content */}
-    <section class="w-full bg-white pt-[60px] pb-10">
+    <section class="w-full bg-white pt-10 pb-10">
       <div class="mx-auto max-w-[800px] px-5">
         <div id="article-content" class="ghost-content" set:html={processedHtml} />
       </div>

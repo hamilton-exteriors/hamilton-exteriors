@@ -21,6 +21,7 @@ import type { CityServicePageData } from '../../lib/city-service-types';
 import { getCityProximity } from '../../lib/city-coordinates';
 import { getCityWikipedia } from '../../lib/city-wikipedia';
 import { getCityOgImage } from '../../lib/city-og-images';
+import { getCityLocalFacts, getCountyOverride } from '../../lib/city-local-facts';
 
 /** Convert getCityProximity "lng,lat" to geo.position "lat;lng" meta tag format */
 function toGeoPosition(citySlug: string): string | undefined {
@@ -89,6 +90,13 @@ if (segments.length === 3) {
   cityData = await getServiceAreaCity(countySlug, citySlug);
   if (!cityData) return Astro.rewrite('/404');
 
+  // Allow per-city overrides (city-local-facts.ts) to replace templated Ghost
+  // meta_title / meta_description with city-specific copy. Used to push
+  // page-2/page-3 cities onto page 1.
+  const cityFactsOverride = getCityLocalFacts(citySlug);
+  if (cityFactsOverride?.metaTitle) cityData.title = cityFactsOverride.metaTitle;
+  if (cityFactsOverride?.metaDescription) cityData.description = cityFactsOverride.metaDescription;
+
 } else if (segments.length === 1) {
   // County page: /service-areas/{county}
   const [countySlug] = segments;
@@ -99,6 +107,12 @@ if (segments.length === 3) {
   if (countyData.cities) {
     countyData.cities = resolveImages(countyData.cities) as typeof countyData.cities;
   }
+
+  // Allow per-county overrides (city-local-facts.ts) to replace templated
+  // Ghost meta_title / meta_description for under-performing county pages.
+  const countyOverride = getCountyOverride(countySlug);
+  if (countyOverride?.metaTitle) countyData.title = countyOverride.metaTitle;
+  if (countyOverride?.metaDescription) countyData.description = countyOverride.metaDescription;
 
 } else {
   return Astro.rewrite('/404');

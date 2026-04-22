@@ -2,10 +2,9 @@ import type { ServicePageData } from '../../lib/service-page-types';
 import { serviceAdditions, serviceAdu, serviceCustomHomes, financingHouse } from '../../lib/images';
 
 export const data: ServicePageData = {
-  title:
-    'Home Additions & Construction in the Bay Area | Hamilton Exteriors',
+  title: 'Home Addition Contractor Bay Area | Second Story & Room',
   description:
-    'Bay Area home additions, second stories & ADUs. Design, permits & construction under one roof. 50-year warranty. Call (650) 977-3351.',
+    'Architect-led home addition contractor for the Bay Area. Second story builds, room extensions, and full remodels from $200 per sq ft. CSLB #1078806.',
   announcementText: 'Now Booking Summer 2026 Additions — Schedule Your Consultation',
   definition: 'A home addition expands an existing residence by adding new living space — either outward (room extension), upward (second story), or as a detached unit (ADU). Bay Area home additions typically cost $200 to $500 per square foot and require building permits from the local jurisdiction.',
   expertQuotes: [

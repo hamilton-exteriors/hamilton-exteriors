@@ -85,6 +85,16 @@ const counties = [
 ];
 const services = ['roofing', 'siding', 'windows', 'adu', 'custom-homes', 'additions', 'decks'];
 
+// Second-story addition city cluster (keep in sync with src/data/second-story-cities.ts)
+const secondStoryCityPages = [
+  'https://hamilton-exteriors.com/additions/second-story-addition-san-francisco-ca',
+  'https://hamilton-exteriors.com/additions/second-story-addition-san-jose-ca',
+  'https://hamilton-exteriors.com/additions/second-story-addition-oakland-ca',
+  'https://hamilton-exteriors.com/additions/second-story-addition-concord-ca',
+  'https://hamilton-exteriors.com/additions/second-story-addition-berkeley-ca',
+  'https://hamilton-exteriors.com/additions/second-story-addition-walnut-creek-ca',
+];
+
 const cityPages = counties.flatMap(c =>
   c.cities.map(city => `https://hamilton-exteriors.com/service-areas/${c.slug}/${city}`)
 );
@@ -232,6 +242,8 @@ export default defineConfig({
       'https://hamilton-exteriors.com/additions',
       // Sub-service pages (26 pages)
       ...subServicePages,
+      // Second-story addition city cluster (6 pages)
+      ...secondStoryCityPages,
       // Blog posts from Ghost CMS
       ...blogSitemapEntries.map(e => e.url),
       // Blog tag pages — noindexed (thin content), excluded from sitemap
