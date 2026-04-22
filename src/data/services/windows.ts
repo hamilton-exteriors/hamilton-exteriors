@@ -12,7 +12,7 @@ import {
 export const data: ServicePageData = {
   title: 'Window Replacement Bay Area | Energy Efficient Installs',
   description:
-    'Energy-efficient window replacement across the Bay Area. Casement, hung, slider, picture, and patio doors that beat Title 24 by 15 to 20%. CSLB #1078806.',
+    'Bay Area window replacement, energy-efficient Low-E glass beats Title 24 by 15–20%. Casement, hung, slider, picture, patio doors from $450. CSLB #1078806. Free quote.',
   definition: 'Window replacement involves removing old or failing windows and installing new energy-efficient units with modern Low-E glass, improved seals, and better insulation. ENERGY STAR-certified replacement windows save homeowners $125 to $465 per year on energy bills according to the U.S. Department of Energy.',
   expertQuotes: [
     {

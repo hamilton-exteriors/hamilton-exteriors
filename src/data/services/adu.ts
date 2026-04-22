@@ -4,7 +4,7 @@ import { aduHero, serviceAdu, serviceAdditions, financingHouse, financingWorker 
 export const data: ServicePageData = {
   title: 'ADU Builder Bay Area | Design, Permits, Construction',
   description:
-    'Architect-led ADU builder for the Bay Area. Detached units, garage conversions, and JADUs from $80K to $350K. Permits and design handled in-house.',
+    'Bay Area ADU builder, architect-led design-build. Detached units, garage conversions, JADUs from $80K to $350K. Permits handled in-house. CSLB #1078806.',
   announcementText: 'Now Booking Summer 2026 ADU Projects — Schedule Your Consultation',
   definition: 'An accessory dwelling unit (ADU) is a secondary housing unit built on a single-family residential lot — either as a detached backyard structure, attached addition, or garage conversion. California state law (AB 68, SB 9) streamlines ADU permitting, and Bay Area ADUs typically cost $80,000 to $350,000 while adding $150,000 to $300,000 in property value.',
   expertQuotes: [

@@ -4,7 +4,7 @@ import { roofingAsphalt, roofingMetal, roofingTile, roofingFlat, heroRoofing } f
 export const data: ServicePageData = {
   title: 'Bay Area Roofing Contractor | GAF Master Elite Installer',
   description:
-    'Architect-led Bay Area roofing contractor since 2018. Asphalt, metal, tile, and solar shingles installed by a GAF Master Elite team. CSLB #1078806.',
+    'Bay Area roofing contractor, GAF Master Elite installer since 2018. Asphalt, metal, tile, and solar shingles with a 50-year warranty. CSLB #1078806. Free inspection.',
   announcementText: 'Now Booking Summer 2026 Roof Replacements — Schedule Your Inspection',
   definition: 'A roof replacement is the complete removal and reinstallation of a home\'s roofing system — including shingles, underlayment, flashing, and ventilation. In the Bay Area, roof replacements typically cost $15,000 to $100,000 depending on size, materials, and complexity, and take 3 to 7 days to complete.',
   expertQuotes: [

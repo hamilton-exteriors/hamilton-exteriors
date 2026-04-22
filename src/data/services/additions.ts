@@ -4,7 +4,7 @@ import { serviceAdditions, serviceAdu, serviceCustomHomes, financingHouse } from
 export const data: ServicePageData = {
   title: 'Home Addition Contractor Bay Area | Second Story & Room',
   description:
-    'Architect-led home addition contractor for the Bay Area. Second story builds, room extensions, and full remodels from $200 per sq ft. CSLB #1078806.',
+    'Bay Area home addition contractor, architect-led. Second story builds, room extensions, and full remodels from $200/sq ft. CSLB #1078806. Free estimate in 3–5 minutes.',
   announcementText: 'Now Booking Summer 2026 Additions — Schedule Your Consultation',
   definition: 'A home addition expands an existing residence by adding new living space — either outward (room extension), upward (second story), or as a detached unit (ADU). Bay Area home additions typically cost $200 to $500 per square foot and require building permits from the local jurisdiction.',
   expertQuotes: [
@@ -91,6 +91,11 @@ export const data: ServicePageData = {
     { type: 'footer' },
   ],
   localFaqs: [
+    {
+      question: 'Do you build home additions in Castro Valley?',
+      answer:
+        'Yes. Hamilton Exteriors is headquartered at 21634 Redwood Rd in Castro Valley and builds more home additions in Castro Valley than any other city we serve. We handle second-story additions, room extensions, and full remodels across Proctor, Palomares Hills, Five Canyons, Jensen Ranch, and the Castro Valley Estates neighborhoods. Castro Valley\'s mix of 1950s–70s ranch homes on larger lots makes it ideal for second-story additions — lot coverage is rarely the constraint. See our <a href="/service-areas/alameda-county-ca/castro-valley-ca/additions">Castro Valley additions page</a> for Alameda County permit timelines and local project examples. Typical Castro Valley addition budgets: $150K–$300K for a 400–800 sq ft second story, $120K–$200K for a ground-floor room extension.',
+    },
     {
       question: 'How much does a home addition cost in the Bay Area?',
       answer:

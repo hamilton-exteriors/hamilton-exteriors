@@ -14,7 +14,7 @@ export const pageTitle =
   'Bay Area Service Areas — Roofing, ADUs & Custom Homes in 6 Counties';
 
 export const pageDescription =
-  'Hamilton Exteriors serves Alameda, Contra Costa, Marin, Napa, Santa Clara & San Mateo counties. Roofing, siding, windows, ADUs & custom homes. CSLB #1078806. Free estimates.';
+  'Serving the San Francisco Bay Area, California — Alameda, Contra Costa, Marin, Napa, Santa Clara & San Mateo counties. Roofing, siding, windows, ADUs & custom homes. CSLB #1078806.';
 
 export const heroHeadline = "Serving 6 Counties  Across the  Bay Area";
 export const heroFormTitle = 'Get Your Free Quote';

@@ -295,6 +295,30 @@ for (const tagSlug of tagSlugs) {
 const serviceLinks = matchedLinksMap.size > 0
   ? Array.from(matchedLinksMap.values())
   : DEFAULT_SERVICE_LINKS;
+
+// Map cost-guide slugs to their canonical service landing page. Cost guides
+// rank well on their own but siphon clicks from the landing page that
+// converts. A prominent "See our complete service page" callout at the top
+// of the post funnels the reader to the conversion surface without
+// canonicalizing away the blog post's independent rank.
+const COST_GUIDE_LANDINGS: Record<string, { href: string; label: string; pitch: string }> = {
+  'second-story-addition-cost-bay-area': {
+    href: '/additions/second-story',
+    label: 'Second Story Additions',
+    pitch: 'Planning a second story? See our full service page for the design-build process, structural assessment, and move-out coordination.',
+  },
+  'adu-cost-bay-area': {
+    href: '/adu',
+    label: 'ADU Design & Construction',
+    pitch: 'Ready to build? See our full ADU service page for detached units, garage conversions, and JADUs — permits and design handled in-house.',
+  },
+  'roof-replacement-cost-bay-area': {
+    href: '/roofing',
+    label: 'Bay Area Roofing',
+    pitch: 'Ready for a new roof? See our full roofing service page — GAF Master Elite installation with a 50-year warranty and free inspection.',
+  },
+};
+const costGuideLanding = COST_GUIDE_LANDINGS[slug || ''];
 ---
 
 <Layout
@@ -436,6 +460,25 @@ const serviceLinks = matchedLinksMap.size > 0
         </div>
       );
     })()}
+
+    {/* Cost-guide → landing page callout. Appears above TOC on the three cost
+        blog posts that rank for queries our service landing pages should win. */}
+    {costGuideLanding && (
+      <section class="w-full bg-white pt-10">
+        <div class="mx-auto max-w-[800px] px-5">
+          <aside class="rounded-lg border-l-4 border-primary bg-cream px-5 py-4 sm:px-6 sm:py-5">
+            <p class="font-satoshi text-xs font-semibold tracking-[0.08em] text-primary uppercase">Looking for pricing on your project?</p>
+            <p class="mt-2 font-dm-sans text-[0.9375rem] leading-[1.6] text-charcoal">{costGuideLanding.pitch}</p>
+            <a
+              href={costGuideLanding.href}
+              class="mt-3 inline-flex items-center gap-2 font-satoshi text-sm font-semibold text-primary no-underline transition-opacity hover:opacity-80"
+            >
+              See the {costGuideLanding.label} page &rarr;
+            </a>
+          </aside>
+        </div>
+      </section>
+    )}
 
     {/* Table of Contents */}
     {tocHeadings.length >= 3 && (

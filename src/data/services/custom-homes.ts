@@ -4,7 +4,7 @@ import { serviceCustomHomesFull, serviceCustomHomes, serviceAdditions, designEng
 export const data: ServicePageData = {
   title: 'Custom Home Builder Bay Area | Ground-Up Construction',
   description:
-    'Architect-led custom home builder in the Bay Area since 2018. Ground-up design-build from $350 per sq ft, with a guaranteed maximum price at signing.',
+    'Bay Area custom home builder, architect-led since 2018. Ground-up design-build from $350/sq ft with guaranteed max price at signing. CSLB #1078806. Free consult.',
   announcementText: 'Now Booking Summer 2026 Custom Homes — Schedule Your Consultation',
   definition: 'Custom home construction is the process of designing and building a new residence from the ground up — ground-up new construction tailored entirely to the homeowner\u2019s specifications, lot conditions, and lifestyle. Hamilton Exteriors builds luxury custom homes and hillside homes across the Bay Area, from the Oakland Hills and Berkeley Hills to Marin headlands and Los Gatos Mountains. Ground-up custom homes cost $350 to $800 per square foot including design, architecture, engineering, permits, and construction.',
   expertQuotes: [
@@ -132,6 +132,11 @@ export const data: ServicePageData = {
     { type: 'footer' },
   ],
   localFaqs: [
+    {
+      question: 'Do you build custom homes in Walnut Creek and the I-680 corridor?',
+      answer:
+        'Yes. Hamilton Exteriors builds custom homes throughout Walnut Creek — including Northgate, Rossmoor, Saranap, Parkmead, Lakewood, and Indian Valley — as well as neighboring San Ramon, Danville, Lafayette, and Orinda. Walnut Creek\'s 1950s–60s California ranch lots are a strong match for tear-down-and-rebuild projects, and the Mt. Diablo foothills offer some of the Bay Area\'s best hillside custom home sites. See our <a href="/service-areas/contra-costa-county-ca/walnut-creek-ca/custom-homes">Walnut Creek custom home page</a> for local permit timelines, Indian Valley hillside considerations, and recent projects. Typical Walnut Creek custom home budgets run $1.5M to $4M for 3,000–5,000 sq ft builds on existing lots.',
+    },
     {
       question: 'How much does it cost to build a custom home in the Bay Area?',
       answer:
