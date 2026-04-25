@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { sendToBackOffice } from '../../../lib/backoffice';
 import { identifyProfile } from '../../../lib/analytics';
 import { sendMetaEvent, getMetaCookies } from '../../../lib/meta-capi';
+import { sendLeadEmail } from '../../../lib/resend';
 
 /**
  * POST /api/leads/partial — Progressive lead capture.
@@ -38,75 +39,99 @@ export const POST: APIRoute = async ({ request }) => {
   if (body.step) parts.push(`Step: ${body.step}`);
   const notes = parts.length > 0 ? parts.join(' | ') : undefined;
 
-  let result;
-  try {
-    result = await sendToBackOffice({
-      name,
-      ...(phone && { phone }),
-      ...(email && { email }),
-      source: 'website-form',
-      ...(notes && { notes }),
-      ...(body.utm_source && { utm_source: String(body.utm_source) }),
-      ...(body.utm_medium && { utm_medium: String(body.utm_medium) }),
-      ...(body.utm_campaign && { utm_campaign: String(body.utm_campaign) }),
-      ...(body.fbclid && { fbclid: String(body.fbclid) }),
-      ...(body.fbc && { fbc: String(body.fbc) }),
-    });
-  } catch (err) {
-    console.error('[partial] sendToBackOffice threw:', (err as Error).message);
-    return json({ error: 'Failed to send lead' }, 502);
-  }
+  const result = await sendToBackOffice({
+    name,
+    ...(phone && { phone }),
+    ...(email && { email }),
+    source: 'website-form',
+    ...(notes && { notes }),
+    ...(body.utm_source && { utm_source: String(body.utm_source) }),
+    ...(body.utm_medium && { utm_medium: String(body.utm_medium) }),
+    ...(body.utm_campaign && { utm_campaign: String(body.utm_campaign) }),
+    ...(body.fbclid && { fbclid: String(body.fbclid) }),
+    ...(body.fbc && { fbc: String(body.fbc) }),
+  });
 
+  // Email backstop for partials — only fire if BackOffice actually failed.
+  // Successful partials are safe in the CRM; emailing every step would spam
+  // the inbox (3+ emails per complete funnel). Full submissions always email.
   if (!result.success) {
+    try {
+      await sendLeadEmail({
+        name,
+        phone: phone || undefined,
+        email: email || undefined,
+        address: body.address ? String(body.address) : undefined,
+        service: body.service ? String(body.service) : undefined,
+        serviceDetail: body.serviceDetail ? String(body.serviceDetail) : undefined,
+        step: typeof body.step === 'number' ? body.step : undefined,
+        source: 'partial_form',
+        utm_source: body.utm_source ? String(body.utm_source) : undefined,
+        utm_medium: body.utm_medium ? String(body.utm_medium) : undefined,
+        utm_campaign: body.utm_campaign ? String(body.utm_campaign) : undefined,
+        utm_content: body.utm_content ? String(body.utm_content) : undefined,
+        utm_term: body.utm_term ? String(body.utm_term) : undefined,
+        gclid: body.gclid ? String(body.gclid) : undefined,
+        fbclid: body.fbclid ? String(body.fbclid) : undefined,
+        backofficeStatus: 'failed',
+        backofficeError: result.error,
+        pageUrl: body.page_url ? String(body.page_url) : undefined,
+      });
+    } catch (err) {
+      console.error('[partial] Resend backstop failed:', (err as Error).message);
+    }
+    // Still return 502 so the client knows the CRM write failed, but the
+    // email is already in the inbox as the recoverable fallback.
     return json({ error: result.error || 'Failed to save lead' }, 502);
   }
 
-  // Identify profile server-side once we have an email
+  // Identify profile server-side once we have an email.
+  // Await so the Astro response doesn't race the OpenPanel/Meta writes —
+  // fire-and-forget previously dropped identify payloads under load.
   if (email) {
     const [first, ...rest] = name.split(' ');
-    identifyProfile({
-      email,
-      firstName: first,
-      lastName: rest.join(' '),
-      ...(phone && { phone }),
-      properties: {
-        ...(body.address && { address: String(body.address) }),
-        ...(body.service && { service: String(body.service) }),
-        source: 'partial_form',
-        // First-touch UTM attribution on profile
-        ...(body.utm_source && { utm_source: String(body.utm_source) }),
-        ...(body.utm_medium && { utm_medium: String(body.utm_medium) }),
-        ...(body.utm_campaign && { utm_campaign: String(body.utm_campaign) }),
-        ...(body.utm_content && { utm_content: String(body.utm_content) }),
-        ...(body.utm_term && { utm_term: String(body.utm_term) }),
-      },
-    });
 
-    // Meta CAPI — fire Contact event on partial lead (deduped via eventId from client)
     const eventId = String(body.eventId || crypto.randomUUID());
     const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '';
     const userAgent = request.headers.get('user-agent') || '';
     const cookies = getMetaCookies(request);
-    // Use client-persisted fbc (from sessionStorage) as fallback when Safari ITP killed the cookie
     const fbc = cookies.fbc || (body.fbc ? String(body.fbc) : undefined);
     const fbp = cookies.fbp;
     const pageUrl = String(body.page_url || request.headers.get('referer') || 'https://hamilton-exteriors.com');
 
-    sendMetaEvent({
-      eventName: 'Contact',
-      eventId,
-      eventSourceUrl: pageUrl,
-      userData: {
+    await Promise.all([
+      identifyProfile({
         email,
-        ...(phone && { phone }),
         firstName: first,
         lastName: rest.join(' '),
-        clientIp,
-        userAgent,
-        fbc,
-        fbp,
-      },
-    });
+        ...(phone && { phone }),
+        properties: {
+          ...(body.address && { address: String(body.address) }),
+          ...(body.service && { service: String(body.service) }),
+          source: 'partial_form',
+          ...(body.utm_source && { utm_source: String(body.utm_source) }),
+          ...(body.utm_medium && { utm_medium: String(body.utm_medium) }),
+          ...(body.utm_campaign && { utm_campaign: String(body.utm_campaign) }),
+          ...(body.utm_content && { utm_content: String(body.utm_content) }),
+          ...(body.utm_term && { utm_term: String(body.utm_term) }),
+        },
+      }),
+      sendMetaEvent({
+        eventName: 'Contact',
+        eventId,
+        eventSourceUrl: pageUrl,
+        userData: {
+          email,
+          ...(phone && { phone }),
+          firstName: first,
+          lastName: rest.join(' '),
+          clientIp,
+          userAgent,
+          fbc,
+          fbp,
+        },
+      }),
+    ]);
   }
 
   return json({

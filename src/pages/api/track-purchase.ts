@@ -42,34 +42,35 @@ export const POST: APIRoute = async ({ request }) => {
 
   const eventId = `purchase_${ref}`;
 
-  sendMetaEvent({
-    eventName: 'Purchase',
-    eventId,
-    eventSourceUrl: pageUrl,
-    userData: {
-      email,
-      phone,
-      firstName,
-      lastName,
-      clientIp,
-      userAgent,
-      fbc,
-      fbp,
-    },
-    customData: {
-      currency: 'USD',
-      value,
-      contentType: 'product',
-      contentIds: [service],
-    },
-  });
-
-  trackRevenue(value, {
-    profileId: email,
-    ref,
-    service,
-    source: 'buy_flow',
-  });
+  await Promise.all([
+    sendMetaEvent({
+      eventName: 'Purchase',
+      eventId,
+      eventSourceUrl: pageUrl,
+      userData: {
+        email,
+        phone,
+        firstName,
+        lastName,
+        clientIp,
+        userAgent,
+        fbc,
+        fbp,
+      },
+      customData: {
+        currency: 'USD',
+        value,
+        contentType: 'product',
+        contentIds: [service],
+      },
+    }),
+    trackRevenue(value, {
+      profileId: email,
+      ref,
+      service,
+      source: 'buy_flow',
+    }),
+  ]);
 
   return json({ ok: true, eventId });
 };

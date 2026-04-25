@@ -53,30 +53,37 @@ export const POST: APIRoute = async ({ request }) => {
 
     console.log('[ghost-webhook] Redeploy triggered successfully');
 
-    // Trigger full IndexNow batch after redeploy (non-blocking)
-    // Submits all site URLs to Bing/Yandex/Naver for fast re-indexing
+    // Trigger full IndexNow batch after redeploy — submits all site URLs to
+    // Bing/Yandex/Naver for fast re-indexing. Awaited so failures surface.
     try {
       const batchUrl = new URL('/api/indexnow-batch', 'https://hamilton-exteriors.com');
       const indexnowSecret = import.meta.env.INDEXNOW_SECRET || '';
-      fetch(batchUrl.toString(), {
+      const batchRes = await fetch(batchUrl.toString(), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           ...(indexnowSecret && { Authorization: `Bearer ${indexnowSecret}` }),
         },
         signal: AbortSignal.timeout(30_000),
-      }).then(r => console.log(`[ghost-webhook] IndexNow batch: ${r.status}`))
-        .catch(e => console.warn('[ghost-webhook] IndexNow batch failed:', e));
-    } catch { /* non-blocking */ }
+      });
+      console.log(`[ghost-webhook] IndexNow batch: ${batchRes.status}`);
+    } catch (e) {
+      console.warn('[ghost-webhook] IndexNow batch failed:', e);
+    }
 
     // Notify IndexNow about the specific updated blog post
     try {
-      const body = await request.clone().json().catch(() => null);
-      const slug = body?.post?.current?.slug;
+      let body: unknown = null;
+      try {
+        body = await request.clone().json();
+      } catch {
+        body = null;
+      }
+      const slug = (body as { post?: { current?: { slug?: string } } })?.post?.current?.slug;
       const urls = slug
         ? [`https://hamilton-exteriors.com/blog/${slug}`]
         : ['https://hamilton-exteriors.com/blog'];
-      await fetch('https://api.indexnow.org/indexnow', {
+      const indexnowRes = await fetch('https://api.indexnow.org/indexnow', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -86,9 +93,11 @@ export const POST: APIRoute = async ({ request }) => {
           urlList: urls,
         }),
         signal: AbortSignal.timeout(5_000),
-      }).then(r => console.log(`[ghost-webhook] IndexNow: ${r.status}`))
-        .catch(e => console.warn('[ghost-webhook] IndexNow failed:', e));
-    } catch { /* non-blocking */ }
+      });
+      console.log(`[ghost-webhook] IndexNow: ${indexnowRes.status}`);
+    } catch (e) {
+      console.warn('[ghost-webhook] IndexNow failed:', e);
+    }
 
     return new Response('OK', { status: 200 });
   } catch (err) {

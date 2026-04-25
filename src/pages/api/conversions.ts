@@ -44,35 +44,34 @@ export const POST: APIRoute = async ({ request }) => {
   const ref = String(body.ref || `conv-${Date.now()}`).trim();
   const fbc = String(body.fbc || '').trim() || undefined;
 
-  // Fire Meta CAPI Purchase event — system_generated since this comes from CRM, not browser
   const eventId = `conversion_${ref}`;
-  sendMetaEvent({
-    eventName: 'Purchase',
-    eventId,
-    eventSourceUrl: 'https://hamilton-exteriors.com',
-    actionSource: 'system_generated',
-    userData: {
-      email,
-      phone,
-      firstName,
-      lastName,
-      fbc, // Stored from original visit — critical for attribution
-    },
-    customData: {
-      currency: 'USD',
-      value,
-      contentType: 'service',
-      contentIds: [service],
-    },
-  });
-
-  // OpenPanel revenue — attributes dollar value to the user profile
-  trackRevenue(value, {
-    profileId: email,
-    ref,
-    service,
-    source: 'crm_conversion',
-  });
+  await Promise.all([
+    sendMetaEvent({
+      eventName: 'Purchase',
+      eventId,
+      eventSourceUrl: 'https://hamilton-exteriors.com',
+      actionSource: 'system_generated',
+      userData: {
+        email,
+        phone,
+        firstName,
+        lastName,
+        fbc, // Stored from original visit — critical for attribution
+      },
+      customData: {
+        currency: 'USD',
+        value,
+        contentType: 'service',
+        contentIds: [service],
+      },
+    }),
+    trackRevenue(value, {
+      profileId: email,
+      ref,
+      service,
+      source: 'crm_conversion',
+    }),
+  ]);
 
   return json({ ok: true, eventId, value });
 };

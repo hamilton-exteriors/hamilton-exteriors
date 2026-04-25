@@ -95,7 +95,6 @@ function getCityLocalFaqs(seed: CitySeed): Array<{ question: string; answer: str
   const { city, county, medianHomePrice, keyFeature, neighborhoods, population, homeStyles, climateFactor, commonIssue, microclimate, roofingNote, sidingNote } = seed;
   const n0 = neighborhoods[0];
   const n1 = neighborhoods[Math.min(1, neighborhoods.length - 1)];
-  const n2 = neighborhoods[Math.min(2, neighborhoods.length - 1)];
 
   return [
     {
@@ -685,7 +684,6 @@ export function generateCityServicePage(
     heroFormSubtitle,
     serviceType,
     serviceOptions,
-    heroImageKey,
     titlePattern,
     descriptionPattern,
     faqTemplates,

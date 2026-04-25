@@ -35,6 +35,12 @@ export interface BackOfficeResult {
  *
  * The webhook deduplicates by phone/email — calling it multiple times
  * for the same contact (e.g. on each form step) won't create duplicates.
+ *
+ * Retries transient failures (network errors, 5xx, timeouts) up to 3 times
+ * with exponential backoff (250ms, 750ms, 2250ms). Never retries 4xx — those
+ * are permanent (bad API key, validation error) and retrying wastes time.
+ * Callers should fall back to the Resend email notification if this returns
+ * success=false so the lead is still recoverable from the inbox.
  */
 export async function sendToBackOffice(payload: LeadPayload): Promise<BackOfficeResult> {
   if (!WEBHOOK_URL || !API_KEY) {
@@ -42,27 +48,47 @@ export async function sendToBackOffice(payload: LeadPayload): Promise<BackOffice
     return { success: false, error: 'Webhook not configured' };
   }
 
-  try {
-    const res = await fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': API_KEY,
-      },
-      body: JSON.stringify(payload),
-      signal: AbortSignal.timeout(10_000),
-    });
+  const MAX_ATTEMPTS = 3;
+  let lastError = 'unknown error';
 
-    if (!res.ok) {
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': API_KEY,
+        },
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(10_000),
+      });
+
+      if (res.ok) {
+        return await res.json() as BackOfficeResult;
+      }
+
       const body = await res.json().catch(() => ({}));
-      console.error('[backoffice] Webhook error:', res.status, body);
-      return { success: false, error: (body as any).error || `HTTP ${res.status}` };
+      const errMsg = (body as { error?: string }).error || `HTTP ${res.status}`;
+      lastError = errMsg;
+
+      // 4xx = permanent (bad key, validation error). Don't retry.
+      if (res.status >= 400 && res.status < 500) {
+        console.error(`[backoffice] Webhook rejected (${res.status}):`, errMsg);
+        return { success: false, error: errMsg };
+      }
+
+      console.warn(`[backoffice] Attempt ${attempt}/${MAX_ATTEMPTS} failed (${res.status}):`, errMsg);
+    } catch (err) {
+      lastError = (err as Error).message;
+      console.warn(`[backoffice] Attempt ${attempt}/${MAX_ATTEMPTS} threw:`, lastError);
     }
 
-    const data = await res.json() as BackOfficeResult;
-    return data;
-  } catch (err) {
-    console.error('[backoffice] Webhook request failed:', (err as Error).message);
-    return { success: false, error: (err as Error).message };
+    if (attempt < MAX_ATTEMPTS) {
+      const delay = 250 * Math.pow(3, attempt - 1); // 250, 750, 2250
+      await new Promise((r) => setTimeout(r, delay));
+    }
   }
+
+  console.error(`[backoffice] Gave up after ${MAX_ATTEMPTS} attempts:`, lastError);
+  return { success: false, error: lastError };
 }

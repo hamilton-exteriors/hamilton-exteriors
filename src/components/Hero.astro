@@ -353,11 +353,22 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
   setTimeout(syncOpIds, 500);
   setTimeout(syncOpIds, 2000);
 
-  // Track initial step 1 view — showStep() only fires on transitions, so the
-  // default-visible step 1 was previously invisible in the funnel.
+  // Track step 1 on first real interaction with a contact field (focus or input),
+  // not on mount. Fires once per session so refocusing doesn't inflate the count.
   if (step1) {
-    window.op?.('track', 'hero_form_step', { step: 1, step_name: 'contact_info' });
-    window.dataLayer?.push({ event: 'hero_form_step', step: 1, step_name: 'contact_info' });
+    let step1Fired = false;
+    const fireStep1 = () => {
+      if (step1Fired) return;
+      step1Fired = true;
+      window.op?.('track', 'hero_form_step', { step: 1, step_name: 'contact_info' });
+      window.dataLayer?.push({ event: 'hero_form_step', step: 1, step_name: 'contact_info' });
+    };
+    ['hero-name', 'hero-phone', 'hero-email', 'hero-address'].forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('focus', fireStep1, { once: true });
+      el.addEventListener('input', fireStep1, { once: true });
+    });
   }
 
   function showStep(step: HTMLElement | null) {
@@ -434,10 +445,11 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     }
   });
 
-  // ── Progressive lead capture ──────────────────────────────
-  // Fire-and-forget: send partial lead data to BackOffice on each step
-  // so we capture the contact even if they abandon the form.
-  function savePartialLead(step: number) {
+  // Progressive lead capture — save partial data on each step transition
+  // so we still capture contact info if the visitor abandons later.
+  // keepalive:true lets the browser finish the request even if the user
+  // navigates away; errors are logged, not swallowed.
+  async function savePartialLead(step: number) {
     const fd = new FormData(heroForm);
     const body: Record<string, unknown> = {
       name: fd.get('fullName') || '',
@@ -449,13 +461,10 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
       step,
       page_url: window.location.pathname,
     };
-    // Capture all 5 UTMs + click IDs from sessionStorage (persisted on landing in Layout.astro)
-    // sessionStorage is more reliable than URL params — UTMs survive page navigation
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(k => {
       const v = sessionStorage.getItem('he_' + k);
       if (v) body[k] = v;
     });
-    // Ad platform click IDs for conversion attribution
     const storedFbclid = sessionStorage.getItem('he_fbclid');
     const storedFbc = sessionStorage.getItem('he_fbc');
     const storedGclid = sessionStorage.getItem('he_gclid');
@@ -463,15 +472,21 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     if (storedFbc) body.fbc = storedFbc;
     if (storedGclid) body.gclid = storedGclid;
 
-    fetch('/api/leads/partial', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    }).catch(() => {}); // fire-and-forget — never block the UI
+    try {
+      const res = await fetch('/api/leads/partial', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+        keepalive: true,
+      });
+      if (!res.ok) console.warn('[hero] partial lead save:', res.status);
+    } catch (err) {
+      console.warn('[hero] partial lead save failed:', err);
+    }
   }
 
   // Step 1 → Step 2 (or Step 3 if skipping): validate
-  document.getElementById('next-btn-1')?.addEventListener('click', () => {
+  document.getElementById('next-btn-1')?.addEventListener('click', async () => {
     const fieldNames = ['fullName', 'phone', 'email', 'address'];
     const fields = fieldNames.map(n =>
       heroForm.querySelector(`input[name="${n}"]`) as HTMLInputElement
@@ -518,14 +533,14 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
       if (firstInvalid) firstInvalid.focus();
     }
     if (valid) {
-      savePartialLead(1);
+      await savePartialLead(1);
       showStep(skipStep2 ? step3 : step2);
     }
   });
 
   // Step 2: service selection auto-advances
   serviceBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       const service = (btn as HTMLElement).dataset.service || '';
       // If preset service exists, this is a sub-option (e.g., "Asphalt Shingles")
       if (presetService) {
@@ -535,7 +550,7 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
       }
       serviceBtns.forEach(b => b.classList.remove('service-btn--active'));
       btn.classList.add('service-btn--active');
-      savePartialLead(2);
+      await savePartialLead(2);
       setTimeout(() => showStep(step3), 250);
     });
   });

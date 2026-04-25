@@ -7,14 +7,13 @@
  * Accessible at /blog/rss.xml — referenced in <head> via Layout.astro.
  */
 
-import type { APIContext } from 'astro';
 import rss from '@astrojs/rss';
 import { getPosts, isGhostConfigured, type GhostPost } from '../../lib/ghost';
 import sanitizeHtml from 'sanitize-html';
 
 const SITE_URL = 'https://hamilton-exteriors.com';
 
-export async function GET(context: APIContext): Promise<Response> {
+export async function GET(): Promise<Response> {
   if (!isGhostConfigured()) {
     // Return empty valid feed if Ghost isn't configured
     return rss({

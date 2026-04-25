@@ -4,6 +4,7 @@ import { isInServiceArea, SERVICE_AREA_ERROR } from '../lib/service-area';
 import { sendToBackOffice } from '../lib/backoffice';
 import { trackServerEvent, identifyProfile } from '../lib/analytics';
 import { sendMetaEvent, getMetaCookies } from '../lib/meta-capi';
+import { sendLeadEmail } from '../lib/resend';
 
 export const server = {
   submitLead: defineAction({
@@ -60,7 +61,36 @@ export const server = {
 
       if (!result.success) {
         console.error('[submitLead] BackOffice send failed:', result.error);
-        // Don't block the user — still show success since we captured the data
+      }
+
+      // Email backstop — fires regardless of BackOffice result so the lead
+      // info is recoverable from admin@ even if the CRM is down or rejects.
+      try {
+        await sendLeadEmail({
+          name: input.fullName,
+          phone: input.phone,
+          email: input.email,
+          address: input.address,
+          service: input.service,
+          serviceDetail: input.serviceDetail,
+          message: input.message,
+          step: 'full',
+          source: 'hero_form',
+          utm_source: input.utm_source,
+          utm_medium: input.utm_medium,
+          utm_campaign: input.utm_campaign,
+          utm_content: input.utm_content,
+          utm_term: input.utm_term,
+          gclid: input.gclid,
+          fbclid: input.fbclid,
+          backofficeStatus: result.success
+            ? (result.duplicate ? 'saved_duplicate' : 'saved')
+            : 'failed',
+          backofficeError: result.error,
+          pageUrl: context.request.headers.get('referer') || undefined,
+        });
+      } catch (err) {
+        console.error('[submitLead] Resend notification failed:', (err as Error).message);
       }
 
       // Server-side analytics — bypasses ad blockers, 100% accurate.
@@ -71,36 +101,38 @@ export const server = {
         ...(input.op_session_id && { sessionId: input.op_session_id }),
       };
       const [firstName, ...lastParts] = input.fullName.split(' ');
-      identifyProfile({
-        email: input.email,
-        firstName,
-        lastName: lastParts.join(' '),
-        phone: input.phone,
-        properties: {
-          address: input.address,
+      // Await analytics so the serverless response doesn't race the network
+      // write — fire-and-forget previously dropped identify payloads.
+      await Promise.all([
+        identifyProfile({
+          email: input.email,
+          firstName,
+          lastName: lastParts.join(' '),
+          phone: input.phone,
+          properties: {
+            address: input.address,
+            service: input.service || 'general',
+            source: 'hero_form',
+            ...(input.utm_source && { utm_source: input.utm_source }),
+            ...(input.utm_medium && { utm_medium: input.utm_medium }),
+            ...(input.utm_campaign && { utm_campaign: input.utm_campaign }),
+            ...(input.utm_content && { utm_content: input.utm_content }),
+            ...(input.utm_term && { utm_term: input.utm_term }),
+            ...(input.gclid && { gclid: input.gclid }),
+            ...(input.fbclid && { fbclid: input.fbclid }),
+          },
+        }, session),
+        trackServerEvent('lead_form_submitted', {
+          profileId: input.email,
           service: input.service || 'general',
           source: 'hero_form',
-          // First-touch attribution on profile — survives across sessions in OpenPanel
           ...(input.utm_source && { utm_source: input.utm_source }),
           ...(input.utm_medium && { utm_medium: input.utm_medium }),
           ...(input.utm_campaign && { utm_campaign: input.utm_campaign }),
           ...(input.utm_content && { utm_content: input.utm_content }),
           ...(input.utm_term && { utm_term: input.utm_term }),
-          ...(input.gclid && { gclid: input.gclid }),
-          ...(input.fbclid && { fbclid: input.fbclid }),
-        },
-      }, session);
-      trackServerEvent('lead_form_submitted', {
-        profileId: input.email,
-        service: input.service || 'general',
-        source: 'hero_form',
-        // UTMs on the event — enables breakdown by campaign/creative in OpenPanel
-        ...(input.utm_source && { utm_source: input.utm_source }),
-        ...(input.utm_medium && { utm_medium: input.utm_medium }),
-        ...(input.utm_campaign && { utm_campaign: input.utm_campaign }),
-        ...(input.utm_content && { utm_content: input.utm_content }),
-        ...(input.utm_term && { utm_term: input.utm_term }),
-      }, session);
+        }, session),
+      ]);
 
       // Meta CAPI — server-side Lead event (deduped with client-side Pixel via eventId)
       const eventId = crypto.randomUUID();
@@ -113,7 +145,7 @@ export const server = {
       const fbp = cookies.fbp;
       const pageUrl = request.headers.get('referer') || 'https://hamilton-exteriors.com';
 
-      sendMetaEvent({
+      await sendMetaEvent({
         eventName: 'Lead',
         eventId,
         eventSourceUrl: pageUrl,

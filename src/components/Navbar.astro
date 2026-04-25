@@ -80,7 +80,7 @@ const { logoHref = '/' } = Astro.props;
   >
     <!-- Logo -->
     <a href={logoHref} class="shrink-0" aria-label="Hamilton Exteriors — home">
-      <div class="h-[40px] w-auto text-heading lg:h-[48px] [&>svg]:h-full [&>svg]:w-auto" set:html={logoHamilton} role="img" aria-label="Hamilton Exteriors" />
+      <div class="navbar-logo h-[40px] w-auto text-heading lg:h-[48px]" set:html={logoHamilton} role="img" aria-label="Hamilton Exteriors" />
     </a>
 
     <!-- Desktop nav -->
@@ -247,7 +247,7 @@ const { logoHref = '/' } = Astro.props;
 </nav>
 
 <script>
-  // --- Mobile hamburger menu ---
+  // Mobile hamburger menu
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
   if (toggle && menu) {
@@ -281,14 +281,15 @@ const { logoHref = '/' } = Astro.props;
     }
 
     toggle.addEventListener('click', () => {
-      menu.classList.contains('hidden') ? openMenu() : closeMenu();
+      if (menu.classList.contains('hidden')) openMenu();
+      else closeMenu();
     });
     menu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => closeMenu());
     });
   }
 
-  // --- Mobile accordion ---
+  // Mobile accordion
   document.querySelectorAll('.mobile-accordion-trigger').forEach(btn => {
     btn.addEventListener('click', () => {
       const panel = btn.nextElementSibling as HTMLElement;
@@ -305,7 +306,7 @@ const { logoHref = '/' } = Astro.props;
     });
   });
 
-  // --- Desktop mega menu ---
+  // Desktop mega menu
   const dropdown = document.getElementById('services-dropdown');
   const trigger = document.getElementById('services-trigger');
   const mega = document.getElementById('services-mega');
@@ -336,14 +337,16 @@ const { logoHref = '/' } = Astro.props;
     // Keyboard support
     trigger.addEventListener('click', () => {
       const isOpen = trigger.getAttribute('aria-expanded') === 'true';
-      isOpen ? hideMega() : showMega();
+      if (isOpen) hideMega();
+      else showMega();
     });
 
     trigger.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         const isOpen = trigger!.getAttribute('aria-expanded') === 'true';
-        isOpen ? hideMega() : showMega();
+        if (isOpen) hideMega();
+        else showMega();
       }
       if (e.key === 'Escape') {
         hideMega();
@@ -380,6 +383,8 @@ const { logoHref = '/' } = Astro.props;
 </script>
 
 <style>
+  .navbar-logo > svg { height: 100%; width: auto; }
+
   #menu-toggle.open .hamburger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   #menu-toggle.open .hamburger-line:nth-child(2) { opacity: 0; }
   #menu-toggle.open .hamburger-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }

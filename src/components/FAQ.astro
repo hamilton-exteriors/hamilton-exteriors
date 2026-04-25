@@ -32,6 +32,21 @@ const baseFaqs = [
 
 // Merge base FAQs with page-specific extra FAQs (city/service pages pass these in)
 const faqs = [...baseFaqs, ...(extraFaqs || [])];
+
+// FAQPage schema — Google dropped general-site rich results (Aug 2023), but
+// ChatGPT / Perplexity / Bing Copilot still consume it for Q&A extraction.
+const faqSchemaJson = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+});
 ---
 
 <section class="cv-auto w-full bg-white">
@@ -58,10 +73,10 @@ const faqs = [...baseFaqs, ...(extraFaqs || [])];
       {
         faqs.map((faq, index) => (
           <details
-            class="group border-b border-border bg-white"
+            class="faq-item group border-b border-border bg-white"
             data-border="true"
           >
-            <summary class="flex cursor-pointer list-none items-center justify-between py-5 [&::-webkit-details-marker]:hidden">
+            <summary class="faq-summary flex cursor-pointer list-none items-center justify-between py-5">
               <span class="pr-4 text-base/normal font-normal text-charcoal">
                 {faq.question}
               </span>
@@ -81,29 +96,12 @@ const faqs = [...baseFaqs, ...(extraFaqs || [])];
   </div>
 </section>
 
-<!-- Google no longer shows FAQ rich results for general sites (Aug 2023),
-     but ChatGPT, Perplexity, and Bing Copilot still consume FAQPage schema
-     for Q&A extraction. Harmless to Google, directly actionable by AI platforms. -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map(faq => ({
-    '@type': 'Question',
-    name: faq.question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: faq.answer,
-    },
-  })),
-})} />
+<script type="application/ld+json" set:html={faqSchemaJson}></script>
 
 <style>
-  summary svg {
-    transition: transform 0.2s ease-out;
-  }
-  details[open] summary svg {
-    transform: rotate(45deg);
-  }
+  .faq-summary::-webkit-details-marker { display: none; }
+  .faq-item .faq-summary svg { transition: transform 0.2s ease-out; }
+  .faq-item[open] .faq-summary svg { transform: rotate(45deg); }
 </style>
 
 <script>

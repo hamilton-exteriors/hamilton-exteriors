@@ -39,6 +39,7 @@ export interface GhostPost {
   reading_time: number;
   meta_title: string | null;
   meta_description: string | null;
+  canonical_url: string | null;
   primary_author?: { name: string; slug: string } | null;
   tags: { id: string; name: string; slug: string }[];
   primary_tag: { name: string; slug: string } | null;
@@ -166,7 +167,6 @@ export function formatDate(dateStr: string): string {
 /* ── Service Area Pages (Ghost-powered) ────────────────────── */
 
 import { cacheGet, cacheSet } from './ghost-cache';
-import type { ServiceAreaCity } from './service-area-types';
 import type { GeneralCityPageData } from './general-city-types';
 import type { CountyPageData } from './county-page-types';
 import type { CityServicePageData } from './city-service-types';
