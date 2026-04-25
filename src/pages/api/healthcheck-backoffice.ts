@@ -18,9 +18,15 @@ const RESEND_API_KEY = import.meta.env.RESEND_API_KEY || '';
 interface HealthcheckResult {
   ok: boolean;
   status: number;
+  name?: string;
   auth?: string;
   error?: string;
   checkedAt: string;
+}
+
+interface BackOfficeRootResponse {
+  name?: string;
+  features?: { auth?: string };
 }
 
 export const GET: APIRoute = async () => {
@@ -55,10 +61,11 @@ async function checkBackOffice(): Promise<HealthcheckResult> {
       return { ok: false, status: res.status, error: `HTTP ${res.status}`, checkedAt };
     }
 
-    const body = await res.json().catch(() => null) as { auth?: string } | null;
-    // Healthy BackOffice responds with {"auth":"supabase", ...}. If Supabase is
-    // paused, the whole domain NXDOMAINs and this never gets here.
-    if (!body || body.auth !== 'supabase') {
+    const body = await res.json().catch(() => null) as BackOfficeRootResponse | null;
+    // Healthy BackOffice root returns {name: "BackOffice API", features: {auth: "supabase", ...}}.
+    // If Supabase is paused, the whole domain NXDOMAINs and we never reach here.
+    const auth = body?.features?.auth;
+    if (!body || auth !== 'supabase') {
       return {
         ok: false,
         status: res.status,
@@ -67,7 +74,7 @@ async function checkBackOffice(): Promise<HealthcheckResult> {
       };
     }
 
-    return { ok: true, status: res.status, auth: body.auth, checkedAt };
+    return { ok: true, status: res.status, name: body.name, auth, checkedAt };
   } catch (err) {
     return {
       ok: false,
