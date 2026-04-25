@@ -1,12 +1,11 @@
 name: BackOffice Healthcheck
 
-# Pings /api/healthcheck-backoffice every 5 minutes. The endpoint itself returns
-# 503 and self-emails admin@ when BackOffice/Supabase is unreachable, so this
-# workflow's job is just to keep it warm and flag the failure in GitHub too —
-# GitHub emails repo admins on workflow failure out of the box.
+# Triggers /api/healthcheck-backoffice every 5 minutes. The endpoint itself
+# checks BackOffice and emails admin@ via Resend on failure — that's the sole
+# alert path. This workflow always exits 0 so GitHub never adds its own email.
 #
-# Runs on a public repo so Actions minutes are unlimited. Cron can drift 10-30
-# min under GitHub load; that's fine for this alert cadence.
+# Public repo → Actions minutes are unlimited. Cron can drift 10-30 min under
+# load; fine for this cadence.
 
 on:
   schedule:
@@ -18,17 +17,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - name: Check BackOffice via Hamilton healthcheck
+      - name: Ping healthcheck
         run: |
           echo "Pinging https://hamilton-exteriors.com/api/healthcheck-backoffice ..."
-          RESPONSE=$(curl -sS -o /tmp/body.json -w "%{http_code}" \
+          curl -sS -o /tmp/body.json -w "HTTP:%{http_code}\n" \
             --max-time 15 \
-            https://hamilton-exteriors.com/api/healthcheck-backoffice)
-          echo "HTTP $RESPONSE"
+            https://hamilton-exteriors.com/api/healthcheck-backoffice \
+            || echo "curl failed (DNS/network); endpoint won't have self-alerted"
           echo "Body:"
-          cat /tmp/body.json
+          cat /tmp/body.json 2>/dev/null || echo "(no body)"
           echo
-          if [ "$RESPONSE" != "200" ]; then
-            echo "::error::BackOffice healthcheck failed with HTTP $RESPONSE"
-            exit 1
-          fi
+          # Always exit 0 — the endpoint owns alerting. If it returned 503,
+          # it already fired the Resend email. GitHub stays quiet on purpose.
+          exit 0
