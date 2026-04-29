@@ -31,12 +31,39 @@ import { runPage } from './run-page.mjs';
 
 const PORT = parseInt(process.env.PORT || '3030', 10);
 const DATA_DIR = process.env.DATA_DIR || resolve(import.meta.dirname, 'data');
-const SEO_ROOT = process.env.SEO_ROOT || resolve(import.meta.dirname, '..', 'seo');
 const REPO_ROOT = resolve(import.meta.dirname, '..');
+// SEO_ROOT controls where drafts/serps/competitors/teardowns are written.
+// In container: point to /data/seo so output survives container restarts.
+// On startup, sync read-only sources (voice-corpus, brand-voice.md, etc.)
+// from the image-baked /app/seo into /data/seo if not already there.
+const SEO_ROOT = process.env.SEO_ROOT || resolve(import.meta.dirname, '..', 'seo');
+const SEO_SOURCE = process.env.SEO_SOURCE || resolve(import.meta.dirname, '..', 'seo');
 const WORKER_CONCURRENCY = parseInt(process.env.WORKER_CONCURRENCY || '3', 10);
 const AUTH_TOKEN = process.env.WORKER_AUTH_TOKEN;
 
 if (!AUTH_TOKEN) console.warn('WORKER_AUTH_TOKEN not set — API is OPEN. Set it in production.');
+
+// Bootstrap SEO_ROOT from SEO_SOURCE on first run (in container, /data/seo
+// starts empty; we copy taxonomy + voice corpus from the image).
+import { existsSync as _ex, mkdirSync as _mk, cpSync } from 'fs';
+import { join as _j } from 'path';
+if (SEO_ROOT !== SEO_SOURCE && _ex(SEO_SOURCE)) {
+  _mk(SEO_ROOT, { recursive: true });
+  for (const dir of ['voice-corpus', 'data-spine', 'targets']) {
+    const dst = _j(SEO_ROOT, dir);
+    if (!_ex(dst) && _ex(_j(SEO_SOURCE, dir))) {
+      cpSync(_j(SEO_SOURCE, dir), dst, { recursive: true });
+      console.log(`[bootstrap] synced ${dir} -> ${dst}`);
+    }
+  }
+  for (const file of ['brand-voice.md', 'content-writing-standards.md', 'cities.json', 'services.json', 'agent-system-prompt.md', 'cross-model-gate.md']) {
+    const dst = _j(SEO_ROOT, file);
+    if (!_ex(dst) && _ex(_j(SEO_SOURCE, file))) {
+      cpSync(_j(SEO_SOURCE, file), dst);
+      console.log(`[bootstrap] synced ${file} -> ${dst}`);
+    }
+  }
+}
 
 initQueue(DATA_DIR);
 
