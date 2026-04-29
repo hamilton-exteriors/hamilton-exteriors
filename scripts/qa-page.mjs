@@ -244,7 +244,12 @@ const result = {
     'ANSI', 'UL', 'TPCO', 'PEX',
     'SHGC', 'AZEK', 'BART', 'MUNI', 'ACE', 'AC', 'DC', 'GFCI', 'AFCI',
     'KWH', 'BTU', 'CFM', 'PSI', 'ASCE', 'AISC', 'ACI', 'NEC', 'NPS',
-    'ABS', 'PEX', 'COC', 'RTU', 'WSEC'];
+    'ABS', 'PEX', 'COC', 'RTU', 'WSEC',
+    'HEPA', 'BESO', 'CALBO', 'CCBF', 'EPDM', 'OSB', 'XPS', 'RES',
+    'VOC', 'IECC', 'NFRC', 'AERC', 'ENERGY', 'NEER', 'HSPF', 'SEER2',
+    'IBHS', 'FORTIFIED', 'BPI', 'HERS', 'RESNET', 'WUI', 'CRC',
+    'ECO', 'PV', 'EV', 'HVAC', 'IAQ', 'MERV', 'CCA',
+    'TRV', 'SIP', 'ZNE', 'SDS', 'FSC', 'GREEN'];
   const multiWordWhitelist = [/\bCAL\s+FIRE\b/g, /\bGAF\s+MASTER\s+ELITE\b/g, /\bU\.S\.\s+CENSUS\b/g];
   let bodyForCapsCheck = body;
   for (const re of multiWordWhitelist) bodyForCapsCheck = bodyForCapsCheck.replace(re, '');
