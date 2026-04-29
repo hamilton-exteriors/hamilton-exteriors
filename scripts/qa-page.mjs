@@ -25,7 +25,9 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs';
 import { resolve, join } from 'path';
 
 const REPO_ROOT = resolve(import.meta.dirname, '..');
-const SEO = join(REPO_ROOT, 'seo');
+// Allow SEO_ROOT env override so worker (writes to /data/seo) and CLI (writes
+// to repo's seo/) both work without code changes.
+const SEO = process.env.SEO_ROOT || join(REPO_ROOT, 'seo');
 
 const args = parseArgs(process.argv.slice(2));
 if (!args.target) {

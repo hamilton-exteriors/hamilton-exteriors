@@ -31,8 +31,8 @@ import jwt from 'jsonwebtoken';
 import { marked } from 'marked';
 
 const REPO_ROOT = resolve(import.meta.dirname, '..');
-const SEO = join(REPO_ROOT, 'seo');
-const HASH_CACHE = join(REPO_ROOT, '.seo-cache', 'published-hashes.json');
+const SEO = process.env.SEO_ROOT || join(REPO_ROOT, 'seo');
+const HASH_CACHE = process.env.HASH_CACHE_PATH || join(REPO_ROOT, '.seo-cache', 'published-hashes.json');
 
 const args = parseArgs(process.argv.slice(2));
 const slug = args.target;

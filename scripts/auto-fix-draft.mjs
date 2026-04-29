@@ -15,7 +15,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import { resolve, join } from 'path';
 
 const REPO_ROOT = resolve(import.meta.dirname, '..');
-const SEO = join(REPO_ROOT, 'seo');
+const SEO = process.env.SEO_ROOT || join(REPO_ROOT, 'seo');
 
 const args = parseArgs(process.argv.slice(2));
 if (!args.target) { console.error('Usage: --target <pageSlug>'); process.exit(2); }
