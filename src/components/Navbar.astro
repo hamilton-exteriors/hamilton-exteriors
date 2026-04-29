@@ -383,7 +383,9 @@ const { logoHref = '/' } = Astro.props;
 </script>
 
 <style>
-  .navbar-logo > svg { height: 100%; width: auto; }
+  /* :global(svg) so the rule reaches the SVG injected via set:html (which
+     doesn't carry Astro's data-astro-cid-* scoping attribute). */
+  .navbar-logo > :global(svg) { height: 100%; width: auto; }
 
   #menu-toggle.open .hamburger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   #menu-toggle.open .hamburger-line:nth-child(2) { opacity: 0; }

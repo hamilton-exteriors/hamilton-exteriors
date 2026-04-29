@@ -100,8 +100,10 @@ const faqSchemaJson = JSON.stringify({
 
 <style>
   .faq-summary::-webkit-details-marker { display: none; }
-  .faq-item .faq-summary svg { transition: transform 0.2s ease-out; }
-  .faq-item[open] .faq-summary svg { transform: rotate(45deg); }
+  /* :global(svg) so these rules reach IconPlus's SVG, which has its own
+     scope and doesn't pick up FAQ's data-astro-cid-* attribute. */
+  .faq-item .faq-summary :global(svg) { transition: transform 0.2s ease-out; }
+  .faq-item[open] .faq-summary :global(svg) { transform: rotate(45deg); }
 </style>
 
 <script>
