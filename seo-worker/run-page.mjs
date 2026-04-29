@@ -218,13 +218,13 @@ export async function runPage(slug, opts = {}) {
 
   const maxOutTokens = Math.min(Math.max(7000, Math.round(finalWordTarget * 3) + 3000), 16000);
   const t0 = Date.now();
-  const draft = await deepInfraGenerate(model, cachedContext, userPrompt, maxOutTokens);
+  const { text: draft, cost } = await deepInfraGenerate(model, cachedContext, userPrompt, maxOutTokens);
   const elapsedMs = Date.now() - t0;
   if (!draft) throw new Error('Empty draft from model');
   mkdirSync(join(seoRoot, 'drafts'), { recursive: true });
   writeFileSync(join(seoRoot, 'drafts', `${slug}.md`), draft);
   const wordCount = draft.split(/\s+/).filter(Boolean).length;
-  result.cost = draft._cost || 0;
+  result.cost = cost || 0;
   result.steps.generation = { model, elapsedMs, wordCount, cost: result.cost };
   log(`Step 7: ${wordCount} words generated in ${elapsedMs}ms ($${result.cost.toFixed(4)})`);
 
@@ -331,8 +331,8 @@ async function deepInfraGenerate(model, system, user, maxTokens) {
     }
   }
   const p = PRICING[model] || { in: 0.5, out: 1.5 };
-  draft._cost = ((usage.prompt_tokens || 0) * p.in + (usage.completion_tokens || 0) * p.out) / 1_000_000;
-  return draft;
+  const cost = ((usage.prompt_tokens || 0) * p.in + (usage.completion_tokens || 0) * p.out) / 1_000_000;
+  return { text: draft, cost };
 }
 
 function pickVoiceSamples(target, seoRoot) {
