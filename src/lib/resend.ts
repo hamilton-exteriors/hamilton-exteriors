@@ -27,8 +27,6 @@ export interface LeadEmailInput {
   utm_term?: string;
   gclid?: string;
   fbclid?: string;
-  backofficeStatus: 'saved' | 'saved_duplicate' | 'failed';
-  backofficeError?: string;
   pageUrl?: string;
 }
 
@@ -40,10 +38,6 @@ export async function sendLeadEmail(lead: LeadEmailInput): Promise<void> {
 
   const submittedAt = new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' });
   const kind = lead.step === 'full' ? 'New lead' : `Partial lead (step ${lead.step})`;
-  const backofficeLine =
-    lead.backofficeStatus === 'saved' ? 'BackOffice: saved ✓' :
-    lead.backofficeStatus === 'saved_duplicate' ? 'BackOffice: duplicate — already in CRM' :
-    `BackOffice: FAILED — ${lead.backofficeError || 'unknown error'}`;
 
   const subjectBits = [
     kind,
@@ -76,8 +70,6 @@ export async function sendLeadEmail(lead: LeadEmailInput): Promise<void> {
     ``,
     `Source:  ${lead.source}`,
     lead.pageUrl ? `Page:    ${lead.pageUrl}` : '',
-    ``,
-    backofficeLine,
     ``,
     attribution ? `— Attribution —\n${attribution}` : '',
   ].filter(Boolean).join('\n');

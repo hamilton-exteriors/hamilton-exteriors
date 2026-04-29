@@ -146,7 +146,6 @@ export const server = {
           utm_term: input.utm_term,
           gclid: input.gclid,
           fbclid: input.fbclid,
-          backofficeStatus: 'saved',
           pageUrl: request.headers.get('referer') || undefined,
         }).catch((err) => {
           console.error('[submitLead] Resend notification failed:', (err as Error).message);

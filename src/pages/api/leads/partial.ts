@@ -73,8 +73,6 @@ export const POST: APIRoute = async ({ request }) => {
         utm_term: body.utm_term ? String(body.utm_term) : undefined,
         gclid: body.gclid ? String(body.gclid) : undefined,
         fbclid: body.fbclid ? String(body.fbclid) : undefined,
-        backofficeStatus: 'failed',
-        backofficeError: result.error,
         pageUrl: body.page_url ? String(body.page_url) : undefined,
       });
     } catch (err) {
