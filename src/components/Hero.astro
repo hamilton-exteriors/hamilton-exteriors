@@ -47,7 +47,7 @@ const {
 } = Astro.props;
 
 const hasPresetService = !!serviceType;
-const step2Options = serviceOptions || ['Roofing', 'Siding', 'Windows', 'Other'];
+const step2Options = serviceOptions || ['Roofing', 'Siding', 'Windows', 'Custom Homes', 'ADUs', 'Other'];
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 
 // Generate responsive hero image variants from dynamic heroImage prop

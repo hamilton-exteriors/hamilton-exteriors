@@ -24,6 +24,18 @@ if (!post) {
   return Astro.redirect('/blog');
 }
 
+// If Ghost post has canonical_url pointing to a different on-site URL,
+// 301 the old slug to the consolidated post so SEO equity transfers.
+if (post.canonical_url) {
+  try {
+    const canon = new URL(post.canonical_url);
+    const here = Astro.url;
+    if (canon.origin === here.origin && canon.pathname !== here.pathname) {
+      return Astro.redirect(canon.pathname + canon.search, 301);
+    }
+  } catch { /* invalid canonical_url — fall through */ }
+}
+
 // Strip duplicate brand suffix that Ghost CMS sometimes appends (e.g. "Title | Hamilton Exteriors | Hamilton Exteriors")
 const rawTitle = post.meta_title || post.title;
 const title = rawTitle.replace(/(\s*\|\s*Hamilton Exteriors){2,}/gi, ' | Hamilton Exteriors');
@@ -43,7 +55,8 @@ const shouldNoindex =
   NOINDEX_TITLES.includes((post.title || '').toLowerCase().trim());
 
 const siteUrl = Astro.site?.origin || 'https://hamilton-exteriors.com';
-const canonicalUrl = `${siteUrl}/blog/${slug}`;
+// Prefer Ghost's canonical_url when set (used to de-duplicate old slugs to consolidated versions)
+const canonicalUrl = post.canonical_url || `${siteUrl}/blog/${slug}`;
 
 // Ensure og:image is always absolute — social platforms need full URLs
 // Rewrite Ghost Railway domain to canonical domain (proxied via middleware)

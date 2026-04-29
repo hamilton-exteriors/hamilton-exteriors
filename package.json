@@ -18,6 +18,7 @@
     "check": "eslint src/ && knip"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.91.1",
     "@astrojs/node": "^10.0.4",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
@@ -41,6 +42,7 @@
     "dotenv": "^17.4.1",
     "eslint-plugin-better-tailwindcss": "^4.3.2",
     "knip": "^6.3.1",
+    "marked": "^18.0.2",
     "oxlint": "^1.59.0",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",

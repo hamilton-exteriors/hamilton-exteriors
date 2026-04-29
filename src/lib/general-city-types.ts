@@ -50,4 +50,10 @@ export interface GeneralCityPageData {
 
   /** Stats */
   stats?: Array<{ value: string; label: string }>;
+
+  /** Long-form HTML content rendered after hero, before services grid.
+   *  ~1000-1800 words of city-specific E-E-A-T content. */
+  longFormContent?: string;
+  /** One-sentence bridge between hero and long-form content. */
+  longFormIntro?: string;
 }

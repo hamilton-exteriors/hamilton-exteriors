@@ -46,64 +46,36 @@ export const server = {
       if (input.message) noteParts.push(`Message: ${input.message}`);
       const notes = noteParts.join(' | ') || undefined;
 
-      const result = await sendToBackOffice({
-        name: input.fullName,
-        phone: input.phone,
-        email: input.email,
-        source: 'website-form',
-        notes,
-        ...(input.fbclid && { fbclid: input.fbclid }),
-        ...(input.fbc && { fbc: input.fbc }),
-        ...(input.utm_source && { utm_source: input.utm_source }),
-        ...(input.utm_medium && { utm_medium: input.utm_medium }),
-        ...(input.utm_campaign && { utm_campaign: input.utm_campaign }),
-      });
-
-      if (!result.success) {
-        console.error('[submitLead] BackOffice send failed:', result.error);
-      }
-
-      // Email backstop — fires regardless of BackOffice result so the lead
-      // info is recoverable from admin@ even if the CRM is down or rejects.
-      try {
-        await sendLeadEmail({
-          name: input.fullName,
-          phone: input.phone,
-          email: input.email,
-          address: input.address,
-          service: input.service,
-          serviceDetail: input.serviceDetail,
-          message: input.message,
-          step: 'full',
-          source: 'hero_form',
-          utm_source: input.utm_source,
-          utm_medium: input.utm_medium,
-          utm_campaign: input.utm_campaign,
-          utm_content: input.utm_content,
-          utm_term: input.utm_term,
-          gclid: input.gclid,
-          fbclid: input.fbclid,
-          backofficeStatus: result.success
-            ? (result.duplicate ? 'saved_duplicate' : 'saved')
-            : 'failed',
-          backofficeError: result.error,
-          pageUrl: context.request.headers.get('referer') || undefined,
-        });
-      } catch (err) {
-        console.error('[submitLead] Resend notification failed:', (err as Error).message);
-      }
-
-      // Server-side analytics — bypasses ad blockers, 100% accurate.
-      // Forward the browser's deviceId/sessionId so this event stitches onto
-      // the visitor's pre-submit session (screen_view, form_step, scroll_depth).
+      // Parallelize all the things that don't depend on each other so the
+      // user's response isn't paying for the sum of every network call.
+      // Only sendLeadEmail needs to wait — it includes the CRM save status.
       const session = {
         ...(input.op_device_id && { deviceId: input.op_device_id }),
         ...(input.op_session_id && { sessionId: input.op_session_id }),
       };
       const [firstName, ...lastParts] = input.fullName.split(' ');
-      // Await analytics so the serverless response doesn't race the network
-      // write — fire-and-forget previously dropped identify payloads.
-      await Promise.all([
+      const eventId = crypto.randomUUID();
+      const request = context.request;
+      const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '';
+      const userAgent = request.headers.get('user-agent') || '';
+      const cookies = getMetaCookies(request);
+      const fbc = cookies.fbc || input.fbc;
+      const fbp = cookies.fbp;
+      const pageUrl = request.headers.get('referer') || 'https://hamilton-exteriors.com';
+
+      const [result] = await Promise.all([
+        sendToBackOffice({
+          name: input.fullName,
+          phone: input.phone,
+          email: input.email,
+          source: 'website-form',
+          notes,
+          ...(input.fbclid && { fbclid: input.fbclid }),
+          ...(input.fbc && { fbc: input.fbc }),
+          ...(input.utm_source && { utm_source: input.utm_source }),
+          ...(input.utm_medium && { utm_medium: input.utm_medium }),
+          ...(input.utm_campaign && { utm_campaign: input.utm_campaign }),
+        }),
         identifyProfile({
           email: input.email,
           firstName,
@@ -132,39 +104,61 @@ export const server = {
           ...(input.utm_content && { utm_content: input.utm_content }),
           ...(input.utm_term && { utm_term: input.utm_term }),
         }, session),
+        sendMetaEvent({
+          eventName: 'Lead',
+          eventId,
+          eventSourceUrl: pageUrl,
+          userData: {
+            email: input.email,
+            phone: input.phone,
+            firstName,
+            lastName: lastParts.join(' '),
+            clientIp,
+            userAgent,
+            fbc,
+            fbp,
+          },
+          customData: {
+            currency: 'USD',
+            contentType: 'service',
+            contentIds: [input.service || 'general'],
+          },
+        }),
       ]);
 
-      // Meta CAPI — server-side Lead event (deduped with client-side Pixel via eventId)
-      const eventId = crypto.randomUUID();
-      const request = context.request;
-      const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '';
-      const userAgent = request.headers.get('user-agent') || '';
-      const cookies = getMetaCookies(request);
-      // Use client-persisted fbc (from sessionStorage) when Safari ITP killed the cookie
-      const fbc = cookies.fbc || input.fbc;
-      const fbp = cookies.fbp;
-      const pageUrl = request.headers.get('referer') || 'https://hamilton-exteriors.com';
+      if (!result.success) {
+        console.error('[submitLead] BackOffice send failed:', result.error);
+      }
 
-      await sendMetaEvent({
-        eventName: 'Lead',
-        eventId,
-        eventSourceUrl: pageUrl,
-        userData: {
-          email: input.email,
+      // Email backstop — fires after BackOffice resolves so the email reflects
+      // the actual save status. Recoverable from admin@ even if CRM rejected.
+      try {
+        await sendLeadEmail({
+          name: input.fullName,
           phone: input.phone,
-          firstName,
-          lastName: lastParts.join(' '),
-          clientIp,
-          userAgent,
-          fbc,
-          fbp,
-        },
-        customData: {
-          currency: 'USD',
-          contentType: 'service',
-          contentIds: [input.service || 'general'],
-        },
-      });
+          email: input.email,
+          address: input.address,
+          service: input.service,
+          serviceDetail: input.serviceDetail,
+          message: input.message,
+          step: 'full',
+          source: 'hero_form',
+          utm_source: input.utm_source,
+          utm_medium: input.utm_medium,
+          utm_campaign: input.utm_campaign,
+          utm_content: input.utm_content,
+          utm_term: input.utm_term,
+          gclid: input.gclid,
+          fbclid: input.fbclid,
+          backofficeStatus: result.success
+            ? (result.duplicate ? 'saved_duplicate' : 'saved')
+            : 'failed',
+          backofficeError: result.error,
+          pageUrl: request.headers.get('referer') || undefined,
+        });
+      } catch (err) {
+        console.error('[submitLead] Resend notification failed:', (err as Error).message);
+      }
 
       return { success: true, name: input.fullName, eventId };
     },
