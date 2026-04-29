@@ -1,0 +1,38 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/mountain-view-ca",
+  "pagePurpose": "Mountain View city-level home services hub. Lists every service Hamilton offers in Mountain View.",
+  "pageType": "service-area-city",
+  "citySlug": "mountain-view-ca",
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "mountain view contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "general contractor mountain view",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home contractor mountain view ca",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city__mountain-view-ca"
+}

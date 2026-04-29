@@ -1,0 +1,44 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/blog/adu-cost-campbell",
+  "pagePurpose": "Campbell-specific cost guide for ADU. Convert informational searchers via local pricing data + permit context.",
+  "pageType": "cost-blog",
+  "citySlug": "campbell-ca",
+  "service": "adu",
+  "primaryKeywords": [
+    {
+      "kw": "ADU construction cost campbell",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "adu cost campbell",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "how much does ADU construction cost in campbell",
+      "priority": 1,
+      "intent": "informational"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "ADU construction price campbell",
+      "priority": 2,
+      "intent": "informational"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "cost-blog__campbell-ca__adu-cost"
+}

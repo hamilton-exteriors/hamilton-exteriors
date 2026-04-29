@@ -1,0 +1,59 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/alameda-county-ca/oakland-ca/custom-homes",
+  "pagePurpose": "Convert Oakland homeowners searching for custom home builder services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "oakland-ca",
+  "service": "custom-homes",
+  "primaryKeywords": [
+    {
+      "kw": "oakland custom home builder",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom home builder oakland",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom home construction oakland",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "custom home builder oakland ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom homes contractor oakland",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {
+    "hamilton exteriors": {
+      "keys": [
+        "hamilton exteriors"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 1.2
+    }
+  },
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "draft_ready",
+  "iterations": 1,
+  "lastError": null,
+  "pageSlug": "sa-city-service__oakland-ca__custom-homes"
+}

@@ -1,0 +1,38 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/alameda-county-ca/san-leandro-ca",
+  "pagePurpose": "San Leandro city-level home services hub. Lists every service Hamilton offers in San Leandro.",
+  "pageType": "service-area-city",
+  "citySlug": "san-leandro-ca",
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "san leandro contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "general contractor san leandro",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home contractor san leandro ca",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city__san-leandro-ca"
+}

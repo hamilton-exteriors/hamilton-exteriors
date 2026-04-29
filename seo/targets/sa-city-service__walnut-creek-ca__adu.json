@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/contra-costa-county-ca/walnut-creek-ca/adu",
+  "pagePurpose": "Convert Walnut Creek homeowners searching for ADU builder services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "walnut-creek-ca",
+  "service": "adu",
+  "primaryKeywords": [
+    {
+      "kw": "walnut creek ADU builder",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "ADU builder walnut creek",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "ADU construction walnut creek",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "ADU builder walnut creek ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "adu contractor walnut creek",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__walnut-creek-ca__adu"
+}

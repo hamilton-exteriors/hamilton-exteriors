@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/saratoga-ca/additions",
+  "pagePurpose": "Convert Saratoga homeowners searching for home addition contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "saratoga-ca",
+  "service": "additions",
+  "primaryKeywords": [
+    {
+      "kw": "saratoga home addition contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home addition contractor saratoga",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home addition saratoga",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "home addition contractor saratoga ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home additions contractor saratoga",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__saratoga-ca__additions"
+}

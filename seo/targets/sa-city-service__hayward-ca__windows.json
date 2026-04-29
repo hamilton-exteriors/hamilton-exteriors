@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/alameda-county-ca/hayward-ca/windows",
+  "pagePurpose": "Convert Hayward homeowners searching for window replacement contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "hayward-ca",
+  "service": "windows",
+  "primaryKeywords": [
+    {
+      "kw": "hayward window replacement contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement contractor hayward",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement hayward",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "window replacement contractor hayward ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "windows contractor hayward",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__hayward-ca__windows"
+}

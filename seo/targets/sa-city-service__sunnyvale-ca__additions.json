@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/sunnyvale-ca/additions",
+  "pagePurpose": "Convert Sunnyvale homeowners searching for home addition contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "sunnyvale-ca",
+  "service": "additions",
+  "primaryKeywords": [
+    {
+      "kw": "sunnyvale home addition contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home addition contractor sunnyvale",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home addition sunnyvale",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "home addition contractor sunnyvale ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home additions contractor sunnyvale",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__sunnyvale-ca__additions"
+}

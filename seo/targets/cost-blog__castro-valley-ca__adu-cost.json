@@ -1,0 +1,44 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/blog/adu-cost-castro-valley",
+  "pagePurpose": "Castro Valley-specific cost guide for ADU. Convert informational searchers via local pricing data + permit context.",
+  "pageType": "cost-blog",
+  "citySlug": "castro-valley-ca",
+  "service": "adu",
+  "primaryKeywords": [
+    {
+      "kw": "ADU construction cost castro valley",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "adu cost castro valley",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "how much does ADU construction cost in castro valley",
+      "priority": 1,
+      "intent": "informational"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "ADU construction price castro valley",
+      "priority": 2,
+      "intent": "informational"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "cost-blog__castro-valley-ca__adu-cost"
+}

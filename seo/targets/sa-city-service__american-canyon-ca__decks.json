@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/napa-county-ca/american-canyon-ca/decks",
+  "pagePurpose": "Convert American Canyon homeowners searching for deck builder services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "american-canyon-ca",
+  "service": "decks",
+  "primaryKeywords": [
+    {
+      "kw": "american canyon deck builder",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck builder american canyon",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck construction american canyon",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "deck builder american canyon ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "decks contractor american canyon",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__american-canyon-ca__decks"
+}

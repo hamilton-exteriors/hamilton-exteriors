@@ -1,0 +1,38 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/contra-costa-county-ca/walnut-creek-ca",
+  "pagePurpose": "Walnut Creek city-level home services hub. Lists every service Hamilton offers in Walnut Creek.",
+  "pageType": "service-area-city",
+  "citySlug": "walnut-creek-ca",
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "walnut creek contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "general contractor walnut creek",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home contractor walnut creek ca",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city__walnut-creek-ca"
+}

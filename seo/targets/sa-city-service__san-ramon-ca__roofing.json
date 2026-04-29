@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/contra-costa-county-ca/san-ramon-ca/roofing",
+  "pagePurpose": "Convert San Ramon homeowners searching for roofing contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "san-ramon-ca",
+  "service": "roofing",
+  "primaryKeywords": [
+    {
+      "kw": "san ramon roofing contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roofing contractor san ramon",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roof replacement san ramon",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "roofing contractor san ramon ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roofing contractor san ramon",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__san-ramon-ca__roofing"
+}

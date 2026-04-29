@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/los-gatos-ca/decks",
+  "pagePurpose": "Convert Los Gatos homeowners searching for deck builder services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "los-gatos-ca",
+  "service": "decks",
+  "primaryKeywords": [
+    {
+      "kw": "los gatos deck builder",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck builder los gatos",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck construction los gatos",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "deck builder los gatos ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "decks contractor los gatos",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__los-gatos-ca__decks"
+}

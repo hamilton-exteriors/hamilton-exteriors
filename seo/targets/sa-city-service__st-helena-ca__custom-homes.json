@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/napa-county-ca/st-helena-ca/custom-homes",
+  "pagePurpose": "Convert St. Helena homeowners searching for custom home builder services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "st-helena-ca",
+  "service": "custom-homes",
+  "primaryKeywords": [
+    {
+      "kw": "st. helena custom home builder",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom home builder st. helena",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom home construction st. helena",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "custom home builder st. helena ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom homes contractor st. helena",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__st-helena-ca__custom-homes"
+}

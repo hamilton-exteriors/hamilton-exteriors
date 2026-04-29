@@ -1,0 +1,39 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/blog/adu-cost-bay-area",
+  "pagePurpose": "Bay Area-wide cost guide for ADU. Convert informational searchers into leads via lower-funnel CTAs.",
+  "pageType": "cost-blog",
+  "citySlug": null,
+  "service": "adu",
+  "primaryKeywords": [
+    {
+      "kw": "ADU construction cost bay area",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "how much does ADU construction cost in the bay area",
+      "priority": 1,
+      "intent": "informational"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "adu pricing bay area",
+      "priority": 2,
+      "intent": "informational"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "cost-blog__bay-area__adu-cost"
+}

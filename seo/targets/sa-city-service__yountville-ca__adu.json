@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/napa-county-ca/yountville-ca/adu",
+  "pagePurpose": "Convert Yountville homeowners searching for ADU builder services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "yountville-ca",
+  "service": "adu",
+  "primaryKeywords": [
+    {
+      "kw": "yountville ADU builder",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "ADU builder yountville",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "ADU construction yountville",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "ADU builder yountville ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "adu contractor yountville",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__yountville-ca__adu"
+}

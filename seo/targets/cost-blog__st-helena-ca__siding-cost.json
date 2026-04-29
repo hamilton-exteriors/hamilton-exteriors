@@ -1,0 +1,44 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/blog/siding-cost-st-helena",
+  "pagePurpose": "St. Helena-specific cost guide for Siding. Convert informational searchers via local pricing data + permit context.",
+  "pageType": "cost-blog",
+  "citySlug": "st-helena-ca",
+  "service": "siding",
+  "primaryKeywords": [
+    {
+      "kw": "siding installation cost st. helena",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "siding cost st. helena",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "how much does siding installation cost in st. helena",
+      "priority": 1,
+      "intent": "informational"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "siding installation price st. helena",
+      "priority": 2,
+      "intent": "informational"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "cost-blog__st-helena-ca__siding-cost"
+}

@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/marin-county-ca/san-rafael-ca/roofing",
+  "pagePurpose": "Convert San Rafael homeowners searching for roofing contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "san-rafael-ca",
+  "service": "roofing",
+  "primaryKeywords": [
+    {
+      "kw": "san rafael roofing contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roofing contractor san rafael",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roof replacement san rafael",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "roofing contractor san rafael ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roofing contractor san rafael",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__san-rafael-ca__roofing"
+}

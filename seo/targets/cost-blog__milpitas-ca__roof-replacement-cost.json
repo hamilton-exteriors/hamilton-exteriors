@@ -1,0 +1,44 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/blog/roof-replacement-cost-milpitas",
+  "pagePurpose": "Milpitas-specific cost guide for Roofing. Convert informational searchers via local pricing data + permit context.",
+  "pageType": "cost-blog",
+  "citySlug": "milpitas-ca",
+  "service": "roofing",
+  "primaryKeywords": [
+    {
+      "kw": "roof replacement cost milpitas",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "roofing cost milpitas",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "how much does roof replacement cost in milpitas",
+      "priority": 1,
+      "intent": "informational"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "roof replacement price milpitas",
+      "priority": 2,
+      "intent": "informational"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "cost-blog__milpitas-ca__roof-replacement-cost"
+}

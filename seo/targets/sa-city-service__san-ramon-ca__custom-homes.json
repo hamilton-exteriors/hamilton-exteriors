@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/contra-costa-county-ca/san-ramon-ca/custom-homes",
+  "pagePurpose": "Convert San Ramon homeowners searching for custom home builder services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "san-ramon-ca",
+  "service": "custom-homes",
+  "primaryKeywords": [
+    {
+      "kw": "san ramon custom home builder",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom home builder san ramon",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom home construction san ramon",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "custom home builder san ramon ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom homes contractor san ramon",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__san-ramon-ca__custom-homes"
+}

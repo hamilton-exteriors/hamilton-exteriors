@@ -1,0 +1,44 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/blog/second-story-addition-cost-mountain-view",
+  "pagePurpose": "Mountain View-specific cost guide for Home Additions. Convert informational searchers via local pricing data + permit context.",
+  "pageType": "cost-blog",
+  "citySlug": "mountain-view-ca",
+  "service": "additions",
+  "primaryKeywords": [
+    {
+      "kw": "home addition cost mountain view",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "home additions cost mountain view",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "how much does home addition cost in mountain view",
+      "priority": 1,
+      "intent": "informational"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "home addition price mountain view",
+      "priority": 2,
+      "intent": "informational"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "cost-blog__mountain-view-ca__second-story-addition-cost"
+}

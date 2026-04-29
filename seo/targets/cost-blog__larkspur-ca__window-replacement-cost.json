@@ -1,0 +1,44 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/blog/window-replacement-cost-larkspur",
+  "pagePurpose": "Larkspur-specific cost guide for Windows. Convert informational searchers via local pricing data + permit context.",
+  "pageType": "cost-blog",
+  "citySlug": "larkspur-ca",
+  "service": "windows",
+  "primaryKeywords": [
+    {
+      "kw": "window replacement cost larkspur",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "windows cost larkspur",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "how much does window replacement cost in larkspur",
+      "priority": 1,
+      "intent": "informational"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "window replacement price larkspur",
+      "priority": 2,
+      "intent": "informational"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "cost-blog__larkspur-ca__window-replacement-cost"
+}

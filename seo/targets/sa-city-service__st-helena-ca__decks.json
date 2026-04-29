@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/napa-county-ca/st-helena-ca/decks",
+  "pagePurpose": "Convert St. Helena homeowners searching for deck builder services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "st-helena-ca",
+  "service": "decks",
+  "primaryKeywords": [
+    {
+      "kw": "st. helena deck builder",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck builder st. helena",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck construction st. helena",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "deck builder st. helena ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "decks contractor st. helena",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__st-helena-ca__decks"
+}

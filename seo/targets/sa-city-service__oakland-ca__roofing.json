@@ -1,0 +1,104 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/alameda-county-ca/oakland-ca/roofing",
+  "pagePurpose": "Convert Oakland homeowners searching for roofing contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "oakland-ca",
+  "service": "roofing",
+  "primaryKeywords": [
+    {
+      "kw": "oakland roofing contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roofing contractor oakland",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roof replacement oakland",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "roofing contractor oakland ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roofing contractor oakland",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {
+    "roofer adams point": {
+      "keys": [
+        "roofer adams point"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 5.666666666666667
+    },
+    "roofer jack london district": {
+      "keys": [
+        "roofer jack london district"
+      ],
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 9.875
+    },
+    "roofer jack london square": {
+      "keys": [
+        "roofer jack london square"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 12.833333333333334
+    },
+    "roofer telegraph avenue": {
+      "keys": [
+        "roofer telegraph avenue"
+      ],
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 10.5
+    },
+    "roofing adams point": {
+      "keys": [
+        "roofing adams point"
+      ],
+      "clicks": 0,
+      "impressions": 11,
+      "ctr": 0,
+      "position": 5.090909090909091
+    },
+    "roofing oakland hills": {
+      "keys": [
+        "roofing oakland hills"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 5.6
+    }
+  },
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "draft_ready",
+  "iterations": 3,
+  "lastError": null,
+  "pageSlug": "sa-city-service__oakland-ca__roofing"
+}

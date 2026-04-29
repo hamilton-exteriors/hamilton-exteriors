@@ -1,0 +1,38 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/palo-alto-ca",
+  "pagePurpose": "Palo Alto city-level home services hub. Lists every service Hamilton offers in Palo Alto.",
+  "pageType": "service-area-city",
+  "citySlug": "palo-alto-ca",
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "palo alto contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "general contractor palo alto",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home contractor palo alto ca",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city__palo-alto-ca"
+}

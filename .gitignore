@@ -43,7 +43,41 @@ page_data.json
 extractions/
 docs/
 scripts/
+# Allow specific SEO pipeline scripts (force-added)
+!scripts/seed-targets.mjs
+!scripts/seed-data-spine.mjs
+!scripts/extract-voice-corpus.mjs
+!scripts/qa-page.mjs
+!scripts/g7-gate.mjs
+!scripts/run-single-page.mjs
+!scripts/auto-fix-draft.mjs
+!scripts/ghost-publish.mjs
+!scripts/monitor-page.mjs
+!scripts/orchestrate-managed-agents.mjs
 
 # Overture Maps parquet — 629MB, rebuild with overturemaps CLI
 data/*.parquet
 data/*.parquet.state
+
+# SEO pipeline noise — generated state, regenerable artifacts
+.seo-cache/
+seo/serps/
+seo/competitors/
+seo/teardowns/
+seo/audit-log/
+seo/failures.jsonl
+seo/dashboard.json
+seo/monitor-queue.jsonl
+seo/reloop-queue.jsonl
+seo/drafts/*.qa.json
+
+# One-shot analysis / scratch outputs (do not commit)
+tmp_*.py
+tmp_*.mjs
+tmp_*.json
+tmp_*.txt
+tmp_*.xml
+lh_*.json
+screenshots/audit_data.json
+generated-schema.json
+send-ad-email.mjs

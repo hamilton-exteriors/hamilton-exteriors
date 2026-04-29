@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/contra-costa-county-ca/concord-ca/windows",
+  "pagePurpose": "Convert Concord homeowners searching for window replacement contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "concord-ca",
+  "service": "windows",
+  "primaryKeywords": [
+    {
+      "kw": "concord window replacement contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement contractor concord",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement concord",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "window replacement contractor concord ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "windows contractor concord",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__concord-ca__windows"
+}

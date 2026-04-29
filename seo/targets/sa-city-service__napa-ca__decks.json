@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/napa-county-ca/napa-ca/decks",
+  "pagePurpose": "Convert Napa homeowners searching for deck builder services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "napa-ca",
+  "service": "decks",
+  "primaryKeywords": [
+    {
+      "kw": "napa deck builder",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck builder napa",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck construction napa",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "deck builder napa ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "decks contractor napa",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__napa-ca__decks"
+}

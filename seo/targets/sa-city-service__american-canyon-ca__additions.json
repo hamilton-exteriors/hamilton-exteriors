@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/napa-county-ca/american-canyon-ca/additions",
+  "pagePurpose": "Convert American Canyon homeowners searching for home addition contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "american-canyon-ca",
+  "service": "additions",
+  "primaryKeywords": [
+    {
+      "kw": "american canyon home addition contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home addition contractor american canyon",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home addition american canyon",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "home addition contractor american canyon ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home additions contractor american canyon",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__american-canyon-ca__additions"
+}

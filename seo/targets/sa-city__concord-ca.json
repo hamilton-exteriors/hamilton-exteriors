@@ -1,0 +1,38 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/contra-costa-county-ca/concord-ca",
+  "pagePurpose": "Concord city-level home services hub. Lists every service Hamilton offers in Concord.",
+  "pageType": "service-area-city",
+  "citySlug": "concord-ca",
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "concord contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "general contractor concord",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home contractor concord ca",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city__concord-ca"
+}

@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/marin-county-ca/mill-valley-ca/custom-homes",
+  "pagePurpose": "Convert Mill Valley homeowners searching for custom home builder services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "mill-valley-ca",
+  "service": "custom-homes",
+  "primaryKeywords": [
+    {
+      "kw": "mill valley custom home builder",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom home builder mill valley",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom home construction mill valley",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "custom home builder mill valley ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom homes contractor mill valley",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__mill-valley-ca__custom-homes"
+}

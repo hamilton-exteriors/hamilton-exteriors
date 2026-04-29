@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/los-gatos-ca/windows",
+  "pagePurpose": "Convert Los Gatos homeowners searching for window replacement contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "los-gatos-ca",
+  "service": "windows",
+  "primaryKeywords": [
+    {
+      "kw": "los gatos window replacement contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement contractor los gatos",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement los gatos",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "window replacement contractor los gatos ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "windows contractor los gatos",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__los-gatos-ca__windows"
+}

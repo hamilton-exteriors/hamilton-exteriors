@@ -1,0 +1,44 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/blog/adu-cost-milpitas",
+  "pagePurpose": "Milpitas-specific cost guide for ADU. Convert informational searchers via local pricing data + permit context.",
+  "pageType": "cost-blog",
+  "citySlug": "milpitas-ca",
+  "service": "adu",
+  "primaryKeywords": [
+    {
+      "kw": "ADU construction cost milpitas",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "adu cost milpitas",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "how much does ADU construction cost in milpitas",
+      "priority": 1,
+      "intent": "informational"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "ADU construction price milpitas",
+      "priority": 2,
+      "intent": "informational"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "cost-blog__milpitas-ca__adu-cost"
+}

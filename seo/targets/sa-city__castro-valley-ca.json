@@ -1,0 +1,38 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/alameda-county-ca/castro-valley-ca",
+  "pagePurpose": "Castro Valley city-level home services hub. Lists every service Hamilton offers in Castro Valley.",
+  "pageType": "service-area-city",
+  "citySlug": "castro-valley-ca",
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "castro valley contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "general contractor castro valley",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home contractor castro valley ca",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city__castro-valley-ca"
+}

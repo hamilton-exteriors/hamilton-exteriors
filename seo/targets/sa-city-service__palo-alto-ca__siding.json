@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/palo-alto-ca/siding",
+  "pagePurpose": "Convert Palo Alto homeowners searching for siding contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "palo-alto-ca",
+  "service": "siding",
+  "primaryKeywords": [
+    {
+      "kw": "palo alto siding contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "siding contractor palo alto",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "siding installation palo alto",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "siding contractor palo alto ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "siding contractor palo alto",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__palo-alto-ca__siding"
+}

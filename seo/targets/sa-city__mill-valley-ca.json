@@ -1,0 +1,38 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/marin-county-ca/mill-valley-ca",
+  "pagePurpose": "Mill Valley city-level home services hub. Lists every service Hamilton offers in Mill Valley.",
+  "pageType": "service-area-city",
+  "citySlug": "mill-valley-ca",
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "mill valley contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "general contractor mill valley",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home contractor mill valley ca",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city__mill-valley-ca"
+}

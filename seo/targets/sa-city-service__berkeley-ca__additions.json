@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/alameda-county-ca/berkeley-ca/additions",
+  "pagePurpose": "Convert Berkeley homeowners searching for home addition contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "berkeley-ca",
+  "service": "additions",
+  "primaryKeywords": [
+    {
+      "kw": "berkeley home addition contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home addition contractor berkeley",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home addition berkeley",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "home addition contractor berkeley ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home additions contractor berkeley",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__berkeley-ca__additions"
+}

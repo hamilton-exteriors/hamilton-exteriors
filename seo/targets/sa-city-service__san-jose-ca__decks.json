@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/san-jose-ca/decks",
+  "pagePurpose": "Convert San Jose homeowners searching for deck builder services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "san-jose-ca",
+  "service": "decks",
+  "primaryKeywords": [
+    {
+      "kw": "san jose deck builder",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck builder san jose",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck construction san jose",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "deck builder san jose ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "decks contractor san jose",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__san-jose-ca__decks"
+}

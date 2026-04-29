@@ -1,0 +1,61 @@
+{
+  "$schema": "Hamilton Exteriors service taxonomy. Each service has its own city-service pages plus optional cost-blog topic.",
+  "services": [
+    {
+      "slug": "roofing",
+      "display": "Roofing",
+      "noun": "roofing contractor",
+      "verb": "roof replacement",
+      "costTopic": "roof-replacement-cost",
+      "costDisplay": "Roof Replacement Cost"
+    },
+    {
+      "slug": "siding",
+      "display": "Siding",
+      "noun": "siding contractor",
+      "verb": "siding installation",
+      "costTopic": "siding-cost",
+      "costDisplay": "Siding Cost"
+    },
+    {
+      "slug": "windows",
+      "display": "Windows",
+      "noun": "window replacement contractor",
+      "verb": "window replacement",
+      "costTopic": "window-replacement-cost",
+      "costDisplay": "Window Replacement Cost"
+    },
+    {
+      "slug": "adu",
+      "display": "ADU",
+      "noun": "ADU builder",
+      "verb": "ADU construction",
+      "costTopic": "adu-cost",
+      "costDisplay": "ADU Cost"
+    },
+    {
+      "slug": "custom-homes",
+      "display": "Custom Homes",
+      "noun": "custom home builder",
+      "verb": "custom home construction",
+      "costTopic": null,
+      "costDisplay": null
+    },
+    {
+      "slug": "additions",
+      "display": "Home Additions",
+      "noun": "home addition contractor",
+      "verb": "home addition",
+      "costTopic": "second-story-addition-cost",
+      "costDisplay": "Second Story Addition Cost"
+    },
+    {
+      "slug": "decks",
+      "display": "Decks",
+      "noun": "deck builder",
+      "verb": "deck construction",
+      "costTopic": null,
+      "costDisplay": null
+    }
+  ]
+}

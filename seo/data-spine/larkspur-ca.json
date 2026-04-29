@@ -1,0 +1,78 @@
+{
+  "citySlug": "larkspur-ca",
+  "cityDisplay": "Larkspur",
+  "county": "marin-county-ca",
+  "countyDisplay": "Marin County",
+  "sourceUrls": {
+    "gov": "https://www.cityoflarkspur.org",
+    "buildingDept": "https://www.cityoflarkspur.org/137/Building-Division",
+    "permitPortal": null,
+    "fireZone": null
+  },
+  "countyFacts": {
+    "seismic": "San Andreas Fault western edge. Most of Marin is moderate seismic.",
+    "climate": "Coastal fog (Mill Valley, Larkspur). Inland (Novato) drier and warmer.",
+    "fireRisk": "Most of Marin is in WUI High or Very High FHSZ. Strict Class A roofing + ember-resistant vents required.",
+    "cooperatingAuthorities": "Marin Municipal Water District, PG&E, MarinCounty.org Building."
+  },
+  "permits": {
+    "roofing": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "siding": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "windows": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "adu": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "custom-homes": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "additions": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "decks": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    }
+  },
+  "neighborhoods": [],
+  "notes": "Skeleton. Permit fees pulled by scripts/scrape-permits.mjs. Per-service insights pulled by per-page agent."
+}

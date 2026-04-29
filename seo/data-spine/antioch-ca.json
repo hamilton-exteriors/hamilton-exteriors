@@ -1,0 +1,78 @@
+{
+  "citySlug": "antioch-ca",
+  "cityDisplay": "Antioch",
+  "county": "contra-costa-county-ca",
+  "countyDisplay": "Contra Costa County",
+  "sourceUrls": {
+    "gov": "https://www.antiochca.gov",
+    "buildingDept": "https://www.antiochca.gov/community-development/building-inspection",
+    "permitPortal": null,
+    "fireZone": null
+  },
+  "countyFacts": {
+    "seismic": "Hayward Fault, Concord Fault. Higher liquefaction risk in Antioch/Pittsburg delta zones.",
+    "climate": "Hot inland summers (Walnut Creek, Concord, Antioch) reach 100°F+. Drives shingle thermal cycling and AC demand.",
+    "fireRisk": "East Bay hills + Diablo Range are State Responsibility Area Very High FHSZ in parts of San Ramon, Lafayette, Orinda, Danville.",
+    "cooperatingAuthorities": "East Bay MUD or Contra Costa Water District, PG&E."
+  },
+  "permits": {
+    "roofing": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "siding": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "windows": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "adu": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "custom-homes": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "additions": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "decks": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    }
+  },
+  "neighborhoods": [],
+  "notes": "Skeleton. Permit fees pulled by scripts/scrape-permits.mjs. Per-service insights pulled by per-page agent."
+}

@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/contra-costa-county-ca/antioch-ca/additions",
+  "pagePurpose": "Convert Antioch homeowners searching for home addition contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "antioch-ca",
+  "service": "additions",
+  "primaryKeywords": [
+    {
+      "kw": "antioch home addition contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home addition contractor antioch",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home addition antioch",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "home addition contractor antioch ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home additions contractor antioch",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__antioch-ca__additions"
+}

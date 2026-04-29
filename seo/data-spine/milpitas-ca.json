@@ -1,0 +1,78 @@
+{
+  "citySlug": "milpitas-ca",
+  "cityDisplay": "Milpitas",
+  "county": "santa-clara-county-ca",
+  "countyDisplay": "Santa Clara County",
+  "sourceUrls": {
+    "gov": "https://www.milpitas.gov",
+    "buildingDept": "https://www.milpitas.gov/government/community-development/building-safety",
+    "permitPortal": null,
+    "fireZone": null
+  },
+  "countyFacts": {
+    "seismic": "San Andreas, Calaveras, Hayward faults. Liquefaction zones in San Jose alluvial plains.",
+    "climate": "Hot summers in San Jose, Cupertino, Santa Clara (95°F+). Cooler in Los Gatos foothills.",
+    "fireRisk": "Saratoga, Los Gatos hills, parts of Cupertino are WUI Very High FHSZ. Foothills require Class A roofing.",
+    "cooperatingAuthorities": "Santa Clara Valley Water District, PG&E or Santa Clara Municipal Utilities (Santa Clara city)."
+  },
+  "permits": {
+    "roofing": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "siding": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "windows": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "adu": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "custom-homes": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "additions": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "decks": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    }
+  },
+  "neighborhoods": [],
+  "notes": "Skeleton. Permit fees pulled by scripts/scrape-permits.mjs. Per-service insights pulled by per-page agent."
+}

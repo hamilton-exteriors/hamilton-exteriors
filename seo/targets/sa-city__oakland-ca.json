@@ -1,0 +1,102 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/alameda-county-ca/oakland-ca",
+  "pagePurpose": "Oakland city-level home services hub. Lists every service Hamilton offers in Oakland.",
+  "pageType": "service-area-city",
+  "citySlug": "oakland-ca",
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "oakland contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "general contractor oakland",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home contractor oakland ca",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {
+    "exterior remodeling company montclair village": {
+      "keys": [
+        "exterior remodeling company montclair village"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 47
+    },
+    "exterior remodeling montclair village": {
+      "keys": [
+        "exterior remodeling montclair village"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 40
+    },
+    "home exterior services near me,": {
+      "keys": [
+        "home exterior services near me,"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 14
+    },
+    "home exterior services,": {
+      "keys": [
+        "home exterior services,"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 4.25
+    },
+    "oakland siding": {
+      "keys": [
+        "oakland siding"
+      ],
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 40.44444444444444
+    },
+    "roofer west oakland": {
+      "keys": [
+        "roofer west oakland"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 36.666666666666664
+    },
+    "siding contractors oakland": {
+      "keys": [
+        "siding contractors oakland"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 43.333333333333336
+    }
+  },
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "draft_ready",
+  "iterations": 1,
+  "lastError": null,
+  "pageSlug": "sa-city__oakland-ca"
+}

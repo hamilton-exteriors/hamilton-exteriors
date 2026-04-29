@@ -1,0 +1,54 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/windows",
+  "pagePurpose": "Convert Bay Area homeowners searching for window replacement contractor services. Top-of-funnel category page.",
+  "pageType": "cornerstone-service",
+  "citySlug": null,
+  "service": "windows",
+  "primaryKeywords": [
+    {
+      "kw": "bay area window replacement contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement contractor bay area",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement bay area",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "window replacement contractor san francisco",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement contractor oakland",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement contractor san jose",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "cornerstone__windows"
+}

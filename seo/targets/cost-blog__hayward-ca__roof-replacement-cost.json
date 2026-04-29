@@ -1,0 +1,44 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/blog/roof-replacement-cost-hayward",
+  "pagePurpose": "Hayward-specific cost guide for Roofing. Convert informational searchers via local pricing data + permit context.",
+  "pageType": "cost-blog",
+  "citySlug": "hayward-ca",
+  "service": "roofing",
+  "primaryKeywords": [
+    {
+      "kw": "roof replacement cost hayward",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "roofing cost hayward",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "how much does roof replacement cost in hayward",
+      "priority": 1,
+      "intent": "informational"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "roof replacement price hayward",
+      "priority": 2,
+      "intent": "informational"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "cost-blog__hayward-ca__roof-replacement-cost"
+}

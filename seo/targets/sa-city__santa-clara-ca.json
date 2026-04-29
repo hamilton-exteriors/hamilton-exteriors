@@ -1,0 +1,38 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/santa-clara-ca",
+  "pagePurpose": "Santa Clara city-level home services hub. Lists every service Hamilton offers in Santa Clara.",
+  "pageType": "service-area-city",
+  "citySlug": "santa-clara-ca",
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "santa clara contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "general contractor santa clara",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home contractor santa clara ca",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city__santa-clara-ca"
+}

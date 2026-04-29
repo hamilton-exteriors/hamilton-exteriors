@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/marin-county-ca/larkspur-ca/roofing",
+  "pagePurpose": "Convert Larkspur homeowners searching for roofing contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "larkspur-ca",
+  "service": "roofing",
+  "primaryKeywords": [
+    {
+      "kw": "larkspur roofing contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roofing contractor larkspur",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roof replacement larkspur",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "roofing contractor larkspur ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roofing contractor larkspur",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__larkspur-ca__roofing"
+}

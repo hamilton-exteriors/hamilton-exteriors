@@ -1,0 +1,33 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/siding/vinyl",
+  "pagePurpose": "vinyl sub-service of Siding. Bottom-of-funnel detail page for users specifying material/type.",
+  "pageType": "cornerstone-subservice",
+  "citySlug": null,
+  "service": "siding",
+  "primaryKeywords": [
+    {
+      "kw": "vinyl bay area",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "vinyl siding contractor",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "subservice__siding__vinyl"
+}

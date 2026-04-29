@@ -1,0 +1,78 @@
+{
+  "citySlug": "napa-ca",
+  "cityDisplay": "Napa",
+  "county": "napa-county-ca",
+  "countyDisplay": "Napa County",
+  "sourceUrls": {
+    "gov": "https://www.cityofnapa.org",
+    "buildingDept": "https://www.cityofnapa.org/176/Building",
+    "permitPortal": null,
+    "fireZone": null
+  },
+  "countyFacts": {
+    "seismic": "West Napa Fault — moderate to high seismic risk. 2014 South Napa earthquake reference.",
+    "climate": "Hot dry summers, mild wet winters. Wine-country aesthetic conventions on rural parcels.",
+    "fireRisk": "Most of Napa County is WUI Very High FHSZ post-2017 wildfires. Defensible-space and Class A required.",
+    "cooperatingAuthorities": "Napa County Building Dept, PG&E, local water districts."
+  },
+  "permits": {
+    "roofing": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "siding": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "windows": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "adu": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "custom-homes": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "additions": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "decks": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    }
+  },
+  "neighborhoods": [],
+  "notes": "Skeleton. Permit fees pulled by scripts/scrape-permits.mjs. Per-service insights pulled by per-page agent."
+}

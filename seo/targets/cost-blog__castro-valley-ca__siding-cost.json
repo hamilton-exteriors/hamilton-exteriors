@@ -1,0 +1,44 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/blog/siding-cost-castro-valley",
+  "pagePurpose": "Castro Valley-specific cost guide for Siding. Convert informational searchers via local pricing data + permit context.",
+  "pageType": "cost-blog",
+  "citySlug": "castro-valley-ca",
+  "service": "siding",
+  "primaryKeywords": [
+    {
+      "kw": "siding installation cost castro valley",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "siding cost castro valley",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "how much does siding installation cost in castro valley",
+      "priority": 1,
+      "intent": "informational"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "siding installation price castro valley",
+      "priority": 2,
+      "intent": "informational"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "cost-blog__castro-valley-ca__siding-cost"
+}

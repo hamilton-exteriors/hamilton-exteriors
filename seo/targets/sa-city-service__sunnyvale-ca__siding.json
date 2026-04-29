@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/sunnyvale-ca/siding",
+  "pagePurpose": "Convert Sunnyvale homeowners searching for siding contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "sunnyvale-ca",
+  "service": "siding",
+  "primaryKeywords": [
+    {
+      "kw": "sunnyvale siding contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "siding contractor sunnyvale",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "siding installation sunnyvale",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "siding contractor sunnyvale ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "siding contractor sunnyvale",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__sunnyvale-ca__siding"
+}

@@ -1,0 +1,33 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca",
+  "pagePurpose": "Santa Clara County county-level service area page. Hub for the cities within it.",
+  "pageType": "service-area-county",
+  "citySlug": null,
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "santa clara county contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "santa clara county home services",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-county__santa-clara-county-ca"
+}

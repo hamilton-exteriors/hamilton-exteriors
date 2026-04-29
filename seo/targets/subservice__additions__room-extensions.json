@@ -1,0 +1,33 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/additions/room-extensions",
+  "pagePurpose": "room extensions sub-service of Home Additions. Bottom-of-funnel detail page for users specifying material/type.",
+  "pageType": "cornerstone-subservice",
+  "citySlug": null,
+  "service": "additions",
+  "primaryKeywords": [
+    {
+      "kw": "room extensions bay area",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "room extensions home addition contractor",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "subservice__additions__room-extensions"
+}

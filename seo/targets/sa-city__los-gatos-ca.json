@@ -1,0 +1,38 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/los-gatos-ca",
+  "pagePurpose": "Los Gatos city-level home services hub. Lists every service Hamilton offers in Los Gatos.",
+  "pageType": "service-area-city",
+  "citySlug": "los-gatos-ca",
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "los gatos contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "general contractor los gatos",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home contractor los gatos ca",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city__los-gatos-ca"
+}

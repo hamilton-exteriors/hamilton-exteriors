@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/alameda-county-ca/berkeley-ca/siding",
+  "pagePurpose": "Convert Berkeley homeowners searching for siding contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "berkeley-ca",
+  "service": "siding",
+  "primaryKeywords": [
+    {
+      "kw": "berkeley siding contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "siding contractor berkeley",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "siding installation berkeley",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "siding contractor berkeley ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "siding contractor berkeley",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__berkeley-ca__siding"
+}

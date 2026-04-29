@@ -1,0 +1,78 @@
+{
+  "citySlug": "san-leandro-ca",
+  "cityDisplay": "San Leandro",
+  "county": "alameda-county-ca",
+  "countyDisplay": "Alameda County",
+  "sourceUrls": {
+    "gov": "https://www.sanleandro.org",
+    "buildingDept": "https://www.sanleandro.org/depts/cd/permit/default.asp",
+    "permitPortal": null,
+    "fireZone": null
+  },
+  "countyFacts": {
+    "seismic": "Hayward Fault and Calaveras Fault. Structural tie-down inspection scrutiny on additions and reroofs.",
+    "climate": "Mild Mediterranean. Coastal cities (Oakland, Berkeley, Alameda) see fog corrosion. Inland (Livermore, Pleasanton) see 95°F+ summers.",
+    "fireRisk": "Oakland Hills + Berkeley Hills are WUI Local Responsibility Areas — Class A roofing required.",
+    "cooperatingAuthorities": "East Bay MUD (water), PG&E (gas/electric), Alameda County Public Works."
+  },
+  "permits": {
+    "roofing": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "siding": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "windows": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "adu": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "custom-homes": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "additions": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    },
+    "decks": {
+      "fee": null,
+      "feeStructure": null,
+      "turnaroundDays": null,
+      "inspectorQuirks": null,
+      "sourceUrl": null,
+      "lastFetched": null
+    }
+  },
+  "neighborhoods": [],
+  "notes": "Skeleton. Permit fees pulled by scripts/scrape-permits.mjs. Per-service insights pulled by per-page agent."
+}

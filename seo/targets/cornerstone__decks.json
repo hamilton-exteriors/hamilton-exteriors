@@ -1,0 +1,54 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/decks",
+  "pagePurpose": "Convert Bay Area homeowners searching for deck builder services. Top-of-funnel category page.",
+  "pageType": "cornerstone-service",
+  "citySlug": null,
+  "service": "decks",
+  "primaryKeywords": [
+    {
+      "kw": "bay area deck builder",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck builder bay area",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck construction bay area",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "deck builder san francisco",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck builder oakland",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "deck builder san jose",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "cornerstone__decks"
+}

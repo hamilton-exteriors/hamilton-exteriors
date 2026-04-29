@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/san-jose-ca/windows",
+  "pagePurpose": "Convert San Jose homeowners searching for window replacement contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "san-jose-ca",
+  "service": "windows",
+  "primaryKeywords": [
+    {
+      "kw": "san jose window replacement contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement contractor san jose",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement san jose",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "window replacement contractor san jose ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "windows contractor san jose",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__san-jose-ca__windows"
+}

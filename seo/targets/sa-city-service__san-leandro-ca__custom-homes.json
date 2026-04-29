@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/alameda-county-ca/san-leandro-ca/custom-homes",
+  "pagePurpose": "Convert San Leandro homeowners searching for custom home builder services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "san-leandro-ca",
+  "service": "custom-homes",
+  "primaryKeywords": [
+    {
+      "kw": "san leandro custom home builder",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom home builder san leandro",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom home construction san leandro",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "custom home builder san leandro ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "custom homes contractor san leandro",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__san-leandro-ca__custom-homes"
+}

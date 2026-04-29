@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/marin-county-ca/mill-valley-ca/siding",
+  "pagePurpose": "Convert Mill Valley homeowners searching for siding contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "mill-valley-ca",
+  "service": "siding",
+  "primaryKeywords": [
+    {
+      "kw": "mill valley siding contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "siding contractor mill valley",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "siding installation mill valley",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "siding contractor mill valley ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "siding contractor mill valley",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__mill-valley-ca__siding"
+}

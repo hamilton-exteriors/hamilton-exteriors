@@ -1,0 +1,38 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/saratoga-ca",
+  "pagePurpose": "Saratoga city-level home services hub. Lists every service Hamilton offers in Saratoga.",
+  "pageType": "service-area-city",
+  "citySlug": "saratoga-ca",
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "saratoga contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "general contractor saratoga",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home contractor saratoga ca",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city__saratoga-ca"
+}

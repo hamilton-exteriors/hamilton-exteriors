@@ -1,0 +1,33 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/windows/double-hung",
+  "pagePurpose": "double hung sub-service of Windows. Bottom-of-funnel detail page for users specifying material/type.",
+  "pageType": "cornerstone-subservice",
+  "citySlug": null,
+  "service": "windows",
+  "primaryKeywords": [
+    {
+      "kw": "double hung bay area",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "double hung window replacement contractor",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "subservice__windows__double-hung"
+}

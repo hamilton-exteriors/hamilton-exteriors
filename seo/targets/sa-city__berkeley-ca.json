@@ -1,0 +1,38 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/alameda-county-ca/berkeley-ca",
+  "pagePurpose": "Berkeley city-level home services hub. Lists every service Hamilton offers in Berkeley.",
+  "pageType": "service-area-city",
+  "citySlug": "berkeley-ca",
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "berkeley contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "general contractor berkeley",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home contractor berkeley ca",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city__berkeley-ca"
+}

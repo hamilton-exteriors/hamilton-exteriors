@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/napa-county-ca/st-helena-ca/roofing",
+  "pagePurpose": "Convert St. Helena homeowners searching for roofing contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "st-helena-ca",
+  "service": "roofing",
+  "primaryKeywords": [
+    {
+      "kw": "st. helena roofing contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roofing contractor st. helena",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roof replacement st. helena",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "roofing contractor st. helena ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "roofing contractor st. helena",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__st-helena-ca__roofing"
+}

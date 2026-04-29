@@ -1,0 +1,49 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/campbell-ca/windows",
+  "pagePurpose": "Convert Campbell homeowners searching for window replacement contractor services. Bottom-of-funnel commercial intent.",
+  "pageType": "service-area-city-service",
+  "citySlug": "campbell-ca",
+  "service": "windows",
+  "primaryKeywords": [
+    {
+      "kw": "campbell window replacement contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement contractor campbell",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "window replacement campbell",
+      "priority": 1,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "window replacement contractor campbell ca",
+      "priority": 2,
+      "intent": "commercial"
+    },
+    {
+      "kw": "windows contractor campbell",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city-service__campbell-ca__windows"
+}

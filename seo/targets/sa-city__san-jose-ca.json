@@ -1,0 +1,38 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/service-areas/santa-clara-county-ca/san-jose-ca",
+  "pagePurpose": "San Jose city-level home services hub. Lists every service Hamilton offers in San Jose.",
+  "pageType": "service-area-city",
+  "citySlug": "san-jose-ca",
+  "service": null,
+  "primaryKeywords": [
+    {
+      "kw": "san jose contractor",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "general contractor san jose",
+      "priority": 1,
+      "intent": "commercial"
+    },
+    {
+      "kw": "home contractor san jose ca",
+      "priority": 2,
+      "intent": "commercial"
+    }
+  ],
+  "secondaryKeywords": [],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "sa-city__san-jose-ca"
+}

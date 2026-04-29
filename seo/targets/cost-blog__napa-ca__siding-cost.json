@@ -1,0 +1,44 @@
+{
+  "pageUrl": "https://hamilton-exteriors.com/blog/siding-cost-napa",
+  "pagePurpose": "Napa-specific cost guide for Siding. Convert informational searchers via local pricing data + permit context.",
+  "pageType": "cost-blog",
+  "citySlug": "napa-ca",
+  "service": "siding",
+  "primaryKeywords": [
+    {
+      "kw": "siding installation cost napa",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "siding cost napa",
+      "priority": 1,
+      "intent": "informational"
+    },
+    {
+      "kw": "how much does siding installation cost in napa",
+      "priority": 1,
+      "intent": "informational"
+    }
+  ],
+  "secondaryKeywords": [
+    {
+      "kw": "siding installation price napa",
+      "priority": 2,
+      "intent": "informational"
+    }
+  ],
+  "currentRankings": {},
+  "competitorSet": [],
+  "contentBrief": null,
+  "metrics": {
+    "indexedAt": null,
+    "t14": null,
+    "t30": null,
+    "t60": null
+  },
+  "status": "pending",
+  "iterations": 0,
+  "lastError": null,
+  "pageSlug": "cost-blog__napa-ca__siding-cost"
+}
