@@ -229,16 +229,27 @@ export async function runPage(slug, opts = {}) {
   log(`Step 7: ${wordCount} words generated in ${elapsedMs}ms ($${result.cost.toFixed(4)})`);
 
   // Step 8: auto-fix + QA + auto-fix again + QA
+  // Pass SEO_ROOT explicitly so the scripts read/write the same /data/seo path
+  // the worker uses. (process.env IS inherited by default but make it loud.)
+  const childEnv = { ...process.env, SEO_ROOT: seoRoot };
   for (let pass = 0; pass < 2; pass++) {
-    try { execSync(`node scripts/auto-fix-draft.mjs --target ${slug}`, { cwd: repoRoot, stdio: 'pipe' }); }
-    catch (e) { /* tolerate */ }
     try {
-      execSync(`node scripts/qa-page.mjs --target ${slug}`, { cwd: repoRoot, stdio: 'pipe' });
+      execSync(`node scripts/auto-fix-draft.mjs --target ${slug}`, {
+        cwd: repoRoot, env: childEnv, stdio: ['ignore', 'pipe', 'pipe'],
+      });
+    } catch (e) { log(`auto-fix ${pass} failed: ${(e.stderr || '').toString().slice(0, 200)}`); }
+    try {
+      execSync(`node scripts/qa-page.mjs --target ${slug}`, {
+        cwd: repoRoot, env: childEnv, stdio: ['ignore', 'pipe', 'pipe'],
+      });
       result.steps.qa = { pass: true, attempts: pass + 1 };
       result.status = 'passed';
       break;
     } catch (e) {
+      const stderr = (e.stderr || '').toString();
+      const stdout = (e.stdout || '').toString();
       if (pass === 1) {
+        log(`qa final fail: ${(stderr + stdout).slice(0, 400)}`);
         result.steps.qa = { pass: false, attempts: pass + 1 };
         result.status = 'qa_failed';
       }
