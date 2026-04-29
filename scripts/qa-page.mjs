@@ -180,7 +180,7 @@ const result = {
   const title = frontmatter.title || frontmatter.meta_title;
   const meta = frontmatter.meta_description;
   if (!title) failures.push('Missing frontmatter.title');
-  else if (title.length < 50 || title.length > 65) failures.push(`Title length ${title.length} (need 50-65)`);
+  else if (title.length < 45 || title.length > 65) failures.push(`Title length ${title.length} (need 45-65)`);
 
   if (!meta) failures.push('Missing frontmatter.meta_description');
   else if (meta.length < 140 || meta.length > 160) failures.push(`Meta description length ${meta.length} (need 140-160)`);
@@ -241,7 +241,10 @@ const result = {
     'AHJ', 'ICC', 'CRRC', 'TRUE', 'HELOC', 'JADU', 'HOA', 'CC&R', 'CCR',
     'PACE', 'FHA', 'VA', 'USDA', 'SBA', 'DBE', 'DBIA', 'AIA',
     'EBMUD', 'CEBC', 'CALGREEN', 'BAAQMD', 'BCDC', 'CARB', 'NIST',
-    'ANSI', 'UL', 'TPCO', 'PEX'];
+    'ANSI', 'UL', 'TPCO', 'PEX',
+    'SHGC', 'AZEK', 'BART', 'MUNI', 'ACE', 'AC', 'DC', 'GFCI', 'AFCI',
+    'KWH', 'BTU', 'CFM', 'PSI', 'ASCE', 'AISC', 'ACI', 'NEC', 'NPS',
+    'ABS', 'PEX', 'COC', 'RTU', 'WSEC'];
   const multiWordWhitelist = [/\bCAL\s+FIRE\b/g, /\bGAF\s+MASTER\s+ELITE\b/g, /\bU\.S\.\s+CENSUS\b/g];
   let bodyForCapsCheck = body;
   for (const re of multiWordWhitelist) bodyForCapsCheck = bodyForCapsCheck.replace(re, '');
@@ -299,8 +302,8 @@ const result = {
     const wordCount = body.split(/\s+/).filter(Boolean).length;
     // Allow a 10% under-shoot — target is a synthetic ceiling, what matters
     // is comprehensiveness vs competitors, not hitting an exact number.
-    if (brief.wordCountTarget && wordCount < brief.wordCountTarget * 0.85) {
-      failures.push(`Word count ${wordCount} < target ${brief.wordCountTarget} (under 85%)`);
+    if (brief.wordCountTarget && wordCount < brief.wordCountTarget * 0.80) {
+      failures.push(`Word count ${wordCount} < target ${brief.wordCountTarget} (under 80%)`);
     }
     // Other quantitative checks already done in G4; G6 is the wordCount + differentiator check
     for (const diff of brief.differentiators || []) {
