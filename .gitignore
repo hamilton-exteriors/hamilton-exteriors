@@ -81,3 +81,7 @@ lh_*.json
 screenshots/audit_data.json
 generated-schema.json
 send-ad-email.mjs
+
+# seo-worker local artifacts
+seo-worker/data/
+seo-worker/node_modules/

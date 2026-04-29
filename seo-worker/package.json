@@ -1,0 +1,19 @@
+{
+  "name": "hamilton-seo-worker",
+  "version": "1.0.0",
+  "description": "Cloud worker for Hamilton Exteriors per-page SEO pipeline",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "marked": "^18.0.2"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
