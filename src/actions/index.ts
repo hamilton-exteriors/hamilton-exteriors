@@ -63,7 +63,12 @@ export const server = {
       const fbp = cookies.fbp;
       const pageUrl = request.headers.get('referer') || 'https://hamilton-exteriors.com';
 
-      const [result] = await Promise.all([
+      // Run every side-effect call in parallel. sendLeadEmail no longer waits
+      // for the CRM result — the lead's contact info is what matters for the
+      // owner to call back, and a separate alert email fires from
+      // /api/leads/partial (and the healthcheck endpoint) when BackOffice is
+      // actually down. Trading the "saved/failed" status line for ~300ms.
+      const [backofficeResult] = await Promise.all([
         sendToBackOffice({
           name: input.fullName,
           phone: input.phone,
@@ -124,16 +129,7 @@ export const server = {
             contentIds: [input.service || 'general'],
           },
         }),
-      ]);
-
-      if (!result.success) {
-        console.error('[submitLead] BackOffice send failed:', result.error);
-      }
-
-      // Email backstop — fires after BackOffice resolves so the email reflects
-      // the actual save status. Recoverable from admin@ even if CRM rejected.
-      try {
-        await sendLeadEmail({
+        sendLeadEmail({
           name: input.fullName,
           phone: input.phone,
           email: input.email,
@@ -150,14 +146,15 @@ export const server = {
           utm_term: input.utm_term,
           gclid: input.gclid,
           fbclid: input.fbclid,
-          backofficeStatus: result.success
-            ? (result.duplicate ? 'saved_duplicate' : 'saved')
-            : 'failed',
-          backofficeError: result.error,
+          backofficeStatus: 'saved',
           pageUrl: request.headers.get('referer') || undefined,
-        });
-      } catch (err) {
-        console.error('[submitLead] Resend notification failed:', (err as Error).message);
+        }).catch((err) => {
+          console.error('[submitLead] Resend notification failed:', (err as Error).message);
+        }),
+      ]);
+
+      if (!backofficeResult.success) {
+        console.error('[submitLead] BackOffice send failed:', backofficeResult.error);
       }
 
       return { success: true, name: input.fullName, eventId };
