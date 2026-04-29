@@ -573,10 +573,11 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
     if (isSubmitting) return;
     isSubmitting = true;
     const submitBtn = heroForm.querySelector('button[type="submit"]') as HTMLButtonElement;
-    const originalText = submitBtn?.textContent || '';
+    const originalHtml = submitBtn?.innerHTML || '';
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending your request...';
+      submitBtn.setAttribute('aria-busy', 'true');
+      submitBtn.innerHTML = `<span class="inline-flex items-center justify-center gap-2"><svg class="size-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-opacity="0.25"></circle><path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></svg>Sending...</span>`;
     }
 
     try {
@@ -616,7 +617,8 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
         }
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
+          submitBtn.removeAttribute('aria-busy');
+          submitBtn.innerHTML = originalHtml;
         }
         isSubmitting = false;
         return;
@@ -692,7 +694,8 @@ const [heroMobile, heroTablet, heroDesktop] = await Promise.all([
       // Network error fallback — styled inline, never browser alert()
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
+        submitBtn.removeAttribute('aria-busy');
+        submitBtn.innerHTML = originalHtml;
       }
       isSubmitting = false;
       let errBox = heroForm.querySelector('.form-error-inline');
