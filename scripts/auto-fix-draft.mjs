@@ -62,35 +62,35 @@ if (freeMatches > 4) {
 
 // 3. Trim title to 65 chars (preserve "| Hamilton Exteriors" suffix when possible)
 function balanceParens(s) {
-  // If "(" without ")", close it. Drop the "(" content if needed.
-  const opens = (s.match(/\(/g) || []).length;
-  const closes = (s.match(/\)/g) || []).length;
-  if (opens > closes) {
-    // Find last unclosed "(" and either close it or strip the open phrase
-    let result = s;
-    for (let i = 0; i < opens - closes; i++) {
-      const lastOpen = result.lastIndexOf('(');
-      if (lastOpen === -1) break;
-      // If there's text after "(" that has no ")", just append ")"
-      const after = result.slice(lastOpen);
-      if (!after.includes(')')) result = result.replace(/\(\s*$/, '').trimEnd();
-      else result = result + ')';
-    }
-    return result;
+  // Two malformed shapes in trimmed/repaired titles to clean up:
+  //   "(year | suffix)"  — paren wraps a separator, semantically wrong.
+  //                        Strip the "(year " portion + trailing ")", keep "| suffix".
+  //   "(year"            — paren never closes. Strip to next " | " or end.
+  let result = s
+    // (...|...) → split: drop "(...| " bit, keep the rest, drop trailing ")"
+    .replace(/\s*\(([^()]*?)\|([^()]*?)\)/g, (_m, _before, after) => ` |${after}`)
+    // unclosed "(...":
+    .replace(/\s*\([^()|]*(?=\s*\||$)/g, (m) => m.includes(')') ? m : '');
+  // Stray leading ")"
+  if ((result.match(/\)/g) || []).length > (result.match(/\(/g) || []).length) {
+    result = result.replace(/^[)]+\s*/, '').trim();
   }
-  return s;
+  return result.replace(/\s*\|\s*/g, ' | ').replace(/\s+/g, ' ').trim();
 }
 function trimTitle(title) {
-  if (title.length <= 65) return title;
+  // Always balance parens, even if length is already fine — protects against
+  // re-runs where a previous trim left "(2026" unclosed.
+  let normalized = balanceParens(title);
   const suffix = ' | Hamilton Exteriors';
-  if (title.endsWith(suffix)) {
-    const head = title.slice(0, -suffix.length);
-    if (head.length <= 65 - suffix.length) return title;
+  if (normalized.length <= 65) return normalized;
+  if (normalized.endsWith(suffix)) {
+    const head = normalized.slice(0, -suffix.length);
     const maxHead = 65 - suffix.length;
+    if (head.length <= maxHead) return normalized;
     const trimmed = head.slice(0, maxHead).replace(/\s+\S*$/, '').trim();
     return balanceParens(trimmed) + suffix;
   }
-  return balanceParens(title.slice(0, 65).replace(/\s+\S*$/, '').trim());
+  return balanceParens(normalized.slice(0, 65).replace(/\s+\S*$/, '').trim());
 }
 raw = raw.replace(/^title:\s*(.+)$/m, (_, t) => `title: ${trimTitle(t)}`);
 raw = raw.replace(/^meta_title:\s*(.+)$/m, (_, t) => `meta_title: ${trimTitle(t)}`);
