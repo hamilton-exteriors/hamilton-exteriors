@@ -42,7 +42,9 @@ const DIRECTORIES = new Set(['yelp.com', 'angi.com', 'homeadvisor.com', 'thumbta
 
 export async function runPage(slug, opts = {}) {
   const seoRoot = opts.seoRoot || resolve(import.meta.dirname, '..', 'seo');
-  const repoRoot = resolve(seoRoot, '..');
+  // repoRoot is where scripts/ lives — always derive from THIS file's location
+  // (not seoRoot — when seoRoot=/data/seo, ../ → /data which has no scripts).
+  const repoRoot = opts.repoRoot || resolve(import.meta.dirname, '..');
   const log = opts.log || ((...a) => console.log(`[${slug}]`, ...a));
 
   const targetPath = join(seoRoot, 'targets', `${slug}.json`);
