@@ -1,14 +1,14 @@
 /**
  * Resend email client — backstop notification for new/partial leads.
  *
- * Fires an email to admin@hamilton-exteriors.com on every lead submission
- * (full or partial) so the contact info is recoverable from the inbox
- * even if BackOffice is paused, unreachable, or rejects the webhook.
+ * Fires an email to admin@ and rachel@ on every lead submission (full or
+ * partial) so the contact info is recoverable from the inbox even if
+ * BackOffice is paused, unreachable, or rejects the webhook.
  */
 
 const API_KEY = import.meta.env.RESEND_API_KEY || '';
 const FROM = 'Hamilton Leads <leads@notifications.hamilton-exteriors.com>';
-const TO = 'admin@hamilton-exteriors.com';
+const TO = ['admin@hamilton-exteriors.com', 'rachel@hamilton-exteriors.com'];
 
 export interface LeadEmailInput {
   name: string;
@@ -82,7 +82,7 @@ export async function sendLeadEmail(lead: LeadEmailInput): Promise<void> {
     },
     body: JSON.stringify({
       from: FROM,
-      to: [TO],
+      to: TO,
       subject,
       text: lines,
       reply_to: lead.email || undefined,
