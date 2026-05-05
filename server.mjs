@@ -5,6 +5,9 @@
  *  2. Cache-Control for static assets
  *  3. Security headers
  *  4. www → apex 301 redirect
+ *
+ * Note: in-memory caches (e.g. _saCache in src/lib/ghost.ts) are warmed once
+ * per process lifetime — redeploy to pick up new Ghost content.
  */
 
 import http from 'node:http';
