@@ -211,6 +211,79 @@ const faqJsonLd = extractedFaqs.length >= 2 ? {
   })),
 } : null;
 
+// Service + AggregateOffer schema for cost-guide posts. Doesn't generate
+// rich price snippets in standard SERPs (Google restricted those to actual
+// products in 2022), but feeds entity recognition + AI citations
+// (ChatGPT/Perplexity/AI Overviews lean heavily on AggregateOffer when
+// answering "X cost" queries) and gives Google's knowledge graph a clean
+// price-range signal to disambiguate cost intent.
+function detectCostGuideService(slug: string): { name: string; type: string } | null {
+  // Check most-specific patterns first
+  if (/^second-story-addition-cost/i.test(slug)) return { name: 'Second Story Addition', type: 'HomeAndConstructionBusiness' };
+  if (/roof-replacement-cost|^roof-cost/i.test(slug)) return { name: 'Roof Replacement', type: 'RoofingContractor' };
+  if (/window-replacement-cost|^window-cost/i.test(slug)) return { name: 'Window Replacement', type: 'HomeAndConstructionBusiness' };
+  if (/^siding-cost|siding-cost/i.test(slug)) return { name: 'Siding Installation', type: 'HomeAndConstructionBusiness' };
+  if (/^adu-cost|adu-construction-cost/i.test(slug)) return { name: 'ADU Construction', type: 'HomeAndConstructionBusiness' };
+  if (/cost-bay-area|cost-(?:oakland|berkeley|san-jose|walnut-creek|fremont|hayward|san-leandro|antioch|concord|richmond|san-ramon|napa|novato|san-rafael|mill-valley|larkspur|palo-alto|mountain-view|sunnyvale|cupertino|santa-clara|saratoga|los-gatos|campbell|milpitas|american-canyon|st-helena|calistoga|yountville|castro-valley)/i.test(slug)) {
+    return { name: 'Home Improvement', type: 'HomeAndConstructionBusiness' };
+  }
+  return null;
+}
+
+function extractPriceRange(text: string): { low: number; high: number; currency: string } | null {
+  if (!text) return null;
+  // Match patterns like "$15K-$100K", "$15,000-$100,000", "$15K to $100K", "$15,000 to $100,000"
+  const re = /\$([\d,]+(?:\.\d+)?)(?:k\b)?\s*(?:-|to|\u2013|\u2014|\u2010)\s*\$?([\d,]+(?:\.\d+)?)(?:k\b)?/i;
+  const m = text.match(re);
+  if (!m) return null;
+  const parseAmount = (s: string, kSuffix: boolean) => {
+    const n = parseFloat(s.replace(/,/g, ''));
+    return kSuffix ? n * 1000 : n;
+  };
+  // Determine if K suffix applies (look at original match, both numbers)
+  const matchedText = m[0].toLowerCase();
+  const lowK = /\$[\d,]+\s*k/i.test(matchedText.split(/-|to|\u2013|\u2014|\u2010/)[0]);
+  const highK = /\$?[\d,]+\s*k/i.test(matchedText.split(/-|to|\u2013|\u2014|\u2010/)[1] || '');
+  const low = parseAmount(m[1], lowK);
+  const high = parseAmount(m[2], highK || lowK);
+  if (low <= 0 || high <= low) return null;
+  return { low, high, currency: 'USD' };
+}
+
+const _tagSlugsForSchema = post.tags?.map((t: any) => t.slug) || [];
+const isCostGuide = _tagSlugsForSchema.includes('cost-guide') || _tagSlugsForSchema.includes('cost-guide-2');
+const costService = isCostGuide && slug ? detectCostGuideService(slug) : null;
+const _priceRangeRaw = costService ? (extractPriceRange(post.meta_description || description) || extractPriceRange(post.title || '')) : null;
+// Skip Service schema when the price range is per-unit (windows: $450-$1,200
+// per window) rather than total project cost. Heuristic: total project costs
+// have low end ≥ $5,000; per-unit prices fall below that.
+const priceRange = _priceRangeRaw && _priceRangeRaw.low >= 5000 ? _priceRangeRaw : null;
+const serviceJsonLd = costService && priceRange ? {
+  '@type': 'Service',
+  '@id': `${canonicalUrl}#service`,
+  name: `${costService.name} (Bay Area)`,
+  serviceType: costService.name,
+  description,
+  provider: { '@id': 'https://hamilton-exteriors.com/#business' },
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Alameda County, California' },
+    { '@type': 'AdministrativeArea', name: 'Contra Costa County, California' },
+    { '@type': 'AdministrativeArea', name: 'Santa Clara County, California' },
+    { '@type': 'AdministrativeArea', name: 'Marin County, California' },
+    { '@type': 'AdministrativeArea', name: 'Napa County, California' },
+    { '@type': 'AdministrativeArea', name: 'San Mateo County, California' },
+  ],
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: priceRange.currency,
+    lowPrice: priceRange.low,
+    highPrice: priceRange.high,
+    availability: 'https://schema.org/InStock',
+    seller: { '@id': 'https://hamilton-exteriors.com/#business' },
+  },
+  isRelatedTo: { '@id': `${canonicalUrl}#article` },
+} : null;
+
 // Extract H2 headings for table of contents
 const tocHeadings: { id: string; text: string }[] = [];
 if (post.html) {
@@ -346,7 +419,7 @@ const costGuideLanding = COST_GUIDE_LANDINGS[slug || ''];
   description={description}
   image={postImage}
   type="article"
-  jsonLd={shouldNoindex ? undefined : [articleJsonLd, breadcrumbJsonLd, ...(faqJsonLd ? [faqJsonLd] : [])]}
+  jsonLd={shouldNoindex ? undefined : [articleJsonLd, breadcrumbJsonLd, ...(faqJsonLd ? [faqJsonLd] : []), ...(serviceJsonLd ? [serviceJsonLd] : [])]}
   noindex={shouldNoindex}
 >
   {post.feature_image?.includes('/content/images/') ? (
