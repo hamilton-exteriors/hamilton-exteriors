@@ -2,7 +2,7 @@ import type { ServicePageData } from '../../lib/service-page-types';
 import { serviceCustomHomesFull, serviceCustomHomes, serviceAdditions, designEngineering, designPlanning } from '../../lib/images';
 
 export const data: ServicePageData = {
-  title: 'Custom Home Builder Bay Area | Ground-Up Construction',
+  title: 'Bay Area Custom Home Builder | Architect-Led | $350-$800/sqft',
   description:
     'Bay Area custom home builder, architect-led since 2018. Ground-up design-build from $350/sq ft with guaranteed max price at signing. CSLB #1078806. Free consult.',
   announcementText: 'Now Booking Summer 2026 Custom Homes — Schedule Your Consultation',
