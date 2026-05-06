@@ -99,16 +99,9 @@ export const server = {
             ...(input.fbclid && { fbclid: input.fbclid }),
           },
         }, session),
-        trackServerEvent('lead_form_submitted', {
-          profileId: input.email,
-          service: input.service || 'general',
-          source: 'hero_form',
-          ...(input.utm_source && { utm_source: input.utm_source }),
-          ...(input.utm_medium && { utm_medium: input.utm_medium }),
-          ...(input.utm_campaign && { utm_campaign: input.utm_campaign }),
-          ...(input.utm_content && { utm_content: input.utm_content }),
-          ...(input.utm_term && { utm_term: input.utm_term }),
-        }, session),
+        // OpenPanel lead_form_submitted is fired client-side (Hero.astro) with
+        // full session + device + geo context. Server-side fire would create a
+        // duplicate event from Ashburn AWS with no session — drop it.
         sendMetaEvent({
           eventName: 'Lead',
           eventId,

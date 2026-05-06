@@ -187,9 +187,9 @@ export const SECOND_STORY_CITIES: SecondStoryCity[] = [
       'Oakland residential additions fall under RD-1 or RM-1 zoning, with height limits of 30-35 feet in most flatlands neighborhoods and 25-30 feet in the Oakland Hills due to fire access requirements. Wildland Urban Interface (WUI) homes in the Hills must use Class A roofing, ignition-resistant siding, and ember-resistant venting on additions.',
     costPerSqFt: { low: 325, high: 500 },
     projectTotal: { low: 260000, high: 600000 },
-    title: 'Second Story Addition Oakland | Architect Led',
+    title: 'Second Story Addition Oakland — Cost, Permits & ROI 2026',
     description:
-      'Architect-led second story additions in Oakland. In-house structural engineer, Bureau of Building permits, WUI compliance. From $325/sq ft. CSLB #1078806.',
+      'Second story addition in Oakland from $325/sq ft. Architect-led with in-house structural engineer, Bureau of Building permits, WUI compliance. CSLB #1078806.',
     headline: 'Second story additions in Oakland',
     intro: [
       'Oakland has the most diverse housing stock in the Bay Area, from 1900s Victorians in West Oakland to mid-century ranches in the flatlands and modern hillside homes above 580. Second story additions are particularly common in Rockridge, Glenview, Trestle Glen, and the upper Dimond, where lot coverage limits make outward expansion impractical. Hamilton Exteriors has been designing and building second story additions across Oakland since 2018, with an in-house licensed architect and structural engineer.',
