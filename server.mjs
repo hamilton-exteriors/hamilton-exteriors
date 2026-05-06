@@ -85,6 +85,16 @@ function compressResponse(req, res) {
     return origWriteHead(statusCode, ...args);
   };
 
+  // Pipe compressed output to the underlying socket as soon as data arrives.
+  // Registering 'data'/'end' listeners eagerly (instead of at res.end) prevents
+  // back-pressure deadlock when Astro streams a large static file in chunks:
+  // without a consumer, the brotli/gzip transform fills its internal buffer
+  // (16KB default), stream.write() returns false, and the upstream writer
+  // pauses until the buffer drains — which never happens, so the request
+  // hangs. Sitemap-0.xml (~68KB streamed) was triggering exactly this.
+  stream.on('data', (compressed) => origWrite(compressed));
+  stream.on('end', () => origEnd());
+
   res.write = function (chunk, ...args) {
     if (!headSent) res.writeHead(res.statusCode || 200);
     if (!shouldCompress) return origWrite(chunk, ...args);
@@ -96,8 +106,6 @@ function compressResponse(req, res) {
     if (!shouldCompress) {
       return chunk ? origEnd(chunk, ...args) : origEnd(...args);
     }
-    stream.on('data', (compressed) => origWrite(compressed));
-    stream.on('end', () => origEnd());
     if (chunk) stream.end(chunk);
     else stream.end();
   };
