@@ -54,6 +54,7 @@ scripts/
 !scripts/ghost-publish.mjs
 !scripts/monitor-page.mjs
 !scripts/orchestrate-managed-agents.mjs
+!scripts/sweep-meta.mjs
 
 # Overture Maps parquet — 629MB, rebuild with overturemaps CLI
 data/*.parquet
