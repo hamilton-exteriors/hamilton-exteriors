@@ -71,6 +71,13 @@ const result = {
     'pricing communicated as a range': ['$', 'range', 'cost', 'typical'],
     'standalone-value': ['process', 'spec', 'cost', 'detail'],
     'bay area-specific data point': ['permit', '$', 'http', 'code', 'climate'], // any 2 of permit, dollar, link, code reference, climate
+    // County-level facts that don't always apply to city pages — accept ANY
+    // localized variant. E.g. county note may say "Hayward Fault" but a
+    // San Ramon page correctly cites "Calaveras Fault" — both should pass.
+    'seismic considerations': ['fault', 'seismic', 'liquefaction', 'earthquake'],
+    'climate:': ['climate', 'temperature', 'summer', 'winter', 'rainfall', 'humidity', 'fog'],
+    'fire risk': ['fire', 'wui', 'class a', 'ember', 'defensible'],
+    'cooperating authorities': ['utility', 'water district', 'pg&e', 'permit', 'inspector'],
   };
   if (brief?.mustCover?.length) {
     for (const item of brief.mustCover) {
