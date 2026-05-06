@@ -63,7 +63,7 @@ export const SECOND_STORY_CITIES: SecondStoryCity[] = [
       'San Francisco residential lots fall under RH-1, RH-2, or RH-3 zoning, and most second story additions require a 311 neighborhood notice plus a Discretionary Review hearing if a neighbor objects. The Planning Department enforces strict rear yard setbacks, height limits of 35-40 feet depending on district, and shadow studies for additions near public open space.',
     costPerSqFt: { low: 425, high: 650 },
     projectTotal: { low: 340000, high: 750000 },
-    title: 'Second Story Addition San Francisco | Architect Led',
+    title: 'Second Story Addition San Francisco | Cost, DBI Permits, Sec 311',
     description:
       'Architect-led second story additions in San Francisco. In-house structural engineer, DBI permits, 311 notices, costs from $425/sq ft. CSLB #1078806.',
     headline: 'Second story additions in San Francisco',
@@ -125,7 +125,7 @@ export const SECOND_STORY_CITIES: SecondStoryCity[] = [
       'San Jose residential additions fall under R-1 zoning with a typical 35-foot height limit and 50% maximum floor area ratio. The Building Division uses the city-developed PermitSJ portal for online plan submittal, which streamlines review for second story projects that meet objective design standards.',
     costPerSqFt: { low: 275, high: 425 },
     projectTotal: { low: 220000, high: 510000 },
-    title: 'Second Story Addition San Jose | Architect Led',
+    title: 'Second Story Addition San Jose | Cost, Permits, Architect-Led',
     description:
       'Architect-led second story additions in San Jose. In-house structural engineer, PermitSJ submittal, costs from $275/sq ft. Bay Area since 2018. CSLB #1078806.',
     headline: 'Second story additions in San Jose',
@@ -249,7 +249,7 @@ export const SECOND_STORY_CITIES: SecondStoryCity[] = [
       'Concord residential additions fall under R-6 single-family zoning with a 30-foot height limit and 40% maximum lot coverage. The Concord Building Division uses the Accela portal and runs one of the more responsive plan check processes in the Bay Area.',
     costPerSqFt: { low: 250, high: 400 },
     projectTotal: { low: 200000, high: 480000 },
-    title: 'Second Story Addition Concord | Architect Led',
+    title: 'Second Story Addition Concord | Cost, Permits, Architect-Led',
     description:
       'Architect-led second story additions in Concord, CA. In-house structural engineer, Concord Building Division permits, costs from $250/sq ft. CSLB #1078806.',
     headline: 'Second story additions in Concord',
@@ -311,7 +311,7 @@ export const SECOND_STORY_CITIES: SecondStoryCity[] = [
       'Berkeley residential additions fall under R-1 or R-1A zoning, with strict height limits (28-30 feet in most districts), Floor Area Ratio caps, and Berkeley Hills WUI fire compliance for any home above the Hayward Fault zone. The Zoning Adjustments Board reviews most second story projects through an Administrative Use Permit, which adds 60 to 90 days to the timeline.',
     costPerSqFt: { low: 400, high: 575 },
     projectTotal: { low: 320000, high: 690000 },
-    title: 'Second Story Addition Berkeley | Architect Led',
+    title: 'Second Story Addition Berkeley | Cost, Permits, Hills WUI',
     description:
       'Architect-led second story additions in Berkeley. In-house structural engineer, AUP filings, WUI compliance, costs from $400/sq ft. CSLB #1078806.',
     headline: 'Second story additions in Berkeley',
@@ -373,7 +373,7 @@ export const SECOND_STORY_CITIES: SecondStoryCity[] = [
       'Walnut Creek residential additions fall under R-6 or R-7 single-family zoning, with 30-35 foot height limits and 40-45% maximum lot coverage depending on district. The Building Division uses the Accela portal and projects in the Northgate hillside area must comply with WUI fire requirements.',
     costPerSqFt: { low: 285, high: 425 },
     projectTotal: { low: 230000, high: 510000 },
-    title: 'Second Story Addition Walnut Creek | Architect Led',
+    title: 'Second Story Addition Walnut Creek | Cost, Permits, Architect-Led',
     description:
       'Architect-led second story additions in Walnut Creek. In-house structural engineer, Building Division permits, costs from $285/sq ft. CSLB #1078806.',
     headline: 'Second story additions in Walnut Creek',
