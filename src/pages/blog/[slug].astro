@@ -9,19 +9,26 @@ import { Image } from 'astro:assets';
 
 const { slug } = Astro.params;
 
-if (!slug || !isGhostConfigured()) {
+if (!slug) {
   return Astro.redirect('/blog');
+}
+if (!isGhostConfigured()) {
+  return Astro.rewrite('/404');
 }
 
 let post;
 try {
   post = await getPost(slug);
 } catch {
-  return Astro.redirect('/blog');
+  // Genuine fetch error — render 404 rather than soft-redirect to /blog,
+  // which previously caused unknown slugs to return HTTP 200 with index
+  // content and `index, follow` robots, opening the door to indexing
+  // arbitrary garbage URLs at scale.
+  return Astro.rewrite('/404');
 }
 
 if (!post) {
-  return Astro.redirect('/blog');
+  return Astro.rewrite('/404');
 }
 
 // If Ghost post has canonical_url pointing to a different on-site URL,
