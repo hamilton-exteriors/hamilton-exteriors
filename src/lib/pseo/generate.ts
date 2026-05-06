@@ -119,21 +119,22 @@ function getCityLocalFaqs(seed: CitySeed): Array<{ question: string; answer: str
 // ── Shared constants ──────────────────────────────────────────────────────
 
 /** Price ranges by market tier — used by both general city and city+service pages */
-const PRICE_RANGES: Record<string, { roof: string; siding: string; windows: string; adu: string }> = {
-  budget: { roof: '$15,000–$22,000', siding: '$14,000–$28,000', windows: '$350–$600 per window', adu: '$140,000–$375,000' },
-  mid: { roof: '$18,000–$30,000', siding: '$18,000–$34,000', windows: '$450–$800 per window', adu: '$180,000–$400,000' },
-  premium: { roof: '$18,000–$45,000', siding: '$24,000–$42,000', windows: '$500–$1,000 per window', adu: '$210,000–$450,000' },
-  luxury: { roof: '$18,000–$40,000', siding: '$34,000–$65,000', windows: '$800–$1,500+ per window', adu: '$300,000–$600,000' },
+const PRICE_RANGES: Record<string, { roof: string; siding: string; windows: string; adu: string; decks: string }> = {
+  budget: { roof: '$15,000–$22,000', siding: '$14,000–$28,000', windows: '$350–$600 per window', adu: '$140,000–$375,000', decks: '$12,000–$25,000' },
+  mid: { roof: '$18,000–$30,000', siding: '$18,000–$34,000', windows: '$450–$800 per window', adu: '$180,000–$400,000', decks: '$15,000–$45,000' },
+  premium: { roof: '$18,000–$45,000', siding: '$24,000–$42,000', windows: '$500–$1,000 per window', adu: '$210,000–$450,000', decks: '$20,000–$60,000' },
+  luxury: { roof: '$18,000–$40,000', siding: '$34,000–$65,000', windows: '$800–$1,500+ per window', adu: '$300,000–$600,000', decks: '$30,000–$100,000' },
 };
 
 /** Map service slug to the price key in PRICE_RANGES */
-const SERVICE_PRICE_KEY: Record<string, 'roof' | 'siding' | 'windows' | 'adu'> = {
+const SERVICE_PRICE_KEY: Record<string, 'roof' | 'siding' | 'windows' | 'adu' | 'decks'> = {
   roofing: 'roof',
   siding: 'siding',
   windows: 'windows',
   adu: 'adu',
   'custom-homes': 'adu',
   additions: 'adu',
+  decks: 'decks',
 };
 
 // ── Climate-aware styles ──────────────────────────────────────────────────

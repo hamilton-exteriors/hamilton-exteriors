@@ -70,6 +70,8 @@ seo/dashboard.json
 seo/monitor-queue.jsonl
 seo/reloop-queue.jsonl
 seo/drafts/*.qa.json
+seo/drafts/*.md
+.claude/scheduled_tasks.lock
 
 # One-shot analysis / scratch outputs (do not commit)
 tmp_*.py

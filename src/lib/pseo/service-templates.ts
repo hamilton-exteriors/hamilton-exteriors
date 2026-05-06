@@ -450,6 +450,74 @@ export const SERVICE_TEMPLATES: ServiceTemplate[] = [
       },
     ],
   },
+  // ── Decks ─────────────────────────────────────────────────────────────
+  {
+    serviceSlug: 'decks',
+    serviceName: 'Decks',
+    heroHeadlinePattern: 'Deck Builder in {city}',
+    heroFormTitle: 'Get a Free Deck Estimate',
+    heroFormSubtitle:
+      "We'll contact you in 3-5 minutes to discuss your deck project.",
+    serviceType: 'Decks',
+    heroImageKey: 'serviceCustomHomes',
+    titlePattern: '{city} Deck Builder | Architect-Led | Hamilton Exteriors',
+    descriptionPattern:
+      '{city} deck builder — architect-led design-build for custom decks. Free on-site estimate. CSLB #1078806. Serving {county} County.',
+    faqTemplates: [
+      {
+        questionPattern: 'How much does a deck cost in {city}?',
+        answerPattern:
+          'A custom deck in {city} typically costs $18,000-$65,000 depending on size, materials, and complexity. A standard 400 sq ft composite deck runs $25,000-$55,000 including design, permit, and installation. Wood decks start around $18,000. Multi-level hillside decks run $35,000-$65,000. Get Your Free Quote for a precise estimate.',
+      },
+      {
+        questionPattern: 'Do I need a permit for a deck in {city}?',
+        answerPattern:
+          'Yes. {city} requires a building permit for any deck over 30 inches above grade or attached to the house. The {city} Building Division reviews plans for structural safety and fire code. Hamilton Exteriors pulls all permits and schedules inspections.',
+      },
+      {
+        questionPattern: 'What is the best deck material for {city}\'s climate?',
+        answerPattern:
+          'Composite decking (Trex, TimberTech) is the most popular choice for {city} because it handles Bay Area summer heat without warping, requires no annual sealing, and carries Class A fire ratings. For homeowners who prefer natural wood, Ipe hardwood is extremely durable and fire-resistant but costs more. Cedar is affordable but needs annual maintenance.',
+      },
+      {
+        questionPattern: 'How long does it take to build a deck in {city}?',
+        answerPattern:
+          'A standard deck in {city} takes 2-4 weeks from start to finish, including permit processing (1-2 weeks) and construction (1-2 weeks). Multi-level or hillside decks take 4-8 weeks due to additional structural work and drainage requirements. We provide a timeline in your estimate.',
+      },
+      {
+        questionPattern: 'Do you build decks on hillside properties in {city}?',
+        answerPattern:
+          'Yes. {city} has hillside terrain in neighborhoods like {neighborhood}. We design multi-level decks with proper drainage, retaining walls, and structural engineering for slopes. Hillside decks typically cost $35,000-$65,000 and take 4-8 weeks to complete.',
+      },
+    ],
+    stylesHeading: 'What Deck Materials Are Available?',
+    stylesItems: [
+      {
+        title: 'Composite Decking',
+        description:
+          'Trex and TimberTech composite boards combine recycled wood fibers with polymer for exceptional durability. Fade-resistant, splinter-free, and backed by 25-year warranties. The most popular choice for Bay Area homeowners seeking low maintenance.',
+        imageKey: 'serviceCustomHomes',
+      },
+      {
+        title: 'Hardwood Decking',
+        description:
+          'Ipe (Brazilian walnut) and other tropical hardwoods offer 40+ year lifespans with rich, warm tones. Naturally resistant to rot, insects, and decay. The premium choice for homeowners seeking exceptional beauty and longevity.',
+        imageKey: 'financingHouse',
+      },
+      {
+        title: 'Multi-Level Decks',
+        description:
+          'Engineered multi-level deck systems step down hillside terrain, creating tiered outdoor rooms at different elevations. Steel post foundations, integrated stairs, and landings transform steep backyards into functional living spaces with views.',
+        imageKey: 'serviceAdditions',
+      },
+      {
+        title: 'Deck Remodels',
+        description:
+          'Complete deck renovation including composite resurfacing over sound framing, railing upgrades to cable or glass, structural reinforcement, and modern lighting integration. Transform an aging wood deck into a contemporary outdoor room.',
+        imageKey: 'serviceAdu',
+      },
+    ],
+  },
 ];
 
 /**
